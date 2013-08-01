@@ -1,4 +1,2 @@
-CarifDBMS
+troothing
 =========
-
-Carif Database Management System
