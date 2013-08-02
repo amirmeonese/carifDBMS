@@ -7,6 +7,7 @@ class Auth extends CI_Controller {
 		parent::__construct();
 		$this->load->library('ion_auth');
 		$this->load->library('form_validation');
+		$this->load->library("template");
 		$this->load->helper('url');
 
 		// Load MongoDB library instead of native db driver if required
@@ -47,7 +48,8 @@ class Auth extends CI_Controller {
 				$this->data['users'][$k]->groups = $this->ion_auth->get_users_groups($user->id)->result();
 			}
 
-			$this->_render_page('auth/index', $this->data);
+			$this->template->load("templates/default_template", 'dashboard/index');
+			//$this->_render_page('auth/index', $this->data); Note: USE TEMPLATE->LOAD CALL ABOVE
 		}
 	}
 
@@ -96,8 +98,10 @@ class Auth extends CI_Controller {
 				'id' => 'password',
 				'type' => 'password',
 			);
-
-			$this->_render_page('auth/login', $this->data);
+			
+			//$this->template->set('main_content', 'auth/login');
+			$this->template->load("templates/login_template", 'auth/login', $this->data);
+			/* $this->_render_page('auth/login', $this->data); */
 		}
 	}
 
