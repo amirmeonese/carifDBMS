@@ -35,6 +35,41 @@ $config['tables']['users']           = 'users';
 $config['tables']['groups']          = 'groups';
 $config['tables']['users_groups']    = 'users_groups';
 $config['tables']['login_attempts']  = 'login_attempts';
+$config['tables']['patient'] = 'patient';
+$config['tables']['patient_relatives'] = 'patient_relatives';
+
+$config['tables']['cancer'] = 'cancer';
+$config['tables']['cancer_site'] = 'cancer_site';
+$config['tables']['diagnosis'] = 'diagnosis';
+$config['tables']['family'] = 'family';
+$config['tables']['patient_breast_abnormality_side'] = 'patient_breast_abnormality_side';
+$config['tables']['patient_breast_screening'] = 'patient_breast_screening';
+$config['tables']['patient_cancer'] = 'patient_cancer';
+$config['tables']['patient_cancer_recurrent'] = 'patient_cancer_recurrent';
+$config['tables']['patient_cancer_site'] = 'patient_cancer_site';
+$config['tables']['patient_cancer_treatment'] = 'patient_cancer_treatment';
+$config['tables']['patient_contact_person'] = 'patient_contact_person';
+$config['tables']['patient_diagnosis'] = 'patient_diagnosis';
+$config['tables']['patient_family'] = 'patient_family';
+$config['tables']['patient_gynaecological_surgery_history'] = 'patient_gynaecological_surgery_history';
+$config['tables']['patient_investigations'] = 'patient_investigations';
+$config['tables']['patient_lifestyle_factors'] = 'patient_lifestyle_factors';
+$config['tables']['patient_menstwation'] = 'patient_menstwation';
+$config['tables']['patient_mri_abnormality'] = 'patient_mri_abnormality';
+$config['tables']['patient_other_screening'] = 'patient_other_screening';
+$config['tables']['patient_parity_record'] = 'patient_parity_record';
+$config['tables']['patient_parity_table'] = 'patient_parity_table';
+$config['tables']['patient_pathology'] = 'patient_pathology';
+$config['tables']['patient_relatives'] = 'patient_relatives';
+$config['tables']['patient_studies'] = 'patient_studies';
+$config['tables']['patient_surveillance'] = 'patient_surveillance';
+$config['tables']['patient_ultrasound_abnormality'] = 'patient_ultrasound_abnormality';
+$config['tables']['relatives'] = 'relatives';
+$config['tables']['studies'] = 'studies';
+$config['tables']['treatment'] = 'treatment';
+
+
+
 
 /*
  | Users table column and Group table column you want to join WITH.
