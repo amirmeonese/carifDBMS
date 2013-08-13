@@ -2,7 +2,7 @@
 	<div id="add_record_header" class="row">
 		<p>Add Family Details</p>
 	</div>
-	<?php echo form_open('record/input'); ?>
+	<?php echo form_open('record/patient_family_record_insertion'); ?>
 	<div class="container" id="add_record_form_section_one">
 		<div height="30px">&nbsp;</div>
 		<table>
