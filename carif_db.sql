@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Aug 05, 2013 at 06:41 AM
+-- Generation Time: Aug 13, 2013 at 12:37 PM
 -- Server version: 5.1.41
 -- PHP Version: 5.3.1
 
@@ -30,12 +30,14 @@ CREATE TABLE IF NOT EXISTS `cancer` (
   `cancer_name` text NOT NULL,
   `cancer_detail` longtext NOT NULL,
   PRIMARY KEY (`cancer_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `cancer`
 --
 
+INSERT INTO `cancer` (`cancer_id`, `cancer_name`, `cancer_detail`) VALUES
+(1, 'breast', 'ashdshfhafh jhafkhfha sdjkfhdksjh');
 
 -- --------------------------------------------------------
 
@@ -82,12 +84,14 @@ CREATE TABLE IF NOT EXISTS `family` (
   `family_no` int(10) NOT NULL AUTO_INCREMENT,
   `family_name` char(50) NOT NULL,
   PRIMARY KEY (`family_no`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `family`
 --
 
+INSERT INTO `family` (`family_no`, `family_name`) VALUES
+(1, 'zsfmdsfbdsmb');
 
 -- --------------------------------------------------------
 
@@ -173,12 +177,19 @@ CREATE TABLE IF NOT EXISTS `patient` (
   `highest_education_level` char(250) NOT NULL,
   `income_level` char(250) NOT NULL,
   PRIMARY KEY (`ic_no`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `patient`
 --
 
+INSERT INTO `patient` (`fullname`, `surname`, `maiden_name`, `nationality`, `ic_no`, `family_no`, `padigree_labelling`, `gender`, `ethnicity`, `blood_group`, `comment`, `hospital_no`, `private_patient_no`, `cogs_study_id`, `2nd_mammo_test_flag`, `d_o_b`, `d_o_d`, `place_of_birth`, `metal_status`, `is_dead`, `reason_of_death`, `record_status`, `blood_card`, `blood_card_location`, `address`, `home_phone`, `cell_phone`, `work_phone`, `other_phone`, `fax`, `email`, `height`, `weight`, `rmi`, `highest_education_level`, `income_level`) VALUES
+('asfds', '', '', '', 1, '', '', '', '', '', '', '', '', '', 0, '0000-00-00', '0000-00-00', '', '', 0, '', '', 0, '', '', '', '', '', '', '', '', 0, 0, 0, '', ''),
+('alamgir', '', '', '', 2, '', '', '', '', '', '', '', '', '', 0, '2013-08-13', '0000-00-00', '', '', 0, '', '', 0, '', '', '', '', '', '', '', '', 0, 0, 0, '', ''),
+('pulak', '', '', '', 3, '', '', '', '', '', '', '', '', '', 0, '0000-00-00', '0000-00-00', '', '', 0, '', '', 0, '', '', '', '', '', '', '', '', 0, 0, 0, '', ''),
+('onimesh', 'Roy', 'aaa', 'American', 4, '', 'aaaa', 'male', 'aaaa', 'O+', 'HHHHHIIIIIIIIIIIIIIIIIIIIII', 'HHHHHIIIIIIIIIIIIIIIIIIIIII', '', '', 0, '1988-10-06', '0000-00-00', '', '', 0, '', '', 0, '', '', '', '', '', '', '', '', 0, 0, 0, '', ''),
+('zaher', 'fdgdfg', 'dfgfdgdf', 'Bangladeshi', 5, '', 'fdgdfg', 'fdgdfg', 'dfgfdg', 'o+', 'kkkkkkkkkkkkkkkk', 'kkkkkkkkkkkkkkkk', '', '', 0, '1988-10-06', '0000-00-00', '', '', 0, '', '', 0, '', '', '', '', '', '', '', '', 0, 0, 0, '', ''),
+('Pulak..', 'Roy...', 'ROY', 'American', 6, '', 'agsgdjgsg', 'male', 'adsakhakhd', 'o+', 'dsjgfjds dhagfjdgsj', 'dsjgfjds dhagfjdgsj', '', '', 0, '1988-10-06', '0000-00-00', '', '', 0, '', '', 0, '', '', '', '', '', '', '', '', 0, 0, 0, '', '');
 
 -- --------------------------------------------------------
 
@@ -708,6 +719,7 @@ CREATE TABLE IF NOT EXISTS `patient_relatives` (
   `sur_name` varchar(100) NOT NULL,
   `maiden_name` varchar(100) NOT NULL,
   `ethnicity` varchar(250) NOT NULL,
+  `nationality` varchar(250) NOT NULL,
   `town_of_residence` varchar(250) NOT NULL,
   `d_o_b` date NOT NULL,
   `is_alive_flag` tinyint(1) NOT NULL,
@@ -736,12 +748,15 @@ CREATE TABLE IF NOT EXISTS `patient_relatives` (
   KEY `fk_patient_relatives_relatives_id` (`relatives_id`),
   KEY `fk_patient_relatives_family_family_no` (`family_no`),
   KEY `fk_patient_relatives_cancer_type_id` (`cancer_type_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=29 ;
 
 --
 -- Dumping data for table `patient_relatives`
 --
 
+INSERT INTO `patient_relatives` (`patient_relatives_id`, `patient_ic_no`, `relatives_id`, `family_no`, `full_name`, `sur_name`, `maiden_name`, `ethnicity`, `nationality`, `town_of_residence`, `d_o_b`, `is_alive_flag`, `d_o_d`, `is_cancer_diagnosed`, `date_of_diagnosis`, `cancer_type_id`, `age_of_diagnosis`, `other_detail`, `no_of_brothers`, `no_of_sisters`, `sex`, `no_of_female_children`, `no_of_male_children`, `no_of_first_degree`, `is_paternal`, `is_maternal`, `vital_status`, `total_no_of_second_degree`, `total_no_of_third_degree`, `match_score_at_consent`, `match_score_post_consent`, `fh_category`) VALUES
+(27, 1, 1, 1, 'aa', 'aa', 'a', '', 'American', '', '1980-01-01', 0, '0000-00-00', 0, '0000-00-00', 1, 0, '', 0, 0, '', 0, 0, 0, 0, 0, '', 0, 0, 0, 0, ''),
+(28, 1, 1, 1, 'AA', 'ROy', 'asfdhafdh', '', 'American', '', '1988-10-06', 0, '0000-00-00', 0, '0000-00-00', 1, 0, '', 0, 0, '', 0, 0, 0, 0, 0, '', 0, 0, 0, 0, '');
 
 -- --------------------------------------------------------
 
@@ -839,12 +854,14 @@ CREATE TABLE IF NOT EXISTS `relatives` (
   `relatives_id` int(10) NOT NULL AUTO_INCREMENT,
   `relatives_type` char(100) NOT NULL,
   PRIMARY KEY (`relatives_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `relatives`
 --
 
+INSERT INTO `relatives` (`relatives_id`, `relatives_type`) VALUES
+(1, 'Parents');
 
 -- --------------------------------------------------------
 
@@ -919,10 +936,10 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `suspend`, `reset_password_invalid_attempts`, `reset_password_counter`, `first_name`, `last_name`, `phone`, `current_city`, `country`, `profile_picture_path`, `user_language`) VALUES
-(1, '\0\0', 'administrator', '59beecdf7fc966e2f17fd8f65a4a9aeb09d4a3d4', '9462e8eee0', 'admin@admin.com', '', NULL, NULL, NULL, 1268889823, 1375683613, 1, 0, 0, 0, 'Admin', 'istrator', '0', NULL, NULL, NULL, NULL),
+(1, '\0\0', 'administrator', '59beecdf7fc966e2f17fd8f65a4a9aeb09d4a3d4', '9462e8eee0', 'admin@admin.com', '', NULL, NULL, '9d029802e28cd9c768e8e62277c0df49ec65c48c', 1268889823, 1376371615, 1, 0, 0, 0, 'Admin', 'istrator', '0', NULL, NULL, NULL, NULL),
 (2, '\0\0', 'nazmul', '59beecdf7fc966e2f17fd8f65a4a9aeb09d4a3d4', '9462e8eee0', 'nazmul@apurbatech.com', '', NULL, NULL, NULL, 1268889823, 1373438882, 1, 0, 0, 0, 'Nazmul', 'Hasan', '0', NULL, NULL, NULL, NULL),
 (3, '\0\0', 'alamgir', '59beecdf7fc966e2f17fd8f65a4a9aeb09d4a3d4', '9462e8eee0', 'alamgir@apurbatech.com', '', NULL, NULL, NULL, 1268889823, 1373438882, 1, 0, 0, 0, 'Alamgir', 'Kabir', '0', NULL, NULL, NULL, NULL),
-(4, '\0\0', 'fariza', '59beecdf7fc966e2f17fd8f65a4a9aeb09d4a3d4', '9462e8eee0', 'fariza@apurbatech.com', '', NULL, NULL, NULL, 1268889823, 1373438882, 1, 0, 0, 0, 'Fariza', 'Amir', '0', NULL, NULL, NULL, NULL),
+(4, '\0\0', 'fariza', '59beecdf7fc966e2f17fd8f65a4a9aeb09d4a3d4', '9462e8eee0', 'fariza@apurbatech.com', '', NULL, NULL, NULL, 1268889823, 1375689996, 1, 0, 0, 0, 'Fariza', 'Amir', '0', NULL, NULL, NULL, NULL),
 (5, '\0\0', 'nor', '59beecdf7fc966e2f17fd8f65a4a9aeb09d4a3d4', '9462e8eee0', 'azriah.aziz@apurbatech.com', '', NULL, NULL, NULL, 1268889823, 1373438882, 1, 0, 0, 0, 'Nor', 'Azriah', '0', NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
@@ -1115,8 +1132,8 @@ ALTER TABLE `patient_ultrasound_abnormality`
 -- Constraints for table `users_groups`
 --
 ALTER TABLE `users_groups`
-  ADD CONSTRAINT `fk_users_groups_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_users_groups_groups` FOREIGN KEY (`group_id`) REFERENCES `groups` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_users_groups_groups` FOREIGN KEY (`group_id`) REFERENCES `groups` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_users_groups_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
