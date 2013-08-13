@@ -53,7 +53,7 @@
 		<div class="container">
 			<div class="row" style="padding-top:20px;">
 				<div class="row">
-					<img src="<?php echo base_url(); ?>img/Carif_logo.jpg" alt="logo" width="100%"/>
+					<a href="<?php echo base_url(); ?>"><img src="<?php echo base_url(); ?>img/Carif_logo.jpg" alt="logo" width="100%"/></a>
 				</div>
 				<?php $this->load->view($main_content);?>
 			</div>

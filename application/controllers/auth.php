@@ -30,6 +30,7 @@ class Auth extends CI_Controller {
 		{
 			//redirect them to the login page
 			redirect('auth/login', 'refresh');
+			//$this->template->load("templates/default_template", 'dashboard/index');
 		}
 		elseif (!$this->ion_auth->is_admin())
 		{

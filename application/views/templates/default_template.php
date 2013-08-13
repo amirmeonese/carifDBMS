@@ -53,21 +53,16 @@
 	<div class="container">
 		<div class="row" style="padding-top:20px;">
 			<div class="row">
-				<img src="<?php echo base_url(); ?>img/Carif_logo.jpg" alt="logo" width="100%"/>
+				<a href="<?php echo base_url(); ?>"><img src="<?php echo base_url(); ?>img/Carif_logo.jpg" alt="logo" width="100%"/></a>
 			</div>
 			<div id="header" class="row">
-				<p>Welcome to CARIF database system</p>
-			</div>
+					<table border="0" width="60%"><tr><td><a class="btn btn-large btn-info home_btn" href="<?php echo base_url(); ?>">Home</a></td><td><span class="welcome_msg">Welcome to CARIF database system</span></td><td><a class="btn btn-large btn-info logout_btn" href="templates/home.html">Logout</a></td><tr></table>
+				</div>
 			<?php $this->load->view($main_content);?>
 			<div id="footer" class="row">
 				<p>Copyright. @2013. Carif.</p>
 			</div>
 		</div>
 	</div>
-	<div class="footer navbar-fixed-bottom">
-		<p class="pull-right">Copyright &copy; 2013 </p>
-		<p>About Us  .  Advertise  .   Contact Us  .  Term & Condition</p>
-	</div>	
-		
-    </body>
+	</body>
 </html>
