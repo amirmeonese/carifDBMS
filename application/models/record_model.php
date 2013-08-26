@@ -496,7 +496,8 @@ class Record_model extends CI_Model {
         //PERSONAL DETAILS
         $data['fullname'] = 'Fullname';
         $data['surname'] = 'Surname';
-        $data['maiden_name'] = 'Maiden Name';
+        $data['maiden_name'] = 'Maiden name';
+		$data['family_no'] = 'Family No';
         $data['IC_no'] = 'IC No';
 
         $data['nationality'] = 'Nationality';
@@ -517,35 +518,261 @@ class Record_model extends CI_Model {
         );
         /*
          */
-        $data['DOB'] = 'DOB';
-        $data['pedigree_label'] = 'Pedigree Label';
+		 $data['gender'] = 'Gender';
+		 $data['genderTypes'] = array(
+            'Male' => 'Male',
+            'Female' => 'Female'
+        );
+        $data['DOB'] = 'Date of birth';
+		$data['place_of_birth'] = 'Place of birth';
+		$data['still_alive_flag'] = 'Still alive?';
+		$data['DOD'] = 'Date of death';
+		$data['reason_of_death'] = 'Reason of death';
+        $data['pedigree_label'] = 'Pedigree label';
         $data['gender'] = 'Gender';
         $data['ethinicity'] = 'Ethnicity';
-        $data['blood_group'] = 'Blood Group';
+		
+        $data['blood_group'] = 'Blood group';
         $data['comment'] = 'Comment';
-        $data['hospital_no'] = 'Hospital Number';
-        /* 	$data['DOB']	= 'DOB';	
-          $data['DOB']	= 'DOB';
-          $data['DOB']	= 'DOB';
-          $data['DOB']	= 'DOB';
-          $data['DOB']	= 'DOB';
-          $data['DOB']	= 'DOB';
-          $data['DOB']	= 'DOB';
-          $data['DOB']	= 'DOB';
-          $data['DOB']	= 'DOB';
-          $data['DOB']	= 'DOB';
-          $data['DOB']	= 'DOB'; */
-
+        $data['hospital_no'] = 'Hospital No';
+		$data['private_patient_no'] = 'Private Patient No';
+       
+		$data['marital_status'] = 'Marital status';
+		$data['marital_status_lists'] = array(
+            'Single' => 'Single',
+            'Married' => 'Married',
+			'Divorced' => 'Divorced'
+        );
+		$data['is_blood_card_exist'] = 'Is blood card exist?';
+		$data['blood_card_location'] = 'Blood card location';
+		
+		$data['address'] = 'Address';
+		$data['home_phone'] = 'Home phone';
+		$data['cell_phone'] = 'Mobile phone';
+		$data['work_phone'] = 'Work phone';
+		$data['height'] = 'Height';
+		$data['weight'] = 'Weight';
+		$data['BMI'] = 'BMI';
+		$data['highest_level_of_education'] = 'Highest level of education';
+		
+		$data['income_level'] = 'Income level';
+		$data['contact_person_name'] = 'Contact person\'s name';
+		$data['contact_person_phone_number'] = 'Contact person\'s phone';
+		$data['contact_person_relationship'] = 'Contact person\'s relationship';
+		$data['address'] = 'Address';
+		$data['address'] = 'Address';
+		$data['address'] = 'Address';
+		
         //FAMILY DETAILS
-        $data['mother_fullname'] = 'Mother\'s Fullname';
-        $data['mother_surname'] = 'Surname';
-        $data['mother_maiden_name'] = 'Maiden Name';
-        $data['mother_IC_no'] = 'IC No';
-
-        $data['mother_nationality'] = 'Nationality';
-        $data['mother_DOB'] = 'DOB';
-        $data['mother_town_residence'] = 'Town of Residence';
-        return $data;
+		$data['father_fullname'] = 'Father\'s fullname';
+        $data['father_surname'] = 'Father surname';
+        $data['father_maiden_name'] = 'Father maiden name';
+        $data['father_ethnicity'] = 'Father ethnicity';
+		$data['father_town_residence'] = 'Father\'s town of residence';
+		$data['father_DOB'] = 'Father\'s date of birth';
+		$data['father_still_alive_flag'] = 'Father is still alive?';
+		$data['father_DOD'] = 'Father\'s date of dead';
+        $data['father_is_cancer_diagnosed'] = 'Is father diagnosed with cancer?';
+        $data['father_date_of_diagnosis'] = 'Date of diagnosis';
+        $data['father_cancer_name'] = 'Father\'s cancer\'s name';
+		$data['father_age_of_diagnosis'] = 'Father\'s age at diagnosis';
+		$data['father_diagnosis_other_details'] = 'Father\'s diagnosis details';
+		$data['father_no_of_brothers'] = 'Total no. of brothers';
+		$data['father_no_of_sisters'] = 'Total no. of sisters';
+        $data['father_no_female_children'] = 'Total no. of female children';
+        $data['father_no_male_children'] = 'Total no. of male children';
+        $data['father_no_of_first_degree'] = 'Total no. of first degree';
+		$data['father_no_of_second_degree'] = 'Total no. of second degree';
+		$data['father_no_of_third_degree'] = 'Total no. of third degree';
+		$data['father_vital_status'] = 'Father\'s vital status';
+		$data['father_mach_score_at_consent'] = 'Father\'s mach score at consent';
+        $data['father_mach_score_past_consent'] = 'Father\'s mach score past consent';
+        $data['father_FH_category'] = 'Father\'s FH category';
+		
+		$data['mother_fullname'] = 'Mother\'s fullname';
+        $data['mother_surname'] = 'Mother surname';
+        $data['mother_maiden_name'] = 'Mother maiden name';
+        $data['mother_ethnicity'] = 'Mother ethnicity';
+		$data['mother_town_residence'] = 'Mother\'s town of residence';
+		$data['mother_DOB'] = 'Mother\'s date of birth';
+		$data['mother_still_alive_flag'] = 'Mother is still alive?';
+		$data['mother_DOD'] = 'Mother\'s date of dead';
+        $data['mother_is_cancer_diagnosed'] = 'Is mother diagnosed with cancer?';
+        $data['mother_date_of_diagnosis'] = 'Date of diagnosis';
+        $data['mother_cancer_name'] = 'Mother\'s cancer\'s name';
+		$data['mother_age_of_diagnosis'] = 'Mother\'s age at diagnosis';
+		$data['mother_diagnosis_other_details'] = 'Mother\'s diagnosis details';
+		$data['mother_no_of_brothers'] = 'Total no. of brothers';
+		$data['mother_no_of_sisters'] = 'Total no. of sisters';
+        $data['mother_no_female_children'] = 'Total no. of female children';
+        $data['mother_no_male_children'] = 'Total no. of male children';
+        $data['mother_no_of_first_degree'] = 'Total no. of first degree';
+		$data['mother_no_of_second_degree'] = 'Total no. of second degree';
+		$data['mother_no_of_third_degree'] = 'Total no. of third degree';
+		$data['mother_vital_status'] = 'Mother\'s vital status';
+		$data['mother_mach_score_at_consent'] = 'Mother\'s mach score at consent';
+        $data['mother_mach_score_past_consent'] = 'Mother\'s mach score past consent';
+        $data['mother_FH_category'] = 'Mother\'s FH category';
+		
+		//Studies, Mammo, Cancer & Diagnosis Details
+		//$data[''] = ''; (TEMPLATE)
+			
+		//STUDIES
+		$data['studies_name'] = 'Studies Name';
+		$data['studies_name_lists'] = array(
+            'MyBrCa' => 'MyBrCa',
+            'EpiBrCa' => 'EpiBrCa',
+			'OvaCa' => 'OvaCa',
+			'Mammo' => 'Mammo'
+        );
+		$data['date_at_consent'] = 'Date at consent';
+		$data['age_at_consent'] = 'Age at consent';
+		$data['is_double_consent_flag'] = 'Is double consent?';
+		$data['double_consent_details'] = 'Double consent details';
+		$data['consent_given_by'] = 'Consent given by';
+		$data['consent_response'] = 'Consent response';
+		$data['consent_version'] = 'Consent version';
+		$data['relations_to_study'] = 'Relations to study';
+		$data['referral_to'] = 'Referral to'; 
+		$data['referral_to_service'] = 'Referral to service'; 
+		$data['referral_date'] = 'Referral date'; 
+		$data['referral_source'] = 'Referral source'; 
+		
+		//MAMMO
+		$data['year_of_first_mammogram'] = 'Year of first mammogram'; 
+		$data['age_at_first_mammogram'] = 'Age at first mammogram'; 
+		$data['date_of_recent_mammogram'] = 'Date of recent mammogram'; 
+		$data['screening_center'] = 'Screening center'; 
+		$data['total_no_of_mammogram'] = 'Total no. of mammogram'; 
+		$data['screening_interval'] = 'Screening interval'; 
+		$data['abnormality_mammo_flag'] = 'Is abnormality detected?'; 
+		$data['mammo_left_right_breast_side'] = 'Left/right breast side'; 
+		$data['mammo_left_right_breast_side_lists'] = array(
+            'left' => 'Left',
+            'right' => 'Right'
+        );
+		$data['mammo_upper_below_breast_side'] = 'Upper/below breast side'; 
+		$data['mammo_upper_below_breast_side_lists'] = array(
+            'upper' => 'Upper',
+            'below' => 'Below'
+        );
+		$data['mammo_breast_other_descriptions'] = 'Other details'; 
+		
+		//Upload raw/processed images
+		$data['upload_raw_images_one'] = 'Upload first raw images';
+		$data['upload_raw_images_two'] = 'Upload second raw images';
+		$data['upload_raw_images_three'] = 'Upload third raw images';
+		$data['upload_raw_images_four'] = 'Upload fourth raw images';
+		$data['upload_processed_images_one'] = 'Upload first processed images';
+		$data['upload_processed_images_two'] = 'Upload second processed images';
+		$data['upload_processed_images_three'] = 'Upload third processed images';
+		$data['upload_processed_images_four'] = 'Upload fourth processed images';
+       
+		$data['name_of_radiologist'] = 'Radiologist name'; 
+		$data['action_suggested_on_mammo_report'] = 'Action suggested on mammogram report'; 
+		$data['had_ultrasound_flag'] = 'Had ultrasound done before?'; 
+		$data['total_no_of_ultrasound'] = 'Total no. of ultrasound'; 
+		$data['abnormality_ultrasound_flag'] = 'Is abnormality detected?'; 
+		$data['mammo_ultrasound_details'] = 'Ultrasound details'; 
+		$data['had_MRI_flag'] = 'Had MRI done before?'; 
+		$data['total_no_of_MRI'] = 'Total no. of MRI'; 
+		$data['abnormality_MRI_flag'] = 'Is abnormality detected?'; 
+		$data['mammo_MRI_details'] = 'MRI details'; 
+		$data['had_surgery_for_benign_lump_or_cyst_flag'] = 'Had done surgery for benign lumpr or cyst before?'; 
+		$data['other_screening_flag'] = 'Had other screenings done before?'; 
+		$data['screening_name'] = 'Screening name'; 
+		$data['total_no_of_screening'] = 'Total no. of screenings'; 
+		$data['age_at_screening'] = 'Age at screening';
+		$data['place_of_screening'] = 'Place of screening';
+		$data['screening_results'] = 'Screening results';
+		
+		//CANCER
+		
+		$data['breast_cancer_diagnosed_flag'] = 'Is breast cancer diagnosed?';
+		$data['breast_cancer_diagnosed_flag'] = 'Is breast cancer diagnosed?';
+		$data['breast_cancer_diagnosed_flag'] = 'Is breast cancer diagnosed?';
+		$data['patient_cancer_name'] = 'Cancer name';
+		$data['patient_cancer_name_lists'] = array(
+            'Breast' => 'Breast',
+            'Ovaries' => 'Ovaries',
+            'Prostate' => 'Prostate',
+            'Cervical' => 'Cervical',
+            'Lung' => 'Lung',
+            'Colorectal' => 'Colorectal',
+            'Uterine' => 'Uterine',
+            'Peritaneum' => 'Peritaneum',
+            'Pancreatic' => 'Pancreatic',
+            'Nasopharyngeal' => 'Nasopharyngeal',
+            'Liver' => 'Liver',
+            'Gastric' => 'Gastric',
+            'Others' => 'Others',
+			'None' => 'None'
+        );
+		$data['primary_diagnosis'] = 'Is primary diagnosis?';
+		$data['cancer_site'] = 'Select site';
+		$data['patient_cancer_site_lists'] = array(
+            'Left Breast' => 'Left Breast',
+            'Right Breast' => 'Right Breast',
+            'Left Ovary' => 'Left Ovary',
+            'Right Ovary' => 'Right Ovary'
+        );
+		$data['cancer_site_details'] = 'Cancer details';
+		
+		
+		$data['age_of_diagnosis'] = 'Age of diagnosis';
+		$data['date_of_diagnosis'] = 'Date of diagnosis';
+		$data['cancer_diagnosis_center'] = 'Diagnosis center';
+		$data['cancer_doctor_name'] = 'Doctor\'s name';
+		$data['detected_by'] = 'Detected by';
+		$data['patient_cancer_treatment_name'] = 'Treatment name';
+		$data['patient_cancer_treatment_name_lists'] = array(
+            'Lumpectomy' => 'Lumpectomy',
+            'Mastectomy' => 'Mastectomy',
+            'Healthy Breast Removed' => 'Healthy Breast Removed',
+            'Hysterectomy' => 'Hysterectomy',
+            'Oophorectomy' => 'Oophorectomy',
+            'Radiotherapy' => 'Radiotherapy',
+            'Chemotherapy' => 'Chemotherapy',
+            'Tamoxifen' => 'Tamoxifen',
+            'Other Hormonal Treatment' => 'Other Hormonal Treatment',
+            'Transplantation' => 'Transplantation',
+            'Neo Adjurant' => 'Neo Adjurant',
+            'Sterilisation' => 'Sterilisation',
+            'Tubal Ligation' => 'Tubal Ligation',
+			'Unilateral Salpingo Oophorectomy' => 'Unilateral Salpingo Oophorectomy',
+			'Bilateral Salpingo Oophorectomy' => 'Bilateral Salpingo Oophorectomy',
+			'TAHBSO' => 'TAHBSO',
+			'None' => 'None'
+        );
+		$data['treatment_start_date'] = 'Treatment start date';
+		$data['treatment_end_date'] = 'Treatment end date';
+		$data['treatment_drug_dose'] = 'Treatment drug dose';
+		$data['is_recurrence_flag'] = 'Is there a recurrence cancer?';
+		$data['recurrence_site'] = 'Recurrence site';
+		$data['recurrence_date'] = 'Recurrence date';
+		$data['patient_cancer_recurrence_treatment_name'] = 'Treatment for recurrence';
+		
+		//DIAGNOSIS
+		$data['patient_other_diagnosis_name'] = 'Diagnosis name'; 
+		$data['diagnosis_name_lists'] = array(
+            'Diabetes' => 'Diabetes',
+            'Hypertension' => 'Hypertension',
+            'Thyroid' => 'Thyroid',
+            'Cardiovaskular Disease' => 'Cardiovaskular Disease',
+            'Endochrine' => 'Endochrine',
+            'Congenital' => 'Congenital',
+            'Mental Disorder' => 'Mental Disorder'
+        );
+		$data['diagnosis_details'] = 'Diagnosis details';
+		$data['diagnosis_age'] = 'Age at diagnosis'; 
+		$data['year_of_diagnosis'] = 'Year of diagnosis'; 
+		$data['is_on_medication_flag'] = 'Is on medication?'; 
+		$data['medication_details'] = 'Medication details'; 
+		$data['diagnosis_center'] = 'Diagnosis center'; 
+		$data['diagnosis_doctor_name'] = 'Diagnosis doctor\'s name'; 
+		
+		$data[''] = ''; 
+		return $data;
     }
     
     public function insert_patient_record($record_data) {

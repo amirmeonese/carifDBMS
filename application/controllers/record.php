@@ -32,6 +32,14 @@ class Record extends CI_Controller {
             $this->template->load("templates/add_record_template", 'record/add_record_personal_details', $data);
         else if ($var == 'family')
             $this->template->load("templates/add_record_template", 'record/add_record_family_details', $data);
+		else if ($var == 'studies_setOne')
+            $this->template->load("templates/add_record_template", 'record/add_record_studies_set_one_details', $data);
+		else if ($var == 'investigationsAndSurveillance')
+            $this->template->load("templates/add_record_template", 'record/add_record_investigations_surveillance_details', $data);
+		else if ($var == 'lifestyleFactors')
+            $this->template->load("templates/add_record_template", 'record/add_record_lifestyles_factors_details', $data);
+		else if ($var == 'patientSchedulers')
+            $this->template->load("templates/add_record_template", 'record/add_record_patient_schedulers_details', $data);
         //$this->load->view('record/add_record', $data);
     }
 

@@ -29,6 +29,14 @@
 
         <script type="text/javascript" src="<?php echo base_url(); ?>js/jquery.min.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>js/bootstrap.js"></script>
+		<script type="text/javascript">
+		function calcHeight()
+		{
+			document.getElementById('iframe_record_home').height = document.getElementById('iframe_record_home').contentDocument.documentElement.scrollHeight+15; //Chrome
+			document.getElementById('iframe_record_home').height = document.getElementById('iframe_record_home').contentWindow.document.body.scrollHeight+15; //FF, IE
+		}
+		</script>
+		<script src="<?php echo base_url(); ?>js/addFormsDynamicFields.js" language="Javascript" type="text/javascript"></script>
     </head>
     <body>
 
@@ -42,8 +50,13 @@
 					<table border="0" width="60%"><tr><td><a class="btn btn-large btn-info home_btn" href="<?php echo base_url(); ?>">Home</a></td><td><span class="welcome_msg">Welcome to CARIF database system</span></td><td><a class="btn btn-large btn-info logout_btn" href="templates/home.html">Logout</a></td><tr></table>
 				</div>
 				<div>
-					<a class="add_record_tab_btn" href="<?php echo site_url('record/view_list/personal');?>" target="iframe_record_home" >Personal</a><a class="add_record_tab_btn" href="<?php echo site_url('record/view_list/family');?>" target="iframe_record_home" >Family</a>
-					<iframe src="<?php echo site_url('record/view_list/personal');?>" name="iframe_record_home" width="100%" height="700px" scrolling="no"></iframe>
+					<a class="add_record_tab_btn" href="<?php echo site_url('record/view_list/personal');?>" target="iframe_record_home" >Personal</a>
+					<a class="add_record_tab_btn" href="<?php echo site_url('record/view_list/family');?>" target="iframe_record_home" >Family</a>
+					<a class="add_record_tab_btn" href="<?php echo site_url('record/view_list/studies_setOne');?>" target="iframe_record_home" >Studies, Mammo, Cancer & Diagnosis </a>
+					<a class="add_record_tab_btn" href="<?php echo site_url('record/view_list/investigationsAndSurveillance');?>" target="iframe_record_home" >Investigations & Surveillance</a>
+					<a class="add_record_tab_btn" href="<?php echo site_url('record/view_list/lifestyleFactors');?>" target="iframe_record_home" >Lifestyle Factors</a>
+					<a class="add_record_tab_btn" href="<?php echo site_url('record/view_list/patientSchedulers');?>" target="iframe_record_home" >Patient Schedulers</a>
+					<iframe src="<?php echo site_url('record/view_list/personal');?>" id="iframe_record_home" name="iframe_record_home" onLoad="calcHeight();" width="100%" height="700px" scrolling="no"></iframe>
 				</div>
 				<div id="footer" class="row">
 					<p>Copyright. @2013. Carif.</p>
