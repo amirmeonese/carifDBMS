@@ -285,7 +285,7 @@ class Excell_parser extends CI_Controller {
                     }
 
                     $patient_breast_abnormality[] = array(
-                        'patient_ic_no' => $temp3_prev[0],
+                        //'patient_ic_no' => $temp3_prev[0],
                         'description' => $temp3_prev[14],
                         'left_breast' => $left_breast,
                         'right_breast' => $right_breast,
