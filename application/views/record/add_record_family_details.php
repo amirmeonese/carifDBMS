@@ -260,7 +260,7 @@
 			</tr>
 		</table>
 		</div>
-		<input type="button" value="Add more relative record" onClick="window.parent.addInput('add_record_form_section_2');window.parent.calcHeight();">
+		<input type="button" value="Add more relative record" onClick="window.parent.addInput('add_record_form_section_2');window.parent.calcHeight();"></br>
 	<?php echo form_fieldset_close(); ?>	
 	<?php echo form_submit('mysubmit','Save');  ?>
 	<?php echo form_close(); ?>

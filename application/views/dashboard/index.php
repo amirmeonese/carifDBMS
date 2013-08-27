@@ -13,7 +13,7 @@
 				</form>
 			</div>
 			<div class="span3">
-				<form name="show_instance" action="show_instance_file.php" method="post">
+				<form name="show_instance" action="report" method="post">
 					<input type ="image" src="<?php echo base_url(); ?>img/report_manager.png" alt="view_report_manager_button" height="270px"></input>
 				</form>
 			</div>
