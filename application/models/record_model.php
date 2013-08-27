@@ -679,6 +679,7 @@ class Record_model extends CI_Model {
 		$data['abnormality_MRI_flag'] = 'Is abnormality detected?'; 
 		$data['mammo_MRI_details'] = 'MRI details'; 
 		$data['had_surgery_for_benign_lump_or_cyst_flag'] = 'Had done surgery for benign lumpr or cyst before?'; 
+		$data['mammo_benign_lump_cyst_details'] = 'Details';
 		$data['other_screening_flag'] = 'Had other screenings done before?'; 
 		$data['screening_name'] = 'Screening name'; 
 		$data['total_no_of_screening'] = 'Total no. of screenings'; 
@@ -716,7 +717,7 @@ class Record_model extends CI_Model {
             'Left Ovary' => 'Left Ovary',
             'Right Ovary' => 'Right Ovary'
         );
-		$data['cancer_site_details'] = 'Cancer details';
+		$data['cancer_site_details'] = 'Details';
 		
 		
 		$data['age_of_diagnosis'] = 'Age of diagnosis';

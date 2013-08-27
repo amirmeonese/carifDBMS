@@ -101,6 +101,7 @@ function deleteInput(divCounterName)
 	
 	iframeDoc.getElementById('add_record_form_section_' + divCounterName).parentNode.removeChild(iframeDoc.getElementById('add_record_form_section_' + divCounterName));
 	window.parent.calcHeight();
+	relativeCounter--;
 }
 
 // ====== MAMMO ==== //
@@ -152,6 +153,7 @@ function deleteBreastSiteInput(divCounterName)
 	
 	iframeDoc.getElementById('mammo_second_section_' + divCounterName).parentNode.removeChild(iframeDoc.getElementById('mammo_second_section_' + divCounterName));
 	window.parent.calcHeight();
+	breastSiteCounter--;
 }
 
 // ==== ULTRASOUND ====
@@ -191,4 +193,297 @@ function deleteUltrasoundDetailsInput(divCounterName)
 	
 	iframeDoc.getElementById('mammo_ultrasound_second_section_' + divCounterName).parentNode.removeChild(iframeDoc.getElementById('mammo_ultrasound_second_section_' + divCounterName));
 	window.parent.calcHeight();
+	ultrasoundCounter--;
+}
+
+// ==== MRI ====
+var MRICounter = 2;
+var limit = 10;
+
+function addMRIDetailsInput(divName)
+{
+	if (MRICounter == limit)  {
+		alert("You have reached the limit of adding " + MRICounter + " inputs");
+	}
+	else 
+	{
+		var newdiv = document.createElement('div');
+		
+		var att2 = document.createAttribute("id");
+		att2.value="mammo_MRI_second_section_" + MRICounter;
+		newdiv.setAttributeNode(att2);
+		
+		var formInputHTML = "<table><tr>" +
+		"<td>MRI details:<textarea name='mammo_MRI_details" + MRICounter + "' cols='7' rows='3' id='mammo_MRI_details' ></textarea></td>" + 
+		"<td><input type='button' value='Delete' onClick='window.parent.deleteMRIDetailsInput(" + MRICounter + ");'></td>" +
+		"</tr></table>";
+		
+		newdiv.innerHTML = formInputHTML;
+		
+		var iframeDoc = document.getElementById('iframe_record_home').contentWindow ? document.getElementById('iframe_record_home').contentWindow.document : document.getElementById('iframe_record_home').contentDocument;
+		
+		iframeDoc.getElementById(divName).appendChild(newdiv);
+		MRICounter++;
+	}
+}
+
+function deleteMRIDetailsInput(divCounterName) 
+{
+	var iframeDoc = document.getElementById('iframe_record_home').contentWindow ? document.getElementById('iframe_record_home').contentWindow.document : document.getElementById('iframe_record_home').contentDocument;
+	
+	iframeDoc.getElementById('mammo_MRI_second_section_' + divCounterName).parentNode.removeChild(iframeDoc.getElementById('mammo_MRI_second_section_' + divCounterName));
+	window.parent.calcHeight();
+	MRICounter--;
+}
+
+// ==== BENIGN LUMP & CYSTS SURGERY ====
+var lumpCystCounter = 2;
+var limit = 10;
+
+function addLumpCystDetailsInput(divName)
+{
+	if (lumpCystCounter == limit)  {
+		alert("You have reached the limit of adding " + lumpCystCounter + " inputs");
+	}
+	else 
+	{
+		var newdiv = document.createElement('div');
+		
+		var att2 = document.createAttribute("id");
+		att2.value="mammo_fifth_section_" + lumpCystCounter;
+		newdiv.setAttributeNode(att2);
+		
+		var formInputHTML = "<table><tr>" +
+		"<td>Details:<textarea name='mammo_benign_lump_cyst_details" + lumpCystCounter + "' cols='7' rows='3' id='mammo_benign_lump_cyst_details' ></textarea></td>" + 
+		"<td><input type='button' value='Delete' onClick='window.parent.deleteLumpCystDetailsInput(" + lumpCystCounter + ");'></td>" +
+		"</tr></table>";
+		
+		newdiv.innerHTML = formInputHTML;
+		
+		var iframeDoc = document.getElementById('iframe_record_home').contentWindow ? document.getElementById('iframe_record_home').contentWindow.document : document.getElementById('iframe_record_home').contentDocument;
+		
+		iframeDoc.getElementById(divName).appendChild(newdiv);
+		lumpCystCounter++;
+	}
+}
+
+function deleteLumpCystDetailsInput(divCounterName) 
+{
+	var iframeDoc = document.getElementById('iframe_record_home').contentWindow ? document.getElementById('iframe_record_home').contentWindow.document : document.getElementById('iframe_record_home').contentDocument;
+	
+	iframeDoc.getElementById('mammo_fifth_section_' + divCounterName).parentNode.removeChild(iframeDoc.getElementById('mammo_fifth_section_' + divCounterName));
+	window.parent.calcHeight();
+	lumpCystCounter--;
+}
+
+// ==== OTHER SCREENINGS ====
+var otherScreeningCounter = 2;
+var limit = 10;
+
+function addScreeningDetailsInput(divName)
+{
+	if (otherScreeningCounter == limit)  {
+		alert("You have reached the limit of adding " + otherScreeningCounter + " inputs");
+	}
+	else 
+	{
+		var newdiv = document.createElement('div');
+		
+		var att2 = document.createAttribute("id");
+		att2.value="mammo_other_screenings_section_" + otherScreeningCounter;
+		newdiv.setAttributeNode(att2);
+		
+		var formInputHTML = "<table><tr>" +
+		"<td>Screening name: <input type='text' name='screening_name" + otherScreeningCounter + "' value=''/></td>" +
+		"<td>Total no. of screenings:<input type='text' name='total_no_of_screening" + otherScreeningCounter + "' value=''/></td>" +
+		"<td>Age at screening:<input type='text' name='age_at_screening" + otherScreeningCounter + "' value=''/></td>" +
+		"<td>Place of screening: <input type='text' name='place_of_screening" + otherScreeningCounter + "' value=''/>	</td></tr>" +
+		"<tr><td>Screening results: <textarea name='screening_results" + otherScreeningCounter + "' cols='7' rows='3' id='screening_results' ></textarea></td>" + 
+		"<td><input type='button' value='Delete' onClick='window.parent.deleteScreeningDetailsInput(" + otherScreeningCounter + ");'></td>" +
+		"</tr></table>";
+		
+		newdiv.innerHTML = formInputHTML;
+		
+		var iframeDoc = document.getElementById('iframe_record_home').contentWindow ? document.getElementById('iframe_record_home').contentWindow.document : document.getElementById('iframe_record_home').contentDocument;
+		
+		iframeDoc.getElementById(divName).appendChild(newdiv);
+		otherScreeningCounter++;
+	}
+}
+
+function deleteScreeningDetailsInput(divCounterName) 
+{
+	var iframeDoc = document.getElementById('iframe_record_home').contentWindow ? document.getElementById('iframe_record_home').contentWindow.document : document.getElementById('iframe_record_home').contentDocument;
+	
+	iframeDoc.getElementById('mammo_other_screenings_section_' + divCounterName).parentNode.removeChild(iframeDoc.getElementById('mammo_other_screenings_section_' + divCounterName));
+	window.parent.calcHeight();
+	otherScreeningCounter--;
+}
+
+// ==== CANCER SITES ====
+var cancerSitesCounter = 2;
+var limit = 10;
+
+function addCancerDetailsInput(divName)
+{
+	if (cancerSitesCounter == limit)  {
+		alert("You have reached the limit of adding " + cancerSitesCounter + " inputs");
+	}
+	else 
+	{
+		var newdiv = document.createElement('div');
+		
+		var att2 = document.createAttribute("id");
+		att2.value="cancer_section_" + cancerSitesCounter;
+		newdiv.setAttributeNode(att2);
+		
+		var formInputHTML = "<table><tr>" +
+		"<td>Select site:" +
+		"<select name='cancer_site" + cancerSitesCounter + "'>" +
+			"<option value='Left Breast'>Left Breast</option>" +
+			"<option value='Right Breast'>Right Breast</option>" +
+			"<option value='Left Ovary'>Left Ovary</option>" +
+			"<option value='Right Ovary'>Right Ovary</option>" +
+		"</select> " +
+		"<tr><td>Details: <textarea name='cancer_site_details" + cancerSitesCounter + "' cols='7' rows='3' id='cancer_site_details' ></textarea></td>" + 
+		"<td><input type='button' value='Delete' onClick='window.parent.deleteCancerDetailsInput(" + cancerSitesCounter + ");'></td>" +
+		"</tr></table>";
+		
+		newdiv.innerHTML = formInputHTML;
+		
+		var iframeDoc = document.getElementById('iframe_record_home').contentWindow ? document.getElementById('iframe_record_home').contentWindow.document : document.getElementById('iframe_record_home').contentDocument;
+		
+		iframeDoc.getElementById(divName).appendChild(newdiv);
+		cancerSitesCounter++;
+	}
+}
+
+function deleteCancerDetailsInput(divCounterName) 
+{
+	var iframeDoc = document.getElementById('iframe_record_home').contentWindow ? document.getElementById('iframe_record_home').contentWindow.document : document.getElementById('iframe_record_home').contentDocument;
+	
+	iframeDoc.getElementById('cancer_section_' + divCounterName).parentNode.removeChild(iframeDoc.getElementById('cancer_section_' + divCounterName));
+	window.parent.calcHeight();
+	cancerSitesCounter--;
+}
+
+// ==== CANCER TREATMENT ====
+var cancerTreatmentCounter = 2;
+var limit = 10;
+
+function addCancerTreatmentInput(divName)
+{
+	if (cancerTreatmentCounter == limit)  {
+		alert("You have reached the limit of adding " + cancerTreatmentCounter + " inputs");
+	}
+	else 
+	{
+		var newdiv = document.createElement('div');
+		
+		var att2 = document.createAttribute("id");
+		att2.value="cancer_second_section_three_" + cancerTreatmentCounter;
+		newdiv.setAttributeNode(att2);
+		
+		var formInputHTML = "<table><tr>" +
+		"<td>Treatment name:" +
+		"<select name='patient_cancer_treatment_name" + cancerTreatmentCounter + "'>" +
+			"<option value='Lumpectomy'>Lumpectomy</option>" +
+			"<option value='Mastectomy'>Mastectomy</option>" +
+			"<option value='Healthy Breast Removed'>Healthy Breast Removed</option>" +
+			"<option value='Hysterectomy'>Hysterectomy</option>" +
+			"<option value='Oophorectomy'>Oophorectomy</option>" +
+			"<option value='Radiotherapy'>Radiotherapy</option>" +
+			"<option value='Chemotherapy'>Chemotherapy</option>" +
+			"<option value='Tamoxifen'>Tamoxifen</option>" +
+			"<option value='Other Hormonal Treatment'>Other Hormonal Treatment</option>" +
+			"<option value='Transplantation'>Transplantation</option>" +
+			"<option value='Neo Adjurant'>Neo Adjurant</option>" +
+			"<option value='Sterilisation'>Sterilisation</option>" +
+			"<option value='Tubal Ligation'>Tubal Ligation</option>" +
+			"<option value='Unilateral Salpingo Oophorectomy'>Unilateral Salpingo Oophorectomy</option>" +
+			"<option value='Bilateral Salpingo Oophorectomy'>Bilateral Salpingo Oophorectomy</option>" +
+			"<option value='TAHBSO'>TAHBSO</option>" +
+			"<option value='None'>None</option>" +
+		"</select> " +
+		"<td>Treatment start date: <input type='text' name='treatment_start_date" + cancerTreatmentCounter + "' value=''/></td>" +
+		"<td>Treatment end date:<input type='text' name='treatment_end_date" + cancerTreatmentCounter + "' value=''/></td>" +
+		"<td>Treatment drug dose:<input type='text' name='treatment_drug_dose" + cancerTreatmentCounter + "' value=''/></td>" +
+		"<td><input type='button' value='Delete' onClick='window.parent.deleteCancerTreatmentInput(" + cancerTreatmentCounter + ");'></td>" +
+		"</tr></table>";
+		
+		newdiv.innerHTML = formInputHTML;
+		
+		var iframeDoc = document.getElementById('iframe_record_home').contentWindow ? document.getElementById('iframe_record_home').contentWindow.document : document.getElementById('iframe_record_home').contentDocument;
+		
+		iframeDoc.getElementById(divName).appendChild(newdiv);
+		cancerTreatmentCounter++;
+	}
+}
+
+function deleteCancerTreatmentInput(divCounterName) 
+{
+	var iframeDoc = document.getElementById('iframe_record_home').contentWindow ? document.getElementById('iframe_record_home').contentWindow.document : document.getElementById('iframe_record_home').contentDocument;
+	
+	iframeDoc.getElementById('cancer_second_section_three_' + divCounterName).parentNode.removeChild(iframeDoc.getElementById('cancer_second_section_three_' + divCounterName));
+	window.parent.calcHeight();
+	cancerTreatmentCounter--;
+}
+
+// ==== CANCER RECURRENCE TREATMENT ====
+var cancerRecurrenceCounter = 2;
+var limit = 10;
+
+function addCancerRecurrenceInput(divName)
+{
+	if (cancerRecurrenceCounter == limit)  {
+		alert("You have reached the limit of adding " + cancerRecurrenceCounter + " inputs");
+	}
+	else 
+	{
+		var newdiv = document.createElement('div');
+		
+		var att2 = document.createAttribute("id");
+		att2.value="cancer_second_section_five_" + cancerRecurrenceCounter;
+		newdiv.setAttributeNode(att2);
+		
+		var formInputHTML = "<table><tr>" +
+		"<td>Treatment for recurrence:" +
+		"<select name='patient_cancer_recurrence_treatment_name" + cancerRecurrenceCounter + "'>" +
+			"<option value='Lumpectomy'>Lumpectomy</option>" +
+			"<option value='Mastectomy'>Mastectomy</option>" +
+			"<option value='Healthy Breast Removed'>Healthy Breast Removed</option>" +
+			"<option value='Hysterectomy'>Hysterectomy</option>" +
+			"<option value='Oophorectomy'>Oophorectomy</option>" +
+			"<option value='Radiotherapy'>Radiotherapy</option>" +
+			"<option value='Chemotherapy'>Chemotherapy</option>" +
+			"<option value='Tamoxifen'>Tamoxifen</option>" +
+			"<option value='Other Hormonal Treatment'>Other Hormonal Treatment</option>" +
+			"<option value='Transplantation'>Transplantation</option>" +
+			"<option value='Neo Adjurant'>Neo Adjurant</option>" +
+			"<option value='Sterilisation'>Sterilisation</option>" +
+			"<option value='Tubal Ligation'>Tubal Ligation</option>" +
+			"<option value='Unilateral Salpingo Oophorectomy'>Unilateral Salpingo Oophorectomy</option>" +
+			"<option value='Bilateral Salpingo Oophorectomy'>Bilateral Salpingo Oophorectomy</option>" +
+			"<option value='TAHBSO'>TAHBSO</option>" +
+			"<option value='None'>None</option>" +
+		"</select> " +
+		"<td><input type='button' value='Delete' onClick='window.parent.deleteCancerRecurrenceInput(" + cancerRecurrenceCounter + ");'></td>" +
+		"</tr></table>";
+		
+		newdiv.innerHTML = formInputHTML;
+		
+		var iframeDoc = document.getElementById('iframe_record_home').contentWindow ? document.getElementById('iframe_record_home').contentWindow.document : document.getElementById('iframe_record_home').contentDocument;
+		
+		iframeDoc.getElementById(divName).appendChild(newdiv);
+		cancerTreatmentCounter++;
+	}
+}
+
+function deleteCancerRecurrenceInput(divCounterName) 
+{
+	var iframeDoc = document.getElementById('iframe_record_home').contentWindow ? document.getElementById('iframe_record_home').contentWindow.document : document.getElementById('iframe_record_home').contentDocument;
+	
+	iframeDoc.getElementById('cancer_second_section_five_' + divCounterName).parentNode.removeChild(iframeDoc.getElementById('cancer_second_section_five_' + divCounterName));
+	window.parent.calcHeight();
+	cancerRecurrenceCounter--;
 }

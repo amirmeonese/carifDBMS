@@ -348,12 +348,29 @@
 		<?php
 		echo form_fieldset('Surgery Details');
 		?>
-		<table id="mammo_fifth_section">
+		<table id="mammo_fifth_section_1">
 			<tr>
 				<td>
                     <?php echo $had_surgery_for_benign_lump_or_cyst_flag; ?>: 
                     <?php echo form_checkbox('had_surgery_for_benign_lump_or_cyst_flag','no',FALSE); ?>
                 </td>
+			</tr>
+			<tr>
+				<td>
+                    <?php echo $mammo_benign_lump_cyst_details; ?>: 
+                    <?php 
+						$data = array(
+							'name'        => 'mammo_benign_lump_cyst_details',
+							'id'          => 'mammo_benign_lump_cyst_details',
+							'rows'        => '3',
+							'cols'        => '7'
+						  );
+						echo form_textarea($data); 
+					?>
+                </td>
+				<td>
+					<input type="button" value="Add more details" onClick="window.parent.addLumpCystDetailsInput('add_record_form_section_mammo_benign_cyst_surgery');window.parent.calcHeight();">
+				</td>
 			</tr>
 		</table>
 		<?php echo form_fieldset_close(); ?>	
@@ -482,7 +499,7 @@
                 </td>
 			</tr>
 		</table>
-		<table id="cancer_second_section_three">
+		<table id="cancer_second_section_three_1">
 			<tr>
 				<td>
                     <?php echo $patient_cancer_treatment_name; ?>: 
@@ -526,7 +543,7 @@
                 </td>
 			</tr>
 		</table>
-		<table id="cancer_second_section_five">
+		<table id="cancer_second_section_five_1">
 			<tr>
 				<td>
                     <?php echo $patient_cancer_recurrence_treatment_name; ?>: 
