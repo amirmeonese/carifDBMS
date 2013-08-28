@@ -6243,6 +6243,27 @@ iframe { overflow:hidden; border:0;}
           box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
+
+input[name=submit] {
+
+ color: #ffffff;
+  height:auto;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  background-color: #D65D79;
+  *background-color: #CC3457;
+  background-image: -moz-linear-gradient(top, #D65D79, #CC3457);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#D65D79), to(#CC3457));
+  background-image: -webkit-linear-gradient(top, #D65D79, #CC3457);
+  background-image: -o-linear-gradient(top, #D65D79, #CC3457);
+  background-image: linear-gradient(to bottom, #D65D79, #CC3457);
+  background-repeat: repeat-x;
+  border-color: #CC3457 #CC3457 #CC3457;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff5bc0de', endColorstr='#ffCC3457', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+
+}
+
 input[name=mysubmit] {
 
 	display: inline-block;
