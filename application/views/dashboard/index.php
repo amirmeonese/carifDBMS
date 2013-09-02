@@ -18,7 +18,7 @@
 				</form>
 			</div>
 			<div class="span3">
-				<form name="show_preview" action="show_preview_file.php" method="post">
+				<form name="show_preview" action="admin" method="post">
 					<input type ="image" src="<?php echo base_url(); ?>img/admin_panel.png" alt="admin_panel_button" height="270px"></input>
 				</form>
 			</div>
