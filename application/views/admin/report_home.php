@@ -62,13 +62,13 @@
                     <a class="add_record_tab_btn" href="<?php echo site_url('record/view_list/family'); ?>" target="iframe_record_home" >
                         Family
                     </a>-->
-                    <iframe src="<?php echo site_url('admin/admin_panel/home'); ?>" name="iframe_record_home" width="100%" height="700px" scrolling="no"></iframe>
+                    <iframe src="<?php echo site_url('admin/admin_panel/home'); ?>" name="iframe_record_home" width="100%" height="400px" scrolling="no"></iframe>
                 </div>
                 <div id="footer" class="row">
                     <p>Copyright. @2013. Carif.</p>
                 </div>
             </div>
         </div>
-        <div height="40px"> &nbsp;</div>
+        <div height="10px"> &nbsp;</div>
     </body>
 </html>
