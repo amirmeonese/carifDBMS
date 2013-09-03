@@ -1,10 +1,10 @@
-<div class="container" id="add_record_div">
+<div class="container" id="report_div">
     <div id="add_record_header" class="row">
         <p>View Lock Items</p>
     </div>
     <div class="container" id="add_record_form_section_one">
         <div height="30px">&nbsp;</div>
-        <table border="1" align="center" width="50%">
+        <table border="1" style="margin-left:180px;" width="50%">
         <thead>
             <tr>
                 <th style="background-color:Crimson;">Date</th>
@@ -21,9 +21,10 @@
             </tr>
         <?php endforeach; ?>-->
                 </table>
+    </br>
+	<a style="margin-left:180px;" class="doneButton" href="<?php echo base_url(); ?>">Done</a>
     </div>
-<?php echo form_submit('mysubmit', 'Done'); ?>
-    <div>
+    </div>
 
 
 

@@ -1,9 +1,9 @@
-<div class="container" id="add_record_div">
+<div class="container" id="submit_report_div">
 	<div id="add_record_header" class="row">
 		<p>Create New Report</p>
 	</div>
 	<?php echo form_open('report/add_record_admin_detail'); ?>
-	<div class="container" id="add_record_form_section_one">
+	<div class="container" id="report_form_section">
 		<div height="30px">&nbsp;</div>
 		<table>
 			<tr><td>
@@ -24,7 +24,7 @@
 			</td></tr>
 		
 		</table>	
-			<p align="center"><?php echo form_submit('submit','Save Form');  ?>  <?php echo form_submit('submit','Cancel');  ?></p>
+			<p><?php echo form_submit('submit','Save Form');  ?>  <?php echo form_submit('submit','Cancel');  ?></p>
 
 	<p></p>
 	<p align="center">Select Field</p>
@@ -54,6 +54,6 @@
 
 	<?php echo form_close(); ?>
 
-
+ </div>
 
 

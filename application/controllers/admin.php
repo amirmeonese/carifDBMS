@@ -54,13 +54,13 @@ class Admin extends CI_Controller {
     
     function list_record_locked_item(){
     
-            $this->template->load("templates/add_record_template",'admin/list_record_locked_item');
+            $this->template->load("templates/admin_panel_template",'admin/list_record_locked_item');
 
     }
     
     function list_error_locked_item(){
     
-            $this->template->load("templates/add_record_template",'admin/list_error_locked_item');
+            $this->template->load("templates/admin_panel_template",'admin/list_error_locked_item');
 
     }
     
@@ -133,6 +133,15 @@ class Admin extends CI_Controller {
         $this->template->load("templates/admin_panel_template", 'admin/submit_report', $data);
         
     }
+    
+    function create_new_user(){
+        
+        $this->load->model('Record_model');
+        $data = $this->Record_model->general();
+        
+            $this->template->load("templates/admin_panel_template", 'admin/add_record_admin_detail',$data);
+        
+    }
 
     
     function create_new_report(){
@@ -140,7 +149,7 @@ class Admin extends CI_Controller {
         $this->load->model('Record_model');
         $data = $this->Record_model->general();
         
-        $this->template->load("templates/add_record_template", 'admin/list_error_locked_item',$data);
+        $this->template->load("templates/admin_panel_template", 'admin/create_new_report',$data);
         
     }
 

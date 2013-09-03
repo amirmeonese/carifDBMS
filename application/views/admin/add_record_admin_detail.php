@@ -1,9 +1,9 @@
-<div class="container" id="add_record_div">
+<div class="container" id="view_record_div">
 	<div id="add_record_header" class="row">
 		<p>Create User</p>
 	</div>
 	<?php echo form_open('admin/add_record_admin_detail'); ?>
-	<div class="container" id="add_record_form_section_one">
+	<div class="container" id="add_record_form_section_1">
 		<div height="30px">&nbsp;</div>
 		<table>
 			<tr><td>
@@ -26,7 +26,7 @@
 			<td>:</td>
 			<td><?php echo form_input('admin_log_id'); ?></td>
 			</td></tr>
-			<!--<tr><td>
+			<tr><td>
 			<?php echo 'Privillage'; ?>
 			<td></td> 
 			<td><?php echo form_checkbox('newsletter', 'accept'); ?> Add</td>
@@ -34,12 +34,14 @@
 			<tr><td></td><td></td><td><?php echo form_checkbox('newsletter', 'accept'); ?> Edit/modify</td></tr>
 			<tr><td></td><td></td><td><?php echo form_checkbox('newsletter', 'accept'); ?> Delete</td></tr>
 
-			<td></tr>-->
+			<td></tr>
 		</table>	
 		</div>
-	<?php echo form_submit('submit','Submit');  ?>
+	<?php echo form_submit('mysubmit','Create User');  ?>
+	<a class="submitCancel" href="<?php echo base_url(); ?>">Cancel</a>
+
 	<?php echo form_close(); ?>
-<div>
+</div>
 
 
 
