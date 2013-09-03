@@ -487,3 +487,52 @@ function deleteCancerRecurrenceInput(divCounterName)
 	window.parent.calcHeight();
 	cancerRecurrenceCounter--;
 }
+
+// ==== PATIENT INTERVIEW MANAGER ====
+var interviewNoteCounter = 2;
+var limit = 10;
+
+function addInterviewNoteInput(divName)
+{
+	if (interviewNoteCounter == limit)  {
+		alert("You have reached the limit of adding " + interviewNoteCounter + " inputs");
+	}
+	else 
+	{
+		var newdiv = document.createElement('div');
+		
+		var att2 = document.createAttribute("id");
+		att2.value="add_interview_form_section_" + interviewNoteCounter;
+		newdiv.setAttributeNode(att2);
+		
+		var formInputHTML = "<fieldset><legend>Interview Note " + interviewNoteCounter + "</legend>" +
+		"<table>" +
+		"<tr>" +
+		"<td>Interview date: <input type='text' name='interview_date" + interviewNoteCounter + "' value=''/></td></tr>" +
+		"<tr><td>Setup next interview date:<input type='text' name='interview_next_date" + interviewNoteCounter + "' value=''/></td>" +
+		"</tr><tr>" +
+		"<tr><td>Send email reminder to officer?:<input type='checkbox' name='is_send_email_reminder" + interviewNoteCounter + "' value=''/></td>" +
+		"</tr><tr>" +
+		"<tr><td>Set officer email addresses:<input type='text' name='officer_email_addresses" + interviewNoteCounter + "' value=''/></td>" +
+		"</tr><tr>" +
+		"<td>Interview note: <textarea name='interview_note" + relativeCounter + "' cols='7' rows='10' id='interview_note'></textarea></td>" +
+		"<td><input type='button' value='Delete' onClick='window.parent.deleteInterviewNoteInput(" + interviewNoteCounter + ");'></td>" +
+		"</tr></table>";
+		
+		newdiv.innerHTML = formInputHTML;
+		
+		var iframeDoc = document.getElementById('iframe_record_home').contentWindow ? document.getElementById('iframe_record_home').contentWindow.document : document.getElementById('iframe_record_home').contentDocument;
+		
+		iframeDoc.getElementById(divName).appendChild(newdiv);
+		interviewNoteCounter++;
+	}
+}
+
+function deleteInterviewNoteInput(divCounterName) 
+{
+	var iframeDoc = document.getElementById('iframe_record_home').contentWindow ? document.getElementById('iframe_record_home').contentWindow.document : document.getElementById('iframe_record_home').contentDocument;
+	
+	iframeDoc.getElementById('add_interview_form_section_' + divCounterName).parentNode.removeChild(iframeDoc.getElementById('add_interview_form_section_' + divCounterName));
+	window.parent.calcHeight();
+	interviewNoteCounter--;
+}
