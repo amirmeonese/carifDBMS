@@ -110,5 +110,30 @@ class Record extends CI_Controller {
             print_r(validation_errors());
         }
     }
+    
+    function patient_record_view($ic_no){
+    
+    $this->load->model('Record_model');
+    $data = $this->Record_model->general();
+    $data['patient_detail'] = $a = $this->record_model->get_patient_record($ic_no);
+    
+    $this->template->load("templates/report_home_template", 'record/view_record_personal_details', $data);
+    
+    }
+    
+    function record_list(){
+    
+ 	$this->load->view('record/record_list');    
+    }
+    
+    function patient_record_list(){
+    
+    $this->load->model('Record_model');
+    $data = $this->Record_model->general();
+    $data['patient_list'] = $this->record_model->get_list_patient_record();
+    
+    $this->template->load("templates/report_home_template", 'record/list_record_personal_details', $data);
+    
+    }
 
 }

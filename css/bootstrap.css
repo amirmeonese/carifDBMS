@@ -6457,6 +6457,34 @@ div #login_footer{
 	background-color: #EAEAEC;
 }
 
+.container #submit_report_div{
+	text-align: left;
+	width: 70%;
+	height: auto;
+	padding-left: 20px;
+	padding-bottom: 50px;
+	padding-left: 20px;
+	margin-left:auto;
+	margin-right:auto;
+	margin-top: auto;
+	margin-bottom: auto;
+	background-color: #EAEAEC;
+}
+
+.container #view_record_div{
+	text-align: left;
+	width:90%;
+	height: auto;
+	padding-left: 20px;
+	padding-bottom: 50px;
+	padding-left: 20px;
+	margin-left:auto;
+	margin-right:auto;
+	margin-top: auto;
+	margin-bottom: auto;
+	background-color: #EAEAEC;
+}
+
 
 .container #report_div{
 	text-align: left;
@@ -6470,6 +6498,20 @@ div #login_footer{
 	margin-top: auto;
 	margin-bottom: auto;
 	background-color: #EAEAEC;
+}
+
+.container #admin_panel_div{
+	text-align: left;
+	width: 80%;
+	height: auto;
+	padding-left: 20px;
+	padding-bottom: 50px;
+	padding-left: 20px;
+	margin-left:auto;
+	margin-right:auto;
+	margin-top: auto;
+	margin-bottom: auto;
+        border:2px solid;
 }
 
 .row #report_header{

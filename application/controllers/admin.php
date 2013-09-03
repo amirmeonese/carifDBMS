@@ -15,7 +15,9 @@ class Admin extends CI_Controller {
 
     //redirect if needed, otherwise display the user list
     function index() {
-        $this->template->load("templates/add_record_template",'admin/report_home');
+        //$this->template->load("templates/add_record_template",'admin/report_home');
+        
+        $this->admin_panel();
     }
 
     function input() {
@@ -103,25 +105,43 @@ class Admin extends CI_Controller {
        
 }
     
-    function admin_panel($var = null) {
+    function admin_panel() {
     
-        $this->load->model('Record_model');
-        $data = $this->Record_model->general();
+//        $this->load->model('Record_model');
+//        $data = $this->Record_model->general();
         
-        if ($var == 'home')
-        	$this->template->load("templates/add_record_template",'admin/admin_panel');
-        else if ($var == 'error_log')
-            $this->template->load("templates/add_record_template", 'admin/list_error_locked_item',$data);
-        else if ($var == 'submit_report')
-            $this->template->load("templates/add_record_template", 'admin/submit_report', $data);
-        else if ($var == 'create_user')
-            $this->template->load("templates/add_record_template", 'admin/add_record_admin_detail',$data);
-        else if ($var == 'lock_items')
-            $this->template->load("templates/add_record_template", 'admin/list_record_locked_item', $data);
-    	else if ($var == 'new_form')
-            $this->template->load("templates/add_record_template", 'admin/create_new_report', $data);
+//        if ($var == 'home')
+        	$this->template->load("templates/list_record_template",'admin/admin_panel');
+//        else if ($var == 'error_log')
+//            $this->template->load("templates/add_record_template", 'admin/list_error_locked_item',$data);
+//        else if ($var == 'submit_report')
+//            $this->template->load("templates/add_record_template", 'admin/submit_report', $data);
+//        else if ($var == 'create_user')
+//            $this->template->load("templates/add_record_template", 'admin/add_record_admin_detail',$data);
+//        else if ($var == 'lock_items')
+//            $this->template->load("templates/add_record_template", 'admin/list_record_locked_item', $data);
+//    	else if ($var == 'new_form')
+//            $this->template->load("templates/add_record_template", 'admin/create_new_report', $data);
     
     }
     
+    function submit_report_form(){
+        
+        $this->load->model('Record_model');
+        $data = $this->Record_model->general();
+        
+        $this->template->load("templates/admin_panel_template", 'admin/submit_report', $data);
+        
+    }
+
+    
+    function create_new_report(){
+        
+        $this->load->model('Record_model');
+        $data = $this->Record_model->general();
+        
+        $this->template->load("templates/add_record_template", 'admin/list_error_locked_item',$data);
+        
+    }
 
 }

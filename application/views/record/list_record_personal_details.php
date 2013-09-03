@@ -3,9 +3,9 @@
         <p>View Personal Information</p>
 	</div>
 	<?php echo form_open('report/process_report'); ?>
-	<div class="container" id="report_form_section">
+	<div class="container" id="report_form_section" >
 		<div height="30px">&nbsp;</div>
-		<table border="1" align="center" width="50%" >
+		<table border="1" width="50%" style="margin-left:180px;">
            <thead>
             <tr>
                 <th style="background-color:Crimson;">Date</th>
@@ -22,5 +22,7 @@
         <?php endforeach; ?>
 		</table>
 	</br>
-	<a class="submitCancel" href="<?php echo base_url(); ?>">Done</a>
+	<a style="margin-left:180px;" class="submitCancel" href="<?php echo base_url(); ?>">Done</a>
     </div>
+    </div>
+

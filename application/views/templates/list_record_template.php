@@ -41,7 +41,7 @@
 				<div id="header" class="row">
 					<table border="0" width="60%"><tr><td><a class="btn btn-large btn-info home_btn" href="<?php echo base_url(); ?>">Home</a></td><td><span class="welcome_msg">Welcome to CARIF database system</span></td><td><a class="btn btn-large btn-info logout_btn" href="templates/home.html">Logout</a></td><tr></table>
 				</div>
-				<div class="row" style="padding-top:60px;">
+				<div class="row" style="padding-top:30px;">
 					<?php $this->load->view($main_content);?>
 				</div>
 				<div height="40px">&nbsp;</div>

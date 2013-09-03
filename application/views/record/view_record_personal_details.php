@@ -1,4 +1,4 @@
-<div class="container" id="report_div">
+<div class="container" id="view_record_div">
 	<div id="report_header" class="row">
         <p>View Personal Information</p>
 	</div>
@@ -66,6 +66,7 @@
 		</table>
 	</br>
 	<a class="submitCancel" href="<?php echo base_url(); ?>">Done</a>
+    </div>
     </div>
 
 

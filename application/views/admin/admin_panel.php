@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" id="admin_panel_div">
     <div id="add_record_header" class="row">
         <p>Admin Panel</p>
     </div>
@@ -6,7 +6,7 @@
         <div height="50px">&nbsp;</div>
             <div class="span3">
 
-                <form name="submit_report" action="submit_report" method="post">
+                <form name="submit_report" action="admin/submit_report_form" method="post">
                     <input type ="image" src="<?php echo base_url(); ?>img/submit_report.png" alt="submit_report_button" height="120px"></input>
                 </form> 
             </div>

@@ -1,4 +1,4 @@
-<div class="container" id="add_record_div">
+<div class="container" id="submit_report_div">
 	<div id="add_record_header" class="row">
 		<p>Submit Report</p>
 	</div>
@@ -39,7 +39,7 @@
 	<?php echo form_close(); ?>
 
 
-<div>
+</div>
 
 
 

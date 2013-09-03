@@ -797,6 +797,24 @@ class Record_model extends CI_Model {
 	$id = $this->db->insert_id();
         return $id;
     }
+    
+    public function get_patient_record($ic_no){
+    
+		$p_record = $this->db->get_where('patient', array('ic_no' => $ic_no));
+        $patient_record = $p_record->row_array();
+        $p_record->free_result();  
+        
+        return $patient_record;
+    }
+    
+    public function get_list_patient_record(){
+    
+		$l_record = $this->db->get('patient');
+        $patient_list = $l_record->result_array();
+        $l_record->free_result();  
+        
+        return $patient_list;
+    }
 
 
 }
