@@ -10,7 +10,7 @@ class Admin extends CI_Controller {
         $this->load->helper('form');
         $this->load->library("template");
         $this->load->library('form_validation');
-        $this->load->model('record_model');
+        $this->load->model('admin_model');
     }
 
     //redirect if needed, otherwise display the user list
@@ -29,15 +29,17 @@ class Admin extends CI_Controller {
     //if($this->input->post('submit')){
     
     $data = array(
-                'full_name' => $this->input->post('admin_firstname'),
-                'sur_name' => $this->input->post('admin_lastname'),
+                'first_name' => $this->input->post('admin_firstname'),
+                'last_name' => $this->input->post('admin_lastname'),
                 'email' => $this->input->post('admin_email'),
-                'log_id' => $this->input->post('admin_log_id')
+                'username' => $this->input->post('admin_log_id')
                 
             );
-
+            
+            print_r($data);exit;
+			$id = $this->db->insert('users', $data);
             //array_push($data, $this->input->post('firstname'));
-            $id = $this->report_model->insert_admin_record($data);
+            //$id = $this->admin_model->insert_admin_record($data);
             if ($id > 0) {
                 echo "Data Added successfully";
             } else {
@@ -68,16 +70,25 @@ class Admin extends CI_Controller {
     $message = $this->input->post('message_contain');
     
     $config = array(
+//            'protocol' => 'smtp',
+//            //'mailpath' => '/usr/sbin/sendmail',
+//            'smtp_host' => 'ssl://server1.barracudacms.com',
+//            'smtp_port' => 465,
+//            'smtp_user' => 'system@barracudacms.com',
+//            'smtp_pass' => 'System@33',
+//            'mailtype' => 'html'
+        
             'protocol' => 'smtp',
-            'mailpath' => '/usr/sbin/sendmail',
-            'smtp_host' => 'ssl://server1.barracudacms.com',
+            //'mailpath' => '/usr/sbin/sendmail',
+            'smtp_host' => 'ssl://smtp.googlemail.com',
             'smtp_port' => 465,
-            'smtp_user' => 'system@barracudacms.com',
-            'smtp_pass' => 'System@33',
+            'smtp_user' => 'asyraf.abdrani@gmail.com',
+            'smtp_pass' => 'is081744',
             'mailtype' => 'html'
         );
     
 	$this->load->library('email',$config);
+        $this->email->set_newline("\r\n");
    	$this->email->from( 'asyraf.abdrani@gmail.com', 'Amirul Asyraf' );
    	$this->email->to($sender);
    	$this->email->cc($cc);
@@ -89,7 +100,7 @@ class Admin extends CI_Controller {
    
    redirect('admin/admin_panel/submit_report');
    }	
-    
+       
 }
     
     function admin_panel($var = null) {
@@ -111,5 +122,6 @@ class Admin extends CI_Controller {
             $this->template->load("templates/add_record_template", 'admin/create_new_report', $data);
     
     }
+    
 
 }
