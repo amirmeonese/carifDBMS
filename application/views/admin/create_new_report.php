@@ -1,6 +1,6 @@
 <div class="container" id="add_record_div">
 	<div id="add_record_header" class="row">
-		<p>Create User</p>
+		<p>Create New Report</p>
 	</div>
 	<?php echo form_open('report/add_record_admin_detail'); ?>
 	<div class="container" id="add_record_form_section_one">
