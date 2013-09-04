@@ -10,7 +10,7 @@ class Interview_Manager extends CI_Controller {
         $this->load->helper('form');
         $this->load->library("template");
         $this->load->library('form_validation');
-        $this->load->model('record_model');
+        $this->load->model('Interview_Manager_Model');
     }
 
     //redirect if needed, otherwise display the user list

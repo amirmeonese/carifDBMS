@@ -6563,6 +6563,10 @@ div #label2
 	color: #B22222;
 }
 
+div #label1
+{
+	font-weight: bold;
+}
 .doneButton {
   display: inline-block;
   *display: inline;

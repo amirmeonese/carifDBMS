@@ -772,7 +772,166 @@ class Record_model extends CI_Model {
 		$data['diagnosis_center'] = 'Diagnosis center'; 
 		$data['diagnosis_doctor_name'] = 'Diagnosis doctor\'s name'; 
 		
+		
+		//Lifestyle Factors
+		$data['self_image_at_7years'] = 'Self image at 7 years old';
+        $data['self_image_at_18years'] = 'Self image at 18 years old';
+        $data['self_image_now'] = 'Self image now';
+		$data['self_image_lists'] = array(
+            '1' => '1',
+            '2' => '2',
+            '3' => '3',
+            '4' => '4',
+            '5' => '5',
+            '6' => '6',
+            '7' => '7',
+            '8' => '8',
+            '9' => '9',
+            '10' => '10'
+        );
+		 $data['pa_activities_lists'] = array(
+            'Never' => 'Never',
+            'Less than 1 hour per week' => 'Less than 1 hour per week',
+            '1-2 hour per week' => '1-2 hour per week',
+            'More than 2 hours per week' => 'More than 2 hours per week'
+        );
+		
+		$data['pa_at_childhood'] = 'Childhood (before 18 years old)';
+        $data['pa_at_adulthood'] = '18 - 30 years old';
+		$data['pa_now'] = 'Most recent years';
+		
+		$data['cigarettes_smoked_flag'] = 'Patient has ever smoked cigarettes?';
+		$data['cigarettes_still_smoked_flag'] = 'Patient still smoking?'; 
+		$data['total_smoked_years'] = 'Total years of smoking'; 
+		$data['cigarettes_count_at_teen'] = 'Before 20 years old'; 
+		$data['cigarettes_count_at_twenties'] = '20 - 29 years'; 
+		$data['cigarettes_count_at_thirties'] = '30-39 years'; 
+		$data['cigarettes_count_at_forties'] = '40 - 49 years'; 
+		$data['cigarettes_count_at_fifties'] = '50 - 59 years'; 
+		$data['cigarettes_count_at_sixties_and_above'] = '60 year and more'; 
+		$data['cigarettes_count_one_year_before_diagnosed'] = '1 year prior to cancer diagnosis'; 
+		$data['cigarettes_average_count_lists'] = array(
+            '0' => '0',
+            '1-5' => '1-5',
+            '6-10' => '6-10',
+            '11-20' => '11-20',
+            '>20' => '>20'
+        );
+		$data['alcohol_drunk_flag'] = 'Alcohol drunk more than once a month on average?'; 
+		$data['alcohol_average'] = 'Alcohol average'; 
+		$data['alcohol_average_details'] = 'Average details'; 
+		$data['coffee_drunk_flag'] = 'Coffee drunk regularly?'; 
+		$data['coffee_age'] = 'Start age'; 
+		$data['coffee_average'] = 'Coffee average'; 
+		$data['tea_drunk_flag'] = 'tea drunk regularly'; 
+		$data['tea_age'] = 'Start age'; 
+		$data['tea_average'] = 'Tea average'; 
+		$data['tea_type'] = 'Tea type'; 
+		$data['alcohol_drink_average_lists'] = array(
+            '1 glass per day' => '1 glass per day',
+            '1 glass per week' => '1 glass per week',
+            '1 glass per month' => '1 glass per month',
+            'Other, please specify' => 'Other, please specify'
+        );
+		$data['coffee_tea_drink_average_lists'] = array(
+            '1 cup per week/less' => '1 cup per week/less',
+            '1 cup per day' => '1 cup per day',
+            '1-5 cups per day' => '1-5 cups per day',
+            '>5 cups per day' => '>5 cups per day'
+        );
+		$data['tea_type_lists'] = array(
+            'Black tea' => 'Black tea',
+            'Green tea' => 'Green tea',
+            'Herbal tea' => 'Herbal tea',
+            'Other, please specify' => 'Other, please specify'
+        );
+		$data['soya_bean_drunk_flag'] = 'Soya bean milk drunk regularly?'; 
+		$data['soya_bean_average'] = 'Soya bean average'; 
+		$data['soya_products_flag'] = 'Soya products eaten regularly?'; 
+		$data['soya_products_average'] = 'Soya products average'; 
+		$data['soya_products_lists'] = array(
+            'Every meal' => 'Every meal',
+            'Every day' => 'Every day',
+            'Once a week' => 'Once a week',
+            'Other, please specify' => 'Other, please specify'
+        );
+		$data['diabetes_flag'] = 'Patient has diabetes?'; 
+		$data['medicine_for_diabetes_flag'] = 'Current taking any diabetes medication?'; 
+		$data['diabates_medicine_name'] = 'Medicine name'; 
+			
+		$data['age_period_starts'] = 'Age period starts'; 
+		$data['still_period_flag'] = 'Still having period?'; 
+		$data['period_type'] = 'Period regularity'; 
+		$data['period_cycle_days'] = 'Period cycle days'; 
+		$data['period_cycle_days_other_details'] = 'Other details'; 
+		$data['age_period_stops'] = 'Age period stops'; 
+		$data['date_period_stops'] = 'Date period stops'; 
+		$data['reason_period_stops'] = 'Reason period stops'; 
+		$data['period_type_lists'] = array(
+            'Regular' => 'Regular',
+            'Irregular' => 'Irregular'
+        );
+		$data['period_cycle_days_lists'] = array(
+            '28' => '28',
+            '29' => '29',
+            '30' => '30',
+            '31' => '31',
+			'Other' => 'Other'
+        );
+		$data['reason_period_stops_lists'] = array(
+            'It stopped itself' => 'It stopped itself',
+            'Uterus was removed' => 'Uterus was removed',
+            'Ovaries removed' => 'Ovaries removed',
+            'Medication/Chemotherapy' => 'Medication/Chemotherapy',
+			'Other reason' => 'Other reason'
+        );
+		$data['reason_period_stops_other_details'] = 'Other details'; 
+		
+		$data['pregnant_flag'] = 'Patient has been pregnant?'; 
+		$data['pregnancy_type'] = 'Pregnancy type'; 
+		$data['pregnancy_type_lists'] = array(
+            'Child' => 'Child',
+            'Stillborn' => 'Stillborn',
+            'Miscarriage' => 'Miscarriage'
+        );
+		$data['child_gender'] = 'Gender'; 
+		$data['child_birthyear'] = 'Birthyear'; 
+		$data['child_birthweight'] = 'Birthweight'; 
+		$data['child_breastfeeding_duration'] = 'Breastfeeding'; 
+		
+		
+		$data['infertility_testing_flag'] = 'Patient has been treated for infertility?'; 
+		$data['infertility_treatment_details'] = 'Treatment details'; 
+		$data['contraceptive_pills_flag'] = 'Has ever used contraceptive pills?'; 
+		$data['contraceptive_pills_details'] = 'Details'; 
+		$data['currently_taking_contraceptive_pills_flag'] = 'Is currently taking contraceptive pills?'; 
+		$data['contraceptive_start_date'] = 'Consumption start date'; 
+		$data['contraceptive_end_date'] = 'Consumption end date'; 
+		$data['HRT_flag'] = 'Has ever used hormone replacement therapy(HRT)?'; 
+		$data['HRT_details'] = 'Details'; 
+		$data['currently_using_HRT_flag'] = 'Is currently using HRT?'; 
+		$data['HRT_start_date'] = 'Therapy start date'; 
+		$data['HRT_end_date'] = 'Therapy end date'; 
+		$data['had_gnc_surgery_flag'] = 'Has ever had gynaecological surgery?'; 
+		$data['gnc_surgery_year'] = 'Surgery year'; 
+		$data['gnc_treatment_name'] = 'Surgery type'; 
+		$data['gnc_treatment_name_other_details'] = 'Surgery other details'; 
+		
+		$data['gnc_treatment_lists'] = array(
+            'Sterilisation' => 'Lumpectomy',
+            'Tubal Ligation' => 'Mastectomy',
+            'Removal of one ovary' => 'Healthy Breast Removed',
+            'Removal of both ovaries (oophorectomy)' => 'Removal of both ovaries (oophorectomy)',
+            'Removal of one ovary & fallopian tube (Unlateral salpingo-oophorectomy)' => 'Removal of one ovary & fallopian tube (Unlateral salpingo-oophorectomy)',
+            'Removal of both ovaries & fallopian tube (Bilateral salpingo-oophorectomy)' => 'Removal of both ovaries & fallopian tube (Bilateral salpingo-oophorectomy)',
+            'Removal of uterus (hysterectomy)' => 'Removal of uterus (hysterectomy)',
+            'Removal of uterus & part of cervix (hysterectomy)' => 'Removal of uterus & part of cervix(hysterectomy)',
+            'Removal of uterus, cervix, ovaries & fallopian tube (Total hysterectomy/TAHBSO)' => 'Removal of uterus, cervix, ovaries & fallopian tube (Total hysterectomy/TAHBSO)',
+			'Other, please specify' => 'Other, please specify'
+        );
+		
 		$data[''] = ''; 
+		
 		return $data;
     }
     

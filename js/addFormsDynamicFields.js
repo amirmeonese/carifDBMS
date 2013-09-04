@@ -29,7 +29,6 @@ function addInput(divName)
 		"<select name='relativeTypeLists" + relativeCounter + "'>" +
 			"<option value='Brother'>Brother</option>" +
 			"<option value='Sister'>Sister</option>" +
-			"<option value='Children'>American</option>" +
 			"<option value='1stDegree'>1st degree</option>" +
 			"<option value='2ndDegree'>2nd degree</option>" +
 			"<option value='3rdDegree'>3rd degree</option>" +
@@ -535,4 +534,64 @@ function deleteInterviewNoteInput(divCounterName)
 	iframeDoc.getElementById('add_interview_form_section_' + divCounterName).parentNode.removeChild(iframeDoc.getElementById('add_interview_form_section_' + divCounterName));
 	window.parent.calcHeight();
 	interviewNoteCounter--;
+}
+
+// ==== PREGNANCY DETAILS ====
+var pregnancyDetailsCounter = 2;
+var limit = 10;
+
+function addPregnancyInput(divName)
+{
+	if (pregnancyDetailsCounter == limit)  {
+		alert("You have reached the limit of adding " + pregnancyDetailsCounter + " inputs");
+	}
+	else 
+	{
+		var newdiv = document.createElement('div');
+		
+		var att2 = document.createAttribute("id");
+		att2.value="pregnancy_section_" + pregnancyDetailsCounter;
+		newdiv.setAttributeNode(att2);
+		
+		var formInputHTML = "<table>" +
+		"<tr>" +
+		"<td>Patient has been pregnant?: <input type='checkbox' name='pregnant_flag" + pregnancyDetailsCounter + "' value='no'/></td>" +
+		"<td>Pregnancy type:" +
+		"<select name='pregnancy_type" + pregnancyDetailsCounter + "'>" +
+			"<option value='Child'>Child</option>" +
+			"<option value='Stillborn'>Stillborn</option>" +
+			"<option value='Miscarriage'>Miscarriage</option>" +
+		"</select> " +
+		"</td>" +
+		"<td>Gender: " +
+		"<select name='child_gender" + pregnancyDetailsCounter + "'>" +
+			"<option value='Male'>Male</option>" +
+			"<option value='Female'>Female</option>" +
+		"</select> " +
+		"</tr>" +
+		"<tr><td>Birthyear<input type='text' name='child_birthyear" + pregnancyDetailsCounter + "' value=''/></td>" +
+		"<td>Birthweight<input type='text' name='child_birthweight" + pregnancyDetailsCounter + "' value=''/></td>" +
+		"<td>Breastfeeding<input type='text' name='child_breastfeeding_duration" + pregnancyDetailsCounter + "' value=''/></td>" +
+		"</tr>" +
+		"<tr>" +
+		"<td><input type='button' value='Delete' onClick='window.parent.deletePregnancyInput(" + pregnancyDetailsCounter + ");'></td>" +
+		"<tr>" +
+		"</table>";
+		
+		newdiv.innerHTML = formInputHTML;
+		
+		var iframeDoc = document.getElementById('iframe_record_home').contentWindow ? document.getElementById('iframe_record_home').contentWindow.document : document.getElementById('iframe_record_home').contentDocument;
+		
+		iframeDoc.getElementById(divName).appendChild(newdiv);
+		pregnancyDetailsCounter++;
+	}
+}
+
+function deletePregnancyInput(divCounterName) 
+{
+	var iframeDoc = document.getElementById('iframe_record_home').contentWindow ? document.getElementById('iframe_record_home').contentWindow.document : document.getElementById('iframe_record_home').contentDocument;
+	
+	iframeDoc.getElementById('pregnancy_section_' + divCounterName).parentNode.removeChild(iframeDoc.getElementById('pregnancy_section_' + divCounterName));
+	window.parent.calcHeight();
+	pregnancyDetailsCounter--;
 }
