@@ -11,6 +11,7 @@ class Admin extends CI_Controller {
         $this->load->library("template");
         $this->load->library('form_validation');
         $this->load->model('admin_model');
+        $this->load->library('session');
     }
 
     //redirect if needed, otherwise display the user list
@@ -28,28 +29,19 @@ class Admin extends CI_Controller {
     
     function add_record_admin_detail(){
     
-    //if($this->input->post('submit')){
-    
-    $data = array(
-                'first_name' => $this->input->post('admin_firstname'),
-                'last_name' => $this->input->post('admin_lastname'),
-                'email' => $this->input->post('admin_email'),
-                'username' => $this->input->post('admin_log_id')
-                
-            );
-            
-            print_r($data);exit;
-			$id = $this->db->insert('users', $data);
-            //array_push($data, $this->input->post('firstname'));
-            //$id = $this->admin_model->insert_admin_record($data);
+
+            $password = $this->admin_model->get_random_password();
+            $salt = $this->admin_model->get_random_salt();
+        
+            $id = $this->admin_model->insert_admin_record($password,$salt);
             if ($id > 0) {
-                echo "Data Added successfully";
+                
+                $this->session->set_flashdata('msg', 'success: Data Added successfully');
+                redirect('admin/create_new_user');
+                //echo "Data Added successfully";
             } else {
                 echo "Failed to insert";
             }
-    //}
-            //$this->template->load("templates/add_record_template",'record/add_record_admin_detail');
-
     }
     
     function list_record_locked_item(){
@@ -70,6 +62,38 @@ class Admin extends CI_Controller {
     $cc = $this->input->post('cc');
     $subject = $this->input->post('email_subject');
     $message = $this->input->post('message_contain');
+    
+    //------------------------------------------------------------------------------//
+        $folder = $_SERVER["DOCUMENT_ROOT"] .'/'. 'Carif'.'/'.'img'.'/';
+        
+        $aconfig['upload_path'] = $folder;
+        $aconfig['allowed_types'] = 'jpg|jpeg|png|gif|pdf';
+        $aconfig['max_size'] = '26214400'; // 25MB
+        $aconfig['overwrite'] = FALSE;
+
+        $this->load->library('upload', $aconfig);
+
+        $filetype = $_FILES['userfile1']['type'];
+        $filesize = $_FILES['userfile1']['size'];
+
+        //file upload
+        if (!empty($filetype)) {
+
+            if (($filetype != "image/jpeg") && ($filetype != "image/jpg") && ($filetype != "image/gif") && ($filetype != "image/png") && ($filetype != "application/pdf")) {
+                $this->session->set_flashdata('msg', 'error: Wrong file uploaded ');
+            } elseif (($filesize > 26214400)) {
+
+                $this->session->set_flashdata('msg', 'error: File is too large');
+            } else {
+
+                $path_upload = $this->upload->do_upload('userfile1');
+                
+                $filename = $_FILES['userfile1'];
+
+                //$update_data = array('filepath1' => $rcptno . '/' . $filename['name']);
+
+            }
+        }
     
     $config = array(
 //            'protocol' => 'smtp',
@@ -96,7 +120,12 @@ class Admin extends CI_Controller {
    	$this->email->cc($cc);
    	$this->email->subject($subject);
    	$this->email->message($message);
+        $this->email->attach($folder.'/'.$filename['name']);
    	$a = $this->email->send();
+        
+        $this->email->print_debugger();
+
+
       
    if($a){
    
