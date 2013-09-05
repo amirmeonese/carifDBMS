@@ -29,10 +29,10 @@
 			<tr><td>
 			<?php echo 'Privillage'; ?>
 			<td></td> 
-			<td><?php echo form_checkbox('newsletter', 'accept'); ?> Add</td>
-			<tr><td></td><td></td><td><?php echo form_checkbox('newsletter', 'accept'); ?> View</td></tr>
-			<tr><td></td><td></td><td><?php echo form_checkbox('newsletter', 'accept'); ?> Edit/modify</td></tr>
-			<tr><td></td><td></td><td><?php echo form_checkbox('newsletter', 'accept'); ?> Delete</td></tr>
+			<td><?php echo form_checkbox('add_privilege', '1'); ?> Add</td>
+			<tr><td></td><td></td><td><?php echo form_checkbox('view_privilege', '1'); ?> View</td></tr>
+			<tr><td></td><td></td><td><?php echo form_checkbox('edit_privilege', '1'); ?> Edit/modify</td></tr>
+			<tr><td></td><td></td><td><?php echo form_checkbox('delete_privilege', '1'); ?> Delete</td></tr>
 
 			<td></tr>
 		</table>	
