@@ -189,7 +189,36 @@
 			</tr>
         </table>
 	</div>
+	
 	<?php echo form_fieldset_close(); ?>	
+	<div class="container" id="add_record_form_section_personal_2">
+        <div height="30px">&nbsp;</div>
+		<table id="survival_section_1">
+			<tr>
+				<td id="label1">Survival status</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+            <tr>
+				<td>
+                    <?php echo $status_source; ?>: 
+                   <?php echo form_dropdown('status_source', $status_source_lists); ?>
+                </td>
+                <td>
+                    <?php echo $alive_status; ?>: 
+                    <?php echo form_dropdown('alive_status', $alive_status_lists); ?>
+                </td>
+				<td>
+                    <?php echo $status_gathered_date; ?>: 
+                    <?php echo form_input('status_gathered_date'); ?>
+                </td>
+				<td>
+					<input type="button" value="Add more survival status" onClick="window.parent.addSurvivalStatusInput('add_record_form_section_personal_2');window.parent.calcHeight();">
+				</td>
+			</tr>
+		</table>
+	</div>
 	<?php echo form_submit('mysubmit', 'Save'); ?>
 	<?php echo form_close(); ?>
 	

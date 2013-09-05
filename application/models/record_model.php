@@ -559,9 +559,20 @@ class Record_model extends CI_Model {
 		$data['contact_person_name'] = 'Contact person\'s name';
 		$data['contact_person_phone_number'] = 'Contact person\'s phone';
 		$data['contact_person_relationship'] = 'Contact person\'s relationship';
-		$data['address'] = 'Address';
-		$data['address'] = 'Address';
-		$data['address'] = 'Address';
+		
+		$data['status_source'] = 'Source';
+		$data['status_source_lists'] = array(
+            'JPN' => 'JPN',
+            'Others' => 'Others',
+			'Unknown' => 'Unknown'
+        );
+		$data['alive_status'] = 'Status';
+		$data['alive_status_lists'] = array(
+            'Alive' => 'Alive',
+            'Dead' => 'Dead',
+			'Unknown' => 'Unknown'
+        );
+		$data['status_gathered_date'] = 'Status collected on';
 		
         //FAMILY DETAILS
 		$data['father_fullname'] = 'Father\'s fullname';
@@ -930,8 +941,187 @@ class Record_model extends CI_Model {
 			'Other, please specify' => 'Other, please specify'
         );
 		
-		$data[''] = ''; 
+		//INVESTIGATIONS
+		$data['date_test_ordered'] = 'Date test ordered'; 
+		$data['test_ordered_by'] = 'Ordered by'; 
+		$data['testing_results_notification_flag'] = 'Request for result notification'; 
+		$data['investigation_project_name'] = 'Project name'; 
+		$data['investigation_project_name_lists'] = array(
+            'GTG' => 'GTG',
+            'Sequenom' => 'Sequenom'
+        );
+		$data['investigation_project_batch'] = 'Project batch'; 
+		$data['investigation_test_type'] = 'Test type'; 
+		$data['investigation_test_type_lists'] = array(
+            'APC gene' => 'APC gene',
+            'ATM gene' => 'ATM gene',
+			'BRCA gene' => 'BRCA gene',
+			'p5 3 gene' => 'p5 3 gene',
+			'SMAD4 gene' => 'Sequenom',
+			'Antibody' => 'Antibody',
+			'CA125' => 'CA125',
+			'Peritoneal fluid' => 'Peritoneal fluid',
+			'Cytology' => 'Cytology',
+			'Transvaginal ultrasound' => 'Transvaginal ultrasound'
+        );
+		$data['investigation_sample_type'] = 'Sample type'; 
+		$data['investigation_sample_type_lists'] = array(
+            'DNA' => 'DNA',
+            'Serum' => 'Serum',
+			'Plasma' => 'Plasma'
+        );
+		$data['investigation_test_reason'] = 'Test reason'; 
+		$data['investigation_new_mutation_flag'] = 'Is new mutation?'; 
+		$data['investigation_test_results'] = 'Test results'; 
+		$data['investigation_test_results_lists'] = array(
+            'AA changes' => 'AA changes',
+            'Exon details' => 'Exon details',
+			'Other details' => 'Other details'
+        );
+		$data['investigation_test_results_other_details'] = 'Other details';
+		$data['investigation_carrier_status'] = 'Carrier status'; 
+		$data['investigation_carrier_status_lists'] = array(
+            'Abnormal' => 'Abnormal',
+            'Mutation absent' => 'Mutation absent',
+			'Unaffected carrier' => 'Unaffected carrier',
+			'Affected carrier' => 'Affected carrier'
+        );
+		$data['investigation_mutation_nomenclature'] = 'Mutation nomenclature'; 
+		$data['investigation_mutation_nomenclature_lists'] = array(
+            'BIC' => 'BIC',
+            'HGVS' => 'HGVS'
+        );
+		$data['investigation_reported_by'] = 'Reported by'; 
+		$data['investigation_mutation_type'] = 'Mutation type'; 
+		$data['investigation_mutation_pathogenicity'] = 'Mutation pathogenicity'; 
+		$data['investigation_sample_ID'] = 'Sample ID'; 
+		$data['investigation_report_due'] = 'Report due date'; 
+		$data['investigation_report_date'] = 'Report date'; 
+		$data['investigation_date_notified'] = 'Date client notified'; 
+		$data['investigation_test_comment'] = 'Test comments'; 
+		$data['investigation_conformation_attachment'] = 'Attach conformation?'; 
 		
+		//SURVEILLANCE
+		$data['surveillance_recruitment_center'] = 'Recruitment center'; 
+		$data['surveillance_recruitment_center_lists'] = array(
+            'UMMC' => 'UMMC',
+            'SD' => 'SD',
+			'UMSC' => 'UMSC'
+        );
+		$data['surveillance_type'] = 'Surveillance type'; 
+		$data['surveillance_type_lists'] = array(
+            'New' => 'New',
+            'Follow up' => 'Follow up'
+        );
+		$data['surveillance_first_consultation_date'] = 'Date of 1st consultation'; 
+		$data['surveillance_first_consultation_place'] = 'Place of 1st consultation'; 
+		$data['surveillance_interval'] = 'Interval (months)'; 
+		$data['surveillance_diagnosis'] = 'Diagnosis'; 
+		$data['surveillance_due_date'] = 'Due date'; 
+		$data['surveillance_reminder_sent_date'] = 'Reminder sent date'; 
+		$data['surveillance_done_date'] = 'Done date'; 
+		$data['surveillance_reminded_by'] = 'Reminded by'; 
+		$data['surveillance_timing'] = 'Timing'; 
+		$data['surveillance_symptoms'] = 'Symptoms'; 
+		$data['surveillance_doctor_name'] = 'Doctor\'s name'; 
+		$data['surveillance_place'] = 'Place'; 
+		$data['surveillance_outcome'] = 'Outcome'; 
+		$data['surveillance_comments'] = 'Comments'; 
+		
+		//PATHOLOGY
+		$data['pathology_tissue_site'] = 'Tissue site'; 
+		$data['pathology_tissue_tumour_stage'] = 'Tumour stage'; 
+		$data['pathology_morphology'] = 'Morphology'; 
+		$data['pathology_node_stage'] = 'Node stage'; 
+		$data['pathology_lymph_node'] = 'Lymph node'; 
+		$data['pathology_tissue_tumour_stage_lists'] = array(
+            'T0' => 'T0',
+            'T1' => 'T1',
+			'T2' => 'T2',
+			'T3' => 'T3',
+            'T4' => 'T4',
+			'Tx' => 'Tx'
+        );
+		$data['pathology_morphology_lists'] = array(
+            'DCIS' => 'DCIS',
+            'LCIS' => 'LCIS',
+			'IDC' => 'IDC',
+			'ILC' => 'ILC',
+            'IPC' => 'IPC',
+			'Intraductal papillary carcinoma' => 'Intraductal papillary carcinoma',
+			'Tubular carcinoma' => 'Tubular carcinoma',
+            'Cribiform carcinoma' => 'Cribiform carcinoma',
+			'Medullary carcinoma' => 'Medullary carcinoma'
+        );
+		$data['pathology_node_stage_lists'] = array(
+            'N0' => 'N0',
+            'N1' => 'N1',
+			'N2' => 'N2',
+			'N3' => 'N3',
+            'Nx' => 'Nx'
+        );
+		$data['pathology_lymph_node_lists'] = array(
+            'Yes' => 'Yes',
+            'No' => 'No',
+			'Not stated' => 'Not stated'
+        );
+		$data['pathology_total_lymph_nodes'] = 'Total no. of lymph nodes'; 
+		$data['pathology_ER_status'] = 'ER status'; 
+		$data['pathology_PR_status'] = 'PR status'; 
+		$data['pathology_HER2_status'] = 'HER2 status'; 
+		$data['pathology_number_of_tumours'] = 'Number of tumours'; 
+		$data['pathology_metastasis_stage'] = 'Metastasis stage'; 
+		$data['pathology_metastasis_stage_lists'] = array(
+            'M0' => 'M0',
+            'M1' => 'M1',
+			'Mx' => 'Mx'
+        );
+		$data['pathology_side_affected'] = 'Side affected'; 
+		$data['pathology_side_affected_lists'] = array(
+            'Both' => 'Both',
+            'Left' => 'Left',
+			'Right' => 'Right',
+			'Unknown' => 'Unknown',
+            'Not applicable' => 'Not applicable'
+        );
+		$data['pathology_tumour_stage'] = 'Tumour stage'; 
+		$data['pathology_tumour_stage_lists'] = array(
+            '0' => '0',
+            '1' => '1',
+			'2a' => '2a',
+			'2b' => '2b',
+            '3a' => '3a',
+			'4' => '4',
+			'Not stated' => 'Not stated'
+        );
+		$data['pathology_tumour_grade'] = 'Tumour grade'; 
+		$data['pathology_tumour_grade_lists'] = array(
+            '1: Well differentiated' => '1: Well differentiated',
+            '2: Moderately differentiated' => '2: Moderately differentiated',
+			'3: Poorly/un-differentiated' => '3: Poorly/un-differentiated',
+			'High' => 'High',
+			'Low' => 'Low'
+        );
+		$data['pathology_tumour_size'] = 'Size(mm)'; 
+		$data['pathology_doctor'] = 'Doctor\'s name'; 
+		$data['pathology_lab'] = 'Path lab'; 
+		$data['pathology_lab_reference'] = 'Lab reference'; 
+		$data['pathology_path_report_date'] = 'Report date'; 
+		$data['pathology_path_report_type'] = 'Report type'; 
+		$data['pathology_path_report_type_lists'] = array(
+            'Pathology' => 'Pathology',
+            'FNAC' => 'FNAC',
+			'Core biopsy' => 'Core biopsy',
+			'Stereostatic biopsy' => 'Stereostatic biopsy'
+        );
+		$data['pathology_report_requested_date'] = 'Report requested date'; 
+		$data['pathology_path_report_received_date'] = 'Report received date'; 
+		$data['pathology_path_block_requested_date'] = 'Block requested date'; 
+		$data['pathology_path_block_received_date'] = 'Block received date'; 
+		$data['pathology_tissue_path_comments'] = 'Tissue path comments'; 
+		
+		
+		//$data[''] = ''; 
 		return $data;
     }
     

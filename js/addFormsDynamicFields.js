@@ -595,3 +595,59 @@ function deletePregnancyInput(divCounterName)
 	window.parent.calcHeight();
 	pregnancyDetailsCounter--;
 }
+
+
+// ==== SURVIVAL STATU DETAILS ====
+var survivalStatusCounter = 2;
+var limit = 10;
+
+function addSurvivalStatusInput(divName)
+{
+	if (survivalStatusCounter == limit)  {
+		alert("You have reached the limit of adding " + survivalStatusCounter + " inputs");
+	}
+	else 
+	{
+		var newdiv = document.createElement('div');
+		
+		var att2 = document.createAttribute("id");
+		att2.value="survival_section_" + survivalStatusCounter;
+		newdiv.setAttributeNode(att2);
+		
+		var formInputHTML = "<table>" +
+		"<tr>" +
+		"<td>Source:" +
+		"<select name='status_source" + survivalStatusCounter + "'>" +
+			"<option value='JPN'>JPN</option>" +
+			"<option value='Others'>Others</option>" +
+			"<option value='Unknown'>Unknown</option>" +
+		"</select> " +
+		"</td>" +
+		"<td>Status: " +
+		"<select name='alive_status" + survivalStatusCounter + "'>" +
+			"<option value='Alive'>Alive</option>" +
+			"<option value='Dead'>Dead</option>" +
+			"<option value='Unknown'>Unknown</option>" +
+		"</select> </td>" +
+		"<td> Status collected on: <input type='text' name='status_gathered_date" + survivalStatusCounter + "' value=''/></td>" +
+		"<td><input type='button' value='Delete' onClick='window.parent.deleteSurvivalStatusInput(" + survivalStatusCounter + ");'></td>" +
+		"<tr>" +
+		"</table>";
+		
+		newdiv.innerHTML = formInputHTML;
+		
+		var iframeDoc = document.getElementById('iframe_record_home').contentWindow ? document.getElementById('iframe_record_home').contentWindow.document : document.getElementById('iframe_record_home').contentDocument;
+		
+		iframeDoc.getElementById(divName).appendChild(newdiv);
+		survivalStatusCounter++;
+	}
+}
+
+function deleteSurvivalStatusInput(divCounterName) 
+{
+	var iframeDoc = document.getElementById('iframe_record_home').contentWindow ? document.getElementById('iframe_record_home').contentWindow.document : document.getElementById('iframe_record_home').contentDocument;
+	
+	iframeDoc.getElementById('survival_section_' + divCounterName).parentNode.removeChild(iframeDoc.getElementById('survival_section_' + divCounterName));
+	window.parent.calcHeight();
+	survivalStatusCounter--;
+}

@@ -174,10 +174,10 @@
 	</div>
 	<div class="container" id="add_record_form_section_mammo_attach_raw_processed_images">
 		<div height="30px">&nbsp;</div>
-		<?php
-		echo form_fieldset('Attach raw images');
-		?>
 		<table id="mammo_images_section">
+			<tr>
+				<td id="label1">Attach raw images</td>
+			</tr>
 			<tr>
 				<td>
                     <?php echo $upload_raw_images_one; ?>: 
@@ -215,12 +215,11 @@
                 </td>
 			</tr>			
 		</table>
-		<?php echo form_fieldset_close(); ?>	
 		<div height="30px">&nbsp;</div>
-		<?php
-		echo form_fieldset('Attach processed images');
-		?>
 		<table>
+			<tr>
+				<td id="label1">Attach processed images</td>
+			</tr>
 			<tr>
 				<td>
                     <?php echo $upload_processed_images_one; ?>: 
@@ -257,14 +256,15 @@
                 </td>
 			</tr>
 		</table>
-		<?php echo form_fieldset_close(); ?>
 	</div>
 	<div class="container" id="add_record_form_section_mammo_ultrasound">
 		<div height="30px">&nbsp;</div>
-		<?php
-		echo form_fieldset('Ultrasound Details');
-		?>
 		<table id="mammo_third_section">
+			<tr>
+				<td id="label1">Ultrasound Details</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
 			<tr>
 				<td>
                     <?php echo $had_ultrasound_flag; ?>: 
@@ -299,14 +299,15 @@
 				</td>
 			</tr>
 		</table>
-		<?php echo form_fieldset_close(); ?>	
 	</div>
 	<div class="container" id="add_record_form_section_mammo_MRI">
 		<div height="30px">&nbsp;</div>
-		<?php
-		echo form_fieldset('MRI Details');
-		?>
 		<table id="mammo_fourth_section">
+			<tr>
+				<td id="label1">MRI Details</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
 			<tr>
 				<td>
                     <?php echo $had_MRI_flag; ?>: 
@@ -341,14 +342,15 @@
 				</td>
 			</tr>
 		</table>
-		<?php echo form_fieldset_close(); ?>	
 	</div>
 	<div class="container" id="add_record_form_section_mammo_benign_cyst_surgery">
 		<div height="30px">&nbsp;</div>
-		<?php
-		echo form_fieldset('Surgery Details');
-		?>
 		<table id="mammo_fifth_section_1">
+			<tr>
+				<td id="label1">Surgery Details</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
 			<tr>
 				<td>
                     <?php echo $had_surgery_for_benign_lump_or_cyst_flag; ?>: 
@@ -373,14 +375,15 @@
 				</td>
 			</tr>
 		</table>
-		<?php echo form_fieldset_close(); ?>	
 	</div>
 	<div class="container" id="add_record_form_section_mammo_other_screenings">
 		<div height="30px">&nbsp;</div>
-		<?php
-		echo form_fieldset('Other Screenings Details');
-		?>
 		<table id="mammo_sixth_section">
+			<tr>
+				<td id="label1">Other Screenings Details</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
 			<tr>
 				<td>
                     <?php echo $other_screening_flag; ?>: 
@@ -425,7 +428,6 @@
 				</td>
 			</tr>
 		</table>
-		<?php echo form_fieldset_close(); ?>	
 	</div>
 	<div class="container" id="add_record_form_section_cancer">
 		<div height="30px">&nbsp;</div>
@@ -615,6 +617,151 @@
 				<?php echo $diagnosis_doctor_name; ?>: 
 				 <?php echo form_input('diagnosis_doctor_name'); ?>
 			</td>
+		</tr>
+	</table>
+	<?php echo form_fieldset_close(); ?>	
+	</div>
+	<div class="container" id="add_record_form_section_pathology">
+	<div height="30px">&nbsp;</div>
+	<?php
+	echo form_fieldset('Pathology Details');
+	?>
+	<table id="pathology_section">
+		<tr>
+			<td>
+				<?php echo $pathology_tissue_site; ?>: 
+				<?php 
+					$data = array(
+						'name'        => 'pathology_tissue_site',
+						'id'          => 'pathology_tissue_site',
+						'rows'        => '3',
+						'cols'        => '7'
+					  );
+					echo form_textarea($data); 
+				?>
+			</td>
+			<td>
+				<?php echo $pathology_tissue_tumour_stage; ?>: 
+				<?php echo form_dropdown('pathology_tissue_tumour_stage', $pathology_tissue_tumour_stage_lists); ?>
+			</td>
+			<td>
+				<?php echo $pathology_morphology; ?>: 
+				<?php echo form_dropdown('pathology_morphology', $pathology_morphology_lists); ?>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<?php echo $pathology_node_stage; ?>: 
+				<?php echo form_dropdown('pathology_node_stage', $pathology_node_stage_lists); ?>
+			</td>
+			<td>
+				<?php echo $pathology_lymph_node; ?>: 
+				<?php echo form_dropdown('pathology_lymph_node', $pathology_lymph_node_lists); ?>
+			</td>
+			<td>
+				<?php echo $pathology_total_lymph_nodes; ?>: 
+				 <?php echo form_input('pathology_total_lymph_nodes'); ?>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<?php echo $pathology_ER_status; ?>: 
+				 <?php echo form_input('pathology_ER_status'); ?>
+			</td>
+			<td>
+				<?php echo $pathology_PR_status; ?>: 
+				 <?php echo form_input('pathology_PR_status'); ?>
+			</td>
+			<td>
+				<?php echo $pathology_HER2_status; ?>: 
+				<?php echo form_input('pathology_HER2_status'); ?>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<?php echo $pathology_number_of_tumours; ?>: 
+				<?php echo form_input('pathology_number_of_tumours'); ?>
+			</td>
+			<td>
+				<?php echo $pathology_metastasis_stage; ?>: 
+				<?php echo form_dropdown('pathology_metastasis_stage', $pathology_metastasis_stage_lists); ?>
+			</td>
+			<td>
+				<?php echo $pathology_side_affected; ?>: 
+				<?php echo form_dropdown('pathology_side_affected', $pathology_side_affected_lists); ?>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<?php echo $pathology_tumour_stage; ?>: 
+				<?php echo form_dropdown('pathology_tumour_stage', $pathology_tumour_stage_lists); ?>
+			</td>
+			<td>
+				<?php echo $pathology_tumour_grade; ?>: 
+				<?php echo form_dropdown('pathology_tumour_grade', $pathology_tumour_grade_lists); ?>
+			</td>
+			<td>
+				<?php echo $pathology_tumour_size; ?>: 
+				<?php echo form_input('pathology_tumour_size'); ?>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<?php echo $pathology_doctor; ?>: 
+				<?php echo form_input('pathology_doctor'); ?>
+			</td>
+			<td>
+				<?php echo $pathology_lab; ?>: 
+				<?php echo form_input('pathology_lab'); ?>
+			</td>
+			<td>
+				<?php echo $pathology_lab_reference; ?>: 
+				<?php echo form_input('pathology_lab_reference'); ?>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<?php echo $pathology_path_report_date; ?>: 
+				<?php echo form_input('pathology_path_report_date'); ?>
+			</td>
+			<td>
+				<?php echo $pathology_path_report_type; ?>: 
+				<?php echo form_dropdown('pathology_path_report_type', $pathology_path_report_type_lists); ?>
+			</td>
+			<td>
+				<?php echo $pathology_report_requested_date; ?>: 
+				<?php echo form_input('pathology_report_requested_date'); ?>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<?php echo $pathology_path_report_received_date; ?>: 
+				<?php echo form_input('pathology_path_report_received_date'); ?>
+			</td>
+			<td>
+				<?php echo $pathology_path_block_requested_date ?>: 
+				<?php echo form_input('pathology_path_block_requested_date'); ?>
+			</td>
+			<td>
+				<?php echo $pathology_path_block_received_date ?>: 
+				<?php echo form_input('pathology_path_block_received_date'); ?>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<?php echo $pathology_tissue_path_comments; ?>: 
+				<?php 
+					$data = array(
+						'name'        => 'pathology_tissue_path_comments',
+						'id'          => 'pathology_tissue_path_comments',
+						'rows'        => '3',
+						'cols'        => '7'
+					  );
+					echo form_textarea($data); 
+				?>
+			</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
 		</tr>
 	</table>
 	<?php echo form_fieldset_close(); ?>	
