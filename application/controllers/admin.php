@@ -100,10 +100,11 @@ class Admin extends CI_Controller {
 		$this->email->subject('Carif Error Log Report');
 		$this->email->message($error_list);
 		$send_status = $this->email->send();
-		$this->email->print_debugger();
 		
 		if($send_status)
 			redirect('admin/admin_panel/submit_report', 'refresh');
+		else
+			$this->write_error_into_log($this->email->print_debugger(););
 	}
 	
 	function write_error_into_log($error_msg){
