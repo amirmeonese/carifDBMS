@@ -54,7 +54,7 @@ $config['tables']['patient_family'] = 'patient_family';
 $config['tables']['patient_gynaecological_surgery_history'] = 'patient_gynaecological_surgery_history';
 $config['tables']['patient_investigations'] = 'patient_investigations';
 $config['tables']['patient_lifestyle_factors'] = 'patient_lifestyle_factors';
-$config['tables']['patient_menstwation'] = 'patient_menstwation';
+$config['tables']['patient_menstruation'] = 'patient_menstruation';
 $config['tables']['patient_mri_abnormality'] = 'patient_mri_abnormality';
 $config['tables']['patient_other_screening'] = 'patient_other_screening';
 $config['tables']['patient_parity_record'] = 'patient_parity_record';
@@ -67,9 +67,13 @@ $config['tables']['patient_ultrasound_abnormality'] = 'patient_ultrasound_abnorm
 $config['tables']['relatives'] = 'relatives';
 $config['tables']['studies'] = 'studies';
 $config['tables']['treatment'] = 'treatment';
-
-
-
+$config['tables']['patient_interview_manager'] = 'patient_interview_manager';
+$config['tables']['patient_mammo_raw_images'] = 'patient_mammo_raw_images';
+$config['tables']['patient_mammo_processed_images'] = 'patient_mammo_processed_images';
+$config['tables']['patient_infertility'] = 'patient_infertility';
+$config['tables']['patient_boadicea'] = 'patient_boadicea';
+$config['tables']['patient_interview_manager'] = 'patient_interview_manager';
+$config['tables']['patient_survival_status'] = 'patient_survival_status';
 
 /*
  | Users table column and Group table column you want to join WITH.

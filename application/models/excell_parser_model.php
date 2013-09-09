@@ -2,7 +2,7 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Excell_parser extends CI_Controller {
+class Excell_parser_model extends CI_Model {
 
     function __construct() {
         parent::__construct();
@@ -25,12 +25,12 @@ class Excell_parser extends CI_Controller {
         $this->load->library('PHPExcel');
     }
 
-    function index() {
+    function excell_file_parser($filePath) {
         //$this->load->view('record/record_home');
         $inputFileType = 'Excel2007';
 
-        $inputFileName = './sampleData/carif_dummy_data_sample.xlsx';
-
+        //$inputFileName = './sampleData/carif_dummy_data_sample.xlsx';
+        $inputFileName = './uploads/' . $filePath;
         echo 'Loading file ', pathinfo($inputFileName, PATHINFO_BASENAME), ' using IOFactory with a defined reader type of ', $inputFileType, '<br />';
         $objReader = PHPExcel_IOFactory::createReader($inputFileType);
         echo 'Loading all WorkSheets<br />';
@@ -147,18 +147,23 @@ class Excell_parser extends CI_Controller {
                         'cancer_type_id' => $cancer_type_id2
                     );
 
-                    echo '<BR/>';
+                   // echo '<BR/>';
                 }
-                //print_r($patient_table_data);
-                $id1_patient = $this->excell_sheets_model->insert_patient_record($patient_table_data);
-                if ($id1_patient > 0) {
+                /*echo '<h2>patient_table_data</h2><br/>';
+                print_r($patient_table_data);
+                echo '<br/>';*/
+                $id1 = $this->excell_sheets_model->insert_patient_record($patient_table_data);
+                if ($id1 > 0) {
                     echo "Data Added successfully at patient_table";
                 } else {
                     echo "Failed to insert at patient_table";
-                }
+                }echo '<br/>';
+                /*echo '<h2>patient_relatives_data1</h2><br/>';
+                print_r($patient_relatives_data1);
                 echo '<br/>';
-                //print_r($patient_relatives_data1);
-                //print_r($patient_relatives_data2);
+                echo '<h2>patient_relatives_data2</h2><br/>';
+                print_r($patient_relatives_data2);
+                echo '<br/>';*/
 
 
                 $id2_patient_relatives_insert = $this->excell_sheets_model->insert_patient_relatives_record($patient_relatives_data1);
@@ -166,7 +171,7 @@ class Excell_parser extends CI_Controller {
                     echo "Data1 Added successfully at patient_relatives  Table<BR/><BR/>";
                 } else {
                     echo "Failed to insert Data1 at patient_relatives  Table<BR/><BR/>";
-                }echo '<br/>';
+                }
                 $id3_patient_relatives_insert = $this->excell_sheets_model->insert_patient_relatives_record($patient_relatives_data2);
                 if ($id3_patient_relatives_insert > 0) {
                     echo "Data2 Added successfully at patient_relatives  Table<BR/><BR/>";
@@ -191,7 +196,7 @@ class Excell_parser extends CI_Controller {
                         //echo $cell_value . '    ';
                     }
 
-                    echo '<BR/>';
+                   // echo '<BR/>';
                     $studies_id = $this->excell_sheets_model->get_patient_studies_id($temp2[1]);
                     //echo $studies_id.'<br/>';
                     if ($temp2[9] == 'yes')
@@ -225,7 +230,10 @@ class Excell_parser extends CI_Controller {
                         'referral_source' => $temp2[13]
                     );
                 }
-                //print_r($patient_studies_table_data);
+
+               /* echo '<h2>patient_studies_table_data</h2><br/>';
+                print_r($patient_studies_table_data);
+                echo '<br/>';*/
                 $patient_studies_insert_id = $this->excell_sheets_model->insert_patient_studies($patient_studies_table_data);
                 if ($patient_studies_insert_id > 0) {
                     echo "Data Added successfully at patient_studies_table";
@@ -236,6 +244,10 @@ class Excell_parser extends CI_Controller {
         }
     }
 
+    /* public function test($fileName)
+      {
+      echo $fileName;
+      } */
 }
 
 ?>
