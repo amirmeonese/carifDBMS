@@ -15,6 +15,7 @@ class Admin extends CI_Controller {
         $this->load->library('form_validation');
         $this->load->model('admin_model');
         $this->load->library('session');
+		$this->load->helper('date');
     }
 
     //redirect if needed, otherwise display the user list
@@ -101,34 +102,35 @@ class Admin extends CI_Controller {
 		$this->email->message($error_list);
 		$send_status = $this->email->send();
 		
-		if($send_status)
+		if(send_status)
 			redirect('admin/admin_panel/submit_report', 'refresh');
 		else
-			$this->write_error_into_log($this->email->print_debugger());
+			$this->write_error_into_log('Error in submitting error log email to consultant.');
 	}
 	
 	function write_error_into_log($error_msg){
-		if (!read_file('error_log/carif_error.txt'))
+		
+		//Get current error list and append new error message
+		$format = 'DATE_W3C';
+		$time = time();
+
+		$time_now = standard_date($format, $time);
+
+		$data = file_get_contents("error_log/carif_error.txt");
+		$error_msg = $time_now . " [ERROR] " . $error_msg . "\r\n";
+		$data = $error_msg . $data;
+		
+		if ( !write_file('error_log/carif_error.txt', $data))
 		{
-			 echo 'Unable to read the file';
+			echo 'Unable to write the error log file';
+			return false;
 		}
 		else
 		{
-			//Get current error list and append new error message
-			$data = read_file('error_log/carif_error.txt');
-			$data = $data . '\n' . $error_msg;
-			
-			if ( !write_file('error_log/carif_error.txt'))
-			{
-				echo 'Unable to write the error log file';
-				return false;
-			}
-			else
-			{
-				return true;
-			}
+			redirect('admin/admin_panel/submit_report', 'refresh');
+			return true;
 		}
-		
+	
 	}
 	
 	function download_error_log_file(){
