@@ -104,7 +104,7 @@ class Admin extends CI_Controller {
 		if($send_status)
 			redirect('admin/admin_panel/submit_report', 'refresh');
 		else
-			$this->write_error_into_log($this->email->print_debugger(););
+			$this->write_error_into_log($this->email->print_debugger());
 	}
 	
 	function write_error_into_log($error_msg){
