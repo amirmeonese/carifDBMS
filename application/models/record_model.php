@@ -534,9 +534,14 @@ class Record_model extends CI_Model {
 		
         $data['blood_group'] = 'Blood group';
         $data['comment'] = 'Comment';
-        $data['hospital_no'] = 'Hospital No';
+        $data['hospital_no'] = 'Hospital No (MRN)';
 		$data['private_patient_no'] = 'Private Patient No';
-       
+		$data['COGS_study_id'] = 'COGS study ID';
+		$data['COGS_study_id_lists'] = array(
+			'CIMBA' => 'CIMBA',
+            'OCAC' => 'OCAC',
+			'BCAC' => 'BCAC'
+		);
 		$data['marital_status'] = 'Marital status';
 		$data['marital_status_lists'] = array(
             'Single' => 'Single',
@@ -550,12 +555,21 @@ class Record_model extends CI_Model {
 		$data['home_phone'] = 'Home phone';
 		$data['cell_phone'] = 'Mobile phone';
 		$data['work_phone'] = 'Work phone';
+		$data['other_phone'] = 'Other phone';
+		$data['fax'] = 'Fax';
+		$data['email'] = 'Email';
 		$data['height'] = 'Height';
 		$data['weight'] = 'Weight';
 		$data['BMI'] = 'BMI';
 		$data['highest_level_of_education'] = 'Highest level of education';
 		
 		$data['income_level'] = 'Income level';
+		$data['income_level_lists'] = array(
+			'<5,000' => '<5,000',
+            '5-10,000' => '5-10,000',
+			'10-50,000' => '10-50,000',
+			'>50,000' => '>50,000'
+		);
 		$data['contact_person_name'] = 'Contact person\'s name';
 		$data['contact_person_phone_number'] = 'Contact person\'s phone';
 		$data['contact_person_relationship'] = 'Contact person\'s relationship';

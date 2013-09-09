@@ -8,6 +8,9 @@ class Admin extends CI_Controller {
         parent::__construct();
         $this->load->helper('url');
         $this->load->helper('form');
+		$this->load->helper('file');
+		$this->load->helper('array');
+		$this->load->helper('download');
         $this->load->library("template");
         $this->load->library('form_validation');
         $this->load->model('admin_model');
@@ -51,11 +54,89 @@ class Admin extends CI_Controller {
     }
     
     function list_error_locked_item(){
-    
-            $this->template->load("templates/admin_panel_template",'admin/list_error_locked_item');
+			
+		if (!read_file('error_log/carif_error.txt'))
+		{
+			 echo 'Unable to read the file';
+		}
+		else
+		{
+			$data = read_file('error_log/carif_error.txt');
+			$errorArray = array('errorMSG' => ''. $data . '');
+            $this->template->load("templates/admin_panel_template",'admin/list_error_locked_item', $errorArray);
+		}
+			
 
     }
     
+	function process_error_log_form()
+	{
+		if (isset ($_POST['logsubmit'])) {
+			$this->submit_error_to_consultant();
+		}
+		else if (isset ($_POST['downloadbtn'])) {
+			$this->download_error_log_file();
+		}
+	}
+	
+	function submit_error_to_consultant()
+	{
+		$error_list = $this->input->post('error_list');
+		
+		$config = array(
+            'protocol' => 'smtp',
+            //'mailpath' => '/usr/sbin/sendmail',
+            'smtp_host' => 'ssl://smtp.googlemail.com',
+            'smtp_port' => 465,
+            'smtp_user' => 'apurbamy@gmail.com',
+            'smtp_pass' => 'apurbamy2012',
+            'mailtype' => 'html'
+        );
+    
+		$this->load->library('email',$config);
+		$this->email->set_newline("\r\n");
+		$this->email->from('carif@errorlog.com', 'Carif Error Log sent via CarifDBMS');
+		$this->email->to('farizaamir@gmail.com'); 
+		$this->email->subject('Carif Error Log Report');
+		$this->email->message($error_list);
+		$send_status = $this->email->send();
+		$this->email->print_debugger();
+		
+		if($send_status)
+			redirect('admin/admin_panel/submit_report', 'refresh');
+	}
+	
+	function write_error_into_log($error_msg){
+		if (!read_file('error_log/carif_error.txt'))
+		{
+			 echo 'Unable to read the file';
+		}
+		else
+		{
+			//Get current error list and append new error message
+			$data = read_file('error_log/carif_error.txt');
+			$data = $data . '\n' . $error_msg;
+			
+			if ( !write_file('error_log/carif_error.txt'))
+			{
+				echo 'Unable to write the error log file';
+				return false;
+			}
+			else
+			{
+				return true;
+			}
+		}
+		
+	}
+	
+	function download_error_log_file(){
+		$data = file_get_contents("error_log/carif_error.txt"); // Read the file's contents
+		$name = 'carif_error_log.txt';
+
+		force_download($name, $data);
+	}
+	
     function submit_report(){
     
     $sender = $this->input->post('sender');
@@ -108,14 +189,14 @@ class Admin extends CI_Controller {
             //'mailpath' => '/usr/sbin/sendmail',
             'smtp_host' => 'ssl://smtp.googlemail.com',
             'smtp_port' => 465,
-            'smtp_user' => 'asyraf.abdrani@gmail.com',
-            'smtp_pass' => 'is081744',
+            'smtp_user' => 'apurbamy@gmail.com',
+            'smtp_pass' => 'apurbamy2012',
             'mailtype' => 'html'
         );
     
 	$this->load->library('email',$config);
         $this->email->set_newline("\r\n");
-   	$this->email->from( 'asyraf.abdrani@gmail.com', 'Amirul Asyraf' );
+   	$this->email->from('carif@bugreport.com', 'Carif Bug Report sent via CarifDBMS');
    	$this->email->to($sender);
    	$this->email->cc($cc);
    	$this->email->subject($subject);

@@ -6307,6 +6307,92 @@ input[name=mysubmit] {
 
 }
 
+input[name=downloadbtn] {
+
+	display: inline-block;
+  *display: inline;
+  padding: 5px;
+  margin-top:50px;
+  margin-bottom: 0px;
+  *margin-left: .3em;
+  font-size: 12px;
+  line-height: 20px;
+  color: #F3F5F0;
+  text-align: center;
+ /* text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);*/
+  vertical-align: middle;
+  cursor: pointer;
+ /* background-color: #f5f5f5;
+  *background-color: #e6e6e6;*/
+  background-color: #E87F56;
+  *background-color: #E0531B;
+  
+  background-image: -moz-linear-gradient(top, #E87F56, #E0531B);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#E87F56), to(#E0531B));
+  background-image: -webkit-linear-gradient(top, #E87F56, #E0531B);
+  background-image: -o-linear-gradient(top, #E87F56, #E0531B);
+  background-image: linear-gradient(to bottom, #E87F56, #E0531B);
+  background-repeat: repeat-x;
+  border: 1px solid #cccccc;
+  *border: 0;
+  border-color: #E0531B #E0531B #bfbfbf;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  border-bottom-color: #b3b3b3;
+  -webkit-border-radius: 4px;
+     -moz-border-radius: 4px;
+          border-radius: 4px;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#ffe6e6e6', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+  *zoom: 1;
+  -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+     -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+          box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+
+}
+
+input[name=logsubmit] {
+
+	display: inline-block;
+  *display: inline;
+  padding: 3px;
+  margin-top:50px;
+  margin-bottom: 0px;
+  *margin-left: .3em;
+  font-size: 12px;
+  line-height: 20px;
+  color: #F3F5F0;
+  text-align: center;
+ /* text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);*/
+  vertical-align: middle;
+  cursor: pointer;
+ /* background-color: #f5f5f5;
+  *background-color: #e6e6e6;*/
+  background-color: #A2D15C;
+  *background-color: #5A8C0F;
+  
+  background-image: -moz-linear-gradient(top, #A2D15C, #5A8C0F);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#A2D15C), to(#5A8C0F));
+  background-image: -webkit-linear-gradient(top, #A2D15C, #5A8C0F);
+  background-image: -o-linear-gradient(top, #A2D15C, #5A8C0F);
+  background-image: linear-gradient(to bottom, #A2D15C, #5A8C0F);
+  background-repeat: repeat-x;
+  border: 1px solid #cccccc;
+  *border: 0;
+  border-color: #5A8C0F #5A8C0F #bfbfbf;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  border-bottom-color: #b3b3b3;
+  -webkit-border-radius: 4px;
+     -moz-border-radius: 4px;
+          border-radius: 4px;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#ffe6e6e6', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+  *zoom: 1;
+  -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+     -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+          box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+
+}
+
 .submitCancel {
 
 	display: inline-block;
@@ -6607,6 +6693,46 @@ div #label1
           box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
+#error-log-table
+{
+	text-align:center;
+	border: 1px solid black;
+}
+
+#error-log-tr
+{
+	text-align: center;
+	background-color: #5A8C0F;
+	color: #ffffff;
+}
+
+#error-log-td
+{
+	text-align:left;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 12px;
+	border: 1px solid black;
+}
+
+#design-customized-form-table
+{
+	background-color: #5A8C0F;
+	color: #ffffff;
+	text-align: center;
+}
+
+#locked-items-table{
+	background-color: #5A8C0F;
+	color: #ffffff;
+	text-align: center;
+}
+
+#locked-items-tr
+{
+	background-color: #5A8C0F;
+	color: #ffffff;
+	text-align: center;
+}
 /* ----------------------------- */
 /* CARIF DEFINITIONS ENDS HERE */
 /* ----------------------------- */

@@ -29,6 +29,15 @@
 
         <script type="text/javascript" src="<?php echo base_url(); ?>js/jquery.min.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>js/bootstrap.js"></script>
+		<script>
+			function onErrorLogDownload() {
+				alert('on 1click');
+				var url='http://localhost/carifDBMS/error_log/carif_error.txt';  
+				window.open(url,'Download');
+				//window.location="../error_log/carif_error.txt";
+				//document.location = 'data:Application/octet-stream,' + encodeURIComponent('error_log/carif_error.txt');
+			}
+		</script>
     </head>
     <body>
 

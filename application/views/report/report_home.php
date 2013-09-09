@@ -25,6 +25,24 @@
                 </td>
 			</tr>
 			<tr>
+				<td>
+                    &nbsp;
+                </td>
+				<td id="label2">
+					Gender
+                    <?php echo form_input('report_gender'); ?>
+                </td>
+			</tr>
+			<tr>
+				<td>
+                    &nbsp;
+                </td>
+				<td id="label2">
+					Age
+                    <?php echo form_input('report_age'); ?>
+                </td>
+			</tr>
+			<tr>
 				<td id="label1">
                     Report Templates: 
                 </td>

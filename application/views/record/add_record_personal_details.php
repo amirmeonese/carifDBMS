@@ -63,7 +63,7 @@
 				</td>
 				<td>
 					<?php echo $income_level; ?>: 
-					<?php echo form_input('income_level'); ?>
+					<?php echo form_dropdown('income_level', $income_level_lists); ?>
 				</td>
 			</tr>
 			<tr>
@@ -111,6 +111,10 @@
 			</tr>
 			<tr>
 				<td>
+					<?php echo $COGS_study_id; ?>
+					<?php echo form_dropdown('COGS_study_id', $COGS_study_id_lists); ?>;
+				</td>
+				<td>
 					<?php echo $marital_status; ?>: 
 					<?php echo form_dropdown('marital_status', $marital_status_lists); ?>
 				</td>
@@ -146,6 +150,20 @@
 				<td>
 					<?php echo $work_phone; ?>: 
 					<?php echo form_input('work_phone'); ?>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<?php echo $other_phone; ?>: 
+					<?php echo form_input('other_phone'); ?>
+				</td>
+				<td>
+					<?php echo $fax; ?>: 
+					<?php echo form_input('fax'); ?>
+				</td>
+				<td>
+					<?php echo $email; ?>: 
+					<?php echo form_input('email'); ?>
 				</td>
 			</tr>
 			<tr>
