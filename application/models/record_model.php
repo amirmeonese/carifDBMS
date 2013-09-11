@@ -568,6 +568,18 @@ class Record_model extends CI_Model {
             '10-50,000' => '10-50,000',
             '>50,000' => '>50,000'
         );
+		$data['total_no_of_male_siblings'] = 'Total male siblings';
+		$data['total_no_of_female_siblings'] = 'Total female siblings';
+		$data['total_no_of_affected_siblings'] = 'Total of affected siblings';
+		$data['total_no_male_children'] = 'Total of male children';
+		$data['total_no_female_children'] = 'Total of female children';
+		$data['total_no_of_affected_children'] = 'Total of affected children';
+		$data['total_no_of_first_degree'] = 'Total of first degree';
+		$data['total_no_of_second_degree'] = 'Total of second degree';
+		$data['total_no_of_third_degree'] = 'Total of third degree';
+		$data['unknown_reason_is_adopted'] = 'Is parent(s) adopted';
+		$data['unknown_reason_in_other_countries'] = 'Is in other countries?';
+		
         $data['contact_person_name'] = 'Contact person\'s name';
         $data['contact_person_phone_number'] = 'Contact person\'s phone';
         $data['contact_person_relationship'] = 'Contact person\'s relationship';
@@ -603,11 +615,6 @@ class Record_model extends CI_Model {
         $data['father_diagnosis_other_details'] = 'Father\'s diagnosis details';
         $data['father_no_of_brothers'] = 'Total no. of brothers';
         $data['father_no_of_sisters'] = 'Total no. of sisters';
-        $data['father_no_female_children'] = 'Total no. of female children';
-        $data['father_no_male_children'] = 'Total no. of male children';
-        $data['father_no_of_first_degree'] = 'Total no. of first degree';
-        $data['father_no_of_second_degree'] = 'Total no. of second degree';
-        $data['father_no_of_third_degree'] = 'Total no. of third degree';
         $data['father_vital_status'] = 'Father\'s vital status';
         $data['father_mach_score_at_consent'] = 'Father\'s mach score at consent';
         $data['father_mach_score_past_consent'] = 'Father\'s mach score past consent';
@@ -628,11 +635,6 @@ class Record_model extends CI_Model {
         $data['mother_diagnosis_other_details'] = 'Mother\'s diagnosis details';
         $data['mother_no_of_brothers'] = 'Total no. of brothers';
         $data['mother_no_of_sisters'] = 'Total no. of sisters';
-        $data['mother_no_female_children'] = 'Total no. of female children';
-        $data['mother_no_male_children'] = 'Total no. of male children';
-        $data['mother_no_of_first_degree'] = 'Total no. of first degree';
-        $data['mother_no_of_second_degree'] = 'Total no. of second degree';
-        $data['mother_no_of_third_degree'] = 'Total no. of third degree';
         $data['mother_vital_status'] = 'Mother\'s vital status';
         $data['mother_mach_score_at_consent'] = 'Mother\'s mach score at consent';
         $data['mother_mach_score_past_consent'] = 'Mother\'s mach score past consent';
@@ -680,7 +682,9 @@ class Record_model extends CI_Model {
             'below' => 'Below'
         );
         $data['mammo_breast_other_descriptions'] = 'Other details';
-
+		$data['percentage_of_mammo_density'] = 'Perentage (%) of mammo density';
+		$data['BIRADS_clinical_classification'] = 'BIRADS clinical classification';
+		$data['BIRADS_density_classification'] = 'BIRADS density classification';
         //Upload raw/processed images
         $data['upload_raw_images_one'] = 'Upload first raw images';
         $data['upload_raw_images_two'] = 'Upload second raw images';
@@ -705,6 +709,15 @@ class Record_model extends CI_Model {
         $data['mammo_benign_lump_cyst_details'] = 'Details';
         $data['other_screening_flag'] = 'Had other screenings done before?';
         $data['screening_name'] = 'Screening name';
+		$data['screening_name_lists'] = array(
+			'Pap Smear' => 'Pap Smear',
+			'Chest XRay' => 'Chest XRay',
+			'Prostate Specific Antigen (PSA)' => 'Prostate Specific Antigen (PSA)',
+			'Colonoscopy' => 'Colonoscopy',
+			'Fecal Occult Blood Test (FOBT)' => 'Fecal Occult Blood Test (FOBT)',
+			'Sigmoidoscopy' => 'Sigmoidoscopy',
+			'Double Contrast Berium Enema (DCBE)' => 'Double Contrast Berium Enema (DCBE)'
+		);
         $data['total_no_of_screening'] = 'Total no. of screenings';
         $data['age_at_screening'] = 'Age at screening';
         $data['place_of_screening'] = 'Place of screening';

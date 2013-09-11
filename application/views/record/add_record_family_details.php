@@ -97,28 +97,8 @@
                     <?php echo $father_no_of_sisters; ?>: 
                     <?php echo form_input('father_no_of_sisters'); ?>
                 </td>
-                <td>
-                    <?php echo $father_no_female_children; ?>: 
-                    <?php echo form_input('father_no_female_children'); ?>
-                </td>
-                <td>
-                    <?php echo $father_no_male_children; ?>: 
-                    <?php echo form_input('father_no_male_children'); ?>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <?php echo $father_no_of_first_degree; ?>: 
-                    <?php echo form_input('father_no_of_first_degree'); ?>
-                </td>
-                <td>
-                    <?php echo $father_no_of_second_degree; ?>: 
-                    <?php echo form_input('father_no_of_second_degree'); ?>
-                </td>
-                <td>
-                    <?php echo $father_no_of_third_degree; ?>: 
-                    <?php echo form_input('father_no_of_third_degree'); ?>
-                </td>
+                <td>&nbsp;</td>
+				<td>&nbsp;</td>
             </tr>
             <tr>
                 <td>
@@ -214,41 +194,13 @@
                     echo form_textarea($data);
                     ?>
                 </td>
-            </tr>
-            <tr>
-                <td>
+				<td>
                     <?php echo $mother_no_of_brothers; ?>: 
                     <?php echo form_input('mother_no_of_brothers'); ?>
                 </td>
                 <td>
                     <?php echo $mother_no_of_sisters; ?>: 
                     <?php echo form_input('mother_no_of_sisters'); ?>
-                </td>
-                <td>
-                    <?php echo $mother_no_female_children; ?>: 
-                    <?php echo form_input('mother_no_female_children'); ?>
-                </td>
-                <td>
-                    <?php echo $mother_no_male_children; ?>: 
-                    <?php echo form_input('mother_no_male_children'); ?>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <?php echo $mother_no_of_first_degree; ?>: 
-                    <?php echo form_input('mother_no_of_first_degree'); ?>
-                </td>
-                <td>
-                    <?php echo $mother_no_of_second_degree; ?>: 
-                    <?php echo form_input('mother_no_of_second_degree'); ?>
-                </td>
-                <td>
-                    <?php echo $mother_no_of_third_degree; ?>: 
-                    <?php echo form_input('mother_no_of_third_degree'); ?>
-                </td>
-                <td>
-                    <?php echo $mother_no_male_children; ?>: 
-                    <?php echo form_input('mother_no_male_children'); ?>
                 </td>
             </tr>
             <tr>

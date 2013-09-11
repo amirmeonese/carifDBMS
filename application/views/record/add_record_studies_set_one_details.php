@@ -146,6 +146,18 @@
                     <?php echo form_checkbox('abnormality_mammo_flag', 'no', FALSE); ?>
                 </td>
             </tr>
+			 <tr>
+                <td>
+                    <?php echo $BIRADS_clinical_classification; ?>: 
+                    <?php echo form_input('BIRADS_clinical_classification'); ?>
+                </td>
+                <td>
+                    <?php echo $BIRADS_density_classification; ?>: 
+                    <?php echo form_input('BIRADS_density_classification'); ?>
+                </td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+            </tr>
         </table>
         <table id="mammo_second_section_1">
             <tr>
@@ -169,12 +181,20 @@
                     echo form_textarea($data);
                     ?>
                 </td>
-                <td>
-                    <input type="button" value="Add more site details" onClick="window.parent.addBreastSiteInput('add_record_form_section_mammo');
-                            window.parent.calcHeight();">
-
+				<td>
+                    <?php echo $percentage_of_mammo_density; ?>: 
+					<?php echo form_input('percentage_of_mammo_density'); ?>
                 </td>
             </tr>
+			<tr>
+				 <td>
+                    <input type="button" value="Add more site details" onClick="window.parent.addBreastSiteInput('add_record_form_section_mammo');
+                            window.parent.calcHeight();">
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
         </table>
         <?php echo form_fieldset_close(); ?>	
     </div>
@@ -390,7 +410,7 @@
             <tr>
                 <td>
                     <?php echo $screening_name; ?>: 
-                    <?php echo form_input('screening_name'); ?>
+                    <?php echo form_dropdown('screening_name', $screening_name_lists); ?>
                 </td>
                 <td>
                     <?php echo $total_no_of_screening; ?>: 

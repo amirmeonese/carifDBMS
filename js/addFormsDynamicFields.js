@@ -29,6 +29,7 @@ function addInput(divName)
 		"<select name='relativeTypeLists" + relativeCounter + "'>" +
 			"<option value='Brother'>Brother</option>" +
 			"<option value='Sister'>Sister</option>" +
+			"<option value='Children'>Sister</option>" +
 			"<option value='1stDegree'>1st degree</option>" +
 			"<option value='2ndDegree'>2nd degree</option>" +
 			"<option value='3rdDegree'>3rd degree</option>" +
@@ -66,18 +67,6 @@ function addInput(divName)
 		"<td>Age at diagnosis: <input type='text' name='age_of_diagnosis" + relativeCounter + "' value=''/></td>" + 
 		"<td>Diagnosis details: <textarea name='diagnosis_other_details" + relativeCounter + "' cols='7' rows='3' id='mother_diagnosis_other_details'></textarea></td>" +
 		"</tr>" + 
-		"<tr>" +
-		"<td>Total no. of brothers: <input type='text' name='no_of_brothers" + relativeCounter + "' value=''/></td>" +
-		"<td>Total no. of sisters: <input type='text' name='no_of_sisters" + relativeCounter + "' value=''/></td>" +
-		"<td>Total no. of female children:<input type='text' name='no_female_children" + relativeCounter + "' value=''/></td>" +
-		"<td>Total no. of male children: <input type='text' name='no_male_children" + relativeCounter + "' value=''/>	</td>" +
-		"</tr>" +
-		"<tr>" +
-		"<td>Total no. of first degree: <input type='text' name='no_of_first_degree" + relativeCounter + "' value=''/></td>" +
-		"<td>Total no. of second degree: <input type='text' name='no_of_second_degree" + relativeCounter + "' value=''/></td>" +
-		"<td>Total no. of third degree: <input type='text' name='no_of_third_degree" + relativeCounter + "' value=''/></td>" +
-		"<td>Total no. of male children:<input type='text' name='no_male_children" + relativeCounter + "' value=''/></td>" +
-		"</tr>" +
 		"<tr>" +
 		"<td>Vital status: <input type='text' name='vital_status" + relativeCounter + "' value=''/></td>" +
 		"<td>Mach score at consent:<input type='text' name='mach_score_at_consent" + relativeCounter + "' value=''/>	</td>" +
@@ -134,6 +123,7 @@ function addBreastSiteInput(divName)
 		"</select> " +
 		"</td>" +
 		"<td>Other details:<textarea name='mammo_breast_other_descriptions" + breastSiteCounter + "' cols='7' rows='3' id='mammo_breast_other_descriptions' ></textarea></td>" + 
+		"<td>Percentage (%) of mammo density:<input type='text' name='percentage_of_mammo_density" + breastSiteCounter + "' value=''/></td>" +
 		"<td><input type='button' value='Delete' onClick='window.parent.deleteBreastSiteInput(" + breastSiteCounter + ");'></td>" +
 		"</tr></table>";
 		
@@ -293,7 +283,16 @@ function addScreeningDetailsInput(divName)
 		newdiv.setAttributeNode(att2);
 		
 		var formInputHTML = "<table><tr>" +
-		"<td>Screening name: <input type='text' name='screening_name" + otherScreeningCounter + "' value=''/></td>" +
+		"<td>Screening name:" +
+		"<select name='screening_name" + otherScreeningCounter + "'>" +
+			"<option value='Pap Smear'>Pap Smear</option>" +
+			"<option value='Chest XRay'>Chest XRay</option>" +
+			"<option value='Prostate Specific Antigen (PSA)'>Prostate Specific Antigen (PSA)</option>" +
+			"<option value='Colonoscopy'>Colonoscopy</option>" +
+			"<option value='Fecal Occult Blood Test (FOBT)'>Fecal Occult Blood Test (FOBT)</option>" +
+			"<option value='Sigmoidoscopy'>Sigmoidoscopy</option>" +
+			"<option value='Double Contrast Berium Enema (DCBE)'>Double Contrast Berium Enema (DCBE)</option>" +
+		"</select> </td>" +
 		"<td>Total no. of screenings:<input type='text' name='total_no_of_screening" + otherScreeningCounter + "' value=''/></td>" +
 		"<td>Age at screening:<input type='text' name='age_at_screening" + otherScreeningCounter + "' value=''/></td>" +
 		"<td>Place of screening: <input type='text' name='place_of_screening" + otherScreeningCounter + "' value=''/>	</td></tr>" +

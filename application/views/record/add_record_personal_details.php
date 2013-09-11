@@ -94,11 +94,11 @@
             <tr>
                 <td>
                     <?php echo $pedigree_label; ?>: 
-<?php echo form_input('padigree_labelling'); ?>
+					<?php echo form_input('padigree_labelling'); ?>
                 </td>
                 <td>
                     <?php echo $blood_group; ?>: 
-<?php echo form_input('blood_group'); ?>
+					<?php echo form_input('blood_group'); ?>
                 </td>
                 <td>
                     <?php echo $hospital_no; ?>: 
@@ -108,26 +108,26 @@
                     ?>
                 </td>
                 <td>
-<?php echo $private_patient_no; ?>: 
-<?php echo form_input('private_patient_no'); ?>
+					<?php echo $private_patient_no; ?>: 
+					<?php echo form_input('private_patient_no'); ?>
                 </td>
             </tr>
             <tr>
                 <td>
-<?php echo $COGS_study_id; ?>
-                    <?php echo form_dropdown('COGS_study_id', $COGS_study_id_lists); ?>;
+					<?php echo $COGS_study_id; ?>:
+                    <?php echo form_dropdown('COGS_study_id', $COGS_study_id_lists); ?>
                 </td>
                 <td>
-<?php echo $marital_status; ?>: 
+					<?php echo $marital_status; ?>: 
                     <?php echo form_dropdown('marital_status', $marital_status_lists); ?>
                 </td>
                 <td>
-<?php echo $is_blood_card_exist; ?>: 
+					<?php echo $is_blood_card_exist; ?>: 
                     <?php echo form_checkbox('is_blood_card_exist', 'yes', TRUE); ?>
                 </td>
                 <td>
-<?php echo $blood_card_location; ?>: 
-<?php echo form_input('blood_card_location'); ?>
+					<?php echo $blood_card_location; ?>: 
+					<?php echo form_input('blood_card_location'); ?>
                 </td>
             </tr>
             <tr>
@@ -152,8 +152,8 @@
                     <?php echo form_input('cell_phone'); ?>
                 </td>
                 <td>
-<?php echo $work_phone; ?>: 
-<?php echo form_input('work_phone'); ?>
+					<?php echo $work_phone; ?>: 
+					<?php echo form_input('work_phone'); ?>
                 </td>
             </tr>
             <tr>
@@ -206,11 +206,80 @@
                     <?php echo form_input('contact_person_phone_number'); ?>
                 </td>
                 <td>
-<?php echo $contact_person_relationship; ?>: 
-<?php echo form_input('contact_person_relationship'); ?>
+					<?php echo $contact_person_relationship; ?>: 
+					<?php echo form_input('contact_person_relationship'); ?>
                 </td>
+				<td>&nbsp;</td>
             </tr>
-
+			<tr>
+                <td id="label1">Relative summary details</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+			  <tr>
+                <td>
+                    <?php echo $total_no_of_male_siblings; ?>: 
+                    <?php echo form_input('total_no_of_male_siblings'); ?>
+                </td>
+                <td>
+                    <?php echo $total_no_of_female_siblings; ?>: 
+                    <?php echo form_input('total_no_of_female_siblings'); ?>
+                </td>
+				<td>
+                    <?php echo $total_no_of_affected_siblings; ?>: 
+                    <?php echo form_input('total_no_of_affected_siblings'); ?>
+				</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+               <td>
+                    <?php echo $total_no_male_children; ?>: 
+                    <?php echo form_input('total_no_male_children'); ?>
+                </td>
+                <td>
+                    <?php echo $total_no_female_children; ?>: 
+                    <?php echo form_input('total_no_female_children'); ?>
+                </td>
+				<td>
+                    <?php echo $total_no_of_affected_children; ?>: 
+                    <?php echo form_input('total_no_of_affected_children'); ?>
+				</td>
+				<td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>
+                    <?php echo $total_no_of_first_degree; ?>: 
+                    <?php echo form_input('total_no_of_first_degree'); ?>
+                </td>
+                <td>
+                    <?php echo $total_no_of_second_degree; ?>: 
+                    <?php echo form_input('total_no_of_second_degree'); ?>
+                </td>
+                <td>
+                    <?php echo $total_no_of_third_degree; ?>: 
+                    <?php echo form_input('total_no_of_third_degree'); ?>
+                </td>
+				<td>&nbsp;</td>
+            </tr>
+			<tr>
+                <td id="label1">Do not know because</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+			<tr>
+                <td>
+                    <?php echo $unknown_reason_is_adopted; ?>: 
+                    <?php echo form_checkbox('unknown_reason_is_adopted','no',FALSE); ?>
+                </td>
+                <td>
+                    <?php echo $unknown_reason_in_other_countries; ?>: 
+                   <?php echo form_checkbox('unknown_reason_in_other_countries','no',FALSE); ?>
+                </td>
+                <td>&nbsp;</td>
+				<td>&nbsp;</td>
+            </tr>
         </table>
     </div>
 
