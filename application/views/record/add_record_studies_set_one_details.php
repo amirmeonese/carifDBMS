@@ -146,7 +146,7 @@
                     <?php echo form_checkbox('abnormality_mammo_flag', 'no', FALSE); ?>
                 </td>
             </tr>
-			 <tr>
+            <tr>
                 <td>
                     <?php echo $BIRADS_clinical_classification; ?>: 
                     <?php echo form_input('BIRADS_clinical_classification'); ?>
@@ -155,8 +155,8 @@
                     <?php echo $BIRADS_density_classification; ?>: 
                     <?php echo form_input('BIRADS_density_classification'); ?>
                 </td>
-				<td>&nbsp;</td>
-				<td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
             </tr>
         </table>
         <table id="mammo_second_section_1">
@@ -181,20 +181,20 @@
                     echo form_textarea($data);
                     ?>
                 </td>
-				<td>
+                <td>
                     <?php echo $percentage_of_mammo_density; ?>: 
-					<?php echo form_input('percentage_of_mammo_density'); ?>
+                    <?php echo form_input('percentage_of_mammo_density'); ?>
                 </td>
             </tr>
-			<tr>
-				 <td>
+            <tr>
+                <td>
                     <input type="button" value="Add more site details" onClick="window.parent.addBreastSiteInput('add_record_form_section_mammo');
                             window.parent.calcHeight();">
-				</td>
-				<td>&nbsp;</td>
-				<td>&nbsp;</td>
-				<td>&nbsp;</td>
-			</tr>
+                </td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
         </table>
         <?php echo form_fieldset_close(); ?>	
     </div>
@@ -208,9 +208,9 @@
             <tr>
                 <td>
                     <?php echo $upload_raw_images_one; ?>: 
-                    
+
                     <input type="file" name="raw_images_one" size="100000" />
-                    
+
                 </td>
             </tr>
             <tr>
@@ -249,7 +249,7 @@
             <tr>
                 <td>
                     <?php echo $upload_processed_images_two; ?>: 
-                     <input type="file" name="processed_images_two" size="100000" />
+                    <input type="file" name="processed_images_two" size="100000" />
                 </td>
             </tr>
             <tr>
@@ -260,7 +260,7 @@
             </tr><tr>
                 <td>
                     <?php echo $upload_processed_images_four; ?>: 
-                     <input type="file" name="processed_images_four" size="100000" />
+                    <input type="file" name="processed_images_four" size="100000" />
                 </td>
             </tr>
         </table>
