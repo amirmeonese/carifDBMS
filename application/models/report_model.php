@@ -494,7 +494,7 @@ class Report_model extends CI_Model {
 
     function getPatientInfo($record_data) {
         $query = $this->db->select('fullname, surname, ic_no')
-                ->like('fullname', 'John')
+                ->like('fullname', $record_data['fullname'])
                 ->limit(5)
                 ->get($this->tables['patient']);
         $result = null;
