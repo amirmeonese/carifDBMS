@@ -594,7 +594,6 @@ class Record extends CI_Controller {
         $patient_cancer_name = $this->input->post('patient_cancer_name');
         $cancer_id = $this->record_model->get_cancer_id($patient_cancer_name);
         $data_patient_cancer = array(
-            'patient_ic_no' => $this->input->post('IC_no'),
             'patient_studies_id' => $patient_studies_id,
             'breast_cancer_diagnosed_flag' => $this->input->post('breast_cancer_diagnosed_flag'),
             'cancer_id' => $cancer_id,
@@ -675,7 +674,6 @@ class Record extends CI_Controller {
         $diagnosis_name = $this->input->post('diagnosis_name');
         $diagnosis_id = $this->record_model->get_diagnosis_id($diagnosis_name);
         $data_patient_diagnosis = array(
-            'patient_ic_no' => $this->input->post('IC_no'),
             'patient_studies_id' => $patient_studies_id,
             'diagnosis_id' => $diagnosis_id,
             'diagnosis_age' => $this->input->post('diagnosis_age'),
@@ -696,7 +694,6 @@ class Record extends CI_Controller {
         } echo '<br/>';
 
         $data_patient_pathology = array(
-            'patient_ic_no' => $this->input->post('IC_no'),
             'patient_studies_id' => $patient_studies_id,
             'tissue_site' => $this->input->post('pathology_tissue_site'),
             'tissue_tumour_stages' => $this->input->post('pathology_tissue_tumour_stage'),
@@ -707,7 +704,7 @@ class Record extends CI_Controller {
             'er_status' => $this->input->post('pathology_ER_status'),
             'pr_status' => $this->input->post('pathology_PR_status'),
             'her2_status' => $this->input->post('pathology_HER2_status'),
-            'number_of_tumers' => $this->input->post('pathology_number_of_tumours'),
+            'no_of_tumers' => $this->input->post('pathology_number_of_tumours'),
             'metastasis_stage' => $this->input->post('pathology_metastasis_stage'),
             'side_affected' => $this->input->post('pathology_side_affected'),
             'tumour_stage' => $this->input->post('pathology_tumour_stage'),
@@ -751,7 +748,6 @@ class Record extends CI_Controller {
         //echo '<br/>';
 
         $data_patient_lifestyle_factors = array(
-            'patient_ic_no' => $this->input->post('IC_no'),
             'patient_studies_id' => $patient_studies_id,
             'self_image_at_7years' => $this->input->post('self_image_at_7years'),
             'self_image_at_18years' => $this->input->post('self_image_at_18years'),
@@ -822,9 +818,8 @@ class Record extends CI_Controller {
         echo '<br/>';
 
         $data_patient_parity_table = array(
-            'patient_ic_no' => $this->input->post('IC_no'),
             'patient_studies_id' => $patient_studies_id,
-            'pregnent_flag' => $this->input->post('pregnent_flag')
+            'pregnant_flag' => $this->input->post('pregnent_flag')
         );
 
         //print_r($data_patient_parity_table);
@@ -887,7 +882,6 @@ class Record extends CI_Controller {
         $treatment_name = $this->input->post('gnc_treatment_name');
         $treatment_id = $this->record_model->get_treatment_id($treatment_name);
         $data_patient_gynaecological_surgery_history = array(
-            'patient_ic_no' => $this->input->post('IC_no'),
             'patient_studies_id' => $patient_studies_id,
             'had_gnc_surgery_flag' => $this->input->post('had_gnc_surgery_flag'),
             'surgery_year' => $this->input->post('gnc_surgery_year'),
@@ -940,7 +934,6 @@ class Record extends CI_Controller {
         $patient_studies_id = $this->record_model->get_patient_suudies_id($data_keys);
         //echo $patient_studies_id;echo '<br/>';
         $data_patient_investigations = array(
-            'patient_ic_no' => $this->input->post('IC_no'),
             'patient_studies_id' => $patient_studies_id,
             'date_test_ordered' => $this->input->post('date_test_ordered'),
             'ordered_by' => $this->input->post('test_ordered_by'),
@@ -993,13 +986,12 @@ class Record extends CI_Controller {
         //echo $patient_studies_id;echo '<br/>';
 
         $data_patient_surveillance = array(
-            'patient_ic_no' => $this->input->post('IC_no'),
             'patient_studies_id' => $patient_studies_id,
             'recruitment_center' => $this->input->post('surveillance_recruitment_center'),
             'type' => $this->input->post('surveillance_type'),
             'first_consultation_date' => $this->input->post('surveillance_first_consultation_date'),
             'first_consultation_place' => $this->input->post('surveillance_first_consultation_place'),
-            'interval' => $this->input->post('surveillance_interval'),
+            'surveillance_interval' => $this->input->post('surveillance_interval'),
             'diagnosis' => $this->input->post('surveillance_diagnosis'),
             'due_date' => $this->input->post('surveillance_due_date'),
             'reminder_sent_date' => $this->input->post('surveillance_reminder_sent_date'),
