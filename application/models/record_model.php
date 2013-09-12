@@ -1164,6 +1164,16 @@ class Record_model extends CI_Model {
         return $id;
     }
 
+    public function insert_patient_relatives_summary($record_data) {
+        $data = array(
+        );
+        $record_data = array_merge($this->_filter_data($this->tables['patient_relatives_summary'], $data), $record_data);
+        $this->db->insert($this->tables['patient_relatives_summary'], $record_data);
+
+        $id = $this->db->insert_id();
+        return $id;
+    }
+    
     public function patient_lifestyle_factors($record_data) {
         $data = array(
         );
@@ -1214,7 +1224,7 @@ class Record_model extends CI_Model {
         return $id;
     }
 
-    public function insert_patient_contact_person($record_data) {
+    public function insert_at_patient_contact_person($record_data) {
         $data = array(
         );
         $record_data = array_merge($this->_filter_data($this->tables['patient_contact_person'], $data), $record_data);
