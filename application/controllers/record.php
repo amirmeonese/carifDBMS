@@ -69,7 +69,7 @@ class Record extends CI_Controller {
                 'd_o_b' => $this->input->post('d_o_b'),
                 'place_of_birth' => $this->input->post('place_of_birth'),
                 'income_level' => $this->input->post('income_level'),
-                'is_dead' => $this->input->post('is_dead'),
+                'is_dead' => $this->input->post('still_alive_flag'),
                 'd_o_d' => $this->input->post('d_o_d'),
                 'reason_of_death' => $this->input->post('reason_of_death'),
                 'padigree_labelling' => $this->input->post('padigree_labelling'),
@@ -79,17 +79,21 @@ class Record extends CI_Controller {
                 'marital_status' => $this->input->post('marital_status'),
                 'blood_card' => $this->input->post('is_blood_card_exist'),
                 'blood_card_location' => $this->input->post('private_patient_no'),
+                'cogs_study_id' => $this->input->post('COGS_study_id'),
                 'address' => $this->input->post('address'),
                 'home_phone' => $this->input->post('home_phone'),
                 'cell_phone' => $this->input->post('cell_phone'),
                 'work_phone' => $this->input->post('work_phone'),
+                'other_phone' => $this->input->post('other_phone'),
+                'fax' => $this->input->post('fax'),
+                'email' => $this->input->post('email'),
                 'height' => $this->input->post('height'),
                 'weight' => $this->input->post('weight'),
                 'bmi' => $this->input->post('bmi'),
-                'highest_education_level' => $this->input->post('highest_education_level')
+                'highest_education_level' => $this->input->post('highest_education_level') 
             );
             echo '<pre>';
-            print_r($data_patient);
+           // print_r($data_patient);
             echo '<br/>';
             $data_patient_contact_person = array(
                 'patient_ic_no' => $this->input->post('IC_no'),
@@ -107,18 +111,27 @@ class Record extends CI_Controller {
                 echo "<h2>Failed to insert at Patient table</h2>";
             }
             echo '<br/>';
-            $id_patient_contact_person = $this->record_model->insert_patient_contact_person($data_patient_contact_person);
+            $id_patient_contact_person = $this->record_model->insert_at_patient_contact_person($data_patient_contact_person);
             if ($id_patient_contact_person > 0) {
                 echo "<h2>Data Added successfully at patient_contact_person table</h2>";
             } else {
                 echo "<h2>Failed to insert at patient_contact_person table</h2>";
             }
             echo '<br/>';
-
+             
+            $alive_status = $this->input->post('alive_status');
+            
+            if($alive_status == 'Alive')
+               $alive_status_flag = TRUE;
+            else if($alive_status == 'Dead')
+                $alive_status_flag = FALSE;
+            else 
+                $alive_status_flag = FALSE;
+            
             $data_patient_survival_status = array(
                 'patient_ic_no' => $this->input->post('IC_no'),
                 'source' => $this->input->post('recurrence_site'),
-                'alive_status' => $this->input->post('alive_status'),
+                'alive_status' => $alive_status_flag,
                 'creation_date' => $this->input->post('status_gathered_date')
             );
 
@@ -127,6 +140,29 @@ class Record extends CI_Controller {
                 echo "<h2>Data Added successfully at patient_survival_status table</h2>";
             } else {
                 echo "<h2>Failed to insert at patient_survival_status table</h2>";
+            }
+            echo '<br/>';
+            
+               $data_patient_relatives_summary = array(
+                'patient_ic_no' => $this->input->post('IC_no'),
+                'total_no_of_male_siblings' => $this->input->post('total_no_of_male_siblings'),
+                'total_no_of_female_siblings' => $this->input->post('total_no_of_female_siblings'),
+                'total_no_of_affected_siblings' => $this->input->post('total_no_of_affected_siblings'),
+                'total_no_of_male_children' => $this->input->post('total_no_male_children'),
+                'total_no_of_female_children' => $this->input->post('total_no_female_children'),
+                'total_no_of_affected_children' => $this->input->post('total_no_of_affected_children'),
+                'total_no_of_1st_degree' => $this->input->post('total_no_of_first_degree'),
+                'total_no_of_2nd_degree' => $this->input->post('total_no_of_second_degree'),
+                'total_no_of_3rd_degree' => $this->input->post('total_no_of_third_degree'),
+                'unknown_reason_is_adopted' => $this->input->post('unknown_reason_is_adopted'),
+                'unknown_reason_in_other_countries' => $this->input->post('unknown_reason_in_other_countries')
+                     );
+                     //print_r($data_patient_relatives_summary);
+            $patient_relatives_summary_id = $this->record_model->insert_patient_relatives_summary($data_patient_relatives_summary);
+            if ($patient_relatives_summary_id > 0) {
+                echo "<h2>Data Added successfully at patient_relatives_summary table</h2>";
+            } else {
+                echo "<h2>Failed to insert at patient_relatives_summary table</h2>";
             }
             echo '<br/>';
         } else {
@@ -162,11 +198,6 @@ class Record extends CI_Controller {
                 'other_detail' => $this->input->post('father_diagnosis_other_details'),
                 'no_of_brothers' => $this->input->post('father_no_of_brothers'),
                 'no_of_sisters' => $this->input->post('father_no_of_sisters'),
-                'no_of_female_children' => $this->input->post('father_no_female_children'),
-                'no_of_male_children' => $this->input->post('father_no_male_children'),
-                'no_of_first_degree' => $this->input->post('father_no_of_first_degree'),
-                'total_no_of_second_degree' => $this->input->post('father_no_of_second_degree'),
-                'total_no_of_third_degree' => $this->input->post('father_no_of_third_degree'),
                 'vital_status' => $this->input->post('father_vital_status'),
                 'match_score_at_consent' => $this->input->post('father_mach_score_at_consent'),
                 'match_score_past_consent' => $this->input->post('father_mach_score_past_consent'),
@@ -195,19 +226,14 @@ class Record extends CI_Controller {
                 'other_detail' => $this->input->post('mother_diagnosis_other_details'),
                 'no_of_brothers' => $this->input->post('mother_no_of_brothers'),
                 'no_of_sisters' => $this->input->post('mother_no_of_sisters'),
-                'no_of_female_children' => $this->input->post('mother_no_female_children'),
-                'no_of_male_children' => $this->input->post('mother_no_male_children'),
-                'no_of_first_degree' => $this->input->post('mother_no_of_first_degree'),
-                'total_no_of_second_degree' => $this->input->post('mother_no_of_second_degree'),
-                'total_no_of_third_degree' => $this->input->post('mother_no_of_third_degree'),
                 'vital_status' => $this->input->post('mother_vital_status'),
                 'match_score_at_consent' => $this->input->post('mother_mach_score_at_consent'),
                 'match_score_past_consent' => $this->input->post('mother_mach_score_past_consent'),
                 'fh_category' => $this->input->post('mother_FH_category')
             );
             echo '<pre>';
-            print_r($data1_patient_relatives);
-            print_r($data2_patient_relatives);
+            //print_r($data1_patient_relatives);
+            //print_r($data2_patient_relatives);
             //array_push($data, $this->input->post('firstname'));
             $id1_patient_relatives = $this->record_model->insert_patient_family_record($data1_patient_relatives);
             if ($id1_patient_relatives > 0) {
@@ -296,7 +322,6 @@ class Record extends CI_Controller {
         } echo '<br/>';
 
 
-        $name_of_radiologist = $this->input->post('name_of_radiologist');
         $data_patient_breast_screening = array(
             'patient_ic_no' => $this->input->post('IC_no'),
             'year_of_first_mammogram' => $this->input->post('year_of_first_mammogram'),
@@ -307,14 +332,19 @@ class Record extends CI_Controller {
             'total_no_of_mammogram' => $this->input->post('total_no_of_mammogram'),
             'screening_interval' => $this->input->post('screening_interval'),
             'abnormality_mammo_flag' => $this->input->post('abnormality_mammo_flag'),
+            'mammo_abnormality_details' => $this->input->post('mammo_breast_other_descriptions'),
+            'name_of_radiologist' => $this->input->post('name_of_radiologist'),
             'had_ultrasound_flag' => $this->input->post('had_ultrasound_flag'), //from Ultrasound Details part
             'total_no_of_ultrasound' => $this->input->post('total_no_of_ultrasound'),
             'abnormality_ultrasound_flag' => $this->input->post('abnormality_ultrasound_flag'),
             'had_mri_flag' => $this->input->post('had_mri_flag'), // from MRI Details part
             'total_no_of_mri' => $this->input->post('total_no_of_mri'),
             'had_surgery_for_benign_lump_or_cyst_flag' => $this->input->post('had_surgery_for_benign_lump_or_cyst_flag'),
+            'mammo_benign_lump_cyst_details' => $this->input->post('mammo_benign_lump_cyst_details'),
             'other_screening_flag' => $this->input->post('other_screening_flag'),
-            'patient_studies_id' => $patient_studies_id
+            'patient_studies_id' => $patient_studies_id,
+            'BIRADS_clinical_classification' => $this->input->post('BIRADS_clinical_classification'),
+            'BIRADS_density_classification' => $this->input->post('BIRADS_density_classification')
         );
 
         //print_r($data_patient_breast_screening);
@@ -501,9 +531,10 @@ class Record extends CI_Controller {
             'patient_breast_screening_id' => $patient_breast_screening_id,
             'description' => $this->input->post('mammo_breast_other_descriptions'),
             'left_breast' => $left_breast,
-            'description' => $right_breast,
+            'right_breast' => $right_breast,
             'upper' => $upper,
-            'below' => $below
+            'below' => $below,
+            'percentage_of_mammo_density' => $this->input->post('percentage_of_mammo_density')
         );
         //print_r($data_patient_breast_abnormality);
         echo '<br/>';
@@ -539,9 +570,7 @@ class Record extends CI_Controller {
         } else {
             echo "Failed to insert at patient_mri_abnormality";
         } echo '<br/>';
-        $mammo_benign_lump_cyst_details = $this->input->post('mammo_benign_lump_cyst_details'); //don't know where to put
-
-
+  
 
         $data_patient_other_screening = array(
             'screening_name' => $this->input->post('screening_name'),
@@ -561,8 +590,7 @@ class Record extends CI_Controller {
             echo "Failed to insert at patient_other_screening";
         } echo '<br/>';
 
-
-        $patient_cancer_recurrence_treatment_name = $this->input->post('patient_cancer_recurrence_treatment_name'); //where to insert this value
+        
         $patient_cancer_name = $this->input->post('patient_cancer_name');
         $cancer_id = $this->record_model->get_cancer_id($patient_cancer_name);
         $data_patient_cancer = array(
@@ -577,7 +605,8 @@ class Record extends CI_Controller {
             'detected_by' => $this->input->post('detected_by'),
             'recurrence_flag' => $this->input->post('is_recurrence_flag'),
             'recurrence_site' => $this->input->post('recurrence_site'),
-            'recurrence_date' => $this->input->post('recurrence_date')
+            'recurrence_date' => $this->input->post('recurrence_date'),
+            'is_primary' => $this->input->post('primary_diagnosis')
         );
         //print_r($data_patient_cancer);
         echo '<br/>';
@@ -595,7 +624,6 @@ class Record extends CI_Controller {
         $data_patient_cancer_site = array(
             'patient_cancer_id' => $patient_cancer_id,
             'cancer_site_id' => $cancer_site_id,
-            'is_primary' => $this->input->post('primary_diagnosis'),
             'site_details' => $this->input->post('cancer_site_details')
         );
         // print_r($data_patient_cancer_site);
@@ -627,8 +655,10 @@ class Record extends CI_Controller {
             echo "Failed to insert at patient_cancer_treatment";
         } echo '<br/>';
 
+        $patient_cancer_recurrence_treatment_name = $this->input->post('patient_cancer_recurrence_treatment_name'); //where to insert this value
+        $treatment_id_recurrent = $this->record_model->get_treatment_id($patient_cancer_recurrence_treatment_name);
         $data_patient_cancer_recurrent = array(
-            'treatment_id' => $treatment_id,
+            'treatment_id' => $treatment_id_recurrent,
             'patient_cancer_id' => $patient_cancer_id
         );
         // print_r($data_patient_cancer_recurrent);
@@ -643,9 +673,6 @@ class Record extends CI_Controller {
 
 
         $diagnosis_name = $this->input->post('diagnosis_name');
-        $data_diagnosis = array(
-            'diagnosis_details' => $this->input->post('diagnosis_details')
-        );
         $diagnosis_id = $this->record_model->get_diagnosis_id($diagnosis_name);
         $data_patient_diagnosis = array(
             'patient_ic_no' => $this->input->post('IC_no'),
@@ -656,7 +683,8 @@ class Record extends CI_Controller {
             'on_medication_flag' => $this->input->post('is_on_medication_flag'),
             'medication_details' => $this->input->post('medication_details'),
             'diagnosis_center' => $this->input->post('diagnosis_center'),
-            'doctor_name' => $this->input->post('diagnosis_doctor_name')
+            'doctor_name' => $this->input->post('diagnosis_doctor_name'),
+            'diagnosis_details' => $this->input->post('diagnosis_details')
         );
         // print_r($data_patient_diagnosis);
         echo '<br/>';
