@@ -74,6 +74,8 @@ $config['tables']['patient_infertility'] = 'patient_infertility';
 $config['tables']['patient_boadicea'] = 'patient_boadicea';
 $config['tables']['patient_interview_manager'] = 'patient_interview_manager';
 $config['tables']['patient_survival_status'] = 'patient_survival_status';
+$config['tables']['patient_relatives_summary'] = 'patient_relatives_summary';
+
 
 /*
  | Users table column and Group table column you want to join WITH.
