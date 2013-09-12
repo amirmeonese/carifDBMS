@@ -220,7 +220,7 @@ class Report_model extends CI_Model {
         return $this;
     }
 
-    public function like($like, $value = NULL) {
+    /*public function like($like, $value = NULL) {
         $this->trigger_events('like');
 
         if (!is_array($like)) {
@@ -230,7 +230,7 @@ class Report_model extends CI_Model {
         array_push($this->_ion_like, $like);
 
         return $this;
-    }
+    }*/
 
     public function select($select) {
         $this->trigger_events('select');
@@ -493,26 +493,17 @@ class Report_model extends CI_Model {
     }
 
     function getPatientInfo($record_data) {
-        //print_r($record_data);
-        //$record_data = array('fullname' => 'Lim Dan Tong', 'ic_no' => '870728443122');
-        $query = $this->db->select('fullname, d_o_b')
-                ->where('fullname', $record_data['fullname'])
-                ->where('ic_no', $record_data['ic_no'])
-                ->limit(1)
+        $query = $this->db->select('fullname, surname, ic_no')
+                ->like('fullname', 'John')
+                ->limit(5)
                 ->get($this->tables['patient']);
-        //print_r($query);
-       // echo $record_data['fullname']."<br/>";
-        //echo $record_data['ic_no'];
         $result = null;
-               
         if ($query->num_rows() > 0) {
-            $result = $query->row_array();
+            $result = $query->result_array();
                         //return $query->row_array();
             //print_r($result);
+            
         }
-
-        //
-
         return $result;
     }
 
