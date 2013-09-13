@@ -7,51 +7,51 @@
         <table>
             <tr height="50px">
                 <td width="15%">
-                    <?php echo $father_fullname; ?></td>
+                    <?php echo $fullname; ?></td>
                 <td>:</td>
                 <td width="13%"><?php echo @$patient_family['full_name']; ?>
                 </td>
                 <td width="15%">
-                    <?php echo $father_surname; ?></td>
+                    <?php echo $surname; ?></td>
                 <td>:</td>
-                <td width="13%">	<?php echo @$patient_family['sur_name']; ?>
+                <td width="13%"><?php echo @$patient_family['sur_name']; ?>
                 </td>
                 <td width="15%">
-                    <?php echo $father_maiden_name; ?></td>
+                    <?php echo $maiden_name; ?></td>
                 <td>:</td>
-                <td width="13%">	<?php echo @$patient_family['maiden_name']; ?>
+                <td width="13%"><?php echo @$patient_family['maiden_name']; ?>
                 </td>
             </tr>
             <tr height="50px">
                 <td>
-                    <?php echo $father_ethnicity; ?></td>
+                    <?php echo 'Ethnicity'; ?></td>
                 <td>:</td>
                 <td>	<?php echo @$patient_family['ethnicity']; ?>
                 </td>
                 <td>
-                    <?php echo $father_town_residence; ?></td>
+                    <?php echo 'Town Residence'; ?></td>
                 <td>:</td>
                 <td>	<?php echo @$patient_family['town_of_residence']; ?>
                 </td>
                 <td>
-                    <?php echo $father_DOB; ?></td>
+                    <?php echo $DOB; ?></td>
                 <td>:</td>
                 <td>	<?php echo @$patient_family['d_o_b']; ?>
                 </td>
             </tr>
             <tr height="50px">
                 <td>
-                    <?php echo $father_still_alive_flag; ?></td>
+                    <?php echo $still_alive_flag; ?></td>
                 <td>:</td>
                 <td>	<?php echo @$patient_family['is_alive_flag']; ?>
                 </td>
                 <td>
-                    <?php echo $father_DOD; ?></td> 
+                    <?php echo $DOD; ?></td> 
                 <td>:</td>
                 <td>	<?php echo @$patient_family['d_o_d']; ?>
                 </td>
                 <td>
-                    <?php echo $father_is_cancer_diagnosed; ?></td> 
+                    <?php echo 'Is Cancer Diagnosed'; ?></td> 
                 <td>:</td>
                 <td>	<?php echo @$patient_family['is_cancer_diagnosed']; ?>
                 </td>
@@ -59,88 +59,61 @@
             </tr>
             <tr height="50px">
                 <td>
-                    <?php echo $father_date_of_diagnosis; ?></td>
+                    <?php echo $date_of_diagnosis; ?></td>
                 <td>:</td>
                 <td>	<?php echo @$patient_family['date_of_diagnosis']; ?>
                 </td>
                 <td>
-                    <?php echo $father_cancer_name; ?></td>
+                    <?php echo 'Cancer Name'; ?></td>
                 <td>:</td>
                 <td>	<?php echo @$patient_family['cancer_type_id']; ?>
                 </td>
                 <td>
-                    <?php echo $father_age_of_diagnosis; ?></td> 
+                    <?php echo $age_of_diagnosis; ?></td> 
                 <td>:</td>
                 <td>	<?php echo @$patient_family['age_of_diagnosis']; ?>
                 </td>
             </tr>
             <tr height="50px">
                 <td>
-                    <?php echo $father_diagnosis_other_details; ?></td>
+                    <?php echo 'Diagnosis Other Details'; ?></td>
                 <td>:</td>
                 <td>	<?php echo @$patient_family['other_detail']; ?>
                 </td>
                 <td>
-                    <?php echo $father_no_of_brothers; ?></td>
+                    <?php echo 'No of Brothers'; ?></td>
                 <td>:</td>
                 <td>	<?php echo @$patient_family['no_of_brothers']; ?>
                 </td>
                 <td>
-                    <?php echo $father_no_of_sisters; ?></td> 
+                    <?php echo 'No of Sisters'; ?></td> 
                 <td>:</td>
                 <td>	<?php echo @$patient_family['no_of_sisters']; ?>
                 </td>
                 
             </tr>
+            
             <tr height="50px">
+              
                 <td>
-                    <?php echo $father_no_female_children; ?></td>
-                <td>:</td>
-                <td>	<?php echo @$patient_family['no_female_children']; ?>
-                </td>
-                <td>
-                    <?php echo $father_no_male_children; ?></td> 
-                <td>:</td>
-                <td>	<?php echo @$patient_family['no_male_children']; ?>
-                </td>
-                <td>
-                    <?php echo $father_no_of_first_degree; ?></td> 
-                <td>:</td>
-                <td>	<?php echo @$patient_family['no_of_first_degree']; ?>
-                </td>
-                
-            </tr>
-            <tr height="50px">
-                <td>
-                    <?php echo $father_no_of_second_degree; ?></td>
-                <td>:</td>
-                <td>	<?php echo @$patient_family['total_no_of_second_degree']; ?>
-                </td>
-                <td>
-                    <?php echo $father_no_of_third_degree; ?></td>
-                <td>:</td>
-                <td>	<?php echo @$patient_family['total_no_of_third_degree']; ?>
-                </td>
-                <td>
-                    <?php echo $father_vital_status; ?></td> 
+                    <?php echo 'Vital Status'; ?></td> 
                 <td>:</td>
                 <td>	<?php echo @$patient_family['vital_status']; ?>
                 </td>
-                
-            </tr>
-            <tr height="50px">
-            <td>
-                    <?php echo $father_mach_score_at_consent; ?></td>
+                <td>
+                    <?php echo 'Mach Score at Consent'; ?></td>
                 <td>:</td>
                 <td>	<?php echo @$patient_family['match_score_at_consent']; ?>
                 </td>
                 <td>
-                    <?php echo $father_mach_score_past_consent; ?></td> 
+                    <?php echo 'Mach Score Past Consent'; ?></td> 
                 <td>:</td>
                 <td>	<?php echo @$patient_family['match_score_past_consent']; ?>
                 </td>
+            </tr>
+            <tr height="50px">
                 <td>
-                    <?php echo $father_FH_category; ?></td> 
+                    <?php echo 'FH Category'; ?></td> 
                 <td>:</td>
                 <td>	<?php echo @$patient_family['fh_category']; ?>
                 </td>
