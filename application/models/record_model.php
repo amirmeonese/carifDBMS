@@ -1147,22 +1147,47 @@ class Record_model extends CI_Model {
         return $id;
     }
     
-    public function get_patient_record($ic_no){
+    public function get_view_patient_record($ic_no,$table,$patient_ic_no){
     
-		$p_record = $this->db->get_where('patient', array('ic_no' => $ic_no));
-        $patient_record = $p_record->row_array();
+	$p_record = $this->db->get_where($table, array($patient_ic_no => $ic_no));
+        $patient_detail = $p_record->row_array();
+        //echo $this->db->last_query();exit;
         $p_record->free_result();  
-        
-        return $patient_record;
+
+        return $patient_detail;
     }
     
     public function get_list_patient_record(){
     
-		$l_record = $this->db->get('patient');
+	$l_record = $this->db->get('patient');
         $patient_list = $l_record->result_array();
         $l_record->free_result();  
         
         return $patient_list;
+    }
+    
+    public function get_patient_other_screening($patien_breast_screening){
+    
+        $this->db->select('pos.*');
+        $this->db->from('patient_other_screening pos, patient_breast_screening pbs');
+        $this->db->where('pos.patient_breast_screening_id',$patien_breast_screening);
+	$s_record = $this->db->get('');
+        $patient_id = $s_record->row_array();
+        $s_record->free_result();  
+        
+        return $patient_id;
+    }
+    
+    public function get_patient_cancer_treatment($patient_cancer){
+    
+        $this->db->select('pct.*');
+        $this->db->from('patient_cancer_treatment pct, patient_cancer pc');
+        $this->db->where('pct.patient_cancer_id',$patient_cancer);
+	$t_record = $this->db->get('');
+        $patient_cancer_id = $t_record->row_array();
+        $t_record->free_result();  
+        
+        return $patient_cancer_id;
     }
 
 

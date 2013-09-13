@@ -8,7 +8,7 @@
 				</form>
 			</div>
 			<div class="span3">
-				<form name="auto_match" action="record/patient_record_list" method="post">
+				<form name="auto_match" action="record/view_record_home" method="post">
 					<input type ="image" src="<?php echo base_url(); ?>img/view_record_page.png" alt="view_record_page_button" height="270px"></input>
 				</form>
 			</div>
