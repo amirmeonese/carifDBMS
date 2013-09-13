@@ -1125,6 +1125,10 @@ textarea,
   width: 206px;
 }
 
+#data_field_textarea{
+	width: 406px;
+}
+
 textarea {
   height: auto;
 }

@@ -29,6 +29,22 @@
 
         <script type="text/javascript" src="<?php echo base_url(); ?>js/jquery.min.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>js/bootstrap.js"></script>
+		<script type="text/javascript" src="<?php echo base_url(); ?>js/plugins/category/textext.js"></script>
+		<script type="text/javascript">
+		
+		$(document).ready(function() {
+			$('#data_field_textarea').textext({
+				plugins : 'tags prompt focus autocomplete ajax arrow',
+				tagsItems : [ 'IC_no', 'Fullname' ],
+				prompt : 'Select..',
+				ajax : {
+					url : '<?php echo base_url(); ?>js/plugins/category/data/data.json',
+					dataType : 'json',
+					cacheResults : true
+				}
+			});	
+		});
+		</script>
     </head>
     <body>
 

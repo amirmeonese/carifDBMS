@@ -73,6 +73,9 @@
                 </td>
             </tr>
         </table>
+		<table>
+		<tr><td>Data Columns to Display:</td><td><textarea id="data_field_textarea" rows="1" cols="7"></textarea></td></tr>
+	</table>
     </div>
     <?php echo form_submit('mysubmit', 'Generate Report'); ?>
     <a class="submitCancel" href="<?php echo base_url(); ?>">Cancel</a>
