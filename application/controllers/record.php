@@ -274,886 +274,862 @@ class Record extends CI_Controller {
         $data['patient_list'] = $this->record_model->get_list_patient_record();
 
         $this->template->load("templates/report_home_template", 'record/list_record_personal_details', $data);
+    }
 
-        function patient_record_view($ic_no) {
+    function studies_set_one_insertion() {
+        //echo '<h1>Helllooo</h1>';
+        //$this->form_validation->set_rules('mother_fullname', 'Full name', 'required|xss_clean');
+        //if ($this->form_validation->run() == true)  {
 
-            $this->load->model('Record_model');
-            $data = $this->Record_model->general();
-            $data['patient_detail'] = $a = $this->record_model->get_patient_record($ic_no);
+        $studies_name = $this->input->post('studies_name');
+        $studies_id = $this->excell_sheets_model->get_patient_studies_id($studies_name);
+        $relations_to_study = $this->input->post('relations_to_study');
 
-            $this->template->load("templates/report_home_template", 'record/view_record_personal_details', $data);
-        }
-
-        function record_list() {
-
-            $this->load->view('record/record_list');
-        }
-
-        function patient_record_list() {
-
-            $this->load->model('Record_model');
-            $data = $this->Record_model->general();
-            $data['patient_list'] = $this->record_model->get_list_patient_record();
-
-            $this->template->load("templates/report_home_template", 'record/list_record_personal_details', $data);
-        }
-
-        function studies_set_one_insertion() {
-            //echo '<h1>Helllooo</h1>';
-            //$this->form_validation->set_rules('mother_fullname', 'Full name', 'required|xss_clean');
-            //if ($this->form_validation->run() == true)  {
-
-            $studies_name = $this->input->post('studies_name');
-            $studies_id = $this->excell_sheets_model->get_patient_studies_id($studies_name);
-            $relations_to_study = $this->input->post('relations_to_study');
-
-            if ($relations_to_study == 'Yes' || $relations_to_study == 'yes')
-                $relations_to_study_flag = TRUE;
-            else if ($relations_to_study == 'No' || $relations_to_study == 'no')
-                $relations_to_study_flag = FALSE;
-            else
-                $relations_to_study_flag = FALSE;
+        if ($relations_to_study == 'Yes' || $relations_to_study == 'yes')
+            $relations_to_study_flag = TRUE;
+        else if ($relations_to_study == 'No' || $relations_to_study == 'no')
+            $relations_to_study_flag = FALSE;
+        else
+            $relations_to_study_flag = FALSE;
 
 
-            $data_patient_studies = array(
-                'patient_ic_no' => $this->input->post('IC_no'),
-                'studies_id' => $studies_id,
-                'date_at_consent' => $this->input->post('date_at_consent'),
-                'age_at_consent' => $this->input->post('age_at_consent'),
-                'double_consent_flag' => $this->input->post('is_double_consent_flag'),
-                'double_consent_detail' => $this->input->post('double_consent_detail'),
-                'consent_given_by' => $this->input->post('consent_given_by'),
-                'consent_response' => $this->input->post('consent_response'),
-                'consent_version' => $this->input->post('consent_version'),
-                'relation_to_study_flag' => $relations_to_study_flag,
-                'referral_to' => $this->input->post('referral_to'),
-                'referral_to_service' => $this->input->post('referral_to_service'),
-                'referral_date' => $this->input->post('referral_date'),
-                'referral_source' => $this->input->post('referral_source')
-            );
-            echo '<pre>';
-            //print_r($data_patient_studies);
-            echo '<br/>';
-            $patient_studies_id = $this->record_model->insert_patient_studies_record($data_patient_studies);
-            if ($patient_studies_id > 0) {
-                echo "Data Added successfully at patient_studies";
-            } else {
-                echo "Failed to insert at patient_studies";
-            } echo '<br/>';
+        $data_patient_studies = array(
+            'patient_ic_no' => $this->input->post('IC_no'),
+            'studies_id' => $studies_id,
+            'date_at_consent' => $this->input->post('date_at_consent'),
+            'age_at_consent' => $this->input->post('age_at_consent'),
+            'double_consent_flag' => $this->input->post('is_double_consent_flag'),
+            'double_consent_detail' => $this->input->post('double_consent_detail'),
+            'consent_given_by' => $this->input->post('consent_given_by'),
+            'consent_response' => $this->input->post('consent_response'),
+            'consent_version' => $this->input->post('consent_version'),
+            'relation_to_study_flag' => $relations_to_study_flag,
+            'referral_to' => $this->input->post('referral_to'),
+            'referral_to_service' => $this->input->post('referral_to_service'),
+            'referral_date' => $this->input->post('referral_date'),
+            'referral_source' => $this->input->post('referral_source')
+        );
+        echo '<pre>';
+        //print_r($data_patient_studies);
+        echo '<br/>';
+        $patient_studies_id = $this->record_model->insert_patient_studies_record($data_patient_studies);
+        if ($patient_studies_id > 0) {
+            echo "Data Added successfully at patient_studies";
+        } else {
+            echo "Failed to insert at patient_studies";
+        } echo '<br/>';
 
 
-            $data_patient_breast_screening = array(
-                'patient_ic_no' => $this->input->post('IC_no'),
-                'year_of_first_mammogram' => $this->input->post('year_of_first_mammogram'),
-                'age_of_first_mammogram' => $this->input->post('age_of_first_mammogram'),
-                'date_of_recent_mammogram' => $this->input->post('date_of_recent_mammogram'),
-                'screening_centre' => $this->input->post('screening_center'),
-                'action_suggested_on_memo_report' => $this->input->post('action_suggested_on_memo_report'),
-                'total_no_of_mammogram' => $this->input->post('total_no_of_mammogram'),
-                'screening_interval' => $this->input->post('screening_interval'),
-                'abnormality_mammo_flag' => $this->input->post('abnormality_mammo_flag'),
-                'mammo_abnormality_details' => $this->input->post('mammo_breast_other_descriptions'),
-                'name_of_radiologist' => $this->input->post('name_of_radiologist'),
-                'had_ultrasound_flag' => $this->input->post('had_ultrasound_flag'), //from Ultrasound Details part
-                'total_no_of_ultrasound' => $this->input->post('total_no_of_ultrasound'),
-                'abnormality_ultrasound_flag' => $this->input->post('abnormality_ultrasound_flag'),
-                'had_mri_flag' => $this->input->post('had_mri_flag'), // from MRI Details part
-                'total_no_of_mri' => $this->input->post('total_no_of_mri'),
-                'had_surgery_for_benign_lump_or_cyst_flag' => $this->input->post('had_surgery_for_benign_lump_or_cyst_flag'),
-                'mammo_benign_lump_cyst_details' => $this->input->post('mammo_benign_lump_cyst_details'),
-                'other_screening_flag' => $this->input->post('other_screening_flag'),
-                'patient_studies_id' => $patient_studies_id,
-                'BIRADS_clinical_classification' => $this->input->post('BIRADS_clinical_classification'),
-                'BIRADS_density_classification' => $this->input->post('BIRADS_density_classification')
-            );
+        $data_patient_breast_screening = array(
+            'patient_ic_no' => $this->input->post('IC_no'),
+            'year_of_first_mammogram' => $this->input->post('year_of_first_mammogram'),
+            'age_of_first_mammogram' => $this->input->post('age_of_first_mammogram'),
+            'date_of_recent_mammogram' => $this->input->post('date_of_recent_mammogram'),
+            'screening_centre' => $this->input->post('screening_center'),
+            'action_suggested_on_memo_report' => $this->input->post('action_suggested_on_memo_report'),
+            'total_no_of_mammogram' => $this->input->post('total_no_of_mammogram'),
+            'screening_interval' => $this->input->post('screening_interval'),
+            'abnormality_mammo_flag' => $this->input->post('abnormality_mammo_flag'),
+            'mammo_abnormality_details' => $this->input->post('mammo_breast_other_descriptions'),
+            'name_of_radiologist' => $this->input->post('name_of_radiologist'),
+            'had_ultrasound_flag' => $this->input->post('had_ultrasound_flag'), //from Ultrasound Details part
+            'total_no_of_ultrasound' => $this->input->post('total_no_of_ultrasound'),
+            'abnormality_ultrasound_flag' => $this->input->post('abnormality_ultrasound_flag'),
+            'had_mri_flag' => $this->input->post('had_mri_flag'), // from MRI Details part
+            'total_no_of_mri' => $this->input->post('total_no_of_mri'),
+            'had_surgery_for_benign_lump_or_cyst_flag' => $this->input->post('had_surgery_for_benign_lump_or_cyst_flag'),
+            'mammo_benign_lump_cyst_details' => $this->input->post('mammo_benign_lump_cyst_details'),
+            'other_screening_flag' => $this->input->post('other_screening_flag'),
+            'patient_studies_id' => $patient_studies_id,
+            'BIRADS_clinical_classification' => $this->input->post('BIRADS_clinical_classification'),
+            'BIRADS_density_classification' => $this->input->post('BIRADS_density_classification')
+        );
 
-            //print_r($data_patient_breast_screening);
-            //echo '<br/>';
-            $patient_breast_screening_id = $this->record_model->insert_at_patient_breast_screening($data_patient_breast_screening);
-            //echo $patient_breast_screening_id;
-            if ($patient_breast_screening_id > 0) {
-                echo "Data Added successfully at patient_breast_screening";
-            } else {
-                echo "Failed to insert at patient_breast_screening";
-            } echo '<br/>';
+        //print_r($data_patient_breast_screening);
+        //echo '<br/>';
+        $patient_breast_screening_id = $this->record_model->insert_at_patient_breast_screening($data_patient_breast_screening);
+        //echo $patient_breast_screening_id;
+        if ($patient_breast_screening_id > 0) {
+            echo "Data Added successfully at patient_breast_screening";
+        } else {
+            echo "Failed to insert at patient_breast_screening";
+        } echo '<br/>';
 
 
-            $config['upload_path'] = './images/'; //$path=any path you want to save the file to...
-            $config['allowed_types'] = 'gif|jpg|png|jpeg'; //this is the file types allowed
-            $config['max_size'] = '100000'; //max file size
-            //$config['max_width']  = '1024';//if file type is image
-            //$config['max_height']  = '768';//if file type is image
-            $array_file_path = array();
-            $this->load->library('upload', $config);
+        $config['upload_path'] = './images/'; //$path=any path you want to save the file to...
+        $config['allowed_types'] = 'gif|jpg|png|jpeg'; //this is the file types allowed
+        $config['max_size'] = '100000'; //max file size
+        //$config['max_width']  = '1024';//if file type is image
+        //$config['max_height']  = '768';//if file type is image
+        $array_file_path = array();
+        $this->load->library('upload', $config);
 
-            foreach ($_FILES as $Key => $File) {
-                if ($File['size'] > 0) {
-                    if ($this->upload->do_upload($Key)) {
-                        $data = $this->upload->data();
-                        //echo $data['full_path'];
-                        $array_file_path[] = $data['full_path'];
-                        //echo '<br/>';
-                    } else {
-                        // throw error
-                        echo $this->upload->display_errors();
-                    }
+        foreach ($_FILES as $Key => $File) {
+            if ($File['size'] > 0) {
+                if ($this->upload->do_upload($Key)) {
+                    $data = $this->upload->data();
+                    //echo $data['full_path'];
+                    $array_file_path[] = $data['full_path'];
+                    //echo '<br/>';
+                } else {
+                    // throw error
+                    echo $this->upload->display_errors();
                 }
             }
-            /* echo $array_file_path[0].'<br/>'; 
-              echo $array_file_path[1].'<br/>';
-              echo $array_file_path[2].'<br/>';
-              echo $array_file_path[3]; */
-            $array_file_path_length = sizeof($array_file_path);
+        }
+        /* echo $array_file_path[0].'<br/>'; 
+          echo $array_file_path[1].'<br/>';
+          echo $array_file_path[2].'<br/>';
+          echo $array_file_path[3]; */
+        $array_file_path_length = sizeof($array_file_path);
 
-            if ($array_file_path_length >= 1) {
-                $data_patient_mammo_raw_images1 = array(
-                    'patient_ic_no' => $this->input->post('IC_no'),
-                    'patient_breast_screening_id' => $patient_breast_screening_id,
-                    'raw_image_file_name' => $array_file_path[0]
-                );
-                $patient_mammo_raw_images_id1 = $this->record_model->insert_patient_mammo_raw_images($data_patient_mammo_raw_images1);
-
-                if ($patient_mammo_raw_images_id1 > 0) {
-                    echo "Data Added successfully at patient_mammo_raw_images1";
-                } else {
-                    echo "Failed to insert at patient_mammo_raw_images1";
-                } echo '<br/>';
-            }
-
-            if ($array_file_path_length >= 2) {
-                $data_patient_mammo_raw_images2 = array(
-                    'patient_ic_no' => $this->input->post('IC_no'),
-                    'patient_breast_screening_id' => $patient_breast_screening_id,
-                    'raw_image_file_name' => $array_file_path[1]
-                );
-                $patient_mammo_raw_images_id2 = $this->record_model->insert_patient_mammo_raw_images($data_patient_mammo_raw_images2);
-
-                if ($patient_mammo_raw_images_id2 > 0) {
-                    echo "Data Added successfully at patient_mammo_raw_images2";
-                } else {
-                    echo "Failed to insert at patient_mammo_raw_images2";
-                } echo '<br/>';
-            }
-
-            if ($array_file_path_length >= 3) {
-                $data_patient_mammo_raw_images3 = array(
-                    'patient_ic_no' => $this->input->post('IC_no'),
-                    'patient_breast_screening_id' => $patient_breast_screening_id,
-                    'raw_image_file_name' => $array_file_path[2]
-                );
-                $patient_mammo_raw_images_id3 = $this->record_model->insert_patient_mammo_raw_images($data_patient_mammo_raw_images3);
-
-                if ($patient_mammo_raw_images_id3 > 0) {
-                    echo "Data Added successfully at patient_mammo_raw_images3";
-                } else {
-                    echo "Failed to insert at patient_mammo_raw_images3";
-                } echo '<br/>';
-            }
-
-            if ($array_file_path_length >= 4) {
-                $data_patient_mammo_raw_images4 = array(
-                    'patient_ic_no' => $this->input->post('IC_no'),
-                    'patient_breast_screening_id' => $patient_breast_screening_id,
-                    'raw_image_file_name' => $array_file_path[3]
-                );
-                $patient_mammo_raw_images_id4 = $this->record_model->insert_patient_mammo_raw_images($data_patient_mammo_raw_images4);
-
-                if ($patient_mammo_raw_images_id4 > 0) {
-                    echo "Data Added successfully at patient_mammo_raw_images4";
-                } else {
-                    echo "Failed to insert at patient_mammo_raw_images4";
-                } echo '<br/>';
-            }
-
-            if ($array_file_path_length >= 5) {
-                $data_patient_mammo_processed_images1 = array(
-                    'patient_ic_no' => $this->input->post('IC_no'),
-                    'patient_breast_screening_id' => $patient_breast_screening_id,
-                    'processed_image_file_name' => $array_file_path[4]
-                );
-                $patient_mammo_processed_images_id1 = $this->record_model->insert_patient_mammo_processed_images($data_patient_mammo_processed_images1);
-
-                if ($patient_mammo_processed_images_id1 > 0) {
-                    echo "Data Added successfully at patient_mammo_processed_images1";
-                } else {
-                    echo "Failed to insert at patient_mammo_processed_images1";
-                } echo '<br/>';
-            }
-
-            if ($array_file_path_length >= 6) {
-                $data_patient_mammo_processed_images2 = array(
-                    'patient_ic_no' => $this->input->post('IC_no'),
-                    'patient_breast_screening_id' => $patient_breast_screening_id,
-                    'processed_image_file_name' => $array_file_path[5]
-                );
-                $patient_mammo_processed_images_id2 = $this->record_model->insert_patient_mammo_processed_images($data_patient_mammo_processed_images2);
-
-                if ($patient_mammo_processed_images_id2 > 0) {
-                    echo "Data Added successfully at patient_mammo_processed_images2";
-                } else {
-                    echo "Failed to insert at patient_mammo_processed_images2";
-                } echo '<br/>';
-            }
-
-            if ($array_file_path_length >= 7) {
-                $data_patient_mammo_processed_images3 = array(
-                    'patient_ic_no' => $this->input->post('IC_no'),
-                    'patient_breast_screening_id' => $patient_breast_screening_id,
-                    'processed_image_file_name' => $array_file_path[6]
-                );
-                $patient_mammo_processed_images_id3 = $this->record_model->insert_patient_mammo_processed_images($data_patient_mammo_processed_images3);
-
-                if ($patient_mammo_processed_images_id3 > 0) {
-                    echo "Data Added successfully at patient_mammo_processed_images3";
-                } else {
-                    echo "Failed to insert at patient_mammo_processed_images3";
-                } echo '<br/>';
-            }
-
-            if ($array_file_path_length >= 8) {
-                $data_patient_mammo_processed_images4 = array(
-                    'patient_ic_no' => $this->input->post('IC_no'),
-                    'patient_breast_screening_id' => $patient_breast_screening_id,
-                    'processed_image_file_name' => $array_file_path[7]
-                );
-                $patient_mammo_processed_images_id4 = $this->record_model->insert_patient_mammo_processed_images($data_patient_mammo_processed_images4);
-
-                if ($patient_mammo_processed_images_id4 > 0) {
-                    echo "Data Added successfully at patient_mammo_processed_images4";
-                } else {
-                    echo "Failed to insert at patient_mammo_processed_images4";
-                } echo '<br/>';
-            }
-            $mammo_left_right_breast_side = $this->input->post('mammo_left_right_breast_side');
-            $mammo_upper_below_breast_side = $this->input->post('mammo_upper_below_breast_side');
-
-            if ($mammo_left_right_breast_side == 'Left')
-                $left_breast = TRUE;
-            else
-                $left_breast = FALSE;
-
-            if ($mammo_left_right_breast_side == 'Right')
-                $right_breast = TRUE;
-            else
-                $right_breast = FALSE;
-
-            if ($mammo_upper_below_breast_side == 'Upper')
-                $upper = TRUE;
-            else
-                $upper = FALSE;
-
-            if ($mammo_upper_below_breast_side == 'Below')
-                $below = TRUE;
-            else
-                $below = FALSE;
-
-            $data_patient_breast_abnormality = array(
+        if ($array_file_path_length >= 1) {
+            $data_patient_mammo_raw_images1 = array(
+                'patient_ic_no' => $this->input->post('IC_no'),
                 'patient_breast_screening_id' => $patient_breast_screening_id,
-                'description' => $this->input->post('mammo_breast_other_descriptions'),
-                'left_breast' => $left_breast,
-                'right_breast' => $right_breast,
-                'upper' => $upper,
-                'below' => $below,
-                'percentage_of_mammo_density' => $this->input->post('percentage_of_mammo_density')
+                'raw_image_file_name' => $array_file_path[0]
             );
-            //print_r($data_patient_breast_abnormality);
-            echo '<br/>';
-            $patient_breast_abnormality_id = $this->record_model->insert_at_patient_breast_abnormality($data_patient_breast_abnormality);
-            if ($patient_breast_abnormality_id > 0) {
-                echo "Data Added successfully at patient_breast_abnormality";
+            $patient_mammo_raw_images_id1 = $this->record_model->insert_patient_mammo_raw_images($data_patient_mammo_raw_images1);
+
+            if ($patient_mammo_raw_images_id1 > 0) {
+                echo "Data Added successfully at patient_mammo_raw_images1";
             } else {
-                echo "Failed to insert at patient_breast_abnormality";
-            } echo '<br/>';
-
-            $data_patient_ultrasound_abnormality = array(
-                'details' => $this->input->post('mammo_ultrasound_details'),
-                'patient_breast_screening_id' => $patient_breast_screening_id
-            );
-            //print_r($data_patient_ultrasound_abnormality);
-            echo '<br/>';
-            $patient_ultrasound_abnormality_id = $this->record_model->insert_patient_ultrasound_abnormality($data_patient_ultrasound_abnormality);
-            if ($patient_ultrasound_abnormality_id > 0) {
-                echo "Data Added successfully at patient_ultrasound_abnormality";
-            } else {
-                echo "Failed to insert at patient_ultrasound_abnormality";
-            } echo '<br/>';
-
-            $data_patient_mri_abnormality = array(
-                'detail' => $this->input->post('mammo_MRI_details'),
-                'patient_breast_screening_id' => $patient_breast_screening_id
-            );
-            //print_r($data_patient_mri_abnormality);
-            echo '<br/>';
-            $patient_patient_mri_abnormality_id = $this->record_model->insert_patient_mri_abnormality($data_patient_mri_abnormality);
-            if ($patient_patient_mri_abnormality_id > 0) {
-                echo "Data Added successfully at patient_mri_abnormality";
-            } else {
-                echo "Failed to insert at patient_mri_abnormality";
-            } echo '<br/>';
-
-
-            $data_patient_other_screening = array(
-                'screening_name' => $this->input->post('screening_name'),
-                'total_no_of_screening' => $this->input->post('total_no_of_screening'),
-                'age_at_screening' => $this->input->post('age_at_screening'),
-                'place_of_screening' => $this->input->post('place_of_screening'),
-                'screening_result' => $this->input->post('screening_results'),
-                'patient_breast_screening_id' => $patient_breast_screening_id
-            );
-
-            //print_r($data_patient_other_screening);
-            echo '<br/>';
-            $patient_other_screening_id = $this->record_model->insert_patient_other_screening($data_patient_other_screening);
-            if ($patient_other_screening_id > 0) {
-                echo "Data Added successfully at patient_other_screening";
-            } else {
-                echo "Failed to insert at patient_other_screening";
-            } echo '<br/>';
-
-
-            $patient_cancer_name = $this->input->post('patient_cancer_name');
-            $cancer_id = $this->record_model->get_cancer_id($patient_cancer_name);
-            $data_patient_cancer = array(
-                'patient_studies_id' => $patient_studies_id,
-                'breast_cancer_diagnosed_flag' => $this->input->post('breast_cancer_diagnosed_flag'),
-                'cancer_id' => $cancer_id,
-                'age_of_diagnosis' => $this->input->post('age_of_diagnosis'),
-                'date_of_diagnosis' => $this->input->post('date_of_diagnosis'),
-                'diagnosis_center' => $this->input->post('cancer_diagnosis_center'),
-                'doctor_name' => $this->input->post('cancer_doctor_name'),
-                'detected_by' => $this->input->post('detected_by'),
-                'recurrence_flag' => $this->input->post('is_recurrence_flag'),
-                'recurrence_site' => $this->input->post('recurrence_site'),
-                'recurrence_date' => $this->input->post('recurrence_date'),
-                'is_primary' => $this->input->post('primary_diagnosis')
-            );
-            //print_r($data_patient_cancer);
-            echo '<br/>';
-            $patient_cancer_id = $this->record_model->insert_patient_cancer($data_patient_cancer);
-            if ($patient_cancer_id > 0) {
-                echo "Data Added successfully at patient_cancer";
-            } else {
-                echo "Failed to insert at patient_cancer";
-            } echo '<br/>';
-
-
-            $cancer_site = $this->input->post('cancer_site'); //will give cancer_site_id
-            $cancer_site_id = $this->record_model->get_cancer_site_id($cancer_site);
-
-            $data_patient_cancer_site = array(
-                'patient_cancer_id' => $patient_cancer_id,
-                'cancer_site_id' => $cancer_site_id,
-                'site_details' => $this->input->post('cancer_site_details')
-            );
-            // print_r($data_patient_cancer_site);
-            echo '<br/>';
-            $patient_cancer_site_id = $this->record_model->insert_patient_cancer_site($data_patient_cancer_site);
-            if ($patient_cancer_site_id > 0) {
-                echo "Data Added successfully at patient_cancer_site";
-            } else {
-                echo "Failed to insert at patient_cancer_site";
-            } echo '<br/>';
-            //after inserting at patient_cancer_site table we will get patient_cancer_site_id
-
-            $patient_cancer_treatment_name = $this->input->post('patient_cancer_treatment_name'); //by this we will get treatment_id
-            $treatment_id = $this->record_model->get_treatment_id($patient_cancer_treatment_name);
-            $data_patient_cancer_treatment = array(
-                'treatment_id' => $treatment_id,
-                'patient_cancer_id' => $patient_cancer_id,
-                'treatment_start_date' => $this->input->post('treatment_start_date'),
-                'treatment_end_date' => $this->input->post('treatment_end_date'),
-                'treatment_drug_dose' => $this->input->post('treatment_drug_dose'),
-            );
-            //after inserting  data_patient_cancer_treatment we will get patient_cancer_treatment_id
-            // print_r($data_patient_cancer_treatment);
-            echo '<br/>';
-            $patient_cancer_treatment_id = $this->record_model->insert_patient_cancer_treatment($data_patient_cancer_treatment);
-            if ($patient_cancer_treatment_id > 0) {
-                echo "Data Added successfully at patient_cancer_treatment";
-            } else {
-                echo "Failed to insert at patient_cancer_treatment";
-            } echo '<br/>';
-
-            $patient_cancer_recurrence_treatment_name = $this->input->post('patient_cancer_recurrence_treatment_name'); //where to insert this value
-            $treatment_id_recurrent = $this->record_model->get_treatment_id($patient_cancer_recurrence_treatment_name);
-            $data_patient_cancer_recurrent = array(
-                'treatment_id' => $treatment_id_recurrent,
-                'patient_cancer_id' => $patient_cancer_id
-            );
-            // print_r($data_patient_cancer_recurrent);
-            echo '<br/>';
-            $patient_cancer_recurrent_id = $this->record_model->insert_patient_cancer_recurrent($data_patient_cancer_recurrent);
-            if ($patient_cancer_recurrent_id > 0) {
-                echo "Data Added successfully at patient_cancer_recurrent";
-            } else {
-                echo "Failed to insert at patient_cancer_recurrent";
-            } echo '<br/>';
-            //after inserting  data_patient_cancer_recurrent we will get patient_cancer_recurrent_id
-
-
-            $diagnosis_name = $this->input->post('diagnosis_name');
-            $diagnosis_id = $this->record_model->get_diagnosis_id($diagnosis_name);
-            $data_patient_diagnosis = array(
-                'patient_studies_id' => $patient_studies_id,
-                'diagnosis_id' => $diagnosis_id,
-                'diagnosis_age' => $this->input->post('diagnosis_age'),
-                'year_of_diagnosis' => $this->input->post('year_of_diagnosis'),
-                'on_medication_flag' => $this->input->post('is_on_medication_flag'),
-                'medication_details' => $this->input->post('medication_details'),
-                'diagnosis_center' => $this->input->post('diagnosis_center'),
-                'doctor_name' => $this->input->post('diagnosis_doctor_name'),
-                'diagnosis_details' => $this->input->post('diagnosis_details')
-            );
-            // print_r($data_patient_diagnosis);
-            echo '<br/>';
-            $patient_diagnosis_id = $this->record_model->insert_patient_diagnosis($data_patient_diagnosis);
-            if ($patient_diagnosis_id > 0) {
-                echo "Data Added successfully at patient_diagnosis";
-            } else {
-                echo "Failed to insert at patient_diagnosis";
-            } echo '<br/>';
-
-            $data_patient_pathology = array(
-                'patient_studies_id' => $patient_studies_id,
-                'tissue_site' => $this->input->post('pathology_tissue_site'),
-                'tissue_tumour_stages' => $this->input->post('pathology_tissue_tumour_stage'),
-                'morphology' => $this->input->post('pathology_morphology'),
-                'node_stage' => $this->input->post('pathology_node_stage'),
-                'lymph_node' => $this->input->post('pathology_lymph_node'),
-                'total_lymph_nodes' => $this->input->post('pathology_total_lymph_nodes'),
-                'er_status' => $this->input->post('pathology_ER_status'),
-                'pr_status' => $this->input->post('pathology_PR_status'),
-                'her2_status' => $this->input->post('pathology_HER2_status'),
-                'no_of_tumers' => $this->input->post('pathology_number_of_tumours'),
-                'metastasis_stage' => $this->input->post('pathology_metastasis_stage'),
-                'side_affected' => $this->input->post('pathology_side_affected'),
-                'tumour_stage' => $this->input->post('pathology_tumour_stage'),
-                'tumour_grade' => $this->input->post('pathology_tumour_grade'),
-                'size' => $this->input->post('pathology_tumour_size'),
-                'path_doc' => $this->input->post('pathology_doctor'),
-                'path_lab' => $this->input->post('pathology_lab'),
-                'lab_reference' => $this->input->post('pathology_lab_reference'),
-                'path_report_date' => $this->input->post('pathology_path_report_date'),
-                'type_of_report' => $this->input->post('pathology_path_report_type'),
-                'path_report_requested_date' => $this->input->post('pathology_report_requested_date'),
-                'path_report_received_date' => $this->input->post('pathology_path_report_received_date'),
-                'path_block_requested_date' => $this->input->post('pathology_path_block_requested_date'),
-                'path_block_received_date' => $this->input->post('pathology_path_block_received_date'),
-                'tissue_path_comment' => $this->input->post('pathology_tissue_path_comments'),
-            );
-
-            // print_r($data_patient_pathology);
-            echo '<br/>';
-            $patient_pathology_id = $this->record_model->insert_patient_pathology($data_patient_pathology);
-            if ($patient_pathology_id > 0) {
-                echo "Data Added successfully at patient_pathology";
-            } else {
-                echo "Failed to insert at patient_pathology";
+                echo "Failed to insert at patient_mammo_raw_images1";
             } echo '<br/>';
         }
 
-        function lifestyle_insertion() {
-
-            //need to calculate $patient_studies_id by using study name-->studies_id and patient_ic_no
-            $studies_name = $this->input->post('studies_name');
-            $studies_id = $this->excell_sheets_model->get_patient_studies_id($studies_name);
-            $data_keys = array(
+        if ($array_file_path_length >= 2) {
+            $data_patient_mammo_raw_images2 = array(
                 'patient_ic_no' => $this->input->post('IC_no'),
-                'studies_id' => $studies_id
+                'patient_breast_screening_id' => $patient_breast_screening_id,
+                'raw_image_file_name' => $array_file_path[1]
             );
-            echo '<pre>';
-            //print_r($data_keys);echo '<br/>';
-            $patient_studies_id = $this->record_model->get_patient_suudies_id($data_keys);
-            //echo $patient_studies_id;
-            //echo '<br/>';
+            $patient_mammo_raw_images_id2 = $this->record_model->insert_patient_mammo_raw_images($data_patient_mammo_raw_images2);
 
-            $data_patient_lifestyle_factors = array(
-                'patient_studies_id' => $patient_studies_id,
-                'self_image_at_7years' => $this->input->post('self_image_at_7years'),
-                'self_image_at_18years' => $this->input->post('self_image_at_18years'),
-                'self_image_now' => $this->input->post('self_image_now'),
-                'pa_sports_activitiy_childhood' => $this->input->post('pa_at_childhood'),
-                'pa_sports_activitiy_adult' => $this->input->post('pa_at_adulthood'),
-                'pa_sports_activitiy_now' => $this->input->post('pa_now'),
-                'cigarrets_smoked_flag' => $this->input->post('cigarettes_smoked_flag'),
-                'cigarrets_still_smoked_flag' => $this->input->post('cigarettes_still_smoked_flag'),
-                'total_smoked_years' => $this->input->post('total_smoked_years'),
-                'cigarrets_count_at_teen' => $this->input->post('cigarettes_count_at_teen'),
-                'cigarrets_count_at_twenties' => $this->input->post('cigarettes_count_at_twenties'),
-                'cigarrets_count_at_thirties' => $this->input->post('cigarettes_count_at_thirties'),
-                'cigarrets_count_at_fourrties' => $this->input->post('cigarettes_count_at_forties'),
-                'cigarrets_count_at_fifties' => $this->input->post('cigarettes_count_at_fifties'),
-                'cigarrets_count_at_sixties_and_above' => $this->input->post('cigarrets_count_at_sixties_and_above'),
-                'cigarrets_count_one_year_before_diagnosed' => $this->input->post('cigarettes_count_one_year_before_diagnosed'),
-                'alcohol_drunk_flag' => $this->input->post('alcohol_drunk_flag'),
-                'alcohol_average' => $this->input->post('alcohol_average'),
-                'alcohol_average_details' => $this->input->post('alcohol_average_details'),
-                'coffee_drunk_flag' => $this->input->post('coffee_drunk_flag'),
-                'coffee_age' => $this->input->post('coffee_age'),
-                'coffee_average' => $this->input->post('coffee_average'),
-                'tea_drunk_flag' => $this->input->post('tea_drunk_flag'),
-                'tea_age' => $this->input->post('tea_age'),
-                'tea_average' => $this->input->post('tea_average'),
-                'tea_type' => $this->input->post('tea_type'),
-                'soya_bean_drunk_flag' => $this->input->post('soya_bean_drunk_flag'),
-                'soya_bean_average' => $this->input->post('soya_bean_average'),
-                'soya_products_flag' => $this->input->post('soya_products_flag'),
-                'soya_products_average' => $this->input->post('soya_products_average'),
-                'diabetes_flag' => $this->input->post('diabetes_flag'),
-                'medicine_for_diabetes_flag' => $this->input->post('medicine_for_diabetes_flag'),
-                'diabetes_medicine_name' => $this->input->post('diabates_medicine_name')
-            );
-            //print_r($data_patient_lifestyle_factors);
-            //echo '<br/>';
-
-            $patient_lifestyle_factors_id = $this->record_model->insert_patient_lifestyle_factors($data_patient_lifestyle_factors);
-            if ($patient_lifestyle_factors_id > 0) {
-                echo "<h2>Data Added successfully at patient_lifestyle_factors</h2>";
+            if ($patient_mammo_raw_images_id2 > 0) {
+                echo "Data Added successfully at patient_mammo_raw_images2";
             } else {
-                echo "<h2>Failed to insert at patient_lifestyle_factors</h2>";
-            }
-            echo '<br/>';
-
-            $data_patient_menstruation = array(
-                'patient_studies_id' => $patient_studies_id,
-                'age_period_starts' => $this->input->post('age_period_starts'),
-                'still_period_flag' => $this->input->post('still_period_flag'),
-                'period_type' => $this->input->post('period_type'),
-                'period_cycle_days' => $this->input->post('period_cycle_days'),
-                'period_cycle_days_other_details' => $this->input->post('period_cycle_days_other_details'),
-                'age_period_stops' => $this->input->post('age_period_stops'),
-                'date_period_stops' => $this->input->post('date_period_stops'),
-                'reason_period_stops' => $this->input->post('reason_period_stops'),
-                'reason_period_stops_other_details' => $this->input->post('reason_period_stops_other_details')
-            );
-            //print_r($data_patient_menstruation);
-            //echo '<br/>';
-
-            $patient_menstruation_id = $this->record_model->insert_patient_menstruation($data_patient_menstruation);
-            if ($patient_menstruation_id > 0) {
-                echo "<h2>Data Added successfully at patient_menstruation</h2>";
-            } else {
-                echo "<h2>Failed to insert at patient_menstruation</h2>";
-            }
-            echo '<br/>';
-
-            $data_patient_parity_table = array(
-                'patient_studies_id' => $patient_studies_id,
-                'pregnant_flag' => $this->input->post('pregnent_flag')
-            );
-
-            //print_r($data_patient_parity_table);
-            //echo '<br/>';
-            //patient_parity_table_id = //after inserting at patient_parity_table we will use it at next table
-
-            $patient_parity_table_id = $this->record_model->insert_patient_parity_table($data_patient_parity_table);
-            if ($patient_parity_table_id > 0) {
-                echo "<h2>Data Added successfully at patient_parity_table</h2>";
-            } else {
-                echo "<h2>Failed to insert at patient_parity_table</h2>";
-            }
-            echo '<br/>';
-
-            $data_patient_parity_record = array(
-                'patient_parity_table_id' => $patient_parity_table_id,
-                'pregnancy_type' => $this->input->post('pregnancy_type'),
-                'gender' => $this->input->post('child_gender'),
-                'birthyear' => $this->input->post('child_birthyear'),
-                'birthweight' => $this->input->post('child_birthweight'),
-                'breastfeeding_duration' => $this->input->post('child_breastfeeding_duration')
-            );
-            //print_r($data_patient_parity_record);
-            //echo '<br/>';
-
-            $patient_parity_record_id = $this->record_model->insert_patient_parity_record($data_patient_parity_record);
-            if ($patient_parity_record_id > 0) {
-                echo "<h2>Data Added successfully at patient_parity_record</h2>";
-            } else {
-                echo "<h2>Failed to insert at patient_parity_record</h2>";
-            }
-            echo '<br/>';
-
-            $data_patient_infertility = array(
-                'patient_studies_id' => $patient_studies_id,
-                'infertility_testing_flag' => $this->input->post('infertility_testing_flag'),
-                'infertility_treatment_details' => $this->input->post('infertility_treatment_details'),
-                'contraceptive_pills_flag' => $this->input->post('contraceptive_pills_flag'),
-                'contraceptive_pills_details' => $this->input->post('contraceptive_pills_details'),
-                'currently_taking_contraceptive_pills_flag' => $this->input->post('currently_taking_contraceptive_pills_flag'),
-                'contraceptive_start_date' => $this->input->post('contraceptive_start_date'),
-                'contraceptive_end_date' => $this->input->post('contraceptive_end_date'),
-                'hrt_flag' => $this->input->post('HRT_flag'),
-                'hrt_details' => $this->input->post('HRT_details'),
-                'currently_using_hrt_flag' => $this->input->post('currently_using_hrt_flag'),
-                'hrt_start_date' => $this->input->post('hrt_start_date'),
-                'hrt_end_date' => $this->input->post('hrt_end_date')
-            );
-            // print_r($data_patient_infertility);
-            //echo '<br/>';
-
-            $patient_infertility_id = $this->record_model->insert_patient_infertility($data_patient_infertility);
-            if ($patient_infertility_id > 0) {
-                echo "<h2>Data Added successfully at patient_infertility</h2>";
-            } else {
-                echo "<h2>Failed to insert at patient_infertility</h2>";
-            }
-            echo '<br/>';
-
-            $treatment_name = $this->input->post('gnc_treatment_name');
-            $treatment_id = $this->record_model->get_treatment_id($treatment_name);
-            $data_patient_gynaecological_surgery_history = array(
-                'patient_studies_id' => $patient_studies_id,
-                'had_gnc_surgery_flag' => $this->input->post('had_gnc_surgery_flag'),
-                'surgery_year' => $this->input->post('gnc_surgery_year'),
-                'treatment_id' => $treatment_id,
-                'gnc_treatment_name_other_details' => $this->input->post('gnc_treatment_name_other_details')
-            );
-            //print_r($data_patient_gynaecological_surgery_history);
-            //echo '<br/>';
-
-            $patient_gynaecological_surgery_history_id = $this->record_model->insert_patient_gynaecological_surgery_history($data_patient_gynaecological_surgery_history);
-
-            if ($patient_gynaecological_surgery_history_id > 0) {
-                echo "<h2>Data Added successfully at patient_gynaecological_surgery_history</h2>";
-            } else {
-                echo "<h2>Failed to insert at patient_gynaecological_surgery_history</h2>";
-            }
-            echo '<br/>';
+                echo "Failed to insert at patient_mammo_raw_images2";
+            } echo '<br/>';
         }
 
-        function investigation_insertion() {
-
-            $config['upload_path'] = './images/';
-            $config['allowed_types'] = 'gif|jpg|png';
-            $config['max_size'] = '100000';
-            //$config['max_width']  = '1024';
-            //$config['max_height']  = '768';
-
-            $this->load->library('upload', $config);
-
-            if (!$this->upload->do_upload()) {
-                $error = array('error' => $this->upload->display_errors());
-            } else {
-                $data = array('upload_data' => $this->upload->data());
-                //echo '<h3>Your file was successfully uploaded!</h3>';
-                //echo $data['upload_data']['full_path'];
-                $attach_file_path = $data['upload_data']['full_path'];
-                //echo $attach_file_path;
-                // echo '<br/>';
-            }
-
-
-            $studies_name = $this->input->post('studies_name');
-            $studies_id = $this->excell_sheets_model->get_patient_studies_id($studies_name);
-            $data_keys = array(
+        if ($array_file_path_length >= 3) {
+            $data_patient_mammo_raw_images3 = array(
                 'patient_ic_no' => $this->input->post('IC_no'),
-                'studies_id' => $studies_id
+                'patient_breast_screening_id' => $patient_breast_screening_id,
+                'raw_image_file_name' => $array_file_path[2]
             );
-            //echo '<pre>';
-            //print_r($data_keys);echo '<br/>';
-            $patient_studies_id = $this->record_model->get_patient_suudies_id($data_keys);
-            //echo $patient_studies_id;echo '<br/>';
-            $data_patient_investigations = array(
-                'patient_studies_id' => $patient_studies_id,
-                'date_test_ordered' => $this->input->post('date_test_ordered'),
-                'ordered_by' => $this->input->post('test_ordered_by'),
-                'testing_result_notification_flag' => $this->input->post('testing_results_notification_flag'),
-                'project_name' => $this->input->post('investigation_project_name'),
-                'project_batch' => $this->input->post('investigation_project_batch'),
-                'test_type' => $this->input->post('investigation_test_type'),
-                'type_of_sample' => $this->input->post('investigation_sample_type'),
-                'reasons' => $this->input->post('investigation_test_reason'),
-                'new_mutation_flag' => $this->input->post('investigation_new_mutation_flag'),
-                'test_result' => $this->input->post('investigation_test_results'),
-                'investigation_test_results_other_details' => $this->input->post('$investigation_test_results_other_details'),
-                'carrier_status' => $this->input->post('investigation_carrier_status'),
-                'mutation_nomenclature' => $this->input->post('investigation_mutation_nomenclature'),
-                'reported_by' => $this->input->post('investigation_reported_by'),
-                'mutation_type' => $this->input->post('investigation_mutation_type'),
-                'mutation_pathogenicity' => $this->input->post('investigation_mutation_pathogenicity'),
-                'sample_id' => $this->input->post('investigation_sample_ID'),
-                'report_due' => $this->input->post('investigation_report_due'),
-                'report_date' => $this->input->post('investigation_report_date'),
-                'date_modified' => $this->input->post('investigation_date_notified'),
-                'test_comment' => $this->input->post('investigation_test_comment'),
-                'conformation_attachment' => $this->input->post('investigation_conformation_attachment'),
-                'conformation_file_url' => $attach_file_path
-            );
+            $patient_mammo_raw_images_id3 = $this->record_model->insert_patient_mammo_raw_images($data_patient_mammo_raw_images3);
 
-            //echo '<pre>';
-            // print_r($data_patient_investigations);echo '<br/>';
-            //array_push($data, $this->input->post('firstname'));
-            $patient_investigations_id = $this->record_model->insert_patient_investigations($data_patient_investigations);
-            if ($patient_investigations_id > 0) {
-                echo "<h2>Data Added successfully at patient_investigations</h2>";
+            if ($patient_mammo_raw_images_id3 > 0) {
+                echo "Data Added successfully at patient_mammo_raw_images3";
             } else {
-                echo "<h2>Failed to insert at patient_investigations</h2>";
-            }
-            echo '<br/>';
+                echo "Failed to insert at patient_mammo_raw_images3";
+            } echo '<br/>';
         }
 
-        function surveillance_insertion() {
-
-            $studies_name = $this->input->post('studies_name');
-            $studies_id = $this->excell_sheets_model->get_patient_studies_id($studies_name);
-            $data_keys = array(
+        if ($array_file_path_length >= 4) {
+            $data_patient_mammo_raw_images4 = array(
                 'patient_ic_no' => $this->input->post('IC_no'),
-                'studies_id' => $studies_id
+                'patient_breast_screening_id' => $patient_breast_screening_id,
+                'raw_image_file_name' => $array_file_path[3]
             );
-            //echo '<pre>';
-            //print_r($data_keys);echo '<br/>';
-            $patient_studies_id = $this->record_model->get_patient_suudies_id($data_keys);
-            //echo $patient_studies_id;echo '<br/>';
+            $patient_mammo_raw_images_id4 = $this->record_model->insert_patient_mammo_raw_images($data_patient_mammo_raw_images4);
 
-            $data_patient_surveillance = array(
-                'patient_studies_id' => $patient_studies_id,
-                'recruitment_center' => $this->input->post('surveillance_recruitment_center'),
-                'type' => $this->input->post('surveillance_type'),
-                'first_consultation_date' => $this->input->post('surveillance_first_consultation_date'),
-                'first_consultation_place' => $this->input->post('surveillance_first_consultation_place'),
-                'surveillance_interval' => $this->input->post('surveillance_interval'),
-                'diagnosis' => $this->input->post('surveillance_diagnosis'),
-                'due_date' => $this->input->post('surveillance_due_date'),
-                'reminder_sent_date' => $this->input->post('surveillance_reminder_sent_date'),
-                'surveillance_done_date' => $this->input->post('surveillance_done_date'),
-                'reminded_by' => $this->input->post('surveillance_reminded_by'),
-                'timing' => $this->input->post('surveillance_timing'),
-                'symptoms' => $this->input->post('surveillance_symptoms'),
-                'doctor_name' => $this->input->post('surveillance_doctor_name'),
-                'surveillance_done_place' => $this->input->post('surveillance_place'),
-                'outcome' => $this->input->post('surveillance_outcome'),
-                'comments' => $this->input->post('surveillance_comments')
-            );
-
-            // echo '<pre>';
-            // print_r($data_patient_surveillance);echo '<br/>';
-            //array_push($data, $this->input->post('firstname'));
-            $patient_surveillance_id = $this->record_model->insert_patient_surveillance($data_patient_surveillance);
-            if ($patient_surveillance_id > 0) {
-                echo "<h2>Data Added successfully at patient_surveillance</h2>";
+            if ($patient_mammo_raw_images_id4 > 0) {
+                echo "Data Added successfully at patient_mammo_raw_images4";
             } else {
-                echo "<h2>Failed to insert patient_surveillance</h2>";
-            }
-            echo '<br/>';
+                echo "Failed to insert at patient_mammo_raw_images4";
+            } echo '<br/>';
         }
 
-        function interview_home_insersion() {
-            $data_patient_interview_manager = array(
+        if ($array_file_path_length >= 5) {
+            $data_patient_mammo_processed_images1 = array(
                 'patient_ic_no' => $this->input->post('IC_no'),
-                'interview_date' => $this->input->post('interview_date'),
-                'next_interview_date' => $this->input->post('interview_next_date'),
-                'is_send_email_reminder_to_officers' => $this->input->post('is_send_email_reminder'),
-                'officer_email_addresses' => $this->input->post('officer_email_addresses'),
-                'comments' => $this->input->post('interview_note')
+                'patient_breast_screening_id' => $patient_breast_screening_id,
+                'processed_image_file_name' => $array_file_path[4]
             );
-            $patient_interview_manager_id = $this->record_model->insert_patient_interview_manager($data_patient_interview_manager);
-            if ($patient_interview_manager_id > 0) {
-                echo "<h2>Data Added successfully at patient_interview_manager</h2>";
+            $patient_mammo_processed_images_id1 = $this->record_model->insert_patient_mammo_processed_images($data_patient_mammo_processed_images1);
+
+            if ($patient_mammo_processed_images_id1 > 0) {
+                echo "Data Added successfully at patient_mammo_processed_images1";
             } else {
-                echo "<h2>Failed to insert patient_interview_manager</h2>";
-            }
-            echo '<br/>';
+                echo "Failed to insert at patient_mammo_processed_images1";
+            } echo '<br/>';
         }
 
-        function do_upload_xlsx() {
-            $config['upload_path'] = './uploads/';
-            $config['allowed_types'] = 'xlsx';
-            $config['max_size'] = '100000';
-            //$config['max_width']  = '1024';
-            //$config['max_height']  = '768';
+        if ($array_file_path_length >= 6) {
+            $data_patient_mammo_processed_images2 = array(
+                'patient_ic_no' => $this->input->post('IC_no'),
+                'patient_breast_screening_id' => $patient_breast_screening_id,
+                'processed_image_file_name' => $array_file_path[5]
+            );
+            $patient_mammo_processed_images_id2 = $this->record_model->insert_patient_mammo_processed_images($data_patient_mammo_processed_images2);
 
-            $this->load->library('upload', $config);
-
-            if (!$this->upload->do_upload()) {
-                $error = array('error' => $this->upload->display_errors());
-
-                $this->load->view('upload_xlsx_file', $error);
+            if ($patient_mammo_processed_images_id2 > 0) {
+                echo "Data Added successfully at patient_mammo_processed_images2";
             } else {
-                $data = array('upload_data' => $this->upload->data());
-                //echo '<h3>Your file was successfully uploaded!</h3>';
-                //echo $data['upload_data']['full_path'];
-                $temp = $data['upload_data']['file_name'];
-                echo $temp;
-                //print_r($data);
-                //redirect('excell_parser/test/',$temp);
-                $this->excell_parser_model->excell_file_parser($temp);
-            }
+                echo "Failed to insert at patient_mammo_processed_images2";
+            } echo '<br/>';
         }
 
-        function do_upload_rawImage() {
-            $config['upload_path'] = './images/';
-            $config['allowed_types'] = 'gif|jpg|png';
-            $config['max_size'] = '100000';
-            //$config['max_width']  = '1024';
-            //$config['max_height']  = '768';
+        if ($array_file_path_length >= 7) {
+            $data_patient_mammo_processed_images3 = array(
+                'patient_ic_no' => $this->input->post('IC_no'),
+                'patient_breast_screening_id' => $patient_breast_screening_id,
+                'processed_image_file_name' => $array_file_path[6]
+            );
+            $patient_mammo_processed_images_id3 = $this->record_model->insert_patient_mammo_processed_images($data_patient_mammo_processed_images3);
 
-            $this->load->library('upload', $config);
-
-            if (!$this->upload->do_upload()) {
-                $error = array('error' => $this->upload->display_errors());
-
-                //$this->load->view('upload_xlsx_file', $error);
+            if ($patient_mammo_processed_images_id3 > 0) {
+                echo "Data Added successfully at patient_mammo_processed_images3";
             } else {
-                $data = array('upload_data' => $this->upload->data());
-                //echo '<h3>Your file was successfully uploaded!</h3>';
-                //echo $data['upload_data']['full_path'];
-                $temp = $data['upload_data']['full_path'];
-                echo $temp;
-                //print_r($data);
-                //redirect('excell_parser/test/',$temp);
-                //$this->excell_parser_model->excell_file_parser($temp);
-            }
+                echo "Failed to insert at patient_mammo_processed_images3";
+            } echo '<br/>';
         }
 
-        function view_record_home() {
+        if ($array_file_path_length >= 8) {
+            $data_patient_mammo_processed_images4 = array(
+                'patient_ic_no' => $this->input->post('IC_no'),
+                'patient_breast_screening_id' => $patient_breast_screening_id,
+                'processed_image_file_name' => $array_file_path[7]
+            );
+            $patient_mammo_processed_images_id4 = $this->record_model->insert_patient_mammo_processed_images($data_patient_mammo_processed_images4);
 
-            $this->template->load("templates/report_home_template", 'record/view_record_home');
+            if ($patient_mammo_processed_images_id4 > 0) {
+                echo "Data Added successfully at patient_mammo_processed_images4";
+            } else {
+                echo "Failed to insert at patient_mammo_processed_images4";
+            } echo '<br/>';
+        }
+        $mammo_left_right_breast_side = $this->input->post('mammo_left_right_breast_side');
+        $mammo_upper_below_breast_side = $this->input->post('mammo_upper_below_breast_side');
+
+        if ($mammo_left_right_breast_side == 'Left')
+            $left_breast = TRUE;
+        else
+            $left_breast = FALSE;
+
+        if ($mammo_left_right_breast_side == 'Right')
+            $right_breast = TRUE;
+        else
+            $right_breast = FALSE;
+
+        if ($mammo_upper_below_breast_side == 'Upper')
+            $upper = TRUE;
+        else
+            $upper = FALSE;
+
+        if ($mammo_upper_below_breast_side == 'Below')
+            $below = TRUE;
+        else
+            $below = FALSE;
+
+        $data_patient_breast_abnormality = array(
+            'patient_breast_screening_id' => $patient_breast_screening_id,
+            'description' => $this->input->post('mammo_breast_other_descriptions'),
+            'left_breast' => $left_breast,
+            'right_breast' => $right_breast,
+            'upper' => $upper,
+            'below' => $below,
+            'percentage_of_mammo_density' => $this->input->post('percentage_of_mammo_density')
+        );
+        //print_r($data_patient_breast_abnormality);
+        echo '<br/>';
+        $patient_breast_abnormality_id = $this->record_model->insert_at_patient_breast_abnormality($data_patient_breast_abnormality);
+        if ($patient_breast_abnormality_id > 0) {
+            echo "Data Added successfully at patient_breast_abnormality";
+        } else {
+            echo "Failed to insert at patient_breast_abnormality";
+        } echo '<br/>';
+
+        $data_patient_ultrasound_abnormality = array(
+            'details' => $this->input->post('mammo_ultrasound_details'),
+            'patient_breast_screening_id' => $patient_breast_screening_id
+        );
+        //print_r($data_patient_ultrasound_abnormality);
+        echo '<br/>';
+        $patient_ultrasound_abnormality_id = $this->record_model->insert_patient_ultrasound_abnormality($data_patient_ultrasound_abnormality);
+        if ($patient_ultrasound_abnormality_id > 0) {
+            echo "Data Added successfully at patient_ultrasound_abnormality";
+        } else {
+            echo "Failed to insert at patient_ultrasound_abnormality";
+        } echo '<br/>';
+
+        $data_patient_mri_abnormality = array(
+            'detail' => $this->input->post('mammo_MRI_details'),
+            'patient_breast_screening_id' => $patient_breast_screening_id
+        );
+        //print_r($data_patient_mri_abnormality);
+        echo '<br/>';
+        $patient_patient_mri_abnormality_id = $this->record_model->insert_patient_mri_abnormality($data_patient_mri_abnormality);
+        if ($patient_patient_mri_abnormality_id > 0) {
+            echo "Data Added successfully at patient_mri_abnormality";
+        } else {
+            echo "Failed to insert at patient_mri_abnormality";
+        } echo '<br/>';
+
+
+        $data_patient_other_screening = array(
+            'screening_name' => $this->input->post('screening_name'),
+            'total_no_of_screening' => $this->input->post('total_no_of_screening'),
+            'age_at_screening' => $this->input->post('age_at_screening'),
+            'place_of_screening' => $this->input->post('place_of_screening'),
+            'screening_result' => $this->input->post('screening_results'),
+            'patient_breast_screening_id' => $patient_breast_screening_id
+        );
+
+        //print_r($data_patient_other_screening);
+        echo '<br/>';
+        $patient_other_screening_id = $this->record_model->insert_patient_other_screening($data_patient_other_screening);
+        if ($patient_other_screening_id > 0) {
+            echo "Data Added successfully at patient_other_screening";
+        } else {
+            echo "Failed to insert at patient_other_screening";
+        } echo '<br/>';
+
+
+        $patient_cancer_name = $this->input->post('patient_cancer_name');
+        $cancer_id = $this->record_model->get_cancer_id($patient_cancer_name);
+        $data_patient_cancer = array(
+            'patient_studies_id' => $patient_studies_id,
+            'breast_cancer_diagnosed_flag' => $this->input->post('breast_cancer_diagnosed_flag'),
+            'cancer_id' => $cancer_id,
+            'age_of_diagnosis' => $this->input->post('age_of_diagnosis'),
+            'date_of_diagnosis' => $this->input->post('date_of_diagnosis'),
+            'diagnosis_center' => $this->input->post('cancer_diagnosis_center'),
+            'doctor_name' => $this->input->post('cancer_doctor_name'),
+            'detected_by' => $this->input->post('detected_by'),
+            'recurrence_flag' => $this->input->post('is_recurrence_flag'),
+            'recurrence_site' => $this->input->post('recurrence_site'),
+            'recurrence_date' => $this->input->post('recurrence_date'),
+            'is_primary' => $this->input->post('primary_diagnosis')
+        );
+        //print_r($data_patient_cancer);
+        echo '<br/>';
+        $patient_cancer_id = $this->record_model->insert_patient_cancer($data_patient_cancer);
+        if ($patient_cancer_id > 0) {
+            echo "Data Added successfully at patient_cancer";
+        } else {
+            echo "Failed to insert at patient_cancer";
+        } echo '<br/>';
+
+
+        $cancer_site = $this->input->post('cancer_site'); //will give cancer_site_id
+        $cancer_site_id = $this->record_model->get_cancer_site_id($cancer_site);
+
+        $data_patient_cancer_site = array(
+            'patient_cancer_id' => $patient_cancer_id,
+            'cancer_site_id' => $cancer_site_id,
+            'site_details' => $this->input->post('cancer_site_details')
+        );
+        // print_r($data_patient_cancer_site);
+        echo '<br/>';
+        $patient_cancer_site_id = $this->record_model->insert_patient_cancer_site($data_patient_cancer_site);
+        if ($patient_cancer_site_id > 0) {
+            echo "Data Added successfully at patient_cancer_site";
+        } else {
+            echo "Failed to insert at patient_cancer_site";
+        } echo '<br/>';
+        //after inserting at patient_cancer_site table we will get patient_cancer_site_id
+
+        $patient_cancer_treatment_name = $this->input->post('patient_cancer_treatment_name'); //by this we will get treatment_id
+        $treatment_id = $this->record_model->get_treatment_id($patient_cancer_treatment_name);
+        $data_patient_cancer_treatment = array(
+            'treatment_id' => $treatment_id,
+            'patient_cancer_id' => $patient_cancer_id,
+            'treatment_start_date' => $this->input->post('treatment_start_date'),
+            'treatment_end_date' => $this->input->post('treatment_end_date'),
+            'treatment_drug_dose' => $this->input->post('treatment_drug_dose'),
+        );
+        //after inserting  data_patient_cancer_treatment we will get patient_cancer_treatment_id
+        // print_r($data_patient_cancer_treatment);
+        echo '<br/>';
+        $patient_cancer_treatment_id = $this->record_model->insert_patient_cancer_treatment($data_patient_cancer_treatment);
+        if ($patient_cancer_treatment_id > 0) {
+            echo "Data Added successfully at patient_cancer_treatment";
+        } else {
+            echo "Failed to insert at patient_cancer_treatment";
+        } echo '<br/>';
+
+        $patient_cancer_recurrence_treatment_name = $this->input->post('patient_cancer_recurrence_treatment_name'); //where to insert this value
+        $treatment_id_recurrent = $this->record_model->get_treatment_id($patient_cancer_recurrence_treatment_name);
+        $data_patient_cancer_recurrent = array(
+            'treatment_id' => $treatment_id_recurrent,
+            'patient_cancer_id' => $patient_cancer_id
+        );
+        // print_r($data_patient_cancer_recurrent);
+        echo '<br/>';
+        $patient_cancer_recurrent_id = $this->record_model->insert_patient_cancer_recurrent($data_patient_cancer_recurrent);
+        if ($patient_cancer_recurrent_id > 0) {
+            echo "Data Added successfully at patient_cancer_recurrent";
+        } else {
+            echo "Failed to insert at patient_cancer_recurrent";
+        } echo '<br/>';
+        //after inserting  data_patient_cancer_recurrent we will get patient_cancer_recurrent_id
+
+
+        $diagnosis_name = $this->input->post('diagnosis_name');
+        $diagnosis_id = $this->record_model->get_diagnosis_id($diagnosis_name);
+        $data_patient_diagnosis = array(
+            'patient_studies_id' => $patient_studies_id,
+            'diagnosis_id' => $diagnosis_id,
+            'diagnosis_age' => $this->input->post('diagnosis_age'),
+            'year_of_diagnosis' => $this->input->post('year_of_diagnosis'),
+            'on_medication_flag' => $this->input->post('is_on_medication_flag'),
+            'medication_details' => $this->input->post('medication_details'),
+            'diagnosis_center' => $this->input->post('diagnosis_center'),
+            'doctor_name' => $this->input->post('diagnosis_doctor_name'),
+            'diagnosis_details' => $this->input->post('diagnosis_details')
+        );
+        // print_r($data_patient_diagnosis);
+        echo '<br/>';
+        $patient_diagnosis_id = $this->record_model->insert_patient_diagnosis($data_patient_diagnosis);
+        if ($patient_diagnosis_id > 0) {
+            echo "Data Added successfully at patient_diagnosis";
+        } else {
+            echo "Failed to insert at patient_diagnosis";
+        } echo '<br/>';
+
+        $data_patient_pathology = array(
+            'patient_studies_id' => $patient_studies_id,
+            'tissue_site' => $this->input->post('pathology_tissue_site'),
+            'tissue_tumour_stages' => $this->input->post('pathology_tissue_tumour_stage'),
+            'morphology' => $this->input->post('pathology_morphology'),
+            'node_stage' => $this->input->post('pathology_node_stage'),
+            'lymph_node' => $this->input->post('pathology_lymph_node'),
+            'total_lymph_nodes' => $this->input->post('pathology_total_lymph_nodes'),
+            'er_status' => $this->input->post('pathology_ER_status'),
+            'pr_status' => $this->input->post('pathology_PR_status'),
+            'her2_status' => $this->input->post('pathology_HER2_status'),
+            'no_of_tumers' => $this->input->post('pathology_number_of_tumours'),
+            'metastasis_stage' => $this->input->post('pathology_metastasis_stage'),
+            'side_affected' => $this->input->post('pathology_side_affected'),
+            'tumour_stage' => $this->input->post('pathology_tumour_stage'),
+            'tumour_grade' => $this->input->post('pathology_tumour_grade'),
+            'size' => $this->input->post('pathology_tumour_size'),
+            'path_doc' => $this->input->post('pathology_doctor'),
+            'path_lab' => $this->input->post('pathology_lab'),
+            'lab_reference' => $this->input->post('pathology_lab_reference'),
+            'path_report_date' => $this->input->post('pathology_path_report_date'),
+            'type_of_report' => $this->input->post('pathology_path_report_type'),
+            'path_report_requested_date' => $this->input->post('pathology_report_requested_date'),
+            'path_report_received_date' => $this->input->post('pathology_path_report_received_date'),
+            'path_block_requested_date' => $this->input->post('pathology_path_block_requested_date'),
+            'path_block_received_date' => $this->input->post('pathology_path_block_received_date'),
+            'tissue_path_comment' => $this->input->post('pathology_tissue_path_comments'),
+        );
+
+        // print_r($data_patient_pathology);
+        echo '<br/>';
+        $patient_pathology_id = $this->record_model->insert_patient_pathology($data_patient_pathology);
+        if ($patient_pathology_id > 0) {
+            echo "Data Added successfully at patient_pathology";
+        } else {
+            echo "Failed to insert at patient_pathology";
+        } echo '<br/>';
+    }
+
+    function lifestyle_insertion() {
+
+        //need to calculate $patient_studies_id by using study name-->studies_id and patient_ic_no
+        $studies_name = $this->input->post('studies_name');
+        $studies_id = $this->excell_sheets_model->get_patient_studies_id($studies_name);
+        $data_keys = array(
+            'patient_ic_no' => $this->input->post('IC_no'),
+            'studies_id' => $studies_id
+        );
+        echo '<pre>';
+        //print_r($data_keys);echo '<br/>';
+        $patient_studies_id = $this->record_model->get_patient_suudies_id($data_keys);
+        //echo $patient_studies_id;
+        //echo '<br/>';
+
+        $data_patient_lifestyle_factors = array(
+            'patient_studies_id' => $patient_studies_id,
+            'self_image_at_7years' => $this->input->post('self_image_at_7years'),
+            'self_image_at_18years' => $this->input->post('self_image_at_18years'),
+            'self_image_now' => $this->input->post('self_image_now'),
+            'pa_sports_activitiy_childhood' => $this->input->post('pa_at_childhood'),
+            'pa_sports_activitiy_adult' => $this->input->post('pa_at_adulthood'),
+            'pa_sports_activitiy_now' => $this->input->post('pa_now'),
+            'cigarrets_smoked_flag' => $this->input->post('cigarettes_smoked_flag'),
+            'cigarrets_still_smoked_flag' => $this->input->post('cigarettes_still_smoked_flag'),
+            'total_smoked_years' => $this->input->post('total_smoked_years'),
+            'cigarrets_count_at_teen' => $this->input->post('cigarettes_count_at_teen'),
+            'cigarrets_count_at_twenties' => $this->input->post('cigarettes_count_at_twenties'),
+            'cigarrets_count_at_thirties' => $this->input->post('cigarettes_count_at_thirties'),
+            'cigarrets_count_at_fourrties' => $this->input->post('cigarettes_count_at_forties'),
+            'cigarrets_count_at_fifties' => $this->input->post('cigarettes_count_at_fifties'),
+            'cigarrets_count_at_sixties_and_above' => $this->input->post('cigarrets_count_at_sixties_and_above'),
+            'cigarrets_count_one_year_before_diagnosed' => $this->input->post('cigarettes_count_one_year_before_diagnosed'),
+            'alcohol_drunk_flag' => $this->input->post('alcohol_drunk_flag'),
+            'alcohol_average' => $this->input->post('alcohol_average'),
+            'alcohol_average_details' => $this->input->post('alcohol_average_details'),
+            'coffee_drunk_flag' => $this->input->post('coffee_drunk_flag'),
+            'coffee_age' => $this->input->post('coffee_age'),
+            'coffee_average' => $this->input->post('coffee_average'),
+            'tea_drunk_flag' => $this->input->post('tea_drunk_flag'),
+            'tea_age' => $this->input->post('tea_age'),
+            'tea_average' => $this->input->post('tea_average'),
+            'tea_type' => $this->input->post('tea_type'),
+            'soya_bean_drunk_flag' => $this->input->post('soya_bean_drunk_flag'),
+            'soya_bean_average' => $this->input->post('soya_bean_average'),
+            'soya_products_flag' => $this->input->post('soya_products_flag'),
+            'soya_products_average' => $this->input->post('soya_products_average'),
+            'diabetes_flag' => $this->input->post('diabetes_flag'),
+            'medicine_for_diabetes_flag' => $this->input->post('medicine_for_diabetes_flag'),
+            'diabetes_medicine_name' => $this->input->post('diabates_medicine_name')
+        );
+        //print_r($data_patient_lifestyle_factors);
+        //echo '<br/>';
+
+        $patient_lifestyle_factors_id = $this->record_model->insert_patient_lifestyle_factors($data_patient_lifestyle_factors);
+        if ($patient_lifestyle_factors_id > 0) {
+            echo "<h2>Data Added successfully at patient_lifestyle_factors</h2>";
+        } else {
+            echo "<h2>Failed to insert at patient_lifestyle_factors</h2>";
+        }
+        echo '<br/>';
+
+        $data_patient_menstruation = array(
+            'patient_studies_id' => $patient_studies_id,
+            'age_period_starts' => $this->input->post('age_period_starts'),
+            'still_period_flag' => $this->input->post('still_period_flag'),
+            'period_type' => $this->input->post('period_type'),
+            'period_cycle_days' => $this->input->post('period_cycle_days'),
+            'period_cycle_days_other_details' => $this->input->post('period_cycle_days_other_details'),
+            'age_period_stops' => $this->input->post('age_period_stops'),
+            'date_period_stops' => $this->input->post('date_period_stops'),
+            'reason_period_stops' => $this->input->post('reason_period_stops'),
+            'reason_period_stops_other_details' => $this->input->post('reason_period_stops_other_details')
+        );
+        //print_r($data_patient_menstruation);
+        //echo '<br/>';
+
+        $patient_menstruation_id = $this->record_model->insert_patient_menstruation($data_patient_menstruation);
+        if ($patient_menstruation_id > 0) {
+            echo "<h2>Data Added successfully at patient_menstruation</h2>";
+        } else {
+            echo "<h2>Failed to insert at patient_menstruation</h2>";
+        }
+        echo '<br/>';
+
+        $data_patient_parity_table = array(
+            'patient_studies_id' => $patient_studies_id,
+            'pregnant_flag' => $this->input->post('pregnent_flag')
+        );
+
+        //print_r($data_patient_parity_table);
+        //echo '<br/>';
+        //patient_parity_table_id = //after inserting at patient_parity_table we will use it at next table
+
+        $patient_parity_table_id = $this->record_model->insert_patient_parity_table($data_patient_parity_table);
+        if ($patient_parity_table_id > 0) {
+            echo "<h2>Data Added successfully at patient_parity_table</h2>";
+        } else {
+            echo "<h2>Failed to insert at patient_parity_table</h2>";
+        }
+        echo '<br/>';
+
+        $data_patient_parity_record = array(
+            'patient_parity_table_id' => $patient_parity_table_id,
+            'pregnancy_type' => $this->input->post('pregnancy_type'),
+            'gender' => $this->input->post('child_gender'),
+            'birthyear' => $this->input->post('child_birthyear'),
+            'birthweight' => $this->input->post('child_birthweight'),
+            'breastfeeding_duration' => $this->input->post('child_breastfeeding_duration')
+        );
+        //print_r($data_patient_parity_record);
+        //echo '<br/>';
+
+        $patient_parity_record_id = $this->record_model->insert_patient_parity_record($data_patient_parity_record);
+        if ($patient_parity_record_id > 0) {
+            echo "<h2>Data Added successfully at patient_parity_record</h2>";
+        } else {
+            echo "<h2>Failed to insert at patient_parity_record</h2>";
+        }
+        echo '<br/>';
+
+        $data_patient_infertility = array(
+            'patient_studies_id' => $patient_studies_id,
+            'infertility_testing_flag' => $this->input->post('infertility_testing_flag'),
+            'infertility_treatment_details' => $this->input->post('infertility_treatment_details'),
+            'contraceptive_pills_flag' => $this->input->post('contraceptive_pills_flag'),
+            'contraceptive_pills_details' => $this->input->post('contraceptive_pills_details'),
+            'currently_taking_contraceptive_pills_flag' => $this->input->post('currently_taking_contraceptive_pills_flag'),
+            'contraceptive_start_date' => $this->input->post('contraceptive_start_date'),
+            'contraceptive_end_date' => $this->input->post('contraceptive_end_date'),
+            'hrt_flag' => $this->input->post('HRT_flag'),
+            'hrt_details' => $this->input->post('HRT_details'),
+            'currently_using_hrt_flag' => $this->input->post('currently_using_hrt_flag'),
+            'hrt_start_date' => $this->input->post('hrt_start_date'),
+            'hrt_end_date' => $this->input->post('hrt_end_date')
+        );
+        // print_r($data_patient_infertility);
+        //echo '<br/>';
+
+        $patient_infertility_id = $this->record_model->insert_patient_infertility($data_patient_infertility);
+        if ($patient_infertility_id > 0) {
+            echo "<h2>Data Added successfully at patient_infertility</h2>";
+        } else {
+            echo "<h2>Failed to insert at patient_infertility</h2>";
+        }
+        echo '<br/>';
+
+        $treatment_name = $this->input->post('gnc_treatment_name');
+        $treatment_id = $this->record_model->get_treatment_id($treatment_name);
+        $data_patient_gynaecological_surgery_history = array(
+            'patient_studies_id' => $patient_studies_id,
+            'had_gnc_surgery_flag' => $this->input->post('had_gnc_surgery_flag'),
+            'surgery_year' => $this->input->post('gnc_surgery_year'),
+            'treatment_id' => $treatment_id,
+            'gnc_treatment_name_other_details' => $this->input->post('gnc_treatment_name_other_details')
+        );
+        //print_r($data_patient_gynaecological_surgery_history);
+        //echo '<br/>';
+
+        $patient_gynaecological_surgery_history_id = $this->record_model->insert_patient_gynaecological_surgery_history($data_patient_gynaecological_surgery_history);
+
+        if ($patient_gynaecological_surgery_history_id > 0) {
+            echo "<h2>Data Added successfully at patient_gynaecological_surgery_history</h2>";
+        } else {
+            echo "<h2>Failed to insert at patient_gynaecological_surgery_history</h2>";
+        }
+        echo '<br/>';
+    }
+
+    function investigation_insertion() {
+
+        $config['upload_path'] = './images/';
+        $config['allowed_types'] = 'gif|jpg|png';
+        $config['max_size'] = '100000';
+        //$config['max_width']  = '1024';
+        //$config['max_height']  = '768';
+
+        $this->load->library('upload', $config);
+
+        if (!$this->upload->do_upload()) {
+            $error = array('error' => $this->upload->display_errors());
+        } else {
+            $data = array('upload_data' => $this->upload->data());
+            //echo '<h3>Your file was successfully uploaded!</h3>';
+            //echo $data['upload_data']['full_path'];
+            $attach_file_path = $data['upload_data']['full_path'];
+            //echo $attach_file_path;
+            // echo '<br/>';
         }
 
-        function view_record_list($var = null, $ic_no) {
-            $this->load->model('Record_model');
-            $data = $this->Record_model->general();
 
-            if ($var == 'personal') {
-                $data['patient_detail'] = $this->record_model->get_view_patient_record($ic_no, 'patient', 'ic_no');
-                $this->template->load("templates/add_record_template", 'record/view_record_personal_details', $data);
-            } else if ($var == 'family') {
-                $data['patient_family'] = $a = $this->record_model->get_view_patient_record($ic_no, 'patient_relatives', 'patient_ic_no');
-                $this->template->load("templates/add_record_template", 'record/view_record_family_details', $data);
-            } else if ($var == 'studies_setOne') {
-                $data['patient_studies'] = $this->record_model->get_view_patient_record($ic_no, 'patient_studies', 'patient_ic_no');
+        $studies_name = $this->input->post('studies_name');
+        $studies_id = $this->excell_sheets_model->get_patient_studies_id($studies_name);
+        $data_keys = array(
+            'patient_ic_no' => $this->input->post('IC_no'),
+            'studies_id' => $studies_id
+        );
+        //echo '<pre>';
+        //print_r($data_keys);echo '<br/>';
+        $patient_studies_id = $this->record_model->get_patient_suudies_id($data_keys);
+        //echo $patient_studies_id;echo '<br/>';
+        $data_patient_investigations = array(
+            'patient_studies_id' => $patient_studies_id,
+            'date_test_ordered' => $this->input->post('date_test_ordered'),
+            'ordered_by' => $this->input->post('test_ordered_by'),
+            'testing_result_notification_flag' => $this->input->post('testing_results_notification_flag'),
+            'project_name' => $this->input->post('investigation_project_name'),
+            'project_batch' => $this->input->post('investigation_project_batch'),
+            'test_type' => $this->input->post('investigation_test_type'),
+            'type_of_sample' => $this->input->post('investigation_sample_type'),
+            'reasons' => $this->input->post('investigation_test_reason'),
+            'new_mutation_flag' => $this->input->post('investigation_new_mutation_flag'),
+            'test_result' => $this->input->post('investigation_test_results'),
+            'investigation_test_results_other_details' => $this->input->post('$investigation_test_results_other_details'),
+            'carrier_status' => $this->input->post('investigation_carrier_status'),
+            'mutation_nomenclature' => $this->input->post('investigation_mutation_nomenclature'),
+            'reported_by' => $this->input->post('investigation_reported_by'),
+            'mutation_type' => $this->input->post('investigation_mutation_type'),
+            'mutation_pathogenicity' => $this->input->post('investigation_mutation_pathogenicity'),
+            'sample_id' => $this->input->post('investigation_sample_ID'),
+            'report_due' => $this->input->post('investigation_report_due'),
+            'report_date' => $this->input->post('investigation_report_date'),
+            'date_modified' => $this->input->post('investigation_date_notified'),
+            'test_comment' => $this->input->post('investigation_test_comment'),
+            'conformation_attachment' => $this->input->post('investigation_conformation_attachment'),
+            'conformation_file_url' => $attach_file_path
+        );
 
-                $patient_breast_screening = $this->record_model->get_view_patient_record($ic_no, 'patient_breast_screening', 'patient_ic_no');
-
-                $data['patient_mammogram'] = $patient_breast_screening;
-
-                $a = @$patient_breast_screening['patient_breast_screening_id'];
-
-                $data['patient_other_screening'] = $this->record_model->get_patient_other_screening($a);
-
-                $patient_cancer = $this->record_model->get_view_patient_record($ic_no, 'patient_cancer', 'patient_ic_no');
-
-                $data['patient_cancer'] = $patient_cancer;
-
-                $data['patient_cancer_treatment'] = $this->record_model->get_patient_cancer_treatment(@$patient_cancer['patient_cancer_id']);
-                $data['patient_diagnosis'] = $this->record_model->get_view_patient_record($ic_no, 'patient_diagnosis', 'patient_ic_no');
-                $data['patient_pathology'] = $this->record_model->get_view_patient_record($ic_no, 'patient_pathology', 'patient_ic_no');
-                $this->template->load("templates/add_record_template", 'record/view_record_studies_set_one_details', $data);
-            } else if ($var == 'investigations') {
-                $data['patient_investigation'] = $this->record_model->get_view_patient_record($ic_no, 'patient_investigations', 'patient_ic_no');
-                $this->template->load("templates/add_record_template", 'record/view_record_investigation_details', $data);
-            } else if ($var == 'surveillance') {
-                $data['patient_surveillance'] = $this->record_model->get_view_patient_record($ic_no, 'patient_surveillance', 'patient_ic_no');
-                $this->template->load("templates/add_record_template", 'record/view_record_surveillance_details', $data);
-            } else if ($var == 'lifestyleFactors') {
-                $data['patient_lifestyle'] = $this->record_model->get_view_patient_record($ic_no, 'patient_lifestyle_factors', 'patient_ic_no');
-                $this->template->load("templates/add_record_template", 'record/view_record_lifestyles_factors_details', $data);
-            } else if ($var == 'interview_manager') {
-                $data['patient_list'] = $this->record_model->get_view_patient_record($ic_no, 'patient_interview_manager', 'patient_ic_no');
-                $this->template->load("templates/add_record_template", 'record/view_record_interview_manager', $data);
-            }
+        //echo '<pre>';
+        // print_r($data_patient_investigations);echo '<br/>';
+        //array_push($data, $this->input->post('firstname'));
+        $patient_investigations_id = $this->record_model->insert_patient_investigations($data_patient_investigations);
+        if ($patient_investigations_id > 0) {
+            echo "<h2>Data Added successfully at patient_investigations</h2>";
+        } else {
+            echo "<h2>Failed to insert at patient_investigations</h2>";
         }
+        echo '<br/>';
+    }
 
+    function surveillance_insertion() {
+
+        $studies_name = $this->input->post('studies_name');
+        $studies_id = $this->excell_sheets_model->get_patient_studies_id($studies_name);
+        $data_keys = array(
+            'patient_ic_no' => $this->input->post('IC_no'),
+            'studies_id' => $studies_id
+        );
+        //echo '<pre>';
+        //print_r($data_keys);echo '<br/>';
+        $patient_studies_id = $this->record_model->get_patient_suudies_id($data_keys);
+        //echo $patient_studies_id;echo '<br/>';
+
+        $data_patient_surveillance = array(
+            'patient_studies_id' => $patient_studies_id,
+            'recruitment_center' => $this->input->post('surveillance_recruitment_center'),
+            'type' => $this->input->post('surveillance_type'),
+            'first_consultation_date' => $this->input->post('surveillance_first_consultation_date'),
+            'first_consultation_place' => $this->input->post('surveillance_first_consultation_place'),
+            'surveillance_interval' => $this->input->post('surveillance_interval'),
+            'diagnosis' => $this->input->post('surveillance_diagnosis'),
+            'due_date' => $this->input->post('surveillance_due_date'),
+            'reminder_sent_date' => $this->input->post('surveillance_reminder_sent_date'),
+            'surveillance_done_date' => $this->input->post('surveillance_done_date'),
+            'reminded_by' => $this->input->post('surveillance_reminded_by'),
+            'timing' => $this->input->post('surveillance_timing'),
+            'symptoms' => $this->input->post('surveillance_symptoms'),
+            'doctor_name' => $this->input->post('surveillance_doctor_name'),
+            'surveillance_done_place' => $this->input->post('surveillance_place'),
+            'outcome' => $this->input->post('surveillance_outcome'),
+            'comments' => $this->input->post('surveillance_comments')
+        );
+
+        // echo '<pre>';
+        // print_r($data_patient_surveillance);echo '<br/>';
+        //array_push($data, $this->input->post('firstname'));
+        $patient_surveillance_id = $this->record_model->insert_patient_surveillance($data_patient_surveillance);
+        if ($patient_surveillance_id > 0) {
+            echo "<h2>Data Added successfully at patient_surveillance</h2>";
+        } else {
+            echo "<h2>Failed to insert patient_surveillance</h2>";
+        }
+        echo '<br/>';
+    }
+
+    function interview_home_insersion() {
+        $data_patient_interview_manager = array(
+            'patient_ic_no' => $this->input->post('IC_no'),
+            'interview_date' => $this->input->post('interview_date'),
+            'next_interview_date' => $this->input->post('interview_next_date'),
+            'is_send_email_reminder_to_officers' => $this->input->post('is_send_email_reminder'),
+            'officer_email_addresses' => $this->input->post('officer_email_addresses'),
+            'comments' => $this->input->post('interview_note')
+        );
+        $patient_interview_manager_id = $this->record_model->insert_patient_interview_manager($data_patient_interview_manager);
+        if ($patient_interview_manager_id > 0) {
+            echo "<h2>Data Added successfully at patient_interview_manager</h2>";
+        } else {
+            echo "<h2>Failed to insert patient_interview_manager</h2>";
+        }
+        echo '<br/>';
+    }
+
+    function do_upload_xlsx() {
+        $config['upload_path'] = './uploads/';
+        $config['allowed_types'] = 'xlsx';
+        $config['max_size'] = '100000';
+        //$config['max_width']  = '1024';
+        //$config['max_height']  = '768';
+
+        $this->load->library('upload', $config);
+
+        if (!$this->upload->do_upload()) {
+            $error = array('error' => $this->upload->display_errors());
+
+            $this->load->view('upload_xlsx_file', $error);
+        } else {
+            $data = array('upload_data' => $this->upload->data());
+            //echo '<h3>Your file was successfully uploaded!</h3>';
+            //echo $data['upload_data']['full_path'];
+            $temp = $data['upload_data']['file_name'];
+            echo $temp;
+            //print_r($data);
+            //redirect('excell_parser/test/',$temp);
+            $this->excell_parser_model->excell_file_parser($temp);
+        }
+    }
+
+    function do_upload_rawImage() {
+        $config['upload_path'] = './images/';
+        $config['allowed_types'] = 'gif|jpg|png';
+        $config['max_size'] = '100000';
+        //$config['max_width']  = '1024';
+        //$config['max_height']  = '768';
+
+        $this->load->library('upload', $config);
+
+        if (!$this->upload->do_upload()) {
+            $error = array('error' => $this->upload->display_errors());
+
+            //$this->load->view('upload_xlsx_file', $error);
+        } else {
+            $data = array('upload_data' => $this->upload->data());
+            //echo '<h3>Your file was successfully uploaded!</h3>';
+            //echo $data['upload_data']['full_path'];
+            $temp = $data['upload_data']['full_path'];
+            echo $temp;
+            //print_r($data);
+            //redirect('excell_parser/test/',$temp);
+            //$this->excell_parser_model->excell_file_parser($temp);
+        }
+    }
+
+    function view_record_home() {
+
+        $this->template->load("templates/report_home_template", 'record/view_record_home');
+    }
+
+    function view_record_list($var = null, $ic_no) {
+        $this->load->model('Record_model');
+        $data = $this->Record_model->general();
+
+        if ($var == 'personal') {
+            $data['patient_detail'] = $this->record_model->get_view_patient_record($ic_no, 'patient', 'ic_no');
+            $this->template->load("templates/add_record_template", 'record/view_record_personal_details', $data);
+        } else if ($var == 'family') {
+            $data['patient_family'] = $a = $this->record_model->get_view_patient_record($ic_no, 'patient_relatives', 'patient_ic_no');
+            $this->template->load("templates/add_record_template", 'record/view_record_family_details', $data);
+        } else if ($var == 'studies_setOne') {
+            $data['patient_studies'] = $this->record_model->get_view_patient_record($ic_no, 'patient_studies', 'patient_ic_no');
+
+            $patient_breast_screening = $this->record_model->get_view_patient_record($ic_no, 'patient_breast_screening', 'patient_ic_no');
+
+            $data['patient_mammogram'] = $patient_breast_screening;
+
+            $a = @$patient_breast_screening['patient_breast_screening_id'];
+
+            $data['patient_other_screening'] = $this->record_model->get_patient_other_screening($a);
+
+            $patient_cancer = $this->record_model->get_view_patient_record($ic_no, 'patient_cancer', 'patient_ic_no');
+
+            $data['patient_cancer'] = $patient_cancer;
+
+            $data['patient_cancer_treatment'] = $this->record_model->get_patient_cancer_treatment(@$patient_cancer['patient_cancer_id']);
+            $data['patient_diagnosis'] = $this->record_model->get_view_patient_record($ic_no, 'patient_diagnosis', 'patient_ic_no');
+            $data['patient_pathology'] = $this->record_model->get_view_patient_record($ic_no, 'patient_pathology', 'patient_ic_no');
+            $this->template->load("templates/add_record_template", 'record/view_record_studies_set_one_details', $data);
+        } else if ($var == 'investigations') {
+            $data['patient_investigation'] = $this->record_model->get_view_patient_record($ic_no, 'patient_investigations', 'patient_ic_no');
+            $this->template->load("templates/add_record_template", 'record/view_record_investigation_details', $data);
+        } else if ($var == 'surveillance') {
+            $data['patient_surveillance'] = $this->record_model->get_view_patient_record($ic_no, 'patient_surveillance', 'patient_ic_no');
+            $this->template->load("templates/add_record_template", 'record/view_record_surveillance_details', $data);
+        } else if ($var == 'lifestyleFactors') {
+            $data['patient_lifestyle'] = $this->record_model->get_view_patient_record($ic_no, 'patient_lifestyle_factors', 'patient_ic_no');
+            $this->template->load("templates/add_record_template", 'record/view_record_lifestyles_factors_details', $data);
+        } else if ($var == 'interview_manager') {
+            $data['patient_list'] = $this->record_model->get_view_patient_record($ic_no, 'patient_interview_manager', 'patient_ic_no');
+            $this->template->load("templates/add_record_template", 'record/view_record_interview_manager', $data);
+        }
     }
 
 }
