@@ -141,7 +141,6 @@
                 &nbsp;
             </tr>
         </table>
-                <a align="center" class="doneButton" href="<?php echo base_url(); ?>">Done</a>
     </div>
 </div>
 
