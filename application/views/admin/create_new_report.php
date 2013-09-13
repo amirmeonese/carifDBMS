@@ -31,7 +31,7 @@
 	<table border="1" align="center" width="30%">
         <thead>
         	<tr>
-                <th colspan="2" align="center" style="background-color:Crimson;">Basic Filed</th>
+                <th colspan="2" id="design-customized-form-table">Basic Field</th>
             </tr>
         </thead>
             <tr>

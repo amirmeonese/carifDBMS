@@ -1,0 +1,42 @@
+[
+  {
+    "name": "Megan Parker",
+    "location": "Boston",
+    "value": "Megan Parker",
+	"image-url": "http://localhost/troothing/js/plugins/search/images/thumb_megan.png",
+    "tokens": [
+      "Megan Parker",
+      "New York, NY"
+    ]
+  },
+  {
+    "name": "John Smith",
+    "location": "New York",
+    "value": "John Smith",
+	"image-url": "http://localhost/troothing/js/plugins/search/images/thumb_john_smith.png",
+    "tokens": [
+      "John Smith",
+      "New York, NY"
+    ]
+  },
+   {
+    "name": "Paul William",
+    "location": "Los Angeles",
+    "value": "Paul William",
+	"image-url": "http://localhost/troothing/js/plugins/search/images/thumb_paul.png",
+    "tokens": [
+      "Paul William",
+      "Los Angeles"
+    ]
+  },
+   {
+    "name": "Jenny Chow",
+    "location": "Detroit",
+    "value": "Jenny Chow",
+	"image-url": "http://localhost/troothing/js/plugins/search/images/thumb_jenny.png",
+    "tokens": [
+      "Jenny Chow",
+      "Detroit"
+    ]
+  }
+]

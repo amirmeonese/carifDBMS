@@ -1,0 +1,22 @@
+2013-09-09T11:46:29Q [ERROR] Error in submitting error log to consultant.
+2013-09-09T11:45:18Q [ERROR] Error in submitting error log to consultant.\r\n\n2013-09-09T11:44:50Q [ERROR] Error in submitting error log to consultant.\r\n\n2013-09-09T11:43:58Q [ERROR] Error in submitting error log to consultant.\xA\n2013-09-09T11:42:52Q [ERROR] Error in submitting error log to consultant.
+\nError in submitting error log to consultant.\n2013-07-31 12:31:20 6284 [ERROR] InnoDB: Attempted to open a previously opened tablespace. Previous tablespace mysql/slave_worker_info uses space ID: 5 at filepath: .\mysql\slave_worker_info.ibd.Cannot open tablespace troothing_db/users_groups which uses space ID: 5 at filepath: .\troothing_db\users_groups.ibd
+2013-09-03 08:48:16 1430 [ERROR] InnoDB: Error: Table "mysql"."innodb_table_stats" not found.
+2013-09-03 08:48:16 1430 [ERROR] InnoDB: Error: Table "mysql"."innodb_table_stats" not found.
+2013-09-03 08:48:16 [Warning] Invalid (old?) table  or database name '#sql-ce8_1a
+2013-09-03 08:48:16 1430 [ERROR] InnoDB: Error: Fetch of persistent statistics requested for table "carif_db".<result 2 when explaining filename '#sql-ce8_1a'>  but the required system table mysql.innodb_table_stats and mysql.innodb_index_stats are not  present or have unexpected structure. Using transient stats instead.
+2013-07-31 12:31:20 6284 [ERROR] InnoDB: Attempted to open a previously opened tablespace. Previous tablespace mysql/slave_worker_info uses space ID: 5 at filepath: .\mysql\slave_worker_info.ibd.Cannot open tablespace troothing_db/users_groups which uses space ID: 5 at filepath: .\troothing_db\users_groups.ibd
+2013-09-03 08:48:16 1430 [ERROR] InnoDB: Error: Table "mysql"."innodb_table_stats" not found.
+2013-09-03 08:48:16 1430 [ERROR] InnoDB: Error: Table "mysql"."innodb_table_stats" not found.
+2013-09-03 08:48:16 [Warning] Invalid (old?) table  or database name '#sql-ce8_1a
+2013-09-03 08:48:16 1430 [ERROR] InnoDB: Error: Fetch of persistent statistics requested for table "carif_db".<result 2 when explaining filename '#sql-ce8_1a'>  but the required system table mysql.innodb_table_stats and mysql.innodb_index_stats are not  present or have unexpected structure. Using transient stats instead.
+2013-07-31 12:31:20 6284 [ERROR] InnoDB: Attempted to open a previously opened tablespace. Previous tablespace mysql/slave_worker_info uses space ID: 5 at filepath: .\mysql\slave_worker_info.ibd.Cannot open tablespace troothing_db/users_groups which uses space ID: 5 at filepath: .\troothing_db\users_groups.ibd
+2013-09-03 08:48:16 1430 [ERROR] InnoDB: Error: Table "mysql"."innodb_table_stats" not found.
+2013-09-03 08:48:16 1430 [ERROR] InnoDB: Error: Table "mysql"."innodb_table_stats" not found.
+2013-09-03 08:48:16 [Warning] Invalid (old?) table  or database name '#sql-ce8_1a
+2013-09-03 08:48:16 1430 [ERROR] InnoDB: Error: Fetch of persistent statistics requested for table "carif_db".<result 2 when explaining filename '#sql-ce8_1a'>  but the required system table mysql.innodb_table_stats and mysql.innodb_index_stats are not  present or have unexpected structure. Using transient stats instead.
+2013-07-31 12:31:20 6284 [ERROR] InnoDB: Attempted to open a previously opened tablespace. Previous tablespace mysql/slave_worker_info uses space ID: 5 at filepath: .\mysql\slave_worker_info.ibd.Cannot open tablespace troothing_db/users_groups which uses space ID: 5 at filepath: .\troothing_db\users_groups.ibd
+2013-09-03 08:48:16 1430 [ERROR] InnoDB: Error: Table "mysql"."innodb_table_stats" not found.
+2013-09-03 08:48:16 1430 [ERROR] InnoDB: Error: Table "mysql"."innodb_table_stats" not found.
+2013-09-03 08:48:16 [Warning] Invalid (old?) table  or database name '#sql-ce8_1a
+2013-09-03 08:48:16 1430 [ERROR] InnoDB: Error: Fetch of persistent statistics requested for table "carif_db".<result 2 when explaining filename '#sql-ce8_1a'>  but the required system table mysql.innodb_table_stats and mysql.innodb_index_stats are not  present or have unexpected structure. Using transient stats instead.

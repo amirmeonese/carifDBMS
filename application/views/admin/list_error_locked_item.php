@@ -4,24 +4,35 @@
     </div>
     <div class="container" id="add_record_form_section_one">
         <div height="50px">&nbsp;</div>
-        <table border="1" style="margin-left:180px;" width="50%" >
+        <table id="error-log-table" width="80%">
         <thead>
             <tr>
-                <th width="50px" style="background-color:Crimson;">Date</th>
-                <th width="100px" style="background-color:Crimson;">Items</th>
+                <th id="error-log-tr" colspan="3">10 recent error items</th>
             </tr>
         </thead>
-       <!-- <?php foreach ($patient_list as $list): ?>
+		<tbody>
+		<?php echo form_open_multipart("admin/process_error_log_form"); ?>
+		<?php 
+			$error_list = explode( "\n", $errorMSG );
+			$i=1;
+			foreach ($error_list as $list): 
+			$list = addslashes($list);?>
             <tr>
-                <td>
-                	<td><?php echo $list['fullname']; ?></td>
-                </td>
-                <td><a href="<?php //echo site_url('academic/delete_intake') . '/' . $row['intakeid']; ?>" onclick="return confirm('Are you sure want to delete this intake? \nThis operation cannot be undone.');">Delete</a></td>
+				<td id="error-log-td"><?php echo $i ?></td>
+				<td id="error-log-td"><input type="hidden" name="error_list" value="<?php echo $list; ?>"> <?php echo $list; ?></input></td>
+                <td id="error-log-td"><?php echo form_submit('logsubmit', 'Send error'); ?></td>
             </tr>
-        <?php endforeach; ?>-->
-                </table>
+        <?php  if($i==10) break; $i++;  endforeach; ?>
+		<tr>
+			<td colspan="3">
+				<?php echo form_submit('downloadbtn', 'Download error log file'); ?>
+				<a class="doneButton" href="<?php echo base_url(); ?>">Back</a>
+				<?php echo form_fieldset_close(); ?>
+			</td>
+		</tr>
+		</tbody>
+		</table>
 	</br>
-	<a style="margin-left:180px;" class="doneButton" href="<?php echo base_url(); ?>">Done</a>
 </div>
 </div>
 

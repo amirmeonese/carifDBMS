@@ -600,24 +600,7 @@ class Excell_sheets_model extends CI_Model {
 
         return $result['studies_id'];
     }
-    
-    public function get_patient_breast_abnormality_side_id($record_data) {
-        $data = array(
-        );
-        $query = $this->db->select('patient_breast_abnormality_side_id')
-                ->where('patient_ic_no', $record_data)
-                ->limit(1)
-                ->get($this->tables['patient_breast_abnormality']);
-
-        if ($query->num_rows() > 0) {
-            $result = $query->row_array();
-            //echo $result['relatives_id'];
-        }
-
-        //print_r($result['relatives_id']);
-
-        return $result['patient_breast_abnormality_side_id'];
-    }
+  
 }
 
 ?>
