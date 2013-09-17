@@ -21,6 +21,19 @@
                         <td>: </td>
                         <td colspan="3"><?php echo form_input('email_subject'); ?></td>
                     </tr>
+                    <tr><td>
+                            <?php echo 'Message'; ?></td>
+                        <td>: </td>
+                        <td colspan="3"><?php
+                            $data = array(
+                                'name' => 'message_contain',
+                                'id' => 'message_contain',
+                                'rows' => '10',
+                                'cols' => '10'
+                            );
+                            echo form_textarea($data);
+                            ?>
+                        </td></tr>
                 </table>	
 		</div>
 	<?php echo form_submit('mysubmit','Submit');  ?>
