@@ -7,22 +7,14 @@ class Email_notification_model extends CI_Model
 		$this->load->database();
 	}
 	
-	public function get_days_appointments($day)
+	public function get_days_appointments($next_day)
 	{
-		echo "get_days_appointments called \n";
-		$day_start = date('Y-m-d 00:00:00', $day);
-		$day_end = date('Y-m-d 23:59:59', $day);
-		$query = $this->db->select('*')->from('patient_interview_manager')->get();
+		$next_day = date('Y-m-d', $next_day);
+		$query = $this->db->select('*')->from('patient_interview_manager')->where('next_interview_date =', $next_day)->get();
 
 		if ($query->num_rows() > 0)
 		{
 			return $query->result();
-		   /*foreach ($query->result() as $row)
-		   {
-			  echo $row->title;
-			  echo $row->name;
-			  echo $row->body;
-		   }*/
 		}
 		else
 			echo "query row is 0 \n";
