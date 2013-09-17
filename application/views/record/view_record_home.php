@@ -7,41 +7,41 @@
         <table border="1" width="50%" style="margin-left:180px;">
             <thead>
                 <tr>
-                    <th style="background-color:Crimson;">Patient Forms</th>
-                    <th align='center' style="background-color:Crimson;">Action</th>
+                    <th id="view-patient-tr">Patient Forms</th>
+                    <th id="view-patient-tr">Action</th>
                 </tr>
             </thead>
                 <tr>
-                    <td>Personal Information</td>
-                    <td width="15%" align='center'>
+                    <td id="view-patient-td">Personal Information</td>
+                    <td id="view-patient-td" width="15%" align='center'>
                         <a href="<?php echo site_url('record/patient_record_list')?>">
                         <img src="<?php echo base_url(); ?>img/view.png" alt="view_patient_detail" width="18" height="18"></a>
                     </td>
                 </tr>
                 <tr>
-                    <td>Clinical Data</td>
-                    <td width="15%" align='center'>
+                    <td id="view-patient-td">Pathology</td>
+                    <td id="view-patient-td" width="15%" align='center'>
                         <a href="<?php echo site_url('record/patient_record_list')?>">
                         <img src="<?php echo base_url(); ?>img/view.png" alt="view_patient_detail" width="18" height="18"></a>
                     </td>
                 </tr>
                 <tr>
-                    <td>Clinical Measurement</td>
-                    <td width="15%" align='center'>
+                    <td id="view-patient-td">Investigations</td>
+                    <td id="view-patient-td" width="15%" align='center'>
                         <a href="<?php echo site_url('record/patient_record_list')?>">
                         <img src="<?php echo base_url(); ?>img/view.png" alt="view_patient_detail" width="18" height="18"></a>
                     </td>
                 </tr>
                 <tr>
-                    <td>Investigation</td>
-                    <td width="15%" align='center'>
+                    <td id="view-patient-td">Surveillance</td>
+                    <td id="view-patient-td" width="15%" align='center'>
                         <a href="<?php echo site_url('record/patient_record_list')?>">
                         <img src="<?php echo base_url(); ?>img/view.png" alt="view_patient_detail" width="18" height="18"></a>
                     </td>
                 </tr>
                 <tr>
-                    <td>Treatment</td>
-                    <td width="15%" align='center'>
+                    <td id="view-patient-td">Treatment</td>
+                    <td id="view-patient-td" width="15%" align='center'>
                         <a href="<?php echo site_url('record/patient_record_list')?>">
                         <img src="<?php echo base_url(); ?>img/view.png" alt="view_patient_detail" width="18" height="18"></a>
                     </td>

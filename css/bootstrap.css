@@ -6710,6 +6710,30 @@ div #label1
 	color: #ffffff;
 }
 
+#view-patient-table
+{
+	text-align:center;
+	border: 1px solid white;
+	margin-left:180px; 
+}
+
+#view-patient-tr
+{
+	text-align: center;
+	background-color: #5A8C0F;
+	border: 1px solid white;
+	color: #ffffff;
+}
+
+#view-patient-td
+{
+	text-align:left;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 12px;
+	border: 1px solid white;
+}
+
+
 #error-log-td
 {
 	text-align:left;
