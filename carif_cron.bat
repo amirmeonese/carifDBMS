@@ -1,4 +1,4 @@
-@echo ON
+@echo OFF
 cd C:\xampp\htdocs\CarifDBMS
 C:\xampp\php\php.exe index.php email_sender_cron_job index
 pause
