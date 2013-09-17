@@ -1127,7 +1127,7 @@ class Record extends CI_Controller {
             $data['patient_lifestyle'] = $this->record_model->get_view_patient_record($ic_no, 'patient_lifestyle_factors', 'patient_ic_no');
             $this->template->load("templates/add_record_template", 'record/view_record_lifestyles_factors_details', $data);
         } else if ($var == 'interview_manager') {
-            $data['patient_list'] = $this->record_model->get_view_patient_record($ic_no, 'patient_interview_manager', 'patient_ic_no');
+            $data['patient_interview_manager'] = $this->record_model->get_view_patient_record($ic_no, 'patient_interview_manager', 'patient_ic_no');
             $this->template->load("templates/add_record_template", 'record/view_record_interview_manager', $data);
         }
     }

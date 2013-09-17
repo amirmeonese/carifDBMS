@@ -4,19 +4,45 @@
     </div>
     <div class="container" id="report_form_section" >
         <div height="10px">&nbsp;</div>
-        <table id="view-patient-table" width="50%" style="margin-left:180px;">
+        <?php echo form_open('record/patient_record_list'); ?>
+        <table>
+        <tr>
+                <td id="label1">
+                    Search by: 
+                </td>
+                <td id="label2">
+                    Patient name</td>
+                <td><?php echo form_input('report_patient_name'); ?>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    &nbsp;
+                </td>
+                <td id="label2">
+                    IC No</td>
+                <td>    <?php echo form_input('report_IC_no'); ?>
+                </td>
+
+            </tr>
+        </table>
+        <?php echo form_submit('mysubmit','Search');  ?>
+        
+        <?php if($submit):?>
+        
+        <table border="1" width="50%" style="margin-left:180px;">
             <thead>
                 <tr align='center'>
-                    <th id="view-patient-tr">Date</th>
-                    <th id="view-patient-tr">Patient Name</th>
-                    <th id="view-patient-tr">Action</th>
+                    <th style="background-color:Crimson;">Date</th>
+                    <th style="background-color:Crimson;">Patient Name</th>
+                    <th style="background-color:Crimson;">Action</th>
                 </tr>
             </thead>
             <?php foreach ($patient_list as $list): ?>
                 <tr>
-                    <td id="view-patient-td"></td>
-                    <td id="view-patient-td"><?php echo $list['fullname']; ?></td>
-                    <td id="view-patient-td" width="15%" align='center'>
+                    <td></td>
+                    <td><?php echo $list['fullname']; ?></td>
+                    <td width="15%" align='center'>
                         <a href="<?php echo site_url('record/patient_record_view') . '/' . $list['ic_no'] ?>">
                         <img src="<?php echo base_url(); ?>img/view.png" alt="view_patient_detail" width="18" height="18"></a>
                         <a>&nbsp;</a>
@@ -40,6 +66,7 @@
         </table>
         </br>
         <a style="margin-left:180px;" class="doneButton" href="<?php echo base_url(); ?>">Done</a>
+        <?php endif;?>
     </div>
 </div>
 
