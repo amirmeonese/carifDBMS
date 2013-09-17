@@ -1,4 +1,4 @@
-<div class="container" id="view_record_div">
+<div class="container" id="submit_report_div">
 	<div id="add_record_header" class="row">
 		<p>Create User</p>
 	</div>

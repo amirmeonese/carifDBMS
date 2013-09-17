@@ -36,9 +36,40 @@ class Admin extends CI_Controller {
 
         $password = $this->admin_model->get_random_password();
         $salt = $this->admin_model->get_random_salt();
+        $sender = $this->input->post('admin_email');
+        $subject = 'Information Detail';
+        
+        $MESSAGE_BODY = "Your Information detail:" . "<br>";
+        $MESSAGE_BODY .= "" . "<br>";
+        $MESSAGE_BODY .= "First Name: " . $this->input->post('admin_firstname') . "<br>";
+        $MESSAGE_BODY .= "Last Name: " . $this->input->post('admin_lastname') . "<br>";
+        $MESSAGE_BODY .= "Username: " . $this->input->post('admin_log_id') . "<br>";
+        $MESSAGE_BODY .= "Password: " . $password . "<br>";
+        $MESSAGE_BODY .= "Date: " . date('d-m-Y') . "<br>";
+        $MESSAGE_BODY .= "<br>";
+        $MESSAGE_BODY .= "This is a system generated email. Please do not reply to it." . "<br>";
 
         $id = $this->admin_model->insert_admin_record($password, $salt);
         if ($id > 0) {
+            
+        $config = array(
+
+            'protocol' => 'smtp',
+            //'mailpath' => '/usr/sbin/sendmail',
+            'smtp_host' => 'ssl://smtp.googlemail.com',
+            'smtp_port' => 465,
+            'smtp_user' => 'apurbamy@gmail.com',
+            'smtp_pass' => 'apurbamy2012',
+            'mailtype' => 'html'
+        );
+
+        $this->load->library('email', $config);
+        $this->email->set_newline("\r\n");
+        $this->email->from('apurbamy@gmail.com', 'Carif Admin Registration sent via CarifDBMS');
+        $this->email->to($sender);
+        $this->email->subject($subject);
+        $this->email->message($MESSAGE_BODY);
+        $a = $this->email->send();
 
             $this->session->set_flashdata('msg', 'success: Data Added successfully');
             redirect('admin/create_new_user');
@@ -166,13 +197,6 @@ class Admin extends CI_Controller {
         }
 
         $config = array(
-//            'protocol' => 'smtp',
-//            //'mailpath' => '/usr/sbin/sendmail',
-//            'smtp_host' => 'ssl://server1.barracudacms.com',
-//            'smtp_port' => 465,
-//            'smtp_user' => 'system@barracudacms.com',
-//            'smtp_pass' => 'System@33',
-//            'mailtype' => 'html'
 
             'protocol' => 'smtp',
             //'mailpath' => '/usr/sbin/sendmail',
