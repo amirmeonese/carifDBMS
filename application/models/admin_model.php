@@ -62,12 +62,32 @@ class Admin_model extends CI_Model {
     }
     
     function get_random_salt()
-{
-    $this->load->helper('string');
-    return sha1(random_string('alnum', 32));
-}
+	{
+		$this->load->helper('string');
+		return sha1(random_string('alnum', 32));
+	}
 
+	function write_error_into_log($error_msg) 
+	{
+		$this->load->helper('file');
+		$this->load->helper('date');
+        //Get current error list and append new error message
+        $format = 'DATE_W3C';
+        $time = time();
 
+        $time_now = standard_date($format, $time);
+
+        $data = file_get_contents("error_log/carif_error.txt");
+        $error_msg = $time_now . " [ERROR] " . $error_msg . "\r\n";
+        $data = $error_msg . $data;
+
+        if (!write_file('error_log/carif_error.txt', $data)) {
+            echo 'Unable to write the error log file';
+            return false;
+        } else {
+           return true;
+        }
+    }
 }
 
 

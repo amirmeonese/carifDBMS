@@ -6,14 +6,15 @@ class Email_Sender_Cron_Job extends CI_Controller
 		parent::__construct();
 		$this->load->library('input');
 		$this->load->model('Email_notification_model');
+		$this->load->model('Admin_model');
 	}
 	public function index()
 	{
-		if(!$this->input->is_cli_request())
+		/* if(!$this->input->is_cli_request())
 		{
 			echo "This script can only be accessed via the command line" . PHP_EOL;
 			return;
-		}
+		} */
 		
 		$timestamp = strtotime("+1 days");
 		$appointments = $this->Email_notification_model->get_days_appointments($timestamp);
@@ -40,7 +41,7 @@ class Email_Sender_Cron_Job extends CI_Controller
 					$this->email->set_newline("\r\n");
 					$this->email->to($email_address);
 					$this->email->from('carif.notifier@carif.com.my');
-					$this->email->subject('Follow up for interview : A friendly Reminder');
+					$this->email->subject('CarifDBMS Auto-notification : This is a friendly reminder for tomorrow\'s interview follow-up.');
 					$this->email->message('You have an interview appointment tomorrow for patient with an IC no '. $IC_no);
 					$send_status = $this->email->send();
 					
@@ -54,7 +55,7 @@ class Email_Sender_Cron_Job extends CI_Controller
 					else
 					{
 						echo "failed to send email to officer at this address: " . $appointment->officer_email_addresses . "\n";
-						$this->write_error_into_log("Error in submitting email notification to officers.");
+						$this->Admin_model->write_error_into_log("Error in submitting email notification to officers.");
 					}
 				}
 			}
