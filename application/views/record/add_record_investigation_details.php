@@ -32,7 +32,7 @@
                 </td>
                 <td>
                     <?php echo $testing_results_notification_flag; ?>: 
-                    <?php echo form_checkbox('testing_results_notification_flag', 'no', FALSE); ?>
+                    <?php echo form_checkbox('testing_results_notification_flag', '1', FALSE); ?>
                 </td>
             </tr>
             <tr>
@@ -68,7 +68,7 @@
                 </td>
                 <td>
                     <?php echo $investigation_new_mutation_flag; ?>: 
-                    <?php echo form_checkbox('investigation_new_mutation_flag', 'no', FALSE); ?>
+                    <?php echo form_checkbox('investigation_new_mutation_flag', '1', FALSE); ?>
                 </td>
             </tr>
             <tr>
@@ -152,7 +152,7 @@
             <tr>
                 <td>
                     <?php echo $investigation_conformation_attachment; ?>: 
-                    <?php echo form_checkbox('investigation_conformation_attachment', 'no', FALSE); ?>
+                    <?php echo form_checkbox('investigation_conformation_attachment', '1', FALSE); ?>
                 </td>
                 <td>
                     <input type="file" name="userfile" size="100000" />

@@ -30,7 +30,7 @@
             <tr>
                 <td>
                     Send email reminder to officer?
-                    <?php echo form_checkbox('is_send_email_reminder', 'no', FALSE); ?>
+                    <?php echo form_checkbox('is_send_email_reminder', '1', FALSE); ?>
                 </td>
             </tr>
             <tr>

@@ -50,7 +50,7 @@
             <tr>
                 <td>
                     <?php echo $father_still_alive_flag; ?>: 
-                    <?php echo form_checkbox('father_still_alive_flag', 'yes', TRUE); ?>
+                    <?php echo form_checkbox('father_still_alive_flag', '1', TRUE); ?>
                 </td>
                 <td>
                     <?php echo $father_DOD; ?>: 
@@ -58,7 +58,7 @@
                 </td>
                 <td>
                     <?php echo $father_is_cancer_diagnosed; ?>: 
-                    <?php echo form_checkbox('father_is_cancer_diagnosed', 'no', FALSE); ?>
+                    <?php echo form_checkbox('father_is_cancer_diagnosed', '1', FALSE); ?>
                 </td>
                 <td>
                     <?php echo $father_date_of_diagnosis; ?>: 
@@ -156,7 +156,7 @@
                 </td>
                 <td>
                     <?php echo $mother_still_alive_flag; ?>: 
-                    <?php echo form_checkbox('mother_still_alive_flag', 'yes', TRUE); ?>
+                    <?php echo form_checkbox('mother_still_alive_flag', '1', TRUE); ?>
                 </td>
             </tr>
             <tr>
@@ -166,7 +166,7 @@
                 </td>
                 <td>
                     <?php echo $mother_is_cancer_diagnosed; ?>: 
-                    <?php echo form_checkbox('mother_is_cancer_diagnosed', 'no', FALSE); ?>
+                    <?php echo form_checkbox('mother_is_cancer_diagnosed', '1', FALSE); ?>
                 </td>
                 <td>
                     <?php echo $mother_date_of_diagnosis; ?>: 

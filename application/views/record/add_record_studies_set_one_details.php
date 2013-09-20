@@ -24,7 +24,7 @@
                 </td>
                 <td>
                     <?php echo $is_double_consent_flag; ?>: 
-                    <?php echo form_checkbox('is_double_consent_flag', 'no', FALSE); ?>
+                    <?php echo form_checkbox('is_double_consent_flag', '1', FALSE); ?>
                 </td>
             </tr>
             <tr>
@@ -143,7 +143,7 @@
                 </td>
                 <td>
                     <?php echo $abnormality_mammo_flag; ?>: 
-                    <?php echo form_checkbox('abnormality_mammo_flag', 'no', FALSE); ?>
+                    <?php echo form_checkbox('abnormality_mammo_flag', '1', FALSE); ?>
                 </td>
             </tr>
             <tr>
@@ -278,7 +278,7 @@
 
 
                     <?php echo $had_ultrasound_flag; ?>: 
-                    <?php echo form_checkbox('had_ultrasound_flag', 'no', FALSE); ?>
+                    <?php echo form_checkbox('had_ultrasound_flag', '1', FALSE); ?>
                 </td>
                 <td>
                     <?php echo $total_no_of_ultrasound; ?>: 
@@ -286,7 +286,7 @@
                 </td>
                 <td>
                     <?php echo $abnormality_ultrasound_flag; ?>: 
-                    <?php echo form_checkbox('abnormality_ultrasound_flag', 'no', FALSE); ?>
+                    <?php echo form_checkbox('abnormality_ultrasound_flag', '1', FALSE); ?>
                 </td>
             </tr>
         </table>
@@ -323,7 +323,7 @@
                 <td>
 
                     <?php echo $had_MRI_flag; ?>: 
-                    <?php echo form_checkbox('had_mri_flag', 'no', FALSE); ?>
+                    <?php echo form_checkbox('had_mri_flag', '1', FALSE); ?>
                 </td>
                 <td>
                     <?php echo $total_no_of_MRI; ?>: 
@@ -366,7 +366,7 @@
 
 
                     <?php echo $had_surgery_for_benign_lump_or_cyst_flag; ?>: 
-                    <?php echo form_checkbox('had_surgery_for_benign_lump_or_cyst_flag', 'no', FALSE); ?>
+                    <?php echo form_checkbox('had_surgery_for_benign_lump_or_cyst_flag', '1', FALSE); ?>
                 </td>
             </tr>
             <tr>
@@ -402,7 +402,7 @@
                 <td>
 
                     <?php echo $other_screening_flag; ?>: 
-                    <?php echo form_checkbox('other_screening_flag', 'no', FALSE); ?>
+                    <?php echo form_checkbox('other_screening_flag', '1', FALSE); ?>
                 </td>
             </tr>
         </table>
@@ -456,7 +456,7 @@
                 <td>
 
                     <?php echo $breast_cancer_diagnosed_flag; ?>: 
-                    <?php echo form_checkbox('breast_cancer_diagnosed_flag', 'no', FALSE); ?>
+                    <?php echo form_checkbox('breast_cancer_diagnosed_flag', '1', FALSE); ?>
                 </td>
                 <td>
                     <?php echo $patient_cancer_name; ?>: 
@@ -464,7 +464,7 @@
                 </td>
                 <td>
                     <?php echo $primary_diagnosis; ?>: 
-                    <?php echo form_checkbox('primary_diagnosis', 'no', FALSE); ?>
+                    <?php echo form_checkbox('primary_diagnosis', '1', FALSE); ?>
                 </td>
             </tr>
         </table>
@@ -555,7 +555,7 @@
             <tr>
                 <td>
                     <?php echo $is_recurrence_flag; ?>: 
-                    <?php echo form_checkbox('is_recurrence_flag', 'no', FALSE); ?>
+                    <?php echo form_checkbox('is_recurrence_flag', '1', FALSE); ?>
                 </td>
                 <td>
                     <?php echo $recurrence_site; ?>: 
@@ -616,7 +616,7 @@
                 </td>
                 <td>
                     <?php echo $is_on_medication_flag; ?>: 
-                    <?php echo form_checkbox('is_on_medication_flag', 'no', FALSE); ?>
+                    <?php echo form_checkbox('is_on_medication_flag', '1', FALSE); ?>
                 </td>
                 <td>
                     <?php echo $medication_details; ?>: 

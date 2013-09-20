@@ -31,7 +31,6 @@
                 <td>
                     <?php echo $nationality; ?>: 
                     <?php echo form_dropdown('nationality', $nationalities); ?>
-                    <?php //echo form_checkbox('available','yes',TRUE); ?>
                 </td>
                 <td>
                     <?php echo $IC_no; ?>: 
@@ -42,7 +41,6 @@
                 <td>
                     <?php echo $gender; ?>: 
                     <?php echo form_dropdown('gender', $genderTypes); ?>
-                    <?php //echo form_checkbox('available','yes',TRUE); ?>
                 </td>
                 <td>
                     <?php echo $ethinicity; ?>: 
@@ -70,7 +68,7 @@
             <tr>
                 <td>
                     <?php echo $still_alive_flag; ?>: 
-                    <?php echo form_checkbox('still_alive_flag', 'yes', TRUE); ?>
+                    <?php echo form_checkbox('still_alive_flag', '1', TRUE); ?>
                 </td>
                 <td>
                     <?php echo $DOD; ?>: 
@@ -123,7 +121,7 @@
                 </td>
                 <td>
 					<?php echo $is_blood_card_exist; ?>: 
-                    <?php echo form_checkbox('is_blood_card_exist', 'yes', TRUE); ?>
+                    <?php echo form_checkbox('is_blood_card_exist', '1', TRUE); ?>
                 </td>
                 <td>
 					<?php echo $blood_card_location; ?>: 
@@ -271,11 +269,11 @@
 			<tr>
                 <td>
                     <?php echo $unknown_reason_is_adopted; ?>: 
-                    <?php echo form_checkbox('unknown_reason_is_adopted','no',FALSE); ?>
+                    <?php echo form_checkbox('unknown_reason_is_adopted','1',FALSE); ?>
                 </td>
                 <td>
                     <?php echo $unknown_reason_in_other_countries; ?>: 
-                   <?php echo form_checkbox('unknown_reason_in_other_countries','no',FALSE); ?>
+                   <?php echo form_checkbox('unknown_reason_in_other_countries','1',FALSE); ?>
                 </td>
                 <td>&nbsp;</td>
 				<td>&nbsp;</td>

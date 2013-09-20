@@ -67,11 +67,11 @@
             <tr>
                 <td>
                     <?php echo $cigarettes_smoked_flag; ?>: 
-                    <?php echo form_checkbox('cigarettes_smoked_flag', 'no', FALSE); ?>
+                    <?php echo form_checkbox('cigarettes_smoked_flag', '1', FALSE); ?>
                 </td>
                 <td>
                     <?php echo $cigarettes_still_smoked_flag; ?>: 
-                    <?php echo form_checkbox('cigarettes_still_smoked_flag', 'no', FALSE); ?>
+                    <?php echo form_checkbox('cigarettes_still_smoked_flag', '1', FALSE); ?>
                 </td>
                 <td>
                     <?php echo $total_smoked_years; ?>: 
@@ -131,7 +131,7 @@
             <tr>
                 <td>
                     <?php echo $alcohol_drunk_flag; ?>: <br />
-                    <?php echo form_checkbox('alcohol_drunk_flag', 'no', FALSE); ?>
+                    <?php echo form_checkbox('alcohol_drunk_flag', '1', FALSE); ?>
                 </td>
                 <td>
                     <?php echo $alcohol_average; ?>: 
@@ -150,7 +150,7 @@
             <tr>
                 <td>
                     <?php echo $coffee_drunk_flag; ?>: <br />
-                    <?php echo form_checkbox('coffee_drunk_flag', 'no', FALSE); ?>
+                    <?php echo form_checkbox('coffee_drunk_flag', '1', FALSE); ?>
                 </td>
                 <td>
                     <?php echo $coffee_age; ?>: 
@@ -169,7 +169,7 @@
             <tr>
                 <td>
                     <?php echo $tea_drunk_flag; ?>: <br />
-                    <?php echo form_checkbox('tea_drunk_flag', 'no', FALSE); ?>
+                    <?php echo form_checkbox('tea_drunk_flag', '1', FALSE); ?>
                 </td>
                 <td>
                     <?php echo $tea_age; ?>: 
@@ -200,7 +200,7 @@
             <tr>
                 <td>
                     <?php echo $soya_bean_drunk_flag; ?>: <br />
-                    <?php echo form_checkbox('soya_bean_drunk_flag', 'no', FALSE); ?>
+                    <?php echo form_checkbox('soya_bean_drunk_flag', '1', FALSE); ?>
                 </td>
                 <td>
                     <?php echo $soya_bean_average; ?>: 
@@ -208,7 +208,7 @@
                 </td>
                 <td>
                     <?php echo $soya_products_flag; ?>: 
-                    <?php echo form_checkbox('soya_products_flag', 'no', FALSE); ?>
+                    <?php echo form_checkbox('soya_products_flag', '1', FALSE); ?>
                 </td>
             </tr>
             <tr>
@@ -231,11 +231,11 @@
             <tr>
                 <td>
                     <?php echo $diabetes_flag; ?>: <br />
-                    <?php echo form_checkbox('diabetes_flag', 'no', FALSE); ?>
+                    <?php echo form_checkbox('diabetes_flag', '1', FALSE); ?>
                 </td>
                 <td>
                     <?php echo $medicine_for_diabetes_flag; ?>: 
-                    <?php echo form_checkbox('medicine_for_diabetes_flag', 'no', FALSE); ?>
+                    <?php echo form_checkbox('medicine_for_diabetes_flag', '1', FALSE); ?>
                 </td>
                 <td>
                     <?php echo $diabates_medicine_name; ?>: 
@@ -263,7 +263,7 @@
                 </td>
                 <td>
                     <?php echo $still_period_flag; ?>: 
-                    <?php echo form_checkbox('still_period_flag', 'no', FALSE); ?>
+                    <?php echo form_checkbox('still_period_flag', '1', FALSE); ?>
                 </td>
                 <td>
                     <?php echo $period_type; ?>: 
@@ -307,7 +307,7 @@
             <tr>
                 <td>
                     <?php echo $pregnant_flag; ?>: <br />
-                    <?php echo form_checkbox('pregnant_flag', 'no', FALSE); ?>
+                    <?php echo form_checkbox('pregnant_flag', '1', FALSE); ?>
                 </td>
                 <td>
                     <?php echo $pregnancy_type; ?>: 
@@ -353,7 +353,7 @@
             <tr>
                 <td>
                     <?php echo $infertility_testing_flag; ?>: <br />
-                    <?php echo form_checkbox('infertility_testing_flag', 'no', FALSE); ?>
+                    <?php echo form_checkbox('infertility_testing_flag', '1', FALSE); ?>
                 </td>
                 <td>
                     <?php echo $infertility_treatment_details; ?>: 
@@ -363,7 +363,7 @@
             <tr>
                 <td>
                     <?php echo $contraceptive_pills_flag; ?>: 
-                    <?php echo form_checkbox('contraceptive_pills_flag', 'no', FALSE); ?>
+                    <?php echo form_checkbox('contraceptive_pills_flag', '1', FALSE); ?>
                 </td>
                 <td>
                     <?php echo $contraceptive_pills_details; ?>: <br />
@@ -371,7 +371,7 @@
                 </td>
                 <td>
                     <?php echo $currently_taking_contraceptive_pills_flag; ?>: <br />
-                    <?php echo form_checkbox('currently_taking_contraceptive_pills_flag', 'no', FALSE); ?>
+                    <?php echo form_checkbox('currently_taking_contraceptive_pills_flag', '1', FALSE); ?>
                 </td>
             </tr>
             <tr>
@@ -388,7 +388,7 @@
             <tr>
                 <td>
                     <?php echo $HRT_flag; ?>: <br />
-                    <?php echo form_checkbox('HRT_flag', 'no', FALSE); ?>
+                    <?php echo form_checkbox('HRT_flag', '1', FALSE); ?>
                 </td>
                 <td>
                     <?php echo $HRT_details; ?>: <br />
@@ -396,7 +396,7 @@
                 </td>
                 <td>
                     <?php echo $currently_using_HRT_flag; ?>: <br />
-                    <?php echo form_checkbox('currently_using_hrt_flag', 'no', FALSE); ?>
+                    <?php echo form_checkbox('currently_using_hrt_flag', '1', FALSE); ?>
                 </td>
             </tr>
             <tr>
@@ -413,7 +413,7 @@
             <tr>
                 <td>
                     <?php echo $had_gnc_surgery_flag; ?>: <br />
-                    <?php echo form_checkbox('had_gnc_surgery_flag', 'no', FALSE); ?>
+                    <?php echo form_checkbox('had_gnc_surgery_flag', '1', FALSE); ?>
                 </td>
                 <td>
                     <?php echo $gnc_surgery_year; ?>: <br />
