@@ -132,7 +132,7 @@ class Record extends CI_Controller {
                 'patient_ic_no' => $this->input->post('IC_no'),
                 'source' => $this->input->post('recurrence_site'),
                 'alive_status' => $alive_status_flag,
-                'creation_date' => $this->input->post('status_gathered_date')
+                'status_gathering_date' => $this->input->post('status_gathered_date')
             );
 
             $patient_survival_status_id = $this->record_model->insert_patient_survival_status($data_patient_survival_status);
