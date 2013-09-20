@@ -1598,6 +1598,23 @@ class Record_model extends CI_Model {
 
         return $result['patient_studies_id'];
     }
+    
+    function getPatientInfo($record_data) {
+        $query = $this->db->select('fullname, surname, ic_no')
+                ->like('fullname', $record_data['fullname'])
+                ->like('ic_no', $record_data['ic_no'])
+                ->limit(5)
+                ->get($this->tables['patient']);
+                
+        $result = null;
+        if ($query->num_rows() > 0) {
+            $result = $query->result_array();
+                        //return $query->row_array();
+            //print_r($result);
+            
+        }
+        return $result;
+    }
 
     /* public function test($fileName)
       {
