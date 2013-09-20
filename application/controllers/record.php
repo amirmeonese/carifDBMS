@@ -97,9 +97,9 @@ class Record extends CI_Controller {
             echo '<br/>';
             $data_patient_contact_person = array(
                 'patient_ic_no' => $this->input->post('IC_no'),
-                'name' => $this->input->post('contact_person_name'),
-                'relationship' => $this->input->post('contact_person_relationship'),
-                'telephone' => $this->input->post('contact_person_phone_number')
+                'contact_name' => $this->input->post('contact_person_name'),
+                'contact_relationship' => $this->input->post('contact_person_relationship'),
+                'contact_telephone' => $this->input->post('contact_person_phone_number')
             );
             // print_r($data_patient_contact_person);
             //echo '<br/>';
