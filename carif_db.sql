@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 20, 2013 at 04:39 AM
+-- Generation Time: Sep 20, 2013 at 05:12 AM
 -- Server version: 5.6.11
 -- PHP Version: 5.5.0
 
@@ -219,6 +219,7 @@ CREATE TABLE IF NOT EXISTS `patient` (
   `is_record_lock` tinyint(1) NOT NULL DEFAULT '0',
   `created_on` datetime NOT NULL,
   `modified_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified_by` varchar(50) NOT NULL,
   PRIMARY KEY (`ic_no`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=870728385143 ;
 
@@ -226,14 +227,14 @@ CREATE TABLE IF NOT EXISTS `patient` (
 -- Dumping data for table `patient`
 --
 
-INSERT INTO `patient` (`fullname`, `surname`, `maiden_name`, `nationality`, `ic_no`, `family_no`, `padigree_labelling`, `gender`, `ethnicity`, `blood_group`, `comment`, `hospital_no`, `private_patient_no`, `cogs_study_id`, `2nd_mammo_test_flag`, `d_o_b`, `d_o_d`, `place_of_birth`, `marital_status`, `is_dead`, `reason_of_death`, `record_status`, `blood_card`, `blood_card_location`, `address`, `home_phone`, `cell_phone`, `work_phone`, `other_phone`, `fax`, `email`, `height`, `weight`, `bmi`, `highest_education_level`, `income_level`, `is_record_lock`, `created_on`, `modified_on`) VALUES
-('aa', 'bb', 'cc', 'American', 12345, '1', 'gg', 'Male', 'dd', 'hh', '', '1', 1, 'CIMBA', 0, '2000-01-01', '2000-01-01', 'ee', 'Single', 0, 'ff', '', 0, '1', 'jj', '1111', '2222', '3333', '4444', 'kk', 'll', 5, 5, 0, '0', '<5,000', 0, '0000-00-00 00:00:00', '2013-09-20 01:42:18'),
-('aaaaaaaaaaa', 'bbbbb', 'cccccccccc', 'American', 123456, '1', 'ffffff', 'Male', 'ddddddd', 'o+', '', '4565', 45646, '', 0, '0000-00-00', '0000-00-00', 'California', 'Single', 0, 'EEEEEE EEEE\r\nEEEEEE EEEE', '', 0, '45646', 'hhhhh\r\n\r\n\r\nhhhhhh', '0177', '0178', '0179', '', '', '', 10, 10, 11, 'PHD', 'high', 0, '0000-00-00 00:00:00', '2013-09-20 01:42:18'),
-('aaaaaaaaaa', 'bbbbbbbbbb', 'cccccccccc', 'American', 123457, '2', '', 'Male', '', '', '', '', 0, '', 0, '0000-00-00', '0000-00-00', '', 'Single', 0, '', '', 0, '', '', '', '', '', '', '', '', 0, 0, 0, '', '', 0, '0000-00-00 00:00:00', '2013-09-20 01:42:18'),
-('John smith', 'smith', '', '', 123458, '', '', '', '', '', '', '', 0, '', 0, '0000-00-00', '0000-00-00', '', '', 0, '', '', 0, '', '', '', '', '', '', '', '', 0, 0, 0, '', '', 0, '0000-00-00 00:00:00', '2013-09-20 01:42:18'),
-('Adam John', 'John', '', '', 123459, '', '', '', '', '', '', '', 0, '', 0, '0000-00-00', '0000-00-00', '', '', 0, '', '', 0, '', '', '', '', '', '', '', '', 0, 0, 0, '', '', 0, '0000-00-00 00:00:00', '2013-09-20 01:42:18'),
-('David', 'Soon', 'Minni', 'Malaysian', 870728385141, 'AABB', 'Label 1', 'Male', 'Caucasian', 'AB', '', '123456', 0, 'CIMBA', 0, '1987-07-28', '0000-00-00', 'Selangor', 'Single', 0, '', '', 0, 'PNO1', 'Jalan Dua Taman Tiga', '0283746251', '0128273187', '0461526817', '', '', 'EMAIL@MAIL.COM', 180, 60, 0, '0', '<5,000', 0, '0000-00-00 00:00:00', '2013-09-20 01:42:18'),
-('amir', '', '', 'American', 870728385142, '', '', 'Male', '', '', '', '', 0, 'CIMBA', 0, '0000-00-00', '0000-00-00', '', 'Single', 0, '', '', 0, '', '', '', '', '', '', '', '', 0, 0, 0, '0', '<5,000', 0, '0000-00-00 00:00:00', '2013-09-20 01:42:18');
+INSERT INTO `patient` (`fullname`, `surname`, `maiden_name`, `nationality`, `ic_no`, `family_no`, `padigree_labelling`, `gender`, `ethnicity`, `blood_group`, `comment`, `hospital_no`, `private_patient_no`, `cogs_study_id`, `2nd_mammo_test_flag`, `d_o_b`, `d_o_d`, `place_of_birth`, `marital_status`, `is_dead`, `reason_of_death`, `record_status`, `blood_card`, `blood_card_location`, `address`, `home_phone`, `cell_phone`, `work_phone`, `other_phone`, `fax`, `email`, `height`, `weight`, `bmi`, `highest_education_level`, `income_level`, `is_record_lock`, `created_on`, `modified_on`, `modified_by`) VALUES
+('aa', 'bb', 'cc', 'American', 12345, '1', 'gg', 'Male', 'dd', 'hh', '', '1', 1, 'CIMBA', 0, '2000-01-01', '2000-01-01', 'ee', 'Single', 0, 'ff', '', 0, '1', 'jj', '1111', '2222', '3333', '4444', 'kk', 'll', 5, 5, 0, '0', '<5,000', 0, '0000-00-00 00:00:00', '2013-09-20 01:42:18', ''),
+('aaaaaaaaaaa', 'bbbbb', 'cccccccccc', 'American', 123456, '1', 'ffffff', 'Male', 'ddddddd', 'o+', '', '4565', 45646, '', 0, '0000-00-00', '0000-00-00', 'California', 'Single', 0, 'EEEEEE EEEE\r\nEEEEEE EEEE', '', 0, '45646', 'hhhhh\r\n\r\n\r\nhhhhhh', '0177', '0178', '0179', '', '', '', 10, 10, 11, 'PHD', 'high', 0, '0000-00-00 00:00:00', '2013-09-20 01:42:18', ''),
+('aaaaaaaaaa', 'bbbbbbbbbb', 'cccccccccc', 'American', 123457, '2', '', 'Male', '', '', '', '', 0, '', 0, '0000-00-00', '0000-00-00', '', 'Single', 0, '', '', 0, '', '', '', '', '', '', '', '', 0, 0, 0, '', '', 0, '0000-00-00 00:00:00', '2013-09-20 01:42:18', ''),
+('John smith', 'smith', '', '', 123458, '', '', '', '', '', '', '', 0, '', 0, '0000-00-00', '0000-00-00', '', '', 0, '', '', 0, '', '', '', '', '', '', '', '', 0, 0, 0, '', '', 0, '0000-00-00 00:00:00', '2013-09-20 01:42:18', ''),
+('Adam John', 'John', '', '', 123459, '', '', '', '', '', '', '', 0, '', 0, '0000-00-00', '0000-00-00', '', '', 0, '', '', 0, '', '', '', '', '', '', '', '', 0, 0, 0, '', '', 0, '0000-00-00 00:00:00', '2013-09-20 01:42:18', ''),
+('David', 'Soon', 'Minni', 'Malaysian', 870728385141, 'AABB', 'Label 1', 'Male', 'Caucasian', 'AB', '', '123456', 0, 'CIMBA', 0, '1987-07-28', '0000-00-00', 'Selangor', 'Single', 0, '', '', 0, 'PNO1', 'Jalan Dua Taman Tiga', '0283746251', '0128273187', '0461526817', '', '', 'EMAIL@MAIL.COM', 180, 60, 0, '0', '<5,000', 0, '0000-00-00 00:00:00', '2013-09-20 01:42:18', ''),
+('amir', '', '', 'American', 870728385142, '', '', 'Male', '', '', '', '', 0, 'CIMBA', 0, '0000-00-00', '0000-00-00', '', 'Single', 0, '', '', 0, '', '', '', '', '', '', '', '', 0, 0, 0, '0', '<5,000', 0, '0000-00-00 00:00:00', '2013-09-20 01:42:18', '');
 
 -- --------------------------------------------------------
 
@@ -252,6 +253,7 @@ CREATE TABLE IF NOT EXISTS `patient_boadicea` (
   `boadicea_mach_total` int(11) NOT NULL,
   `created_on` date NOT NULL,
   `modified_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified_by` varchar(50) NOT NULL,
   PRIMARY KEY (`patient_boadicea_id`),
   KEY `fk_patient_boadicea_patient_ic_no` (`patient_ic_no`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
@@ -273,6 +275,7 @@ CREATE TABLE IF NOT EXISTS `patient_breast_abnormality` (
   `percentage_of_mammo_density` longtext NOT NULL,
   `created_on` date NOT NULL,
   `modified_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified_by` varchar(50) NOT NULL,
   PRIMARY KEY (`patient_breast_abnormality_side_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=19 ;
 
@@ -280,12 +283,12 @@ CREATE TABLE IF NOT EXISTS `patient_breast_abnormality` (
 -- Dumping data for table `patient_breast_abnormality`
 --
 
-INSERT INTO `patient_breast_abnormality` (`patient_breast_abnormality_side_id`, `patient_breast_screening_id`, `description`, `left_breast`, `right_breast`, `upper`, `below`, `percentage_of_mammo_density`, `created_on`, `modified_on`) VALUES
-(14, 8, '0', 0, 0, 0, 0, '', '0000-00-00', '2013-09-20 01:43:53'),
-(15, 10, '0', 0, 0, 0, 0, '', '0000-00-00', '2013-09-20 01:43:53'),
-(16, 11, 'p', 0, 0, 0, 0, '', '0000-00-00', '2013-09-20 01:43:53'),
-(17, 12, 'kkkk', 0, 0, 0, 0, '8.9', '0000-00-00', '2013-09-20 01:43:53'),
-(18, 13, '', 0, 0, 0, 0, '', '0000-00-00', '2013-09-20 01:43:53');
+INSERT INTO `patient_breast_abnormality` (`patient_breast_abnormality_side_id`, `patient_breast_screening_id`, `description`, `left_breast`, `right_breast`, `upper`, `below`, `percentage_of_mammo_density`, `created_on`, `modified_on`, `modified_by`) VALUES
+(14, 8, '0', 0, 0, 0, 0, '', '0000-00-00', '2013-09-20 01:43:53', ''),
+(15, 10, '0', 0, 0, 0, 0, '', '0000-00-00', '2013-09-20 01:43:53', ''),
+(16, 11, 'p', 0, 0, 0, 0, '', '0000-00-00', '2013-09-20 01:43:53', ''),
+(17, 12, 'kkkk', 0, 0, 0, 0, '8.9', '0000-00-00', '2013-09-20 01:43:53', ''),
+(18, 13, '', 0, 0, 0, 0, '', '0000-00-00', '2013-09-20 01:43:53', '');
 
 -- --------------------------------------------------------
 
@@ -320,6 +323,7 @@ CREATE TABLE IF NOT EXISTS `patient_breast_screening` (
   `abnormality_MRI_flag` tinyint(1) NOT NULL,
   `created_on` date NOT NULL,
   `modified_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified_by` varchar(50) NOT NULL,
   PRIMARY KEY (`patient_breast_screening_id`),
   KEY `fk_patient_breast_screening_patient_studies_id` (`patient_studies_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
@@ -328,12 +332,12 @@ CREATE TABLE IF NOT EXISTS `patient_breast_screening` (
 -- Dumping data for table `patient_breast_screening`
 --
 
-INSERT INTO `patient_breast_screening` (`patient_breast_screening_id`, `patient_ic_no`, `patient_studies_id`, `year_of_first_mammogram`, `age_of_first_mammogram`, `date_of_recent_mammogram`, `screening_centre`, `total_no_of_mammogram`, `screening_interval`, `abnormality_mammo_flag`, `mammo_abnormality_details`, `name_of_radiologist`, `action_suggested_on_memo_report`, `had_ultrasound_flag`, `total_no_of_ultrasound`, `abnormality_ultrasound_flag`, `had_mri_flag`, `total_no_of_mri`, `had_surgery_for_benign_lump_or_cyst_flag`, `mammo_benign_lump_cyst_details`, `other_screening_flag`, `BIRADS_clinical_classification`, `BIRADS_density_classification`, `abnormality_MRI_flag`, `created_on`, `modified_on`) VALUES
-(8, 123456, 11, '1950', 1950, '2013-09-07', 'aaaaaaaaaaa', 5, 'ddddddddddddd', 0, '', '', '0', 0, 5, 0, 0, 5, 0, '', 0, '', '', 0, '0000-00-00', '2013-09-20 01:44:42'),
-(10, 123457, 13, '1950', 5, '2013-09-07', 'ttttttttttttttttttt', 5, 'qqqqqqqqqqqqq', 0, '', '', '0', 0, 5, 0, 0, 5, 0, '', 0, '', '', 0, '0000-00-00', '2013-09-20 01:44:42'),
-(11, 123456, 14, '1950', 5, '2000-01-01', 'h', 5, 'l', 0, 'p', 'i', '0', 0, 5, 0, 0, 5, 0, 's', 0, 'n', 'o', 0, '0000-00-00', '2013-09-20 01:44:42'),
-(12, 12345, 15, '1680', 5, '2000-01-01', 'ffff', 5, '5', 0, 'kkkk', 'gggg', '0', 0, 5, 0, 0, 5, 0, 'oooo', 0, 'iiii', 'jjjj', 0, '0000-00-00', '2013-09-20 01:44:42'),
-(13, 870728385141, 17, '', 0, '0000-00-00', '', 0, '', 1, '', '', '0', 0, 0, 0, 0, 0, 0, '', 0, '', '', 0, '0000-00-00', '2013-09-20 01:44:42');
+INSERT INTO `patient_breast_screening` (`patient_breast_screening_id`, `patient_ic_no`, `patient_studies_id`, `year_of_first_mammogram`, `age_of_first_mammogram`, `date_of_recent_mammogram`, `screening_centre`, `total_no_of_mammogram`, `screening_interval`, `abnormality_mammo_flag`, `mammo_abnormality_details`, `name_of_radiologist`, `action_suggested_on_memo_report`, `had_ultrasound_flag`, `total_no_of_ultrasound`, `abnormality_ultrasound_flag`, `had_mri_flag`, `total_no_of_mri`, `had_surgery_for_benign_lump_or_cyst_flag`, `mammo_benign_lump_cyst_details`, `other_screening_flag`, `BIRADS_clinical_classification`, `BIRADS_density_classification`, `abnormality_MRI_flag`, `created_on`, `modified_on`, `modified_by`) VALUES
+(8, 123456, 11, '1950', 1950, '2013-09-07', 'aaaaaaaaaaa', 5, 'ddddddddddddd', 0, '', '', '0', 0, 5, 0, 0, 5, 0, '', 0, '', '', 0, '0000-00-00', '2013-09-20 01:44:42', ''),
+(10, 123457, 13, '1950', 5, '2013-09-07', 'ttttttttttttttttttt', 5, 'qqqqqqqqqqqqq', 0, '', '', '0', 0, 5, 0, 0, 5, 0, '', 0, '', '', 0, '0000-00-00', '2013-09-20 01:44:42', ''),
+(11, 123456, 14, '1950', 5, '2000-01-01', 'h', 5, 'l', 0, 'p', 'i', '0', 0, 5, 0, 0, 5, 0, 's', 0, 'n', 'o', 0, '0000-00-00', '2013-09-20 01:44:42', ''),
+(12, 12345, 15, '1680', 5, '2000-01-01', 'ffff', 5, '5', 0, 'kkkk', 'gggg', '0', 0, 5, 0, 0, 5, 0, 'oooo', 0, 'iiii', 'jjjj', 0, '0000-00-00', '2013-09-20 01:44:42', ''),
+(13, 870728385141, 17, '', 0, '0000-00-00', '', 0, '', 1, '', '', '0', 0, 0, 0, 0, 0, 0, '', 0, '', '', 0, '0000-00-00', '2013-09-20 01:44:42', '');
 
 -- --------------------------------------------------------
 
@@ -357,6 +361,7 @@ CREATE TABLE IF NOT EXISTS `patient_cancer` (
   `is_primary` tinyint(1) NOT NULL,
   `created_on` date NOT NULL,
   `modified_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified_by` varchar(50) NOT NULL,
   PRIMARY KEY (`patient_cancer_id`),
   KEY `fk_patient_cancer_patient_studies_id` (`patient_studies_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
@@ -365,12 +370,12 @@ CREATE TABLE IF NOT EXISTS `patient_cancer` (
 -- Dumping data for table `patient_cancer`
 --
 
-INSERT INTO `patient_cancer` (`patient_cancer_id`, `patient_studies_id`, `breast_cancer_diagnosed_flag`, `cancer_id`, `age_of_diagnosis`, `date_of_diagnosis`, `diagnosis_center`, `doctor_name`, `detected_by`, `recurrence_flag`, `recurrence_site`, `recurrence_date`, `is_primary`, `created_on`, `modified_on`) VALUES
-(6, 11, 0, 1, 45, '2013-09-07', 'xxxxxxxxxx', '', 'vvvvvvvvvvvvv', 0, 'kkkkkkkkkkkk', '2013-09-07', 0, '0000-00-00', '2013-09-20 01:45:13'),
-(7, 13, 0, 1, 5, '2013-09-07', 'iiiiiiiiiiiiiiiiiii', 'hhhhhhhhh', 'gggggggggggg', 0, 'eeeeeeeeeeeeeeee', '2013-09-07', 0, '0000-00-00', '2013-09-20 01:45:13'),
-(8, 14, 0, 1, 5, '2000-01-01', 'x', 'y', 'z', 0, 'bb', '2000-01-01', 0, '0000-00-00', '2013-09-20 01:45:13'),
-(9, 15, 0, 1, 5, '2000-01-01', 'ssss', 'tttt', 'uuuu', 0, 'wwww', '2000-01-01', 0, '0000-00-00', '2013-09-20 01:45:13'),
-(10, 17, 0, 1, 0, '0000-00-00', '', '', '', 0, '', '0000-00-00', 0, '0000-00-00', '2013-09-20 01:45:13');
+INSERT INTO `patient_cancer` (`patient_cancer_id`, `patient_studies_id`, `breast_cancer_diagnosed_flag`, `cancer_id`, `age_of_diagnosis`, `date_of_diagnosis`, `diagnosis_center`, `doctor_name`, `detected_by`, `recurrence_flag`, `recurrence_site`, `recurrence_date`, `is_primary`, `created_on`, `modified_on`, `modified_by`) VALUES
+(6, 11, 0, 1, 45, '2013-09-07', 'xxxxxxxxxx', '', 'vvvvvvvvvvvvv', 0, 'kkkkkkkkkkkk', '2013-09-07', 0, '0000-00-00', '2013-09-20 01:45:13', ''),
+(7, 13, 0, 1, 5, '2013-09-07', 'iiiiiiiiiiiiiiiiiii', 'hhhhhhhhh', 'gggggggggggg', 0, 'eeeeeeeeeeeeeeee', '2013-09-07', 0, '0000-00-00', '2013-09-20 01:45:13', ''),
+(8, 14, 0, 1, 5, '2000-01-01', 'x', 'y', 'z', 0, 'bb', '2000-01-01', 0, '0000-00-00', '2013-09-20 01:45:13', ''),
+(9, 15, 0, 1, 5, '2000-01-01', 'ssss', 'tttt', 'uuuu', 0, 'wwww', '2000-01-01', 0, '0000-00-00', '2013-09-20 01:45:13', ''),
+(10, 17, 0, 1, 0, '0000-00-00', '', '', '', 0, '', '0000-00-00', 0, '0000-00-00', '2013-09-20 01:45:13', '');
 
 -- --------------------------------------------------------
 
@@ -384,6 +389,7 @@ CREATE TABLE IF NOT EXISTS `patient_cancer_recurrent` (
   `patient_cancer_id` int(10) NOT NULL,
   `created_on` date NOT NULL,
   `modified_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified_by` varchar(50) NOT NULL,
   PRIMARY KEY (`patient_cancer_recurrent_id`),
   KEY `fk_patient_cancer_recurrent_patient_cancer_id` (`patient_cancer_id`),
   KEY `fk_patient_cancer_recurrent_patient_treatment_id` (`treatment_id`)
@@ -393,12 +399,12 @@ CREATE TABLE IF NOT EXISTS `patient_cancer_recurrent` (
 -- Dumping data for table `patient_cancer_recurrent`
 --
 
-INSERT INTO `patient_cancer_recurrent` (`patient_cancer_recurrent_id`, `treatment_id`, `patient_cancer_id`, `created_on`, `modified_on`) VALUES
-(5, 1, 6, '0000-00-00', '2013-09-20 01:45:47'),
-(6, 1, 7, '0000-00-00', '2013-09-20 01:45:47'),
-(7, 1, 8, '0000-00-00', '2013-09-20 01:45:47'),
-(8, 1, 9, '0000-00-00', '2013-09-20 01:45:47'),
-(9, 1, 10, '0000-00-00', '2013-09-20 01:45:47');
+INSERT INTO `patient_cancer_recurrent` (`patient_cancer_recurrent_id`, `treatment_id`, `patient_cancer_id`, `created_on`, `modified_on`, `modified_by`) VALUES
+(5, 1, 6, '0000-00-00', '2013-09-20 01:45:47', ''),
+(6, 1, 7, '0000-00-00', '2013-09-20 01:45:47', ''),
+(7, 1, 8, '0000-00-00', '2013-09-20 01:45:47', ''),
+(8, 1, 9, '0000-00-00', '2013-09-20 01:45:47', ''),
+(9, 1, 10, '0000-00-00', '2013-09-20 01:45:47', '');
 
 -- --------------------------------------------------------
 
@@ -413,6 +419,7 @@ CREATE TABLE IF NOT EXISTS `patient_cancer_site` (
   `site_details` longtext NOT NULL,
   `created_on` date NOT NULL,
   `modified_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified_by` varchar(50) NOT NULL,
   PRIMARY KEY (`patient_cancer_site_id`),
   KEY `fk_patient_cancer_site_patient_cancer_id` (`patient_cancer_id`),
   KEY `fk_patient_cancer_site_patient_cancer_site_id` (`cancer_site_id`)
@@ -422,12 +429,12 @@ CREATE TABLE IF NOT EXISTS `patient_cancer_site` (
 -- Dumping data for table `patient_cancer_site`
 --
 
-INSERT INTO `patient_cancer_site` (`patient_cancer_site_id`, `patient_cancer_id`, `cancer_site_id`, `site_details`, `created_on`, `modified_on`) VALUES
-(5, 6, 1, 'iiiiiiiiiiiiiiiiiiiiiiiiiiiiiii', '0000-00-00', '2013-09-20 01:46:29'),
-(6, 7, 1, 'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj', '0000-00-00', '2013-09-20 01:46:29'),
-(7, 8, 1, 'w', '0000-00-00', '2013-09-20 01:46:29'),
-(8, 9, 1, 'rrrr', '0000-00-00', '2013-09-20 01:46:29'),
-(9, 10, 1, '', '0000-00-00', '2013-09-20 01:46:29');
+INSERT INTO `patient_cancer_site` (`patient_cancer_site_id`, `patient_cancer_id`, `cancer_site_id`, `site_details`, `created_on`, `modified_on`, `modified_by`) VALUES
+(5, 6, 1, 'iiiiiiiiiiiiiiiiiiiiiiiiiiiiiii', '0000-00-00', '2013-09-20 01:46:29', ''),
+(6, 7, 1, 'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj', '0000-00-00', '2013-09-20 01:46:29', ''),
+(7, 8, 1, 'w', '0000-00-00', '2013-09-20 01:46:29', ''),
+(8, 9, 1, 'rrrr', '0000-00-00', '2013-09-20 01:46:29', ''),
+(9, 10, 1, '', '0000-00-00', '2013-09-20 01:46:29', '');
 
 -- --------------------------------------------------------
 
@@ -444,6 +451,7 @@ CREATE TABLE IF NOT EXISTS `patient_cancer_treatment` (
   `treatment_drug_dose` longtext NOT NULL,
   `created_on` date NOT NULL,
   `modified_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified_by` varchar(50) NOT NULL,
   PRIMARY KEY (`patient_cancer_treatment_id`),
   KEY `fk_patient_cancer_treatment_patient_cancer_id` (`patient_cancer_id`),
   KEY `fk_patient_cancer_treatment_treatment_id` (`treatment_id`)
@@ -453,12 +461,12 @@ CREATE TABLE IF NOT EXISTS `patient_cancer_treatment` (
 -- Dumping data for table `patient_cancer_treatment`
 --
 
-INSERT INTO `patient_cancer_treatment` (`patient_cancer_treatment_id`, `treatment_id`, `patient_cancer_id`, `treatment_start_date`, `treatment_end_date`, `treatment_drug_dose`, `created_on`, `modified_on`) VALUES
-(5, 1, 6, '2013-09-07', '2013-09-07', 'jjjjjjjjj', '0000-00-00', '2013-09-20 01:47:04'),
-(6, 1, 7, '2013-09-07', '2013-09-07', 'ffffffffffffffff', '0000-00-00', '2013-09-20 01:47:04'),
-(7, 1, 8, '2000-01-01', '2000-01-01', 'aa', '0000-00-00', '2013-09-20 01:47:04'),
-(8, 1, 9, '2000-01-01', '2000-01-01', 'vvvv', '0000-00-00', '2013-09-20 01:47:04'),
-(9, 1, 10, '0000-00-00', '0000-00-00', '', '0000-00-00', '2013-09-20 01:47:04');
+INSERT INTO `patient_cancer_treatment` (`patient_cancer_treatment_id`, `treatment_id`, `patient_cancer_id`, `treatment_start_date`, `treatment_end_date`, `treatment_drug_dose`, `created_on`, `modified_on`, `modified_by`) VALUES
+(5, 1, 6, '2013-09-07', '2013-09-07', 'jjjjjjjjj', '0000-00-00', '2013-09-20 01:47:04', ''),
+(6, 1, 7, '2013-09-07', '2013-09-07', 'ffffffffffffffff', '0000-00-00', '2013-09-20 01:47:04', ''),
+(7, 1, 8, '2000-01-01', '2000-01-01', 'aa', '0000-00-00', '2013-09-20 01:47:04', ''),
+(8, 1, 9, '2000-01-01', '2000-01-01', 'vvvv', '0000-00-00', '2013-09-20 01:47:04', ''),
+(9, 1, 10, '0000-00-00', '0000-00-00', '', '0000-00-00', '2013-09-20 01:47:04', '');
 
 -- --------------------------------------------------------
 
@@ -474,6 +482,7 @@ CREATE TABLE IF NOT EXISTS `patient_contact_person` (
   `contact_telephone` varchar(30) NOT NULL,
   `created_on` date NOT NULL,
   `modified_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified_by` varchar(50) NOT NULL,
   PRIMARY KEY (`patient_contact_person_id`),
   KEY `fk_patient_contact_person_patient_ic_no` (`patient_ic_no`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
@@ -482,10 +491,10 @@ CREATE TABLE IF NOT EXISTS `patient_contact_person` (
 -- Dumping data for table `patient_contact_person`
 --
 
-INSERT INTO `patient_contact_person` (`patient_contact_person_id`, `patient_ic_no`, `contact_name`, `contact_relationship`, `contact_telephone`, `created_on`, `modified_on`) VALUES
-(1, 123456, 'iiiiii iiiii', 'Father', '01799', '0000-00-00', '2013-09-20 01:47:28'),
-(3, 123457, 'aaaaaaaaa', 'Mother', '0178', '0000-00-00', '2013-09-20 01:47:28'),
-(4, 12345, 'nn', 'Father', '4444', '0000-00-00', '2013-09-20 01:47:28');
+INSERT INTO `patient_contact_person` (`patient_contact_person_id`, `patient_ic_no`, `contact_name`, `contact_relationship`, `contact_telephone`, `created_on`, `modified_on`, `modified_by`) VALUES
+(1, 123456, 'iiiiii iiiii', 'Father', '01799', '0000-00-00', '2013-09-20 01:47:28', ''),
+(3, 123457, 'aaaaaaaaa', 'Mother', '0178', '0000-00-00', '2013-09-20 01:47:28', ''),
+(4, 12345, 'nn', 'Father', '4444', '0000-00-00', '2013-09-20 01:47:28', '');
 
 -- --------------------------------------------------------
 
@@ -506,6 +515,7 @@ CREATE TABLE IF NOT EXISTS `patient_diagnosis` (
   `diagnosis_details` longtext NOT NULL,
   `created_on` date NOT NULL,
   `modified_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified_by` varchar(50) NOT NULL,
   PRIMARY KEY (`patient_diagnosis_id`),
   KEY `fk_patient_diagnosis_diagnosis_id` (`diagnosis_id`),
   KEY `fk_patient_diagnosis_patient_studies_id` (`patient_studies_id`)
@@ -515,12 +525,12 @@ CREATE TABLE IF NOT EXISTS `patient_diagnosis` (
 -- Dumping data for table `patient_diagnosis`
 --
 
-INSERT INTO `patient_diagnosis` (`patient_diagnosis_id`, `patient_studies_id`, `diagnosis_id`, `diagnosis_age`, `year_of_diagnosis`, `on_medication_flag`, `medication_details`, `diagnosis_center`, `doctor_name`, `diagnosis_details`, `created_on`, `modified_on`) VALUES
-(4, 11, 1, 5, '0000-00-00', 0, 'mmmmmmmmmmmmmmmmm', 'fffffffffff', 'nnnnnnnnnnnnnnn', '', '0000-00-00', '2013-09-20 01:47:59'),
-(5, 13, 1, 5, '0000-00-00', 0, 'cccccccccccccccccccc', 'bbbbbbbbbbbbbb', 'aaaaaaaaaaaaaa', '', '0000-00-00', '2013-09-20 01:47:59'),
-(6, 14, 1, 5, '0000-00-00', 0, 'dd', 'ee', 'ff', 'cc', '0000-00-00', '2013-09-20 01:47:59'),
-(7, 15, 1, 5, '0000-00-00', 0, 'yyyy', 'zzzz', 'aaaaa', 'xxxx', '0000-00-00', '2013-09-20 01:47:59'),
-(8, 17, 1, 0, '0000-00-00', 0, '', '', '', '', '0000-00-00', '2013-09-20 01:47:59');
+INSERT INTO `patient_diagnosis` (`patient_diagnosis_id`, `patient_studies_id`, `diagnosis_id`, `diagnosis_age`, `year_of_diagnosis`, `on_medication_flag`, `medication_details`, `diagnosis_center`, `doctor_name`, `diagnosis_details`, `created_on`, `modified_on`, `modified_by`) VALUES
+(4, 11, 1, 5, '0000-00-00', 0, 'mmmmmmmmmmmmmmmmm', 'fffffffffff', 'nnnnnnnnnnnnnnn', '', '0000-00-00', '2013-09-20 01:47:59', ''),
+(5, 13, 1, 5, '0000-00-00', 0, 'cccccccccccccccccccc', 'bbbbbbbbbbbbbb', 'aaaaaaaaaaaaaa', '', '0000-00-00', '2013-09-20 01:47:59', ''),
+(6, 14, 1, 5, '0000-00-00', 0, 'dd', 'ee', 'ff', 'cc', '0000-00-00', '2013-09-20 01:47:59', ''),
+(7, 15, 1, 5, '0000-00-00', 0, 'yyyy', 'zzzz', 'aaaaa', 'xxxx', '0000-00-00', '2013-09-20 01:47:59', ''),
+(8, 17, 1, 0, '0000-00-00', 0, '', '', '', '', '0000-00-00', '2013-09-20 01:47:59', '');
 
 -- --------------------------------------------------------
 
@@ -534,6 +544,7 @@ CREATE TABLE IF NOT EXISTS `patient_family` (
   `patient_ic_no` bigint(18) NOT NULL,
   `created_on` date NOT NULL,
   `modified_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified_by` varchar(50) NOT NULL,
   PRIMARY KEY (`patient_family_id`),
   KEY `fk_users_groups_groups1` (`patient_ic_no`),
   KEY `fk_users_groups_users1` (`family_no`)
@@ -554,6 +565,7 @@ CREATE TABLE IF NOT EXISTS `patient_gynaecological_surgery_history` (
   `gnc_treatment_name_other_details` longtext NOT NULL,
   `created_on` date NOT NULL,
   `modified_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified_by` varchar(50) NOT NULL,
   PRIMARY KEY (`patient_gne_surgery_history_id`),
   KEY `fk_patient_gynaecological_surgery_history_treatment_id` (`treatment_id`),
   KEY `fk_patient_gynaecological_surgery_history_studies_id` (`patient_studies_id`)
@@ -563,8 +575,8 @@ CREATE TABLE IF NOT EXISTS `patient_gynaecological_surgery_history` (
 -- Dumping data for table `patient_gynaecological_surgery_history`
 --
 
-INSERT INTO `patient_gynaecological_surgery_history` (`patient_gne_surgery_history_id`, `patient_studies_id`, `had_gnc_surgery_flag`, `surgery_year`, `treatment_id`, `gnc_treatment_name_other_details`, `created_on`, `modified_on`) VALUES
-(1, 15, 0, '0000-00-00', 12, 'jjjjj', '0000-00-00', '2013-09-20 01:49:51');
+INSERT INTO `patient_gynaecological_surgery_history` (`patient_gne_surgery_history_id`, `patient_studies_id`, `had_gnc_surgery_flag`, `surgery_year`, `treatment_id`, `gnc_treatment_name_other_details`, `created_on`, `modified_on`, `modified_by`) VALUES
+(1, 15, 0, '0000-00-00', 12, 'jjjjj', '0000-00-00', '2013-09-20 01:49:51', '');
 
 -- --------------------------------------------------------
 
@@ -589,6 +601,7 @@ CREATE TABLE IF NOT EXISTS `patient_infertility` (
   `hrt_end_date` date NOT NULL,
   `created_on` date NOT NULL,
   `modified_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified_by` varchar(50) NOT NULL,
   PRIMARY KEY (`patient_infertility_id`),
   KEY `fk_patient_infertility_patient_studies_id` (`patient_studies_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
@@ -597,9 +610,9 @@ CREATE TABLE IF NOT EXISTS `patient_infertility` (
 -- Dumping data for table `patient_infertility`
 --
 
-INSERT INTO `patient_infertility` (`patient_infertility_id`, `patient_studies_id`, `infertility_testing_flag`, `infertility_treatment_details`, `contraceptive_pills_flag`, `currently_taking_contraceptive_pills_flag`, `contraceptive_pills_details`, `contraceptive_start_date`, `contraceptive_end_date`, `hrt_flag`, `currently_using_hrt_flag`, `hrt_details`, `hrt_start_date`, `hrt_end_date`, `created_on`, `modified_on`) VALUES
-(2, 8, 0, '0', 0, 0, 'ccccccccccccccc', '0000-00-00', '0000-00-00', 0, 0, 'bbbbbbbbbbbb', '0000-00-00', '0000-00-00', '0000-00-00', '2013-09-20 01:50:50'),
-(3, 15, 0, 'hhhh', 0, 0, 'iiii', '2000-01-01', '2000-01-01', 0, 0, 'iiiii', '2000-01-01', '2000-01-01', '0000-00-00', '2013-09-20 01:50:50');
+INSERT INTO `patient_infertility` (`patient_infertility_id`, `patient_studies_id`, `infertility_testing_flag`, `infertility_treatment_details`, `contraceptive_pills_flag`, `currently_taking_contraceptive_pills_flag`, `contraceptive_pills_details`, `contraceptive_start_date`, `contraceptive_end_date`, `hrt_flag`, `currently_using_hrt_flag`, `hrt_details`, `hrt_start_date`, `hrt_end_date`, `created_on`, `modified_on`, `modified_by`) VALUES
+(2, 8, 0, '0', 0, 0, 'ccccccccccccccc', '0000-00-00', '0000-00-00', 0, 0, 'bbbbbbbbbbbb', '0000-00-00', '0000-00-00', '0000-00-00', '2013-09-20 01:50:50', ''),
+(3, 15, 0, 'hhhh', 0, 0, 'iiii', '2000-01-01', '2000-01-01', 0, 0, 'iiiii', '2000-01-01', '2000-01-01', '0000-00-00', '2013-09-20 01:50:50', '');
 
 -- --------------------------------------------------------
 
@@ -619,6 +632,7 @@ CREATE TABLE IF NOT EXISTS `patient_interview_manager` (
   `interview_interval` varchar(250) NOT NULL,
   `is_reminded` tinyint(1) NOT NULL DEFAULT '0',
   `modified_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified_by` varchar(50) NOT NULL,
   PRIMARY KEY (`patient_interview_manager_id`),
   KEY `fk_patient_interview_manager_patient_ic_no` (`patient_ic_no`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
@@ -627,13 +641,13 @@ CREATE TABLE IF NOT EXISTS `patient_interview_manager` (
 -- Dumping data for table `patient_interview_manager`
 --
 
-INSERT INTO `patient_interview_manager` (`patient_interview_manager_id`, `patient_ic_no`, `created_on`, `comments`, `interview_date`, `next_interview_date`, `is_send_email_reminder_to_officers`, `officer_email_addresses`, `interview_interval`, `is_reminded`, `modified_on`) VALUES
-(1, 123456, '0000-00-00', 'aaaaaa', '0000-00-00', '0000-00-00', 0, 'aaa@aaa.com', '', 0, '2013-09-20 02:00:22'),
-(2, 12345, '0000-00-00', 'bbbbbbbbbbbbb', '2000-01-01', '2000-01-01', 0, 'aaaaaaaaa', '', 0, '2013-09-20 02:00:22'),
-(3, 870728385141, '0000-00-00', 'This is a note for David. Test interview manager and make sure notification email is automatically fired to the officers.', '2013-09-01', '2013-09-24', 0, 'farizaamir@apurbatech.com', '', 0, '2013-09-20 02:00:22'),
-(4, 870728385141, '0000-00-00', 'This is the second note.', '2013-09-02', '2013-09-23', 0, 'farizaamir@gmail.com', '', 0, '2013-09-20 02:00:22'),
-(5, 870728385141, '0000-00-00', 'Third note', '2013-09-03', '2013-09-25', 1, 'farizaamir@apurbatech.com', '', 0, '2013-09-20 02:00:22'),
-(6, 870728385141, '0000-00-00', 'This note doesnt need any reminder', '2013-09-04', '2013-09-26', 0, '', '', 0, '2013-09-20 02:00:22');
+INSERT INTO `patient_interview_manager` (`patient_interview_manager_id`, `patient_ic_no`, `created_on`, `comments`, `interview_date`, `next_interview_date`, `is_send_email_reminder_to_officers`, `officer_email_addresses`, `interview_interval`, `is_reminded`, `modified_on`, `modified_by`) VALUES
+(1, 123456, '0000-00-00', 'aaaaaa', '0000-00-00', '0000-00-00', 0, 'aaa@aaa.com', '', 0, '2013-09-20 02:00:22', ''),
+(2, 12345, '0000-00-00', 'bbbbbbbbbbbbb', '2000-01-01', '2000-01-01', 0, 'aaaaaaaaa', '', 0, '2013-09-20 02:00:22', ''),
+(3, 870728385141, '0000-00-00', 'This is a note for David. Test interview manager and make sure notification email is automatically fired to the officers.', '2013-09-01', '2013-09-24', 0, 'farizaamir@apurbatech.com', '', 0, '2013-09-20 02:00:22', ''),
+(4, 870728385141, '0000-00-00', 'This is the second note.', '2013-09-02', '2013-09-23', 0, 'farizaamir@gmail.com', '', 0, '2013-09-20 02:00:22', ''),
+(5, 870728385141, '0000-00-00', 'Third note', '2013-09-03', '2013-09-25', 1, 'farizaamir@apurbatech.com', '', 0, '2013-09-20 02:00:22', ''),
+(6, 870728385141, '0000-00-00', 'This note doesnt need any reminder', '2013-09-04', '2013-09-26', 0, '', '', 0, '2013-09-20 02:00:22', '');
 
 -- --------------------------------------------------------
 
@@ -669,6 +683,7 @@ CREATE TABLE IF NOT EXISTS `patient_investigations` (
   `conformation_file_url` longtext NOT NULL,
   `created_on` date NOT NULL,
   `modified_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified_by` varchar(50) NOT NULL,
   PRIMARY KEY (`patient_investigations_id`),
   KEY `fk_patient_investigations_patient_studies_id` (`patient_studies_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
@@ -677,8 +692,8 @@ CREATE TABLE IF NOT EXISTS `patient_investigations` (
 -- Dumping data for table `patient_investigations`
 --
 
-INSERT INTO `patient_investigations` (`patient_investigations_id`, `date_test_ordered`, `ordered_by`, `testing_result_notification_flag`, `project_name`, `project_batch`, `test_type`, `type_of_sample`, `reasons`, `new_mutation_flag`, `test_result`, `investigation_test_results_other_details`, `carrier_status`, `mutation_nomenclature`, `reported_by`, `mutation_type`, `mutation_pathogenicity`, `sample_id`, `report_due`, `report_date`, `date_modified`, `test_comment`, `patient_studies_id`, `conformation_attachment`, `conformation_file_url`, `created_on`, `modified_on`) VALUES
-(1, '2000-01-01', 'aaaaa', 0, 'GTG', 'bbbb', 'APC gene', 'DNA', 'ccccc', 0, 'AA changes', '0', 'Abnormal', 'BIC', 'eeeee', 'ffffff', 'iiii', 1, '2000-01-01', '2000-01-01', '2000-01-01', 'jjjjj', 15, 0, 'C:/xampp/htdocs/CarifDBMS/images/xpress.PNG', '0000-00-00', '2013-09-20 02:01:44');
+INSERT INTO `patient_investigations` (`patient_investigations_id`, `date_test_ordered`, `ordered_by`, `testing_result_notification_flag`, `project_name`, `project_batch`, `test_type`, `type_of_sample`, `reasons`, `new_mutation_flag`, `test_result`, `investigation_test_results_other_details`, `carrier_status`, `mutation_nomenclature`, `reported_by`, `mutation_type`, `mutation_pathogenicity`, `sample_id`, `report_due`, `report_date`, `date_modified`, `test_comment`, `patient_studies_id`, `conformation_attachment`, `conformation_file_url`, `created_on`, `modified_on`, `modified_by`) VALUES
+(1, '2000-01-01', 'aaaaa', 0, 'GTG', 'bbbb', 'APC gene', 'DNA', 'ccccc', 0, 'AA changes', '0', 'Abnormal', 'BIC', 'eeeee', 'ffffff', 'iiii', 1, '2000-01-01', '2000-01-01', '2000-01-01', 'jjjjj', 15, 0, 'C:/xampp/htdocs/CarifDBMS/images/xpress.PNG', '0000-00-00', '2013-09-20 02:01:44', '');
 
 -- --------------------------------------------------------
 
@@ -692,6 +707,7 @@ CREATE TABLE IF NOT EXISTS `patient_lifestyle_adulthood_exercise` (
   `exercise_id` int(11) NOT NULL,
   `created_on` date NOT NULL,
   `modified_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified_by` varchar(50) NOT NULL,
   PRIMARY KEY (`patient_lifestyle_adulthood_exercise_id`),
   KEY `fk_patient_lifestyle_adulthood_exercise_exercise_id` (`exercise_id`),
   KEY `fk_patient_lifestyle_adulthood_patient_lifestyle_factors_id` (`patient_lifestyle_factors_id`)
@@ -709,6 +725,7 @@ CREATE TABLE IF NOT EXISTS `patient_lifestyle_childhood_exercise` (
   `exercise_id` int(11) NOT NULL,
   `created_on` date NOT NULL,
   `modified_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified_by` varchar(50) NOT NULL,
   PRIMARY KEY (`patient_lifestyle_childhood_exercise_id`),
   KEY `fk_patient_lifestyle_childhood_exercise_exercise_id` (`exercise_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
@@ -725,6 +742,7 @@ CREATE TABLE IF NOT EXISTS `patient_lifestyle_current_exercise` (
   `exercise_id` int(11) NOT NULL,
   `created_on` date NOT NULL,
   `modified_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified_by` varchar(50) NOT NULL,
   PRIMARY KEY (`patient_lifestyle_current_exercise_id`),
   KEY `fk_patient_lifestyle_current_exercise_exercise_id` (`exercise_id`),
   KEY `fk_patient_lifestyle_current_exercise_lifestyle_factors_id` (`patient_lifestyle_factors_id`)
@@ -774,6 +792,7 @@ CREATE TABLE IF NOT EXISTS `patient_lifestyle_factors` (
   `diabetes_medicine_name` text NOT NULL,
   `created_on` date NOT NULL,
   `modified_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified_by` varchar(50) NOT NULL,
   PRIMARY KEY (`patient_lifestyle_factors_id`),
   KEY `fk_patient_lifestyle_factors_patient_studies_id` (`patient_studies_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
@@ -782,8 +801,8 @@ CREATE TABLE IF NOT EXISTS `patient_lifestyle_factors` (
 -- Dumping data for table `patient_lifestyle_factors`
 --
 
-INSERT INTO `patient_lifestyle_factors` (`patient_lifestyle_factors_id`, `patient_studies_id`, `self_image_at_7years`, `self_image_at_18years`, `self_image_now`, `pa_sports_activitiy_childhood`, `pa_sports_activitiy_adult`, `pa_sports_activitiy_now`, `cigarrets_smoked_flag`, `cigarrets_still_smoked_flag`, `total_smoked_years`, `cigarrets_count_at_teen`, `cigarrets_count_at_twenties`, `cigarrets_count_at_thirties`, `cigarrets_count_at_fourrties`, `cigarrets_count_at_fifties`, `cigarrets_count_at_sixties_and_above`, `cigarrets_count_one_year_before_diagnosed`, `alcohol_drunk_flag`, `alcohol_average`, `alcohol_average_details`, `coffee_drunk_flag`, `coffee_age`, `coffee_average`, `tea_drunk_flag`, `tea_age`, `tea_type`, `tea_average`, `soya_bean_drunk_flag`, `soya_bean_average`, `soya_products_flag`, `soya_products_average`, `diabetes_flag`, `medicine_for_diabetes_flag`, `diabetes_medicine_name`, `created_on`, `modified_on`) VALUES
-(1, 15, 0x31, 0x31, 0x31, 'Never', 'Never', 'Never', 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 1, 'aaaa', 0, 5, 1, 0, 5, 'Black tea', 1, 0, 1, 0, 0, 0, 0, 'aaaaa', '0000-00-00', '2013-09-20 02:06:43');
+INSERT INTO `patient_lifestyle_factors` (`patient_lifestyle_factors_id`, `patient_studies_id`, `self_image_at_7years`, `self_image_at_18years`, `self_image_now`, `pa_sports_activitiy_childhood`, `pa_sports_activitiy_adult`, `pa_sports_activitiy_now`, `cigarrets_smoked_flag`, `cigarrets_still_smoked_flag`, `total_smoked_years`, `cigarrets_count_at_teen`, `cigarrets_count_at_twenties`, `cigarrets_count_at_thirties`, `cigarrets_count_at_fourrties`, `cigarrets_count_at_fifties`, `cigarrets_count_at_sixties_and_above`, `cigarrets_count_one_year_before_diagnosed`, `alcohol_drunk_flag`, `alcohol_average`, `alcohol_average_details`, `coffee_drunk_flag`, `coffee_age`, `coffee_average`, `tea_drunk_flag`, `tea_age`, `tea_type`, `tea_average`, `soya_bean_drunk_flag`, `soya_bean_average`, `soya_products_flag`, `soya_products_average`, `diabetes_flag`, `medicine_for_diabetes_flag`, `diabetes_medicine_name`, `created_on`, `modified_on`, `modified_by`) VALUES
+(1, 15, 0x31, 0x31, 0x31, 'Never', 'Never', 'Never', 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 1, 'aaaa', 0, 5, 1, 0, 5, 'Black tea', 1, 0, 1, 0, 0, 0, 0, 'aaaaa', '0000-00-00', '2013-09-20 02:06:43', '');
 
 -- --------------------------------------------------------
 
@@ -798,6 +817,7 @@ CREATE TABLE IF NOT EXISTS `patient_mammo_processed_images` (
   `processed_image_file_name` longtext NOT NULL,
   `created_on` date NOT NULL,
   `modified_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified_by` varchar(50) NOT NULL,
   PRIMARY KEY (`patient_mammo_processed_images_id`),
   KEY `fk_patient_mammo_processed_images_patient_ic_no` (`patient_ic_no`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
@@ -806,19 +826,19 @@ CREATE TABLE IF NOT EXISTS `patient_mammo_processed_images` (
 -- Dumping data for table `patient_mammo_processed_images`
 --
 
-INSERT INTO `patient_mammo_processed_images` (`patient_mammo_processed_images_id`, `patient_ic_no`, `patient_breast_screening_id`, `processed_image_file_name`, `created_on`, `modified_on`) VALUES
-(1, 123457, 10, '0', '0000-00-00', '2013-09-20 02:09:11'),
-(2, 123457, 10, '0', '0000-00-00', '2013-09-20 02:09:11'),
-(3, 123457, 10, '0', '0000-00-00', '2013-09-20 02:09:11'),
-(4, 123457, 10, '0', '0000-00-00', '2013-09-20 02:09:11'),
-(5, 123456, 11, '0', '0000-00-00', '2013-09-20 02:09:11'),
-(6, 123456, 11, '0', '0000-00-00', '2013-09-20 02:09:11'),
-(7, 123456, 11, '0', '0000-00-00', '2013-09-20 02:09:11'),
-(8, 123456, 11, '0', '0000-00-00', '2013-09-20 02:09:11'),
-(9, 12345, 12, 'C:/xampp/htdocs/CarifDBMS/images/5.png', '0000-00-00', '2013-09-20 02:09:11'),
-(10, 12345, 12, 'C:/xampp/htdocs/CarifDBMS/images/6.jpg', '0000-00-00', '2013-09-20 02:09:11'),
-(11, 12345, 12, 'C:/xampp/htdocs/CarifDBMS/images/7.jpg', '0000-00-00', '2013-09-20 02:09:11'),
-(12, 12345, 12, 'C:/xampp/htdocs/CarifDBMS/images/8.jpg', '0000-00-00', '2013-09-20 02:09:11');
+INSERT INTO `patient_mammo_processed_images` (`patient_mammo_processed_images_id`, `patient_ic_no`, `patient_breast_screening_id`, `processed_image_file_name`, `created_on`, `modified_on`, `modified_by`) VALUES
+(1, 123457, 10, '0', '0000-00-00', '2013-09-20 02:09:11', ''),
+(2, 123457, 10, '0', '0000-00-00', '2013-09-20 02:09:11', ''),
+(3, 123457, 10, '0', '0000-00-00', '2013-09-20 02:09:11', ''),
+(4, 123457, 10, '0', '0000-00-00', '2013-09-20 02:09:11', ''),
+(5, 123456, 11, '0', '0000-00-00', '2013-09-20 02:09:11', ''),
+(6, 123456, 11, '0', '0000-00-00', '2013-09-20 02:09:11', ''),
+(7, 123456, 11, '0', '0000-00-00', '2013-09-20 02:09:11', ''),
+(8, 123456, 11, '0', '0000-00-00', '2013-09-20 02:09:11', ''),
+(9, 12345, 12, 'C:/xampp/htdocs/CarifDBMS/images/5.png', '0000-00-00', '2013-09-20 02:09:11', ''),
+(10, 12345, 12, 'C:/xampp/htdocs/CarifDBMS/images/6.jpg', '0000-00-00', '2013-09-20 02:09:11', ''),
+(11, 12345, 12, 'C:/xampp/htdocs/CarifDBMS/images/7.jpg', '0000-00-00', '2013-09-20 02:09:11', ''),
+(12, 12345, 12, 'C:/xampp/htdocs/CarifDBMS/images/8.jpg', '0000-00-00', '2013-09-20 02:09:11', '');
 
 -- --------------------------------------------------------
 
@@ -833,6 +853,7 @@ CREATE TABLE IF NOT EXISTS `patient_mammo_raw_images` (
   `raw_image_file_name` longtext NOT NULL,
   `created_on` date NOT NULL,
   `modified_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified_by` varchar(50) NOT NULL,
   PRIMARY KEY (`patient_mammo_raw_images_id`),
   KEY `fk_patient_mammo_raw_images_patient_ic_no` (`patient_ic_no`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
@@ -841,23 +862,23 @@ CREATE TABLE IF NOT EXISTS `patient_mammo_raw_images` (
 -- Dumping data for table `patient_mammo_raw_images`
 --
 
-INSERT INTO `patient_mammo_raw_images` (`patient_mammo_raw_images_id`, `patient_ic_no`, `patient_breast_screening_id`, `raw_image_file_name`, `created_on`, `modified_on`) VALUES
-(2, 123457, 9, 'C:/xampp/htdocs/CarifDBMS/images/11.jpg', '0000-00-00', '2013-09-20 02:09:42'),
-(3, 123457, 9, 'C:/xampp/htdocs/CarifDBMS/images/2.jpg', '0000-00-00', '2013-09-20 02:09:42'),
-(4, 123457, 9, 'C:/xampp/htdocs/CarifDBMS/images/3.png', '0000-00-00', '2013-09-20 02:09:42'),
-(5, 123457, 9, 'C:/xampp/htdocs/CarifDBMS/images/4.jpg', '0000-00-00', '2013-09-20 02:09:42'),
-(6, 123457, 10, 'C:/xampp/htdocs/CarifDBMS/images/1.jpg', '0000-00-00', '2013-09-20 02:09:42'),
-(7, 123457, 10, 'C:/xampp/htdocs/CarifDBMS/images/2.jpg', '0000-00-00', '2013-09-20 02:09:42'),
-(8, 123457, 10, 'C:/xampp/htdocs/CarifDBMS/images/3.png', '0000-00-00', '2013-09-20 02:09:42'),
-(9, 123457, 10, 'C:/xampp/htdocs/CarifDBMS/images/4.jpg', '0000-00-00', '2013-09-20 02:09:42'),
-(10, 123456, 11, 'C:/xampp/htdocs/CarifDBMS/images/1.jpg', '0000-00-00', '2013-09-20 02:09:42'),
-(11, 123456, 11, 'C:/xampp/htdocs/CarifDBMS/images/2.jpg', '0000-00-00', '2013-09-20 02:09:42'),
-(12, 123456, 11, 'C:/xampp/htdocs/CarifDBMS/images/3.png', '0000-00-00', '2013-09-20 02:09:42'),
-(13, 123456, 11, 'C:/xampp/htdocs/CarifDBMS/images/4.jpg', '0000-00-00', '2013-09-20 02:09:42'),
-(14, 12345, 12, 'C:/xampp/htdocs/CarifDBMS/images/1.jpg', '0000-00-00', '2013-09-20 02:09:42'),
-(15, 12345, 12, 'C:/xampp/htdocs/CarifDBMS/images/2.jpg', '0000-00-00', '2013-09-20 02:09:42'),
-(16, 12345, 12, 'C:/xampp/htdocs/CarifDBMS/images/3.png', '0000-00-00', '2013-09-20 02:09:42'),
-(17, 12345, 12, 'C:/xampp/htdocs/CarifDBMS/images/4.jpg', '0000-00-00', '2013-09-20 02:09:42');
+INSERT INTO `patient_mammo_raw_images` (`patient_mammo_raw_images_id`, `patient_ic_no`, `patient_breast_screening_id`, `raw_image_file_name`, `created_on`, `modified_on`, `modified_by`) VALUES
+(2, 123457, 9, 'C:/xampp/htdocs/CarifDBMS/images/11.jpg', '0000-00-00', '2013-09-20 02:09:42', ''),
+(3, 123457, 9, 'C:/xampp/htdocs/CarifDBMS/images/2.jpg', '0000-00-00', '2013-09-20 02:09:42', ''),
+(4, 123457, 9, 'C:/xampp/htdocs/CarifDBMS/images/3.png', '0000-00-00', '2013-09-20 02:09:42', ''),
+(5, 123457, 9, 'C:/xampp/htdocs/CarifDBMS/images/4.jpg', '0000-00-00', '2013-09-20 02:09:42', ''),
+(6, 123457, 10, 'C:/xampp/htdocs/CarifDBMS/images/1.jpg', '0000-00-00', '2013-09-20 02:09:42', ''),
+(7, 123457, 10, 'C:/xampp/htdocs/CarifDBMS/images/2.jpg', '0000-00-00', '2013-09-20 02:09:42', ''),
+(8, 123457, 10, 'C:/xampp/htdocs/CarifDBMS/images/3.png', '0000-00-00', '2013-09-20 02:09:42', ''),
+(9, 123457, 10, 'C:/xampp/htdocs/CarifDBMS/images/4.jpg', '0000-00-00', '2013-09-20 02:09:42', ''),
+(10, 123456, 11, 'C:/xampp/htdocs/CarifDBMS/images/1.jpg', '0000-00-00', '2013-09-20 02:09:42', ''),
+(11, 123456, 11, 'C:/xampp/htdocs/CarifDBMS/images/2.jpg', '0000-00-00', '2013-09-20 02:09:42', ''),
+(12, 123456, 11, 'C:/xampp/htdocs/CarifDBMS/images/3.png', '0000-00-00', '2013-09-20 02:09:42', ''),
+(13, 123456, 11, 'C:/xampp/htdocs/CarifDBMS/images/4.jpg', '0000-00-00', '2013-09-20 02:09:42', ''),
+(14, 12345, 12, 'C:/xampp/htdocs/CarifDBMS/images/1.jpg', '0000-00-00', '2013-09-20 02:09:42', ''),
+(15, 12345, 12, 'C:/xampp/htdocs/CarifDBMS/images/2.jpg', '0000-00-00', '2013-09-20 02:09:42', ''),
+(16, 12345, 12, 'C:/xampp/htdocs/CarifDBMS/images/3.png', '0000-00-00', '2013-09-20 02:09:42', ''),
+(17, 12345, 12, 'C:/xampp/htdocs/CarifDBMS/images/4.jpg', '0000-00-00', '2013-09-20 02:09:42', '');
 
 -- --------------------------------------------------------
 
@@ -879,6 +900,7 @@ CREATE TABLE IF NOT EXISTS `patient_menstruation` (
   `reason_period_stops_other_details` longtext NOT NULL,
   `created_on` date NOT NULL,
   `modified_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified_by` varchar(50) NOT NULL,
   PRIMARY KEY (`patient_menstruation_id`),
   KEY `fk_patient_menstruation_patient_studies_id` (`patient_studies_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
@@ -887,8 +909,8 @@ CREATE TABLE IF NOT EXISTS `patient_menstruation` (
 -- Dumping data for table `patient_menstruation`
 --
 
-INSERT INTO `patient_menstruation` (`patient_menstruation_id`, `patient_studies_id`, `age_period_starts`, `still_period_flag`, `period_type`, `period_cycle_days`, `period_cycle_days_other_details`, `age_period_stops`, `reason_period_stops`, `date_period_stops`, `reason_period_stops_other_details`, `created_on`, `modified_on`) VALUES
-(1, 15, '0000-00-00', 0, 'Regular', '28', 'bbbbb', '0000-00-00', 'It stopped itself', '2000-01-01', 'ccccc', '0000-00-00', '2013-09-20 02:10:22');
+INSERT INTO `patient_menstruation` (`patient_menstruation_id`, `patient_studies_id`, `age_period_starts`, `still_period_flag`, `period_type`, `period_cycle_days`, `period_cycle_days_other_details`, `age_period_stops`, `reason_period_stops`, `date_period_stops`, `reason_period_stops_other_details`, `created_on`, `modified_on`, `modified_by`) VALUES
+(1, 15, '0000-00-00', 0, 'Regular', '28', 'bbbbb', '0000-00-00', 'It stopped itself', '2000-01-01', 'ccccc', '0000-00-00', '2013-09-20 02:10:22', '');
 
 -- --------------------------------------------------------
 
@@ -902,6 +924,7 @@ CREATE TABLE IF NOT EXISTS `patient_mri_abnormality` (
   `patient_breast_screening_id` int(10) NOT NULL,
   `created_on` date NOT NULL,
   `modified_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified_by` varchar(50) NOT NULL,
   PRIMARY KEY (`patient_mri_abnormlity_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
 
@@ -909,12 +932,12 @@ CREATE TABLE IF NOT EXISTS `patient_mri_abnormality` (
 -- Dumping data for table `patient_mri_abnormality`
 --
 
-INSERT INTO `patient_mri_abnormality` (`patient_mri_abnormlity_id`, `detail`, `patient_breast_screening_id`, `created_on`, `modified_on`) VALUES
-(7, 'ggggggggggggggggggg', 8, '0000-00-00', '2013-09-20 02:12:49'),
-(8, 'ooooooooooooooooooo', 10, '0000-00-00', '2013-09-20 02:12:49'),
-(9, 'r', 11, '0000-00-00', '2013-09-20 02:12:49'),
-(10, 'nnnn', 12, '0000-00-00', '2013-09-20 02:12:49'),
-(11, '', 13, '0000-00-00', '2013-09-20 02:12:49');
+INSERT INTO `patient_mri_abnormality` (`patient_mri_abnormlity_id`, `detail`, `patient_breast_screening_id`, `created_on`, `modified_on`, `modified_by`) VALUES
+(7, 'ggggggggggggggggggg', 8, '0000-00-00', '2013-09-20 02:12:49', ''),
+(8, 'ooooooooooooooooooo', 10, '0000-00-00', '2013-09-20 02:12:49', ''),
+(9, 'r', 11, '0000-00-00', '2013-09-20 02:12:49', ''),
+(10, 'nnnn', 12, '0000-00-00', '2013-09-20 02:12:49', ''),
+(11, '', 13, '0000-00-00', '2013-09-20 02:12:49', '');
 
 -- --------------------------------------------------------
 
@@ -932,6 +955,7 @@ CREATE TABLE IF NOT EXISTS `patient_other_screening` (
   `patient_breast_screening_id` int(10) NOT NULL,
   `created_on` date NOT NULL,
   `modified_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified_by` varchar(50) NOT NULL,
   PRIMARY KEY (`patient_other_screening_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
 
@@ -939,12 +963,12 @@ CREATE TABLE IF NOT EXISTS `patient_other_screening` (
 -- Dumping data for table `patient_other_screening`
 --
 
-INSERT INTO `patient_other_screening` (`patient_other_screening_id`, `screening_name`, `total_no_of_screening`, `age_at_screening`, `place_of_screening`, `screening_result`, `patient_breast_screening_id`, `created_on`, `modified_on`) VALUES
-(7, 'aaaaaaaaaaa', 5, 45, 'ggggggggg', 'hhhhhhhhhhhhhhhhh', 8, '0000-00-00', '2013-09-20 02:13:18'),
-(8, 'mmmmmmmmmm', 5, 5, 'llllllllllllllllllllll', 'kkkkkkkkkkkkkkkk', 10, '0000-00-00', '2013-09-20 02:13:18'),
-(9, 'Pap Smear', 5, 5, 'u', 'v', 11, '0000-00-00', '2013-09-20 02:13:18'),
-(10, 'Pap Smear', 5, 5, 'pppp', 'qqqq', 12, '0000-00-00', '2013-09-20 02:13:18'),
-(11, 'Pap Smear', 0, 0, '', '', 13, '0000-00-00', '2013-09-20 02:13:18');
+INSERT INTO `patient_other_screening` (`patient_other_screening_id`, `screening_name`, `total_no_of_screening`, `age_at_screening`, `place_of_screening`, `screening_result`, `patient_breast_screening_id`, `created_on`, `modified_on`, `modified_by`) VALUES
+(7, 'aaaaaaaaaaa', 5, 45, 'ggggggggg', 'hhhhhhhhhhhhhhhhh', 8, '0000-00-00', '2013-09-20 02:13:18', ''),
+(8, 'mmmmmmmmmm', 5, 5, 'llllllllllllllllllllll', 'kkkkkkkkkkkkkkkk', 10, '0000-00-00', '2013-09-20 02:13:18', ''),
+(9, 'Pap Smear', 5, 5, 'u', 'v', 11, '0000-00-00', '2013-09-20 02:13:18', ''),
+(10, 'Pap Smear', 5, 5, 'pppp', 'qqqq', 12, '0000-00-00', '2013-09-20 02:13:18', ''),
+(11, 'Pap Smear', 0, 0, '', '', 13, '0000-00-00', '2013-09-20 02:13:18', '');
 
 -- --------------------------------------------------------
 
@@ -962,6 +986,7 @@ CREATE TABLE IF NOT EXISTS `patient_parity_record` (
   `breastfeeding_duration` text NOT NULL,
   `created_on` date NOT NULL,
   `modified_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified_by` varchar(50) NOT NULL,
   PRIMARY KEY (`patient_parity_record_id`),
   KEY `fk_patient_parity_record_patient_parity_table_id` (`patient_parity_table_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
@@ -970,8 +995,8 @@ CREATE TABLE IF NOT EXISTS `patient_parity_record` (
 -- Dumping data for table `patient_parity_record`
 --
 
-INSERT INTO `patient_parity_record` (`patient_parity_record_id`, `patient_parity_table_id`, `pregnancy_type`, `gender`, `birthyear`, `birthweight`, `breastfeeding_duration`, `created_on`, `modified_on`) VALUES
-(1, 1, 'Child', 'Male', 1985, 5, 'gggg', '0000-00-00', '2013-09-20 02:13:44');
+INSERT INTO `patient_parity_record` (`patient_parity_record_id`, `patient_parity_table_id`, `pregnancy_type`, `gender`, `birthyear`, `birthweight`, `breastfeeding_duration`, `created_on`, `modified_on`, `modified_by`) VALUES
+(1, 1, 'Child', 'Male', 1985, 5, 'gggg', '0000-00-00', '2013-09-20 02:13:44', '');
 
 -- --------------------------------------------------------
 
@@ -985,6 +1010,7 @@ CREATE TABLE IF NOT EXISTS `patient_parity_table` (
   `pregnant_flag` tinyint(1) NOT NULL,
   `created_on` date NOT NULL,
   `modified_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified_by` varchar(50) NOT NULL,
   PRIMARY KEY (`patient_parity_id`),
   KEY `fk_patient_parity_table_patient_studies_id` (`patient_studies_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
@@ -993,8 +1019,8 @@ CREATE TABLE IF NOT EXISTS `patient_parity_table` (
 -- Dumping data for table `patient_parity_table`
 --
 
-INSERT INTO `patient_parity_table` (`patient_parity_id`, `patient_studies_id`, `pregnant_flag`, `created_on`, `modified_on`) VALUES
-(1, 15, 0, '0000-00-00', '2013-09-20 02:34:49');
+INSERT INTO `patient_parity_table` (`patient_parity_id`, `patient_studies_id`, `pregnant_flag`, `created_on`, `modified_on`, `modified_by`) VALUES
+(1, 15, 0, '0000-00-00', '2013-09-20 02:34:49', '');
 
 -- --------------------------------------------------------
 
@@ -1032,6 +1058,7 @@ CREATE TABLE IF NOT EXISTS `patient_pathology` (
   `tissue_path_comment` longtext NOT NULL,
   `created_on` date NOT NULL,
   `modified_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified_by` varchar(50) NOT NULL,
   PRIMARY KEY (`patient_pathology_id`),
   KEY `fk_patient_pathology_patient_studies_id` (`patient_studies_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
@@ -1040,12 +1067,12 @@ CREATE TABLE IF NOT EXISTS `patient_pathology` (
 -- Dumping data for table `patient_pathology`
 --
 
-INSERT INTO `patient_pathology` (`patient_pathology_id`, `patient_studies_id`, `tissue_site`, `tissue_tumour_stages`, `morphology`, `node_stage`, `lymph_node`, `total_lymph_nodes`, `er_status`, `pr_status`, `her2_status`, `no_of_tumers`, `metastasis_stage`, `side_affected`, `tumour_stage`, `tumour_grade`, `size`, `path_doc`, `path_lab`, `lab_reference`, `path_report_date`, `type_of_report`, `path_report_requested_date`, `path_report_received_date`, `path_block_requested_date`, `path_block_received_date`, `tissue_path_comment`, `created_on`, `modified_on`) VALUES
-(1, 11, 'aaaaaaaaaaa', 'T0', 'DCIS', 'N0', 'Yes', 0, 'aaaaaaaaaaaa', 'bbbbbbbbbbbbb', 'ccccccccccccccccc', 5, 'M0', 'Both', '0', '1: Well differentiated', '5', 'lllllllllllllll', 'dddddddddd', 'eeeeeeeeeeeee', '0000-00-00', 'Pathology', '0000-00-00', '2013-09-07', '2013-09-07', '2013-09-07', 'aaaaaaaaaaaaa', '0000-00-00', '2013-09-20 02:16:53'),
-(2, 13, 'aaaaaaaaaaaaa', 'T0', 'DCIS', 'N0', 'Yes', 5, 'bbbbbbbbb', 'cccccccccc', 'ddddddddddddd', 5, 'M0', 'Both', '0', '1: Well differentiated', '5', 'eeeeeeeeee', 'fffffffffff', 'gggggggggggg', '2013-09-07', 'Pathology', '0000-00-00', '2013-09-07', '2013-09-07', '2013-09-07', 'hhhhhhhhhhhhhhhhhh', '0000-00-00', '2013-09-20 02:16:53'),
-(3, 14, 'gg', 'T0', 'DCIS', 'N0', 'Yes', 5, 'ii', 'jj', 'kk', 5, 'M0', 'Both', '0', '1: Well differentiated', '5', 'll', 'mm', 'nn', '2000-01-01', 'Pathology', '2000-01-01', '2000-01-01', '2000-01-01', '2000-01-01', 'oo', '0000-00-00', '2013-09-20 02:16:53'),
-(4, 15, 'bbbbb', 'T0', 'DCIS', 'N0', 'Yes', 5, 'ccccc', 'ddddd', 'eeeee', 5, 'M0', 'Both', '0', '1: Well differentiated', '5', 'fffff', 'ggggg', 'hhhhh', '2000-01-01', 'Pathology', '2000-01-01', '2000-01-01', '2000-01-01', '2000-01-01', 'iiiii', '0000-00-00', '2013-09-20 02:16:53'),
-(5, 17, '', 'T0', 'DCIS', 'N0', 'Yes', 0, '', '', '', 0, 'M0', 'Both', '0', '1: Well differentiated', '', '', '', '', '0000-00-00', 'Pathology', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '', '0000-00-00', '2013-09-20 02:16:53');
+INSERT INTO `patient_pathology` (`patient_pathology_id`, `patient_studies_id`, `tissue_site`, `tissue_tumour_stages`, `morphology`, `node_stage`, `lymph_node`, `total_lymph_nodes`, `er_status`, `pr_status`, `her2_status`, `no_of_tumers`, `metastasis_stage`, `side_affected`, `tumour_stage`, `tumour_grade`, `size`, `path_doc`, `path_lab`, `lab_reference`, `path_report_date`, `type_of_report`, `path_report_requested_date`, `path_report_received_date`, `path_block_requested_date`, `path_block_received_date`, `tissue_path_comment`, `created_on`, `modified_on`, `modified_by`) VALUES
+(1, 11, 'aaaaaaaaaaa', 'T0', 'DCIS', 'N0', 'Yes', 0, 'aaaaaaaaaaaa', 'bbbbbbbbbbbbb', 'ccccccccccccccccc', 5, 'M0', 'Both', '0', '1: Well differentiated', '5', 'lllllllllllllll', 'dddddddddd', 'eeeeeeeeeeeee', '0000-00-00', 'Pathology', '0000-00-00', '2013-09-07', '2013-09-07', '2013-09-07', 'aaaaaaaaaaaaa', '0000-00-00', '2013-09-20 02:16:53', ''),
+(2, 13, 'aaaaaaaaaaaaa', 'T0', 'DCIS', 'N0', 'Yes', 5, 'bbbbbbbbb', 'cccccccccc', 'ddddddddddddd', 5, 'M0', 'Both', '0', '1: Well differentiated', '5', 'eeeeeeeeee', 'fffffffffff', 'gggggggggggg', '2013-09-07', 'Pathology', '0000-00-00', '2013-09-07', '2013-09-07', '2013-09-07', 'hhhhhhhhhhhhhhhhhh', '0000-00-00', '2013-09-20 02:16:53', ''),
+(3, 14, 'gg', 'T0', 'DCIS', 'N0', 'Yes', 5, 'ii', 'jj', 'kk', 5, 'M0', 'Both', '0', '1: Well differentiated', '5', 'll', 'mm', 'nn', '2000-01-01', 'Pathology', '2000-01-01', '2000-01-01', '2000-01-01', '2000-01-01', 'oo', '0000-00-00', '2013-09-20 02:16:53', ''),
+(4, 15, 'bbbbb', 'T0', 'DCIS', 'N0', 'Yes', 5, 'ccccc', 'ddddd', 'eeeee', 5, 'M0', 'Both', '0', '1: Well differentiated', '5', 'fffff', 'ggggg', 'hhhhh', '2000-01-01', 'Pathology', '2000-01-01', '2000-01-01', '2000-01-01', '2000-01-01', 'iiiii', '0000-00-00', '2013-09-20 02:16:53', ''),
+(5, 17, '', 'T0', 'DCIS', 'N0', 'Yes', 0, '', '', '', 0, 'M0', 'Both', '0', '1: Well differentiated', '', '', '', '', '0000-00-00', 'Pathology', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '', '0000-00-00', '2013-09-20 02:16:53', '');
 
 -- --------------------------------------------------------
 
@@ -1059,6 +1086,7 @@ CREATE TABLE IF NOT EXISTS `patient_private_no` (
   `private_no` char(50) NOT NULL,
   `created_on` date NOT NULL,
   `modified_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified_by` varchar(50) NOT NULL,
   PRIMARY KEY (`patient_private_no_id`),
   KEY `fk_patient_private_no_patient_ic_no` (`patient_ic_no`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
@@ -1099,6 +1127,7 @@ CREATE TABLE IF NOT EXISTS `patient_relatives` (
   `fh_category` varchar(100) NOT NULL,
   `created_on` date NOT NULL,
   `modified_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified_by` varchar(50) NOT NULL,
   PRIMARY KEY (`patient_relatives_id`),
   KEY `fk_patient_relatives_cancer_type_id` (`cancer_type_id`),
   KEY `fk_patient_relatives_family_family_no` (`family_no`),
@@ -1110,11 +1139,11 @@ CREATE TABLE IF NOT EXISTS `patient_relatives` (
 -- Dumping data for table `patient_relatives`
 --
 
-INSERT INTO `patient_relatives` (`patient_relatives_id`, `patient_ic_no`, `relatives_id`, `family_no`, `full_name`, `sur_name`, `maiden_name`, `ethnicity`, `nationality`, `town_of_residence`, `d_o_b`, `is_alive_flag`, `d_o_d`, `is_cancer_diagnosed`, `date_of_diagnosis`, `cancer_type_id`, `age_of_diagnosis`, `other_detail`, `no_of_brothers`, `no_of_sisters`, `sex`, `is_paternal`, `is_maternal`, `vital_status`, `match_score_at_consent`, `match_score_past_consent`, `fh_category`, `created_on`, `modified_on`) VALUES
-(3, 123456, 1, 1, 'aaaaa', 'bbbb', 'ccccc', 'ddddd', '', 'eeeee', '0000-00-00', 0, '0000-00-00', 0, '0000-00-00', 4, 18, 'fffffffffffffffffffffffffff\r\nfffffffffffffffffffffffffff', 5, 5, '', 0, 0, 'gggggggggggggg', 45, 4545, 'hhhhhhhhhhhh', '0000-00-00', '2013-09-20 02:18:09'),
-(4, 123456, 2, 1, 'iiiiiiii', 'jjjjjjj', 'kkkkkk', '0', '', 'mmmmmm', '0000-00-00', 0, '0000-00-00', 0, '0000-00-00', 2, 45, 'nnnnnn', 5, 5, '', 0, 0, '5', 5, 5, '5', '0000-00-00', '2013-09-20 02:18:09'),
-(5, 123456, 1, 1, 'a', 'b', 'c', 'd', '', 'e', '2000-01-01', 0, '2000-01-01', 0, '2000-01-01', 4, 5, 'f', 5, 5, '', 0, 0, 'g', 5.9, 5.9, 'h', '0000-00-00', '2013-09-20 02:18:09'),
-(6, 123456, 2, 1, 'i', 'j', 'k', '0', '', 'm', '2000-01-01', 0, '2000-01-01', 0, '2000-01-01', 4, 5, 'n', 5, 5, '', 0, 0, 'o', 5.9, 5.9, 'p', '0000-00-00', '2013-09-20 02:18:09');
+INSERT INTO `patient_relatives` (`patient_relatives_id`, `patient_ic_no`, `relatives_id`, `family_no`, `full_name`, `sur_name`, `maiden_name`, `ethnicity`, `nationality`, `town_of_residence`, `d_o_b`, `is_alive_flag`, `d_o_d`, `is_cancer_diagnosed`, `date_of_diagnosis`, `cancer_type_id`, `age_of_diagnosis`, `other_detail`, `no_of_brothers`, `no_of_sisters`, `sex`, `is_paternal`, `is_maternal`, `vital_status`, `match_score_at_consent`, `match_score_past_consent`, `fh_category`, `created_on`, `modified_on`, `modified_by`) VALUES
+(3, 123456, 1, 1, 'aaaaa', 'bbbb', 'ccccc', 'ddddd', '', 'eeeee', '0000-00-00', 0, '0000-00-00', 0, '0000-00-00', 4, 18, 'fffffffffffffffffffffffffff\r\nfffffffffffffffffffffffffff', 5, 5, '', 0, 0, 'gggggggggggggg', 45, 4545, 'hhhhhhhhhhhh', '0000-00-00', '2013-09-20 02:18:09', ''),
+(4, 123456, 2, 1, 'iiiiiiii', 'jjjjjjj', 'kkkkkk', '0', '', 'mmmmmm', '0000-00-00', 0, '0000-00-00', 0, '0000-00-00', 2, 45, 'nnnnnn', 5, 5, '', 0, 0, '5', 5, 5, '5', '0000-00-00', '2013-09-20 02:18:09', ''),
+(5, 123456, 1, 1, 'a', 'b', 'c', 'd', '', 'e', '2000-01-01', 0, '2000-01-01', 0, '2000-01-01', 4, 5, 'f', 5, 5, '', 0, 0, 'g', 5.9, 5.9, 'h', '0000-00-00', '2013-09-20 02:18:09', ''),
+(6, 123456, 2, 1, 'i', 'j', 'k', '0', '', 'm', '2000-01-01', 0, '2000-01-01', 0, '2000-01-01', 4, 5, 'n', 5, 5, '', 0, 0, 'o', 5.9, 5.9, 'p', '0000-00-00', '2013-09-20 02:18:09', '');
 
 -- --------------------------------------------------------
 
@@ -1138,6 +1167,7 @@ CREATE TABLE IF NOT EXISTS `patient_relatives_summary` (
   `unknown_reason_in_other_countries` tinyint(1) NOT NULL,
   `created_on` date NOT NULL,
   `modified_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified_by` varchar(50) NOT NULL,
   PRIMARY KEY (`patient_relatives_summary_ID`),
   KEY `fk_patient_relatives_summary_patient_ic_no` (`patient_ic_no`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
@@ -1146,8 +1176,8 @@ CREATE TABLE IF NOT EXISTS `patient_relatives_summary` (
 -- Dumping data for table `patient_relatives_summary`
 --
 
-INSERT INTO `patient_relatives_summary` (`patient_relatives_summary_ID`, `patient_ic_no`, `total_no_of_male_siblings`, `total_no_of_female_siblings`, `total_no_of_affected_siblings`, `total_no_of_male_children`, `total_no_of_female_children`, `total_no_of_affected_children`, `total_no_of_1st_degree`, `total_no_of_2nd_degree`, `total_no_of_3rd_degree`, `unknown_reason_is_adopted`, `unknown_reason_in_other_countries`, `created_on`, `modified_on`) VALUES
-(2, 12345, 5, 5, 5, 5, 5, 5, 5, 5, 5, 0, 0, '0000-00-00', '2013-09-20 02:19:43');
+INSERT INTO `patient_relatives_summary` (`patient_relatives_summary_ID`, `patient_ic_no`, `total_no_of_male_siblings`, `total_no_of_female_siblings`, `total_no_of_affected_siblings`, `total_no_of_male_children`, `total_no_of_female_children`, `total_no_of_affected_children`, `total_no_of_1st_degree`, `total_no_of_2nd_degree`, `total_no_of_3rd_degree`, `unknown_reason_is_adopted`, `unknown_reason_in_other_countries`, `created_on`, `modified_on`, `modified_by`) VALUES
+(2, 12345, 5, 5, 5, 5, 5, 5, 5, 5, 5, 0, 0, '0000-00-00', '2013-09-20 02:19:43', '');
 
 -- --------------------------------------------------------
 
@@ -1173,6 +1203,7 @@ CREATE TABLE IF NOT EXISTS `patient_studies` (
   `referral_source` text NOT NULL,
   `created_on` date NOT NULL,
   `modified_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified_by` varchar(50) NOT NULL,
   PRIMARY KEY (`patient_studies_id`),
   KEY `fk_patient_studies_patient_ic_no` (`patient_ic_no`),
   KEY `fk_patient_studies_studies_id` (`studies_id`)
@@ -1182,12 +1213,12 @@ CREATE TABLE IF NOT EXISTS `patient_studies` (
 -- Dumping data for table `patient_studies`
 --
 
-INSERT INTO `patient_studies` (`patient_studies_id`, `patient_ic_no`, `studies_id`, `date_at_consent`, `age_at_consent`, `double_consent_flag`, `double_consent_detail`, `consent_given_by`, `consent_response`, `consent_version`, `relation_to_study_flag`, `referral_to`, `referral_to_service`, `referral_date`, `referral_source`, `created_on`, `modified_on`) VALUES
-(11, 123456, 1, '0000-00-00', 0, 0, '', '', '', '', 1, '', '', '0000-00-00', '', '0000-00-00', '2013-09-20 02:20:11'),
-(13, 123457, 1, '2013-09-07', 5, 0, 'zzzzzzzzzzzzzzzz', 'yyyyyyyyyyyyyy', 'xxxxxxxxxx', '12', 1, 'wwwwwwwwwwww', 'vvvvvvvv', '0000-00-00', 'uuuuuuuuuuuuuu', '0000-00-00', '2013-09-20 02:20:11'),
-(14, 123456, 1, '2000-01-01', 5, 0, 'a', 'b', 'c', 'd', 1, 'e', 'f', '2000-01-01', 'g', '0000-00-00', '2013-09-20 02:20:11'),
-(15, 12345, 1, '2000-01-01', 5, 0, 'aaaa', 'bbbb', 'cccc', '5.7', 1, 'dddd', 'eeee', '2000-01-01', '2000-01-01', '0000-00-00', '2013-09-20 02:20:11'),
-(17, 870728385141, 1, '0000-00-00', 0, 1, '', '', '', '', 0, '', '', '0000-00-00', '', '0000-00-00', '2013-09-20 02:20:11');
+INSERT INTO `patient_studies` (`patient_studies_id`, `patient_ic_no`, `studies_id`, `date_at_consent`, `age_at_consent`, `double_consent_flag`, `double_consent_detail`, `consent_given_by`, `consent_response`, `consent_version`, `relation_to_study_flag`, `referral_to`, `referral_to_service`, `referral_date`, `referral_source`, `created_on`, `modified_on`, `modified_by`) VALUES
+(11, 123456, 1, '0000-00-00', 0, 0, '', '', '', '', 1, '', '', '0000-00-00', '', '0000-00-00', '2013-09-20 02:20:11', ''),
+(13, 123457, 1, '2013-09-07', 5, 0, 'zzzzzzzzzzzzzzzz', 'yyyyyyyyyyyyyy', 'xxxxxxxxxx', '12', 1, 'wwwwwwwwwwww', 'vvvvvvvv', '0000-00-00', 'uuuuuuuuuuuuuu', '0000-00-00', '2013-09-20 02:20:11', ''),
+(14, 123456, 1, '2000-01-01', 5, 0, 'a', 'b', 'c', 'd', 1, 'e', 'f', '2000-01-01', 'g', '0000-00-00', '2013-09-20 02:20:11', ''),
+(15, 12345, 1, '2000-01-01', 5, 0, 'aaaa', 'bbbb', 'cccc', '5.7', 1, 'dddd', 'eeee', '2000-01-01', '2000-01-01', '0000-00-00', '2013-09-20 02:20:11', ''),
+(17, 870728385141, 1, '0000-00-00', 0, 1, '', '', '', '', 0, '', '', '0000-00-00', '', '0000-00-00', '2013-09-20 02:20:11', '');
 
 -- --------------------------------------------------------
 
@@ -1216,6 +1247,7 @@ CREATE TABLE IF NOT EXISTS `patient_surveillance` (
   `comments` longtext NOT NULL,
   `created_on` date NOT NULL,
   `modified_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified_by` varchar(50) NOT NULL,
   PRIMARY KEY (`patient_surveillance_id`),
   KEY `fk_patient_surveillance_patient_studies_id` (`patient_studies_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
@@ -1224,8 +1256,8 @@ CREATE TABLE IF NOT EXISTS `patient_surveillance` (
 -- Dumping data for table `patient_surveillance`
 --
 
-INSERT INTO `patient_surveillance` (`patient_surveillance_id`, `patient_studies_id`, `recruitment_center`, `type`, `first_consultation_date`, `first_consultation_place`, `surveillance_interval`, `diagnosis`, `due_date`, `reminder_sent_date`, `surveillance_done_date`, `reminded_by`, `timing`, `symptoms`, `doctor_name`, `surveillance_done_place`, `outcome`, `comments`, `created_on`, `modified_on`) VALUES
-(1, 15, 'UMMC', 'New', '2000-01-01', 'aaaaa', '5', 'bbbb', '2000-01-01', '2000-01-01', '2000-01-01', 'cccc', 'eeee', 'fffff', 'gggg', 'hhhhh', 'iiiii', 'jjjjj', '0000-00-00', '2013-09-20 02:21:42');
+INSERT INTO `patient_surveillance` (`patient_surveillance_id`, `patient_studies_id`, `recruitment_center`, `type`, `first_consultation_date`, `first_consultation_place`, `surveillance_interval`, `diagnosis`, `due_date`, `reminder_sent_date`, `surveillance_done_date`, `reminded_by`, `timing`, `symptoms`, `doctor_name`, `surveillance_done_place`, `outcome`, `comments`, `created_on`, `modified_on`, `modified_by`) VALUES
+(1, 15, 'UMMC', 'New', '2000-01-01', 'aaaaa', '5', 'bbbb', '2000-01-01', '2000-01-01', '2000-01-01', 'cccc', 'eeee', 'fffff', 'gggg', 'hhhhh', 'iiiii', 'jjjjj', '0000-00-00', '2013-09-20 02:21:42', '');
 
 -- --------------------------------------------------------
 
@@ -1241,6 +1273,7 @@ CREATE TABLE IF NOT EXISTS `patient_survival_status` (
   `status_gathering_date` date NOT NULL,
   `created_on` date NOT NULL,
   `modified_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified_by` varchar(50) NOT NULL,
   PRIMARY KEY (`patient_survival_status_id`),
   KEY `fk_patient_survival_status_patient_ic_no` (`patient_ic_no`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
@@ -1249,9 +1282,9 @@ CREATE TABLE IF NOT EXISTS `patient_survival_status` (
 -- Dumping data for table `patient_survival_status`
 --
 
-INSERT INTO `patient_survival_status` (`patient_survival_status_id`, `patient_ic_no`, `source`, `alive_status`, `status_gathering_date`, `created_on`, `modified_on`) VALUES
-(1, 123457, '0', 0, '2013-09-07', '0000-00-00', '2013-09-20 02:25:20'),
-(2, 12345, '0', 1, '2000-01-01', '0000-00-00', '2013-09-20 02:25:20');
+INSERT INTO `patient_survival_status` (`patient_survival_status_id`, `patient_ic_no`, `source`, `alive_status`, `status_gathering_date`, `created_on`, `modified_on`, `modified_by`) VALUES
+(1, 123457, '0', 0, '2013-09-07', '0000-00-00', '2013-09-20 02:25:20', ''),
+(2, 12345, '0', 1, '2000-01-01', '0000-00-00', '2013-09-20 02:25:20', '');
 
 -- --------------------------------------------------------
 
@@ -1265,6 +1298,7 @@ CREATE TABLE IF NOT EXISTS `patient_ultrasound_abnormality` (
   `patient_breast_screening_id` int(10) NOT NULL,
   `created_on` date NOT NULL,
   `modified_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified_by` varchar(50) NOT NULL,
   PRIMARY KEY (`patient_ultra_abn`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
 
@@ -1272,12 +1306,12 @@ CREATE TABLE IF NOT EXISTS `patient_ultrasound_abnormality` (
 -- Dumping data for table `patient_ultrasound_abnormality`
 --
 
-INSERT INTO `patient_ultrasound_abnormality` (`patient_ultra_abn`, `details`, `patient_breast_screening_id`, `created_on`, `modified_on`) VALUES
-(8, 'ffffffffffffffff', 8, '0000-00-00', '2013-09-20 02:26:10'),
-(9, 'pppppppppppppppp', 10, '0000-00-00', '2013-09-20 02:26:10'),
-(10, 'q', 11, '0000-00-00', '2013-09-20 02:26:10'),
-(11, 'lllll', 12, '0000-00-00', '2013-09-20 02:26:10'),
-(12, '', 13, '0000-00-00', '2013-09-20 02:26:10');
+INSERT INTO `patient_ultrasound_abnormality` (`patient_ultra_abn`, `details`, `patient_breast_screening_id`, `created_on`, `modified_on`, `modified_by`) VALUES
+(8, 'ffffffffffffffff', 8, '0000-00-00', '2013-09-20 02:26:10', ''),
+(9, 'pppppppppppppppp', 10, '0000-00-00', '2013-09-20 02:26:10', ''),
+(10, 'q', 11, '0000-00-00', '2013-09-20 02:26:10', ''),
+(11, 'lllll', 12, '0000-00-00', '2013-09-20 02:26:10', ''),
+(12, '', 13, '0000-00-00', '2013-09-20 02:26:10', '');
 
 -- --------------------------------------------------------
 
