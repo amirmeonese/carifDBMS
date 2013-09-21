@@ -12,7 +12,7 @@
                 </td>
                 <td id="label2">
                     Patient name</td>
-                <td><?php echo form_input('report_patient_name'); ?>
+                <td><?php echo form_input('patient_name'); ?>
                 </td>
             </tr>
             <tr>
@@ -21,12 +21,12 @@
                 </td>
                 <td id="label2">
                     IC No</td>
-                <td>    <?php echo form_input('report_IC_no'); ?>
+                <td>    <?php echo form_input('IC_no'); ?>
                 </td>
 
             </tr>
         </table>
-        <?php echo form_submit('mysubmit','Search');  ?>
+        <?php echo form_submit('search','Search');  ?>
         
         <?php if($submit):?>
         

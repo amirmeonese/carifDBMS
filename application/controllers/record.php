@@ -271,8 +271,21 @@ class Record extends CI_Controller {
 
         $this->load->model('Record_model');
         $data = $this->Record_model->general();
-        $data['patient_list'] = $this->record_model->get_list_patient_record();
-
+        $data['submit'] = $this->input->post('search');
+        
+        if($this->input->post('search')){
+        
+        $data_search_key = array(
+            'fullname' => $this->input->post('patient_name'),
+            'ic_no' => $this->input->post('IC_no')
+        );
+        //print_r($data_search_key);
+        $result = array();
+        $result = $this->Record_model->getPatientInfo($data_search_key);
+                
+        $data['patient_list'] = $result;
+        }
+        
         $this->template->load("templates/report_home_template", 'record/list_record_personal_details', $data);
     }
 
