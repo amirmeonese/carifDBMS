@@ -6707,7 +6707,16 @@ div #label1
 {
 	text-align: center;
 	background-color: #5A8C0F;
+	border: 1px solid #A9A9A9;
 	color: #ffffff;
+}
+
+#error-log-td
+{
+	text-align:left;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 12px;
+	border: 1px solid #A9A9A9 ;
 }
 
 #view-patient-table
@@ -6733,15 +6742,6 @@ div #label1
 	border: 1px solid white;
 }
 
-
-#error-log-td
-{
-	text-align:left;
-	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-	font-size: 12px;
-	border: 1px solid black;
-}
-
 #design-customized-form-table
 {
 	background-color: #5A8C0F;
@@ -6750,16 +6750,25 @@ div #label1
 }
 
 #locked-items-table{
-	background-color: #5A8C0F;
-	color: #ffffff;
-	text-align: center;
+
+	text-align:center;
+	border: 1px solid white;
 }
 
 #locked-items-tr
 {
-	background-color: #5A8C0F;
-	color: #ffffff;
 	text-align: center;
+	background-color: #5A8C0F;
+	border: 1px solid #A9A9A9;
+	color: #ffffff;
+}
+
+#locked-items-td
+{
+	text-align:left;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 12px;
+	border: 1px solid #A9A9A9;
 }
 /* ----------------------------- */
 /* CARIF DEFINITIONS ENDS HERE */

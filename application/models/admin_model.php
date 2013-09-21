@@ -1,6 +1,12 @@
 <?php
 class Admin_model extends CI_Model {
 
+	public function __construct() 
+	{
+		parent::__construct();
+		$this->load->database();
+	}
+	
     function general() {
 
        //Report templates : Hard coded for now. Should fetch from database later.
@@ -14,6 +20,20 @@ class Admin_model extends CI_Model {
 		return $data;
     }
     
+	public function get_locked_patient_lists()
+	{
+		$query = $this->db->select('*')->from('patient')->where('is_record_locked = 1')->get();
+
+		if ($query->num_rows() > 0)
+		{
+			return $query->result();
+		}
+		else
+		{
+			return null;
+		}
+	}
+	
     public function insert_admin_record($password,$salt) {
         
         $data = array(

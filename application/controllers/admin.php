@@ -80,10 +80,19 @@ class Admin extends CI_Controller {
     }
 
     function list_record_locked_item() {
-
-        $this->template->load("templates/admin_panel_template", 'admin/list_record_locked_item');
+		$data['locked_patient_lists'] = $this->admin_model->get_locked_patient_lists();
+		$this->template->load("templates/admin_panel_template", 'admin/list_record_locked_item', $data);
     }
-
+	
+	function release_locked_items() 
+	{
+		$ic = $this->uri->segment(3);
+		$insert_status = $this->db->where('IC_no', $ic)->update('patient', array('is_record_locked' => 0));
+		
+		if ($insert_status)
+			redirect('admin/', 'refresh');
+	}
+	
     function list_error_item() {
 
         if (!read_file('error_log/carif_error.txt')) {

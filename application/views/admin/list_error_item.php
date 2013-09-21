@@ -24,9 +24,9 @@
             </tr>
         <?php  if($i==10) break; $i++;  endforeach; ?>
 		<tr>
-			<td colspan="3">
+			<td colspan="3" id="error-log-td">
 				<?php echo form_submit('downloadbtn', 'Download error log file'); ?>
-				<a class="doneButton" href="<?php echo base_url(); ?>">Back</a>
+				<a class="doneButton" href="<?php echo base_url() . '/admin/'; ?>">Back</a>
 				<?php echo form_fieldset_close(); ?>
 			</td>
 		</tr>
