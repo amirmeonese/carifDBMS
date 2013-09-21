@@ -84,14 +84,14 @@ class Admin extends CI_Controller {
         $this->template->load("templates/admin_panel_template", 'admin/list_record_locked_item');
     }
 
-    function list_error_locked_item() {
+    function list_error_item() {
 
         if (!read_file('error_log/carif_error.txt')) {
             echo 'Unable to read the file';
         } else {
             $data = read_file('error_log/carif_error.txt');
             $errorArray = array('errorMSG' => '' . $data . '');
-            $this->template->load("templates/admin_panel_template", 'admin/list_error_locked_item', $errorArray);
+            $this->template->load("templates/admin_panel_template", 'admin/list_error_item', $errorArray);
         }
     }
 

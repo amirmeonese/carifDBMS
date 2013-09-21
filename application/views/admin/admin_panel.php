@@ -30,7 +30,7 @@
             </div>
             <div class="span3">
 
-                <form name="add_record" action="admin/list_error_locked_item" method="post">
+                <form name="add_record" action="admin/list_error_item" method="post">
                     <input type ="image" src="<?php echo base_url(); ?>img/view_error_log.png" alt="add_new_form_button" height="120px"></input>
                 </form> 
             </div>
