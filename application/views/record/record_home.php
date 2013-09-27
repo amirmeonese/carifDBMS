@@ -52,11 +52,10 @@
                 <div>
                     <a class="add_record_tab_btn" href="<?php echo site_url('record/view_list/personal'); ?>" target="iframe_record_home" >Personal</a>
                     <a class="add_record_tab_btn" href="<?php echo site_url('record/view_list/family'); ?>" target="iframe_record_home" >Family</a>
-                    <a class="add_record_tab_btn" href="<?php echo site_url('record/view_list/studies_setOne'); ?>" target="iframe_record_home" >Studies, Mammo, Cancer, Diagnosis & Pathology</a>
-                    <a class="add_record_tab_btn" href="<?php echo site_url('record/view_list/lifestyleFactors'); ?>" target="iframe_record_home" >Lifestyle Factors</a>
-
-                    <a class="add_record_tab_btn" href="<?php echo site_url('record/view_list/investigations'); ?>" target="iframe_record_home" >Investigations</a>
-                    <a class="add_record_tab_btn" href="<?php echo site_url('record/view_list/surveillance'); ?>" target="iframe_record_home" >Surveillance</a>
+                    <a class="add_record_tab_btn" href="<?php echo site_url('record/view_list/studies_setOne'); ?>" target="iframe_record_home" >Screenings & Surveillance</a>
+                     <a class="add_record_tab_btn" href="<?php echo site_url('record/view_list/mutation_analysis'); ?>" target="iframe_record_home" >Mutation Analysis</a>
+                    <a class="add_record_tab_btn" href="<?php echo site_url('record/view_list/pathology'); ?>" target="iframe_record_home" >Pathology</a>
+					<a class="add_record_tab_btn" href="<?php echo site_url('record/view_list/lifestyleFactors'); ?>" target="iframe_record_home" >Lifestyle Factors</a>
                     <a class="add_record_tab_btn" href="<?php echo site_url('record/view_list/interviewmanager'); ?>" target="iframe_record_home" >Patient Interview Manager</a>
 
 

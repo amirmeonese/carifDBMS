@@ -5,6 +5,20 @@
     <?php echo form_open_multipart("record/lifestyle_insertion"); ?>
     <div class="container" id="add_record_form_section_lifestyle">
         <div height="30px">&nbsp;</div>
+		<table>
+		<tr> 
+			<td>
+				<?php echo $IC_no; ?>: 
+				<?php echo form_input('IC_no'); ?>
+			</td>
+			<td>
+				<?php echo $studies_name; ?>: 
+				<?php echo form_dropdown('studies_name', $studies_name_lists); ?>
+				<?php echo '<br/>'; ?>
+			</td>
+		</tr>
+		</table>
+		<div height="30px">&nbsp;</div>
         <?php
         echo form_fieldset('Lifestyle Details');
         ?>
@@ -13,18 +27,6 @@
                 <td id="label1">Patient Self Image</td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
-            </tr>
-            <tr> 
-                <td>
-                    <?php echo $IC_no; ?>: 
-                    <?php echo form_input('IC_no'); ?>
-
-                </td>
-                <td>
-                    <?php echo $studies_name; ?>: 
-                    <?php echo form_dropdown('studies_name', $studies_name_lists); ?>
-                    <?php echo '<br/>'; ?>
-                </td>
             </tr>
             <tr>
                 <td>
@@ -60,7 +62,7 @@
                 </td>
             </tr>
             <tr>
-                <td id="label1">Consumption Details</td>
+                <td id="label1">Smoking</td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
             </tr>
@@ -85,15 +87,15 @@
             </tr>
             <tr>
                 <td>
-                    <?php echo $cigarettes_count_at_teen; ?>: 
+                    <?php echo $cigarettes_count_at_teen; ?>: <br />
                     <?php echo form_dropdown('cigarettes_count_at_teen', $cigarettes_average_count_lists); ?>
                 </td>
                 <td>
-                    <?php echo $cigarettes_count_at_twenties; ?>: 
+                    <?php echo $cigarettes_count_at_twenties; ?>:  <br />
                     <?php echo form_dropdown('cigarettes_count_at_twenties', $cigarettes_average_count_lists); ?>
                 </td>
                 <td>
-                    <?php echo $cigarettes_count_at_thirties; ?>: 
+                    <?php echo $cigarettes_count_at_thirties; ?>:  <br />
                     <?php echo form_dropdown('cigarettes_count_at_thirties', $cigarettes_average_count_lists); ?>
                 </td>
             </tr>
@@ -103,17 +105,17 @@
                     <?php echo form_dropdown('cigarettes_count_at_forties', $cigarettes_average_count_lists); ?>
                 </td>
                 <td>
-                    <?php echo $cigarettes_count_at_fifties; ?>: 
+                    <?php echo $cigarettes_count_at_fifties; ?>:  <br />
                     <?php echo form_dropdown('cigarettes_count_at_fifties', $cigarettes_average_count_lists); ?>
                 </td>
                 <td>
-                    <?php echo $cigarettes_count_at_sixties_and_above; ?>: 
+                    <?php echo $cigarettes_count_at_sixties_and_above; ?>:  <br />
                     <?php echo form_dropdown('cigarettes_count_at_sixties_and_above', $cigarettes_average_count_lists); ?>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <?php echo $cigarettes_count_one_year_before_diagnosed; ?>: 
+                    <?php echo $cigarettes_count_one_year_before_diagnosed; ?>:  <br />
                     <?php echo form_dropdown('cigarettes_count_one_year_before_diagnosed', $cigarettes_average_count_lists); ?>
                 </td>
                 <td>
@@ -130,15 +132,15 @@
             </tr>
             <tr>
                 <td>
-                    <?php echo $alcohol_drunk_flag; ?>: <br />
+                    <?php echo $alcohol_drunk_flag; ?>:
                     <?php echo form_checkbox('alcohol_drunk_flag', '1', FALSE); ?>
                 </td>
                 <td>
-                    <?php echo $alcohol_average; ?>: 
+                    <?php echo $alcohol_average; ?>:  <br />
                     <?php echo form_dropdown('alcohol_average', $alcohol_drink_average_lists); ?>
                 </td>
                 <td>
-                    <?php echo $alcohol_average_details; ?>: 
+                    <?php echo $alcohol_average_details; ?>:  <br />
                     <?php echo form_input('alcohol_average_details'); ?>
                 </td>
             </tr>
@@ -149,15 +151,15 @@
             </tr>
             <tr>
                 <td>
-                    <?php echo $coffee_drunk_flag; ?>: <br />
+                    <?php echo $coffee_drunk_flag; ?>: 
                     <?php echo form_checkbox('coffee_drunk_flag', '1', FALSE); ?>
                 </td>
                 <td>
-                    <?php echo $coffee_age; ?>: 
+                    <?php echo $coffee_age; ?>: <br />
                     <?php echo form_input('coffee_age'); ?>
                 </td>
                 <td>
-                    <?php echo $coffee_average; ?>: 
+                    <?php echo $coffee_average; ?>: <br />
                     <?php echo form_dropdown('coffee_average', $coffee_tea_drink_average_lists); ?>
                 </td>
             </tr>
@@ -168,15 +170,15 @@
             </tr>
             <tr>
                 <td>
-                    <?php echo $tea_drunk_flag; ?>: <br />
+                    <?php echo $tea_drunk_flag; ?>: 
                     <?php echo form_checkbox('tea_drunk_flag', '1', FALSE); ?>
                 </td>
                 <td>
-                    <?php echo $tea_age; ?>: 
+                    <?php echo $tea_age; ?>: <br />
                     <?php echo form_input('tea_age'); ?>
                 </td>
                 <td>
-                    <?php echo $tea_average; ?>: 
+                    <?php echo $tea_average; ?>: <br />
                     <?php echo form_dropdown('tea_average', $coffee_tea_drink_average_lists); ?>
                 </td>
             </tr>
@@ -186,24 +188,25 @@
                     <?php echo form_dropdown('tea_type', $tea_type_lists); ?>
                 </td>
                 <td>
-                    &nbsp;
+                    <?php echo $tea_type_other; ?>: <br />
+                    <?php echo form_input('tea_type_other'); ?>
                 </td>
                 <td>
                     &nbsp;
                 </td>
             </tr>
             <tr>
-                <td id="label1">Soy Bean</td>
+                <td id="label1">Soy Products</td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
             </tr>
             <tr>
                 <td>
-                    <?php echo $soya_bean_drunk_flag; ?>: <br />
+                    <?php echo $soya_bean_drunk_flag; ?>: 
                     <?php echo form_checkbox('soya_bean_drunk_flag', '1', FALSE); ?>
                 </td>
                 <td>
-                    <?php echo $soya_bean_average; ?>: 
+                    <?php echo $soya_bean_average; ?>: <br />
                     <?php echo form_dropdown('soya_bean_average', $coffee_tea_drink_average_lists); ?>
                 </td>
                 <td>
@@ -217,7 +220,8 @@
                     <?php echo form_dropdown('soya_products_average', $soya_products_lists); ?>
                 </td>
                 <td>
-                    &nbsp;
+                    <?php echo $soya_products_average_other; ?>: <br />
+                    <?php echo form_input('soya_products_average_other'); ?>
                 </td>
                 <td>
                     &nbsp;
@@ -230,7 +234,7 @@
             </tr>
             <tr>
                 <td>
-                    <?php echo $diabetes_flag; ?>: <br />
+                    <?php echo $diabetes_flag; ?>: 
                     <?php echo form_checkbox('diabetes_flag', '1', FALSE); ?>
                 </td>
                 <td>
@@ -238,7 +242,7 @@
                     <?php echo form_checkbox('medicine_for_diabetes_flag', '1', FALSE); ?>
                 </td>
                 <td>
-                    <?php echo $diabates_medicine_name; ?>: 
+                    <?php echo $diabates_medicine_name; ?>: <br />
                     <?php echo form_input('diabates_medicine_name'); ?>
                 </td>
             </tr>
@@ -253,7 +257,7 @@
         </table>
         <?php echo form_fieldset_close(); ?>
         <?php
-        echo form_fieldset('Menstruation Details');
+        echo form_fieldset('Hormonal Details');
         ?>
         <table>
             <tr>
@@ -279,12 +283,13 @@
                     <?php echo $period_cycle_days_other_details; ?>: <br />
                     <?php echo form_input('period_cycle_days_other_details'); ?>
                 </td>
-                <td>
+               <td>&nbsp;</td>
+            </tr>
+            <tr>
+				 <td>
                     <?php echo $age_period_stops; ?>: <br />
                     <?php echo form_input('age_period_stops'); ?>
                 </td>
-            </tr>
-            <tr>
                 <td>
                     <?php echo $date_period_stops; ?>: <br />
                     <?php echo form_input('date_period_stops'); ?>
@@ -300,66 +305,67 @@
             </tr>
         </table>
         <?php echo form_fieldset_close(); ?>	
-        <?php
-        echo form_fieldset('Pregnancy Details');
+         <div height="30px">&nbsp;</div>
+		 <?php
+        echo form_fieldset('Pregnancy');
         ?>
+		<div id='parity_section_div_1'>
         <table id="pregnancy_section_1">
             <tr>
                 <td>
-                    <?php echo $pregnant_flag; ?>: <br />
+                    <?php echo $never_been_pregnant_flag; ?>: 
+                    <?php echo form_checkbox('never_been_pregnant_flag', '1', FALSE); ?>
+                </td>
+				  <td>
+                    <?php echo $pregnant_flag; ?>: 
                     <?php echo form_checkbox('pregnant_flag', '1', FALSE); ?>
                 </td>
-                <td>
-                    <?php echo $pregnancy_type; ?>: 
-                    <?php echo form_dropdown('pregnancy_type', $pregnancy_type_lists); ?>
-                </td>
-                <td>
-                    <?php echo $child_gender; ?>: 
-                    <?php echo form_dropdown('child_gender', $genderTypes); ?>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <?php echo $child_birthyear; ?>: <br />
-                    <?php echo form_input('child_birthyear'); ?>
-                </td>
-                <td>
-                    <?php echo $child_birthweight; ?>: <br />
-                    <?php echo form_input('child_birthweight'); ?>
-                </td>
-                <td>
-                    <?php echo $child_breastfeeding_duration; ?>: <br />
-                    <?php echo form_input('child_breastfeeding_duration'); ?>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <input type="button" value="Add more pregnancy details" onClick="window.parent.addPregnancyInput('add_record_form_section_lifestyle');
+				<td>
+                    <input type="button" value="Add parity" onClick="window.parent.addPregnancyInput('parity_section_div_1');
                             window.parent.calcHeight();">
-                </td>
-                <td>
-                    &nbsp;
-                </td>
-                <td>
-                    &nbsp;
                 </td>
             </tr>
         </table>
+		</div>
         <?php echo form_fieldset_close(); ?>	
-        <?php
-        echo form_fieldset('Infertility, HRT & GNC Surgery Details');
+        <div height="30px">&nbsp;</div>
+		<?php
+        echo form_fieldset('Infertility, HRT & GNC Surgery');
         ?>
         <table id="infertility_section_1">
+			<tr>
+				<td id="label1">Infertility</td>
+			</tr>
             <tr>
+				
                 <td>
-                    <?php echo $infertility_testing_flag; ?>: <br />
+                    <?php echo $infertility_testing_flag; ?>:
                     <?php echo form_checkbox('infertility_testing_flag', '1', FALSE); ?>
                 </td>
                 <td>
-                    <?php echo $infertility_treatment_details; ?>: 
+                    <?php echo $infertility_treatment_details; ?>: <br />
                     <?php echo form_input('infertility_treatment_details'); ?>
                 </td>
+				<td>
+                    <?php echo $infertility_treatment_duration; ?>:  <br />
+                    <?php echo form_input('infertility_treatment_duration'); ?>
+                </td>
+				<td>
+                    <?php echo $infertility_treatment_comments; ?>: <br />
+                    <?php
+                    $data = array(
+                        'name' => 'infertility_treatment_comments',
+                        'id' => 'infertility_treatment_comments',
+                        'rows' => '3',
+                        'cols' => '7'
+                    );
+                    echo form_textarea($data);
+                    ?>
+                </td>
                 <td>&nbsp;</td>
+			<tr>
+				<td id="label1">Contraceptive pills</td>
+			</tr>
             <tr>
                 <td>
                     <?php echo $contraceptive_pills_flag; ?>: 
@@ -373,21 +379,27 @@
                     <?php echo $currently_taking_contraceptive_pills_flag; ?>: <br />
                     <?php echo form_checkbox('currently_taking_contraceptive_pills_flag', '1', FALSE); ?>
                 </td>
-            </tr>
-            <tr>
-                <td>
+				 <td>
                     <?php echo $contraceptive_start_date; ?>: <br />
                     <?php echo form_input('contraceptive_start_date'); ?>
                 </td>
-                <td>
+            </tr>
+            <tr>
+				<td>
                     <?php echo $contraceptive_end_date; ?>: <br />
                     <?php echo form_input('contraceptive_end_date'); ?>
                 </td>
-                <td>&nbsp;</td>
+                 <td>
+                    <?php echo $contraceptive_duration; ?>: <br />
+                    <?php echo form_input('contraceptive_duration'); ?>
+                </td>
             </tr>
+			<tr>
+				<td id="label1">Hormonal Replacement Therapy</td>
+			</tr>
             <tr>
                 <td>
-                    <?php echo $HRT_flag; ?>: <br />
+                    <?php echo $HRT_flag; ?>: 
                     <?php echo form_checkbox('HRT_flag', '1', FALSE); ?>
                 </td>
                 <td>
@@ -398,21 +410,24 @@
                     <?php echo $currently_using_HRT_flag; ?>: <br />
                     <?php echo form_checkbox('currently_using_hrt_flag', '1', FALSE); ?>
                 </td>
-            </tr>
-            <tr>
-                <td>
+				<td>
                     <?php echo $HRT_start_date; ?>: <br />
                     <?php echo form_input('hrt_start_date'); ?>
                 </td>
+            </tr>
+            <tr>
                 <td>
                     <?php echo $HRT_end_date; ?>: <br />
                     <?php echo form_input('hrt_end_date'); ?>
                 </td>
-                <td>&nbsp;</td>
+               <td>
+                    <?php echo $HRT_duration; ?>: <br />
+                    <?php echo form_input('HRT_duration'); ?>
+                </td>
             </tr>
             <tr>
                 <td>
-                    <?php echo $had_gnc_surgery_flag; ?>: <br />
+                    <?php echo $had_gnc_surgery_flag; ?>: 
                     <?php echo form_checkbox('had_gnc_surgery_flag', '1', FALSE); ?>
                 </td>
                 <td>
@@ -423,17 +438,9 @@
                     <?php echo $gnc_treatment_name; ?>: <br />
                     <?php echo form_dropdown('gnc_treatment_name', $gnc_treatment_lists); ?>
                 </td>
-            </tr>
-            <tr>
-                <td>
+				 <td>
                     <?php echo $gnc_treatment_name_other_details; ?>: <br />
                     <?php echo form_input('gnc_treatment_name_other_details'); ?>
-                </td>
-                <td>
-                    &nbsp;
-                </td>
-                <td>
-                    &nbsp;
                 </td>
             </tr>
         </table>

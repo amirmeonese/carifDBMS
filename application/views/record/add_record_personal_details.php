@@ -6,18 +6,19 @@
     <div class="container" id="add_record_form_section_personal">
         <div height="30px">&nbsp;</div>
         <?php
-        echo form_fieldset('Patient Details');
+        echo form_fieldset('Patient');
         ?>
         <table>
             <tr>
-                <td>
-                    <?php echo $fullname; ?>: 
-                    <?php echo form_input('fullname'); ?>
-                </td>
-                <td>
+               <td>
                     <?php echo $surname; ?>: 
                     <?php echo form_input('surname'); ?>
                 </td>
+				<td>
+                    <?php echo $fullname; ?>: 
+                    <?php echo form_input('fullname'); ?>
+                </td>
+                
                 <td>
                     <?php echo $maiden_name; ?>: 
                     <?php echo form_input('maiden_name'); ?>
@@ -60,9 +61,13 @@
                     echo form_input('place_of_birth');
                     ?>
                 </td>
-                <td>
-                    <?php echo $income_level; ?>: 
-                    <?php echo form_dropdown('income_level', $income_level_lists); ?>
+				 <td>
+					<?php echo $marital_status; ?>: 
+                    <?php echo form_dropdown('marital_status', $marital_status_lists); ?>
+                </td>
+				<td>
+                    <?php echo $blood_group; ?>: 
+					<?php echo form_input('blood_group'); ?>
                 </td>
             </tr>
             <tr>
@@ -89,15 +94,17 @@
                     ?>
                 </td>
             </tr>
-            <tr>
-                <td>
-                    <?php echo $pedigree_label; ?>: 
-					<?php echo form_input('padigree_labelling'); ?>
-                </td>
-                <td>
-                    <?php echo $blood_group; ?>: 
-					<?php echo form_input('blood_group'); ?>
-                </td>
+		</table>
+	</div>
+	 <div class="container" id="add_record_form_section_personal2">
+		<table id="hospital_no_section_1">
+			<tr>
+                <td id="label1">Hospital numbers</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+			<tr>
                 <td>
                     <?php echo $hospital_no; ?>: 
                     <?php
@@ -105,19 +112,39 @@
                     echo form_input('hospital_no');
                     ?>
                 </td>
-                <td>
-					<?php echo $private_patient_no; ?>: 
-					<?php echo form_input('private_patient_no'); ?>
-                </td>
+				<td>
+					<input type="button" value="Add Hospital No." onClick="window.parent.addHospitalNoInput('add_record_form_section_personal2'); window.parent.calcHeight();">
+				</td>
             </tr>
+		</table>
+	</div>
+	<div class="container" id="add_record_form_section_personal3">
+	<div height="30px">&nbsp;</div>
+	<table id="add_private_patient_no_section_1">
+		<tr>
+                <td id="label1">Private patient numbers</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+				<?php echo $private_patient_no; ?>: 
+				<?php echo form_input('private_patient_no'); ?>
+			</td>
+			<td>
+				<input type="button" value="Add patient no." onClick="window.parent.addPatientPrivateNoInput('add_record_form_section_personal3'); window.parent.calcHeight();">
+			</td>
+		</tr>
+		</table>
+	</div>
+	<div class="container" id="add_record_form_section_personal4">
+	<div height="30px">&nbsp;</div>
+		<table>
             <tr>
                 <td>
 					<?php echo $COGS_study_id; ?>:
                     <?php echo form_dropdown('COGS_study_id', $COGS_study_id_lists); ?>
-                </td>
-                <td>
-					<?php echo $marital_status; ?>: 
-                    <?php echo form_dropdown('marital_status', $marital_status_lists); ?>
                 </td>
                 <td>
 					<?php echo $is_blood_card_exist; ?>: 
@@ -164,8 +191,20 @@
                     <?php echo form_input('fax'); ?>
                 </td>
                 <td>
-<?php echo $email; ?>: 
-<?php echo form_input('email'); ?>
+					<?php echo $email; ?>: 
+					<?php echo form_input('email'); ?>
+                </td>
+				 <td>
+                    <?php echo $highest_level_of_education; ?>: 
+                    <?php
+                    $data = array(
+                        'name' => 'highest_level_of_education',
+                        'id' => 'highest_level_of_education',
+                        'rows' => '3',
+                        'cols' => '10'
+                    );
+                    echo form_textarea($data);
+                    ?>
                 </td>
             </tr>
             <tr>
@@ -181,17 +220,9 @@
                     <?php echo $BMI; ?>: 
                     <?php echo form_input('BMI'); ?>
                 </td>
-                <td>
-                    <?php echo $highest_level_of_education; ?>: 
-                    <?php
-                    $data = array(
-                        'name' => 'highest_level_of_education',
-                        'id' => 'highest_level_of_education',
-                        'rows' => '3',
-                        'cols' => '10'
-                    );
-                    echo form_textarea($data);
-                    ?>
+				<td>
+                    <?php echo $income_level; ?>: 
+                    <?php echo form_dropdown('income_level', $income_level_lists); ?>
                 </td>
             </tr>
             <tr>
@@ -207,7 +238,18 @@
 					<?php echo $contact_person_relationship; ?>: 
 					<?php echo form_input('contact_person_relationship'); ?>
                 </td>
-				<td>&nbsp;</td>
+				 <td>
+                    <?php echo $patient_comments; ?>: 
+                    <?php
+                    $data = array(
+                        'name' => 'patient_comments',
+                        'id' => 'patient_comments',
+                        'rows' => '3',
+                        'cols' => '7'
+                    );
+                    echo form_textarea($data);
+                    ?>
+                </td>
             </tr>
 			<tr>
                 <td id="label1">Relative summary details</td>
@@ -260,29 +302,11 @@
                 </td>
 				<td>&nbsp;</td>
             </tr>
-			<tr>
-                <td id="label1">Do not know because</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-            </tr>
-			<tr>
-                <td>
-                    <?php echo $unknown_reason_is_adopted; ?>: 
-                    <?php echo form_checkbox('unknown_reason_is_adopted','1',FALSE); ?>
-                </td>
-                <td>
-                    <?php echo $unknown_reason_in_other_countries; ?>: 
-                   <?php echo form_checkbox('unknown_reason_in_other_countries','1',FALSE); ?>
-                </td>
-                <td>&nbsp;</td>
-				<td>&nbsp;</td>
-            </tr>
         </table>
     </div>
 
-<?php echo form_fieldset_close(); ?>	
-    <div class="container" id="add_record_form_section_personal_2">
+	<?php echo form_fieldset_close(); ?>	
+    <div class="container" id="add_record_form_section_personal_5">
         <div height="30px">&nbsp;</div>
         <table id="survival_section_1">
             <tr>
@@ -305,11 +329,76 @@
                            <?php echo form_input('status_gathered_date'); ?>
                 </td>
                 <td>
-                    <input type="button" value="Add more survival status" onClick="window.parent.addSurvivalStatusInput('add_record_form_section_personal_2');
+                    <input type="button" value="Add more survival status" onClick="window.parent.addSurvivalStatusInput('add_record_form_section_personal_5');
                             window.parent.calcHeight();">
                 </td>
             </tr>
         </table>
+    </div>
+	<div class="container" id="add_consent_details_section">
+        <div height="30px">&nbsp;</div>
+        <?php
+        echo form_fieldset('Consent Details');
+        ?>
+        <table>
+            <tr>
+                <td>
+                    <?php echo $studies_name; ?>: 
+                    <?php echo form_dropdown('studies_name', $studies_name_lists); ?>
+                </td>
+                <td>
+                    <?php echo $date_at_consent; ?>: 
+                    <?php echo form_input('date_at_consent'); ?>
+                </td>
+                <td>
+                    <?php echo $age_at_consent; ?>: 
+                    <?php echo form_input('age_at_consent'); ?>
+                </td>
+                <td>
+                    <?php echo $is_double_consent_flag; ?>: 
+                    <?php echo form_checkbox('is_double_consent_flag', '1', FALSE); ?>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <?php echo $consent_given_by; ?>: 
+                    <?php echo form_input('consent_given_by'); ?>
+                </td>
+                <td>
+                    <?php echo $consent_response; ?>: 
+                    <?php echo form_input('consent_response'); ?>
+                </td>
+                <td>
+                    <?php echo $consent_version; ?>: 
+                    <?php echo form_input('consent_version'); ?>
+                </td>
+				<td>
+                    <?php echo $relations_to_study; ?>: 
+                    <?php
+                    echo form_input('relations_to_study');
+                    ?>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <?php echo $referral_to; ?>: 
+                    <?php
+                    echo form_input('referral_to');
+                    ?>
+                </td>
+				<td>
+                    <?php echo $referral_date; //referral to genetic counselling ?>: 
+                    <?php echo form_input('referral_date'); ?>
+                </td>
+				 <td>
+                    <?php echo $referral_source; ?>: 
+                    <?php
+                    echo form_input('referral_source');
+                    ?>
+                </td>
+            </tr>
+        </table>
+        <?php echo form_fieldset_close(); ?>	
     </div>
 <?php echo form_submit('mysubmit', 'Save'); ?>
 <?php echo form_close(); ?>

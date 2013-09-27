@@ -491,7 +491,7 @@ class Record_model extends CI_Model {
           '2009'=>'2009'); */
 
         //PERSONAL DETAILS
-        $data['fullname'] = 'Fullname';
+        $data['fullname'] = 'Given name';
         $data['surname'] = 'Surname';
         $data['maiden_name'] = 'Maiden name';
         $data['family_no'] = 'Family No';
@@ -525,7 +525,6 @@ class Record_model extends CI_Model {
         $data['still_alive_flag'] = 'Still alive?';
         $data['DOD'] = 'Date of death';
         $data['reason_of_death'] = 'Reason of death';
-        $data['pedigree_label'] = 'Pedigree label';
         $data['gender'] = 'Gender';
         $data['ethinicity'] = 'Ethnicity';
 
@@ -533,12 +532,13 @@ class Record_model extends CI_Model {
         $data['comment'] = 'Comment';
 
         $data['hospital_no'] = 'Hospital No (MRN)';
-        $data['private_patient_no'] = 'Private Patient No';
+        $data['private_patient_no'] = 'Patient No';
         $data['COGS_study_id'] = 'COGS study ID';
         $data['COGS_study_id_lists'] = array(
             'CIMBA' => 'CIMBA',
             'OCAC' => 'OCAC',
-            'BCAC' => 'BCAC'
+            'BCAC' => 'BCAC',
+			'PRACTICAL' => 'PRACTICAL'
         );
         $data['marital_status'] = 'Marital status';
         $data['marital_status_lists'] = array(
@@ -568,6 +568,7 @@ class Record_model extends CI_Model {
             '10-50,000' => '10-50,000',
             '>50,000' => '>50,000'
         );
+		$data['patient_comments'] = 'Comments';
 		$data['total_no_of_male_siblings'] = 'Total male siblings';
 		$data['total_no_of_female_siblings'] = 'Total female siblings';
 		$data['total_no_of_affected_siblings'] = 'Total of affected siblings';
@@ -577,8 +578,6 @@ class Record_model extends CI_Model {
 		$data['total_no_of_first_degree'] = 'Total of first degree';
 		$data['total_no_of_second_degree'] = 'Total of second degree';
 		$data['total_no_of_third_degree'] = 'Total of third degree';
-		$data['unknown_reason_is_adopted'] = 'Is parent(s) adopted';
-		$data['unknown_reason_in_other_countries'] = 'Is in other countries?';
 		
         $data['contact_person_name'] = 'Contact person\'s name';
         $data['contact_person_phone_number'] = 'Contact person\'s phone';
@@ -600,45 +599,55 @@ class Record_model extends CI_Model {
 
 
         //FAMILY DETAILS
-        $data['father_fullname'] = 'Father\'s fullname';
-        $data['father_surname'] = 'Father surname';
-        $data['father_maiden_name'] = 'Father maiden name';
-        $data['father_ethnicity'] = 'Father ethnicity';
-        $data['father_town_residence'] = 'Father\'s town of residence';
-        $data['father_DOB'] = 'Father\'s date of birth';
-        $data['father_still_alive_flag'] = 'Father is still alive?';
-        $data['father_DOD'] = 'Father\'s date of dead';
-        $data['father_is_cancer_diagnosed'] = 'Is father diagnosed with cancer?';
+        $data['father_fullname'] = 'Fullname';
+        $data['father_surname'] = 'Surname';
+        $data['father_maiden_name'] = 'Maiden name';
+		$data['father_unknown_reason_is_adopted'] = 'Adoption';
+		$data['father_unknown_reason_in_other_countries'] = 'In other country';
+        $data['father_ethnicity'] = 'Ethnicity';
+        $data['father_town_residence'] = 'Town of residence';
+        $data['father_DOB'] = 'Date of birth';
+        $data['father_still_alive_flag'] = 'Is still alive?';
+        $data['father_DOD'] = 'Date of death';
+        $data['father_is_cancer_diagnosed'] = 'Is diagnosed with cancer?';
         $data['father_date_of_diagnosis'] = 'Date of diagnosis';
-        $data['father_cancer_name'] = 'Father\'s cancer\'s name';
-        $data['father_age_of_diagnosis'] = 'Father\'s age at diagnosis';
-        $data['father_diagnosis_other_details'] = 'Father\'s diagnosis details';
+        $data['father_cancer_name'] = 'Type of cancer';
+		$data['father_other_cancer_name'] = 'Other cancer type';
+        $data['father_age_of_diagnosis'] = 'Age at diagnosis';
+        $data['father_diagnosis_other_details'] = 'Diagnosis details';
         $data['father_no_of_brothers'] = 'Total no. of brothers';
         $data['father_no_of_sisters'] = 'Total no. of sisters';
-        $data['father_vital_status'] = 'Father\'s vital status';
-        $data['father_mach_score_at_consent'] = 'Father\'s mach score at consent';
-        $data['father_mach_score_past_consent'] = 'Father\'s mach score past consent';
-        $data['father_FH_category'] = 'Father\'s FH category';
-
-        $data['mother_fullname'] = 'Mother\'s fullname';
-        $data['mother_surname'] = 'Mother surname';
-        $data['mother_maiden_name'] = 'Mother maiden name';
-        $data['mother_ethnicity'] = 'Mother ethnicity';
-        $data['mother_town_residence'] = 'Mother\'s town of residence';
-        $data['mother_DOB'] = 'Mother\'s date of birth';
-        $data['mother_still_alive_flag'] = 'Mother is still alive?';
-        $data['mother_DOD'] = 'Mother\'s date of dead';
-        $data['mother_is_cancer_diagnosed'] = 'Is mother diagnosed with cancer?';
+		$data['father_no_of_half_brothers'] = 'Total no. of half brothers';
+        $data['father_no_of_half_sisters'] = 'Total no. of half sisters';
+        $data['father_vital_status'] = 'Vital status';
+        $data['father_comments'] = 'Comments';
+        $data['father_mach_score_past_consent'] = 'Mach score past consent';
+        $data['father_FH_category'] = 'FH category';
+		
+        $data['mother_fullname'] = 'Fullname';
+        $data['mother_surname'] = 'Surname';
+        $data['mother_maiden_name'] = 'Maiden name';
+		$data['mother_unknown_reason_is_adopted'] = 'Adoption';
+		$data['mother_unknown_reason_in_other_countries'] = 'In other country';
+        $data['mother_ethnicity'] = 'Ethnicity';
+        $data['mother_town_residence'] = 'Town of residence';
+        $data['mother_DOB'] = 'Date of birth';
+        $data['mother_still_alive_flag'] = 'Is still alive?';
+        $data['mother_DOD'] = 'Date of death';
+        $data['mother_is_cancer_diagnosed'] = 'Is diagnosed with cancer?';
         $data['mother_date_of_diagnosis'] = 'Date of diagnosis';
-        $data['mother_cancer_name'] = 'Mother\'s cancer\'s name';
-        $data['mother_age_of_diagnosis'] = 'Mother\'s age at diagnosis';
-        $data['mother_diagnosis_other_details'] = 'Mother\'s diagnosis details';
+        $data['mother_cancer_name'] = 'Type of cancer';
+		$data['mother_other_cancer_name'] = 'Other cancer type';
+        $data['mother_age_of_diagnosis'] = 'Age at diagnosis';
+        $data['mother_diagnosis_other_details'] = 'Diagnosis details';
         $data['mother_no_of_brothers'] = 'Total no. of brothers';
         $data['mother_no_of_sisters'] = 'Total no. of sisters';
-        $data['mother_vital_status'] = 'Mother\'s vital status';
-        $data['mother_mach_score_at_consent'] = 'Mother\'s mach score at consent';
-        $data['mother_mach_score_past_consent'] = 'Mother\'s mach score past consent';
-        $data['mother_FH_category'] = 'Mother\'s FH category';
+		$data['mother_no_of_half_brothers'] = 'Total no. of half brothers';
+        $data['mother_no_of_half_sisters'] = 'Total no. of half sisters';
+        $data['mother_vital_status'] = 'Vital status';
+        $data['mother_comments'] = 'Comments';
+        $data['mother_mach_score_past_consent'] = 'Mach score past consent';
+        $data['mother_FH_category'] = 'FH category';
 
         //Studies, Mammo, Cancer & Diagnosis Details
         //$data[''] = ''; (TEMPLATE)
@@ -660,17 +669,18 @@ class Record_model extends CI_Model {
         $data['relations_to_study'] = 'Relations to study';
         $data['referral_to'] = 'Referral to';
         $data['referral_to_service'] = 'Referral to service';
-        $data['referral_date'] = 'Referral date';
+        $data['referral_date'] = 'Referral to genetic counselling';
         $data['referral_source'] = 'Referral source';
 
         //MAMMO
-        $data['year_of_first_mammogram'] = 'Year of first mammogram';
+        $data['year_of_first_mammogram'] = 'Date of first mammogram';
         $data['age_at_first_mammogram'] = 'Age at first mammogram';
         $data['date_of_recent_mammogram'] = 'Date of recent mammogram';
-        $data['screening_center'] = 'Screening center';
+		$data['age_at_recent__mammogram'] = 'Age at recent mammogram';
+        $data['screening_center'] = 'Screening centre';
         $data['total_no_of_mammogram'] = 'Total no. of mammogram';
         $data['screening_interval'] = 'Screening interval';
-        $data['abnormality_mammo_flag'] = 'Is abnormality detected?';
+        $data['abnormality_mammo_flag'] = 'Abnormalities detected';
         $data['mammo_left_right_breast_side'] = 'Left/right breast side';
         $data['mammo_left_right_breast_side_lists'] = array(
             'left' => 'Left',
@@ -682,7 +692,7 @@ class Record_model extends CI_Model {
             'below' => 'Below'
         );
         $data['mammo_breast_other_descriptions'] = 'Other details';
-		$data['percentage_of_mammo_density'] = 'Perentage (%) of mammo density';
+		$data['percentage_of_mammo_density'] = 'Percentage (%) of mammo density';
 		$data['BIRADS_clinical_classification'] = 'BIRADS clinical classification';
 		$data['BIRADS_density_classification'] = 'BIRADS density classification';
         //Upload raw/processed images
@@ -697,18 +707,22 @@ class Record_model extends CI_Model {
 
         $data['name_of_radiologist'] = 'Radiologist name';
         $data['action_suggested_on_mammo_report'] = 'Action suggested on mammogram report';
-        $data['had_ultrasound_flag'] = 'Had ultrasound done before?';
+        $data['had_ultrasound_flag'] = 'Had ultrasound?';
         $data['total_no_of_ultrasound'] = 'Total no. of ultrasound';
         $data['abnormality_ultrasound_flag'] = 'Is abnormality detected?';
-        $data['mammo_ultrasound_details'] = 'Ultrasound details';
-        $data['had_MRI_flag'] = 'Had MRI done before?';
+        $data['mammo_ultrasound_details'] = 'Comment';
+        $data['had_MRI_flag'] = 'Had MRI?';
         $data['total_no_of_MRI'] = 'Total no. of MRI';
         $data['abnormality_MRI_flag'] = 'Is abnormality detected?';
-        $data['mammo_MRI_details'] = 'MRI details';
+        $data['mammo_MRI_details'] = 'Comment';
+		$data['non_cancer_surgery_type'] = 'Surgery type';
+		$data['reason_for_non_cancer_surgery'] = 'Reason for surgery';
+		$data['date_of_non_cancer_surgery'] = 'Date of surgery';
+		$data['age_at_non_cancer_surgery'] = 'Age at surgery';
         $data['had_surgery_for_benign_lump_or_cyst_flag'] = 'Had done surgery for benign lumpr or cyst before?';
-        $data['mammo_benign_lump_cyst_details'] = 'Details';
+        $data['mammo_benign_lump_cyst_details'] = 'Comment';
         $data['other_screening_flag'] = 'Had other screenings done before?';
-        $data['screening_name'] = 'Screening name';
+        $data['screening_name'] = 'Screening type';
 		$data['screening_name_lists'] = array(
 			'Pap Smear' => 'Pap Smear',
 			'Chest XRay' => 'Chest XRay',
@@ -720,16 +734,29 @@ class Record_model extends CI_Model {
 		);
         $data['total_no_of_screening'] = 'Total no. of screenings';
         $data['age_at_screening'] = 'Age at screening';
-        $data['place_of_screening'] = 'Place of screening';
+        $data['place_of_screening'] = 'Screening centre';
         $data['screening_results'] = 'Screening results';
 
         //CANCER
 
-        $data['breast_cancer_diagnosed_flag'] = 'Is breast cancer diagnosed?';
-        $data['breast_cancer_diagnosed_flag'] = 'Is breast cancer diagnosed?';
+        $data['cancer_invasive_type'] = 'Cancer type (invasive/non-invasive)';
+		$data['cancer_invasive_type_lists'] = array(
+			'Invasive' => 'Invasive',
+			'Non-invasive' => 'Non-invasive'
+		);
+		$data['detected_by_other_details'] = 'Other';
+        $data['detected_by_lists'] = array(
+			'At a screening (mammography/ultrasound/MRI)' => 'At a screening (mammography/ultrasound/MRI)',
+            'I felt a lump' => 'I felt a lump',
+            'My doctor felt a lump' => 'My doctor felt a lump',
+			'Other' => 'Other',
+        );
+		$data['breast_cancer_treatment_comments'] = 'Comments';
+		$data['treatment_duration'] = 'Treatment duration';
         $data['breast_cancer_diagnosed_flag'] = 'Is breast cancer diagnosed?';
         $data['patient_cancer_name'] = 'Cancer name';
         $data['patient_cancer_name_lists'] = array(
+			'None' => 'None',
             'Breast' => 'Breast',
             'Ovaries' => 'Ovaries',
             'Prostate' => 'Prostate',
@@ -742,22 +769,26 @@ class Record_model extends CI_Model {
             'Nasopharyngeal' => 'Nasopharyngeal',
             'Liver' => 'Liver',
             'Gastric' => 'Gastric',
-            'Others' => 'Others',
-            'None' => 'None'
+            'Others' => 'Others'
         );
         $data['primary_diagnosis'] = 'Is primary diagnosis?';
         $data['cancer_site'] = 'Select site';
-        $data['patient_cancer_site_lists'] = array(
+        $data['patient_cancer_sites_lists'] = array(
             'Left Breast' => 'Left Breast',
             'Right Breast' => 'Right Breast',
             'Left Ovary' => 'Left Ovary',
             'Right Ovary' => 'Right Ovary'
         );
+		 $data['patient_cancer_site_lists'] = array(
+            'Left' => 'Left',
+            'Right' => 'Right'
+        );
         $data['cancer_site_details'] = 'Details';
 
 
-        $data['age_of_diagnosis'] = 'Age of diagnosis';
+        $data['age_of_diagnosis'] = 'Age at diagnosis';
         $data['date_of_diagnosis'] = 'Date of diagnosis';
+		$data['source_of_date_of_diagnosis'] = 'Source of date of diagnosis';
         $data['cancer_diagnosis_center'] = 'Diagnosis center';
         $data['cancer_doctor_name'] = 'Doctor\'s name';
         $data['detected_by'] = 'Detected by';
@@ -781,6 +812,8 @@ class Record_model extends CI_Model {
             'TAHBSO' => 'TAHBSO',
             'None' => 'None'
         );
+		$data['cancer_is_bilateral'] = 'Bilateral';
+		$data['cancer_is_recurrent'] = 'Recurrent';
         $data['treatment_start_date'] = 'Treatment start date';
         $data['treatment_end_date'] = 'Treatment end date';
         $data['treatment_drug_dose'] = 'Treatment drug dose';
@@ -789,9 +822,42 @@ class Record_model extends CI_Model {
         $data['recurrence_date'] = 'Recurrence date';
         $data['patient_cancer_recurrence_treatment_name'] = 'Treatment for recurrence';
 
+		// OVARY CANCER
+		$data['ovary_cancer_site'] = 'Select site';
+		$data['ovary_cancer_invasive_type'] = 'Cancer type (invasive/non-invasive)';
+		$data['ovary_primary_diagnosis'] = 'Is primary diagnosis?';
+		$data['ovary_date_of_diagnosis'] = 'Date of diagnosis';
+		$data['ovary_age_of_diagnosis'] = 'Age at diagnosis';
+		$data['ovary_cancer_diagnosis_center'] = 'Diagnosis centre';
+		$data['ovary_cancer_doctor_name'] = 'Doctor\'s name';
+		$data['ovary_detected_by'] = 'Detected by';
+		$data['ovary_detected_by_other_details'] = 'Other';
+		$data['ovary_patient_cancer_treatment_name'] = 'Treatment name';
+		$data['ovary_treatment_start_date'] = 'Treatment start date';
+		$data['ovary_treatment_end_date'] = 'Treatment end date';
+		$data['ovary_treatment_duration'] = 'Treatment duration';
+		$data['ovary_cancer_treatment_comments'] = 'Comments';
+		$data['ovary_cancer_is_bilateral'] = 'Bilateral';
+		$data['ovary_cancer_is_recurrent'] = 'Recurrent';
+		
+		// OTHER CANCER
+		
+		$data['other_cancer_type'] = 'Cancer type';
+		$data['other_date_of_diagnosis'] = 'Date of diagnosis';
+		$data['other_age_of_diagnosis'] = 'Age at diagnosis';
+		$data['other_cancer_diagnosis_center'] = 'Diagnosis centre';
+		$data['other_cancer_doctor_name'] = 'Doctor\'s name';
+		$data['other_cancer_comments'] = 'Comments';
+		$data['other_patient_cancer_treatment_name'] = 'Treatment name';
+		$data['other_treatment_start_date'] = 'Treatment start date';
+		$data['other_treatment_end_date'] = 'Treatment end date';
+		$data['other_treatment_duration'] = 'Treatment duration';
+		$data['other_cancer_treatment_comments'] = 'Comments';
+		
         //DIAGNOSIS
-        $data['patient_other_diagnosis_name'] = 'Diagnosis name';
+        $data['patient_other_diagnosis_name'] = 'Type of diseases';
         $data['diagnosis_name_lists'] = array(
+			'None' => 'None',
             'Diabetes' => 'Diabetes',
             'Hypertension' => 'Hypertension',
             'Thyroid' => 'Thyroid',
@@ -802,11 +868,15 @@ class Record_model extends CI_Model {
         );
         $data['diagnosis_details'] = 'Diagnosis details';
         $data['diagnosis_age'] = 'Age at diagnosis';
-        $data['year_of_diagnosis'] = 'Year of diagnosis';
+        $data['year_of_diagnosis'] = 'Date of diagnosis';
         $data['is_on_medication_flag'] = 'Is on medication?';
-        $data['medication_details'] = 'Medication details';
+        $data['medication_type_name'] = 'Type of medication';
         $data['diagnosis_center'] = 'Diagnosis center';
         $data['diagnosis_doctor_name'] = 'Diagnosis doctor\'s name';
+		$data['medication_start_date'] = 'Medication start date';
+		$data['medication_end_date'] = 'Medication end date';
+		$data['medication_duration'] = 'Medication duration';
+		$data['medication_comments'] = 'Comments';
 
 
         //Lifestyle Factors
@@ -853,15 +923,15 @@ class Record_model extends CI_Model {
             '11-20' => '11-20',
             '>20' => '>20'
         );
-        $data['alcohol_drunk_flag'] = 'Alcohol drunk more than once a month on average?';
-        $data['alcohol_average'] = 'Alcohol average';
-        $data['alcohol_average_details'] = 'Average details';
-        $data['coffee_drunk_flag'] = 'Coffee drunk regularly?';
+        $data['alcohol_drunk_flag'] = 'Consumption more than once a month on average?';
+        $data['alcohol_average'] = 'Alcohol frequency';
+        $data['alcohol_average_details'] = 'Comments';
+        $data['coffee_drunk_flag'] = 'Regular consumptions?';
         $data['coffee_age'] = 'Start age';
-        $data['coffee_average'] = 'Coffee average';
-        $data['tea_drunk_flag'] = 'tea drunk regularly';
+        $data['coffee_average'] = 'Coffee frequency';
+        $data['tea_drunk_flag'] = 'Regular consumption?';
         $data['tea_age'] = 'Start age';
-        $data['tea_average'] = 'Tea average';
+        $data['tea_average'] = 'Tea frequency';
         $data['tea_type'] = 'Tea type';
         $data['alcohol_drink_average_lists'] = array(
             '1 glass per day' => '1 glass per day',
@@ -881,9 +951,10 @@ class Record_model extends CI_Model {
             'Herbal tea' => 'Herbal tea',
             'Other, please specify' => 'Other, please specify'
         );
-        $data['soya_bean_drunk_flag'] = 'Soya bean milk drunk regularly?';
-        $data['soya_bean_average'] = 'Soya bean average';
-        $data['soya_products_flag'] = 'Soya products eaten regularly?';
+		$data['tea_type_other'] = 'Other';
+        $data['soya_bean_drunk_flag'] = 'Regular consumption?';
+        $data['soya_bean_average'] = 'Soya bean frequency';
+        $data['soya_products_flag'] = 'Soya product frequency';
         $data['soya_products_average'] = 'Soya products average';
         $data['soya_products_lists'] = array(
             'Every meal' => 'Every meal',
@@ -891,16 +962,17 @@ class Record_model extends CI_Model {
             'Once a week' => 'Once a week',
             'Other, please specify' => 'Other, please specify'
         );
+		$data['soya_products_average_other'] = 'Other';
         $data['diabetes_flag'] = 'Patient has diabetes?';
         $data['medicine_for_diabetes_flag'] = 'Current taking any diabetes medication?';
         $data['diabates_medicine_name'] = 'Medicine name';
 
-        $data['age_period_starts'] = 'Age period starts';
+        $data['age_period_starts'] = 'Age of menarche';
         $data['still_period_flag'] = 'Still having period?';
         $data['period_type'] = 'Period regularity';
         $data['period_cycle_days'] = 'Period cycle days';
-        $data['period_cycle_days_other_details'] = 'Other details';
-        $data['age_period_stops'] = 'Age period stops';
+        $data['period_cycle_days_other_details'] = 'Comment';
+        $data['age_period_stops'] = 'Age at menopause';
         $data['date_period_stops'] = 'Date period stops';
         $data['reason_period_stops'] = 'Reason period stops';
         $data['period_type_lists'] = array(
@@ -921,9 +993,10 @@ class Record_model extends CI_Model {
             'Medication/Chemotherapy' => 'Medication/Chemotherapy',
             'Other reason' => 'Other reason'
         );
-        $data['reason_period_stops_other_details'] = 'Other details';
-
-        $data['pregnant_flag'] = 'Patient has been pregnant?';
+        $data['reason_period_stops_other_details'] = 'Comment';
+		
+		$data['never_been_pregnant_flag'] = 'Null parity';
+        $data['pregnant_flag'] = 'Parity';
         $data['pregnancy_type'] = 'Pregnancy type';
         $data['pregnancy_type_lists'] = array(
             'Child' => 'Child',
@@ -936,27 +1009,31 @@ class Record_model extends CI_Model {
         $data['child_breastfeeding_duration'] = 'Breastfeeding';
 
 
-        $data['infertility_testing_flag'] = 'Patient has been treated for infertility?';
-        $data['infertility_treatment_details'] = 'Treatment details';
-        $data['contraceptive_pills_flag'] = 'Has ever used contraceptive pills?';
+        $data['infertility_testing_flag'] = 'Treatment for infertility?';
+        $data['infertility_treatment_details'] = 'Type of treatment';
+		$data['infertility_treatment_duration'] = 'Duration';
+		$data['infertility_treatment_comments'] = 'Comment';
+        $data['contraceptive_pills_flag'] = 'Contraceptive pills use?';
         $data['contraceptive_pills_details'] = 'Details';
-        $data['currently_taking_contraceptive_pills_flag'] = 'Is currently taking contraceptive pills?';
-        $data['contraceptive_start_date'] = 'Consumption start date';
-        $data['contraceptive_end_date'] = 'Consumption end date';
-        $data['HRT_flag'] = 'Has ever used hormone replacement therapy(HRT)?';
+        $data['currently_taking_contraceptive_pills_flag'] = 'Active use?';
+        $data['contraceptive_start_date'] = 'Start date';
+        $data['contraceptive_end_date'] = 'End date';
+		$data['contraceptive_duration'] = 'Duration';
+        $data['HRT_flag'] = 'HRT use?';
         $data['HRT_details'] = 'Details';
-        $data['currently_using_HRT_flag'] = 'Is currently using HRT?';
-        $data['HRT_start_date'] = 'Therapy start date';
-        $data['HRT_end_date'] = 'Therapy end date';
+        $data['currently_using_HRT_flag'] = 'Active use?';
+        $data['HRT_start_date'] = 'Start date';
+        $data['HRT_end_date'] = 'End date';
+		$data['HRT_duration'] = 'Duration';
         $data['had_gnc_surgery_flag'] = 'Has ever had gynaecological surgery?';
         $data['gnc_surgery_year'] = 'Surgery year';
         $data['gnc_treatment_name'] = 'Surgery type';
-        $data['gnc_treatment_name_other_details'] = 'Surgery other details';
+        $data['gnc_treatment_name_other_details'] = 'Other';
 
         $data['gnc_treatment_lists'] = array(
-            'Sterilisation' => 'Lumpectomy',
-            'Tubal Ligation' => 'Mastectomy',
-            'Removal of one ovary' => 'Healthy Breast Removed',
+            'Sterilisation' => 'Sterilisation',
+            'Tubal Ligation' => 'Tubal Ligation',
+            'Removal of one ovary' => 'Removal of one ovary',
             'Removal of both ovaries (oophorectomy)' => 'Removal of both ovaries (oophorectomy)',
             'Removal of one ovary & fallopian tube (Unlateral salpingo-oophorectomy)' => 'Removal of one ovary & fallopian tube (Unlateral salpingo-oophorectomy)',
             'Removal of both ovaries & fallopian tube (Bilateral salpingo-oophorectomy)' => 'Removal of both ovaries & fallopian tube (Bilateral salpingo-oophorectomy)',
@@ -970,24 +1047,32 @@ class Record_model extends CI_Model {
         $data['date_test_ordered'] = 'Date test ordered';
         $data['test_ordered_by'] = 'Ordered by';
         $data['testing_results_notification_flag'] = 'Request for result notification';
-        $data['investigation_project_name'] = 'Project name';
+        $data['investigation_project_name'] = 'Service provider';
         $data['investigation_project_name_lists'] = array(
             'GTG' => 'GTG',
-            'Sequenom' => 'Sequenom'
+            'Sequenom' => 'Sequenom',
+			'BGI' => 'BGI'
         );
-        $data['investigation_project_batch'] = 'Project batch';
-        $data['investigation_test_type'] = 'Test type';
+        $data['investigation_project_batch'] = 'Testing batch';
+		$data['investigation_gene_tested'] = 'Gene tested';
+        $data['investigation_test_type'] = 'Types of testing';
+		$data['investigation_gene_tested_lists'] = array(
+            'APC' => 'APC',
+            'ATM' => 'ATM',
+            'PALB2' => 'PALB2',
+            'BRCA1' => 'BRCA1',
+            'BRCA2' => 'BRCA2',
+            'TP5 3' => 'TP5 3',
+            'BRCX' => 'BRCX',
+            'APOE' => 'APOE',
+            'Others' => 'Others'
+        );
+		$data['investigation_gene_tested_other'] = 'Other';
         $data['investigation_test_type_lists'] = array(
-            'APC gene' => 'APC gene',
-            'ATM gene' => 'ATM gene',
-            'BRCA gene' => 'BRCA gene',
-            'p5 3 gene' => 'p5 3 gene',
-            'SMAD4 gene' => 'Sequenom',
-            'Antibody' => 'Antibody',
-            'CA125' => 'CA125',
-            'Peritoneal fluid' => 'Peritoneal fluid',
-            'Cytology' => 'Cytology',
-            'Transvaginal ultrasound' => 'Transvaginal ultrasound'
+            'Full analysis' => 'Full analysis',
+            'MLPA' => 'MLPA',
+            'Genotyping' => 'Genotyping',
+            'Predictive testing' => 'Predictive testing'
         );
         $data['investigation_sample_type'] = 'Sample type';
         $data['investigation_sample_type_lists'] = array(
@@ -1006,26 +1091,36 @@ class Record_model extends CI_Model {
         $data['investigation_test_results_other_details'] = 'Other details';
         $data['investigation_carrier_status'] = 'Carrier status';
         $data['investigation_carrier_status_lists'] = array(
-            'Abnormal' => 'Abnormal',
-            'Mutation absent' => 'Mutation absent',
+            'Affected carrier' => 'Affected carrier',
             'Unaffected carrier' => 'Unaffected carrier',
-            'Affected carrier' => 'Affected carrier'
+            'Affected non carrier' => 'Affected non carrier',
+            'Unaffected non carrier' => 'Unaffected non carrier'
         );
         $data['investigation_mutation_nomenclature'] = 'Mutation nomenclature';
         $data['investigation_mutation_nomenclature_lists'] = array(
             'BIC' => 'BIC',
-            'HGVS' => 'HGVS'
+            'HGVC' => 'HGVC',
+			'aa' => 'aa'
         );
         $data['investigation_reported_by'] = 'Reported by';
         $data['investigation_mutation_type'] = 'Mutation type';
         $data['investigation_mutation_pathogenicity'] = 'Mutation pathogenicity';
+		
+		 $data['investigation_mutation_pathogenicity_lists'] = array(
+            'Del' => 'Del',
+            'VUS' => 'VUS',
+			'SNP' => 'SNP'
+        );
         $data['investigation_sample_ID'] = 'Sample ID';
         $data['investigation_report_due'] = 'Report due date';
         $data['investigation_report_date'] = 'Report date';
         $data['investigation_date_notified'] = 'Date client notified';
-        $data['investigation_test_comment'] = 'Test comments';
+        $data['investigation_test_comment'] = 'Comments';
         $data['investigation_conformation_attachment'] = 'Attach conformation?';
-
+		$data['mutation_is_counselling_flag'] = 'Counselling';
+		$data['investigation_project_date'] = 'Testing date';
+		$data['investigation_exon'] = 'Exon';
+		
         //SURVEILLANCE
         $data['surveillance_recruitment_center'] = 'Recruitment center';
         $data['surveillance_recruitment_center_lists'] = array(
@@ -1054,11 +1149,10 @@ class Record_model extends CI_Model {
         $data['surveillance_comments'] = 'Comments';
 
         //PATHOLOGY
-        $data['pathology_tissue_site'] = 'Tissue site';
-        $data['pathology_tissue_tumour_stage'] = 'Tumour stage';
-        $data['pathology_morphology'] = 'Morphology';
-        $data['pathology_node_stage'] = 'Node stage';
-        $data['pathology_lymph_node'] = 'Lymph node';
+        $data['breast_pathology_tissue_site'] = 'Site';
+        $data['breast_pathology_tissue_tumour_stage'] = 'T Staging';
+        $data['breast_pathology_morphology'] = 'Morphology';
+        $data['breast_pathology_node_stage'] = 'N staging';
         $data['pathology_tissue_tumour_stage_lists'] = array(
             'T0' => 'T0',
             'T1' => 'T1',
@@ -1090,26 +1184,19 @@ class Record_model extends CI_Model {
             'No' => 'No',
             'Not stated' => 'Not stated'
         );
-        $data['pathology_total_lymph_nodes'] = 'Total no. of lymph nodes';
-        $data['pathology_ER_status'] = 'ER status';
-        $data['pathology_PR_status'] = 'PR status';
-        $data['pathology_HER2_status'] = 'HER2 status';
-        $data['pathology_number_of_tumours'] = 'Number of tumours';
-        $data['pathology_metastasis_stage'] = 'Metastasis stage';
+        $data['breast_pathology_total_lymph_nodes'] = 'No. of lymph nodes';
+        $data['breast_pathology_ER_status'] = 'ER status';
+        $data['breast_pathology_PR_status'] = 'PR status';
+        $data['breast_pathology_HER2_status'] = 'HER2 status';
+        $data['breast_pathology_number_of_tumours'] = 'Number of tumours';
+        $data['breast_pathology_metastasis_stage'] = 'M staging';
         $data['pathology_metastasis_stage_lists'] = array(
             'M0' => 'M0',
             'M1' => 'M1',
             'Mx' => 'Mx'
         );
-        $data['pathology_side_affected'] = 'Side affected';
-        $data['pathology_side_affected_lists'] = array(
-            'Both' => 'Both',
-            'Left' => 'Left',
-            'Right' => 'Right',
-            'Unknown' => 'Unknown',
-            'Not applicable' => 'Not applicable'
-        );
-        $data['pathology_tumour_stage'] = 'Tumour stage';
+       
+        $data['breast_pathology_tumour_stage'] = 'Tumour stage';
         $data['pathology_tumour_stage_lists'] = array(
             '0' => '0',
             '1' => '1',
@@ -1119,7 +1206,7 @@ class Record_model extends CI_Model {
             '4' => '4',
             'Not stated' => 'Not stated'
         );
-        $data['pathology_tumour_grade'] = 'Tumour grade';
+        $data['breast_pathology_tumour_grade'] = 'Tumour grade';
         $data['pathology_tumour_grade_lists'] = array(
             '1: Well differentiated' => '1: Well differentiated',
             '2: Moderately differentiated' => '2: Moderately differentiated',
@@ -1127,25 +1214,53 @@ class Record_model extends CI_Model {
             'High' => 'High',
             'Low' => 'Low'
         );
-        $data['pathology_tumour_size'] = 'Size(mm)';
-        $data['pathology_doctor'] = 'Doctor\'s name';
-        $data['pathology_lab'] = 'Path lab';
-        $data['pathology_lab_reference'] = 'Lab reference';
-        $data['pathology_path_report_date'] = 'Report date';
-        $data['pathology_path_report_type'] = 'Report type';
+        $data['breast_pathology_tumour_size'] = 'Size of tumor';
+        $data['breast_pathology_doctor'] = 'Name of doctor';
+        $data['breast_pathology_lab'] = 'Pathology lab';
+		$data['breast_pathology_path_report_date'] = 'Date of report';
+        $data['breast_pathology_path_report_type'] = 'Type of report';
         $data['pathology_path_report_type_lists'] = array(
             'Pathology' => 'Pathology',
             'FNAC' => 'FNAC',
             'Core biopsy' => 'Core biopsy',
             'Stereostatic biopsy' => 'Stereostatic biopsy'
         );
-        $data['pathology_report_requested_date'] = 'Report requested date';
-        $data['pathology_path_report_received_date'] = 'Report received date';
-        $data['pathology_path_block_requested_date'] = 'Block requested date';
-        $data['pathology_path_block_received_date'] = 'Block received date';
-        $data['pathology_tissue_path_comments'] = 'Tissue path comments';
 
+        $data['breast_pathology_tissue_path_comments'] = 'Comments';
 
+		//Ovary pathology
+		$data['ovary_pathology_tissue_site'] = 'Site';
+        $data['ovary_pathology_tissue_tumour_stage'] = 'T Staging';
+        $data['ovary_pathology_morphology'] = 'Morphology';
+        $data['ovary_pathology_node_stage'] = 'N staging';
+		$data['ovary_pathology_total_lymph_nodes'] = 'No. of lymph nodes';
+        $data['ovary_pathology_ER_status'] = 'ER status';
+        $data['ovary_pathology_PR_status'] = 'PR status';
+        $data['ovary_pathology_HER2_status'] = 'HER2 status';
+        $data['ovary_pathology_number_of_tumours'] = 'Number of tumours';
+        $data['ovary_pathology_metastasis_stage'] = 'M staging';
+		$data['ovary_pathology_tumour_stage'] = 'Tumour stage';
+		$data['ovary_pathology_tumour_grade'] = 'Tumour grade';
+		$data['ovary_pathology_tumour_size'] = 'Size of tumor';
+        $data['ovary_pathology_doctor'] = 'Name of doctor';
+        $data['ovary_pathology_lab'] = 'Pathology lab';
+		$data['ovary_pathology_path_report_date'] = 'Date of report';
+        $data['ovary_pathology_path_report_type'] = 'Type of report';
+		$data['ovary_pathology_tissue_path_comments'] = 'Comments';
+		$data['ovary_stage_classification'] = 'Stage classification';
+		$data['ovary_stage_classification_lists'] = array(
+            'SEER' => 'SEER',
+            'FIGO' => 'FIGO'
+        );
+		
+		//Ovary pathology
+		$data['other_pathology_tissue_site'] = 'Site';
+		$data['other_pathology_doctor'] = 'Name of doctor';
+        $data['other_pathology_lab'] = 'Pathology lab';
+		$data['other_pathology_path_report_date'] = 'Date of report';
+        $data['other_pathology_path_report_type'] = 'Type of report';
+		$data['other_pathology_tissue_path_comments'] = 'Comments';
+		
         //$data[''] = ''; 
         return $data;
 
