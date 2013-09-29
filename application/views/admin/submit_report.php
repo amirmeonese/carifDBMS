@@ -37,7 +37,7 @@
                 </table>	
 		</div>
 	<?php echo form_submit('mysubmit','Submit');  ?>
-	<a class="submitCancel" href="<?php echo base_url(); ?>">Cancel</a>
+	<a class="submitCancel" href="<?php echo base_url(). '/admin/'; ?>">Cancel</a>
 	<?php echo form_close(); ?>
 
 

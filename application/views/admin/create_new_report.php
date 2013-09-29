@@ -24,7 +24,7 @@
 			</td></tr>
 		
 		</table>	
-			<p><?php echo form_submit('submit','Save Form');  ?>  <?php echo form_submit('submit','Cancel');  ?></p>
+			<p><?php echo form_submit('submit','Save Form');  ?> </p>
 
 	<p></p>
 	<p align="center">Select Field</p>
@@ -53,7 +53,7 @@
 	<p align="center"><?php echo form_submit('submit','Submit');  ?></p>
 
 	<?php echo form_close(); ?>
-
+	<a class="doneButton" href="<?php echo base_url(). '/admin/'; ?>">Back</a>
  </div>
 
 

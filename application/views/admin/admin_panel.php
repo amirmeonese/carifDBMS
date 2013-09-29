@@ -36,7 +36,7 @@
             </div>
             <div class="span3">
 
-                <form name="add_record" action="admin/list_error_locked_item" method="post">
+                <form name="add_record" action="admin/deletion_history" method="post">
                     <input type ="image" src="<?php echo base_url(); ?>img/deletion_history.png" alt="add_new_form_button" height="120px"></input>
                 </form> 
             </div>
