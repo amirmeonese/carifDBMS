@@ -1,6 +1,6 @@
 <div class="container" id="add_record_div">
     <div id="add_record_header" class="row">
-        <p>Add Personal Details</p>
+        <p>Add Personal</p>
     </div>
     <?php echo form_open("record/patient_record_insertion"); ?>
     <div class="container" id="add_record_form_section_personal">

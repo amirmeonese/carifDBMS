@@ -11,6 +11,11 @@
                     <?php echo $IC_no; ?>: 
                     <?php echo form_input('IC_no'); ?>
 			</td>
+			<td>
+				<?php echo $studies_name; ?>: 
+				<?php echo form_dropdown('studies_name', $studies_name_lists); ?>
+				<?php echo '<br/>'; ?>
+			</td>
 		</tr>
 		</table>
 		<div height="30px">&nbsp;</div>
