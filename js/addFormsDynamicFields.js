@@ -28,12 +28,14 @@ function addInput(divName)
 		"<tr>" +
 		"<td>Paternal/Maternal status: " + 
 		"<select name='relationship_status" + relativeCounter + "'>" +
+			"<option value=''></option>" +
 			"<option value=\"Paternal\">Paternal</option>" +
 			"<option value=\"Maternal\">Maternal</option>" +
 		"</select> " +
 		"</td>" +
 		"<td>Relationship:" +
 		"<select name='relativeTypeLists" + relativeCounter + "'>" +
+			"<option value=''></option>" +
 			"<option value='Brother'>Brother</option>" +
 			"<option value='Sister'>Sister</option>" +
 			"<option value='Stepbrother'>Stepbrother</option>" +
@@ -49,6 +51,7 @@ function addInput(divName)
 		"</td>" +
 		"<td>Degree of relativeness:" +
 		"<select name='degreeOfRelativeness" + relativeCounter + "'>" +
+			"<option value=''></option>" +
 			"<option value='1stDegree'>1st degree</option>" +
 			"<option value='2ndDegree'>2nd degree</option>" +
 			"<option value='3rdDegree'>3rd degree</option>" +
@@ -68,6 +71,7 @@ function addInput(divName)
 		"<tr>" +
 		"<td>Gender: " + 
 		"<select name='gender" + relativeCounter + "'>" +
+			"<option value=''></option>" +
 			"<option value=\"Male\">Male</option>" +
 			"<option value=\"Female\">Female</option>" +
 		"</select> " +
@@ -79,6 +83,7 @@ function addInput(divName)
 		"<td>Date of diagnosis:<input type='text' name='date_of_diagnosis" + relativeCounter + "' value=''/></td>" +
 		"<td>Type of cancer:" +
 		"<select name='relative_cancer_name" + relativeCounter + "'>" +
+			"<option value=''></option>" +
 			"<option value='None'>None</option>" +	
 			"<option value='Breast'>Breast</option>" +
 			"<option value='Ovaries'>Ovaries</option>" +
@@ -139,13 +144,15 @@ function addBreastSiteInput(divName)
 		
 		var formInputHTML = "<table><tr>" +
 		"<td>Left/right breast side:" +
-		"<select name='relativeTypeLists" + breastSiteCounter + "'>" +
+		"<select name='mammo_left_right_breast_side" + breastSiteCounter + "'>" +
+			"<option value=''></option>" +
 			"<option value='left'>Left</option>" +
 			"<option value='right'>Right</option>" +
 		"</select> " +
 		"</td>" +
 		"<td>Upper/below breast side:" +
-		"<select name='relativeTypeLists" + breastSiteCounter + "'>" +
+		"<select name='mammo_upper_below_breast_side" + breastSiteCounter + "'>" +
+			"<option value=''></option>" +
 			"<option value='upper'>Upper</option>" +
 			"<option value='below'>Below</option>" +
 		"</select> " +
@@ -311,6 +318,7 @@ function addScreeningDetailsInput(divName)
 		var formInputHTML = "<table><tr>" +
 		"<td>Screening type:" +
 		"<select name='screening_name" + otherScreeningCounter + "'>" +
+			"<option value=''></option>" +
 			"<option value='Pap Smear'>Pap Smear</option>" +
 			"<option value='Chest XRay'>Chest XRay</option>" +
 			"<option value='Prostate Specific Antigen (PSA)'>Prostate Specific Antigen (PSA)</option>" +
@@ -363,6 +371,7 @@ function addCancerDetailsInput(divName)
 		var formInputHTML = "<table><tr>" +
 		"<td>Select site:" +
 		"<select name='cancer_site" + cancerSitesCounter + "'>" +
+			"<option value=''></option>" +
 			"<option value='Left Breast'>Left Breast</option>" +
 			"<option value='Right Breast'>Right Breast</option>" +
 			"<option value='Left Ovary'>Left Ovary</option>" +
@@ -412,11 +421,13 @@ function addBreastCancerDiagnosis(divName)
 		"<tr>" +
 		"<td>Select site:" +
 		"<select name='cancer_site" + breastCancerDiagnosisCounter + "'>" +
+			"<option value=''></option>" +
 			"<option value='Left'>Left</option>" +
 			"<option value='Right'>Right</option>" +
 		"</select> </td>" +
 		"<td>Cancer type (invasive/non-invasive):" +
 		"<select name='cancer_invasive_type" + breastCancerDiagnosisCounter + "'>" +
+			"<option value=''></option>" +
 			"<option value='Invasive'>Invasive</option>" +
 			"<option value='Non-invasive'>Non-invasive</option>" +
 		"</select> </td>" +
@@ -429,6 +440,7 @@ function addBreastCancerDiagnosis(divName)
 		"<td>Doctor's name: <input type='text' name='cancer_doctor_name" + breastCancerDiagnosisCounter + "' value=''/></td>" +
 		"<td>Detected by:" +
 		"<select name='detected_by" + breastCancerDiagnosisCounter + "'>" +
+			"<option value=''></option>" +
 			"<option value='At a screening (mammography/ultrasound/MRI)'>At a screening (mammography/ultrasound/MRI)</option>" +
 			"<option value='I felt a lump'>I felt a lump</option>" +
 			"<option value='My doctor felt a lump'>My doctor felt a lump</option>" +
@@ -445,6 +457,7 @@ function addBreastCancerDiagnosis(divName)
 		"<table id=\"breast_cancer_treatment_" + breastCancerDiagnosisCounter + "\">" + 
 		"<td>Treatment name:" +
 		"<select name='patient_cancer_treatment_name" + breastCancerDiagnosisCounter + "'>" +
+			"<option value=''></option>" +
 			"<option value='Lumpectomy'>Lumpectomy</option>" +
 			"<option value='Mastectomy'>Mastectomy</option>" +
 			"<option value='Healthy Breast Removed'>Healthy Breast Removed</option>" +
@@ -510,11 +523,13 @@ function addOvaryCancerDiagnosis(divName)
 		"<tr>" +
 		"<td>Select site:" +
 		"<select name='ovary_cancer_site" + ovaryCancerDiagnosisCounter + "'>" +
+			"<option value=''></option>" +
 			"<option value='Left'>Left</option>" +
 			"<option value='Right'>Right</option>" +
 		"</select> </td>" +
 		"<td>Cancer type (invasive/non-invasive):" +
 		"<select name='ovary_cancer_invasive_type" + ovaryCancerDiagnosisCounter + "'>" +
+			"<option value=''></option>" +
 			"<option value='Invasive'>Invasive</option>" +
 			"<option value='Non-invasive'>Non-invasive</option>" +
 		"</select> </td>" +
@@ -527,6 +542,7 @@ function addOvaryCancerDiagnosis(divName)
 		"<td>Doctor's name: <input type='text' name='ovary_cancer_doctor_name" + ovaryCancerDiagnosisCounter + "' value=''/></td>" +
 		"<td>Detected by:" +
 		"<select name='ovary_detected_by" + ovaryCancerDiagnosisCounter + "'>" +
+			"<option value=''></option>" +
 			"<option value='At a screening (mammography/ultrasound/MRI)'>At a screening (mammography/ultrasound/MRI)</option>" +
 			"<option value='I felt a lump'>I felt a lump</option>" +
 			"<option value='My doctor felt a lump'>My doctor felt a lump</option>" +
@@ -543,6 +559,7 @@ function addOvaryCancerDiagnosis(divName)
 		"<table id=\"ovary_cancer_treatment_" + ovaryCancerDiagnosisCounter + "\">" + 
 		"<td>Treatment name:" +
 		"<select name='ovary_patient_cancer_treatment_name" + ovaryCancerDiagnosisCounter + "'>" +
+			"<option value=''></option>" +
 			"<option value='Lumpectomy'>Lumpectomy</option>" +
 			"<option value='Mastectomy'>Mastectomy</option>" +
 			"<option value='Healthy Breast Removed'>Healthy Breast Removed</option>" +
@@ -606,6 +623,7 @@ function addOvaryCancerTreatmentInput(divName)
 		var formInputHTML = "<table><tr>" +
 		"<td>Treatment name:" +
 		"<select name='ovary_patient_cancer_treatment_name" + ovaryCancerTreatmentCounter + "'>" +
+			"<option value=''></option>" +
 			"<option value='Lumpectomy'>Lumpectomy</option>" +
 			"<option value='Mastectomy'>Mastectomy</option>" +
 			"<option value='Healthy Breast Removed'>Healthy Breast Removed</option>" +
@@ -672,6 +690,7 @@ function addOtherCancerDiagnosis(divName)
 		"<tr>" +
 		"<td>Cancer type: " +
 		"<select name='other_cancer_type" + otherCancerDiagnosisCounter + "'>" +
+			"<option value=''></option>" +
 			"<option value='None'>None</option>" +	
 			"<option value='Breast'>Breast</option>" +
 			"<option value='Ovaries'>Ovaries</option>" +
@@ -698,6 +717,7 @@ function addOtherCancerDiagnosis(divName)
 		"<table id=\"other_cancer_treatment_" + otherCancerDiagnosisCounter + "\">" + 
 		"<td>Treatment name:" +
 		"<select name='other_patient_cancer_treatment_name" + otherCancerDiagnosisCounter + "'>" +
+			"<option value=''></option>" +
 			"<option value='Lumpectomy'>Lumpectomy</option>" +
 			"<option value='Mastectomy'>Mastectomy</option>" +
 			"<option value='Healthy Breast Removed'>Healthy Breast Removed</option>" +
@@ -760,7 +780,8 @@ function addOtherCancerTreatmentInput(divName)
 		
 		var formInputHTML = "<table><tr>" +
 		"<td>Treatment name:" +
-		"<select name='other_patient_cancer_treatment_name" + otherCancerTreatmentCounter + "'>" +
+		"<select name='other_patient_cancer_treatment_name" + otherCancerTreatmentCounter + "'>" +	
+			"<option value=''></option>" +
 			"<option value='Lumpectomy'>Lumpectomy</option>" +
 			"<option value='Mastectomy'>Mastectomy</option>" +
 			"<option value='Healthy Breast Removed'>Healthy Breast Removed</option>" +
@@ -825,6 +846,7 @@ function addCancerTreatmentInput(divName)
 		var formInputHTML = "<table><tr>" +
 		"<td>Treatment name:" +
 		"<select name='patient_cancer_treatment_name" + cancerTreatmentCounter + "'>" +
+			"<option value=''></option>" +
 			"<option value='Lumpectomy'>Lumpectomy</option>" +
 			"<option value='Mastectomy'>Mastectomy</option>" +
 			"<option value='Healthy Breast Removed'>Healthy Breast Removed</option>" +
@@ -889,6 +911,7 @@ function addCancerRecurrenceInput(divName)
 		var formInputHTML = "<table><tr>" +
 		"<td>Treatment for recurrence:" +
 		"<select name='patient_cancer_recurrence_treatment_name" + cancerRecurrenceCounter + "'>" +
+			"<option value=''></option>" +
 			"<option value='Lumpectomy'>Lumpectomy</option>" +
 			"<option value='Mastectomy'>Mastectomy</option>" +
 			"<option value='Healthy Breast Removed'>Healthy Breast Removed</option>" +
@@ -948,6 +971,7 @@ function addOtherDisease(divName)
 		var formInputHTML = " <div height=\"30px\">&nbsp;</div><table><tr><td id=\"label1\">Disease " + otherdiseasesCounter + "</td><td><input type='button' value='Delete Disease' onClick='window.parent.deleteOtherDisease(" + otherdiseasesCounter + ");'></td></tr><tr>" +
 		"<td>Type of diseases:" + 
 		"<select name='diagnosis_name" + otherdiseasesCounter + "'>" +
+			"<option value=''></option>" +
 			"<option value='None'>None</option>" +
 			"<option value='Diabetes'>Diabetes</option>" +
 			"<option value='Hypertension'>Hypertension</option>" +
@@ -1111,6 +1135,7 @@ function addPregnancyInput(divName)
 		"<td>" + pregnancyDetailsCounter + ") Pregnancy: <input type='checkbox' name='pregnant_flag" + pregnancyDetailsCounter + "' value='no'/></td>" +
 		"<td>Pregnancy type:" +
 		"<select name='pregnancy_type" + pregnancyDetailsCounter + "'>" +
+			"<option value=''></option>" +
 			"<option value='Child'>Child</option>" +
 			"<option value='Stillborn'>Stillborn</option>" +
 			"<option value='Miscarriage'>Miscarriage</option>" +
@@ -1118,6 +1143,7 @@ function addPregnancyInput(divName)
 		"</td>" +
 		"<td>Gender: " +
 		"<select name='child_gender" + pregnancyDetailsCounter + "'>" +
+			"<option value=''></option>" +
 			"<option value='Male'>Male</option>" +
 			"<option value='Female'>Female</option>" +
 		"</select> " +
@@ -1172,6 +1198,7 @@ function addSurvivalStatusInput(divName)
 		"<tr>" +
 		"<td>Source:" +
 		"<select name='status_source" + survivalStatusCounter + "'>" +
+			"<option value=''></option>" +
 			"<option value='JPN'>JPN</option>" +
 			"<option value='Others'>Others</option>" +
 			"<option value='Unknown'>Unknown</option>" +
@@ -1179,6 +1206,7 @@ function addSurvivalStatusInput(divName)
 		"</td>" +
 		"<td>Status: " +
 		"<select name='alive_status" + survivalStatusCounter + "'>" +
+			"<option value=''></option>" +
 			"<option value='Alive'>Alive</option>" +
 			"<option value='Dead'>Dead</option>" +
 			"<option value='Unknown'>Unknown</option>" +
@@ -1376,12 +1404,14 @@ function addBreastCancerPathology(divName)
 		var formInputHTML = " <div height=\"30px\">&nbsp;</div><table><tr><td id=\"label1\">Breast Cancer Tumor Pathology " + breastCancerPathologyCounter + "</td><td><input type='button' value='Delete Pathology' onClick='window.parent.deleteBreastCancerPathology(" + breastCancerPathologyCounter + ");'></td></tr><tr>" +
 		"<td>Site:<br />" +
 		"<select name='breast_pathology_tissue_site" + breastCancerPathologyCounter + "'>" +
+			"<option value=''></option>" +
 			"<option value='Left'>Left</option>" +
 			"<option value='Right'>Right</option>" +
 		"</select> " +
 		"</td>" +
 		"<td>Type of report:<br />" +
 		"<select name='breast_pathology_path_report_type" + breastCancerPathologyCounter + "'>" +
+			"<option value=''></option>" +
 			"<option value='Pathology'>Pathology</option>" +
 			"<option value='FNAC'>FNAC</option>" +
 			"<option value='Core biopsy'>Core biopsy</option>" +
@@ -1395,6 +1425,7 @@ function addBreastCancerPathology(divName)
 		"</tr><tr>" +
 		"<td>Morphology:<br />" +
 		"<select name='breast_pathology_morphology" + breastCancerPathologyCounter + "'>" +
+			"<option value=''></option>" +
 			"<option value='DCIS'>DCIS</option>" +
 			"<option value='LCIS'>LCIS</option>" +
 			"<option value='IDC'>IDC</option>" +
@@ -1408,6 +1439,7 @@ function addBreastCancerPathology(divName)
 		"</td>" +
 		"<td> T Staging:<br />" +
 		"<select name='breast_pathology_tissue_tumour_stage" + breastCancerPathologyCounter + "'>" +
+			"<option value=''></option>" +
 			"<option value='T0'>T0</option>" +
 			"<option value='T1'>T1</option>" +
 			"<option value='T2'>T2</option>" +
@@ -1418,6 +1450,7 @@ function addBreastCancerPathology(divName)
 		"</td>" +
 		"<td> N staging:<br />" +
 		"<select name='breast_pathology_node_stage" + breastCancerPathologyCounter + "'>" +
+			"<option value=''></option>" +
 			"<option value='N0'>N0</option>" +
 			"<option value='N1'>N1</option>" +
 			"<option value='N2'>N2</option>" +
@@ -1428,6 +1461,7 @@ function addBreastCancerPathology(divName)
 		"</tr><tr>" +
 		"<td> M staging:<br />" +
 		"<select name='breast_pathology_metastasis_stage" + breastCancerPathologyCounter + "'>" +
+			"<option value=''></option>" +
 			"<option value='M0'>M0</option>" +
 			"<option value='M1'>M1</option>" +
 			"<option value='Mx'>Mx</option>" +
@@ -1435,6 +1469,7 @@ function addBreastCancerPathology(divName)
 		"</td>" +
 		"<td> Tumour stage:<br />" +
 		"<select name='breast_pathology_tumour_stage" + breastCancerPathologyCounter + "'>" +
+			"<option value=''></option>" +
 			"<option value='0'>0</option>" +
 			"<option value='1'>1</option>" +
 			"<option value='2a'>2a</option>" +
@@ -1446,6 +1481,7 @@ function addBreastCancerPathology(divName)
 		"</td>" +
 		"<td> Tumour grade:<br />" +
 		"<select name='breast_pathology_tumour_grade" + breastCancerPathologyCounter + "'>" +
+			"<option value=''></option>" +
 			"<option value='1: Well differentiated'>1: Well differentiated</option>" +
 			"<option value='2: Moderately differentiated'>2: Moderately differentiated</option>" +
 			"<option value='3: Poorly/un-differentiated'>3: Poorly/un-differentiated</option>" +
@@ -1515,12 +1551,14 @@ function addOvaryCancerPathology(divName)
 		var formInputHTML = " <div height=\"30px\">&nbsp;</div><table><tr><td id=\"label1\">Ovarian Cancer Tumor Pathology " + ovaryCancerPathologyCounter + "</td><td><input type='button' value='Delete Pathology' onClick='window.parent.deleteOvaryCancerPathology(" + ovaryCancerPathologyCounter + ");'></td></tr><tr>" +
 		"<td>Site: <br />" +
 		"<select name='ovary_pathology_tissue_site" + ovaryCancerPathologyCounter + "'>" +
+			"<option value=''></option>" +
 			"<option value='Left'>Left</option>" +
 			"<option value='Right'>Right</option>" +
 		"</select> " +
 		"</td>" +
 		"<td>Type of report:<br />" +
 		"<select name='ovary_pathology_path_report_type" + ovaryCancerPathologyCounter + "'>" +
+			"<option value=''></option>" +
 			"<option value='Pathology'>Pathology</option>" +
 			"<option value='FNAC'>FNAC</option>" +
 			"<option value='Core biopsy'>Core biopsy</option>" +
@@ -1534,6 +1572,7 @@ function addOvaryCancerPathology(divName)
 		"</tr><tr>" +
 		"<td>Morphology:<br />" +
 		"<select name='ovary_pathology_morphology" + ovaryCancerPathologyCounter + "'>" +
+			"<option value=''></option>" +
 			"<option value='DCIS'>DCIS</option>" +
 			"<option value='LCIS'>LCIS</option>" +
 			"<option value='IDC'>IDC</option>" +
@@ -1547,12 +1586,14 @@ function addOvaryCancerPathology(divName)
 		"</td>" +
 		"<td>Stage classification:<br />" +
 		"<select name='ovary_stage_classification" + ovaryCancerPathologyCounter + "'>" +
+			"<option value=''></option>" +
 			"<option value='SEER'>SEER</option>" +
 			"<option value='FIGO'>FIGO</option>" +
 		"</select> " +
 		"</td>" +
 		"<td> Tumour stage:<br />" +
 		"<select name='ovary_pathology_tumour_stage" + ovaryCancerPathologyCounter + "'>" +
+			"<option value=''></option>" +
 			"<option value='0'>0</option>" +
 			"<option value='1'>1</option>" +
 			"<option value='2a'>2a</option>" +
@@ -1565,6 +1606,7 @@ function addOvaryCancerPathology(divName)
 		"</tr><tr>" +
 		"<td> Tumour grade:<br />" +
 		"<select name='ovary_pathology_tumour_grade" + ovaryCancerPathologyCounter + "'>" +
+			"<option value=''></option>" +
 			"<option value='1: Well differentiated'>1: Well differentiated</option>" +
 			"<option value='2: Moderately differentiated'>2: Moderately differentiated</option>" +
 			"<option value='3: Poorly/un-differentiated'>3: Poorly/un-differentiated</option>" +
@@ -1623,12 +1665,14 @@ function addOtherCancerPathology(divName)
 		var formInputHTML = " <div height=\"30px\">&nbsp;</div><table><tr><td id=\"label1\">Other Cancer Tumor Pathology " + otherCancerPathologyCounter + "</td><td><input type='button' value='Delete Pathology' onClick='window.parent.deleteOtherCancerPathology(" + otherCancerPathologyCounter + ");'></td></tr><tr>" +
 		"<td>Site: <br />" +
 		"<select name='other_pathology_tissue_site" + otherCancerPathologyCounter + "'>" +
+			"<option value=''></option>" +
 			"<option value='Left'>Left</option>" +
 			"<option value='Right'>Right</option>" +
 		"</select> " +
 		"</td>" +
 		"<td>Type of report:<br />" +
 		"<select name='other_pathology_path_report_type" + otherCancerPathologyCounter + "'>" +
+			"<option value=''></option>" +
 			"<option value='Pathology'>Pathology</option>" +
 			"<option value='FNAC'>FNAC</option>" +
 			"<option value='Core biopsy'>Core biopsy</option>" +
@@ -1693,6 +1737,7 @@ function addMutationAnalysis(divName)
 		"</tr><tr>" +
 		"<td>Service provider:<br />" +
 		"<select name='investigation_project_name" + mutationAnalysisCounter + "'>" +
+			"<option value=''></option>" +
 			"<option value='GTG'>GTG</option>" +
 			"<option value='Sequenom'>Sequenom</option>" +
 			"<option value='BGI'>BGI</option>" +
@@ -1702,6 +1747,7 @@ function addMutationAnalysis(divName)
 		"<td>Testing date:<br /><input type='text' name='investigation_project_date" + mutationAnalysisCounter + "' value=''/></td>" + 
 		"<td>Gene tested:<br />" +
 		"<select name='investigation_gene_tested" + mutationAnalysisCounter + "'>" +
+			"<option value=''></option>" +
 			"<option value='APC'>APC</option>" +
 			"<option value='ATM'>ATM</option>" +
 			"<option value='PALB2'>PALB2</option>" +
@@ -1717,6 +1763,7 @@ function addMutationAnalysis(divName)
 		"<td>Other:<br /><input type='text' name='investigation_gene_tested_other" + mutationAnalysisCounter + "' value=''/></td>" + 
 		"<td>Types of testing:<br />" +
 		"<select name='investigation_test_type" + mutationAnalysisCounter + "'>" +
+			"<option value=''></option>" +
 			"<option value='Full analysis'>Full analysis</option>" +
 			"<option value='MLPA'>MLPA</option>" +
 			"<option value='Genotyping'>Genotyping</option>" +
@@ -1725,6 +1772,7 @@ function addMutationAnalysis(divName)
 		"</td>" +
 		"<td>Sample type:<br />" +
 		"<select name='investigation_sample_type" + mutationAnalysisCounter + "'>" +
+			"<option value=''></option>" +
 			"<option value='DNA'>DNA</option>" +
 			"<option value='Serum'>Serum</option>" +
 			"<option value='Plasma'>Plasma</option>" +
@@ -1736,6 +1784,7 @@ function addMutationAnalysis(divName)
 		"</tr><tr>" +
 		"<td> Test results:<br />" +
 		"<select name='investigation_test_results" + mutationAnalysisCounter + "'>" +
+			"<option value=''></option>" +
 			"<option value='AA changes'>AA changes</option>" +
 			"<option value='Exon details'>Exon details</option>" +
 			"<option value='Other details'>Other details</option>" +
@@ -1746,6 +1795,7 @@ function addMutationAnalysis(divName)
 		"</tr><tr>" +
 		"<td> Mutation pathogenicity:<br />" +
 		"<select name='investigation_mutation_pathogenicity" + mutationAnalysisCounter + "'>" +
+			"<option value=''></option>" +
 			"<option value='Del'>Del</option>" +
 			"<option value='VUS'>VUS</option>" +
 			"<option value='SNP'>SNP</option>" +
@@ -1753,6 +1803,7 @@ function addMutationAnalysis(divName)
 		"</td>" +
 		"<td> Mutation nomenclature:<br />" +
 		"<select name='investigation_mutation_nomenclature" + mutationAnalysisCounter + "'>" +
+			"<option value=''></option>" +
 			"<option value='BIC'>BIC</option>" +
 			"<option value='HGVC'>HGVC</option>" +
 			"<option value='aa'>aa</option>" +
@@ -1763,6 +1814,7 @@ function addMutationAnalysis(divName)
 		"</tr><tr>" +
 		"<td>Carrier status:<br />" +
 		"<select name='investigation_carrier_status" + mutationAnalysisCounter + "'>" +
+			"<option value=''></option>" +
 			"<option value='Affected carrier'>Affected carrier</option>" +
 			"<option value='Unaffected carrier'>Unaffected carrier</option>" +
 			"<option value='Affected non carrier'>Affected non carrier</option>" +
@@ -1993,7 +2045,7 @@ function deleteOvarianScreeningCA125BloodtestInfo(divCounterName)
 }
 
 
-// ===== ADD CA125 BLOOD TEST INFO =============== //
+// ===== ADD BIOPSY INFO =============== //
 var ovarianBiopsyCounter = 2;
 var limit = 20;
 
@@ -2039,4 +2091,122 @@ function deleteOvarianScreeningBiopsyInfo(divCounterName)
 	iframeDoc.getElementById('biopsy_flag_table_' + divCounterName).parentNode.removeChild(iframeDoc.getElementById('biopsy_flag_table_' + divCounterName));
 	window.parent.calcHeight();
 	ovarianBiopsyCounter--;
+}
+
+
+// ===== ADD RISK REDUCING SURGERY - BENIGN INFO=============== //
+var riskReducingSurgeryCounter = 2;
+var limit = 20;
+
+function addRiskReducingSurgeryBenignInfo(divName)
+{
+	if (riskReducingSurgeryCounter == limit)  {
+		alert("You have reached the limit of adding " + riskReducingSurgeryCounter + " inputs");
+	}
+	else 
+	{
+		var newdiv = document.createElement('div');
+		
+		var att1 = document.createAttribute("class");
+		att1.value="container";
+		newdiv.setAttributeNode(att1);
+		
+		var att2 = document.createAttribute("id");
+		att2.value="non_cancerous_benign_info_table_" + riskReducingSurgeryCounter;
+		newdiv.setAttributeNode(att2);
+		
+		var formInputHTML = "<table><tr>" +
+		"<td>Select site:" +
+		"<select name='non_cancerous_benign_site" + riskReducingSurgeryCounter + "'>" +
+			"<option value=''></option>" +
+			"<option value='Left Breast'>Left Breast</option>" +
+			"<option value='Right Breast'>Right Breast</option>" +
+			"<option value='Left Ovary'>Left Ovary</option>" +
+			"<option value='Right Ovary'>Right Ovary</option>" +
+			"<option value='Uterus'>Uterus</option>" +
+		"</select> " +
+		"<td>Date:<input type='text' name='non_cancerous_benign_date" + riskReducingSurgeryCounter + "' value=''/></td>" + 
+		"<td><input type='button' value='Delete' onClick='window.parent.deleteRiskReducingSurgeryBenignInfo(" + riskReducingSurgeryCounter + ");'></td>" +
+		"</tr>" + 
+		"</table>" +
+		"</div>";
+		
+		newdiv.innerHTML = formInputHTML;
+		
+		var iframeDoc = document.getElementById('iframe_record_home').contentWindow ? document.getElementById('iframe_record_home').contentWindow.document : document.getElementById('iframe_record_home').contentDocument;
+		
+		iframeDoc.getElementById(divName).appendChild(newdiv);
+		riskReducingSurgeryCounter++;
+	}
+}
+
+function deleteRiskReducingSurgeryBenignInfo(divCounterName) 
+{
+	var iframeDoc = document.getElementById('iframe_record_home').contentWindow ? document.getElementById('iframe_record_home').contentWindow.document : document.getElementById('iframe_record_home').contentDocument;
+	
+	iframeDoc.getElementById('non_cancerous_benign_info_table_' + divCounterName).parentNode.removeChild(iframeDoc.getElementById('non_cancerous_benign_info_table_' + divCounterName));
+	window.parent.calcHeight();
+	riskReducingSurgeryCounter--;
+}
+
+
+// ===== ADD RISK REDUCING SURGERY - COMPLETE REMOVAL =============== //
+var riskReducingSurgeryCompleteRemovalCounter = 2;
+var limit = 20;
+
+function addRiskReducingSurgeryCompleteRemovalInfo(divName)
+{
+	if (riskReducingSurgeryCompleteRemovalCounter == limit)  {
+		alert("You have reached the limit of adding " + riskReducingSurgeryCompleteRemovalCounter + " inputs");
+	}
+	else 
+	{
+		var newdiv = document.createElement('div');
+		
+		var att1 = document.createAttribute("class");
+		att1.value="container";
+		newdiv.setAttributeNode(att1);
+		
+		var att2 = document.createAttribute("id");
+		att2.value="non_cancerous_complete_removal_info_table_" + riskReducingSurgeryCompleteRemovalCounter;
+		newdiv.setAttributeNode(att2);
+		
+		var formInputHTML = "<table><tr>" +
+		"<td>Select site:" +
+		"<select name='non_cancerous_complete_removal_site" + riskReducingSurgeryCompleteRemovalCounter + "'>" +
+			"<option value=''></option>" +
+			"<option value='Left Breast'>Left Breast</option>" +
+			"<option value='Right Breast'>Right Breast</option>" +
+			"<option value='Left Ovary'>Left Ovary</option>" +
+			"<option value='Right Ovary'>Right Ovary</option>" +
+			"<option value='Uterus'>Uterus</option>" +
+		"</select> " +
+		"<td>Date:<input type='text' name='non_cancerous_complete_removal_date" + riskReducingSurgeryCompleteRemovalCounter + "' value=''/></td>" + 
+		"<td>Reason:" +
+		"<select name='non_cancerous_complete_removal_reason" + riskReducingSurgeryCompleteRemovalCounter + "'>" +
+			"<option value=''></option>" +
+			"<option value='Prevention of cancer'>Prevention of cancer</option>" +
+			"<option value='Treatment of cancer'>Treatment of cancer</option>" +
+			"<option value='Other medical treatment'>Other medical treatment</option>" +
+		"</select> " +"<td><input type='button' value='Delete' onClick='window.parent.deleteRiskReducingSurgeryCompleteRemovalInfo(" + riskReducingSurgeryCompleteRemovalCounter + ");'></td>" +
+		"</tr>" + 
+		"</table>" +
+		"</div>";
+		
+		newdiv.innerHTML = formInputHTML;
+		
+		var iframeDoc = document.getElementById('iframe_record_home').contentWindow ? document.getElementById('iframe_record_home').contentWindow.document : document.getElementById('iframe_record_home').contentDocument;
+		
+		iframeDoc.getElementById(divName).appendChild(newdiv);
+		riskReducingSurgeryCompleteRemovalCounter++;
+	}
+}
+
+function deleteRiskReducingSurgeryCompleteRemovalInfo(divCounterName) 
+{
+	var iframeDoc = document.getElementById('iframe_record_home').contentWindow ? document.getElementById('iframe_record_home').contentWindow.document : document.getElementById('iframe_record_home').contentDocument;
+	
+	iframeDoc.getElementById('non_cancerous_complete_removal_info_table_' + divCounterName).parentNode.removeChild(iframeDoc.getElementById('non_cancerous_complete_removal_info_table_' + divCounterName));
+	window.parent.calcHeight();
+	riskReducingSurgeryCompleteRemovalCounter--;
 }

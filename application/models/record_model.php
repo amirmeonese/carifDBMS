@@ -499,6 +499,7 @@ class Record_model extends CI_Model {
 
         $data['nationality'] = 'Nationality';
         $data['nationalities'] = array(
+			 '' => '',
             'American' => 'American',
             'Australian' => 'Australian',
             'Bangladeshi' => 'Bangladeshi',
@@ -517,6 +518,7 @@ class Record_model extends CI_Model {
          */
         $data['gender'] = 'Gender';
         $data['genderTypes'] = array(
+			 '' => '',
             'Male' => 'Male',
             'Female' => 'Female'
         );
@@ -535,6 +537,7 @@ class Record_model extends CI_Model {
         $data['private_patient_no'] = 'Patient No';
         $data['COGS_study_id'] = 'COGS study ID';
         $data['COGS_study_id_lists'] = array(
+			 '' => '',
             'CIMBA' => 'CIMBA',
             'OCAC' => 'OCAC',
             'BCAC' => 'BCAC',
@@ -542,6 +545,7 @@ class Record_model extends CI_Model {
         );
         $data['marital_status'] = 'Marital status';
         $data['marital_status_lists'] = array(
+			 '' => '',
             'Single' => 'Single',
             'Married' => 'Married',
             'Divorced' => 'Divorced'
@@ -563,6 +567,7 @@ class Record_model extends CI_Model {
 
         $data['income_level'] = 'Income level';
         $data['income_level_lists'] = array(
+			 '' => '',
             '<5,000' => '<5,000',
             '5-10,000' => '5-10,000',
             '10-50,000' => '10-50,000',
@@ -585,12 +590,14 @@ class Record_model extends CI_Model {
 
         $data['status_source'] = 'Source';
         $data['status_source_lists'] = array(
+			'' => '',
             'JPN' => 'JPN',
             'Others' => 'Others',
             'Unknown' => 'Unknown'
         );
         $data['alive_status'] = 'Status';
         $data['alive_status_lists'] = array(
+			 '' => '',
             'Alive' => 'Alive',
             'Dead' => 'Dead',
             'Unknown' => 'Unknown'
@@ -654,6 +661,7 @@ class Record_model extends CI_Model {
         //STUDIES
         $data['studies_name'] = 'Studies Name';
         $data['studies_name_lists'] = array(
+			 '' => '',
             'MyBrCa' => 'MyBrCa',
             'EpiBrCa' => 'EpiBrCa',
             'OvaCa' => 'OvaCa',
@@ -683,11 +691,13 @@ class Record_model extends CI_Model {
         $data['abnormality_mammo_flag'] = 'Abnormalities detected';
         $data['mammo_left_right_breast_side'] = 'Left/right breast side';
         $data['mammo_left_right_breast_side_lists'] = array(
+			 '' => '',
             'left' => 'Left',
             'right' => 'Right'
         );
         $data['mammo_upper_below_breast_side'] = 'Upper/below breast side';
         $data['mammo_upper_below_breast_side_lists'] = array(
+			'' => '',
             'upper' => 'Upper',
             'below' => 'Below'
         );
@@ -724,6 +734,7 @@ class Record_model extends CI_Model {
         $data['other_screening_flag'] = 'Had other screenings done before?';
         $data['screening_name'] = 'Screening type';
 		$data['screening_name_lists'] = array(
+			 '' => '',
 			'Pap Smear' => 'Pap Smear',
 			'Chest XRay' => 'Chest XRay',
 			'Prostate Specific Antigen (PSA)' => 'Prostate Specific Antigen (PSA)',
@@ -741,11 +752,13 @@ class Record_model extends CI_Model {
 
         $data['cancer_invasive_type'] = 'Cancer type (invasive/non-invasive)';
 		$data['cancer_invasive_type_lists'] = array(
+			 '' => '',
 			'Invasive' => 'Invasive',
 			'Non-invasive' => 'Non-invasive'
 		);
 		$data['detected_by_other_details'] = 'Other';
         $data['detected_by_lists'] = array(
+			 '' => '',
 			'At a screening (mammography/ultrasound/MRI)' => 'At a screening (mammography/ultrasound/MRI)',
             'I felt a lump' => 'I felt a lump',
             'My doctor felt a lump' => 'My doctor felt a lump',
@@ -756,6 +769,7 @@ class Record_model extends CI_Model {
         $data['breast_cancer_diagnosed_flag'] = 'Is breast cancer diagnosed?';
         $data['patient_cancer_name'] = 'Cancer name';
         $data['patient_cancer_name_lists'] = array(
+			 '' => '',
 			'None' => 'None',
             'Breast' => 'Breast',
             'Ovaries' => 'Ovaries',
@@ -774,12 +788,14 @@ class Record_model extends CI_Model {
         $data['primary_diagnosis'] = 'Is primary diagnosis?';
         $data['cancer_site'] = 'Select site';
         $data['patient_cancer_sites_lists'] = array(
+			 '' => '',
             'Left Breast' => 'Left Breast',
             'Right Breast' => 'Right Breast',
             'Left Ovary' => 'Left Ovary',
             'Right Ovary' => 'Right Ovary'
         );
 		 $data['patient_cancer_site_lists'] = array(
+			 '' => '',
             'Left' => 'Left',
             'Right' => 'Right'
         );
@@ -794,6 +810,7 @@ class Record_model extends CI_Model {
         $data['detected_by'] = 'Detected by';
         $data['patient_cancer_treatment_name'] = 'Treatment name';
         $data['patient_cancer_treatment_name_lists'] = array(
+			 '' => '',
             'Lumpectomy' => 'Lumpectomy',
             'Mastectomy' => 'Mastectomy',
             'Healthy Breast Removed' => 'Healthy Breast Removed',
@@ -857,6 +874,7 @@ class Record_model extends CI_Model {
         //DIAGNOSIS
         $data['patient_other_diagnosis_name'] = 'Type of diseases';
         $data['diagnosis_name_lists'] = array(
+			 '' => '',
 			'None' => 'None',
             'Diabetes' => 'Diabetes',
             'Hypertension' => 'Hypertension',
@@ -884,6 +902,7 @@ class Record_model extends CI_Model {
         $data['self_image_at_18years'] = 'Self image at 18 years old';
         $data['self_image_now'] = 'Self image now';
         $data['self_image_lists'] = array(
+			 '' => '',
             '1' => '1',
             '2' => '2',
             '3' => '3',
@@ -896,6 +915,7 @@ class Record_model extends CI_Model {
             '10' => '10'
         );
         $data['pa_activities_lists'] = array(
+			 '' => '',
             'Never' => 'Never',
             'Less than 1 hour per week' => 'Less than 1 hour per week',
             '1-2 hour per week' => '1-2 hour per week',
@@ -917,6 +937,7 @@ class Record_model extends CI_Model {
         $data['cigarettes_count_at_sixties_and_above'] = '60 year and more';
         $data['cigarettes_count_one_year_before_diagnosed'] = '1 year prior to cancer diagnosis';
         $data['cigarettes_average_count_lists'] = array(
+			 '' => '',
             '0' => '0',
             '1-5' => '1-5',
             '6-10' => '6-10',
@@ -934,18 +955,21 @@ class Record_model extends CI_Model {
         $data['tea_average'] = 'Tea frequency';
         $data['tea_type'] = 'Tea type';
         $data['alcohol_drink_average_lists'] = array(
+			 '' => '',
             '1 glass per day' => '1 glass per day',
             '1 glass per week' => '1 glass per week',
             '1 glass per month' => '1 glass per month',
             'Other, please specify' => 'Other, please specify'
         );
         $data['coffee_tea_drink_average_lists'] = array(
+			 '' => '',
             '1 cup per week/less' => '1 cup per week/less',
             '1 cup per day' => '1 cup per day',
             '1-5 cups per day' => '1-5 cups per day',
             '>5 cups per day' => '>5 cups per day'
         );
         $data['tea_type_lists'] = array(
+			'' => '',
             'Black tea' => 'Black tea',
             'Green tea' => 'Green tea',
             'Herbal tea' => 'Herbal tea',
@@ -957,6 +981,7 @@ class Record_model extends CI_Model {
         $data['soya_products_flag'] = 'Soya product frequency';
         $data['soya_products_average'] = 'Soya products average';
         $data['soya_products_lists'] = array(
+			 '' => '',
             'Every meal' => 'Every meal',
             'Every day' => 'Every day',
             'Once a week' => 'Once a week',
@@ -976,10 +1001,12 @@ class Record_model extends CI_Model {
         $data['date_period_stops'] = 'Date period stops';
         $data['reason_period_stops'] = 'Reason period stops';
         $data['period_type_lists'] = array(
+			 '' => '',
             'Regular' => 'Regular',
             'Irregular' => 'Irregular'
         );
         $data['period_cycle_days_lists'] = array(
+			 '' => '',
             '28' => '28',
             '29' => '29',
             '30' => '30',
@@ -987,6 +1014,7 @@ class Record_model extends CI_Model {
             'Other' => 'Other'
         );
         $data['reason_period_stops_lists'] = array(
+			 '' => '',
             'It stopped itself' => 'It stopped itself',
             'Uterus was removed' => 'Uterus was removed',
             'Ovaries removed' => 'Ovaries removed',
@@ -999,6 +1027,7 @@ class Record_model extends CI_Model {
         $data['pregnant_flag'] = 'Parity';
         $data['pregnancy_type'] = 'Pregnancy type';
         $data['pregnancy_type_lists'] = array(
+			 '' => '',
             'Child' => 'Child',
             'Stillborn' => 'Stillborn',
             'Miscarriage' => 'Miscarriage'
@@ -1031,6 +1060,7 @@ class Record_model extends CI_Model {
         $data['gnc_treatment_name_other_details'] = 'Other';
 
         $data['gnc_treatment_lists'] = array(
+			 '' => '',
             'Sterilisation' => 'Sterilisation',
             'Tubal Ligation' => 'Tubal Ligation',
             'Removal of one ovary' => 'Removal of one ovary',
@@ -1049,6 +1079,7 @@ class Record_model extends CI_Model {
         $data['testing_results_notification_flag'] = 'Request for result notification';
         $data['investigation_project_name'] = 'Service provider';
         $data['investigation_project_name_lists'] = array(
+			 '' => '',
             'GTG' => 'GTG',
             'Sequenom' => 'Sequenom',
 			'BGI' => 'BGI'
@@ -1057,6 +1088,7 @@ class Record_model extends CI_Model {
 		$data['investigation_gene_tested'] = 'Gene tested';
         $data['investigation_test_type'] = 'Types of testing';
 		$data['investigation_gene_tested_lists'] = array(
+			 '' => '',
             'APC' => 'APC',
             'ATM' => 'ATM',
             'PALB2' => 'PALB2',
@@ -1069,6 +1101,7 @@ class Record_model extends CI_Model {
         );
 		$data['investigation_gene_tested_other'] = 'Other';
         $data['investigation_test_type_lists'] = array(
+			 '' => '',
             'Full analysis' => 'Full analysis',
             'MLPA' => 'MLPA',
             'Genotyping' => 'Genotyping',
@@ -1076,6 +1109,7 @@ class Record_model extends CI_Model {
         );
         $data['investigation_sample_type'] = 'Sample type';
         $data['investigation_sample_type_lists'] = array(
+			 '' => '',
             'DNA' => 'DNA',
             'Serum' => 'Serum',
             'Plasma' => 'Plasma'
@@ -1084,6 +1118,7 @@ class Record_model extends CI_Model {
         $data['investigation_new_mutation_flag'] = 'Is new mutation?';
         $data['investigation_test_results'] = 'Test results';
         $data['investigation_test_results_lists'] = array(
+			'' => '',
             'AA changes' => 'AA changes',
             'Exon details' => 'Exon details',
             'Other details' => 'Other details'
@@ -1091,6 +1126,7 @@ class Record_model extends CI_Model {
         $data['investigation_test_results_other_details'] = 'Other details';
         $data['investigation_carrier_status'] = 'Carrier status';
         $data['investigation_carrier_status_lists'] = array(
+			 '' => '',
             'Affected carrier' => 'Affected carrier',
             'Unaffected carrier' => 'Unaffected carrier',
             'Affected non carrier' => 'Affected non carrier',
@@ -1098,6 +1134,7 @@ class Record_model extends CI_Model {
         );
         $data['investigation_mutation_nomenclature'] = 'Mutation nomenclature';
         $data['investigation_mutation_nomenclature_lists'] = array(
+			 '' => '',
             'BIC' => 'BIC',
             'HGVC' => 'HGVC',
 			'aa' => 'aa'
@@ -1107,6 +1144,7 @@ class Record_model extends CI_Model {
         $data['investigation_mutation_pathogenicity'] = 'Mutation pathogenicity';
 		
 		 $data['investigation_mutation_pathogenicity_lists'] = array(
+			 '' => '',
             'Del' => 'Del',
             'VUS' => 'VUS',
 			'SNP' => 'SNP'
@@ -1124,12 +1162,14 @@ class Record_model extends CI_Model {
         //SURVEILLANCE
         $data['surveillance_recruitment_center'] = 'Recruitment center';
         $data['surveillance_recruitment_center_lists'] = array(
+			 '' => '',
             'UMMC' => 'UMMC',
             'SD' => 'SD',
             'UMSC' => 'UMSC'
         );
         $data['surveillance_type'] = 'Surveillance type';
         $data['surveillance_type_lists'] = array(
+			 '' => '',
             'New' => 'New',
             'Follow up' => 'Follow up'
         );
@@ -1198,12 +1238,38 @@ class Record_model extends CI_Model {
         $data['biopsy_is_abnormality_detected'] = 'Is abnormality detected?';
         $data['biopsy_additional_info'] = 'Additional Info';
 		
+		//RISK REDUCING STRATEGY
+		$data['had_new_risk_reducing_surgery'] = 'Had new surgery?';
+		$data['non_cancerous_benign_site'] = 'Select site';
+        $data['non_cancerous_benign_site_lists'] = array(
+			 '' => '',
+            'Right breast' => 'Right breast',
+            'Left breast' => 'Left breast',
+            'Right Ovary' => 'Right Ovary',
+            'Left Ovary' => 'Left Ovary',
+            'Uterus' => 'Uterus'
+        );
+        $data['non_cancerous_benign_date'] = 'Date';
+		
+		//RISK REDUCING STRATEGY
+		$data['had_new_complete_removal_surgery'] = 'Had complete removal?';
+		$data['non_cancerous_complete_removal_site'] = 'Select site';
+		$data['non_cancerous_complete_removal_date'] = 'Date';
+        $data['non_cancerous_complete_removal_reason'] = 'Reason';
+		 $data['non_cancerous_complete_removal_reason_lists'] = array(
+			'' => '',
+			'Prevention of cancer' => 'Prevention of cancer',
+            'Treatment of cancer' => 'Treatment of cancer',
+            'Other medical treatment' => 'Other medical treatment'
+        );
+		
         //PATHOLOGY
         $data['breast_pathology_tissue_site'] = 'Site';
         $data['breast_pathology_tissue_tumour_stage'] = 'T Staging';
         $data['breast_pathology_morphology'] = 'Morphology';
         $data['breast_pathology_node_stage'] = 'N staging';
         $data['pathology_tissue_tumour_stage_lists'] = array(
+			 '' => '',
             'T0' => 'T0',
             'T1' => 'T1',
             'T2' => 'T2',
@@ -1212,6 +1278,7 @@ class Record_model extends CI_Model {
             'Tx' => 'Tx'
         );
         $data['pathology_morphology_lists'] = array(
+			 '' => '',
             'DCIS' => 'DCIS',
             'LCIS' => 'LCIS',
             'IDC' => 'IDC',
@@ -1223,6 +1290,7 @@ class Record_model extends CI_Model {
             'Medullary carcinoma' => 'Medullary carcinoma'
         );
         $data['pathology_node_stage_lists'] = array(
+			 '' => '',
             'N0' => 'N0',
             'N1' => 'N1',
             'N2' => 'N2',
@@ -1230,6 +1298,7 @@ class Record_model extends CI_Model {
             'Nx' => 'Nx'
         );
         $data['pathology_lymph_node_lists'] = array(
+			 '' => '',
             'Yes' => 'Yes',
             'No' => 'No',
             'Not stated' => 'Not stated'
@@ -1241,6 +1310,7 @@ class Record_model extends CI_Model {
         $data['breast_pathology_number_of_tumours'] = 'Number of tumours';
         $data['breast_pathology_metastasis_stage'] = 'M staging';
         $data['pathology_metastasis_stage_lists'] = array(
+			 '' => '',
             'M0' => 'M0',
             'M1' => 'M1',
             'Mx' => 'Mx'
@@ -1248,6 +1318,7 @@ class Record_model extends CI_Model {
        
         $data['breast_pathology_tumour_stage'] = 'Tumour stage';
         $data['pathology_tumour_stage_lists'] = array(
+			 '' => '',
             '0' => '0',
             '1' => '1',
             '2a' => '2a',
@@ -1258,6 +1329,7 @@ class Record_model extends CI_Model {
         );
         $data['breast_pathology_tumour_grade'] = 'Tumour grade';
         $data['pathology_tumour_grade_lists'] = array(
+			 '' => '',
             '1: Well differentiated' => '1: Well differentiated',
             '2: Moderately differentiated' => '2: Moderately differentiated',
             '3: Poorly/un-differentiated' => '3: Poorly/un-differentiated',
@@ -1270,6 +1342,7 @@ class Record_model extends CI_Model {
 		$data['breast_pathology_path_report_date'] = 'Date of report';
         $data['breast_pathology_path_report_type'] = 'Type of report';
         $data['pathology_path_report_type_lists'] = array(
+			 '' => '',
             'Pathology' => 'Pathology',
             'FNAC' => 'FNAC',
             'Core biopsy' => 'Core biopsy',
@@ -1299,6 +1372,7 @@ class Record_model extends CI_Model {
 		$data['ovary_pathology_tissue_path_comments'] = 'Comments';
 		$data['ovary_stage_classification'] = 'Stage classification';
 		$data['ovary_stage_classification_lists'] = array(
+			 '' => '',
             'SEER' => 'SEER',
             'FIGO' => 'FIGO'
         );

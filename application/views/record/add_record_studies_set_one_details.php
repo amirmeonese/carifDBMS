@@ -305,6 +305,72 @@
             </tr>
         </table>
     </div>
+	<div class="container" id="add_record_form_risk_reducing_surgery_div" >
+		<div height="30px">&nbsp;</div>
+		 <table id="ovarian_cancer_screening_title">
+            <tr>
+                <td id="label1">Risk Reducing Surgery</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+        </table>
+		<div id="non_cancerous_benign_section_1">
+			<table id="non_cancerous_benign_table_1">
+				<tr>
+					<td>
+						<?php echo $had_new_risk_reducing_surgery; ?>: 
+						 <?php echo form_checkbox('had_new_risk_reducing_surgery', '1', FALSE); ?>
+					</td>
+				</tr>
+			</table>
+			<table id="non_cancerous_benign_info_table_1">
+				<tr>
+					<td>
+						<?php echo $non_cancerous_benign_site; ?>: 
+						<?php echo form_dropdown('non_cancerous_benign_site', $non_cancerous_benign_site_lists); ?>
+					</td>
+					<td>
+						<?php echo $non_cancerous_benign_date; ?>: 
+						 <?php echo form_input('non_cancerous_benign_date'); ?>
+					</td>
+					<td>
+						<input type="button" value="Add" onClick="window.parent.addRiskReducingSurgeryBenignInfo('non_cancerous_benign_section_1');
+                            window.parent.calcHeight();">
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div id="non_cancerous_complete_removal_section_1">
+			<table id="non_cancerous_complete_removal_table_1">
+				<tr>
+					<td>
+						<?php echo $had_new_complete_removal_surgery; ?>: 
+						 <?php echo form_checkbox('had_new_complete_removal_surgery', '1', FALSE); ?>
+					</td>
+				</tr>
+			</table>
+			<table id="non_cancerous_complete_removal_info_table_1">
+				<tr>
+					<td>
+						<?php echo $non_cancerous_complete_removal_site; ?>: 
+						<?php echo form_dropdown('non_cancerous_complete_removal_site', $non_cancerous_benign_site_lists); ?>
+					</td>
+					<td>
+						<?php echo $non_cancerous_complete_removal_date; ?>: 
+						 <?php echo form_input('non_cancerous_complete_removal_date'); ?>
+					</td>
+					<td>
+						<?php echo $non_cancerous_complete_removal_reason; ?>: 
+						<?php echo form_dropdown('non_cancerous_complete_removal_reason', $non_cancerous_complete_removal_reason_lists); ?>
+					</td>
+					<td>
+						<input type="button" value="Add" onClick="window.parent.addRiskReducingSurgeryCompleteRemovalInfo('non_cancerous_complete_removal_section_1');
+                            window.parent.calcHeight();">
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
 	<div class="container" id="add_record_form_section_mammo_ovarian_screenings" >
 	 <div height="30px">&nbsp;</div>
         <table id="ovarian_cancer_screening_title">
@@ -345,10 +411,10 @@
 						echo form_textarea($data);
 						?>
 					</td>
-					 <td>
-                    <input type="button" value="Add" onClick="window.parent.addOvarianScreeningPhycialExamsInfo('ovarian_cancer_screening_record_physical_exam_div_section');
+					<td>
+						<input type="button" value="Add" onClick="window.parent.addOvarianScreeningPhycialExamsInfo('ovarian_cancer_screening_record_physical_exam_div_section');
                             window.parent.calcHeight();">
-                </td>
+					</td>
 				</tr>
 			</table>
 		</div>
