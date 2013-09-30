@@ -106,7 +106,8 @@
                 </tr>                               
     <?php endforeach; ?>
     
-     <input type="hidden" name="patient_name" value="<?php echo $a;?>">
+     <input type="hidden" name="patient_name" value="<?php echo $patient_name;?>">
+     <input type="hidden" name="patient_ic" value="<?php echo $patient_ic;?>">
 
                 
     <?php echo form_submit('export_excel', 'Export to XLS'); ?>
