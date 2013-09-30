@@ -305,6 +305,206 @@
             </tr>
         </table>
     </div>
+	<div class="container" id="add_record_form_section_mammo_ovarian_screenings" >
+	 <div height="30px">&nbsp;</div>
+        <table id="ovarian_cancer_screening_title">
+            <tr>
+                <td id="label1">Ovarian Cancer Screenings</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+        </table>
+		<div id="ovarian_cancer_screening_record_physical_exam_div_section">
+			<table id="ovarian_cancer_screening_record_table_physical_flag">
+				<tr>
+					<td>
+						<?php echo $had_physical_pelvic_exams; ?>: 
+						 <?php echo form_checkbox('had_physical_pelvic_exams', '1', FALSE); ?>
+					</td>
+				</tr>
+			</table>
+			<table id="physical_flag_table_1">
+				<tr>
+					<td>
+						<?php echo $physical_exam_date; ?>: 
+						 <?php echo form_input('physical_exam_date'); ?>
+					</td>
+					<td>
+						<?php echo $physical_exam_is_abnormality_detected; ?>: 
+						 <?php echo form_checkbox('physical_exam_is_abnormality_detected', '1', FALSE); ?>
+					</td>
+					<td>
+						<?php echo $physical_exam_additional_info; ?>: 
+						<?php
+						$data = array(
+							'name' => 'physical_exam_additional_info',
+							'id' => 'physical_exam_additional_info',
+							'rows' => '3',
+							'cols' => '7'
+						);
+						echo form_textarea($data);
+						?>
+					</td>
+					 <td>
+                    <input type="button" value="Add" onClick="window.parent.addOvarianScreeningPhycialExamsInfo('ovarian_cancer_screening_record_physical_exam_div_section');
+                            window.parent.calcHeight();">
+                </td>
+				</tr>
+			</table>
+		</div>
+		<div id="ovarian_cancer_screening_record_abdominal_div_section">
+			<table id="ovarian_cancer_screening_record_table_abdominal_flag">
+				<tr>
+					<td>
+						<?php echo $had_abdominal_ultrasound; ?>: 
+						 <?php echo form_checkbox('had_abdominal_ultrasound', '1', FALSE); ?>
+					</td>
+				</tr>
+			</table>
+			<table id="abdominal_ultrasound_flag_table_1">
+				<tr>
+					<td>
+						<?php echo $abdominal_ultrasound_date; ?>: 
+						 <?php echo form_input('abdominal_ultrasound_date'); ?>
+					</td>
+					<td>
+						<?php echo $abdominal_ultrasound_is_abnormality_detected; ?>: 
+						 <?php echo form_checkbox('abdominal_ultrasound_is_abnormality_detected', '1', FALSE); ?>
+					</td>
+					<td>
+						<?php echo $abdominal_ultrasound_additional_info; ?>: 
+						<?php
+						$data = array(
+							'name' => 'abdominal_ultrasound_additional_info',
+							'id' => 'abdominal_ultrasound_additional_info',
+							'rows' => '3',
+							'cols' => '7'
+						);
+						echo form_textarea($data);
+						?>
+					</td>
+					 <td>
+                    <input type="button" value="Add" onClick="window.parent.addOvarianScreeningAbdominalUltrasoundInfo('ovarian_cancer_screening_record_abdominal_div_section');
+                            window.parent.calcHeight();">
+                </td>
+				</tr>
+			</table>
+		</div>
+		<div id="ovarian_cancer_screening_record_transvaginal_div_section">
+			<table id="ovarian_cancer_screening_record_table_transvaginal_flag">
+				<tr>
+					<td>
+						<?php echo $had_transvaginal_ultrasound; ?>: 
+						 <?php echo form_checkbox('had_transvaginal_ultrasound', '1', FALSE); ?>
+					</td>
+				</tr>
+			</table>
+			<table id="transvaginal_ultrasound_flag_table_1">
+				<tr>
+					<td>
+						<?php echo $transvaginal_ultrasound_date; ?>: 
+						 <?php echo form_input('transvaginal_ultrasound_date'); ?>
+					</td>
+					<td>
+						<?php echo $transvaginal_ultrasound_is_abnormality_detected; ?>: 
+						 <?php echo form_checkbox('transvaginal_ultrasound_is_abnormality_detected', '1', FALSE); ?>
+					</td>
+					<td>
+						<?php echo $transvaginal_ultrasound_additional_info; ?>: 
+						<?php
+						$data = array(
+							'name' => 'transvaginal_ultrasound_additional_info',
+							'id' => 'transvaginal_ultrasound_additional_info',
+							'rows' => '3',
+							'cols' => '7'
+						);
+						echo form_textarea($data);
+						?>
+					</td>
+					 <td>
+                    <input type="button" value="Add" onClick="window.parent.addOvarianScreeningTransvaginalUltrasoundInfo('ovarian_cancer_screening_record_transvaginal_div_section');
+                            window.parent.calcHeight();">
+                </td>
+				</tr>
+			</table>
+		</div>
+		<div id="ovarian_cancer_screening_record_CA125_blood_test_div_section">
+			<table id="ovarian_cancer_screening_record_table_CA125_blood_test_flag">
+				<tr>
+					<td>
+						<?php echo $had_CA125_blood_test; ?>: 
+						 <?php echo form_checkbox('had_CA125_blood_test', '1', FALSE); ?>
+					</td>
+				</tr>
+			</table>
+			<table id="CA125_blood_test_flag_table_1">
+				<tr>
+					<td>
+						<?php echo $CA125_blood_test_date; ?>: 
+						 <?php echo form_input('CA125_blood_test_date'); ?>
+					</td>
+					<td>
+						<?php echo $CA125_blood_test_is_abnormality_detected; ?>: 
+						 <?php echo form_checkbox('CA125_blood_test_is_abnormality_detected', '1', FALSE); ?>
+					</td>
+					<td>
+						<?php echo $CA125_blood_test_additional_info; ?>: 
+						<?php
+						$data = array(
+							'name' => 'CA125_blood_test_additional_info',
+							'id' => 'CA125_blood_test_additional_info',
+							'rows' => '3',
+							'cols' => '7'
+						);
+						echo form_textarea($data);
+						?>
+					</td>
+					 <td>
+                    <input type="button" value="Add" onClick="window.parent.addOvarianScreeningCA125BloodtestInfo('ovarian_cancer_screening_record_CA125_blood_test_div_section');
+                            window.parent.calcHeight();">
+                </td>
+				</tr>
+			</table>
+		</div>
+		<div id="ovarian_cancer_screening_record_biopsy_div_section">
+			<table id="ovarian_cancer_screening_record_table_biopsy_flag">
+				<tr>
+					<td>
+						<?php echo $had_biopsy; ?>: 
+						 <?php echo form_checkbox('had_biopsy', '1', FALSE); ?>
+					</td>
+				</tr>
+			</table>
+			<table id="biopsy_flag_table_1">
+				<tr>
+					<td>
+						<?php echo $biopsy_date; ?>: 
+						 <?php echo form_input('biopsy_date'); ?>
+					</td>
+					<td>
+						<?php echo $biopsy_is_abnormality_detected; ?>: 
+						 <?php echo form_checkbox('biopsy_is_abnormality_detected', '1', FALSE); ?>
+					</td>
+					<td>
+						<?php echo $biopsy_additional_info; ?>: 
+						<?php
+						$data = array(
+							'name' => 'biopsy_additional_info',
+							'id' => 'biopsy_additional_info',
+							'rows' => '3',
+							'cols' => '7'
+						);
+						echo form_textarea($data);
+						?>
+					</td>
+					 <td>
+                    <input type="button" value="Add" onClick="window.parent.addOvarianScreeningBiopsyInfo('ovarian_cancer_screening_record_biopsy_div_section');
+                            window.parent.calcHeight();">
+                </td>
+				</tr>
+			</table>
+		</div>
+	</div>
     <div class="container" id="add_record_form_section_mammo_other_screenings">
         <div height="30px">&nbsp;</div>
         <table id="mammo_sixth_section">
@@ -754,18 +954,6 @@
         echo form_fieldset('Surveillance Details');
         ?>
         <table>
-             <tr> 
-                <td>
-                    <?php echo $IC_no; ?>: 
-                    <?php echo form_input('IC_no'); ?>
-
-                </td>
-                <td>
-                    <?php echo $studies_name; ?>: 
-                    <?php echo form_dropdown('studies_name', $studies_name_lists); ?>
-                    <?php echo '<br/>'; ?>
-                </td>
-            </tr>
             <tr>
                 <td>
                     <?php echo $surveillance_recruitment_center; ?>: 

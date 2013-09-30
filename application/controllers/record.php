@@ -36,12 +36,13 @@ class Record extends CI_Controller {
             $this->template->load("templates/add_record_template", 'record/add_record_family_details', $data);
         else if ($var == 'studies_setOne')
             $this->template->load("templates/add_record_template", 'record/add_record_studies_set_one_details', $data);
-
-        else if ($var == 'mutation_analysis')
+		else if ($var == 'mutation_analysis')
             $this->template->load("templates/add_record_template", 'record/add_record_mutation_analysis_details', $data);
         else if ($var == 'pathology')
             $this->template->load("templates/add_record_template", 'record/add_record_pathology_details', $data);
-        else if ($var == 'lifestyleFactors')
+        else if ($var == 'risk_assessment')
+            $this->template->load("templates/add_record_template", 'record/add_record_risk_assessment_details', $data);
+		else if ($var == 'lifestyleFactors')
             $this->template->load("templates/add_record_template", 'record/add_record_lifestyles_factors_details', $data);
         else if ($var == 'interviewmanager')
             $this->template->load("templates/add_record_template", 'record/interview_home', $data);

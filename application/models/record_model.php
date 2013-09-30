@@ -1148,6 +1148,56 @@ class Record_model extends CI_Model {
         $data['surveillance_outcome'] = 'Outcome';
         $data['surveillance_comments'] = 'Comments';
 
+		//RISK ASSESSMENT
+		$data['ms_at_consent_BRCA1'] = 'BRCA1';
+        $data['ms_at_consent_BRCA2'] = 'BRCA2';
+        $data['ms_at_consent_Total'] = 'Total';
+        $data['ms_adjusted_BRCA1'] = 'BRCA1';
+        $data['ms_adjusted_BRCA2'] = 'BRCA2';
+        $data['ms_adjusted_Total'] = 'Total';
+        $data['ms_after_gc_BRCA1'] = 'BRCA1';
+        $data['ms_after_gc_BRCA2'] = 'BRCA2';
+        $data['ms_after_gc_Total'] = 'Total';
+        $data['BOADICEA_at_consent_BRCA1'] = 'BRCA1';
+        $data['BOADICEA_at_consent_BRCA2'] = 'BRCA2';
+        $data['BOADICEA_at_consent_no_mutation'] = 'No mutation';
+        $data['BOADICEA_adjusted_BRCA1'] = 'BRCA1';
+        $data['BOADICEA_adjusted_BRCA2'] = 'BRCA2';
+		$data['BOADICEA_adjusted_no_mutation'] = 'No mutation';
+        $data['BOADICEA_after_gc_BRCA1'] = 'BRCA1';
+        $data['BOADICEA_after_gc_BRCA2'] = 'BRCA2';
+        $data['BOADICEA_after_gc_no_mutation'] = 'No mutation';
+		$data['gail_model_at_consent_5years'] = '5 years';
+        $data['gail_model_at_consent_10years'] = '10 years';
+        $data['gail_model_first_mammo_5years'] = '5 years';
+        $data['gail_model_first_mammo_10years'] = '10 years';
+		
+		//OVARIAN SCREENINGS INFOS
+		$data['had_physical_pelvic_exams'] = 'Had new physical examinations?';
+		$data['physical_exam_date'] = 'Date';
+        $data['physical_exam_is_abnormality_detected'] = 'Is abnormality detected?';
+        $data['physical_exam_additional_info'] = 'Additional Info';
+       
+		$data['had_abdominal_ultrasound'] = 'Had new abdominal ultrasound?';
+		$data['abdominal_ultrasound_date'] = 'Date';
+        $data['abdominal_ultrasound_is_abnormality_detected'] = 'Is abnormality detected?';
+        $data['abdominal_ultrasound_additional_info'] = 'Additional Info';
+		
+		$data['had_transvaginal_ultrasound'] = 'Had new trans-vaginal ultrasound?';
+		$data['transvaginal_ultrasound_date'] = 'Date';
+        $data['transvaginal_ultrasound_is_abnormality_detected'] = 'Is abnormality detected?';
+        $data['transvaginal_ultrasound_additional_info'] = 'Additional Info';
+		
+		$data['had_CA125_blood_test'] = 'Had new blood test for CA125?';
+		$data['CA125_blood_test_date'] = 'Date';
+        $data['CA125_blood_test_is_abnormality_detected'] = 'Is abnormality detected?';
+        $data['CA125_blood_test_additional_info'] = 'Additional Info';
+		
+		$data['had_biopsy'] = 'Had new biopsy?';
+		$data['biopsy_date'] = 'Date';
+        $data['biopsy_is_abnormality_detected'] = 'Is abnormality detected?';
+        $data['biopsy_additional_info'] = 'Additional Info';
+		
         //PATHOLOGY
         $data['breast_pathology_tissue_site'] = 'Site';
         $data['breast_pathology_tissue_tumour_stage'] = 'T Staging';

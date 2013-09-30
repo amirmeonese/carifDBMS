@@ -1,6 +1,6 @@
 <div class="container" id="add_record_div">
     <div id="add_record_header" class="row">
-        <p>Add Investigation Details</p>
+        <p>Add Mutation Analysis</p>
     </div>
     <?php echo form_open_multipart("record/investigation_insertion"); ?>
     <div class="container" id="add_record_form_mutation_analysis_div_1">

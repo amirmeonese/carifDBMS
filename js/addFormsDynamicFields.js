@@ -1689,7 +1689,7 @@ function addMutationAnalysis(divName)
 		var formInputHTML = " <div height=\"30px\">&nbsp;</div><table><tr><td id=\"label1\">Analysis " + mutationAnalysisCounter + "</td><td><input type='button' value='Delete Mutation Analysis' onClick='window.parent.deleteMutationAnalysis(" + mutationAnalysisCounter + ");'></td></tr><tr>" +
 		"<td>Date test ordered:<br /><input type='text' name='date_test_ordered" + mutationAnalysisCounter + "' value=''/></td>" + 
 		"<td>Ordered by:<br /><input type='text' name='test_ordered_by" + mutationAnalysisCounter + "' value=''/></td>" + 
-		"<td>Request for result notification?: <input type='checkbox' name='testing_results_notification_flag" + relativeCounter + "' value='1' checked='checked'/></td>" +
+		"<td>Request for result notification?: <input type='checkbox' name='testing_results_notification_flag" + mutationAnalysisCounter + "' value='1' checked='checked'/></td>" +
 		"</tr><tr>" +
 		"<td>Service provider:<br />" +
 		"<select name='investigation_project_name" + mutationAnalysisCounter + "'>" +
@@ -1774,7 +1774,7 @@ function addMutationAnalysis(divName)
 		"<td>Counselling: <input type='checkbox' name='mutation_is_counselling_flag" + relativeCounter + "' value='1'/></td>" +
 		"</tr><tr>" +
 		"<td>Comments:<br /><textarea name='investigation_test_comment" + mutationAnalysisCounter + "' cols='7' rows='3' id='investigation_test_comment' ></textarea></td>" + 
-		"<td>Attach conformation?: <input type='checkbox' name='investigation_conformation_attachment" + relativeCounter + "' value='1'/></td>" +
+		"<td>Attach conformation?: <input type='checkbox' name='investigation_conformation_attachment" + mutationAnalysisCounter + "' value='1'/></td>" +
 		"<td><input type=\"file\" name=\"userfile\" size=\"100000\" /></td>" +
 		"</tr>" + 
 		"</table>" +
@@ -1796,4 +1796,247 @@ function deleteMutationAnalysis(divCounterName)
 	iframeDoc.getElementById('mutation_section_' + divCounterName).parentNode.removeChild(iframeDoc.getElementById('mutation_section_' + divCounterName));
 	window.parent.calcHeight();
 	mutationAnalysisCounter--;
+}
+
+
+// ===== ADD OVARIAN PHYSICAL SCREENINGS INFO =============== //
+var ovarianPhysicalExamsCounter = 2;
+var limit = 20;
+
+function addOvarianScreeningPhycialExamsInfo(divName)
+{
+	if (ovarianPhysicalExamsCounter == limit)  {
+		alert("You have reached the limit of adding " + ovarianPhysicalExamsCounter + " inputs");
+	}
+	else 
+	{
+		var newdiv = document.createElement('div');
+		
+		var att1 = document.createAttribute("class");
+		att1.value="container";
+		newdiv.setAttributeNode(att1);
+		
+		var att2 = document.createAttribute("id");
+		att2.value="physical_flag_table_" + ovarianPhysicalExamsCounter;
+		newdiv.setAttributeNode(att2);
+		
+		var formInputHTML = "<table><tr>" +
+		"<td>Date:<input type='text' name='physical_exam_date" + ovarianPhysicalExamsCounter + "' value=''/></td>" + 
+		"<td>Is abnormality detected?: <input type='checkbox' name='physical_exam_is_abnormality_detected" + ovarianPhysicalExamsCounter + "' value='1'/></td>" +
+		"<td>Additional Info:<textarea name='physical_exam_additional_info" + ovarianPhysicalExamsCounter + "' cols='7' rows='3' id='physical_exam_additional_info' ></textarea></td>" + 
+		"<td><input type='button' value='Delete' onClick='window.parent.deleteOvarianScreeningPhycialExamsInfo(" + ovarianPhysicalExamsCounter + ");'></td>" +
+		"</tr>" + 
+		"</table>" +
+		"</div>";
+		
+		newdiv.innerHTML = formInputHTML;
+		
+		var iframeDoc = document.getElementById('iframe_record_home').contentWindow ? document.getElementById('iframe_record_home').contentWindow.document : document.getElementById('iframe_record_home').contentDocument;
+		
+		iframeDoc.getElementById(divName).appendChild(newdiv);
+		ovarianPhysicalExamsCounter++;
+	}
+}
+
+function deleteOvarianScreeningPhycialExamsInfo(divCounterName) 
+{
+	var iframeDoc = document.getElementById('iframe_record_home').contentWindow ? document.getElementById('iframe_record_home').contentWindow.document : document.getElementById('iframe_record_home').contentDocument;
+	
+	iframeDoc.getElementById('physical_flag_table_' + divCounterName).parentNode.removeChild(iframeDoc.getElementById('physical_flag_table_' + divCounterName));
+	window.parent.calcHeight();
+	ovarianPhysicalExamsCounter--;
+}
+
+// ===== ADD OVARIAN ABDOMINAL ULTRASOUND INFO =============== //
+var ovarianAbdominalUltrasoundCounter = 2;
+var limit = 20;
+
+function addOvarianScreeningAbdominalUltrasoundInfo(divName)
+{
+	if (ovarianAbdominalUltrasoundCounter == limit)  {
+		alert("You have reached the limit of adding " + ovarianAbdominalUltrasoundCounter + " inputs");
+	}
+	else 
+	{
+		var newdiv = document.createElement('div');
+		
+		var att1 = document.createAttribute("class");
+		att1.value="container";
+		newdiv.setAttributeNode(att1);
+		
+		var att2 = document.createAttribute("id");
+		att2.value="abdominal_ultrasound_flag_table_" + ovarianAbdominalUltrasoundCounter;
+		newdiv.setAttributeNode(att2);
+		
+		var formInputHTML = "<table><tr>" +
+		"<td>Date:<input type='text' name='abdominal_ultrasound_date" + ovarianAbdominalUltrasoundCounter + "' value=''/></td>" + 
+		"<td>Is abnormality detected?: <input type='checkbox' name='abdominal_ultrasound_is_abnormality_detected" + ovarianAbdominalUltrasoundCounter + "' value='1'/></td>" +
+		"<td>Additional Info:<textarea name='abdominal_ultrasound_additional_info" + ovarianAbdominalUltrasoundCounter + "' cols='7' rows='3' id='abdominal_ultrasound_additional_info' ></textarea></td>" + 
+		"<td><input type='button' value='Delete' onClick='window.parent.deleteOvarianScreeningAbdominalUltrasoundInfo(" + ovarianAbdominalUltrasoundCounter + ");'></td>" +
+		"</tr>" + 
+		"</table>" +
+		"</div>";
+		
+		newdiv.innerHTML = formInputHTML;
+		
+		var iframeDoc = document.getElementById('iframe_record_home').contentWindow ? document.getElementById('iframe_record_home').contentWindow.document : document.getElementById('iframe_record_home').contentDocument;
+		
+		iframeDoc.getElementById(divName).appendChild(newdiv);
+		ovarianAbdominalUltrasoundCounter++;
+	}
+}
+
+function deleteOvarianScreeningAbdominalUltrasoundInfo(divCounterName) 
+{
+	var iframeDoc = document.getElementById('iframe_record_home').contentWindow ? document.getElementById('iframe_record_home').contentWindow.document : document.getElementById('iframe_record_home').contentDocument;
+	
+	iframeDoc.getElementById('abdominal_ultrasound_flag_table_' + divCounterName).parentNode.removeChild(iframeDoc.getElementById('abdominal_ultrasound_flag_table_' + divCounterName));
+	window.parent.calcHeight();
+	ovarianAbdominalUltrasoundCounter--;
+}
+
+// ===== ADD OVARIAN TRANSVAGINAL ULTRASOUND INFO =============== //
+var ovarianTransvaginalUltrasoundCounter = 2;
+var limit = 20;
+
+function addOvarianScreeningTransvaginalUltrasoundInfo(divName)
+{
+	if (ovarianTransvaginalUltrasoundCounter == limit)  {
+		alert("You have reached the limit of adding " + ovarianTransvaginalUltrasoundCounter + " inputs");
+	}
+	else 
+	{
+		var newdiv = document.createElement('div');
+		
+		var att1 = document.createAttribute("class");
+		att1.value="container";
+		newdiv.setAttributeNode(att1);
+		
+		var att2 = document.createAttribute("id");
+		att2.value="transvaginal_ultrasound_flag_table_" + ovarianTransvaginalUltrasoundCounter;
+		newdiv.setAttributeNode(att2);
+		
+		var formInputHTML = "<table><tr>" +
+		"<td>Date:<input type='text' name='transvaginal_ultrasound_date" + ovarianTransvaginalUltrasoundCounter + "' value=''/></td>" + 
+		"<td>Is abnormality detected?: <input type='checkbox' name='transvaginal_ultrasound_is_abnormality_detected" + ovarianTransvaginalUltrasoundCounter + "' value='1'/></td>" +
+		"<td>Additional Info:<textarea name='transvaginal_ultrasound_additional_info" + ovarianTransvaginalUltrasoundCounter + "' cols='7' rows='3' id='transvaginal_ultrasound_additional_info' ></textarea></td>" + 
+		"<td><input type='button' value='Delete' onClick='window.parent.deleteOvarianScreeningTransvaginalUltrasoundInfo(" + ovarianTransvaginalUltrasoundCounter + ");'></td>" +
+		"</tr>" + 
+		"</table>" +
+		"</div>";
+		
+		newdiv.innerHTML = formInputHTML;
+		
+		var iframeDoc = document.getElementById('iframe_record_home').contentWindow ? document.getElementById('iframe_record_home').contentWindow.document : document.getElementById('iframe_record_home').contentDocument;
+		
+		iframeDoc.getElementById(divName).appendChild(newdiv);
+		ovarianTransvaginalUltrasoundCounter++;
+	}
+}
+
+function deleteOvarianScreeningTransvaginalUltrasoundInfo(divCounterName) 
+{
+	var iframeDoc = document.getElementById('iframe_record_home').contentWindow ? document.getElementById('iframe_record_home').contentWindow.document : document.getElementById('iframe_record_home').contentDocument;
+	
+	iframeDoc.getElementById('transvaginal_ultrasound_flag_table_' + divCounterName).parentNode.removeChild(iframeDoc.getElementById('transvaginal_ultrasound_flag_table_' + divCounterName));
+	window.parent.calcHeight();
+	ovarianTransvaginalUltrasoundCounter--;
+}
+
+
+// ===== ADD CA125 BLOOD TEST INFO =============== //
+var ovarianCA125bloodtestCounter = 2;
+var limit = 20;
+
+function addOvarianScreeningCA125BloodtestInfo(divName)
+{
+	if (ovarianCA125bloodtestCounter == limit)  {
+		alert("You have reached the limit of adding " + ovarianCA125bloodtestCounter + " inputs");
+	}
+	else 
+	{
+		var newdiv = document.createElement('div');
+		
+		var att1 = document.createAttribute("class");
+		att1.value="container";
+		newdiv.setAttributeNode(att1);
+		
+		var att2 = document.createAttribute("id");
+		att2.value="CA125_blood_test_flag_table_" + ovarianCA125bloodtestCounter;
+		newdiv.setAttributeNode(att2);
+		
+		var formInputHTML = "<table><tr>" +
+		"<td>Date:<input type='text' name='CA125_blood_test_date" + ovarianCA125bloodtestCounter + "' value=''/></td>" + 
+		"<td>Is abnormality detected?: <input type='checkbox' name='CA125_blood_test_is_abnormality_detected" + ovarianCA125bloodtestCounter + "' value='1'/></td>" +
+		"<td>Additional Info:<textarea name='CA125_blood_test_additional_info" + ovarianCA125bloodtestCounter + "' cols='7' rows='3' id='CA125_blood_test_additional_info' ></textarea></td>" + 
+		"<td><input type='button' value='Delete' onClick='window.parent.deleteOvarianScreeningCA125BloodtestInfo(" + ovarianCA125bloodtestCounter + ");'></td>" +
+		"</tr>" + 
+		"</table>" +
+		"</div>";
+		
+		newdiv.innerHTML = formInputHTML;
+		
+		var iframeDoc = document.getElementById('iframe_record_home').contentWindow ? document.getElementById('iframe_record_home').contentWindow.document : document.getElementById('iframe_record_home').contentDocument;
+		
+		iframeDoc.getElementById(divName).appendChild(newdiv);
+		ovarianCA125bloodtestCounter++;
+	}
+}
+
+function deleteOvarianScreeningCA125BloodtestInfo(divCounterName) 
+{
+	var iframeDoc = document.getElementById('iframe_record_home').contentWindow ? document.getElementById('iframe_record_home').contentWindow.document : document.getElementById('iframe_record_home').contentDocument;
+	
+	iframeDoc.getElementById('CA125_blood_test_flag_table_' + divCounterName).parentNode.removeChild(iframeDoc.getElementById('CA125_blood_test_flag_table_' + divCounterName));
+	window.parent.calcHeight();
+	ovarianCA125bloodtestCounter--;
+}
+
+
+// ===== ADD CA125 BLOOD TEST INFO =============== //
+var ovarianBiopsyCounter = 2;
+var limit = 20;
+
+function addOvarianScreeningBiopsyInfo(divName)
+{
+	if (ovarianBiopsyCounter == limit)  {
+		alert("You have reached the limit of adding " + ovarianBiopsyCounter + " inputs");
+	}
+	else 
+	{
+		var newdiv = document.createElement('div');
+		
+		var att1 = document.createAttribute("class");
+		att1.value="container";
+		newdiv.setAttributeNode(att1);
+		
+		var att2 = document.createAttribute("id");
+		att2.value="biopsy_flag_table_" + ovarianBiopsyCounter;
+		newdiv.setAttributeNode(att2);
+		
+		var formInputHTML = "<table><tr>" +
+		"<td>Date:<input type='text' name='biopsy_date" + ovarianBiopsyCounter + "' value=''/></td>" + 
+		"<td>Is abnormality detected?: <input type='checkbox' name='biopsy_is_abnormality_detected" + ovarianBiopsyCounter + "' value='1'/></td>" +
+		"<td>Additional Info:<textarea name='biopsy_additional_info" + ovarianBiopsyCounter + "' cols='7' rows='3' id='biopsy_additional_info' ></textarea></td>" + 
+		"<td><input type='button' value='Delete' onClick='window.parent.deleteOvarianScreeningBiopsyInfo(" + ovarianBiopsyCounter + ");'></td>" +
+		"</tr>" + 
+		"</table>" +
+		"</div>";
+		
+		newdiv.innerHTML = formInputHTML;
+		
+		var iframeDoc = document.getElementById('iframe_record_home').contentWindow ? document.getElementById('iframe_record_home').contentWindow.document : document.getElementById('iframe_record_home').contentDocument;
+		
+		iframeDoc.getElementById(divName).appendChild(newdiv);
+		ovarianBiopsyCounter++;
+	}
+}
+
+function deleteOvarianScreeningBiopsyInfo(divCounterName) 
+{
+	var iframeDoc = document.getElementById('iframe_record_home').contentWindow ? document.getElementById('iframe_record_home').contentWindow.document : document.getElementById('iframe_record_home').contentDocument;
+	
+	iframeDoc.getElementById('biopsy_flag_table_' + divCounterName).parentNode.removeChild(iframeDoc.getElementById('biopsy_flag_table_' + divCounterName));
+	window.parent.calcHeight();
+	ovarianBiopsyCounter--;
 }
