@@ -37,6 +37,7 @@
             }
         </script>
         <script src="<?php echo base_url(); ?>js/addFormsDynamicFields.js" language="Javascript" type="text/javascript"></script>
+		 
     </head>
     <body>
 
@@ -57,7 +58,7 @@
                     <a class="add_record_tab_btn" href="<?php echo site_url('record/view_list/pathology'); ?>" target="iframe_record_home" >Pathology</a>
 					<a class="add_record_tab_btn" href="<?php echo site_url('record/view_list/risk_assessment'); ?>" target="iframe_record_home" >Risk Assessment</a>
 					<a class="add_record_tab_btn" href="<?php echo site_url('record/view_list/lifestyleFactors'); ?>" target="iframe_record_home" >Lifestyle Factors</a>
-                    <a class="add_record_tab_btn" href="<?php echo site_url('record/view_list/interviewmanager'); ?>" target="iframe_record_home" >Patient Interview Manager</a>
+                    <a class="add_record_tab_btn" href="<?php echo site_url('record/view_list/counselling'); ?>" target="iframe_record_home" >Counselling</a>
 
 
                     <a class="add_record_tab_btn" href="<?php echo site_url('record/view_list/bulkImport'); ?>" target="iframe_record_home" >Bulk Import</a>

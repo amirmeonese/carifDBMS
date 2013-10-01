@@ -50,7 +50,7 @@
             </tr>
             <tr>
                 <td>
-                    <?php echo $DOB; ?>: 
+					<?php echo $DOB; ?>: 
                     <?php
                     echo form_input('d_o_b');
                     ?>
