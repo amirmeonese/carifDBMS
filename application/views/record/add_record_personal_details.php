@@ -1,3 +1,17 @@
+<head>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="<?php echo base_url(); ?>css/ui-lightness/jquery-ui.css" />
+  <script src="<?php echo base_url(); ?>js/jquery-1.9.1.js"></script>
+  <script src="<?php echo base_url(); ?>js/jquery-ui.js"></script>
+  <link rel="stylesheet" href="<?php echo base_url(); ?>resources/demos/style.css" />
+  <script>
+  $(function() {
+    $( "#datepicker" ).datepicker();
+    $( "#datepicker1" ).datepicker();
+  });
+  </script>
+</head>
+<script type="text/javascript" src="<?php echo base_url(); ?>js/datetimepicker_css.js"></script>
 <div class="container" id="add_record_div">
     <div id="add_record_header" class="row">
         <p>Add Patient</p>
@@ -50,10 +64,9 @@
             </tr>
             <tr>
                 <td>
-                    <?php echo $DOB; ?>: 
-                    <?php
-                    echo form_input('d_o_b');
-                    ?>
+                    <?php echo $DOB; ?>:
+                    <?php echo form_input(array('name'=>'DOB','id'=>'datepicker')); ?>
+                
                 </td>
                 <td>
                     <?php echo $place_of_birth; ?>: 
@@ -77,9 +90,7 @@
                 </td>
                 <td>
                     <?php echo $DOD; ?>: 
-                    <?php
-                    echo form_input('d_o_d');
-                    ?>
+                    <?php echo form_input(array('name'=>'DOD','id'=>'datepicker1')); ?>
                 </td>
                 <td>
                     <?php echo $reason_of_death; ?>: 
@@ -402,9 +413,19 @@
     </div>
 <?php echo form_submit('mysubmit', 'Save'); ?>
 <?php echo form_close(); ?>
+<script type="text/javascript">
 
+$(function() {
+$('input').filter('.dtpicker').datepicker({
+		showOn: 'button', 
+		buttonImage: 'img/calendar.gif', 
+		buttonImageOnly: true,
+		firstDay: 1,
+		dateFormat: 'yy-mm-dd', 
+		minDate: 0, maxDate: '+4Y'});
 
-
+});
+</script>
 </div>
 
 
