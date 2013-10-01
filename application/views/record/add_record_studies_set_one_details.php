@@ -51,8 +51,20 @@
                     <?php echo form_input('name_of_radiologist'); ?>
                 </td>
 				 <td>
-                    <?php echo $abnormality_mammo_flag; ?>: 
-                    <?php echo form_checkbox('abnormality_mammo_flag', '1', FALSE); ?>
+                    <?php echo $abnormalities_mammo_flag; ?>: 
+                    <?php echo form_checkbox('abnormalities_mammo_flag', '1', FALSE); ?>
+                </td>
+				<td>
+                    <?php echo $mammo_comments; ?>: 
+                    <?php
+                    $data = array(
+                        'name' => 'mammo_comments',
+                        'id' => 'mammo_comments',
+                        'rows' => '3',
+                        'cols' => '7'
+                    );
+                    echo form_textarea($data);
+                    ?>
                 </td>
             </tr>
             <tr>
@@ -68,6 +80,15 @@
             </tr>
         </table>
         <table id="mammo_second_section_1">
+			 <tr>
+                <td>
+                    <input type="button" value="Add more site details" onClick="window.parent.addBreastSiteInput('add_record_form_section_mammo');
+                            window.parent.calcHeight();">
+                </td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
             <tr>
                 <td>
                     <?php echo $mammo_left_right_breast_side; ?>: 
@@ -77,16 +98,11 @@
                     <?php echo $mammo_upper_below_breast_side; ?>: 
                     <?php echo form_dropdown('mammo_upper_below_breast_side', $mammo_upper_below_breast_side_lists); ?>
                 </td>
-            </tr>
-            <tr>
-                <td>
-                    <input type="button" value="Add more site details" onClick="window.parent.addBreastSiteInput('add_record_form_section_mammo');
-                            window.parent.calcHeight();">
+				 <td>
+                    <?php echo $mammo_is_abnormality_detected; ?>: 
+                    <?php echo form_checkbox('mammo_is_abnormality_detected', '1', FALSE); ?>
                 </td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-            </tr>
+            </tr>           
         </table>
         <?php echo form_fieldset_close(); ?>	
     </div>
@@ -192,13 +208,21 @@
                     <?php echo form_input('total_no_of_ultrasound'); ?>
                 </td>
                 <td>
-                    <?php echo $abnormality_ultrasound_flag; ?>: 
-                    <?php echo form_checkbox('abnormality_ultrasound_flag', '1', FALSE); ?>
+                    <?php echo $abnormalities_ultrasound_flag; ?>: 
+                    <?php echo form_checkbox('abnormalities_ultrasound_flag', '1', FALSE); ?>
                 </td>
             </tr>
         </table>
         <table id="mammo_ultrasound_second_section_1">
             <tr>
+				 <td>
+                    <?php echo $mammo_ultrasound_date; ?>: 
+                    <?php echo form_input('mammo_ultrasound_date'); ?>
+                </td>
+				 <td>
+                    <?php echo $mammo_ultrasound_is_abnormality_detected; ?>: 
+                    <?php echo form_checkbox('mammo_ultrasound_is_abnormality_detected', '1', FALSE); ?>
+                </td>
                 <td>
                     <?php echo $mammo_ultrasound_details; ?>: 
                     <?php
@@ -236,10 +260,22 @@
                     <?php echo $total_no_of_MRI; ?>: 
                     <?php echo form_input('total_no_of_mri'); ?>
                 </td>
+				 <td>
+                    <?php echo $abnormalities_MRI_flag; ?>: 
+                    <?php echo form_checkbox('abnormalities_MRI_flag', '1', FALSE); ?>
+                </td>
             </tr>
         </table>
         <table id="mammo_MRI_second_section_1">
             <tr>
+				 <td>
+                    <?php echo $mammo_MRI_date; ?>: 
+                    <?php echo form_input('mammo_mri_date'); ?>
+                </td>
+				 <td>
+                    <?php echo $mammo_MRI_is_abnormality_detected; ?>: 
+                    <?php echo form_checkbox('mammo_mri_is_abnormality_detected', '1', FALSE); ?>
+                </td>
                 <td>
                     <?php echo $mammo_MRI_details; ?>: 
 
@@ -260,9 +296,9 @@
             </tr>
         </table>
     </div>
-    <div class="container" id="add_record_form_section_mammo_benign_cyst_surgery">
+    <div class="container" id="add_record_form_section_mammo_non_cancer_surgery">
         <div height="30px">&nbsp;</div>
-        <table id="mammo_fifth_section_1">
+        <table id="mammo_non_cancer_surgery_section_1">
             <tr>
                 <td id="label1">Surgery for non-cancer</td>
                 <td>&nbsp;</td>
@@ -287,16 +323,12 @@
                 </td>
 			</tr>
             <tr>
-                <td>
-                    <?php echo $had_surgery_for_benign_lump_or_cyst_flag; ?>: 
-                    <?php echo form_checkbox('had_surgery_for_benign_lump_or_cyst_flag', '1', FALSE); ?>
-                </td>
 				 <td>
-                    <?php echo $mammo_benign_lump_cyst_details; ?>: 
+                    <?php echo $non_cancer_surgery_comments; ?>: 
                     <?php
                     $data = array(
-                        'name' => 'mammo_benign_lump_cyst_details',
-                        'id' => 'mammo_benign_lump_cyst_details',
+                        'name' => 'non_cancer_surgery_comments',
+                        'id' => 'non_cancer_surgery_comments',
                         'rows' => '3',
                         'cols' => '7'
                     );
@@ -304,7 +336,7 @@
                     ?>
                 </td>
                 <td>
-                    <input type="button" value="Add comment" onClick="window.parent.addLumpCystDetailsInput('add_record_form_section_mammo_benign_cyst_surgery');
+                    <input type="button" value="Add surgery" onClick="window.parent.addNonCancerSurgeryDetailsInput('add_record_form_section_mammo_non_cancer_surgery');
                             window.parent.calcHeight();">
                 </td>
             </tr>
@@ -312,7 +344,7 @@
     </div>
 	<div class="container" id="add_record_form_risk_reducing_surgery_div" >
 		<div height="30px">&nbsp;</div>
-		 <table id="ovarian_cancer_screening_title">
+		 <table id="risk_reducing_surgery_title">
             <tr>
                 <td id="label1">Risk Reducing Surgery</td>
                 <td>&nbsp;</td>
@@ -386,26 +418,24 @@
             </tr>
         </table>
 		<div id="ovarian_cancer_screening_record_physical_exam_div_section">
-			<table id="ovarian_cancer_screening_record_table_physical_flag">
-				<tr>
-					<td>
-						<?php echo $had_physical_pelvic_exams; ?>: 
-						 <?php echo form_checkbox('had_physical_pelvic_exams', '1', FALSE); ?>
-					</td>
-				</tr>
-			</table>
 			<table id="physical_flag_table_1">
 				<tr>
 					<td>
-						<?php echo $physical_exam_date; ?>: 
+						<?php echo $ovarian_screening_type_name; ?>: 
+						 <?php echo form_dropdown('ovarian_screening_type_name', $ovarian_screening_type_name_lists); ?>
+					</td>
+					<td>
+						<?php echo $physical_exam_date; ?>:
 						 <?php echo form_input('physical_exam_date'); ?>
 					</td>
 					<td>
 						<?php echo $physical_exam_is_abnormality_detected; ?>: 
 						 <?php echo form_checkbox('physical_exam_is_abnormality_detected', '1', FALSE); ?>
 					</td>
+				</tr>
+				<tr>
 					<td>
-						<?php echo $physical_exam_additional_info; ?>: 
+						<?php echo $physical_exam_additional_info; ?>: <br />
 						<?php
 						$data = array(
 							'name' => 'physical_exam_additional_info',
@@ -420,158 +450,6 @@
 						<input type="button" value="Add" onClick="window.parent.addOvarianScreeningPhycialExamsInfo('ovarian_cancer_screening_record_physical_exam_div_section');
                             window.parent.calcHeight();">
 					</td>
-				</tr>
-			</table>
-		</div>
-		<div id="ovarian_cancer_screening_record_abdominal_div_section">
-			<table id="ovarian_cancer_screening_record_table_abdominal_flag">
-				<tr>
-					<td>
-						<?php echo $had_abdominal_ultrasound; ?>: 
-						 <?php echo form_checkbox('had_abdominal_ultrasound', '1', FALSE); ?>
-					</td>
-				</tr>
-			</table>
-			<table id="abdominal_ultrasound_flag_table_1">
-				<tr>
-					<td>
-						<?php echo $abdominal_ultrasound_date; ?>: 
-						 <?php echo form_input('abdominal_ultrasound_date'); ?>
-					</td>
-					<td>
-						<?php echo $abdominal_ultrasound_is_abnormality_detected; ?>: 
-						 <?php echo form_checkbox('abdominal_ultrasound_is_abnormality_detected', '1', FALSE); ?>
-					</td>
-					<td>
-						<?php echo $abdominal_ultrasound_additional_info; ?>: 
-						<?php
-						$data = array(
-							'name' => 'abdominal_ultrasound_additional_info',
-							'id' => 'abdominal_ultrasound_additional_info',
-							'rows' => '3',
-							'cols' => '7'
-						);
-						echo form_textarea($data);
-						?>
-					</td>
-					 <td>
-                    <input type="button" value="Add" onClick="window.parent.addOvarianScreeningAbdominalUltrasoundInfo('ovarian_cancer_screening_record_abdominal_div_section');
-                            window.parent.calcHeight();">
-                </td>
-				</tr>
-			</table>
-		</div>
-		<div id="ovarian_cancer_screening_record_transvaginal_div_section">
-			<table id="ovarian_cancer_screening_record_table_transvaginal_flag">
-				<tr>
-					<td>
-						<?php echo $had_transvaginal_ultrasound; ?>: 
-						 <?php echo form_checkbox('had_transvaginal_ultrasound', '1', FALSE); ?>
-					</td>
-				</tr>
-			</table>
-			<table id="transvaginal_ultrasound_flag_table_1">
-				<tr>
-					<td>
-						<?php echo $transvaginal_ultrasound_date; ?>: 
-						 <?php echo form_input('transvaginal_ultrasound_date'); ?>
-					</td>
-					<td>
-						<?php echo $transvaginal_ultrasound_is_abnormality_detected; ?>: 
-						 <?php echo form_checkbox('transvaginal_ultrasound_is_abnormality_detected', '1', FALSE); ?>
-					</td>
-					<td>
-						<?php echo $transvaginal_ultrasound_additional_info; ?>: 
-						<?php
-						$data = array(
-							'name' => 'transvaginal_ultrasound_additional_info',
-							'id' => 'transvaginal_ultrasound_additional_info',
-							'rows' => '3',
-							'cols' => '7'
-						);
-						echo form_textarea($data);
-						?>
-					</td>
-					 <td>
-                    <input type="button" value="Add" onClick="window.parent.addOvarianScreeningTransvaginalUltrasoundInfo('ovarian_cancer_screening_record_transvaginal_div_section');
-                            window.parent.calcHeight();">
-                </td>
-				</tr>
-			</table>
-		</div>
-		<div id="ovarian_cancer_screening_record_CA125_blood_test_div_section">
-			<table id="ovarian_cancer_screening_record_table_CA125_blood_test_flag">
-				<tr>
-					<td>
-						<?php echo $had_CA125_blood_test; ?>: 
-						 <?php echo form_checkbox('had_CA125_blood_test', '1', FALSE); ?>
-					</td>
-				</tr>
-			</table>
-			<table id="CA125_blood_test_flag_table_1">
-				<tr>
-					<td>
-						<?php echo $CA125_blood_test_date; ?>: 
-						 <?php echo form_input('CA125_blood_test_date'); ?>
-					</td>
-					<td>
-						<?php echo $CA125_blood_test_is_abnormality_detected; ?>: 
-						 <?php echo form_checkbox('CA125_blood_test_is_abnormality_detected', '1', FALSE); ?>
-					</td>
-					<td>
-						<?php echo $CA125_blood_test_additional_info; ?>: 
-						<?php
-						$data = array(
-							'name' => 'CA125_blood_test_additional_info',
-							'id' => 'CA125_blood_test_additional_info',
-							'rows' => '3',
-							'cols' => '7'
-						);
-						echo form_textarea($data);
-						?>
-					</td>
-					 <td>
-                    <input type="button" value="Add" onClick="window.parent.addOvarianScreeningCA125BloodtestInfo('ovarian_cancer_screening_record_CA125_blood_test_div_section');
-                            window.parent.calcHeight();">
-                </td>
-				</tr>
-			</table>
-		</div>
-		<div id="ovarian_cancer_screening_record_biopsy_div_section">
-			<table id="ovarian_cancer_screening_record_table_biopsy_flag">
-				<tr>
-					<td>
-						<?php echo $had_biopsy; ?>: 
-						 <?php echo form_checkbox('had_biopsy', '1', FALSE); ?>
-					</td>
-				</tr>
-			</table>
-			<table id="biopsy_flag_table_1">
-				<tr>
-					<td>
-						<?php echo $biopsy_date; ?>: 
-						 <?php echo form_input('biopsy_date'); ?>
-					</td>
-					<td>
-						<?php echo $biopsy_is_abnormality_detected; ?>: 
-						 <?php echo form_checkbox('biopsy_is_abnormality_detected', '1', FALSE); ?>
-					</td>
-					<td>
-						<?php echo $biopsy_additional_info; ?>: 
-						<?php
-						$data = array(
-							'name' => 'biopsy_additional_info',
-							'id' => 'biopsy_additional_info',
-							'rows' => '3',
-							'cols' => '7'
-						);
-						echo form_textarea($data);
-						?>
-					</td>
-					 <td>
-                    <input type="button" value="Add" onClick="window.parent.addOvarianScreeningBiopsyInfo('ovarian_cancer_screening_record_biopsy_div_section');
-                            window.parent.calcHeight();">
-                </td>
 				</tr>
 			</table>
 		</div>
@@ -681,11 +559,11 @@
 			<tr>
 				<td>
                     <?php echo $cancer_is_bilateral; ?>: <br /> 
-                    <?php echo form_input('cancer_is_bilateral'); ?>
+                    <?php echo form_checkbox('cancer_is_bilateral', '1', FALSE); ?>
                 </td>
 				<td>
                     <?php echo $cancer_is_recurrent; ?>: <br /> 
-                    <?php echo form_input('cancer_is_recurrent'); ?>
+                     <?php echo form_checkbox('cancer_is_recurrent', '1', FALSE); ?>
                 </td>
 				</tr>&nbsp;</td>
 				</tr>&nbsp;</td>
@@ -795,11 +673,11 @@
 				<tr>
 				<td>
                     <?php echo $ovary_cancer_is_bilateral; ?>: <br /> 
-                    <?php echo form_input('ovary_cancer_is_bilateral'); ?>
+                    <?php echo form_checkbox('ovary_cancer_is_bilateral', '1', FALSE); ?>
                 </td>
 				<td>
                     <?php echo $ovary_cancer_is_recurrent; ?>: <br /> 
-                    <?php echo form_input('ovary_cancer_is_recurrent'); ?>
+                    <?php echo form_checkbox('ovary_cancer_is_recurrent', '1', FALSE); ?>
                 </td>
 				</tr>&nbsp;</td>
 				</tr>&nbsp;</td>
