@@ -34,7 +34,13 @@
         <script src="<?php echo base_url(); ?>js/jquery-1.9.1.js"></script>
         <script src="<?php echo base_url(); ?>js/jquery-ui.js"></script>
         <link rel="stylesheet" href="<?php echo base_url(); ?>resources/demos/style.css" />
-        	
+        <script>
+        $(function() {
+          $( "#datepicker" ).datepicker();
+          $( "#datepicker1" ).datepicker();
+        });
+  
+        </script>	
     </head>
     <body>
 

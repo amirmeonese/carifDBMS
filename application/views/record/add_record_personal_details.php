@@ -1,10 +1,3 @@
-<script>
-        $(function() {
-          $( "#datepicker" ).datepicker();
-          $( "#datepicker1" ).datepicker();
-        });
-  
-        </script>
 <div class="container" id="add_record_div">
     <div id="add_record_header" class="row">
         <p>Add Patient</p>
@@ -406,19 +399,6 @@
     </div>
 <?php echo form_submit('mysubmit', 'Save'); ?>
 <?php echo form_close(); ?>
-<script type="text/javascript">
-
-$(function() {
-$('input').filter('.dtpicker').datepicker({
-		showOn: 'button', 
-		buttonImage: 'img/calendar.gif', 
-		buttonImageOnly: true,
-		firstDay: 1,
-		dateFormat: 'yy-mm-dd', 
-		minDate: 0, maxDate: '+4Y'});
-
-});
-</script>
 </div>
 
 
