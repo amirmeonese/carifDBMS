@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 01, 2013 at 08:32 AM
+-- Generation Time: Oct 02, 2013 at 01:50 AM
 -- Server version: 5.6.11
 -- PHP Version: 5.5.0
 
@@ -267,7 +267,7 @@ CREATE TABLE IF NOT EXISTS `patient` (
   `is_deleted` tinyint(1) NOT NULL DEFAULT '0',
   `deleted_date` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`ic_no`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=870728385143 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -289,7 +289,7 @@ CREATE TABLE IF NOT EXISTS `patient_breast_abnormality` (
   `is_deleted` tinyint(1) NOT NULL DEFAULT '0',
   `deleted_on` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`patient_breast_abnormality_side_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=19 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -318,6 +318,7 @@ CREATE TABLE IF NOT EXISTS `patient_breast_screening` (
   `abnormalities_MRI_flag` tinyint(1) NOT NULL,
   `BIRADS_clinical_classification` longtext NOT NULL,
   `BIRADS_density_classification` longtext NOT NULL,
+  `percentage_of_mammo_density` varchar(20) NOT NULL,
   `created_on` date NOT NULL,
   `modified_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modified_by` varchar(50) NOT NULL,
@@ -325,7 +326,7 @@ CREATE TABLE IF NOT EXISTS `patient_breast_screening` (
   `deleted_on` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`patient_breast_screening_id`),
   KEY `fk_patient_breast_screening_patient_studies_id` (`patient_studies_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -336,66 +337,26 @@ CREATE TABLE IF NOT EXISTS `patient_breast_screening` (
 CREATE TABLE IF NOT EXISTS `patient_cancer` (
   `patient_cancer_id` int(10) NOT NULL AUTO_INCREMENT,
   `patient_studies_id` int(10) NOT NULL,
-  `breast_cancer_diagnosed_flag` tinyint(1) NOT NULL,
   `cancer_id` int(10) NOT NULL,
-  `age_of_diagnosis` int(10) NOT NULL,
+  `cancer_site_id` int(10) NOT NULL,
+  `cancer_invasive_type` text NOT NULL,
+  `is_primary` tinyint(1) NOT NULL,
   `date_of_diagnosis` date NOT NULL,
+  `age_of_diagnosis` int(10) NOT NULL,
   `diagnosis_center` varchar(250) NOT NULL,
   `doctor_name` varchar(100) NOT NULL,
   `detected_by` varchar(250) NOT NULL,
+  `bilateral_flag` tinyint(1) NOT NULL,
   `recurrence_flag` tinyint(1) NOT NULL,
-  `recurrence_site` varchar(250) NOT NULL,
-  `recurrence_date` date NOT NULL,
-  `is_primary` tinyint(1) NOT NULL,
   `created_on` date NOT NULL,
   `modified_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modified_by` varchar(50) NOT NULL,
   `is_deleted` tinyint(1) DEFAULT '0',
   `deleted_on` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`patient_cancer_id`),
-  KEY `fk_patient_cancer_patient_studies_id` (`patient_studies_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `patient_cancer_recurrent`
---
-
-CREATE TABLE IF NOT EXISTS `patient_cancer_recurrent` (
-  `patient_cancer_recurrent_id` int(10) NOT NULL AUTO_INCREMENT,
-  `treatment_id` int(10) NOT NULL,
-  `patient_cancer_id` int(10) NOT NULL,
-  `created_on` date NOT NULL,
-  `modified_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `modified_by` varchar(50) NOT NULL,
-  `is_deleted` tinyint(1) NOT NULL DEFAULT '0',
-  `deleted_on` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  PRIMARY KEY (`patient_cancer_recurrent_id`),
-  KEY `fk_patient_cancer_recurrent_patient_cancer_id` (`patient_cancer_id`),
-  KEY `fk_patient_cancer_recurrent_patient_treatment_id` (`treatment_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `patient_cancer_site`
---
-
-CREATE TABLE IF NOT EXISTS `patient_cancer_site` (
-  `patient_cancer_site_id` int(10) NOT NULL AUTO_INCREMENT,
-  `patient_cancer_id` int(10) NOT NULL,
-  `cancer_site_id` int(10) NOT NULL,
-  `site_details` longtext NOT NULL,
-  `created_on` date NOT NULL,
-  `modified_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `modified_by` varchar(50) NOT NULL,
-  `is_deleted` tinyint(1) NOT NULL DEFAULT '0',
-  `deleted_on` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  PRIMARY KEY (`patient_cancer_site_id`),
-  KEY `fk_patient_cancer_site_patient_cancer_id` (`patient_cancer_id`),
-  KEY `fk_patient_cancer_site_patient_cancer_site_id` (`cancer_site_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+  KEY `fk_patient_cancer_patient_studies_id` (`patient_studies_id`),
+  KEY `cancer_site_id` (`cancer_site_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -409,6 +370,8 @@ CREATE TABLE IF NOT EXISTS `patient_cancer_treatment` (
   `patient_cancer_id` int(10) NOT NULL,
   `treatment_start_date` date NOT NULL,
   `treatment_end_date` date NOT NULL,
+  `treatment_durations` varchar(50) NOT NULL,
+  `comments` varchar(200) NOT NULL,
   `treatment_drug_dose` longtext NOT NULL,
   `created_on` date NOT NULL,
   `modified_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -418,7 +381,7 @@ CREATE TABLE IF NOT EXISTS `patient_cancer_treatment` (
   PRIMARY KEY (`patient_cancer_treatment_id`),
   KEY `fk_patient_cancer_treatment_patient_cancer_id` (`patient_cancer_id`),
   KEY `fk_patient_cancer_treatment_treatment_id` (`treatment_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -439,34 +402,7 @@ CREATE TABLE IF NOT EXISTS `patient_contact_person` (
   `deleted_on` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`patient_contact_person_id`),
   KEY `fk_patient_contact_person_patient_ic_no` (`patient_ic_no`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `patient_diagnosis`
---
-
-CREATE TABLE IF NOT EXISTS `patient_diagnosis` (
-  `patient_diagnosis_id` int(10) NOT NULL AUTO_INCREMENT,
-  `patient_studies_id` int(10) NOT NULL,
-  `diagnosis_id` int(10) NOT NULL,
-  `diagnosis_age` int(5) NOT NULL,
-  `year_of_diagnosis` date NOT NULL,
-  `on_medication_flag` tinyint(1) NOT NULL,
-  `medication_details` longtext NOT NULL,
-  `diagnosis_center` text NOT NULL,
-  `doctor_name` varchar(100) NOT NULL,
-  `diagnosis_details` longtext NOT NULL,
-  `created_on` date NOT NULL,
-  `modified_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `modified_by` varchar(50) NOT NULL,
-  `is_deleted` tinyint(1) NOT NULL DEFAULT '0',
-  `deleted_on` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  PRIMARY KEY (`patient_diagnosis_id`),
-  KEY `fk_patient_diagnosis_diagnosis_id` (`diagnosis_id`),
-  KEY `fk_patient_diagnosis_patient_studies_id` (`patient_studies_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -509,7 +445,7 @@ CREATE TABLE IF NOT EXISTS `patient_gynaecological_surgery_history` (
   PRIMARY KEY (`patient_gne_surgery_history_id`),
   KEY `fk_patient_gynaecological_surgery_history_treatment_id` (`treatment_id`),
   KEY `fk_patient_gynaecological_surgery_history_studies_id` (`patient_studies_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -519,13 +455,13 @@ CREATE TABLE IF NOT EXISTS `patient_gynaecological_surgery_history` (
 
 CREATE TABLE IF NOT EXISTS `patient_hospital_no` (
   `patient_hospital_no_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `patient_ic_no` bigint(18) NOT NULL,
   `hospital_no` char(50) NOT NULL,
   `created_on` date NOT NULL,
   `modified_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modified_by` varchar(50) NOT NULL,
   `is_deleted` tinyint(1) NOT NULL,
   `deleted_on` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `patient_ic_no` bigint(18) NOT NULL,
   PRIMARY KEY (`patient_hospital_no_ID`),
   KEY `patient_ic_no` (`patient_ic_no`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
@@ -541,18 +477,18 @@ CREATE TABLE IF NOT EXISTS `patient_infertility` (
   `patient_studies_id` int(10) NOT NULL,
   `infertility_testing_flag` tinyint(1) NOT NULL,
   `infertility_treatment_type` longtext NOT NULL,
-  `infertility_treatment_duration` int(11) NOT NULL,
+  `infertility_treatment_duration` varchar(50) NOT NULL,
   `infertility_comments` varchar(200) NOT NULL,
   `contraceptive_pills_flag` tinyint(1) NOT NULL,
   `currently_taking_contraceptive_pills_flag` tinyint(1) NOT NULL,
   `contraceptive_start_date` date NOT NULL,
   `contraceptive_end_date` date NOT NULL,
-  `contraceptive_duration` int(11) NOT NULL,
+  `contraceptive_duration` varchar(50) NOT NULL,
   `hrt_flag` tinyint(1) NOT NULL,
   `currently_using_hrt_flag` tinyint(1) NOT NULL,
   `hrt_start_date` date NOT NULL,
   `hrt_end_date` date NOT NULL,
-  `hrt_duration` int(11) NOT NULL,
+  `hrt_duration` varchar(50) NOT NULL,
   `created_on` date NOT NULL,
   `modified_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modified_by` varchar(50) NOT NULL,
@@ -585,7 +521,7 @@ CREATE TABLE IF NOT EXISTS `patient_interview_manager` (
   `deleted_on` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`patient_interview_manager_id`),
   KEY `fk_patient_interview_manager_patient_ic_no` (`patient_ic_no`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -696,7 +632,7 @@ CREATE TABLE IF NOT EXISTS `patient_lifestyle_factors` (
   `deleted_on` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`patient_lifestyle_factors_id`),
   KEY `fk_patient_lifestyle_factors_patient_studies_id` (`patient_studies_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -716,7 +652,7 @@ CREATE TABLE IF NOT EXISTS `patient_mammo_processed_images` (
   `deleted_on` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`patient_mammo_processed_images_id`),
   KEY `fk_patient_mammo_processed_images_patient_ic_no` (`patient_ic_no`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -736,7 +672,7 @@ CREATE TABLE IF NOT EXISTS `patient_mammo_raw_images` (
   `deleted_on` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`patient_mammo_raw_images_id`),
   KEY `fk_patient_mammo_raw_images_patient_ic_no` (`patient_ic_no`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -763,7 +699,7 @@ CREATE TABLE IF NOT EXISTS `patient_menstruation` (
   `deleted_on` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`patient_menstruation_id`),
   KEY `fk_patient_menstruation_patient_studies_id` (`patient_studies_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -783,7 +719,7 @@ CREATE TABLE IF NOT EXISTS `patient_mri_abnormality` (
   `is_deleted` tinyint(1) NOT NULL DEFAULT '0',
   `deleted_on` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`patient_mri_abnormlity_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -825,7 +761,7 @@ CREATE TABLE IF NOT EXISTS `patient_mutation_analysis` (
   `deleted_on` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`patient_investigations_id`),
   KEY `fk_patient_investigations_patient_studies_id` (`patient_studies_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -853,23 +789,72 @@ CREATE TABLE IF NOT EXISTS `patient_non_cancer_surgery` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `patient_other_screening`
+-- Table structure for table `patient_other_disease`
 --
 
-CREATE TABLE IF NOT EXISTS `patient_other_screening` (
-  `patient_other_screening_id` int(10) NOT NULL AUTO_INCREMENT,
-  `screening_type` varchar(250) NOT NULL,
-  `age_at_screening` int(10) NOT NULL,
-  `screening_center` varchar(250) NOT NULL,
-  `screening_result` varchar(250) NOT NULL,
-  `patient_breast_screening_id` int(10) NOT NULL,
+CREATE TABLE IF NOT EXISTS `patient_other_disease` (
+  `patient_other_disease_id` int(10) NOT NULL AUTO_INCREMENT,
+  `patient_studies_id` int(10) NOT NULL,
+  `diagnosis_id` int(10) NOT NULL,
+  `date_of_diagnosis` date NOT NULL,
+  `diagnosis_age` int(5) NOT NULL,
+  `diagnosis_center` text NOT NULL,
+  `doctor_name` varchar(100) NOT NULL,
+  `on_medication_flag` tinyint(1) NOT NULL,
   `created_on` date NOT NULL,
   `modified_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modified_by` varchar(50) NOT NULL,
   `is_deleted` tinyint(1) NOT NULL DEFAULT '0',
   `deleted_on` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  PRIMARY KEY (`patient_other_screening_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
+  PRIMARY KEY (`patient_other_disease_id`),
+  KEY `fk_patient_diagnosis_diagnosis_id` (`diagnosis_id`),
+  KEY `fk_patient_diagnosis_patient_studies_id` (`patient_studies_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `patient_other_disease_medication`
+--
+
+CREATE TABLE IF NOT EXISTS `patient_other_disease_medication` (
+  `patient_other_disease_medication_id` int(10) NOT NULL AUTO_INCREMENT,
+  `patient_other_disease_id` int(10) NOT NULL,
+  `medication_type` text NOT NULL,
+  `start_date` date NOT NULL,
+  `end_date` date NOT NULL,
+  `duration` varchar(50) NOT NULL,
+  `comments` varchar(200) NOT NULL,
+  `created_on` date NOT NULL,
+  `modified_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified_by` varchar(50) NOT NULL,
+  `is_deleted` tinyint(1) NOT NULL,
+  `deleted_on` date NOT NULL,
+  PRIMARY KEY (`patient_other_disease_medication_id`),
+  KEY `patient_other_disease_id` (`patient_other_disease_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `patient_other_screening`
+--
+
+CREATE TABLE IF NOT EXISTS `patient_other_screening` (
+  `patient_other_screening_id` int(10) NOT NULL AUTO_INCREMENT,
+  `patient_studies_id` int(10) NOT NULL,
+  `screening_type` varchar(250) NOT NULL,
+  `age_at_screening` int(10) NOT NULL,
+  `screening_center` varchar(250) NOT NULL,
+  `screening_result` varchar(250) NOT NULL,
+  `created_on` date NOT NULL,
+  `modified_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified_by` varchar(50) NOT NULL,
+  `is_deleted` tinyint(1) NOT NULL DEFAULT '0',
+  `deleted_on` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  PRIMARY KEY (`patient_other_screening_id`),
+  KEY `patient_studies_id` (`patient_studies_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -917,7 +902,7 @@ CREATE TABLE IF NOT EXISTS `patient_parity_record` (
   `deleted_on` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`patient_parity_record_id`),
   KEY `fk_patient_parity_record_patient_parity_table_id` (`patient_parity_table_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -936,7 +921,7 @@ CREATE TABLE IF NOT EXISTS `patient_parity_table` (
   `deleted_on` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`patient_parity_id`),
   KEY `fk_patient_parity_table_patient_studies_id` (`patient_studies_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -971,7 +956,7 @@ CREATE TABLE IF NOT EXISTS `patient_pathology` (
   PRIMARY KEY (`patient_pathology_id`),
   KEY `fk_patient_pathology_patient_studies_id` (`patient_studies_id`),
   KEY `cancer_id` (`cancer_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -1061,7 +1046,7 @@ CREATE TABLE IF NOT EXISTS `patient_relatives` (
   KEY `fk_patient_relatives_patient_ic_no` (`patient_ic_no`),
   KEY `fk_patient_relatives_relatives_id` (`relatives_id`),
   KEY `degree_of_relativeness` (`degree_of_relativeness`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -1133,49 +1118,6 @@ CREATE TABLE IF NOT EXISTS `patient_risk_assessment` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `patient_risk_reducing_complete_removal_surgery`
---
-
-CREATE TABLE IF NOT EXISTS `patient_risk_reducing_complete_removal_surgery` (
-  `patient_risk_reducing_complete_removal_surgery_id` int(10) NOT NULL AUTO_INCREMENT,
-  `patient_risk_reducing_surgery_id` int(10) NOT NULL,
-  `non_cancerous_site_id` int(10) NOT NULL,
-  `surgery_date` date NOT NULL,
-  `surgery_reason` varchar(200) NOT NULL,
-  `created_on` date NOT NULL,
-  `modified_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `modified_by` varchar(50) NOT NULL,
-  `is_deleted` tinyint(1) NOT NULL,
-  `deleted_on` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  PRIMARY KEY (`patient_risk_reducing_complete_removal_surgery_id`),
-  KEY `patient_risk_reducing_surgery_id` (`patient_risk_reducing_surgery_id`),
-  KEY `non_cancerous_site_id` (`non_cancerous_site_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `patient_risk_reducing_lesion_surgery`
---
-
-CREATE TABLE IF NOT EXISTS `patient_risk_reducing_lesion_surgery` (
-  `patient_risk_reducing_lesion_surgery_id` int(10) NOT NULL AUTO_INCREMENT,
-  `patient_risk_reducing_surgery_id` int(10) NOT NULL,
-  `non_cancerous_site_id` int(10) NOT NULL,
-  `surgery_date` date NOT NULL,
-  `created_on` date NOT NULL,
-  `modified_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `modified_by` varchar(50) NOT NULL,
-  `is_deleted` tinyint(1) NOT NULL,
-  `deleted_on` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  PRIMARY KEY (`patient_risk_reducing_lesion_surgery_id`),
-  KEY `patient_risk_reducing_surgery_id` (`patient_risk_reducing_surgery_id`),
-  KEY `non_cancerous_site_id` (`non_cancerous_site_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `patient_risk_reducing_surgery`
 --
 
@@ -1191,6 +1133,49 @@ CREATE TABLE IF NOT EXISTS `patient_risk_reducing_surgery` (
   `deleted_on` date NOT NULL,
   PRIMARY KEY (`patient_risk_reducing_surgery_id`),
   KEY `patient_studies_id` (`patient_studies_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `patient_risk_reducing_surgery_complete_removal`
+--
+
+CREATE TABLE IF NOT EXISTS `patient_risk_reducing_surgery_complete_removal` (
+  `patient_risk_reducing_surgery_complete_removal_id` int(10) NOT NULL AUTO_INCREMENT,
+  `patient_risk_reducing_surgery_id` int(10) NOT NULL,
+  `non_cancerous_site_id` int(10) NOT NULL,
+  `surgery_date` date NOT NULL,
+  `surgery_reason` varchar(200) NOT NULL,
+  `created_on` date NOT NULL,
+  `modified_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified_by` varchar(50) NOT NULL,
+  `is_deleted` tinyint(1) NOT NULL,
+  `deleted_on` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  PRIMARY KEY (`patient_risk_reducing_surgery_complete_removal_id`),
+  KEY `patient_risk_reducing_surgery_id` (`patient_risk_reducing_surgery_id`),
+  KEY `non_cancerous_site_id` (`non_cancerous_site_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `patient_risk_reducing_surgery_lesion`
+--
+
+CREATE TABLE IF NOT EXISTS `patient_risk_reducing_surgery_lesion` (
+  `patient_risk_reducing_surgery_lesion_id` int(10) NOT NULL AUTO_INCREMENT,
+  `patient_risk_reducing_surgery_id` int(10) NOT NULL,
+  `non_cancerous_site_id` int(10) NOT NULL,
+  `surgery_date` date NOT NULL,
+  `created_on` date NOT NULL,
+  `modified_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified_by` varchar(50) NOT NULL,
+  `is_deleted` tinyint(1) NOT NULL,
+  `deleted_on` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  PRIMARY KEY (`patient_risk_reducing_surgery_lesion_id`),
+  KEY `patient_risk_reducing_surgery_id` (`patient_risk_reducing_surgery_id`),
+  KEY `non_cancerous_site_id` (`non_cancerous_site_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -1221,7 +1206,7 @@ CREATE TABLE IF NOT EXISTS `patient_studies` (
   PRIMARY KEY (`patient_studies_id`),
   KEY `fk_patient_studies_patient_ic_no` (`patient_ic_no`),
   KEY `fk_patient_studies_studies_id` (`studies_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -1255,7 +1240,7 @@ CREATE TABLE IF NOT EXISTS `patient_surveillance` (
   `deleted_on` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`patient_surveillance_id`),
   KEY `fk_patient_surveillance_patient_studies_id` (`patient_studies_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -1276,7 +1261,7 @@ CREATE TABLE IF NOT EXISTS `patient_survival_status` (
   `deleted_on` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`patient_survival_status_id`),
   KEY `fk_patient_survival_status_patient_ic_no` (`patient_ic_no`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -1296,7 +1281,7 @@ CREATE TABLE IF NOT EXISTS `patient_ultrasound_abnormality` (
   `is_deleted` tinyint(1) NOT NULL DEFAULT '0',
   `deleted_on` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`patient_ultra_abn`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -1452,7 +1437,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `suspend`, `reset_password_invalid_attempts`, `reset_password_counter`, `first_name`, `last_name`, `phone`, `current_city`, `country`, `profile_picture_path`, `user_language`, `add_privilege`, `view_privilege`, `edit_privilege`, `delete_privilege`) VALUES
-(1, '\0\0', 'administrator', '59beecdf7fc966e2f17fd8f65a4a9aeb09d4a3d4', '9462e8eee0', 'admin@admin.com', '', NULL, NULL, '9d029802e28cd9c768e8e62277c0df49ec65c48c', 1268889823, 1380583346, 1, 0, 0, 0, 'Admin', 'istrator', '0', NULL, NULL, NULL, NULL, 1, 1, 1, 0),
+(1, '\0\0', 'administrator', '59beecdf7fc966e2f17fd8f65a4a9aeb09d4a3d4', '9462e8eee0', 'admin@admin.com', '', NULL, NULL, '9d029802e28cd9c768e8e62277c0df49ec65c48c', 1268889823, 1380667961, 1, 0, 0, 0, 'Admin', 'istrator', '0', NULL, NULL, NULL, NULL, 1, 1, 1, 0),
 (2, '\0\0', 'nazmul', '59beecdf7fc966e2f17fd8f65a4a9aeb09d4a3d4', '9462e8eee0', 'nazmul@apurbatech.com', '', NULL, NULL, NULL, 1268889823, 1373438882, 1, 0, 0, 0, 'Nazmul', 'Hasan', '0', NULL, NULL, NULL, NULL, 1, 1, 1, 0),
 (3, '\0\0', 'alamgir', '59beecdf7fc966e2f17fd8f65a4a9aeb09d4a3d4', '9462e8eee0', 'alamgir@apurbatech.com', '', NULL, NULL, NULL, 1268889823, 1380003462, 1, 0, 0, 0, 'Alamgir', 'Kabir', '0', NULL, NULL, NULL, NULL, 1, 1, 1, 0),
 (4, '\0\0', 'fariza', '59beecdf7fc966e2f17fd8f65a4a9aeb09d4a3d4', '9462e8eee0', 'fariza@apurbatech.com', '', NULL, NULL, NULL, 1268889823, 1375689996, 1, 0, 0, 0, 'Fariza', 'Amir', '0', NULL, NULL, NULL, NULL, 1, 1, 1, 0),
@@ -1504,21 +1489,8 @@ ALTER TABLE `patient_breast_screening`
 -- Constraints for table `patient_cancer`
 --
 ALTER TABLE `patient_cancer`
-  ADD CONSTRAINT `fk_patient_cancer_patient_studies_id` FOREIGN KEY (`patient_studies_id`) REFERENCES `patient_studies` (`patient_studies_id`) ON DELETE CASCADE ON UPDATE NO ACTION;
-
---
--- Constraints for table `patient_cancer_recurrent`
---
-ALTER TABLE `patient_cancer_recurrent`
-  ADD CONSTRAINT `fk_patient_cancer_recurrent_patient_cancer_id` FOREIGN KEY (`patient_cancer_id`) REFERENCES `patient_cancer` (`patient_cancer_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_patient_cancer_recurrent_patient_treatment_id` FOREIGN KEY (`treatment_id`) REFERENCES `treatment` (`treatment_id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `patient_cancer_site`
---
-ALTER TABLE `patient_cancer_site`
-  ADD CONSTRAINT `fk_patient_cancer_site_patient_cancer_id` FOREIGN KEY (`patient_cancer_id`) REFERENCES `patient_cancer` (`patient_cancer_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_patient_cancer_site_patient_cancer_site_id` FOREIGN KEY (`cancer_site_id`) REFERENCES `cancer_site` (`cancer_site_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_patient_cancer_patient_studies_id` FOREIGN KEY (`patient_studies_id`) REFERENCES `patient_studies` (`patient_studies_id`) ON DELETE CASCADE ON UPDATE NO ACTION,
+  ADD CONSTRAINT `patient_cancer_ibfk_1` FOREIGN KEY (`cancer_site_id`) REFERENCES `cancer_site` (`cancer_site_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `patient_cancer_treatment`
@@ -1532,13 +1504,6 @@ ALTER TABLE `patient_cancer_treatment`
 --
 ALTER TABLE `patient_contact_person`
   ADD CONSTRAINT `fk_patient_contact_person_patient_ic_no` FOREIGN KEY (`patient_ic_no`) REFERENCES `patient` (`ic_no`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `patient_diagnosis`
---
-ALTER TABLE `patient_diagnosis`
-  ADD CONSTRAINT `fk_patient_diagnosis_diagnosis_id` FOREIGN KEY (`diagnosis_id`) REFERENCES `diagnosis` (`diagnosis_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_patient_diagnosis_patient_studies_id` FOREIGN KEY (`patient_studies_id`) REFERENCES `patient_studies` (`patient_studies_id`) ON DELETE CASCADE ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `patient_family`
@@ -1560,7 +1525,8 @@ ALTER TABLE `patient_gynaecological_surgery_history`
 -- Constraints for table `patient_hospital_no`
 --
 ALTER TABLE `patient_hospital_no`
-  ADD CONSTRAINT `patient_hospital_no_ibfk_1` FOREIGN KEY (`patient_ic_no`) REFERENCES `patient` (`ic_no`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `patient_hospital_no_ibfk_1` FOREIGN KEY (`patient_ic_no`) REFERENCES `patient` (`ic_no`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `patient_hospital_no_ibfk_2` FOREIGN KEY (`patient_ic_no`) REFERENCES `patient` (`ic_no`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `patient_interview_manager`
@@ -1607,11 +1573,30 @@ ALTER TABLE `patient_non_cancer_surgery`
   ADD CONSTRAINT `patient_non_cancer_surgery_ibfk_1` FOREIGN KEY (`patient_studies_id`) REFERENCES `patient_studies` (`patient_studies_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
+-- Constraints for table `patient_other_disease`
+--
+ALTER TABLE `patient_other_disease`
+  ADD CONSTRAINT `fk_patient_diagnosis_diagnosis_id` FOREIGN KEY (`diagnosis_id`) REFERENCES `diagnosis` (`diagnosis_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_patient_diagnosis_patient_studies_id` FOREIGN KEY (`patient_studies_id`) REFERENCES `patient_studies` (`patient_studies_id`) ON DELETE CASCADE ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `patient_other_disease_medication`
+--
+ALTER TABLE `patient_other_disease_medication`
+  ADD CONSTRAINT `patient_other_disease_medication_ibfk_1` FOREIGN KEY (`patient_other_disease_id`) REFERENCES `patient_other_disease` (`patient_other_disease_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `patient_other_screening`
+--
+ALTER TABLE `patient_other_screening`
+  ADD CONSTRAINT `patient_other_screening_ibfk_1` FOREIGN KEY (`patient_studies_id`) REFERENCES `patient_studies` (`patient_studies_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Constraints for table `patient_ovarian_screening`
 --
 ALTER TABLE `patient_ovarian_screening`
-  ADD CONSTRAINT `patient_ovarian_screening_ibfk_2` FOREIGN KEY (`ovarian_screening_type_id`) REFERENCES `ovarian_screening_type` (`ovarian_screening_type_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `patient_ovarian_screening_ibfk_1` FOREIGN KEY (`patient_studies_id`) REFERENCES `patient_studies` (`patient_studies_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `patient_ovarian_screening_ibfk_1` FOREIGN KEY (`patient_studies_id`) REFERENCES `patient_studies` (`patient_studies_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `patient_ovarian_screening_ibfk_2` FOREIGN KEY (`ovarian_screening_type_id`) REFERENCES `ovarian_screening_type` (`ovarian_screening_type_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `patient_parity_record`
@@ -1648,11 +1633,11 @@ ALTER TABLE `patient_private_no`
 -- Constraints for table `patient_relatives`
 --
 ALTER TABLE `patient_relatives`
-  ADD CONSTRAINT `patient_relatives_ibfk_1` FOREIGN KEY (`degree_of_relativeness`) REFERENCES `relative_degrees` (`relative_degree_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_patient_relatives_cancer_type_id` FOREIGN KEY (`cancer_type_id`) REFERENCES `cancer` (`cancer_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_patient_relatives_family_family_no` FOREIGN KEY (`family_no`) REFERENCES `family` (`family_no`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_patient_relatives_patient_ic_no` FOREIGN KEY (`patient_ic_no`) REFERENCES `patient` (`ic_no`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_patient_relatives_relatives_id` FOREIGN KEY (`relatives_id`) REFERENCES `relatives` (`relatives_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_patient_relatives_relatives_id` FOREIGN KEY (`relatives_id`) REFERENCES `relatives` (`relatives_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `patient_relatives_ibfk_1` FOREIGN KEY (`degree_of_relativeness`) REFERENCES `relative_degrees` (`relative_degree_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `patient_risk_assessment`
@@ -1661,24 +1646,24 @@ ALTER TABLE `patient_risk_assessment`
   ADD CONSTRAINT `fk_patient_boadicea_patient_ic_no` FOREIGN KEY (`patient_ic_no`) REFERENCES `patient` (`ic_no`) ON DELETE CASCADE ON UPDATE NO ACTION;
 
 --
--- Constraints for table `patient_risk_reducing_complete_removal_surgery`
---
-ALTER TABLE `patient_risk_reducing_complete_removal_surgery`
-  ADD CONSTRAINT `patient_risk_reducing_complete_removal_surgery_ibfk_1` FOREIGN KEY (`patient_risk_reducing_surgery_id`) REFERENCES `patient_risk_reducing_surgery` (`patient_risk_reducing_surgery_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `patient_risk_reducing_complete_removal_surgery_ibfk_2` FOREIGN KEY (`non_cancerous_site_id`) REFERENCES `non_cancerous_site` (`non_cancerous_site_id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `patient_risk_reducing_lesion_surgery`
---
-ALTER TABLE `patient_risk_reducing_lesion_surgery`
-  ADD CONSTRAINT `patient_risk_reducing_lesion_surgery_ibfk_1` FOREIGN KEY (`patient_risk_reducing_surgery_id`) REFERENCES `patient_risk_reducing_surgery` (`patient_risk_reducing_surgery_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `patient_risk_reducing_lesion_surgery_ibfk_2` FOREIGN KEY (`non_cancerous_site_id`) REFERENCES `non_cancerous_site` (`non_cancerous_site_id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
 -- Constraints for table `patient_risk_reducing_surgery`
 --
 ALTER TABLE `patient_risk_reducing_surgery`
   ADD CONSTRAINT `patient_risk_reducing_surgery_ibfk_1` FOREIGN KEY (`patient_studies_id`) REFERENCES `patient_studies` (`patient_studies_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `patient_risk_reducing_surgery_complete_removal`
+--
+ALTER TABLE `patient_risk_reducing_surgery_complete_removal`
+  ADD CONSTRAINT `patient_risk_reducing_surgery_complete_removal_ibfk_1` FOREIGN KEY (`patient_risk_reducing_surgery_id`) REFERENCES `patient_risk_reducing_surgery` (`patient_risk_reducing_surgery_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `patient_risk_reducing_surgery_complete_removal_ibfk_2` FOREIGN KEY (`non_cancerous_site_id`) REFERENCES `non_cancerous_site` (`non_cancerous_site_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `patient_risk_reducing_surgery_lesion`
+--
+ALTER TABLE `patient_risk_reducing_surgery_lesion`
+  ADD CONSTRAINT `patient_risk_reducing_surgery_lesion_ibfk_1` FOREIGN KEY (`patient_risk_reducing_surgery_id`) REFERENCES `patient_risk_reducing_surgery` (`patient_risk_reducing_surgery_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `patient_risk_reducing_surgery_lesion_ibfk_2` FOREIGN KEY (`non_cancerous_site_id`) REFERENCES `non_cancerous_site` (`non_cancerous_site_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `patient_studies`
