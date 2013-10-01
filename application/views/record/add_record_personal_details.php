@@ -1,4 +1,10 @@
-<script type="text/javascript" src="<?php echo base_url(); ?>js/datetimepicker_css.js"></script>
+<script>
+        $(function() {
+          $( "#datepicker" ).datepicker();
+          $( "#datepicker1" ).datepicker();
+        });
+  
+        </script>
 <div class="container" id="add_record_div">
     <div id="add_record_header" class="row">
         <p>Add Patient</p>
