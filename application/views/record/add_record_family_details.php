@@ -52,7 +52,7 @@
                 </td>
                 <td>
                     <?php echo $mother_DOB; ?>: 
-                    <?php echo form_input('mother_DOB'); ?>
+					<?php echo form_input(array('name'=>'mother_DOB','class'=>'datepicker')); ?>
                 </td>
                 <td>
                     <?php echo $mother_still_alive_flag; ?>: 
@@ -62,7 +62,7 @@
             <tr>
                 <td>
                     <?php echo $mother_DOD; ?>: 
-                    <?php echo form_input('mother_DOD'); ?>
+					<?php echo form_input(array('name'=>'mother_DOD','class'=>'datepicker')); ?>
                 </td>
                 <td>
                     <?php echo $mother_is_cancer_diagnosed; ?>: 
@@ -80,7 +80,7 @@
             <tr>
 				 <td>
                     <?php echo $mother_date_of_diagnosis; ?>: 
-                    <?php echo form_input('mother_date_of_diagnosis'); ?>
+					<?php echo form_input(array('name'=>'mother_date_of_diagnosis','class'=>'datepicker')); ?>
                 </td>
                 <td>
                     <?php echo $mother_age_of_diagnosis; ?>: 
@@ -173,7 +173,7 @@
                 </td>
                 <td>
                     <?php echo $father_DOB; ?>: 
-                    <?php echo form_input('father_DOB'); ?>
+                   <?php echo form_input(array('name'=>'father_DOB','class'=>'datepicker')); ?>
                 </td>
 				<td>
                     <?php echo $father_still_alive_flag; ?>: 
@@ -183,7 +183,7 @@
             <tr>
                 <td>
                     <?php echo $father_DOD; ?>: 
-                    <?php echo form_input('father_DOD'); ?>
+                    <?php echo form_input(array('name'=>'father_DOD','class'=>'datepicker')); ?>
                 </td>
                 <td>
                     <?php echo $father_is_cancer_diagnosed; ?>: 
@@ -201,7 +201,7 @@
             <tr>
                <td>
                     <?php echo $father_date_of_diagnosis; ?>: 
-                    <?php echo form_input('father_date_of_diagnosis'); ?>
+					<?php echo form_input(array('name'=>'father_date_of_diagnosis','class'=>'datepicker')); ?>
                 </td>
                 <td>
                     <?php echo $father_age_of_diagnosis; ?>: 

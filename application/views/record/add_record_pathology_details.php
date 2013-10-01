@@ -39,7 +39,7 @@
                 </td>
 				 <td>
                     <?php echo $breast_pathology_path_report_date; ?>: <br />
-                    <?php echo form_input('breast_pathology_path_report_date'); ?>
+					<?php echo form_input(array('name'=>'breast_pathology_path_report_date','class'=>'datepicker')); ?>
                 </td>
             </tr>
 			<tr>
@@ -152,7 +152,7 @@
                 </td>
 				 <td>
                     <?php echo $ovary_pathology_path_report_date; ?>: <br />
-                    <?php echo form_input('ovary_pathology_path_report_date'); ?>
+					<?php echo form_input(array('name'=>'ovary_pathology_path_report_date','class'=>'datepicker')); ?>
                 </td>
             </tr>
 			<tr>
@@ -227,7 +227,7 @@
                 </td>
 				 <td>
                     <?php echo $other_pathology_path_report_date; ?>: <br />
-                    <?php echo form_input('other_pathology_path_report_date'); ?>
+					<?php echo form_input(array('name'=>'other_pathology_path_report_date','class'=>'datepicker')); ?>
                 </td>
             </tr>
 			<tr>

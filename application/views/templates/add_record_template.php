@@ -36,8 +36,7 @@
         <link rel="stylesheet" href="<?php echo base_url(); ?>resources/demos/style.css" />
         <script>
         $(function() {
-          $( "#datepicker" ).datepicker();
-          $( "#datepicker1" ).datepicker();
+          $( ".datepicker" ).datepicker();
         });
   
         </script>	

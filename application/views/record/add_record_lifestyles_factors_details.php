@@ -26,7 +26,7 @@
 			<tr>
 				<td>
                     <?php echo $questionnaire_date; ?>: 
-                    <?php echo form_input('questionnaire_date'); ?>
+					<?php echo form_input(array('name'=>'questionnaire_date','class'=>'datepicker')); ?>
                 </td>
 			</tr>
             <tr>
@@ -298,7 +298,7 @@
                 </td>
                 <td>
                     <?php echo $date_period_stops; ?>: <br />
-                    <?php echo form_input('date_period_stops'); ?>
+					<?php echo form_input(array('name'=>'date_period_stops','class'=>'datepicker')); ?>
                 </td>
                 <td>
                     <?php echo $reason_period_stops; ?>: <br />
@@ -387,13 +387,13 @@
                 </td>
 				 <td>
                     <?php echo $contraceptive_start_date; ?>: <br />
-                    <?php echo form_input('contraceptive_start_date'); ?>
+					<?php echo form_input(array('name'=>'contraceptive_start_date','class'=>'datepicker')); ?>
                 </td>
             </tr>
             <tr>
 				<td>
                     <?php echo $contraceptive_end_date; ?>: <br />
-                    <?php echo form_input('contraceptive_end_date'); ?>
+					<?php echo form_input(array('name'=>'contraceptive_end_date','class'=>'datepicker')); ?>
                 </td>
                  <td>
                     <?php echo $contraceptive_duration; ?>: <br />
@@ -418,13 +418,13 @@
                 </td>
 				<td>
                     <?php echo $HRT_start_date; ?>: <br />
-                    <?php echo form_input('hrt_start_date'); ?>
+					<?php echo form_input(array('name'=>'hrt_start_date','class'=>'datepicker')); ?>
                 </td>
             </tr>
             <tr>
                 <td>
                     <?php echo $HRT_end_date; ?>: <br />
-                    <?php echo form_input('hrt_end_date'); ?>
+					<?php echo form_input(array('name'=>'hrt_end_date','class'=>'datepicker')); ?>
                 </td>
                <td>
                     <?php echo $HRT_duration; ?>: <br />

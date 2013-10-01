@@ -681,7 +681,7 @@ class Record_model extends CI_Model {
         $data['referral_source'] = 'Referral source';
 
         //MAMMO
-        $data['year_of_first_mammogram'] = 'Date of first mammogram';
+        $data['date_of_first_mammogram'] = 'Date of first mammogram';
         $data['age_at_first_mammogram'] = 'Age at first mammogram';
         $data['date_of_recent_mammogram'] = 'Date of recent mammogram';
 		$data['age_at_recent__mammogram'] = 'Age at recent mammogram';

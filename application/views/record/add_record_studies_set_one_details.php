@@ -25,8 +25,8 @@
         <table id="mammo_first_section">
             <tr>
                 <td>
-                    <?php echo $year_of_first_mammogram; ?>: 
-                    <?php echo form_input('year_of_first_mammogram'); ?>
+                    <?php echo $date_of_first_mammogram; ?>: 
+                    <?php echo form_input(array('name'=>'date_of_first_mammogram','class'=>'datepicker')); ?>
                 </td>
                 <td>
                     <?php echo $age_at_first_mammogram; ?>: 
@@ -34,7 +34,7 @@
                 </td>
                 <td>
                     <?php echo $date_of_recent_mammogram; ?>: 
-                    <?php echo form_input('date_of_recent_mammogram'); ?>
+					<?php echo form_input(array('name'=>'date_of_recent_mammogram','class'=>'datepicker')); ?>
                 </td>
 				<td>
                     <?php echo $age_at_recent__mammogram; ?>: 
@@ -217,7 +217,7 @@
             <tr>
 				 <td>
                     <?php echo $mammo_ultrasound_date; ?>: 
-                    <?php echo form_input('mammo_ultrasound_date'); ?>
+					<?php echo form_input(array('name'=>'mammo_ultrasound_date','class'=>'datepicker')); ?>
                 </td>
 				 <td>
                     <?php echo $mammo_ultrasound_is_abnormality_detected; ?>: 
@@ -270,7 +270,7 @@
             <tr>
 				 <td>
                     <?php echo $mammo_MRI_date; ?>: 
-                    <?php echo form_input('mammo_mri_date'); ?>
+					<?php echo form_input(array('name'=>'mammo_mri_date','class'=>'datepicker')); ?>
                 </td>
 				 <td>
                     <?php echo $mammo_MRI_is_abnormality_detected; ?>: 
@@ -315,7 +315,7 @@
                 </td>
 				 <td>
                     <?php echo $date_of_non_cancer_surgery; ?>: 
-                    <?php echo form_input('date_of_non_cancer_surgery'); ?>
+					<?php echo form_input(array('name'=>'date_of_non_cancer_surgery','class'=>'datepicker')); ?>
                 </td>
 				 <td>
                     <?php echo $age_at_non_cancer_surgery; ?>: 
@@ -368,7 +368,7 @@
 					</td>
 					<td>
 						<?php echo $non_cancerous_benign_date; ?>: 
-						 <?php echo form_input('non_cancerous_benign_date'); ?>
+						 <?php echo form_input(array('name'=>'non_cancerous_benign_date','class'=>'datepicker')); ?>
 					</td>
 					<td>
 						<input type="button" value="Add" onClick="window.parent.addRiskReducingSurgeryBenignInfo('non_cancerous_benign_section_1');
@@ -394,7 +394,7 @@
 					</td>
 					<td>
 						<?php echo $non_cancerous_complete_removal_date; ?>: 
-						 <?php echo form_input('non_cancerous_complete_removal_date'); ?>
+						<?php echo form_input(array('name'=>'non_cancerous_complete_removal_date','class'=>'datepicker')); ?>
 					</td>
 					<td>
 						<?php echo $non_cancerous_complete_removal_reason; ?>: 
@@ -426,7 +426,7 @@
 					</td>
 					<td>
 						<?php echo $physical_exam_date; ?>:
-						 <?php echo form_input('physical_exam_date'); ?>
+						<?php echo form_input(array('name'=>'physical_exam_date','class'=>'datepicker')); ?>
 					</td>
 					<td>
 						<?php echo $physical_exam_is_abnormality_detected; ?>: 
@@ -529,7 +529,7 @@
 			<tr>
 				 <td>
                     <?php echo $date_of_diagnosis; ?>: 
-                    <?php echo form_input('date_of_diagnosis'); ?>
+					<?php echo form_input(array('name'=>'date_of_diagnosis','class'=>'datepicker')); ?>
                 </td>
 				<td>
                     <?php echo $age_of_diagnosis; ?>: <br />
@@ -578,11 +578,11 @@
 					</td>
 					<td>
 						<?php echo $treatment_start_date; ?>: 
-						<?php echo form_input('treatment_start_date'); ?>
+						<?php echo form_input(array('name'=>'treatment_start_date','class'=>'datepicker')); ?>
 					</td>
 					<td>
 						<?php echo $treatment_end_date; ?>: 
-						<?php echo form_input('treatment_end_date'); ?>
+						<?php echo form_input(array('name'=>'treatment_end_date','class'=>'datepicker')); ?>
 					</td>
 					<td>
 						<?php echo $treatment_duration; ?>: 
@@ -643,7 +643,7 @@
 			<tr>
 				 <td>
                     <?php echo $ovary_date_of_diagnosis; ?>: 
-                    <?php echo form_input('ovary_date_of_diagnosis'); ?>
+					<?php echo form_input(array('name'=>'ovary_date_of_diagnosis','class'=>'datepicker')); ?>
                 </td>
 				<td>
                     <?php echo $ovary_age_of_diagnosis; ?>: <br />
@@ -692,11 +692,11 @@
 					</td>
 					<td>
 						<?php echo $ovary_treatment_start_date; ?>: 
-						<?php echo form_input('ovary_treatment_start_date'); ?>
+						<?php echo form_input(array('name'=>'ovary_treatment_start_date','class'=>'datepicker')); ?>
 					</td>
 					<td>
 						<?php echo $ovary_treatment_end_date; ?>: 
-						<?php echo form_input('ovary_treatment_end_date'); ?>
+						<?php echo form_input(array('name'=>'ovary_treatment_end_date','class'=>'datepicker')); ?>
 					</td>
 					<td>
 						<?php echo $ovary_treatment_duration; ?>: 
@@ -746,7 +746,7 @@
 				</td>
 				 <td>
                     <?php echo $other_date_of_diagnosis; ?>: 
-                    <?php echo form_input('other_date_of_diagnosis'); ?>
+					<?php echo form_input(array('name'=>'other_date_of_diagnosis','class'=>'datepicker')); ?>
                 </td>
 				<td>
                     <?php echo $other_age_of_diagnosis; ?>: <br />
@@ -786,11 +786,11 @@
 					</td>
 					<td>
 						<?php echo $other_treatment_start_date; ?>: 
-						<?php echo form_input('other_treatment_start_date'); ?>
+						<?php echo form_input(array('name'=>'other_treatment_start_date','class'=>'datepicker')); ?>
 					</td>
 					<td>
 						<?php echo $other_treatment_end_date; ?>: 
-						<?php echo form_input('other_treatment_end_date'); ?>
+						<?php echo form_input(array('name'=>'other_treatment_end_date','class'=>'datepicker')); ?>
 					</td>
 					<td>
 						<?php echo $other_treatment_duration; ?>: 
@@ -872,11 +872,11 @@
                 </td>
 				 <td>
                     <?php echo $medication_start_date; ?>: 
-                     <?php echo form_input($medication_start_date); ?>
+					<?php echo form_input(array('name'=>'medication_start_date','class'=>'datepicker')); ?>
                 </td>
                 <td>
                     <?php echo $medication_end_date; ?>: 
-                     <?php echo form_input($medication_end_date); ?>
+					<?php echo form_input(array('name'=>'medication_end_date','class'=>'datepicker')); ?>
                 </td>
             </tr>
 			 <tr>
@@ -917,7 +917,7 @@
             <tr>
                 <td>
                     <?php echo $surveillance_first_consultation_date; ?>: 
-                    <?php echo form_input('surveillance_first_consultation_date'); ?>
+					<?php echo form_input(array('name'=>'surveillance_first_consultation_date','class'=>'datepicker')); ?>
                 </td>
                 <td>
                     <?php echo $surveillance_first_consultation_place; ?>: 
@@ -935,17 +935,17 @@
                 </td>
                 <td>
                     <?php echo $surveillance_due_date; ?>: 
-                    <?php echo form_input('surveillance_due_date'); ?>
+					<?php echo form_input(array('name'=>'surveillance_due_date','class'=>'datepicker')); ?>
                 </td>
                 <td>
                     <?php echo $surveillance_reminder_sent_date; ?>: 
-                    <?php echo form_input('surveillance_reminder_sent_date'); ?>
+					<?php echo form_input(array('name'=>'surveillance_reminder_sent_date','class'=>'datepicker')); ?>
                 </td>
             </tr>
             <tr>
                 <td>
                     <?php echo $surveillance_done_date; ?>: 
-                    <?php echo form_input('surveillance_done_date'); ?>
+					<?php echo form_input(array('name'=>'surveillance_done_date','class'=>'datepicker')); ?>
                 </td>
                 <td>
                     <?php echo $surveillance_reminded_by; ?>: 

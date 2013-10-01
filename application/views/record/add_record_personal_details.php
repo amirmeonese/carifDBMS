@@ -51,7 +51,7 @@
             <tr>
                 <td>
                     <?php echo $DOB; ?>:
-                    <?php echo form_input(array('name'=>'DOB','id'=>'datepicker')); ?>
+                    <?php echo form_input(array('name'=>'DOB','class'=>'datepicker')); ?>
                 
                 </td>
                 <td>
@@ -76,7 +76,7 @@
                 </td>
                 <td>
                     <?php echo $DOD; ?>: 
-                    <?php echo form_input(array('name'=>'DOD','id'=>'datepicker1')); ?>
+                    <?php echo form_input(array('name'=>'DOD','class'=>'datepicker')); ?>
                 </td>
                 <td>
                     <?php echo $reason_of_death; ?>: 
@@ -322,8 +322,8 @@
                     <?php echo form_dropdown('alive_status', $alive_status_lists); ?>
                 </td>
                 <td>
-                           <?php echo $status_gathered_date; ?>: 
-                           <?php echo form_input('status_gathered_date'); ?>
+					   <?php echo $status_gathered_date; ?>: 
+					   <?php echo form_input(array('name'=>'status_gathered_date','class'=>'datepicker')); ?>
                 </td>
                 <td>
                     <input type="button" value="Add more survival status" onClick="window.parent.addSurvivalStatusInput('add_record_form_section_personal_5');
@@ -345,7 +345,7 @@
                 </td>
                 <td>
                     <?php echo $date_at_consent; ?>: 
-                    <?php echo form_input('date_at_consent'); ?>
+					<?php echo form_input(array('name'=>'date_at_consent','class'=>'datepicker')); ?>
                 </td>
                 <td>
                     <?php echo $age_at_consent; ?>: 

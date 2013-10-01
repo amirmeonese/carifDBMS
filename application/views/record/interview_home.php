@@ -18,13 +18,13 @@
             <tr>
                 <td>
                     Counselling date
-                    <?php echo form_input('interview_date'); ?>
+					<?php echo form_input(array('name'=>'interview_date','class'=>'datepicker')); ?>
                 </td>
             </tr>
             <tr>
                 <td>
                     Setup next counselling date
-                    <?php echo form_input('interview_next_date'); ?>
+					<?php echo form_input(array('name'=>'interview_next_date','class'=>'datepicker')); ?>
                 </td>
             </tr>
             <tr>

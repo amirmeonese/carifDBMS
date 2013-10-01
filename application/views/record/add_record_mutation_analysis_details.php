@@ -31,7 +31,7 @@
             <tr>
                 <td>
                     <?php echo $date_test_ordered; ?>: <br />
-                    <?php echo form_input('date_test_ordered'); ?>
+					 <?php echo form_input(array('name'=>'date_test_ordered','class'=>'datepicker')); ?>
                 </td>
                 <td>
                     <?php echo $test_ordered_by; ?>:  <br />
@@ -53,7 +53,7 @@
                 </td>
 				<td>
                     <?php echo $investigation_project_date; ?>:  <br />
-                    <?php echo form_input('investigation_project_date'); ?>
+					<?php echo form_input(array('name'=>'investigation_project_date','class'=>'datepicker')); ?>
                 </td>
                <td>
                     <?php echo $investigation_gene_tested; ?>:  <br />
@@ -136,11 +136,11 @@
                 </td>
 				 <td>
                     <?php echo $investigation_report_date; ?>: </br>
-                    <?php echo form_input('investigation_report_date'); ?>
+					<?php echo form_input(array('name'=>'investigation_report_date','class'=>'datepicker')); ?>
                 </td>
 				<td>
                     <?php echo $investigation_date_notified; ?>:  <br />
-                    <?php echo form_input('investigation_date_notified'); ?>
+					<?php echo form_input(array('name'=>'investigation_date_notified','class'=>'datepicker')); ?>
                 </td>
 				<td>
                     <?php echo $mutation_is_counselling_flag; ?>:  
