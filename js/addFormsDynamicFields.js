@@ -157,6 +157,7 @@ function addBreastSiteInput(divName)
 			"<option value='below'>Below</option>" +
 		"</select> " +
 		"</td>" +
+		"<td>Is abnormality detected? :<input type='checkbox' name='mammo_is_abnormality_detected" + breastSiteCounter + "' value=''/></td>" +
 		"<td><input type='button' value='Delete' onClick='window.parent.deleteBreastSiteInput(" + breastSiteCounter + ");'></td>" +
 		"</tr></table>";
 		
@@ -196,6 +197,8 @@ function addUltrasoundDetailsInput(divName)
 		newdiv.setAttributeNode(att2);
 		
 		var formInputHTML = "<table><tr>" +
+		"<td>Ultrasound date:<input type='text' name='mammo_ultrasound_date" + ultrasoundCounter + "' value=''/></td>" + 
+		"<td>Is abnormality detected? :<input type='checkbox' name='mammo_ultrasound_is_abnormality_detected" + ultrasoundCounter + "' value=''/></td>" +
 		"<td>Comment:<textarea name='mammo_ultrasound_details" + ultrasoundCounter + "' cols='7' rows='3' id='mammo_ultrasound_details' ></textarea></td>" + 
 		"<td><input type='button' value='Delete' onClick='window.parent.deleteUltrasoundDetailsInput(" + ultrasoundCounter + ");'></td>" +
 		"</tr></table>";
@@ -236,6 +239,8 @@ function addMRIDetailsInput(divName)
 		newdiv.setAttributeNode(att2);
 		
 		var formInputHTML = "<table><tr>" +
+		"<td>MRI date:<input type='text' name='mammo_MRI_date" + MRICounter + "' value=''/></td>" + 
+		"<td>Is abnormality detected? :<input type='checkbox' name='mammo_MRI_is_abnormality_detected" + MRICounter + "' value=''/></td>" +
 		"<td>Comment:<textarea name='mammo_MRI_details" + MRICounter + "' cols='7' rows='3' id='mammo_MRI_details' ></textarea></td>" + 
 		"<td><input type='button' value='Delete' onClick='window.parent.deleteMRIDetailsInput(" + MRICounter + ");'></td>" +
 		"</tr></table>";
@@ -256,6 +261,51 @@ function deleteMRIDetailsInput(divCounterName)
 	iframeDoc.getElementById('mammo_MRI_second_section_' + divCounterName).parentNode.removeChild(iframeDoc.getElementById('mammo_MRI_second_section_' + divCounterName));
 	window.parent.calcHeight();
 	MRICounter--;
+}
+
+
+// ==== NON CANCER SURGERY ====
+var nonCancerSurgeryCounter = 2;
+var limit = 10;
+
+function addNonCancerSurgeryDetailsInput(divName)
+{
+	if (nonCancerSurgeryCounter == limit)  {
+		alert("You have reached the limit of adding " + nonCancerSurgeryCounter + " inputs");
+	}
+	else 
+	{
+		var newdiv = document.createElement('div');
+		
+		var att2 = document.createAttribute("id");
+		att2.value="mammo_non_cancer_surgery_section_" + nonCancerSurgeryCounter;
+		newdiv.setAttributeNode(att2);
+		
+		var formInputHTML = "<table><tr>" +
+		"<td>Surgery type:<input type='text' name='non_cancer_surgery_type" + nonCancerSurgeryCounter + "' value=''/></td>" + 
+		"<td>Reason for surgery:<input type='text' name='reason_for_non_cancer_surgery" + nonCancerSurgeryCounter + "' value=''/></td>" + 
+		"<td>Date of surgery:<input type='text' name='date_of_non_cancer_surgery" + nonCancerSurgeryCounter + "' value=''/></td>" + 
+		"<td>Age at surgery:<input type='text' name='age_at_non_cancer_surgery" + nonCancerSurgeryCounter + "' value=''/></td>" + 
+		"</tr><tr><td>Comment:<textarea name='non_cancer_surgery_comments" + nonCancerSurgeryCounter + "' cols='7' rows='3' id='non_cancer_surgery_comments' ></textarea></td>" + 
+		"<td><input type='button' value='Delete' onClick='window.parent.deleteNonCancerSurgeryDetailsInput(" + nonCancerSurgeryCounter + ");'></td>" +
+		"</tr></table>";
+		
+		newdiv.innerHTML = formInputHTML;
+		
+		var iframeDoc = document.getElementById('iframe_record_home').contentWindow ? document.getElementById('iframe_record_home').contentWindow.document : document.getElementById('iframe_record_home').contentDocument;
+		
+		iframeDoc.getElementById(divName).appendChild(newdiv);
+		nonCancerSurgeryCounter++;
+	}
+}
+
+function deleteNonCancerSurgeryDetailsInput(divCounterName) 
+{
+	var iframeDoc = document.getElementById('iframe_record_home').contentWindow ? document.getElementById('iframe_record_home').contentWindow.document : document.getElementById('iframe_record_home').contentDocument;
+	
+	iframeDoc.getElementById('mammo_non_cancer_surgery_section_' + divCounterName).parentNode.removeChild(iframeDoc.getElementById('mammo_non_cancer_surgery_section_' + divCounterName));
+	window.parent.calcHeight();
+	nonCancerSurgeryCounter--;
 }
 
 // ==== BENIGN LUMP & CYSTS SURGERY ====
@@ -316,7 +366,7 @@ function addScreeningDetailsInput(divName)
 		newdiv.setAttributeNode(att2);
 		
 		var formInputHTML = "<table><tr>" +
-		"<td>Screening type:" +
+		"<td>Screening type: <br />" +
 		"<select name='screening_name" + otherScreeningCounter + "'>" +
 			"<option value=''></option>" +
 			"<option value='Pap Smear'>Pap Smear</option>" +
@@ -1130,10 +1180,10 @@ function addPregnancyInput(divName)
 		att2.value="pregnancy_section_" + pregnancyDetailsCounter;
 		newdiv.setAttributeNode(att2);
 		
-		var formInputHTML = "<table>" +
+		var formInputHTML = "<div height=\"30px\">&nbsp;</div>" + 
+		"<table>" +
 		"<tr>" +
-		"<td>" + pregnancyDetailsCounter + ") Pregnancy: <input type='checkbox' name='pregnant_flag" + pregnancyDetailsCounter + "' value='no'/></td>" +
-		"<td>Pregnancy type:" +
+		"<td>" + pregnancyDetailsCounter + ")Pregnancy type:" +
 		"<select name='pregnancy_type" + pregnancyDetailsCounter + "'>" +
 			"<option value=''></option>" +
 			"<option value='Child'>Child</option>" +
@@ -1147,9 +1197,10 @@ function addPregnancyInput(divName)
 			"<option value='Male'>Male</option>" +
 			"<option value='Female'>Female</option>" +
 		"</select> " +
+		"<td>Date of birth<input type='text' name='child_birthyear" + pregnancyDetailsCounter + "' value=''/></td>" +
 		"</tr>" +
-		"<tr><td>Date of birth<input type='text' name='child_birthyear" + pregnancyDetailsCounter + "' value=''/></td>" +
-		"<td>Age at consent<input type='text' name='child_age_at_consent" + pregnancyDetailsCounter + "' value=''/></td>" +
+		"<tr><td>Year of birth<input type='text' name='child_birthyear" + pregnancyDetailsCounter + "' value=''/></td>" +
+		"<td>Age child at consent<input type='text' name='child_age_at_consent" + pregnancyDetailsCounter + "' value=''/></td>" +
 		"<td>Birthweight<input type='text' name='child_birthweight" + pregnancyDetailsCounter + "' value=''/></td>" +
 		"<td>Duration of breastfeeding<input type='text' name='child_breastfeeding_duration" + pregnancyDetailsCounter + "' value=''/></td>" +
 		"</tr>" +
@@ -1873,9 +1924,20 @@ function addOvarianScreeningPhycialExamsInfo(divName)
 		newdiv.setAttributeNode(att2);
 		
 		var formInputHTML = "<table><tr>" +
+		"<td>Ovarian screening type:" +
+		"<select name='ovarian_screening_type_name" + mutationAnalysisCounter + "'>" +
+			"<option value=''></option>" +
+			"<option value='Physical pelvic examinations'>Physical pelvic examinations</option>" +
+			"<option value='Abdominal ultrasound'>Abdominal ultrasound</option>" +
+			"<option value='Trans-vaginal ultrasound'>Trans-vaginal ultrasound</option>" +
+			"<option value='CA125 blood test'>CA125 blood test</option>" +
+			"<option value='Biopsy'>Biopsy</option>" +
+		"</select> " +
+		"</td>" +
 		"<td>Date:<input type='text' name='physical_exam_date" + ovarianPhysicalExamsCounter + "' value=''/></td>" + 
 		"<td>Is abnormality detected?: <input type='checkbox' name='physical_exam_is_abnormality_detected" + ovarianPhysicalExamsCounter + "' value='1'/></td>" +
-		"<td>Additional Info:<textarea name='physical_exam_additional_info" + ovarianPhysicalExamsCounter + "' cols='7' rows='3' id='physical_exam_additional_info' ></textarea></td>" + 
+		"</tr><tr>" +
+		"<td>Additional Info:<br /><textarea name='physical_exam_additional_info" + ovarianPhysicalExamsCounter + "' cols='7' rows='3' id='physical_exam_additional_info' ></textarea></td>" + 
 		"<td><input type='button' value='Delete' onClick='window.parent.deleteOvarianScreeningPhycialExamsInfo(" + ovarianPhysicalExamsCounter + ");'></td>" +
 		"</tr>" + 
 		"</table>" +

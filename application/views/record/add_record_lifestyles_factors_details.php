@@ -23,6 +23,12 @@
         echo form_fieldset('Lifestyle Details');
         ?>
         <table>
+			<tr>
+				<td>
+                    <?php echo $questionnaire_date; ?>: 
+                    <?php echo form_input('questionnaire_date'); ?>
+                </td>
+			</tr>
             <tr>
                 <td id="label1">Patient Self Image</td>
                 <td>&nbsp;</td>

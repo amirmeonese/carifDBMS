@@ -688,7 +688,8 @@ class Record_model extends CI_Model {
         $data['screening_center'] = 'Screening centre';
         $data['total_no_of_mammogram'] = 'Total no. of mammogram';
         $data['screening_interval'] = 'Screening interval';
-        $data['abnormality_mammo_flag'] = 'Abnormalities detected';
+        $data['abnormalities_mammo_flag'] = 'Abnormalities detected';
+		$data['mammo_comments'] = 'Comments';
         $data['mammo_left_right_breast_side'] = 'Left/right breast side';
         $data['mammo_left_right_breast_side_lists'] = array(
 			 '' => '',
@@ -701,6 +702,7 @@ class Record_model extends CI_Model {
             'upper' => 'Upper',
             'below' => 'Below'
         );
+		$data['mammo_is_abnormality_detected'] = 'Is abnormality detected?';
         $data['mammo_breast_other_descriptions'] = 'Other details';
 		$data['percentage_of_mammo_density'] = 'Percentage (%) of mammo density';
 		$data['BIRADS_clinical_classification'] = 'BIRADS clinical classification';
@@ -719,18 +721,21 @@ class Record_model extends CI_Model {
         $data['action_suggested_on_mammo_report'] = 'Action suggested on mammogram report';
         $data['had_ultrasound_flag'] = 'Had ultrasound?';
         $data['total_no_of_ultrasound'] = 'Total no. of ultrasound';
-        $data['abnormality_ultrasound_flag'] = 'Is abnormality detected?';
+        $data['abnormalities_ultrasound_flag'] = 'Is abnormalities detected?';
+		$data['mammo_ultrasound_date'] = 'Ultrasound date';
+		$data['mammo_ultrasound_is_abnormality_detected'] = 'Is abnormality detected?';
         $data['mammo_ultrasound_details'] = 'Comment';
         $data['had_MRI_flag'] = 'Had MRI?';
         $data['total_no_of_MRI'] = 'Total no. of MRI';
-        $data['abnormality_MRI_flag'] = 'Is abnormality detected?';
+        $data['abnormalities_MRI_flag'] = 'Is abnormalities detected?';
+		$data['mammo_MRI_date'] = 'MRI date';
+		$data['mammo_MRI_is_abnormality_detected'] = 'Is abnormality detected?';
         $data['mammo_MRI_details'] = 'Comment';
 		$data['non_cancer_surgery_type'] = 'Surgery type';
 		$data['reason_for_non_cancer_surgery'] = 'Reason for surgery';
 		$data['date_of_non_cancer_surgery'] = 'Date of surgery';
 		$data['age_at_non_cancer_surgery'] = 'Age at surgery';
-        $data['had_surgery_for_benign_lump_or_cyst_flag'] = 'Had done surgery for benign lumpr or cyst before?';
-        $data['mammo_benign_lump_cyst_details'] = 'Comment';
+       $data['non_cancer_surgery_comments'] = 'Comments';
         $data['other_screening_flag'] = 'Had other screenings done before?';
         $data['screening_name'] = 'Screening type';
 		$data['screening_name_lists'] = array(
@@ -805,7 +810,7 @@ class Record_model extends CI_Model {
         $data['age_of_diagnosis'] = 'Age at diagnosis';
         $data['date_of_diagnosis'] = 'Date of diagnosis';
 		$data['source_of_date_of_diagnosis'] = 'Source of date of diagnosis';
-        $data['cancer_diagnosis_center'] = 'Diagnosis center';
+        $data['cancer_diagnosis_center'] = 'Diagnosis centre';
         $data['cancer_doctor_name'] = 'Doctor\'s name';
         $data['detected_by'] = 'Detected by';
         $data['patient_cancer_treatment_name'] = 'Treatment name';
@@ -889,7 +894,7 @@ class Record_model extends CI_Model {
         $data['year_of_diagnosis'] = 'Date of diagnosis';
         $data['is_on_medication_flag'] = 'Is on medication?';
         $data['medication_type_name'] = 'Type of medication';
-        $data['diagnosis_center'] = 'Diagnosis center';
+        $data['diagnosis_center'] = 'Diagnosis centre';
         $data['diagnosis_doctor_name'] = 'Diagnosis doctor\'s name';
 		$data['medication_start_date'] = 'Medication start date';
 		$data['medication_end_date'] = 'Medication end date';
@@ -898,6 +903,7 @@ class Record_model extends CI_Model {
 
 
         //Lifestyle Factors
+		$data['questionnaire_date'] = 'Questionnaire date';
         $data['self_image_at_7years'] = 'Self image at 7 years old';
         $data['self_image_at_18years'] = 'Self image at 18 years old';
         $data['self_image_now'] = 'Self image now';
@@ -1160,7 +1166,7 @@ class Record_model extends CI_Model {
 		$data['investigation_exon'] = 'Exon';
 		
         //SURVEILLANCE
-        $data['surveillance_recruitment_center'] = 'Recruitment center';
+        $data['surveillance_recruitment_center'] = 'Recruitment centre';
         $data['surveillance_recruitment_center_lists'] = array(
 			 '' => '',
             'UMMC' => 'UMMC',
@@ -1213,6 +1219,16 @@ class Record_model extends CI_Model {
         $data['gail_model_first_mammo_10years'] = '10 years';
 		
 		//OVARIAN SCREENINGS INFOS
+		$data['ovarian_screening_type_name'] = 'Ovarian screening type';
+		
+		$data['ovarian_screening_type_name_lists'] = array(
+			 '' => '',
+            'Physical pelvic examinations' => 'Physical pelvic examinations',
+            'Abdominal ultrasound' => 'Abdominal ultrasound',
+            'Trans-vaginal ultrasound' => 'Trans-vaginal ultrasound',
+            'CA125 blood test' => 'CA125 blood test',
+            'Biopsy' => 'Biopsy'
+        );
 		$data['had_physical_pelvic_exams'] = 'Had new physical examinations?';
 		$data['physical_exam_date'] = 'Date';
         $data['physical_exam_is_abnormality_detected'] = 'Is abnormality detected?';

@@ -1,12 +1,12 @@
 <div class="container" id="add_record_div">
     <div id="add_record_header" class="row">
-        <p>Interview Manager</p>
+        <p>Counselling</p>
     </div>
     <?php echo form_open('record/interview_home_insersion'); ?>
     <div class="container" id="interview_form_section">
         <div height="30px">&nbsp;</div>
         <?php
-        echo form_fieldset('Interview Note 1');
+        echo form_fieldset('Counselling note 1');
         ?>
         <table id="add_interview_form_section_1">
             <tr>
@@ -17,13 +17,13 @@
             </tr>
             <tr>
                 <td>
-                    Interview date
+                    Counselling date
                     <?php echo form_input('interview_date'); ?>
                 </td>
             </tr>
             <tr>
                 <td>
-                    Setup next interview date
+                    Setup next counselling date
                     <?php echo form_input('interview_next_date'); ?>
                 </td>
             </tr>
@@ -41,7 +41,7 @@
             </tr>
             <tr>
                 <td>
-                    Interview note
+                    Counselling note
                     <?php
                     $data = array(
                         'name' => 'interview_note',
@@ -55,7 +55,7 @@
             </tr>
             <tr>
                 <td>
-                    <input type="button" value="Add interview note" onClick="window.parent.addInterviewNoteInput('interview_form_section');
+                    <input type="button" value="Add note" onClick="window.parent.addInterviewNoteInput('interview_form_section');
                             window.parent.calcHeight();">
                 </td>
             </tr>
