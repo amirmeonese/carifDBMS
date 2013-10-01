@@ -1,17 +1,3 @@
-<head>
-  <meta charset="utf-8" />
-  <link rel="stylesheet" href="<?php echo base_url(); ?>css/ui-lightness/jquery-ui.css" />
-  <script src="<?php echo base_url(); ?>js/jquery-1.9.1.js"></script>
-  <script src="<?php echo base_url(); ?>js/jquery-ui.js"></script>
-  <link rel="stylesheet" href="<?php echo base_url(); ?>resources/demos/style.css" />
-  <script>
-  $(function() {
-    $( "#datepicker" ).datepicker();
-    $( "#datepicker1" ).datepicker();
-  });
-  
-  </script>
-</head>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/datetimepicker_css.js"></script>
 <div class="container" id="add_record_div">
     <div id="add_record_header" class="row">
