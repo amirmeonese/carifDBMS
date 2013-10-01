@@ -9,6 +9,7 @@
     $( "#datepicker" ).datepicker();
     $( "#datepicker1" ).datepicker();
   });
+  
   </script>
 </head>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/datetimepicker_css.js"></script>
