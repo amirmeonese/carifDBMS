@@ -1769,6 +1769,7 @@ class Record_model extends CI_Model {
                 ->limit(1)
                 ->get($this->tables['cancer']);
 
+        $result = null;;
         if ($query->num_rows() > 0) {
             $result = $query->row_array();
             //echo $result['relatives_id'];
@@ -1779,6 +1780,46 @@ class Record_model extends CI_Model {
         return $result['cancer_id'];
     }
 
+    public function get_relatives_id($record_data) {
+        $data = array(
+        );
+        $query = $this->db->select('relatives_id')
+                ->where('relatives_type', $record_data)
+                ->limit(1)
+                ->get($this->tables['relatives']);
+        //echo $query;
+        $result = null;
+        if ($query->num_rows() > 0) {
+            $result = $query->row_array();
+            //echo $result['relatives_id'];
+             
+            //print_r($result);
+        }
+
+        //print_r($result['relatives_id']);
+       return $result['relatives_id'];
+        
+    }
+    
+       public function get_family_no($record_data) {
+        $data = array(
+        );
+        $query = $this->db->select('family_no')
+                ->where('family_name', $record_data)
+                ->limit(1)
+                ->get($this->tables['family']);
+
+        $result = null;
+        if ($query->num_rows() > 0) {
+            $result = $query->row_array();
+            //echo $result['relatives_id'];
+        }
+
+        //print_r($result['relatives_id']);
+
+        return $result['family_no'];
+    }
+    
     public function get_cancer_site_id($record_data) {
         $data = array(
         );
@@ -1786,7 +1827,7 @@ class Record_model extends CI_Model {
                 ->where('cancer_site_name', $record_data)
                 ->limit(1)
                 ->get($this->tables['cancer_site']);
-
+        $result = null;
         if ($query->num_rows() > 0) {
             $result = $query->row_array();
             //echo $result['relatives_id'];
@@ -1804,7 +1845,7 @@ class Record_model extends CI_Model {
                 ->where('treatment_name', $record_data)
                 ->limit(1)
                 ->get($this->tables['treatment']);
-
+        $result = null;
         if ($query->num_rows() > 0) {
             $result = $query->row_array();
             //echo $result['relatives_id'];
@@ -1822,7 +1863,7 @@ class Record_model extends CI_Model {
                 ->where('diagnosis_name', $record_data)
                 ->limit(1)
                 ->get($this->tables['diagnosis']);
-
+        $result = null;
         if ($query->num_rows() > 0) {
             $result = $query->row_array();
             //echo $result['relatives_id'];
