@@ -296,7 +296,7 @@ class Record extends CI_Controller {
         //if ($this->form_validation->run() == true)  {
 
         $studies_name = $this->input->post('studies_name');
-        $studies_id = $this->excell_sheets_model->get_patient_studies_id($studies_name);
+        $studies_id = $this->excell_sheets_model->get_studies_id($studies_name);
         $relations_to_study = $this->input->post('relations_to_study');
 
         if ($relations_to_study == 'Yes' || $relations_to_study == 'yes')
@@ -731,7 +731,7 @@ class Record extends CI_Controller {
             'path_report_received_date' => $this->input->post('pathology_path_report_received_date'),
             'path_block_requested_date' => $this->input->post('pathology_path_block_requested_date'),
             'path_block_received_date' => $this->input->post('pathology_path_block_received_date'),
-            'tissue_path_comment' => $this->input->post('pathology_tissue_path_comments'),
+            'tissue_path_comment' => $this->input->post('pathology_tissue_path_comments')
         );
 
         // print_r($data_patient_pathology);
@@ -748,7 +748,7 @@ class Record extends CI_Controller {
 
         //need to calculate $patient_studies_id by using study name-->studies_id and patient_ic_no
         $studies_name = $this->input->post('studies_name');
-        $studies_id = $this->excell_sheets_model->get_patient_studies_id($studies_name);
+        $studies_id = $this->excell_sheets_model->get_studies_id($studies_name);
         $data_keys = array(
             'patient_ic_no' => $this->input->post('IC_no'),
             'studies_id' => $studies_id
@@ -936,7 +936,7 @@ class Record extends CI_Controller {
 
 
         $studies_name = $this->input->post('studies_name');
-        $studies_id = $this->excell_sheets_model->get_patient_studies_id($studies_name);
+        $studies_id = $this->excell_sheets_model->get_studies_id($studies_name);
         $data_keys = array(
             'patient_ic_no' => $this->input->post('IC_no'),
             'studies_id' => $studies_id
@@ -987,7 +987,7 @@ class Record extends CI_Controller {
     function surveillance_insertion() {
 
         $studies_name = $this->input->post('studies_name');
-        $studies_id = $this->excell_sheets_model->get_patient_studies_id($studies_name);
+        $studies_id = $this->excell_sheets_model->get_studies_id($studies_name);
         $data_keys = array(
             'patient_ic_no' => $this->input->post('IC_no'),
             'studies_id' => $studies_id
