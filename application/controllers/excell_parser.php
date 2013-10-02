@@ -192,7 +192,7 @@ class Excell_parser extends CI_Controller {
                     }
 
                     echo '<BR/>';
-                    $studies_id = $this->excell_sheets_model->get_patient_studies_id($temp2[1]);
+                    $studies_id = $this->excell_sheets_model->get_studies_id($temp2[1]);
                     //echo $studies_id.'<br/>';
                     if ($temp2[9] == 'yes')
                         $relation_to_study_flag = TRUE;
