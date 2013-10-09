@@ -409,28 +409,32 @@ class Auth extends CI_Controller {
 		}
 
 		//validate form input
-		$this->form_validation->set_rules('first_name', $this->lang->line('create_user_validation_fname_label'), 'required|xss_clean');
-		$this->form_validation->set_rules('last_name', $this->lang->line('create_user_validation_lname_label'), 'required|xss_clean');
-		$this->form_validation->set_rules('email', $this->lang->line('create_user_validation_email_label'), 'required|valid_email');
-		$this->form_validation->set_rules('phone', $this->lang->line('create_user_validation_phone_label'), 'required|xss_clean');
-		$this->form_validation->set_rules('company', $this->lang->line('create_user_validation_company_label'), 'required|xss_clean');
-		$this->form_validation->set_rules('password', $this->lang->line('create_user_validation_password_label'), 'required|min_length[' . $this->config->item('min_password_length', 'ion_auth') . ']|max_length[' . $this->config->item('max_password_length', 'ion_auth') . ']|matches[password_confirm]');
-		$this->form_validation->set_rules('password_confirm', $this->lang->line('create_user_validation_password_confirm_label'), 'required');
+		/*$this->form_validation->set_rules('admin_firstname', $this->lang->line('create_user_validation_fname_label'), 'required|xss_clean');
+		$this->form_validation->set_rules('admin_lastname', $this->lang->line('create_user_validation_lname_label'), 'required|xss_clean');
+		$this->form_validation->set_rules('admin_email', $this->lang->line('create_user_validation_email_label'), 'required|valid_email');
+		$this->form_validation->set_rules('admin_log_id', $this->lang->line('create_user_admin_log_id'), 'required|xss_clean');
+		$this->form_validation->set_rules('create_user_password', $this->lang->line('create_user_validation_password_label'), 'required|min_length[' . $this->config->item('min_password_length', 'ion_auth') . ']|max_length[' . $this->config->item('max_password_length', 'ion_auth') . ']|matches[password_confirm]');
+                */
+               
+		
 
-		if ($this->form_validation->run() == true)
+		//if ($this->form_validation->run() == true)
 		{
-			$username = strtolower($this->input->post('first_name')) . ' ' . strtolower($this->input->post('last_name'));
-			$email    = $this->input->post('email');
-			$password = $this->input->post('password');
+			$username = $this->input->post('admin_log_id');
+			$email    = $this->input->post('admin_email');
+			$password = $this->admin_model->get_random_password();
 
 			$additional_data = array(
-				'first_name' => $this->input->post('first_name'),
-				'last_name'  => $this->input->post('last_name'),
-				'company'    => $this->input->post('company'),
-				'phone'      => $this->input->post('phone'),
+				'first_name' => $this->input->post('admin_firstname'),
+				'last_name' => $this->input->post('admin_lastname'),
+				'add_privilege' => $this->input->post('add_privilege'),
+                                'view_privilege' => $this->input->post('view_privilege'),
+                                'edit_privilege' => $this->input->post('edit_privilege'),
+                                'delete_privilege' => $this->input->post('delete_privilege')
 			);
 		}
-		if ($this->form_validation->run() == true && $this->ion_auth->register($username, $password, $email, $additional_data))
+                //$this->form_validation->run() == true && 
+		if ($this->ion_auth->register($username, $password, $email, $additional_data))
 		{
 			//check to see if we are creating the user
 			//redirect them back to the admin page
