@@ -63,6 +63,7 @@ class Ion_auth {
         $this->load->library('email');
         $this->lang->load('ion_auth');
         $this->load->helper('cookie');
+        $this->load->model('admin_model');
 
         // Load the session, CI2 as a library, CI3 uses it as a driver
         if (substr(CI_VERSION, 0, 1) == '2') {
@@ -263,7 +264,7 @@ class Ion_auth {
         if (!$email_activation) {
             $id = $this->ion_auth_model->register($username, $password, $email, $additional_data, $group_ids);
             if ($id !== FALSE) {
-                $this->set_message('account_creation_successful');
+                $this->set_message('account_creation_successful...');
                 $this->ion_auth_model->trigger_events(array('post_account_creation', 'post_account_creation_successful'));
                 return $id;
             } else {
@@ -279,13 +280,13 @@ class Ion_auth {
                 return FALSE;
             }
 
-            $deactivate = $this->ion_auth_model->deactivate($id);
+            /*$deactivate = $this->ion_auth_model->deactivate($id);
 
             if (!$deactivate) {
                 $this->set_error('deactivate_unsuccessful');
                 $this->ion_auth_model->trigger_events(array('post_account_creation', 'post_account_creation_unsuccessful'));
                 return FALSE;
-            }
+            }*/
 
             $activation_code = $this->ion_auth_model->activation_code;
             $identity = $this->config->item('identity', 'ion_auth');
@@ -296,26 +297,51 @@ class Ion_auth {
                 'id' => $user->id,
                 'email' => $email,
                 'activation' => $activation_code,
+                'password' => $password
             );
             if (!$this->config->item('use_ci_email', 'ion_auth')) {
                 $this->ion_auth_model->trigger_events(array('post_account_creation', 'post_account_creation_successful', 'activation_email_successful'));
                 $this->set_message('activation_email_successful');
                 return $data;
             } else {
-                $message = $this->load->view($this->config->item('email_templates', 'ion_auth') . $this->config->item('email_activate', 'ion_auth'), $data, true);
+                //$message = $this->load->view($this->config->item('email_templates', 'ion_auth') . $this->config->item('email_activate', 'ion_auth'), $data, true);
+                $subject = 'Information Detail';
+                $MESSAGE_BODY = "Your Information detail:" . "<br>";
+                $MESSAGE_BODY .= "" . "<br>";
+                $MESSAGE_BODY .= "First Name: " . $additional_data['first_name'] . "<br>";
+                $MESSAGE_BODY .= "Last Name: " . $additional_data['last_name'] . "<br>";
+                $MESSAGE_BODY .= "Username: " . $username . "<br>";
+                $MESSAGE_BODY .= "Password: " . $password . "<br>";
+                $MESSAGE_BODY .= "Date: " . date('d-m-Y') . "<br>";
+                $MESSAGE_BODY .= "<br>";
+                $MESSAGE_BODY .= "This is a system generated email. Please do not reply to it." . "<br>";
 
                 $this->email->clear();
-                $this->email->from($this->config->item('admin_email', 'ion_auth'), $this->config->item('site_title', 'ion_auth'));
-                $this->email->to($email);
-                $this->email->subject($this->config->item('site_title', 'ion_auth') . ' - ' . $this->lang->line('email_activation_subject'));
-                $this->email->message($message);
 
+                $config['protocol'] = 'smtp';
+                $config['smtp_host'] = 'ssl://smtp.gmail.com';
+                $config['smtp_port'] = '465';
+                $config['smtp_timeout'] = '7';
+                $config['smtp_user'] = 'cariftest@gmail.com';
+                $config['smtp_pass'] = 'carif123456';
+                $config['charset'] = 'utf-8';
+                $config['newline'] = "\r\n";
+                $config['mailtype'] = 'html'; // or text
+                $config['validation'] = TRUE; // bool whether to validate email or not     
+                $this->email->initialize($config);
+
+                $this->email->from('cariftest@gmail.com', 'Carif Admin Registration sent via CarifDBMS');
+                $this->email->to($email);
+                $this->email->subject($subject);
+                $this->email->message($MESSAGE_BODY);
                 if ($this->email->send() == TRUE) {
+                    //echo "success";
                     $this->ion_auth_model->trigger_events(array('post_account_creation', 'post_account_creation_successful', 'activation_email_successful'));
                     $this->set_message('activation_email_successful');
                     return $id;
                 }
             }
+
 
             $this->ion_auth_model->trigger_events(array('post_account_creation', 'post_account_creation_unsuccessful', 'activation_email_unsuccessful'));
             $this->set_error('activation_email_unsuccessful');
