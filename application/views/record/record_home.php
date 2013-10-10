@@ -56,7 +56,7 @@
                     <a class="add_record_tab_btn" href="<?php echo site_url('record/view_list/diagnosis'); ?>" target="iframe_record_home" >Diagnosis & Treatment</a>
                     <a class="add_record_tab_btn" href="<?php echo site_url('record/view_list/studies_setOne'); ?>" target="iframe_record_home" >Screenings & Surveillance</a>
                      <a class="add_record_tab_btn" href="<?php echo site_url('record/view_list/mutation_analysis'); ?>" target="iframe_record_home" >Mutation Analysis</a>
-                    <a class="add_record_tab_btn" href="<?php echo site_url('record/view_list/pathology'); ?>" target="iframe_record_home" >Pathology</a>
+<!--                    <a class="add_record_tab_btn" href="<?php echo site_url('record/view_list/pathology'); ?>" target="iframe_record_home" >Pathology</a>-->
 					<a class="add_record_tab_btn" href="<?php echo site_url('record/view_list/risk_assessment'); ?>" target="iframe_record_home" >Risk Assessment</a>
 					<a class="add_record_tab_btn" href="<?php echo site_url('record/view_list/lifestyleFactors'); ?>" target="iframe_record_home" >Lifestyle Factors</a>
                     <a class="add_record_tab_btn" href="<?php echo site_url('record/view_list/counselling'); ?>" target="iframe_record_home" >Counselling</a>
