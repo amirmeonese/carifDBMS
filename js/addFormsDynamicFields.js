@@ -503,6 +503,112 @@ function addBreastCancerDiagnosis(divName)
 		"<td>Recurrent: <br /><input type='text' name='cancer_is_recurrent" + breastCancerDiagnosisCounter + "' value=''/></td>" +
 		"</tr>" +
 		"</table>" +
+                " <div height=\"30px\">&nbsp;</div><table><tr><td id=\"label1\">Breast Cancer Tumor Pathology " + breastCancerDiagnosisCounter + "</td><td><input type='button' value='Add Pathology' onClick='window.parent.addBreastCancerPathology(" + breastCancerDiagnosisCounter + ");'></td></tr><tr>" +
+		"<td>Site:<br />" +
+		"<select name='breast_pathology_tissue_site" + breastCancerDiagnosisCounter + "'>" +
+			"<option value=''></option>" +
+			"<option value='Left'>Left</option>" +
+			"<option value='Right'>Right</option>" +
+		"</select> " +
+		"</td>" +
+		"<td>Type of report:<br />" +
+		"<select name='breast_pathology_path_report_type" + breastCancerDiagnosisCounter + "'>" +
+			"<option value=''></option>" +
+			"<option value='Pathology'>Pathology</option>" +
+			"<option value='FNAC'>FNAC</option>" +
+			"<option value='Core biopsy'>Core biopsy</option>" +
+			"<option value='Stereostatic biopsy'>Stereostatic biopsy</option>" +
+		"</select> " +
+		"</td>" +
+		"<td>Date of report:<br /><input type='text' name='breast_pathology_path_report_date" + breastCancerDiagnosisCounter + "' value=''/></td>" + 
+		"</tr><tr>" +
+		"<td>Pathology lab:<br /><input type='text' name='breast_pathology_lab" + breastCancerDiagnosisCounter + "' value=''/></td>" + 
+		"<td>Name of doctor:<br /><input type='text' name='breast_pathology_doctor" + breastCancerDiagnosisCounter + "' value=''/></td>" + 
+		"</tr><tr>" +
+		"<td>Morphology:<br />" +
+		"<select name='breast_pathology_morphology" + breastCancerDiagnosisCounter + "'>" +
+			"<option value=''></option>" +
+			"<option value='DCIS'>DCIS</option>" +
+			"<option value='LCIS'>LCIS</option>" +
+			"<option value='IDC'>IDC</option>" +
+			"<option value='ILC'>ILC</option>" +
+			"<option value='IPC'>IPC</option>" +
+			"<option value='Intraductal papillary carcinoma'>Intraductal papillary carcinoma</option>" +
+			"<option value='Tubular carcinoma'>Tubular carcinoma</option>" +
+			"<option value='Cribiform carcinoma'>Cribiform carcinoma</option>" +
+			"<option value='Medullary carcinoma'>Medullary carcinoma</option>" +
+		"</select> " +
+		"</td>" +
+		"<td> T Staging:<br />" +
+		"<select name='breast_pathology_tissue_tumour_stage" + breastCancerDiagnosisCounter + "'>" +
+			"<option value=''></option>" +
+			"<option value='T0'>T0</option>" +
+			"<option value='T1'>T1</option>" +
+			"<option value='T2'>T2</option>" +
+			"<option value='T3'>T3</option>" +
+			"<option value='T4'>T4</option>" +
+			"<option value='Tx'>Tx</option>" +
+		"</select> " +
+		"</td>" +
+		"<td> N staging:<br />" +
+		"<select name='breast_pathology_node_stage" + breastCancerDiagnosisCounter + "'>" +
+			"<option value=''></option>" +
+			"<option value='N0'>N0</option>" +
+			"<option value='N1'>N1</option>" +
+			"<option value='N2'>N2</option>" +
+			"<option value='N3'>N3</option>" +
+			"<option value='Nx'>Nx</option>" +
+		"</select> " +
+		"</td>" +
+		"</tr><tr>" +
+		"<td> M staging:<br />" +
+		"<select name='breast_pathology_metastasis_stage" + breastCancerDiagnosisCounter + "'>" +
+			"<option value=''></option>" +
+			"<option value='M0'>M0</option>" +
+			"<option value='M1'>M1</option>" +
+			"<option value='Mx'>Mx</option>" +
+		"</select> " +
+		"</td>" +
+		"<td> Tumour stage:<br />" +
+		"<select name='breast_pathology_tumour_stage" + breastCancerDiagnosisCounter + "'>" +
+			"<option value=''></option>" +
+			"<option value='0'>0</option>" +
+			"<option value='1'>1</option>" +
+			"<option value='2a'>2a</option>" +
+			"<option value='2b'>2b</option>" +
+			"<option value='3a'>3a</option>" +
+			"<option value='4'>4</option>" +
+			"<option value='Not stated'>Not stated</option>" +
+		"</select> " +
+		"</td>" +
+		"<td> Tumour grade:<br />" +
+		"<select name='breast_pathology_tumour_grade" + breastCancerDiagnosisCounter + "'>" +
+			"<option value=''></option>" +
+			"<option value='1: Well differentiated'>1: Well differentiated</option>" +
+			"<option value='2: Moderately differentiated'>2: Moderately differentiated</option>" +
+			"<option value='3: Poorly/un-differentiated'>3: Poorly/un-differentiated</option>" +
+			"<option value='High'>High</option>" +
+			"<option value='Low'>Low</option>" +
+		"</select> " +
+		"</td>" +
+		"</tr><tr>" +
+		"<td> No. of lymph nodes:<br /><input type='text' name='breast_pathology_total_lymph_nodes" + breastCancerDiagnosisCounter + "' value=''/></td>" + 
+		"<td>Size of tumor:<br /><input type='text' name='breast_pathology_tumour_size" + breastCancerDiagnosisCounter + "' value=''/></td>" + 
+		"</tr>" + 
+		"</table>" +
+		"<div id=\"breast_cancer_staining_status_div_" + breastCancerDiagnosisCounter + "\">" +
+		"<table id=\"breast_cancer_staining_status_section_" + breastCancerDiagnosisCounter + "\"><tr>" +
+		"<td> ER status:<br /><input type='text' name='breast_pathology_ER_status" + breastCancerDiagnosisCounter + "' value=''/></td>" + 
+		"<td>PR status:<br /><input type='text' name='breast_pathology_PR_status" + breastCancerDiagnosisCounter + "' value=''/></td>" + 
+		"<td>HER2 status:<br /><input type='text' name='breast_pathology_HER2_status" + breastCancerDiagnosisCounter + "' value=''/></td>" + 
+		"<td><input type='button' value='Add staining status' onClick='window.parent.addBreastCancerStainingStatusInput(\"breast_cancer_staining_status_div_" + breastCancerPathologyCounter + "\"); window.parent.calcHeight();'></td>" +
+		"</tr>" + 
+		"</table></div>" +
+		"<table><tr>" +
+		"<td>Comment:<textarea name='ovary_pathology_tissue_path_comments" + breastCancerDiagnosisCounter + "' cols='7' rows='3' id='ovary_pathology_tissue_path_comments' ></textarea></td>" + 
+		"<td>&nbsp;</td><td>&nbsp;</td>" +
+		"</tr></table>" +
+		"</div>"+
 		"<div id=\"add_breast_cancer_treatment_div_" + breastCancerDiagnosisCounter + "\" >" +
 		"<table id=\"breast_cancer_treatment_" + breastCancerDiagnosisCounter + "\">" + 
 		"<td>Treatment name:" +
@@ -605,6 +711,112 @@ function addOvaryCancerDiagnosis(divName)
 		"<td>Recurrent:<br /><input type='text' name='ovary_cancer_is_recurrent" + breastCancerDiagnosisCounter + "' value=''/></td>" +
 		"</tr>" +
 		"</table>" +
+                " <div height=\"30px\">&nbsp;</div><table><tr><td id=\"label1\">Breast Cancer Tumor Pathology " + breastCancerDiagnosisCounter + "</td><td><input type='button' value='Add Pathology' onClick='window.parent.addBreastCancerPathology(" + breastCancerDiagnosisCounter + ");'></td></tr><tr>" +
+		"<td>Site:<br />" +
+		"<select name='breast_pathology_tissue_site" + breastCancerDiagnosisCounter + "'>" +
+			"<option value=''></option>" +
+			"<option value='Left'>Left</option>" +
+			"<option value='Right'>Right</option>" +
+		"</select> " +
+		"</td>" +
+		"<td>Type of report:<br />" +
+		"<select name='breast_pathology_path_report_type" + breastCancerDiagnosisCounter + "'>" +
+			"<option value=''></option>" +
+			"<option value='Pathology'>Pathology</option>" +
+			"<option value='FNAC'>FNAC</option>" +
+			"<option value='Core biopsy'>Core biopsy</option>" +
+			"<option value='Stereostatic biopsy'>Stereostatic biopsy</option>" +
+		"</select> " +
+		"</td>" +
+		"<td>Date of report:<br /><input type='text' name='breast_pathology_path_report_date" + breastCancerDiagnosisCounter + "' value=''/></td>" + 
+		"</tr><tr>" +
+		"<td>Pathology lab:<br /><input type='text' name='breast_pathology_lab" + breastCancerDiagnosisCounter + "' value=''/></td>" + 
+		"<td>Name of doctor:<br /><input type='text' name='breast_pathology_doctor" + breastCancerDiagnosisCounter + "' value=''/></td>" + 
+		"</tr><tr>" +
+		"<td>Morphology:<br />" +
+		"<select name='breast_pathology_morphology" + breastCancerDiagnosisCounter + "'>" +
+			"<option value=''></option>" +
+			"<option value='DCIS'>DCIS</option>" +
+			"<option value='LCIS'>LCIS</option>" +
+			"<option value='IDC'>IDC</option>" +
+			"<option value='ILC'>ILC</option>" +
+			"<option value='IPC'>IPC</option>" +
+			"<option value='Intraductal papillary carcinoma'>Intraductal papillary carcinoma</option>" +
+			"<option value='Tubular carcinoma'>Tubular carcinoma</option>" +
+			"<option value='Cribiform carcinoma'>Cribiform carcinoma</option>" +
+			"<option value='Medullary carcinoma'>Medullary carcinoma</option>" +
+		"</select> " +
+		"</td>" +
+		"<td> T Staging:<br />" +
+		"<select name='breast_pathology_tissue_tumour_stage" + breastCancerDiagnosisCounter + "'>" +
+			"<option value=''></option>" +
+			"<option value='T0'>T0</option>" +
+			"<option value='T1'>T1</option>" +
+			"<option value='T2'>T2</option>" +
+			"<option value='T3'>T3</option>" +
+			"<option value='T4'>T4</option>" +
+			"<option value='Tx'>Tx</option>" +
+		"</select> " +
+		"</td>" +
+		"<td> N staging:<br />" +
+		"<select name='breast_pathology_node_stage" + breastCancerDiagnosisCounter + "'>" +
+			"<option value=''></option>" +
+			"<option value='N0'>N0</option>" +
+			"<option value='N1'>N1</option>" +
+			"<option value='N2'>N2</option>" +
+			"<option value='N3'>N3</option>" +
+			"<option value='Nx'>Nx</option>" +
+		"</select> " +
+		"</td>" +
+		"</tr><tr>" +
+		"<td> M staging:<br />" +
+		"<select name='breast_pathology_metastasis_stage" + breastCancerDiagnosisCounter + "'>" +
+			"<option value=''></option>" +
+			"<option value='M0'>M0</option>" +
+			"<option value='M1'>M1</option>" +
+			"<option value='Mx'>Mx</option>" +
+		"</select> " +
+		"</td>" +
+		"<td> Tumour stage:<br />" +
+		"<select name='breast_pathology_tumour_stage" + breastCancerDiagnosisCounter + "'>" +
+			"<option value=''></option>" +
+			"<option value='0'>0</option>" +
+			"<option value='1'>1</option>" +
+			"<option value='2a'>2a</option>" +
+			"<option value='2b'>2b</option>" +
+			"<option value='3a'>3a</option>" +
+			"<option value='4'>4</option>" +
+			"<option value='Not stated'>Not stated</option>" +
+		"</select> " +
+		"</td>" +
+		"<td> Tumour grade:<br />" +
+		"<select name='breast_pathology_tumour_grade" + breastCancerDiagnosisCounter + "'>" +
+			"<option value=''></option>" +
+			"<option value='1: Well differentiated'>1: Well differentiated</option>" +
+			"<option value='2: Moderately differentiated'>2: Moderately differentiated</option>" +
+			"<option value='3: Poorly/un-differentiated'>3: Poorly/un-differentiated</option>" +
+			"<option value='High'>High</option>" +
+			"<option value='Low'>Low</option>" +
+		"</select> " +
+		"</td>" +
+		"</tr><tr>" +
+		"<td> No. of lymph nodes:<br /><input type='text' name='breast_pathology_total_lymph_nodes" + breastCancerDiagnosisCounter + "' value=''/></td>" + 
+		"<td>Size of tumor:<br /><input type='text' name='breast_pathology_tumour_size" + breastCancerDiagnosisCounter + "' value=''/></td>" + 
+		"</tr>" + 
+		"</table>" +
+		"<div id=\"breast_cancer_staining_status_div_" + breastCancerDiagnosisCounter + "\">" +
+		"<table id=\"breast_cancer_staining_status_section_" + breastCancerDiagnosisCounter + "\"><tr>" +
+		"<td> ER status:<br /><input type='text' name='breast_pathology_ER_status" + breastCancerDiagnosisCounter + "' value=''/></td>" + 
+		"<td>PR status:<br /><input type='text' name='breast_pathology_PR_status" + breastCancerDiagnosisCounter + "' value=''/></td>" + 
+		"<td>HER2 status:<br /><input type='text' name='breast_pathology_HER2_status" + breastCancerDiagnosisCounter + "' value=''/></td>" + 
+		"<td><input type='button' value='Add staining status' onClick='window.parent.addBreastCancerStainingStatusInput(\"breast_cancer_staining_status_div_" + breastCancerPathologyCounter + "\"); window.parent.calcHeight();'></td>" +
+		"</tr>" + 
+		"</table></div>" +
+		"<table><tr>" +
+		"<td>Comment:<textarea name='ovary_pathology_tissue_path_comments" + breastCancerDiagnosisCounter + "' cols='7' rows='3' id='ovary_pathology_tissue_path_comments' ></textarea></td>" + 
+		"<td>&nbsp;</td><td>&nbsp;</td>" +
+		"</tr></table>" +
+		"</div>"+
 		"<div id=\"add_ovary_cancer_treatment_div_" + ovaryCancerDiagnosisCounter + "\" >" +
 		"<table id=\"ovary_cancer_treatment_" + ovaryCancerDiagnosisCounter + "\">" + 
 		"<td>Treatment name:" +
@@ -763,6 +975,34 @@ function addOtherCancerDiagnosis(divName)
 		"<td>Doctor's name: <input type='text' name='other_cancer_doctor_name" + otherCancerDiagnosisCounter + "' value=''/></td>" +
 		"<td>Comments: <textarea name='other_cancer_comments" + otherCancerDiagnosisCounter + "' cols='7' rows='10' id='other_cancer_comments'></textarea></td>" +
 		"</tr></table>" +
+                " <div height=\"30px\">&nbsp;</div><table><tr><td id=\"label1\">Breast Cancer Tumor Pathology " + breastCancerDiagnosisCounter + "</td><td><input type='button' value='Add Pathology' onClick='window.parent.addBreastCancerPathology(" + breastCancerDiagnosisCounter + ");'></td></tr><tr>" +
+		"<td>Site:<br />" +
+		"<select name='breast_pathology_tissue_site" + breastCancerDiagnosisCounter + "'>" +
+			"<option value=''></option>" +
+			"<option value='Left'>Left</option>" +
+			"<option value='Right'>Right</option>" +
+		"</select> " +
+		"</td>" +
+		"<td>Type of report:<br />" +
+		"<select name='breast_pathology_path_report_type" + breastCancerDiagnosisCounter + "'>" +
+			"<option value=''></option>" +
+			"<option value='Pathology'>Pathology</option>" +
+			"<option value='FNAC'>FNAC</option>" +
+			"<option value='Core biopsy'>Core biopsy</option>" +
+			"<option value='Stereostatic biopsy'>Stereostatic biopsy</option>" +
+		"</select> " +
+		"</td>" +
+		"<td>Date of report:<br /><input type='text' name='breast_pathology_path_report_date" + breastCancerDiagnosisCounter + "' value=''/></td>" + 
+		"</tr><tr>" +
+		"<td>Pathology lab:<br /><input type='text' name='breast_pathology_lab" + breastCancerDiagnosisCounter + "' value=''/></td>" + 
+		"<td>Name of doctor:<br /><input type='text' name='breast_pathology_doctor" + breastCancerDiagnosisCounter + "' value=''/></td>" + 
+		"</tr>" + 
+		"</table></div>" +
+		"<table><tr>" +
+		"<td>Comment:<textarea name='ovary_pathology_tissue_path_comments" + breastCancerDiagnosisCounter + "' cols='7' rows='3' id='ovary_pathology_tissue_path_comments' ></textarea></td>" + 
+		"<td>&nbsp;</td><td>&nbsp;</td>" +
+		"</tr></table>" +
+		"</div>"+
 		"<div id=\"add_other_cancer_treatment_div_" + otherCancerDiagnosisCounter + "\" >" +
 		"<table id=\"other_cancer_treatment_" + otherCancerDiagnosisCounter + "\">" + 
 		"<td>Treatment name:" +

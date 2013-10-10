@@ -481,6 +481,57 @@
                 </tr>&nbsp;</td>
                 </tr>
             </table>
+            <div class="container" id="add_record_form_section_other_cancer_pathology_section_1">
+        <div height="30px">&nbsp;</div>
+        <table id="other_cancer_pathology_section">
+			<tr>
+                <td id="label1">Other Cancer Tumor Pathology</td>
+				<td><input type="button" value="Add pathology" onClick="window.parent.addOtherCancerPathology('add_record_form_section_other_cancer_pathology_section_1');
+                            window.parent.calcHeight();"></td>
+            </tr>
+            <tr>
+                <td>
+                    <?php echo $other_pathology_tissue_site; ?>: <br />
+                     <?php echo form_dropdown('other_pathology_tissue_site', $patient_cancer_site_lists); ?>
+                </td>
+				<td>
+                    <?php echo $other_pathology_path_report_type; ?>: <br />
+                    <?php echo form_dropdown('other_pathology_path_report_type', $pathology_path_report_type_lists); ?>
+                </td>
+				 <td>
+                    <?php echo $other_pathology_path_report_date; ?>: <br />
+					<?php echo form_input(array('name'=>'other_pathology_path_report_date','class'=>'datepicker')); ?>
+                </td>
+            </tr>
+			<tr>
+				 <td>
+                    <?php echo $other_pathology_lab; ?>: <br />
+                    <?php echo form_input('other_pathology_lab'); ?>
+                </td>
+				<td>
+                    <?php echo $other_pathology_doctor; ?>: <br />
+                    <?php echo form_input('other_pathology_doctor'); ?>
+                </td>
+			</tr>
+			<tr>
+				<td>
+					<?php echo $other_pathology_tissue_path_comments; ?>: <br />
+					<?php
+					$data = array(
+						'name' => 'other_pathology_tissue_path_comments',
+						'id' => 'other_pathology_tissue_path_comments',
+						'rows' => '3',
+						'cols' => '7'
+					);
+					echo form_textarea($data);
+					?>
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+		</table>
+        <?php echo form_fieldset_close(); ?>	
+    </div>
             <div id="add_other_cancer_treatment_div_1" >
                 <table id="other_cancer_treatment_1">
                     <tr>
@@ -597,7 +648,7 @@
                     </tr>
                 </table>
             </div>
-            <?php echo form_fieldset_close(); ?>	
+            <?php echo form_fieldset_close(); ?>
         </div>
         <?php echo form_submit('mysubmit', 'Save'); ?>
         <?php echo form_close(); ?>
