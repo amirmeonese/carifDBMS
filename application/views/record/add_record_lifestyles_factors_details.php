@@ -34,6 +34,9 @@
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
             </tr>
+			<tr>
+				<td colspan="3"><img src="<?php echo base_url(); ?>img/dropdown/patient_self_image.png"></td>
+			</tr>
             <tr>
                 <td>
                     <?php echo $self_image_at_7years; ?>: 
