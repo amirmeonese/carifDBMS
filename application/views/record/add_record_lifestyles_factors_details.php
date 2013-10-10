@@ -51,6 +51,9 @@
                     <?php echo form_dropdown('self_image_now', $self_image_lists); ?>
                 </td>
             </tr>
+		</table>
+		<div height="30px">&nbsp;</div>
+		<table>
             <tr>
                 <td id="label1">Patient Physical Activities</td>
                 <td>&nbsp;</td>
@@ -113,6 +116,9 @@
                     <?php echo form_dropdown('pa_now', $pa_activities_lists); ?>
                 </td>
             </tr>
+		</table>
+		<div height="30px">&nbsp;</div>
+		<table>
             <tr>
                 <td id="label1">Smoking</td>
                 <td>&nbsp;</td>

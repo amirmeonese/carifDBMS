@@ -662,10 +662,12 @@ class Record_model extends CI_Model {
         $data['studies_name'] = 'Studies Name';
         $data['studies_name_lists'] = array(
 			 '' => '',
-            'MyBrCa' => 'MyBrCa',
-            'EpiBrCa' => 'EpiBrCa',
-            'OvaCa' => 'OvaCa',
-            'Mammo' => 'Mammo'
+            'SD MyBrCa' => 'SD MyBrCa',
+			'UM MyBrCa' => 'UM MyBrCa',
+            'MyEpiBrCa Baseline' => 'MyEpiBrCa Baseline',
+			'MyEpiBrCa Follow-up' => 'MyEpiBrCa Follow-up',
+            'My1000Mammo' => 'My1000Mammo',
+            'MyOvaCa' => 'MyOvaCa'
         );
         $data['date_at_consent'] = 'Date at consent';
         $data['age_at_consent'] = 'Age at consent';
@@ -918,7 +920,7 @@ class Record_model extends CI_Model {
             '7' => '7',
             '8' => '8',
             '9' => '9',
-            '10' => '10'
+            '10' => '10 - Cannot recall'
         );
         $data['pa_activities_lists'] = array(
 			 '' => '',

@@ -138,6 +138,12 @@
         <div class="container" id="add_record_form_section_personal6">
 	<div height="30px">&nbsp;</div>
 	<table id="add_study_no_section_1">
+			<tr>
+                <td id="label1">COGS study numbers</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+			</tr>
             <tr>
                 <td>
 					<?php echo $COGS_study_id; ?>:
