@@ -2272,3 +2272,369 @@ function deleteRiskReducingSurgeryCompleteRemovalInfo(divCounterName)
 	window.parent.calcHeight();
 	riskReducingSurgeryCompleteRemovalCounter--;
 }
+
+var manchesterScoreCounter = 2;
+var limit = 20;
+
+function addManchesterScoreInput(divName)
+{
+	if (manchesterScoreCounter == limit)  {
+		alert("You have reached the limit of adding " + manchesterScoreCounter + " inputs");
+	}
+	else 
+	{
+		var newdiv = document.createElement('div');
+		
+		var att1 = document.createAttribute("class");
+		att1.value="container";
+		newdiv.setAttributeNode(att1);
+		
+		var att2 = document.createAttribute("id");
+		att2.value="manchester_score_" + manchesterScoreCounter;
+		newdiv.setAttributeNode(att2);
+		
+		//class="container" id="add_record_form_section_1
+		var formInputHTML = "<div height=\"30px\">&nbsp;</div>" + 
+		"<table>" +        
+        "<tr>" +
+                "<td>At consent</td>" +
+            "</tr>" +
+            "<tr>" +
+                "<td>BRCA1:<input type='text' name='ms_at_consent_BRCA1" + manchesterScoreCounter + "' value=''/></td>" +
+                "<td>BRCA2:<input type='text' name='ms_at_consent_BRCA2" + manchesterScoreCounter + "' value=''/></td>" +
+                "<td>Total:<input type='text' name='ms_at_consent_Total" + manchesterScoreCounter + "' value=''/></td>" +
+            "</tr>" +
+            "<tr>" +
+            "<td>Adjusted</td>" +
+            "</tr>" +
+            "<tr>" +
+                "<td>BRCA1:<input type='text' name='ms_adjusted_BRCA1" + manchesterScoreCounter + "' value=''/></td>" +
+                "<td>BRCA2:<input type='text' name='ms_adjusted_BRCA2" + manchesterScoreCounter + "' value=''/></td>" +
+                "<td>Total:<input type='text' name='ms_adjusted_Total" + manchesterScoreCounter + "' value=''/></td>" +
+            "</tr>" +
+            "<tr>" +
+            "<td>After GC</td>" +
+            "</tr>" +
+            "<tr>" +
+                "<td>BRCA1:<input type='text' name='ms_after_gc_BRCA1" + manchesterScoreCounter + "' value=''/></td>" +
+                "<td>BRCA2:<input type='text' name='ms_after_gc_BRCA2" + manchesterScoreCounter + "' value=''/></td>" +
+                "<td>Total:<input type='text' name='ms_after_gc_Total" + manchesterScoreCounter + "' value=''/></td>" +
+            "</select> " +"<td><input type='button' value='Delete' onClick='window.parent.deleteManchesterScoreInput(" + manchesterScoreCounter + ");'></td>" +
+                "</tr>" +
+"</table>";
+		
+		newdiv.innerHTML = formInputHTML;
+		
+		var iframeDoc = document.getElementById('iframe_record_home').contentWindow ? document.getElementById('iframe_record_home').contentWindow.document : document.getElementById('iframe_record_home').contentDocument;
+		
+		iframeDoc.getElementById(divName).appendChild(newdiv);
+		manchesterScoreCounter++;
+	}
+}
+
+function deleteManchesterScoreInput(divCounterName) 
+{
+	var iframeDoc = document.getElementById('iframe_record_home').contentWindow ? document.getElementById('iframe_record_home').contentWindow.document : document.getElementById('iframe_record_home').contentDocument;
+	
+	iframeDoc.getElementById('manchester_score_' + divCounterName).parentNode.removeChild(iframeDoc.getElementById('manchester_score_' + divCounterName));
+	window.parent.calcHeight();
+	manchesterScoreCounter--;
+}
+
+var BOADICEA1Counter = 2;
+var limit = 20;
+
+function addBOADICEAInput(divName)
+{
+	if (BOADICEA1Counter == limit)  {
+		alert("You have reached the limit of adding " + BOADICEA1Counter + " inputs");
+	}
+	else 
+	{
+		var newdiv = document.createElement('div');
+		
+		var att1 = document.createAttribute("class");
+		att1.value="container";
+		newdiv.setAttributeNode(att1);
+		
+		var att2 = document.createAttribute("id");
+		att2.value="BOADICEA_" + BOADICEA1Counter;
+		newdiv.setAttributeNode(att2);
+		
+		//class="container" id="add_record_form_section_1
+		var formInputHTML = "<div height=\"30px\">&nbsp;</div>" + 
+		"<table>" +        
+        "<tr>" +
+                "<td>At consent</td>" +
+            "</tr>" +
+            "<tr>" +
+                "<td>BRCA1:<input type='text' name='ms_at_consent_BRCA1" + BOADICEA1Counter + "' value=''/></td>" +
+                "<td>BRCA2:<input type='text' name='ms_at_consent_BRCA2" + BOADICEA1Counter + "' value=''/></td>" +
+                "<td>Total:<input type='text' name='ms_at_consent_Total" + BOADICEA1Counter + "' value=''/></td>" +
+            "</tr>" +
+            "<tr>" +
+            "<td>Adjusted</td>" +
+            "</tr>" +
+            "<tr>" +
+                "<td>BRCA1:<input type='text' name='ms_adjusted_BRCA1" + BOADICEA1Counter + "' value=''/></td>" +
+                "<td>BRCA2:<input type='text' name='ms_adjusted_BRCA2" + BOADICEA1Counter + "' value=''/></td>" +
+                "<td>Total:<input type='text' name='ms_adjusted_Total" + BOADICEA1Counter + "' value=''/></td>" +
+            "</tr>" +
+            "<tr>" +
+            "<td>After GC</td>" +
+            "</tr>" +
+            "<tr>" +
+                "<td>BRCA1:<input type='text' name='ms_after_gc_BRCA1" + BOADICEA1Counter + "' value=''/></td>" +
+                "<td>BRCA2:<input type='text' name='ms_after_gc_BRCA2" + BOADICEA1Counter + "' value=''/></td>" +
+                "<td>Total:<input type='text' name='ms_after_gc_Total" + BOADICEA1Counter + "' value=''/></td>" +
+            "</select> " +"<td><input type='button' value='Delete' onClick='window.parent.deleteBOADICEAInput(" + BOADICEA1Counter + ");'></td>" +
+                "</tr>" +
+"</table>";
+		
+		newdiv.innerHTML = formInputHTML;
+		
+		var iframeDoc = document.getElementById('iframe_record_home').contentWindow ? document.getElementById('iframe_record_home').contentWindow.document : document.getElementById('iframe_record_home').contentDocument;
+		
+		iframeDoc.getElementById(divName).appendChild(newdiv);
+		BOADICEA1Counter++;
+	}
+}
+
+function deleteBOADICEAInput(divCounterName) 
+{
+	var iframeDoc = document.getElementById('iframe_record_home').contentWindow ? document.getElementById('iframe_record_home').contentWindow.document : document.getElementById('iframe_record_home').contentDocument;
+	
+	iframeDoc.getElementById('BOADICEA_' + divCounterName).parentNode.removeChild(iframeDoc.getElementById('BOADICEA_' + divCounterName));
+	window.parent.calcHeight();
+	BOADICEA1Counter--;
+}
+
+var GailModelCounter = 2;
+var limit = 20;
+
+function addGailModelInput(divName)
+{
+	if (GailModelCounter == limit)  {
+		alert("You have reached the limit of adding " + GailModelCounter + " inputs");
+	}
+	else 
+	{
+		var newdiv = document.createElement('div');
+		
+		var att1 = document.createAttribute("class");
+		att1.value="container";
+		newdiv.setAttributeNode(att1);
+		
+		var att2 = document.createAttribute("id");
+		att2.value="Gail_model_" + GailModelCounter;
+		newdiv.setAttributeNode(att2);
+		
+		//class="container" id="add_record_form_section_1
+		var formInputHTML = "<div height=\"30px\">&nbsp;</div>" + 
+		"<table>" +        
+        "<tr>" +
+                "<td>At consent</td>" +
+            "</tr>" +
+            "<tr>" +
+                "<td>5 years:<input type='text' name='gail_model_at_consent_5years" + GailModelCounter + "' value=''/></td>" +
+                "<td>10 years:<input type='text' name='gail_model_at_consent_10years" + GailModelCounter + "' value=''/></td>" +
+            "</tr>" +
+            "<tr>" +
+            "<td>First Mammogram</td>" +
+            "</tr>" +
+            "<tr>" +
+                "<td>5 years:<input type='text' name='gail_model_first_mammo_5years" + GailModelCounter + "' value=''/></td>" +
+                "<td>10 years:<input type='text' name='gail_model_first_mammo_10years" + GailModelCounter + "' value=''/></td>" +
+                "</select> " +"<td><input type='button' value='Delete' onClick='window.parent.deleteGailModelInput(" + GailModelCounter + ");'></td>" +
+                "</tr>" +
+"</table>";
+		
+		newdiv.innerHTML = formInputHTML;
+		
+		var iframeDoc = document.getElementById('iframe_record_home').contentWindow ? document.getElementById('iframe_record_home').contentWindow.document : document.getElementById('iframe_record_home').contentDocument;
+		
+		iframeDoc.getElementById(divName).appendChild(newdiv);
+		BOADICEA1Counter++;
+	}
+}
+
+function deleteGailModelInput(divCounterName) 
+{
+	var iframeDoc = document.getElementById('iframe_record_home').contentWindow ? document.getElementById('iframe_record_home').contentWindow.document : document.getElementById('iframe_record_home').contentDocument;
+	
+	iframeDoc.getElementById('Gail_model_' + divCounterName).parentNode.removeChild(iframeDoc.getElementById('Gail_model_' + divCounterName));
+	window.parent.calcHeight();
+	GailModelCounter--;
+}
+
+// ===== ADD PATIENT STUDY NO =============== //
+var studyNoCounter = 2;
+var limit = 20;
+
+function addPatientStudyNoInput(divName)
+{
+	if (studyNoCounter == limit)  {
+		alert("You have reached the limit of adding " + studyNoCounter + " inputs");
+	}
+	else 
+	{
+		var newdiv = document.createElement('div');
+		
+		var att1 = document.createAttribute("class");
+		att1.value="container";
+		newdiv.setAttributeNode(att1);
+		
+		var att2 = document.createAttribute("id");
+		att2.value="add_study_no_section_" + studyNoCounter;
+		newdiv.setAttributeNode(att2);
+		
+		//class="container" id="add_record_form_section_1
+		var formInputHTML = "<div height=\"30px\">&nbsp;</div>" + 
+		"<table>" + 
+		"<tr>" +
+		"<td>COGS Study ID :" +
+		"<select name='COGS_study_id" + studyNoCounter + "'>" +
+			"<option value=''></option>" +
+			"<option value='CIMBA'>CIMBA</option>" +
+			"<option value='OCAC'>OCAC</option>" +
+			"<option value='BCAC'>BCAC</option>" +
+			"<option value='Practical'>Practical</option>" +
+		"</select> " +
+                "<td>Study No:<input type='text' name='study_no" + studyNoCounter + "' value=''/></td>" + 
+		"<td><input type='button' value='Delete' onClick='window.parent.deletePatientStudyNoInput(" + studyNoCounter + ");'></td>" +
+		"</tr>" + 
+		"</table>";
+		
+		newdiv.innerHTML = formInputHTML;
+		
+		var iframeDoc = document.getElementById('iframe_record_home').contentWindow ? document.getElementById('iframe_record_home').contentWindow.document : document.getElementById('iframe_record_home').contentDocument;
+		
+		iframeDoc.getElementById(divName).appendChild(newdiv);
+		studyNoCounter++;
+	}
+}
+
+function deletePatientStudyNoInput(divCounterName) 
+{
+	var iframeDoc = document.getElementById('iframe_record_home').contentWindow ? document.getElementById('iframe_record_home').contentWindow.document : document.getElementById('iframe_record_home').contentDocument;
+	
+	iframeDoc.getElementById('add_study_no_section_' + divCounterName).parentNode.removeChild(iframeDoc.getElementById('add_study_no_section_' + divCounterName));
+	window.parent.calcHeight();
+	studyNoCounter--;
+}
+
+// ===== ADD Mother Diagnosis =============== //
+var motherDiagnosisCounter = 2;
+var limit = 20;
+
+function addmotherDiagnosisInput(divName)
+{
+	if (motherDiagnosisCounter == limit)  {
+		alert("You have reached the limit of adding " + motherDiagnosisCounter + " inputs");
+	}
+	else 
+	{
+		var newdiv = document.createElement('div');
+		
+		var att1 = document.createAttribute("class");
+		att1.value="container";
+		newdiv.setAttributeNode(att1);
+		
+		var att2 = document.createAttribute("id");
+		att2.value="add_record_mother_cancer_record_" + motherDiagnosisCounter;
+		newdiv.setAttributeNode(att2);
+		
+		//class="container" id="add_record_form_section_1
+		var formInputHTML = "<div height=\"30px\">&nbsp;</div>" + 
+		"<table>" + 
+		"<tr>" +
+		"<td>Type of cancer :" +
+		"<select name='COGS_study_id" + motherDiagnosisCounter + "'>" +
+			"<option value=''></option>" +
+			"<option value='CIMBA'>CIMBA</option>" +
+			"<option value='OCAC'>OCAC</option>" +
+			"<option value='BCAC'>BCAC</option>" +
+			"<option value='Practical'>Practical</option>" +
+		"</select> " +
+                "<td>Date of Diagnosis:<input type='text' name='study_no" + motherDiagnosisCounter + "' value=''/></td>" +
+                "<td>Age of Diagnosis:<input type='text' name='study_no" + motherDiagnosisCounter + "' value=''/></td>" + 
+                "<td>Diagnosis Detail:<input type='text' name='study_no" + motherDiagnosisCounter + "' value=''/></td>" + 
+		"<td><input type='button' value='Delete' onClick='window.parent.deletemotherDiagnosisInput(" + motherDiagnosisCounter + ");'></td>" +
+		"</tr>" + 
+		"</table>";
+		
+		newdiv.innerHTML = formInputHTML;
+		
+		var iframeDoc = document.getElementById('iframe_record_home').contentWindow ? document.getElementById('iframe_record_home').contentWindow.document : document.getElementById('iframe_record_home').contentDocument;
+		
+		iframeDoc.getElementById(divName).appendChild(newdiv);
+		motherDiagnosisCounter++;
+	}
+}
+
+function deletemotherDiagnosisInput(divCounterName) 
+{
+	var iframeDoc = document.getElementById('iframe_record_home').contentWindow ? document.getElementById('iframe_record_home').contentWindow.document : document.getElementById('iframe_record_home').contentDocument;
+	
+	iframeDoc.getElementById('add_record_mother_cancer_record_' + divCounterName).parentNode.removeChild(iframeDoc.getElementById('add_record_mother_cancer_record_' + divCounterName));
+	window.parent.calcHeight();
+	motherDiagnosisCounter--;
+}
+
+// ===== ADD Mother Diagnosis =============== //
+var fatherDiagnosisCounter = 2;
+var limit = 20;
+
+function addfatherDiagnosisInput(divName)
+{
+	if (fatherDiagnosisCounter == limit)  {
+		alert("You have reached the limit of adding " + fatherDiagnosisCounter + " inputs");
+	}
+	else 
+	{
+		var newdiv = document.createElement('div');
+		
+		var att1 = document.createAttribute("class");
+		att1.value="container";
+		newdiv.setAttributeNode(att1);
+		
+		var att2 = document.createAttribute("id");
+		att2.value="add_record_father_cancer_record_" + fatherDiagnosisCounter;
+		newdiv.setAttributeNode(att2);
+		
+		//class="container" id="add_record_form_section_1
+		var formInputHTML = "<div height=\"30px\">&nbsp;</div>" + 
+		"<table>" + 
+		"<tr>" +
+		"<td>Type of cancer :" +
+		"<select name='COGS_study_id" + fatherDiagnosisCounter + "'>" +
+			"<option value=''></option>" +
+			"<option value='CIMBA'>CIMBA</option>" +
+			"<option value='OCAC'>OCAC</option>" +
+			"<option value='BCAC'>BCAC</option>" +
+			"<option value='Practical'>Practical</option>" +
+		"</select> " +
+                "<td>Date of Diagnosis:<input type='text' name='study_no" + fatherDiagnosisCounter + "' value=''/></td>" +
+                "<td>Age of Diagnosis:<input type='text' name='study_no" + fatherDiagnosisCounter + "' value=''/></td>" + 
+                "<td>Diagnosis Detail:<input type='text' name='study_no" + fatherDiagnosisCounter + "' value=''/></td>" + 
+		"<td><input type='button' value='Delete' onClick='window.parent.deletefatherDiagnosisInput(" + fatherDiagnosisCounter + ");'></td>" +
+		"</tr>" + 
+		"</table>";
+		
+		newdiv.innerHTML = formInputHTML;
+		
+		var iframeDoc = document.getElementById('iframe_record_home').contentWindow ? document.getElementById('iframe_record_home').contentWindow.document : document.getElementById('iframe_record_home').contentDocument;
+		
+		iframeDoc.getElementById(divName).appendChild(newdiv);
+		fatherDiagnosisCounter++;
+	}
+}
+
+function deletefatherDiagnosisInput(divCounterName) 
+{
+	var iframeDoc = document.getElementById('iframe_record_home').contentWindow ? document.getElementById('iframe_record_home').contentWindow.document : document.getElementById('iframe_record_home').contentDocument;
+	
+	iframeDoc.getElementById('add_record_father_cancer_record_' + divCounterName).parentNode.removeChild(iframeDoc.getElementById('add_record_father_cancer_record_' + divCounterName));
+	window.parent.calcHeight();
+	fatherDiagnosisCounter--;
+}

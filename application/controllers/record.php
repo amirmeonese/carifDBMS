@@ -34,6 +34,8 @@ class Record extends CI_Controller {
             $this->template->load("templates/add_record_template", 'record/add_record_personal_details', $data);
         else if ($var == 'family')
             $this->template->load("templates/add_record_template", 'record/add_record_family_details', $data);
+        else if ($var == 'diagnosis')
+            $this->template->load("templates/add_record_template", 'record/add_record_diagnosis_treatment_details', $data);
         else if ($var == 'studies_setOne')
             $this->template->load("templates/add_record_template", 'record/add_record_studies_set_one_details', $data);
 		else if ($var == 'mutation_analysis')
@@ -59,7 +61,7 @@ class Record extends CI_Controller {
         if ($this->form_validation->run() == true) {
 
             $data_patient = array(
-                'fullname' => $this->input->post('fullname'),
+                'given_name' => $this->input->post('fullname'),
                 'surname' => $this->input->post('surname'),
                 'maiden_name' => $this->input->post('maiden_name'),
                 'family_no' => $this->input->post('family_no'),
@@ -73,13 +75,13 @@ class Record extends CI_Controller {
                 'is_dead' => $this->input->post('still_alive_flag'),
                 'd_o_d' => $this->input->post('d_o_d'),
                 'reason_of_death' => $this->input->post('reason_of_death'),
-                'padigree_labelling' => $this->input->post('padigree_labelling'),
+                //'padigree_labelling' => $this->input->post('padigree_labelling'),
                 'blood_group' => $this->input->post('blood_group'),
-                'hospital_no' => $this->input->post('hospital_no'),
-                'private_patient_no' => $this->input->post('private_patient_no'),
+                //'hospital_no' => $this->input->post('hospital_no'), patient_hosp_no
+                //'private_patient_no' => $this->input->post('private_patient_no'), patient_private_no
                 'marital_status' => $this->input->post('marital_status'),
                 'blood_card' => $this->input->post('is_blood_card_exist'),
-                'blood_card_location' => $this->input->post('private_patient_no'),
+                'blood_card_location' => $this->input->post('blood_card_location'),
                 'cogs_study_id' => $this->input->post('COGS_study_id'),
                 'address' => $this->input->post('address'),
                 'home_phone' => $this->input->post('home_phone'),
@@ -133,7 +135,9 @@ class Record extends CI_Controller {
                 'patient_ic_no' => $this->input->post('IC_no'),
                 'source' => $this->input->post('recurrence_site'),
                 'alive_status' => $alive_status_flag,
-                'status_gathering_date' => $this->input->post('status_gathered_date')
+                'status_gathering_date' => $this->input->post('status_gathered_date'),
+                'source' => $this->input->post('status_source')
+
             );
 
             $patient_survival_status_id = $this->record_model->insert_patient_survival_status($data_patient_survival_status);
@@ -155,8 +159,8 @@ class Record extends CI_Controller {
                 'total_no_of_1st_degree' => $this->input->post('total_no_of_first_degree'),
                 'total_no_of_2nd_degree' => $this->input->post('total_no_of_second_degree'),
                 'total_no_of_3rd_degree' => $this->input->post('total_no_of_third_degree'),
-                'unknown_reason_is_adopted' => $this->input->post('unknown_reason_is_adopted'),
-                'unknown_reason_in_other_countries' => $this->input->post('unknown_reason_in_other_countries')
+                //'unknown_reason_is_adopted' => $this->input->post('unknown_reason_is_adopted'),
+                //'unknown_reason_in_other_countries' => $this->input->post('unknown_reason_in_other_countries')
             );
             //print_r($data_patient_relatives_summary);
             $patient_relatives_summary_id = $this->record_model->insert_patient_relatives_summary($data_patient_relatives_summary);
@@ -164,6 +168,28 @@ class Record extends CI_Controller {
                 echo "<h2>Data Added successfully at patient_relatives_summary table</h2>";
             } else {
                 echo "<h2>Failed to insert at patient_relatives_summary table</h2>";
+            }
+            echo '<br/>';
+            $data_patient_consent_detail = array(
+                'patient_ic_no' => $this->input->post('IC_no'),
+                'studies_id' => $this->input->post('studies_name'),
+                'date_at_consent' => $this->input->post('date_at_consent'),
+                'age_at_consent' => $this->input->post('age_at_consent'),
+                'double_consent_flag' => $this->input->post('is_double_consent_flag'),
+                'consent_given_by' => $this->input->post('consent_given_by'),
+                'consent_response' => $this->input->post('consent_response'),
+                'consent_version' => $this->input->post('consent_version'),
+                'relation_to_study_flag' => $this->input->post('relations_to_study'),
+                'referral_to' => $this->input->post('referral_to'),
+                //'referral_date' => $this->input->post('referral_date'),
+                'referral_source' => $this->input->post('referral_source')
+            );
+            //print_r($data_patient_relatives_summary);
+            $data_patient_consent_detail_id = $this->record_model->insert_patient_studies($data_patient_consent_detail);
+            if ($data_patient_consent_detail_id > 0) {
+                echo "<h2>Data Added successfully at patient_consent_detail table</h2>";
+            } else {
+                echo "<h2>Failed to insert at patient_consent_detail table</h2>";
             }
             echo '<br/>';
         } else {

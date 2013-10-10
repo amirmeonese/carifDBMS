@@ -68,16 +68,21 @@
                     <?php echo $mother_is_cancer_diagnosed; ?>: 
                     <?php echo form_checkbox('mother_is_cancer_diagnosed', '1', FALSE); ?>
                 </td>
+            </tr>
+        </table>
+        </div>
+        <div class="container" id="add_record_mother_cancer_record_1">
+        <div height="30px">&nbsp;</div>
+		<table>
+                    <tr>
 				 <td>
                     <?php echo $mother_cancer_name; ?>: 
                     <?php echo form_dropdown('mother_cancer_name', $patient_cancer_name_lists); ?>
                 </td>  
-				<td>
+<!--				<td>
                     <?php echo $mother_other_cancer_name; ?>: 
                     <?php echo form_input('mother_other_cancer_name'); ?>
-                </td>				
-            </tr>
-            <tr>
+                </td>				-->
 				 <td>
                     <?php echo $mother_date_of_diagnosis; ?>: 
 					<?php echo form_input(array('name'=>'mother_date_of_diagnosis','class'=>'datepicker')); ?>
@@ -98,7 +103,17 @@
                     echo form_textarea($data);
                     ?>
                 </td>
+              </tr>
+            <tr>
+            <td>
+            <input type="button" value="Add more" onClick="window.parent.addmotherDiagnosisInput('add_record_mother_cancer_record_1');window.parent.calcHeight();"></b
+            </td>
             </tr>
+            </table>
+        </div>
+        <div class="container" id="add_record_form_section_3">
+        <div height="30px">&nbsp;</div>
+         <table>
 			<tr>
 				<td>
                     <?php echo $mother_no_of_brothers; ?>: 
@@ -189,16 +204,21 @@
                     <?php echo $father_is_cancer_diagnosed; ?>: 
                     <?php echo form_checkbox('father_is_cancer_diagnosed', '1', FALSE); ?>
                 </td>
+            </tr>
+            </table>
+        </div>
+        <div class="container" id="add_record_father_cancer_record_1">
+        <div height="30px">&nbsp;</div>
+		<table>
+            <tr>
 				 <td>
                     <?php echo $father_cancer_name; ?>: 
                     <?php echo form_dropdown('father_cancer_name', $patient_cancer_name_lists); ?>
-                </td>
+<!--                </td>
 				 <td>
                     <?php echo $father_other_cancer_name; ?>: 
                     <?php echo form_input('father_other_cancer_name'); ?>
-                </td>
-			</tr>
-            <tr>
+                </td>-->
                <td>
                     <?php echo $father_date_of_diagnosis; ?>: 
 					<?php echo form_input(array('name'=>'father_date_of_diagnosis','class'=>'datepicker')); ?>
@@ -220,6 +240,16 @@
                     ?>
                 </td>
             </tr>
+            <tr>
+            <td>
+            <input type="button" value="Add more" onClick="window.parent.addfatherDiagnosisInput('add_record_father_cancer_record_1');window.parent.calcHeight();"></b
+            </td>
+            </tr>
+        </table>
+        </div>
+        <div class="container" id="add_record_form_section_3">
+        <div height="30px">&nbsp;</div>
+         <table>
             <tr>
                 <td>
                     <?php echo $father_no_of_brothers; ?>: 

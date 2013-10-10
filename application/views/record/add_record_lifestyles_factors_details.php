@@ -54,16 +54,59 @@
                 <td>&nbsp;</td>
             </tr>
             <tr>
+                <td id="label1">Childhood (before 18-years of age</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
                 <td>
-                    <?php echo $pa_at_childhood; ?>: 
+                    Strenuous Exercise: 
                     <?php echo form_dropdown('pa_at_childhood', $pa_activities_lists); ?>
                 </td>
                 <td>
-                    <?php echo $pa_at_adulthood; ?>: 
+                    Moderate Exercise: 
                     <?php echo form_dropdown('pa_at_adulthood', $pa_activities_lists); ?>
                 </td>
                 <td>
-                    <?php echo $pa_now; ?>: 
+                    Gentle Exercise: 
+                    <?php echo form_dropdown('pa_now', $pa_activities_lists); ?>
+                </td>
+            </tr>
+            <tr>
+                <td id="label1">18-30 years old</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>
+                    Strenuous Exercise: 
+                    <?php echo form_dropdown('pa_at_childhood', $pa_activities_lists); ?>
+                </td>
+                <td>
+                    Moderate Exercise: 
+                    <?php echo form_dropdown('pa_at_adulthood', $pa_activities_lists); ?>
+                </td>
+                <td>
+                    Gentle Exercise: 
+                    <?php echo form_dropdown('pa_now', $pa_activities_lists); ?>
+                </td>
+            </tr>
+            <tr>
+                <td id="label1">The most recent years</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>
+                    Strenuous Exercise: 
+                    <?php echo form_dropdown('pa_at_childhood', $pa_activities_lists); ?>
+                </td>
+                <td>
+                    Moderate Exercise: 
+                    <?php echo form_dropdown('pa_at_adulthood', $pa_activities_lists); ?>
+                </td>
+                <td>
+                    Gentle Exercise: 
                     <?php echo form_dropdown('pa_now', $pa_activities_lists); ?>
                 </td>
             </tr>

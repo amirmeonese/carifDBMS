@@ -12,17 +12,19 @@
                     <?php echo $IC_no; ?>: 
                     <?php echo form_input('IC_no'); ?>
 			</td>
-			<td>
+<!--			<td>
 				<?php echo $studies_name; ?>: 
 				<?php echo form_dropdown('studies_name', $studies_name_lists); ?>
 				<?php echo '<br/>'; ?>
-			</td>
+			</td>-->
 		</tr>
 		</table>
+        <div class="container" id="add_record_form_manchester_score1">
+        <div height="30px">&nbsp;</div>
         <?php
         echo form_fieldset('Risk Assessment');
         ?>
-        <table>
+        <table id="manchester_score_1">
 			<tr>
                 <td id="label1">Manchester Score</td>
             </tr>
@@ -75,11 +77,18 @@
                <td>
                     <?php echo $ms_after_gc_Total; ?>: 
                     <?php echo form_input('ms_after_gc_Total'); ?>
-                </td>
+                </td>               
+            </tr>
+            <tr>
+            <td>
+                                <input type="button" value="Add Manchester Score " onClick="window.parent.addManchesterScoreInput('add_record_form_manchester_score1'); window.parent.calcHeight();">
+                            </td>
             </tr>
 		</table>
-		<div height="30px">&nbsp;</div>
-		<table>
+        </div>
+        <div class="container" id="add_record_form_BOADICEA1">
+        <div height="30px">&nbsp;</div>
+		<table id="BOADICEA_1">
 			<tr>
                 <td id="label1">BOADICEA</td>
             </tr>
@@ -134,9 +143,16 @@
 					<?php echo form_checkbox('BOADICEA_after_gc_no_mutation', '1', FALSE); ?>
                 </td>
             </tr>
+            <tr>
+            <td>
+                                <input type="button" value="Add BOADICEA" onClick="window.parent.addBOADICEAInput('add_record_form_BOADICEA1'); window.parent.calcHeight();">
+                            </td>
+            </tr>
         </table>
-		<div height="30px">&nbsp;</div>
-		<table>
+        </div>
+		<div class="container" id="add_record_form_Gail_model_1">
+        <div height="30px">&nbsp;</div>
+		<table id="Gail_model_1">
 			<tr>
                 <td id="label1">Gail Model</td>
             </tr>
@@ -164,7 +180,13 @@
                     <?php echo $gail_model_first_mammo_10years; ?>: 
                     <?php echo form_input('gail_model_first_mammo_10years'); ?>
             </tr>
+            <tr>
+            <td>
+                                <input type="button" value="Add Gail Model" onClick="window.parent.addGailModelInput('add_record_form_Gail_model_1'); window.parent.calcHeight();">
+                            </td>
+            </tr>
         </table>
+        </div>
         <?php echo form_fieldset_close(); ?>
-    </div>
+</div>
 </div>

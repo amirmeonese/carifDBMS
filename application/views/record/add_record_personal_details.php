@@ -60,13 +60,13 @@
                     echo form_input('place_of_birth');
                     ?>
                 </td>
-				 <td>
-					<?php echo $marital_status; ?>: 
+                <td>
+                    <?php echo $marital_status; ?>: 
                     <?php echo form_dropdown('marital_status', $marital_status_lists); ?>
                 </td>
-				<td>
+                <td>
                     <?php echo $blood_group; ?>: 
-					<?php echo form_input('blood_group'); ?>
+                    <?php echo form_input('blood_group'); ?>
                 </td>
             </tr>
             <tr>
@@ -76,7 +76,7 @@
                 </td>
                 <td>
                     <?php echo $DOD; ?>: 
-                    <?php echo form_input(array('name'=>'DOD','class'=>'datepicker')); ?>
+                    <?php echo form_input(array('name' => 'd_o_d', 'class' => 'datepicker')); ?>
                 </td>
                 <td>
                     <?php echo $reason_of_death; ?>: 
@@ -100,22 +100,22 @@
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
-            </tr>
-			<tr>
-                <td>
-                    <?php echo $hospital_no; ?>: 
-                    <?php
-                    //echo form_textarea
-                    echo form_input('hospital_no');
-                    ?>
-                </td>
-				<td>
-					<input type="button" value="Add Hospital No." onClick="window.parent.addHospitalNoInput('add_record_form_section_personal2'); window.parent.calcHeight();">
-				</td>
-            </tr>
-		</table>
-	</div>
-	<div class="container" id="add_record_form_section_personal3">
+                        </tr>
+                        <tr>
+                            <td>
+                                <?php echo $hospital_no; ?>: 
+                                <?php
+                                //echo form_textarea
+                                echo form_input('hospital_no');
+                                ?>
+                            </td>
+                            <td>
+                                <input type="button" value="Add Hospital No." onClick="window.parent.addHospitalNoInput('add_record_form_section_personal2'); window.parent.calcHeight();">
+                            </td>
+                        </tr>
+                </table>
+         </div>
+         <div class="container" id="add_record_form_section_personal3">
 	<div height="30px">&nbsp;</div>
 	<table id="add_private_patient_no_section_1">
 		<tr>
@@ -135,14 +135,28 @@
 		</tr>
 		</table>
 	</div>
-	<div class="container" id="add_record_form_section_personal4">
+        <div class="container" id="add_record_form_section_personal6">
 	<div height="30px">&nbsp;</div>
-		<table>
+	<table id="add_study_no_section_1">
             <tr>
                 <td>
 					<?php echo $COGS_study_id; ?>:
                     <?php echo form_dropdown('COGS_study_id', $COGS_study_id_lists); ?>
                 </td>
+                <td>
+					<?php echo 'Study no'; ?>: 
+					<?php echo form_input('study_no'); ?>
+                </td>
+                <td>
+				<input type="button" value="Add" onClick="window.parent.addPatientStudyNoInput('add_record_form_section_personal6'); window.parent.calcHeight();">
+                </td>
+                </tr>
+       </table>
+        </div>
+        <div class="container" id="add_record_form_section_personal4">
+	<div height="30px">&nbsp;</div>
+		<table>
+                <tr>
                 <td>
 					<?php echo $is_blood_card_exist; ?>: 
                     <?php echo form_checkbox('is_blood_card_exist', '1', TRUE); ?>
@@ -232,10 +246,10 @@
                     <?php echo form_input('contact_person_phone_number'); ?>
                 </td>
                 <td>
-					<?php echo $contact_person_relationship; ?>: 
-					<?php echo form_input('contact_person_relationship'); ?>
+                    <?php echo $contact_person_relationship; ?>: 
+                    <?php echo form_input('contact_person_relationship'); ?>
                 </td>
-				 <td>
+                <td>
                     <?php echo $patient_comments; ?>: 
                     <?php
                     $data = array(
@@ -248,7 +262,7 @@
                     ?>
                 </td>
             </tr>
-			<tr>
+            <tr>
                 <td id="label1">Relative summary details</td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
@@ -322,8 +336,8 @@
                     <?php echo form_dropdown('alive_status', $alive_status_lists); ?>
                 </td>
                 <td>
-					   <?php echo $status_gathered_date; ?>: 
-					   <?php echo form_input(array('name'=>'status_gathered_date','class'=>'datepicker')); ?>
+                    <?php echo $status_gathered_date; ?>: 
+                    <?php echo form_input(array('name' => 'status_gathered_date', 'class' => 'datepicker')); ?>
                 </td>
                 <td>
                     <input type="button" value="Add more survival status" onClick="window.parent.addSurvivalStatusInput('add_record_form_section_personal_5');
@@ -369,11 +383,9 @@
                     <?php echo $consent_version; ?>: 
                     <?php echo form_input('consent_version'); ?>
                 </td>
-				<td>
+                <td>
                     <?php echo $relations_to_study; ?>: 
-                    <?php
-                    echo form_input('relations_to_study');
-                    ?>
+                    <?php echo form_input('relations_to_study');?>
                 </td>
             </tr>
             <tr>
@@ -383,11 +395,11 @@
                     echo form_input('referral_to');
                     ?>
                 </td>
-				<td>
+                <td>
                     <?php echo $referral_date; //referral to genetic counselling ?>: 
                     <?php echo form_input('referral_date'); ?>
                 </td>
-				 <td>
+                <td>
                     <?php echo $referral_source; ?>: 
                     <?php
                     echo form_input('referral_source');

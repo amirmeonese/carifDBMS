@@ -550,7 +550,7 @@ class Record_model extends CI_Model {
             'Married' => 'Married',
             'Divorced' => 'Divorced'
         );
-        $data['is_blood_card_exist'] = 'Is blood card exist?';
+        $data['is_blood_card_exist'] = 'Blood card exist?';
         $data['blood_card_location'] = 'Blood card location';
 
         $data['address'] = 'Address';
@@ -1424,6 +1424,16 @@ class Record_model extends CI_Model {
         );
         $record_data = array_merge($this->_filter_data($this->tables['patient_relatives_summary'], $data), $record_data);
         $this->db->insert($this->tables['patient_relatives_summary'], $record_data);
+
+        $id = $this->db->insert_id();
+        return $id;
+    }
+    
+    public function insert_patient_studies($record_data) {
+        $data = array(
+        );
+        $record_data = array_merge($this->_filter_data($this->tables['patient_studies'], $data), $record_data);
+        $this->db->insert($this->tables['patient_studies'], $record_data);
 
         $id = $this->db->insert_id();
         return $id;
