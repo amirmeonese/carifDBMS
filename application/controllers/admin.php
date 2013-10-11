@@ -11,11 +11,13 @@ class Admin extends CI_Controller {
         $this->load->helper('file');
         $this->load->helper('array');
         $this->load->helper('download');
+        $this->load->helper('path_helper');
         $this->load->library("template");
         $this->load->library('form_validation');
         $this->load->model('admin_model');
         $this->load->library('session');
         $this->load->helper('date');
+        $this->load->library('email');
     }
 
     //redirect if needed, otherwise display the user list
@@ -38,7 +40,7 @@ class Admin extends CI_Controller {
         $salt = $this->admin_model->get_random_salt();
         $sender = $this->input->post('admin_email');
         $subject = 'Information Detail';
-        
+
         $MESSAGE_BODY = "Your Information detail:" . "<br>";
         $MESSAGE_BODY .= "" . "<br>";
         $MESSAGE_BODY .= "First Name: " . $this->input->post('admin_firstname') . "<br>";
@@ -51,25 +53,24 @@ class Admin extends CI_Controller {
 
         $id = $this->admin_model->insert_admin_record($password, $salt);
         if ($id > 0) {
-            
-        $config = array(
 
-            'protocol' => 'smtp',
-            //'mailpath' => '/usr/sbin/sendmail',
-            'smtp_host' => 'ssl://smtp.googlemail.com',
-            'smtp_port' => 465,
-            'smtp_user' => 'apurbamy@gmail.com',
-            'smtp_pass' => 'apurbamy2012',
-            'mailtype' => 'html'
-        );
+            $config = array(
+                'protocol' => 'smtp',
+                //'mailpath' => '/usr/sbin/sendmail',
+                'smtp_host' => 'ssl://smtp.googlemail.com',
+                'smtp_port' => 465,
+                'smtp_user' => 'apurbamy@gmail.com',
+                'smtp_pass' => 'apurbamy2012',
+                'mailtype' => 'html'
+            );
 
-        $this->load->library('email', $config);
-        $this->email->set_newline("\r\n");
-        $this->email->from('apurbamy@gmail.com', 'Carif Admin Registration sent via CarifDBMS');
-        $this->email->to($sender);
-        $this->email->subject($subject);
-        $this->email->message($MESSAGE_BODY);
-        $a = $this->email->send();
+            $this->load->library('email', $config);
+            $this->email->set_newline("\r\n");
+            $this->email->from('apurbamy@gmail.com', 'Carif Admin Registration sent via CarifDBMS');
+            $this->email->to($sender);
+            $this->email->subject($subject);
+            $this->email->message($MESSAGE_BODY);
+            $a = $this->email->send();
 
             $this->session->set_flashdata('msg', 'success: Data Added successfully');
             redirect('admin/create_new_user');
@@ -79,25 +80,23 @@ class Admin extends CI_Controller {
         }
     }
 
-	function deletion_history()
-	{
-		$this->template->load("templates/admin_panel_template", 'admin/deletion_history');
-	}
-	
-    function list_record_locked_item() {
-		$data['locked_patient_lists'] = $this->admin_model->get_locked_patient_lists();
-		$this->template->load("templates/admin_panel_template", 'admin/list_record_locked_item', $data);
+    function deletion_history() {
+        $this->template->load("templates/admin_panel_template", 'admin/deletion_history');
     }
-	
-	function release_locked_items() 
-	{
-		$ic = $this->uri->segment(3);
-		$insert_status = $this->db->where('IC_no', $ic)->update('patient', array('is_record_locked' => 0));
-		
-		if ($insert_status)
-			redirect('admin/', 'refresh');
-	}
-	
+
+    function list_record_locked_item() {
+        $data['locked_patient_lists'] = $this->admin_model->get_locked_patient_lists();
+        $this->template->load("templates/admin_panel_template", 'admin/list_record_locked_item', $data);
+    }
+
+    function release_locked_items() {
+        $ic = $this->uri->segment(3);
+        $insert_status = $this->db->where('IC_no', $ic)->update('patient', array('is_record_locked' => 0));
+
+        if ($insert_status)
+            redirect('admin/', 'refresh');
+    }
+
     function list_error_item() {
 
         if (!read_file('error_log/carif_error.txt')) {
@@ -174,70 +173,56 @@ class Admin extends CI_Controller {
 
     function submit_report() {
 
-        $sender = $this->input->post('sender');
+        $config['upload_path'] = './email_attachment_dir/';
+        $config['allowed_types'] = 'jpg|jpeg|png|gif|pdf';
+        $config['max_size'] = '100000';
+        //$config['max_width']  = '1024';
+        //$config['max_height']  = '768';
+
+        $this->load->library('upload', $config);
+
+        if (!$this->upload->do_upload()) {
+            $error = array('error' => $this->upload->display_errors());
+        } else {
+            $data = array('upload_data' => $this->upload->data());
+            $file_path = $data['upload_data']['file_path'];
+            $temp = $data['upload_data']['file_name'];
+            
+           // print_r($data);
+        }
+        //echo $file_path.'</br>';echo $temp;
+        //$file_path = $data['upload_data']['file_path']; 
+        //$path = $this->path_helper->set_realpath('email_attachment_dir/');
+        $receiver_email = $this->input->post('receiver_email');
+                //echo $receiver_email;
         $cc = $this->input->post('cc');
         $subject = $this->input->post('email_subject');
         $message = $this->input->post('message_contain');
 
-        //------------------------------------------------------------------------------//
-        $folder = $_SERVER["DOCUMENT_ROOT"] . '/' . 'Carif' . '/' . 'img' . '/';
+        $this->email->clear();
 
-        $aconfig['upload_path'] = $folder;
-        $aconfig['allowed_types'] = 'jpg|jpeg|png|gif|pdf';
-        $aconfig['max_size'] = '26214400'; // 25MB
-        $aconfig['overwrite'] = FALSE;
+        $config['protocol'] = 'smtp';
+        $config['smtp_host'] = 'ssl://smtp.gmail.com';
+        $config['smtp_port'] = '465';
+        $config['smtp_timeout'] = '7';
+        $config['smtp_user'] = 'cariftest@gmail.com';
+        $config['smtp_pass'] = 'carif123456';
+        $config['charset'] = 'utf-8';
+        $config['newline'] = "\r\n";
+        $config['mailtype'] = 'html'; // or text
+        $config['validation'] = TRUE; // bool whether to validate email or not     
+        $this->email->initialize($config);
 
-        $this->load->library('upload', $aconfig);
-
-        $filetype = $_FILES['userfile1']['type'];
-        $filesize = $_FILES['userfile1']['size'];
-
-        //file upload
-        if (!empty($filetype)) {
-
-            if (($filetype != "image/jpeg") && ($filetype != "image/jpg") && ($filetype != "image/gif") && ($filetype != "image/png") && ($filetype != "application/pdf")) {
-                $this->session->set_flashdata('msg', 'error: Wrong file uploaded ');
-            } elseif (($filesize > 26214400)) {
-
-                $this->session->set_flashdata('msg', 'error: File is too large');
-            } else {
-
-                $path_upload = $this->upload->do_upload('userfile1');
-
-                $filename = $_FILES['userfile1'];
-
-                //$update_data = array('filepath1' => $rcptno . '/' . $filename['name']);
-            }
-        }
-
-        $config = array(
-
-            'protocol' => 'smtp',
-            //'mailpath' => '/usr/sbin/sendmail',
-            'smtp_host' => 'ssl://smtp.googlemail.com',
-            'smtp_port' => 465,
-            'smtp_user' => 'apurbamy@gmail.com',
-            'smtp_pass' => 'apurbamy2012',
-            'mailtype' => 'html'
-        );
-
-        $this->load->library('email', $config);
-        $this->email->set_newline("\r\n");
-        $this->email->from('carif@bugreport.com', 'Carif Bug Report sent via CarifDBMS');
-        $this->email->to($sender);
+        $this->email->from('cariftest@gmail.com', 'Carif Admin submit report sent via CarifDBMS');
+        $this->email->to($receiver_email);
         $this->email->cc($cc);
         $this->email->subject($subject);
         $this->email->message($message);
-        $this->email->attach($folder . '/' . $filename['name']);
-        $a = $this->email->send();
-
-        $this->email->print_debugger();
-
-
-
-        if ($a) {
-
-            redirect('admin/admin_panel/submit_report');
+        $this->email->attach($file_path.$temp);
+        if ($this->email->send() == TRUE) {
+            echo 'Success';
+            //$this->email->print_debugger();
+            //redirect('admin/admin_panel/submit_report','refresh');
         }
     }
 
