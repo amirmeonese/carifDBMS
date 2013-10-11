@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 02, 2013 at 01:50 AM
+-- Generation Time: Oct 11, 2013 at 04:44 AM
 -- Server version: 5.6.11
 -- PHP Version: 5.5.0
 
@@ -236,8 +236,6 @@ CREATE TABLE IF NOT EXISTS `patient` (
   `ethnicity` char(50) NOT NULL,
   `blood_group` char(50) NOT NULL,
   `comment` char(200) NOT NULL,
-  `cogs_study_id` char(50) NOT NULL,
-  `2nd_mammo_test_flag` tinyint(1) NOT NULL,
   `d_o_b` date NOT NULL,
   `d_o_d` date NOT NULL,
   `place_of_birth` char(250) NOT NULL,
@@ -381,6 +379,25 @@ CREATE TABLE IF NOT EXISTS `patient_cancer_treatment` (
   PRIMARY KEY (`patient_cancer_treatment_id`),
   KEY `fk_patient_cancer_treatment_patient_cancer_id` (`patient_cancer_id`),
   KEY `fk_patient_cancer_treatment_treatment_id` (`treatment_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `patient_cogs_studies`
+--
+
+CREATE TABLE IF NOT EXISTS `patient_cogs_studies` (
+  `COGS_studies_id` bigint(10) NOT NULL AUTO_INCREMENT,
+  `patient_ic_no` bigint(18) NOT NULL,
+  `COGS_studies_name` varchar(50) NOT NULL,
+  `COGS_studies_no` varchar(50) NOT NULL,
+  `created_on` date NOT NULL,
+  `modified_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified_by` varchar(50) NOT NULL,
+  `is_deleted` tinyint(1) NOT NULL,
+  `deleted_on` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  PRIMARY KEY (`COGS_studies_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -1125,7 +1142,7 @@ CREATE TABLE IF NOT EXISTS `patient_risk_reducing_surgery` (
   `patient_risk_reducing_surgery_id` int(10) NOT NULL AUTO_INCREMENT,
   `patient_studies_id` int(10) NOT NULL,
   `had_new_lesion_surgery_flag` tinyint(1) NOT NULL,
-  `had_complete_removal_surgery` tinyint(1) NOT NULL,
+  `had_complete_removal_surgery_flag` tinyint(1) NOT NULL,
   `created_on` date NOT NULL,
   `modified_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modified_by` varchar(50) NOT NULL,
@@ -1194,7 +1211,7 @@ CREATE TABLE IF NOT EXISTS `patient_studies` (
   `consent_given_by` varchar(250) NOT NULL,
   `consent_response` varchar(250) NOT NULL,
   `consent_version` varchar(250) NOT NULL,
-  `relation_to_study_flag` tinyint(1) NOT NULL,
+  `relation_to_study` varchar(50) NOT NULL,
   `referral_to` varchar(250) NOT NULL DEFAULT '',
   `referral_to_genetic_counselling` varchar(250) NOT NULL DEFAULT '',
   `referral_source` text NOT NULL,
@@ -1430,21 +1447,23 @@ CREATE TABLE IF NOT EXISTS `users` (
   `edit_privilege` tinyint(1) NOT NULL,
   `delete_privilege` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
 
 --
 -- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `suspend`, `reset_password_invalid_attempts`, `reset_password_counter`, `first_name`, `last_name`, `phone`, `current_city`, `country`, `profile_picture_path`, `user_language`, `add_privilege`, `view_privilege`, `edit_privilege`, `delete_privilege`) VALUES
-(1, '\0\0', 'administrator', '59beecdf7fc966e2f17fd8f65a4a9aeb09d4a3d4', '9462e8eee0', 'admin@admin.com', '', NULL, NULL, '9d029802e28cd9c768e8e62277c0df49ec65c48c', 1268889823, 1380667961, 1, 0, 0, 0, 'Admin', 'istrator', '0', NULL, NULL, NULL, NULL, 1, 1, 1, 0),
+(1, '\0\0', 'administrator', '59beecdf7fc966e2f17fd8f65a4a9aeb09d4a3d4', '9462e8eee0', 'admin@admin.com', '', NULL, NULL, '9d029802e28cd9c768e8e62277c0df49ec65c48c', 1268889823, 1381378736, 1, 0, 0, 0, 'Admin', 'istrator', '0', NULL, NULL, NULL, NULL, 1, 1, 1, 0),
 (2, '\0\0', 'nazmul', '59beecdf7fc966e2f17fd8f65a4a9aeb09d4a3d4', '9462e8eee0', 'nazmul@apurbatech.com', '', NULL, NULL, NULL, 1268889823, 1373438882, 1, 0, 0, 0, 'Nazmul', 'Hasan', '0', NULL, NULL, NULL, NULL, 1, 1, 1, 0),
 (3, '\0\0', 'alamgir', '59beecdf7fc966e2f17fd8f65a4a9aeb09d4a3d4', '9462e8eee0', 'alamgir@apurbatech.com', '', NULL, NULL, NULL, 1268889823, 1380003462, 1, 0, 0, 0, 'Alamgir', 'Kabir', '0', NULL, NULL, NULL, NULL, 1, 1, 1, 0),
 (4, '\0\0', 'fariza', '59beecdf7fc966e2f17fd8f65a4a9aeb09d4a3d4', '9462e8eee0', 'fariza@apurbatech.com', '', NULL, NULL, NULL, 1268889823, 1375689996, 1, 0, 0, 0, 'Fariza', 'Amir', '0', NULL, NULL, NULL, NULL, 1, 1, 1, 0),
 (5, '\0\0', 'nor', '59beecdf7fc966e2f17fd8f65a4a9aeb09d4a3d4', '9462e8eee0', 'azriah.aziz@apurbatech.com', '', NULL, NULL, NULL, 1268889823, 1373438882, 1, 0, 0, 0, 'Nor', 'Azriah', '0', NULL, NULL, NULL, NULL, 1, 1, 1, 0),
 (6, '::1', '1', '5aa1cf374db58cfc254d0238f5f510b2', 'ecf965a6f606c708d9794321c602415f41b8869b', 'abc@yahoo.com', NULL, NULL, NULL, NULL, 0, NULL, NULL, 0, 0, 0, 'Pulak', 'Roy', NULL, NULL, NULL, NULL, NULL, 1, 1, 1, 1),
 (7, '127.0.0.1', 'hayati', '24e601e426c48ca2b35a37218d129426', '756f02d5a3f3f77aa4cb3e29cddb82ce97bdd11a', 'farizaamir@gmail.com', NULL, NULL, NULL, NULL, 0, NULL, NULL, 0, 0, 0, 'hayati', 'zanal', NULL, NULL, NULL, NULL, NULL, 1, 1, 0, 0),
-(8, '127.0.0.1', 'firdaus', '05f60571e710fbe08c046156b4512306', '0cda0b86a43c5ef14b2dd2d3a61d8a869b3300dc', 'farizaamir@apurbatech.com', NULL, NULL, NULL, NULL, 0, NULL, NULL, 0, 0, 0, 'Firdaus', 'Shaha', NULL, NULL, NULL, NULL, NULL, 1, 1, 1, 1);
+(8, '127.0.0.1', 'firdaus', '05f60571e710fbe08c046156b4512306', '0cda0b86a43c5ef14b2dd2d3a61d8a869b3300dc', 'farizaamir@apurbatech.com', NULL, NULL, NULL, NULL, 0, NULL, NULL, 0, 0, 0, 'Firdaus', 'Shaha', NULL, NULL, NULL, NULL, NULL, 1, 1, 1, 1),
+(9, '127.0.0.1', 'apurba', '5eb9db4a1de1213b16ba7f528bec7a3e', 'b4ed1869715559e7eb7bd7b03187eef5e90aec23', 'farizaamir@apurbatech.com', NULL, NULL, NULL, NULL, 0, NULL, NULL, 0, 0, 0, 'test', 'last', NULL, NULL, NULL, NULL, NULL, 1, 1, 0, 0),
+(10, '\0\0', 'testuser', '679cfd73df416fc2c915d5f22815e9c8f0b1d1ec', NULL, 'farizaamir@apurbatech.com', NULL, NULL, NULL, NULL, 1381384886, 1381384923, 1, 0, 0, 0, 'test user', 'two', NULL, NULL, NULL, NULL, NULL, 1, 1, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -1460,7 +1479,7 @@ CREATE TABLE IF NOT EXISTS `users_groups` (
   UNIQUE KEY `uc_users_groups` (`user_id`,`group_id`),
   KEY `fk_users_groups_users1_idx` (`user_id`),
   KEY `fk_users_groups_groups1_idx` (`group_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
 
 --
 -- Dumping data for table `users_groups`
@@ -1473,7 +1492,8 @@ INSERT INTO `users_groups` (`id`, `user_id`, `group_id`) VALUES
 (4, 3, 2),
 (5, 4, 2),
 (6, 5, 2),
-(7, 8, 1);
+(7, 8, 1),
+(8, 10, 2);
 
 --
 -- Constraints for dumped tables
