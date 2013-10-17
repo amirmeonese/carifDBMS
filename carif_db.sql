@@ -2,10 +2,10 @@
 -- version 4.0.4.1
 -- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Generation Time: Oct 11, 2013 at 04:44 AM
--- Server version: 5.6.11
--- PHP Version: 5.5.0
+-- Host: localhost
+-- Generation Time: Oct 17, 2013 at 07:25 AM
+-- Server version: 5.6.12
+-- PHP Version: 5.5.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -948,7 +948,6 @@ CREATE TABLE IF NOT EXISTS `patient_parity_table` (
 
 CREATE TABLE IF NOT EXISTS `patient_pathology` (
   `patient_pathology_id` int(10) NOT NULL AUTO_INCREMENT,
-  `patient_studies_id` int(10) NOT NULL,
   `cancer_id` int(10) NOT NULL,
   `tissue_site` text NOT NULL,
   `type_of_report` text NOT NULL,
@@ -970,9 +969,10 @@ CREATE TABLE IF NOT EXISTS `patient_pathology` (
   `modified_by` varchar(50) NOT NULL,
   `is_deleted` tinyint(1) NOT NULL DEFAULT '0',
   `deleted_on` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `patient_cancer_id` int(5) DEFAULT NULL,
   PRIMARY KEY (`patient_pathology_id`),
-  KEY `fk_patient_pathology_patient_studies_id` (`patient_studies_id`),
-  KEY `cancer_id` (`cancer_id`)
+  KEY `cancer_id` (`cancer_id`),
+  KEY `fk_patient_cancer_id` (`patient_cancer_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -1454,7 +1454,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `suspend`, `reset_password_invalid_attempts`, `reset_password_counter`, `first_name`, `last_name`, `phone`, `current_city`, `country`, `profile_picture_path`, `user_language`, `add_privilege`, `view_privilege`, `edit_privilege`, `delete_privilege`) VALUES
-(1, '\0\0', 'administrator', '59beecdf7fc966e2f17fd8f65a4a9aeb09d4a3d4', '9462e8eee0', 'admin@admin.com', '', NULL, NULL, '9d029802e28cd9c768e8e62277c0df49ec65c48c', 1268889823, 1381378736, 1, 0, 0, 0, 'Admin', 'istrator', '0', NULL, NULL, NULL, NULL, 1, 1, 1, 0),
+(1, '\0\0', 'administrator', '59beecdf7fc966e2f17fd8f65a4a9aeb09d4a3d4', '9462e8eee0', 'admin@admin.com', '', NULL, NULL, '9d029802e28cd9c768e8e62277c0df49ec65c48c', 1268889823, 1381478406, 1, 0, 0, 0, 'Admin', 'istrator', '0', NULL, NULL, NULL, NULL, 1, 1, 1, 0),
 (2, '\0\0', 'nazmul', '59beecdf7fc966e2f17fd8f65a4a9aeb09d4a3d4', '9462e8eee0', 'nazmul@apurbatech.com', '', NULL, NULL, NULL, 1268889823, 1373438882, 1, 0, 0, 0, 'Nazmul', 'Hasan', '0', NULL, NULL, NULL, NULL, 1, 1, 1, 0),
 (3, '\0\0', 'alamgir', '59beecdf7fc966e2f17fd8f65a4a9aeb09d4a3d4', '9462e8eee0', 'alamgir@apurbatech.com', '', NULL, NULL, NULL, 1268889823, 1380003462, 1, 0, 0, 0, 'Alamgir', 'Kabir', '0', NULL, NULL, NULL, NULL, 1, 1, 1, 0),
 (4, '\0\0', 'fariza', '59beecdf7fc966e2f17fd8f65a4a9aeb09d4a3d4', '9462e8eee0', 'fariza@apurbatech.com', '', NULL, NULL, NULL, 1268889823, 1375689996, 1, 0, 0, 0, 'Fariza', 'Amir', '0', NULL, NULL, NULL, NULL, 1, 1, 1, 0),
@@ -1634,8 +1634,9 @@ ALTER TABLE `patient_parity_table`
 -- Constraints for table `patient_pathology`
 --
 ALTER TABLE `patient_pathology`
-  ADD CONSTRAINT `fk_patient_pathology_patient_studies_id` FOREIGN KEY (`patient_studies_id`) REFERENCES `patient_studies` (`patient_studies_id`) ON DELETE CASCADE ON UPDATE NO ACTION,
-  ADD CONSTRAINT `patient_pathology_ibfk_1` FOREIGN KEY (`cancer_id`) REFERENCES `cancer` (`cancer_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `patient_pathology_ibfk_1` FOREIGN KEY (`cancer_id`) REFERENCES `cancer` (`cancer_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `patient_pathology_ibfk_2` FOREIGN KEY (`patient_cancer_id`) REFERENCES `patient_cancer` (`patient_cancer_id`),
+  ADD CONSTRAINT `patient_pathology_ibfk_3` FOREIGN KEY (`patient_cancer_id`) REFERENCES `patient_cancer` (`patient_cancer_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `patient_pathology_staining_status`
