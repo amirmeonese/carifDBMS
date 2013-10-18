@@ -1,6 +1,8 @@
 $( document ).ready(function() {
-	
-	$.getJSON("http://localhost/carifDBMS/js/plugins/dynamic-dropdown/data.json", function(data) 
+	if (!window.location.origin)
+		window.location.origin = window.location.protocol+"//"+window.location.host;
+   
+	$.getJSON(window.location.origin + "/carifDBMS/js/plugins/dynamic-dropdown/data.json", function(data) 
 	{	
 		//var key = $dropdown.val();
 		var vals = [];
@@ -43,7 +45,7 @@ $( document ).ready(function() {
 			var selectedValue = $('#' + passedID).val();
 			var newItemName = rename_item_name.value;
 			
-			$.getJSON("http://localhost/carifDBMS/js/plugins/dynamic-dropdown/data.json", function(data) 
+			$.getJSON(window.location.origin + "/carifDBMS/js/plugins/dynamic-dropdown/data.json", function(data) 
 			{	
 				var vals = [];
 				
@@ -64,7 +66,7 @@ $( document ).ready(function() {
 						});
 						
 						//Call PHP to modify JSON file
-						$.ajax({ url: 'http://localhost/carifDBMS/js/plugins/dynamic-dropdown/process.php',
+						$.ajax({ url: window.location.origin + '/carifDBMS/js/plugins/dynamic-dropdown/process.php',
 							 data: {action: 'rename',id:passedID, text: appendedText},
 							 type: 'post',
 							 success: function(output) {
@@ -95,7 +97,7 @@ $( document ).ready(function() {
 							appendedText = appendedText + value + ',';
 						});
 						
-						$.ajax({ url: 'http://localhost/carifDBMS/js/plugins/dynamic-dropdown/process.php',
+						$.ajax({ url: window.location.origin + '/carifDBMS/js/plugins/dynamic-dropdown/process.php',
 							 data: {action: 'rename',id:passedID, text: appendedText},
 							 type: 'post',
 							 success: function(output) {
