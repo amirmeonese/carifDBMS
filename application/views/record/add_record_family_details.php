@@ -3,18 +3,21 @@
         <p>Add Family</p>
     </div>
 	
-    <?php echo form_open('record/patient_family_record_insertion'); ?>
+    <?php 
+	$attributes = array('id' => 'family-details-form');
+	echo form_open("record/patient_family_record_insertion", $attributes);
+	?>
 	 <div class="container" id="add_record_form_section_1">
         <div height="30px">&nbsp;</div>
 		<table>
 		<tr> 
 			<td>
-				<?php echo $family_no; ?>: 
+				<label for="family_no"><?php echo $family_no; ?>: </label>
 				<?php echo form_input('family_no'); ?>
 			</td>
 			<td>
-                    <?php echo $IC_no; ?>: 
-                    <?php echo form_input('IC_no'); ?>
+				<label for="IC_no"><?php echo $IC_no; ?>: </label>
+				<?php echo form_input('IC_no'); ?>
 			</td>
 		</tr>
 		</table>
@@ -25,7 +28,7 @@
         <table>
             <tr>
                 <td>
-                    <?php echo $mother_fullname; ?>: 
+                    <label for="IC_no"><?php echo $mother_fullname; ?>: </label>
                     <?php echo form_input('mother_fullname'); ?>
                 </td>
                 <td>

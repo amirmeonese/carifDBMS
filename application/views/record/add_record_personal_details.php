@@ -2,7 +2,10 @@
     <div id="add_record_header" class="row">
         <p>Add Patient</p>
     </div>
-    <?php echo form_open("record/patient_record_insertion"); ?>
+    <?php 
+	$attributes = array('id' => 'personal-details-form');
+	echo form_open("record/patient_record_insertion", $attributes);
+	?>
     <div class="container" id="add_record_form_section_personal">
         <div height="30px">&nbsp;</div>
         <?php
@@ -11,11 +14,11 @@
         <table>
             <tr>
                <td>
-                    <?php echo $surname; ?>: 
+					<label for="surname"><?php echo $surname; ?>: </label>
                     <?php echo form_input('surname'); ?>
                 </td>
 				<td>
-                    <?php echo $fullname; ?>: 
+					<label for="fullname"><?php echo $fullname; ?>: </label>
                     <?php echo form_input('fullname'); ?>
                 </td>
                 
@@ -24,7 +27,7 @@
                     <?php echo form_input('maiden_name'); ?>
                 </td>
                 <td>
-                    <?php echo $family_no; ?>: 
+					<label for="family_no"><?php echo $family_no; ?>: </label>
                     <?php echo form_input('family_no'); ?>
                 </td>
             </tr>
@@ -34,8 +37,8 @@
                     <?php echo form_dropdown('nationality', $nationalities); ?>
                 </td>
                 <td>
-                    <?php echo $IC_no; ?>: 
-                    <?php echo form_input('IC_no'); ?>
+					<label for="IC_no"><?php echo $IC_no; ?>: </label>
+                    <?php echo form_input("IC_no"); ?>
 
 
                 </td>

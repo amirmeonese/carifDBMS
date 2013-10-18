@@ -34,12 +34,14 @@
         <script src="<?php echo base_url(); ?>js/jquery-1.9.1.js"></script>
         <script src="<?php echo base_url(); ?>js/jquery-ui.js"></script>
         <link rel="stylesheet" href="<?php echo base_url(); ?>resources/demos/style.css" />
-        <script>
+	<script type="text/javascript" src="<?php echo base_url(); ?>js/plugins/jquery-validation/dist/jquery.validate.js"></script>
+	<script type="text/javascript" src="<?php echo base_url(); ?>js/plugins/jquery-validation/dist/additional-methods.js"></script>
+	<script type="text/javascript" src="<?php echo base_url(); ?>js/plugins/jquery-validation/carif_form_rules.js"></script>
+	<script>
         $(function() {
           $( ".datepicker" ).datepicker();
         });
-  
-        </script>	
+	</script>	
     </head>
     <body>
 

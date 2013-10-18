@@ -2,7 +2,10 @@
     <div id="add_record_header" class="row">
         <p>Counselling</p>
     </div>
-    <?php echo form_open('record/interview_home_insersion'); ?>
+	<?php 
+	$attributes = array('id' => 'interview-details-form');
+	echo form_open("record/interview_home_insersion", $attributes);
+	?>
     <div class="container" id="interview_form_section">
         <div height="30px">&nbsp;</div>
         <?php
@@ -11,7 +14,7 @@
         <table id="add_interview_form_section_1">
             <tr>
                 <td>
-                    <?php echo $IC_no; ?>: 
+                   <label for="IC_no"><?php echo $IC_no; ?>: </label>
                     <?php echo form_input('IC_no'); ?>
                 </td>
             </tr>
