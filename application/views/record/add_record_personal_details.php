@@ -34,7 +34,7 @@
             <tr>
                 <td>
                     <?php echo $nationality; ?>: 
-                    <?php echo form_dropdown('nationality', $nationalities); ?>
+                    <?php echo form_dropdown('nationality', $nationalities, NULL, 'id="nationality"'); ?>
                 </td>
                 <td>
 					<label for="IC_no"><?php echo $IC_no; ?>: </label>
@@ -44,7 +44,7 @@
                 </td>
                 <td>
                     <?php echo $gender; ?>: 
-                    <?php echo form_dropdown('gender', $genderTypes); ?>
+                    <?php echo form_dropdown('gender', $genderTypes, NULL, 'id="gender"'); ?>
                 </td>
                 <td>
                     <?php echo $ethinicity; ?>: 

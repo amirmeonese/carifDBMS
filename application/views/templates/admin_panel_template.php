@@ -29,9 +29,14 @@
 
         <script type="text/javascript" src="<?php echo base_url(); ?>js/jquery.min.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>js/bootstrap.js"></script>
-		<script>
+		<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+		  <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+		  <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+		<link rel="stylesheet" href="/resources/demos/style.css" />
+		<script type="text/javascript" src="<?php echo base_url(); ?>js/plugins/dynamic-dropdown/dropdown_lists.js"></script>
+
+	<script>
 			function onErrorLogDownload() {
-				alert('on 1click');
 				var url='http://localhost/carifDBMS/error_log/carif_error.txt';  
 				window.open(url,'Download');
 				//window.location="../error_log/carif_error.txt";
@@ -41,7 +46,30 @@
     </head>
     <body>
 
-        <!-- /navigation bar starts here -->
+        <!-- /Dialog box definition is here -->
+		<div class="dialog-form" title="Rename">
+
+		<form>
+		<fieldset>
+		<label for="name">Item name</label>
+		<input type="text" name="rename_item_name" id="rename_item_name" class="text ui-widget-content ui-corner-all" />
+		</fieldset>
+		</form>
+		</div>
+		 <!-- /Dialog box definition ends here -->
+		
+		<!-- /Dialog box definition is here -->
+		<div class="dialog-form-add-new" title="Add new">
+
+		<form>
+		<fieldset>
+		<label for="name">Item name</label>
+		<input type="text" name="add_item_name" id="add_item_name" class="text ui-widget-content ui-corner-all" />
+		</fieldset>
+		</form>
+		</div>
+		 <!-- /Dialog box definition ends here -->
+		 
 		<div class="container">
 			<div class="row" style="padding-top:20px;">
 				<div class="row">

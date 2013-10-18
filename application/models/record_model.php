@@ -499,28 +499,13 @@ class Record_model extends CI_Model {
 
         $data['nationality'] = 'Nationality';
         $data['nationalities'] = array(
-			 '' => '',
-            'American' => 'American',
-            'Australian' => 'Australian',
-            'Bangladeshi' => 'Bangladeshi',
-            'British' => 'British',
-            'English' => 'English',
-            'French' => 'French',
-            'Indonesian' => 'Indonesian',
-            'Japanese' => 'Japanese',
-            'Malaysian' => 'Malaysian',
-            'Philippine' => 'Philippine',
-            'Singaporean' => 'Singaporean',
-            'Saudi Arabian' => 'Saudi Arabian',
-            'Thai' => 'Thai'
+			 'Dynamic Dropdown' => 'Dynamic Dropdown'
         );
         /*
          */
         $data['gender'] = 'Gender';
         $data['genderTypes'] = array(
-			 '' => '',
-            'Male' => 'Male',
-            'Female' => 'Female'
+			'Dynamic Dropdown' => 'Dynamic Dropdown'
         );
         $data['DOB'] = 'Date of birth';
         $data['place_of_birth'] = 'Place of birth';

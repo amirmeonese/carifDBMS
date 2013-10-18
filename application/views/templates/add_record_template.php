@@ -37,6 +37,7 @@
 	<script type="text/javascript" src="<?php echo base_url(); ?>js/plugins/jquery-validation/dist/jquery.validate.js"></script>
 	<script type="text/javascript" src="<?php echo base_url(); ?>js/plugins/jquery-validation/dist/additional-methods.js"></script>
 	<script type="text/javascript" src="<?php echo base_url(); ?>js/plugins/jquery-validation/carif_form_rules.js"></script>
+	<script type="text/javascript" src="<?php echo base_url(); ?>js/plugins/dynamic-dropdown/dropdown_lists.js"></script>
 	<script>
         $(function() {
           $( ".datepicker" ).datepicker();
