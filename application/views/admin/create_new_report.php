@@ -25,18 +25,21 @@
 		<table>
 			<tr><td id="label1">Dropdowns</td></tr>
 			<tr>
-				<td>
-					<?php echo 'Nationalities'; ?>
-					<?php echo form_dropdown('nationality', $nationalities, NULL, 'id="nationality"'); ?>
+				<td colspan="2">
+					<select id="first-choice">
+					<option selected value="base">Please Select</option>
+					<option value="nationality">Nationality</option>
+					<option value="gender">Gender</option>
+					</select>
 				</td>
-				<td><button id="nationality" class="rename">Rename</button><button id="nationality" class="add-new">Add new</button><button id="nationality" class="delete">Delete</button></td>
 			</tr>
 			<tr>
 				<td>
-					<?php echo 'Gender'; ?>
-					<?php echo form_dropdown('gender', $genderTypes, NULL, 'id="gender"'); ?>
+					<select id="second-choice">
+					<option>Please choose from above</option>
+					</select>
 				</td>
-				<td><button id="gender" class="rename">Rename</button><button id="gender" class="add-new">Add new</button><button id="gender" class="delete">Delete</button></td>
+				<td><button id="renameBtnID" class="rename">Rename</button><button id="addBtnID" class="add-new">Add new</button><button id="deleteBtnID" class="delete">Delete</button></td>
 			</tr>
 		</table>	
 		<p><a class="doneButton" href="<?php echo base_url(). '/admin/'; ?>">Back</a></p>

@@ -11,7 +11,7 @@
 		switch($id){
 			case 'nationality':
 			{
-				$data['nationalities'] = $text;
+				$data['nationality'] = $text;
 				break;
 			}
 			case 'gender':

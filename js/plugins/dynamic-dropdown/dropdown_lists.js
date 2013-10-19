@@ -2,6 +2,42 @@ $( document ).ready(function() {
 	if (!window.location.origin)
 		window.location.origin = window.location.protocol+"//"+window.location.host;
    
+   //FIRST DIV
+	$("#first-choice").change(function() {
+		var $dropdown = $(this);
+		var key = $dropdown.val();
+		
+		//Reassign IDs to button for editing
+		$("#renameBtnID").attr("id",key);
+		$("#addBtnID").attr("id",key);
+		$("#deleteBtnID").attr("id",key);
+		
+		$.getJSON(window.location.origin + "/carifDBMS/js/plugins/dynamic-dropdown/data.json", function(data) {
+
+			var vals = [];
+								
+			switch(key) {
+				case 'nationality':
+					vals = data.nationality.split(",");
+					break;
+				case 'gender':
+					vals = data.gender.split(",");
+					break;
+				case 'base':
+					vals = ['Please choose from above'];
+			}
+			
+			var $secondChoice = $("#second-choice");
+			$secondChoice.empty();
+			$.each(vals, function(index, value) {
+				$secondChoice.append("<option>" + value + "</option>");
+			});
+
+			alert('Dropdown updated!');
+		});
+	});
+   
+   //SECOND DIV
 	$.getJSON(window.location.origin + "/carifDBMS/js/plugins/dynamic-dropdown/data.json", function(data) 
 	{	
 		//var key = $dropdown.val();
@@ -18,7 +54,7 @@ $( document ).ready(function() {
 				// vals = ['Please choose from above'];
 		// }
 		
-		vals = data.nationalities.split(",");
+		vals = data.nationality.split(",");
 		var $secondChoice = $("#nationality");
 		$secondChoice.empty();
 		$.each(vals, function(index, value) {
@@ -42,7 +78,7 @@ $( document ).ready(function() {
       buttons: {
         "Save changes": function() {
 			var passedID = $(this).data('id');
-			var selectedValue = $('#' + passedID).val();
+			var selectedValue = $('#second-choice').val();
 			var newItemName = rename_item_name.value;
 			
 			$.getJSON(window.location.origin + "/carifDBMS/js/plugins/dynamic-dropdown/data.json", function(data) 
@@ -52,7 +88,7 @@ $( document ).ready(function() {
 				switch(passedID) {
 					case 'nationality':
 					{
-						vals = data.nationalities.split(",");
+						vals = data.nationality.split(",");
 						
 						$.each(vals, function(index, value) {
 							if(value == selectedValue)
@@ -72,7 +108,7 @@ $( document ).ready(function() {
 							 success: function(output) {
 								alert('Changes saved!');
 								//Redraw dropdown
-								var $secondChoice = $("#nationality");
+								var $secondChoice = $("#second-choice");
 								$secondChoice.empty();
 								$.each(vals, function(index, value) {
 									$secondChoice.append("<option>" + value + "</option>");
@@ -103,7 +139,7 @@ $( document ).ready(function() {
 							 success: function(output) {
 								 alert('Changes saved!');
 								 //Redraw dropdown
-								var $secondChoice = $("#gender");
+								var $secondChoice = $("#second-choice");
 								$secondChoice.empty();
 								$.each(vals, function(index, value) {
 									$secondChoice.append("<option>" + value + "</option>");
@@ -147,7 +183,7 @@ $( document ).ready(function() {
 
 	$( ".rename" ).button().click(function() {
 		var buttonID = this.id;
-		var selectedValue = $('#' + buttonID).val();
+		var selectedValue = $('#second-choice').val();
 		$("#rename_item_name").val(selectedValue);
 		$( ".dialog-form" ).data('id', buttonID).dialog( "open" );
 	});
