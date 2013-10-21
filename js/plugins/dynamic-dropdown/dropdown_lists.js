@@ -89,66 +89,41 @@ $( document ).ready(function() {
 					case 'nationality':
 					{
 						vals = data.nationality.split(",");
-						
-						$.each(vals, function(index, value) {
-							if(value == selectedValue)
-								vals[index] = newItemName;
-						});
-						
-						var appendedText = '';
-						$.each(vals, function(index, value) {
-						
-							appendedText = appendedText + value + ',';
-						});
-						
-						//Call PHP to modify JSON file
-						$.ajax({ url: window.location.origin + '/carifDBMS/js/plugins/dynamic-dropdown/process.php',
-							 data: {action: 'rename',id:passedID, text: appendedText},
-							 type: 'post',
-							 success: function(output) {
-								alert('Changes saved!');
-								//Redraw dropdown
-								var $secondChoice = $("#second-choice");
-								$secondChoice.empty();
-								$.each(vals, function(index, value) {
-									$secondChoice.append("<option>" + value + "</option>");
-								});
-						
-							  }
-						});
 						break;
 					}
 					case 'gender':
 					{
 						vals = data.gender.split(",");
-						
-						$.each(vals, function(index, value) {
-							if(value == selectedValue)
-								vals[index] = newItemName;
-						});
-						
-						var appendedText = '';
-						$.each(vals, function(index, value) {
-						
-							appendedText = appendedText + value + ',';
-						});
-						
-						$.ajax({ url: window.location.origin + '/carifDBMS/js/plugins/dynamic-dropdown/process.php',
-							 data: {action: 'rename',id:passedID, text: appendedText},
-							 type: 'post',
-							 success: function(output) {
-								 alert('Changes saved!');
-								 //Redraw dropdown
-								var $secondChoice = $("#second-choice");
-								$secondChoice.empty();
-								$.each(vals, function(index, value) {
-									$secondChoice.append("<option>" + value + "</option>");
-								});
-							  }
-						});
 						break;
 					}
 				}
+				
+				$.each(vals, function(index, value) {
+					if(value == selectedValue)
+						vals[index] = newItemName;
+				});
+				
+				var appendedText = '';
+				$.each(vals, function(index, value) {
+				
+					appendedText = appendedText + value + ',';
+				});
+				
+				//Call PHP to modify JSON file
+				$.ajax({ url: window.location.origin + '/carifDBMS/js/plugins/dynamic-dropdown/process.php',
+					 data: {action: 'dropdown',id:passedID, text: appendedText},
+					 type: 'post',
+					 success: function(output) {
+						alert('Changes saved!');
+						//Redraw dropdown
+						var $secondChoice = $("#second-choice");
+						$secondChoice.empty();
+						$.each(vals, function(index, value) {
+							$secondChoice.append("<option>" + value + "</option>");
+						});
+				
+					  }
+				});
 				
 			});
 
@@ -170,6 +145,53 @@ $( document ).ready(function() {
       modal: true,
       buttons: {
         "Save changes": function() {
+			var passedID = $(this).data('id');
+			var newItemName = add_item_name.value;
+			
+			$.getJSON(window.location.origin + "/carifDBMS/js/plugins/dynamic-dropdown/data.json", function(data) 
+			{	
+				var vals = [];
+				
+				switch(passedID) {
+					case 'nationality':
+					{
+						vals = data.nationality.split(",");
+						break;
+					}
+					case 'gender':
+					{
+						vals = data.gender.split(",");
+						break;
+					}
+				}
+				
+				//Add item into end of array
+				vals.push( newItemName );
+				
+				var appendedText = '';
+				$.each(vals, function(index, value) {
+				
+					appendedText = appendedText + value + ',';
+				});
+				
+				//Call PHP to modify JSON file
+				$.ajax({ url: window.location.origin + '/carifDBMS/js/plugins/dynamic-dropdown/process.php',
+					 data: {action: 'dropdown',id:passedID, text: appendedText},
+					 type: 'post',
+					 success: function(output) {
+						alert('Changes saved!');
+						//Redraw dropdown
+						var $secondChoice = $("#second-choice");
+						$secondChoice.empty();
+						$.each(vals, function(index, value) {
+							$secondChoice.append("<option>" + value + "</option>");
+						});
+				
+					  }
+				});
+				
+			});
+			
 			$( this ).dialog( "close" );
         },
         Cancel: function() {
@@ -182,18 +204,82 @@ $( document ).ready(function() {
     });
 
 	$( ".rename" ).button().click(function() {
-		var buttonID = this.id;
+		
+		var selectedID = $('#first-choice').val();
 		var selectedValue = $('#second-choice').val();
-		$("#rename_item_name").val(selectedValue);
-		$( ".dialog-form" ).data('id', buttonID).dialog( "open" );
+		
+		if(selectedValue == '')
+			alert('Please select item to be renamed.');
+		else
+		{
+			$("#rename_item_name").val(selectedValue);
+			$( ".dialog-form" ).data('id', selectedID).dialog( "open" );
+		}
 	});
 
 	$( ".add-new" ).button().click(function() {
-		$( ".dialog-form-add-new" ).dialog( "open" );
+		var selectedID = $('#first-choice').val();
+		$( ".dialog-form-add-new" ).data('id', selectedID).dialog( "open" );
 	});
 	
 	$( ".delete" ).button().click(function() {
-		var buttonID = this.id;
-		var selectedValue = $('#' + buttonID).val();
+		var selectedID = $('#first-choice').val();
+		var selectedValue = $('#second-choice').val();
+		
+		if(selectedValue == '')
+			alert('Please select item to be deleted.');
+		else
+			deleteItem(selectedID, selectedValue);
 	});
+	
+	function deleteItem(passedID, selectedValue)
+	{
+		$.getJSON(window.location.origin + "/carifDBMS/js/plugins/dynamic-dropdown/data.json", function(data) 
+		{	
+			var vals = [];
+			
+			switch(passedID) {
+				case 'nationality':
+				{
+					vals = data.nationality.split(",");
+					break;
+				}
+				case 'gender':
+				{
+					vals = data.gender.split(",");
+					break;
+				}
+			}
+			
+			//Delete item
+			$.each(vals, function(index, value) {
+					if(value == selectedValue)
+						vals.splice(index,1);
+				});
+			
+			var appendedText = '';
+			$.each(vals, function(index, value) {
+			
+				appendedText = appendedText + value + ',';
+			});
+			
+			//Call PHP to modify JSON file
+			$.ajax({ url: window.location.origin + '/carifDBMS/js/plugins/dynamic-dropdown/process.php',
+				 data: {action: 'dropdown',id:passedID, text: appendedText},
+				 type: 'post',
+				 success: function(output) {
+					alert('Changes saved!');
+					//Redraw dropdown
+					var $secondChoice = $("#second-choice");
+					$secondChoice.empty();
+					$.each(vals, function(index, value) {
+						$secondChoice.append("<option>" + value + "</option>");
+					});
+			
+				  }
+			});
+			
+		});
+	}
+	
 });

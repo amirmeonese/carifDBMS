@@ -1,5 +1,5 @@
 <?php
-	function renameItem($id, $text) {
+	function renameDropdownItem($id, $text) {
         
 		//Trim last comma
 		$text = rtrim($text, ",");
@@ -33,9 +33,9 @@
 		$text = $_POST['text'];
 		
 		switch($action) {
-			case 'rename' : 
+			case 'dropdown' : 
 			{
-				renameItem($id, $text);
+				renameDropdownItem($id, $text);
 				break;
 			}
 			case 'add' : addItem();break;
