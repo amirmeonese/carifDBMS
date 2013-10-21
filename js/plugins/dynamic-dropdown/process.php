@@ -10,15 +10,29 @@
 		
 		switch($id){
 			case 'nationality':
-			{
 				$data['nationality'] = $text;
 				break;
-			}
 			case 'gender':
-			{
 				$data['gender'] = $text;
 				break;
-			}
+			case 'marital_status':
+				$data['marital_status'] = $text;
+				break;
+			case 'COGS_study_id':
+				$data['COGS_study_id'] = $text;
+				break;
+			case 'income_level':
+				$data['income_level'] = $text;
+				break;
+			case 'status_source':
+				$data['status_source'] = $text;
+				break;
+			case 'alive_status':
+				$data['alive_status'] = $text;
+				break;
+			case 'studies_name':
+				$data['studies_name'] = $text;
+				break;
 		}
 		
 		// Writing modified data:

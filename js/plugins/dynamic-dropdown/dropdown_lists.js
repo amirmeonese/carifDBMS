@@ -1,16 +1,33 @@
 $( document ).ready(function() {
+	
 	if (!window.location.origin)
 		window.location.origin = window.location.protocol+"//"+window.location.host;
    
-   //FIRST DIV
+   // =================================================== //
+   // ================ FORMS SETUP ====================== //
+   // == FIlls in dropdowns with values from json file == //
+   // =================================================== //
+	$.getJSON(window.location.origin + "/carifDBMS/js/plugins/dynamic-dropdown/data.json", function(data) 
+	{	
+		var vals = [];
+		
+		$.each(data, function(key, value){
+			
+			vals = value.split(",");
+			var $secondChoice = $("#" + key);
+			$secondChoice.empty();
+			$.each(vals, function(index, value) {
+				$secondChoice.append("<option>" + value + "</option>");
+			});
+		});
+	});
+	
+	// ======================== //
+	//== ADMIN PANEL SETUPS ==//
+	// ======================== //
 	$("#first-choice").change(function() {
 		var $dropdown = $(this);
 		var key = $dropdown.val();
-		
-		//Reassign IDs to button for editing
-		$("#renameBtnID").attr("id",key);
-		$("#addBtnID").attr("id",key);
-		$("#deleteBtnID").attr("id",key);
 		
 		$.getJSON(window.location.origin + "/carifDBMS/js/plugins/dynamic-dropdown/data.json", function(data) {
 
@@ -23,6 +40,24 @@ $( document ).ready(function() {
 				case 'gender':
 					vals = data.gender.split(",");
 					break;
+				case 'marital_status':
+					vals = data.marital_status.split(",");
+					break;
+				case 'COGS_study_id':
+					vals = data.COGS_study_id.split(",");
+					break;
+				case 'income_level':
+					vals = data.income_level.split(",");
+					break;
+				case 'status_source':
+					vals = data.status_source.split(",");
+					break;
+				case 'alive_status':
+					vals = data.alive_status.split(",");
+					break;
+				case 'studies_name':
+					vals = data.studies_name.split(",");
+					break;
 				case 'base':
 					vals = ['Please choose from above'];
 			}
@@ -33,43 +68,9 @@ $( document ).ready(function() {
 				$secondChoice.append("<option>" + value + "</option>");
 			});
 
-			alert('Dropdown updated!');
 		});
 	});
    
-   //SECOND DIV
-	$.getJSON(window.location.origin + "/carifDBMS/js/plugins/dynamic-dropdown/data.json", function(data) 
-	{	
-		//var key = $dropdown.val();
-		var vals = [];
-							
-		// switch(key) {
-			// case 'beverages':
-				// vals = data.beverages.split(",");
-				// break;
-			// case 'snacks':
-				// vals = data.snacks.split(",");
-				// break;
-			// case 'base':
-				// vals = ['Please choose from above'];
-		// }
-		
-		vals = data.nationality.split(",");
-		var $secondChoice = $("#nationality");
-		$secondChoice.empty();
-		$.each(vals, function(index, value) {
-			$secondChoice.append("<option>" + value + "</option>");
-		});
-		
-		vals = data.gender.split(",");
-		$secondChoice = $("#gender");
-		$secondChoice.empty();
-		$.each(vals, function(index, value) {
-			$secondChoice.append("<option>" + value + "</option>");
-		});
-	});
-	
-	//== EDIT DROPDOWN LISTS==//
 	$( ".dialog-form" ).dialog({
       autoOpen: false,
       height: 200,
@@ -87,15 +88,29 @@ $( document ).ready(function() {
 				
 				switch(passedID) {
 					case 'nationality':
-					{
 						vals = data.nationality.split(",");
 						break;
-					}
 					case 'gender':
-					{
 						vals = data.gender.split(",");
 						break;
-					}
+					case 'marital_status':
+						vals = data.marital_status.split(",");
+						break;
+					case 'COGS_study_id':
+						vals = data.COGS_study_id.split(",");
+						break;
+					case 'income_level':
+						vals = data.income_level.split(",");
+						break;
+					case 'status_source':
+						vals = data.status_source.split(",");
+						break;
+					case 'alive_status':
+						vals = data.alive_status.split(",");
+						break;
+					case 'studies_name':
+						vals = data.studies_name.split(",");
+						break;
 				}
 				
 				$.each(vals, function(index, value) {
@@ -154,15 +169,29 @@ $( document ).ready(function() {
 				
 				switch(passedID) {
 					case 'nationality':
-					{
 						vals = data.nationality.split(",");
 						break;
-					}
 					case 'gender':
-					{
 						vals = data.gender.split(",");
 						break;
-					}
+					case 'marital_status':
+						vals = data.marital_status.split(",");
+						break;
+					case 'COGS_study_id':
+						vals = data.COGS_study_id.split(",");
+						break;
+					case 'income_level':
+						vals = data.income_level.split(",");
+						break;
+					case 'status_source':
+						vals = data.status_source.split(",");
+						break;
+					case 'alive_status':
+						vals = data.alive_status.split(",");
+						break;
+					case 'studies_name':
+						vals = data.studies_name.split(",");
+						break;
 				}
 				
 				//Add item into end of array
@@ -240,15 +269,31 @@ $( document ).ready(function() {
 			
 			switch(passedID) {
 				case 'nationality':
-				{
 					vals = data.nationality.split(",");
 					break;
-				}
 				case 'gender':
-				{
 					vals = data.gender.split(",");
 					break;
-				}
+				case 'marital_status':
+					vals = data.marital_status.split(",");
+					break;
+				case 'COGS_study_id':
+					vals = data.COGS_study_id.split(",");
+					break;
+				case 'income_level':
+					vals = data.income_level.split(",");
+					break;
+				case 'status_source':
+					vals = data.status_source.split(",");
+					break;
+				case 'alive_status':
+					vals = data.alive_status.split(",");
+					break;
+				case 'studies_name':
+					vals = data.studies_name.split(",");
+					break;
+				case 'base':
+					vals = ['Please choose from above'];
 			}
 			
 			//Delete item

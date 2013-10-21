@@ -522,18 +522,11 @@ class Record_model extends CI_Model {
         $data['private_patient_no'] = 'Patient No';
         $data['COGS_study_id'] = 'COGS study ID';
         $data['COGS_study_id_lists'] = array(
-			 '' => '',
-            'CIMBA' => 'CIMBA',
-            'OCAC' => 'OCAC',
-            'BCAC' => 'BCAC',
-			'PRACTICAL' => 'PRACTICAL'
+			'Dynamic Dropdown' => 'Dynamic Dropdown'
         );
         $data['marital_status'] = 'Marital status';
         $data['marital_status_lists'] = array(
-			 '' => '',
-            'Single' => 'Single',
-            'Married' => 'Married',
-            'Divorced' => 'Divorced'
+			'Dynamic Dropdown' => 'Dynamic Dropdown'
         );
         $data['is_blood_card_exist'] = 'Blood card exist?';
         $data['blood_card_location'] = 'Blood card location';
@@ -552,11 +545,7 @@ class Record_model extends CI_Model {
 
         $data['income_level'] = 'Income level';
         $data['income_level_lists'] = array(
-			 '' => '',
-            '<5,000' => '<5,000',
-            '5-10,000' => '5-10,000',
-            '10-50,000' => '10-50,000',
-            '>50,000' => '>50,000'
+			'Dynamic Dropdown' => 'Dynamic Dropdown'
         );
 		$data['patient_comments'] = 'Comments';
 		$data['total_no_of_male_siblings'] = 'Total male siblings';
@@ -575,17 +564,11 @@ class Record_model extends CI_Model {
 
         $data['status_source'] = 'Source';
         $data['status_source_lists'] = array(
-			'' => '',
-            'JPN' => 'JPN',
-            'Others' => 'Others',
-            'Unknown' => 'Unknown'
+			'Dynamic Dropdown' => 'Dynamic Dropdown'
         );
         $data['alive_status'] = 'Status';
         $data['alive_status_lists'] = array(
-			 '' => '',
-            'Alive' => 'Alive',
-            'Dead' => 'Dead',
-            'Unknown' => 'Unknown'
+			'Dynamic Dropdown' => 'Dynamic Dropdown'
         );
         $data['status_gathered_date'] = 'Status collected on';
 
@@ -646,13 +629,7 @@ class Record_model extends CI_Model {
         //STUDIES
         $data['studies_name'] = 'Studies Name';
         $data['studies_name_lists'] = array(
-			 '' => '',
-            'SD MyBrCa' => 'SD MyBrCa',
-			'UM MyBrCa' => 'UM MyBrCa',
-            'MyEpiBrCa Baseline' => 'MyEpiBrCa Baseline',
-			'MyEpiBrCa Follow-up' => 'MyEpiBrCa Follow-up',
-            'My1000Mammo' => 'My1000Mammo',
-            'MyOvaCa' => 'MyOvaCa'
+			'Dynamic Dropdown' => 'Dynamic Dropdown'
         );
         $data['date_at_consent'] = 'Date at consent';
         $data['age_at_consent'] = 'Age at consent';

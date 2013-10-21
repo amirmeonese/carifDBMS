@@ -30,6 +30,12 @@
 					<option selected value="base">Please Select</option>
 					<option value="nationality">Nationality</option>
 					<option value="gender">Gender</option>
+					<option value="marital_status">Marital Status</option>
+					<option value="COGS_study_id">COGS Study ID</option>
+					<option value="income_level">Income Level</option>
+					<option value="status_source">Status Source</option>
+					<option value="alive_status">Alive Status</option>
+					<option value="studies_name">Studies Names</option>
 					</select>
 				</td>
 			</tr>
