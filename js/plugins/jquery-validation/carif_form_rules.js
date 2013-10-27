@@ -34,9 +34,6 @@ $( document ).ready(function() {
 					},
 					email : {
 						email: true
-					},
-					studies_name : {
-						required: true
 					}
 				},
 				messages: {

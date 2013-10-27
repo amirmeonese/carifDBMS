@@ -29,7 +29,7 @@
 
         <script type="text/javascript" src="<?php echo base_url(); ?>js/jquery.min.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>js/bootstrap.js"></script>
-        <script type="text/javascript">
+		<script type="text/javascript">
             function calcHeight()
             {
                 document.getElementById('iframe_record_home').height = document.getElementById('iframe_record_home').contentDocument.documentElement.scrollHeight + 15; //Chrome

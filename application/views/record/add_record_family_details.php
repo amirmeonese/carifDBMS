@@ -250,7 +250,7 @@
             </tr>
         </table>
         </div>
-        <div class="container" id="add_record_form_section_3">
+        <div class="container" id="add_record_form_section_4">
         <div height="30px">&nbsp;</div>
          <table>
             <tr>
@@ -292,7 +292,7 @@
         </table>
         <?php echo form_fieldset_close(); ?>		
     </div>
-    <input type="button" value="Add relative" onClick="window.parent.addInput('add_record_form_section_2');
+    <input type="button" value="Add relative" onClick="window.parent.addInput('add_record_form_section_4');
             window.parent.calcHeight();"></br>
            <?php echo form_fieldset_close(); ?>	
            <?php echo form_submit('mysubmit', 'Save'); ?>

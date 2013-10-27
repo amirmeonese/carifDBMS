@@ -1,6 +1,6 @@
 // ========= ADD RELATIVE ========= //
-var relativeCounter = 3;
-var limit = 10;
+var relativeCounter = 1;
+var limit = 20;
 
 function addInput(divName)
 {
@@ -16,18 +16,18 @@ function addInput(divName)
 		newdiv.setAttributeNode(att1);
 		
 		var att2 = document.createAttribute("id");
-		att2.value="add_record_form_section_" + relativeCounter;
+		att2.value="add_record_form_relative_section_" + relativeCounter;
 		newdiv.setAttributeNode(att2);
 		
 		//class="container" id="add_record_form_section_1
 		var formInputHTML = "<div height=\"30px\">&nbsp;</div>" + 
 		"<fieldset>" + 
-		"<legend>Relative " + "#" + (relativeCounter - 2) + "</legend>" +
+		"<legend>Relative " + "#" + relativeCounter + "</legend>" +
 		"<input type='button' value='Delete' onClick='window.parent.deleteInput(" + relativeCounter + ");'>" +
 		"<table>" + 
 		"<tr>" +
 		"<td>Paternal/Maternal status: " + 
-		"<select name='relationship_status" + relativeCounter + "'>" +
+		"<select name='relative_relationship_status" + relativeCounter + "'>" +
 			"<option value=''></option>" +
 			"<option value=\"Paternal\">Paternal</option>" +
 			"<option value=\"Maternal\">Maternal</option>" +
@@ -59,28 +59,28 @@ function addInput(divName)
 		"</td>" +
 		"</tr>" +
 		"<tr>" +
-		"<td>Fullname:<input type='text' name='fullname" + relativeCounter + "' value=''/></td>" + 
-		"<td>Maiden name: <input type='text' name='maiden_name" + relativeCounter + "' value=''/></td>" +
+		"<td>Fullname:<input type='text' name='relative_fullname" + relativeCounter + "' value=''/></td>" + 
+		"<td>Maiden name: <input type='text' name='relative_maiden_name" + relativeCounter + "' value=''/></td>" +
 		"</tr>" +
 		"<tr>" +
-		"<td>Ethnicity:<input type='text' name='ethnicity" + relativeCounter + "' value=''/></td>" +
-		"<td>Town of residence:<input type='text' name='town_residence" + relativeCounter + "' value=''/></td>" + 
-		"<td>Date of birth:<input type='text' name='DOB" + relativeCounter + "' value=''/></td>" +
-		"<td>Is still alive?: <input type='checkbox' name='still_alive_flag" + relativeCounter + "' value='yes' checked='checked'/></td>" +
+		"<td>Ethnicity:<input type='text' name='relative_ethnicity" + relativeCounter + "' value=''/></td>" +
+		"<td>Town of residence:<input type='text' name='relative_town_residence" + relativeCounter + "' value=''/></td>" + 
+		"<td>Date of birth:<input type='text' name='relative_DOB" + relativeCounter + "' class=\"datepicker\" value=''/></td>" +
+		"<td>Is still alive?: <input type='checkbox' name='relative_still_alive_flag" + relativeCounter + "' value='yes' checked='checked'/></td>" +
 		"</tr>" + 
 		"<tr>" +
 		"<td>Gender: " + 
-		"<select name='gender" + relativeCounter + "'>" +
+		"<select name='relative_gender" + relativeCounter + "'>" +
 			"<option value=''></option>" +
 			"<option value=\"Male\">Male</option>" +
 			"<option value=\"Female\">Female</option>" +
 		"</select> " +
 		"</td>" +
-		"<td>Date of death:<input type='text' name='DOD" + relativeCounter + "' value=''/></td>" +
-		"<td>Is diagnosed with cancer?:<input type='checkbox' name='is_cancer_diagnosed" + relativeCounter + "' value='no'/></td>" +
+		"<td>Date of death:<input type='text' name='relative_DOD" + relativeCounter + "' class=\"datepicker\" value=''/></td>" +
+		"<td>Is diagnosed with cancer?:<input type='checkbox' name='relative_is_cancer_diagnosed" + relativeCounter + "' value='no'/></td>" +
 		"</tr>" + 
 		"<tr>" +
-		"<td>Date of diagnosis:<input type='text' name='date_of_diagnosis" + relativeCounter + "' value=''/></td>" +
+		"<td>Date of diagnosis:<input type='text' name='relative_date_of_diagnosis" + relativeCounter + "' class=\"datepicker\" value=''/></td>" +
 		"<td>Type of cancer:" +
 		"<select name='relative_cancer_name" + relativeCounter + "'>" +
 			"<option value=''></option>" +
@@ -100,10 +100,10 @@ function addInput(divName)
 			"<option value='Others'>Others</option>" +
 		"</select> </td>" +
 		"<td>Other cancer type:<input type='text' name='relative_other_cancer_name" + relativeCounter + "' value=''/></td>" + 
-		"<td>Age of diagnosis: <input type='text' name='age_of_diagnosis" + relativeCounter + "' value=''/></td>" + 
+		"<td>Age of diagnosis: <input type='text' name='relative_age_of_diagnosis" + relativeCounter + "' value=''/></td>" + 
 		"</tr>" + 
 		"<tr>" +
-		"<td>Vital status: <br /><input type='text' name='vital_status" + relativeCounter + "' value=''/></td>" +
+		"<td>Vital status: <br /><input type='text' name='relative_vital_status" + relativeCounter + "' value=''/></td>" +
 		"<td>Comment:<textarea name='relative_comment" + breastSiteCounter + "' cols='7' rows='3' id='relative_comment' ></textarea></td>" + 
 		"</tr></table></fieldset>";
 		
@@ -120,7 +120,7 @@ function deleteInput(divCounterName)
 {
 	var iframeDoc = document.getElementById('iframe_record_home').contentWindow ? document.getElementById('iframe_record_home').contentWindow.document : document.getElementById('iframe_record_home').contentDocument;
 	
-	iframeDoc.getElementById('add_record_form_section_' + divCounterName).parentNode.removeChild(iframeDoc.getElementById('add_record_form_section_' + divCounterName));
+	iframeDoc.getElementById('add_record_form_relative_section_' + divCounterName).parentNode.removeChild(iframeDoc.getElementById('add_record_form_relative_section_' + divCounterName));
 	window.parent.calcHeight();
 	relativeCounter--;
 }
@@ -197,7 +197,7 @@ function addUltrasoundDetailsInput(divName)
 		newdiv.setAttributeNode(att2);
 		
 		var formInputHTML = "<table><tr>" +
-		"<td>Ultrasound date:<input type='text' name='mammo_ultrasound_date" + ultrasoundCounter + "' value=''/></td>" + 
+		"<td>Ultrasound date:<input type='text' name='mammo_ultrasound_date" + ultrasoundCounter + "' class=\"datepicker\" value=''/></td>" + 
 		"<td>Is abnormality detected? :<input type='checkbox' name='mammo_ultrasound_is_abnormality_detected" + ultrasoundCounter + "' value=''/></td>" +
 		"<td>Comment:<textarea name='mammo_ultrasound_details" + ultrasoundCounter + "' cols='7' rows='3' id='mammo_ultrasound_details' ></textarea></td>" + 
 		"<td><input type='button' value='Delete' onClick='window.parent.deleteUltrasoundDetailsInput(" + ultrasoundCounter + ");'></td>" +
@@ -239,7 +239,7 @@ function addMRIDetailsInput(divName)
 		newdiv.setAttributeNode(att2);
 		
 		var formInputHTML = "<table><tr>" +
-		"<td>MRI date:<input type='text' name='mammo_MRI_date" + MRICounter + "' value=''/></td>" + 
+		"<td>MRI date:<input type='text' name='mammo_MRI_date" + MRICounter + "' class=\"datepicker\" value=''/></td>" + 
 		"<td>Is abnormality detected? :<input type='checkbox' name='mammo_MRI_is_abnormality_detected" + MRICounter + "' value=''/></td>" +
 		"<td>Comment:<textarea name='mammo_MRI_details" + MRICounter + "' cols='7' rows='3' id='mammo_MRI_details' ></textarea></td>" + 
 		"<td><input type='button' value='Delete' onClick='window.parent.deleteMRIDetailsInput(" + MRICounter + ");'></td>" +
@@ -284,7 +284,7 @@ function addNonCancerSurgeryDetailsInput(divName)
 		var formInputHTML = "<table><tr>" +
 		"<td>Surgery type:<input type='text' name='non_cancer_surgery_type" + nonCancerSurgeryCounter + "' value=''/></td>" + 
 		"<td>Reason for surgery:<input type='text' name='reason_for_non_cancer_surgery" + nonCancerSurgeryCounter + "' value=''/></td>" + 
-		"<td>Date of surgery:<input type='text' name='date_of_non_cancer_surgery" + nonCancerSurgeryCounter + "' value=''/></td>" + 
+		"<td>Date of surgery:<input type='text' name='date_of_non_cancer_surgery" + nonCancerSurgeryCounter + "' class=\"datepicker\" value=''/></td>" + 
 		"<td>Age at surgery:<input type='text' name='age_at_non_cancer_surgery" + nonCancerSurgeryCounter + "' value=''/></td>" + 
 		"</tr><tr><td>Comment:<textarea name='non_cancer_surgery_comments" + nonCancerSurgeryCounter + "' cols='7' rows='3' id='non_cancer_surgery_comments' ></textarea></td>" + 
 		"<td><input type='button' value='Delete' onClick='window.parent.deleteNonCancerSurgeryDetailsInput(" + nonCancerSurgeryCounter + ");'></td>" +
@@ -483,7 +483,7 @@ function addBreastCancerDiagnosis(divName)
 		"</select> </td>" +
 		"<td>Is primary diagnosis?:<input type='checkbox' name='primary_diagnosis" + breastCancerDiagnosisCounter + "' value=''/></td>" +
 		"</tr><tr>" +
-		"<td>Date of diagnosis: <input type='text' name='date_of_diagnosis" + breastCancerDiagnosisCounter + "' value=''/></td>" +
+		"<td>Date of diagnosis: <input type='text' name='date_of_diagnosis" + breastCancerDiagnosisCounter + "' class=\"datepicker\" value=''/></td>" +
 		"<td>Age of diagnosis:<input type='text' name='age_of_diagnosis" + breastCancerDiagnosisCounter + "' value=''/></td>" +
 		"<td>Diagnosis centre:<input type='text' name='cancer_diagnosis_center" + breastCancerDiagnosisCounter + "' value=''/></td>" +
 		"</tr><tr>" +
@@ -520,7 +520,7 @@ function addBreastCancerDiagnosis(divName)
 			"<option value='Stereostatic biopsy'>Stereostatic biopsy</option>" +
 		"</select> " +
 		"</td>" +
-		"<td>Date of report:<br /><input type='text' name='breast_pathology_path_report_date" + breastCancerDiagnosisCounter + "' value=''/></td>" + 
+		"<td>Date of report:<br /><input type='text' name='breast_pathology_path_report_date" + breastCancerDiagnosisCounter + "' class=\"datepicker\" value=''/></td>" + 
 		"</tr><tr>" +
 		"<td>Pathology lab:<br /><input type='text' name='breast_pathology_lab" + breastCancerDiagnosisCounter + "' value=''/></td>" + 
 		"<td>Name of doctor:<br /><input type='text' name='breast_pathology_doctor" + breastCancerDiagnosisCounter + "' value=''/></td>" + 
@@ -631,8 +631,8 @@ function addBreastCancerDiagnosis(divName)
 			"<option value='TAHBSO'>TAHBSO</option>" +			
 			"<option value='None'>None</option>" +
 		"</select> </td>" +
-		"<td>Treatment start date: <input type='text' name='treatment_start_date" + breastCancerDiagnosisCounter + "' value=''/></td>" +
-		"<td>Treatment end date:<input type='text' name='treatment_end_date" + breastCancerDiagnosisCounter + "' value=''/></td>" +
+		"<td>Treatment start date: <input type='text' name='treatment_start_date" + breastCancerDiagnosisCounter + "' class=\"datepicker\" value=''/></td>" +
+		"<td>Treatment end date:<input type='text' name='treatment_end_date" + breastCancerDiagnosisCounter + "' class=\"datepicker\" value=''/></td>" +
 		"<td>Treatment duration:<input type='text' name='treatment_duration" + breastCancerDiagnosisCounter + "' value=''/></td>" +
 		"</tr><tr>" +
 		"<td>Comments: <textarea name='breast_cancer_treatment_comments" + breastCancerDiagnosisCounter + "' cols='7' rows='10' id='breast_cancer_treatment_comments'></textarea></td>" +
@@ -691,7 +691,7 @@ function addOvaryCancerDiagnosis(divName)
 		"</select> </td>" +
 		"<td>Is primary diagnosis?:<input type='checkbox' name='ovary_primary_diagnosis" + ovaryCancerDiagnosisCounter + "' value=''/></td>" +
 		"</tr><tr>" +
-		"<td>Date of diagnosis: <input type='text' name='ovary_date_of_diagnosis" + ovaryCancerDiagnosisCounter + "' value=''/></td>" +
+		"<td>Date of diagnosis: <input type='text' name='ovary_date_of_diagnosis" + ovaryCancerDiagnosisCounter + "' class=\"datepicker\" value=''/></td>" +
 		"<td>Age of diagnosis:<input type='text' name='ovary_age_of_diagnosis" + ovaryCancerDiagnosisCounter + "' value=''/></td>" +
 		"<td>Diagnosis centre:<input type='text' name='ovary_cancer_diagnosis_center" + ovaryCancerDiagnosisCounter + "' value=''/></td>" +
 		"</tr><tr>" +
@@ -728,7 +728,7 @@ function addOvaryCancerDiagnosis(divName)
 			"<option value='Stereostatic biopsy'>Stereostatic biopsy</option>" +
 		"</select> " +
 		"</td>" +
-		"<td>Date of report:<br /><input type='text' name='breast_pathology_path_report_date" + breastCancerDiagnosisCounter + "' value=''/></td>" + 
+		"<td>Date of report:<br /><input type='text' name='breast_pathology_path_report_date" + breastCancerDiagnosisCounter + "' class=\"datepicker\" value=''/></td>" + 
 		"</tr><tr>" +
 		"<td>Pathology lab:<br /><input type='text' name='breast_pathology_lab" + breastCancerDiagnosisCounter + "' value=''/></td>" + 
 		"<td>Name of doctor:<br /><input type='text' name='breast_pathology_doctor" + breastCancerDiagnosisCounter + "' value=''/></td>" + 
@@ -839,8 +839,8 @@ function addOvaryCancerDiagnosis(divName)
 			"<option value='TAHBSO'>TAHBSO</option>" +			
 			"<option value='None'>None</option>" +
 		"</select> </td>" +
-		"<td>Treatment start date: <input type='text' name='ovary_treatment_start_date" + ovaryCancerDiagnosisCounter + "' value=''/></td>" +
-		"<td>Treatment end date:<input type='text' name='ovary_treatment_end_date" + ovaryCancerDiagnosisCounter + "' value=''/></td>" +
+		"<td>Treatment start date: <input type='text' name='ovary_treatment_start_date" + ovaryCancerDiagnosisCounter + "' class=\"datepicker\" value=''/></td>" +
+		"<td>Treatment end date:<input type='text' name='ovary_treatment_end_date" + ovaryCancerDiagnosisCounter + "' class=\"datepicker\" value=''/></td>" +
 		"<td>Treatment duration:<input type='text' name='ovary_treatment_duration" + ovaryCancerDiagnosisCounter + "' value=''/></td>" +
 		"</tr><tr>" +
 		"<td>Comments: <textarea name='ovary_cancer_treatment_comments" + ovaryCancerDiagnosisCounter + "' cols='7' rows='10' id='ovary_cancer_treatment_comments'></textarea></td>" +
@@ -904,8 +904,8 @@ function addOvaryCancerTreatmentInput(divName)
 			"<option value='TAHBSO'>TAHBSO</option>" +
 			"<option value='None'>None</option>" +
 		"</select> " +
-		"<td>Treatment start date: <input type='text' name='ovary_treatment_start_date" + ovaryCancerTreatmentCounter + "' value=''/></td>" +
-		"<td>Treatment end date:<input type='text' name='ovary_treatment_end_date" + ovaryCancerTreatmentCounter + "' value=''/></td>" +
+		"<td>Treatment start date: <input type='text' name='ovary_treatment_start_date" + ovaryCancerTreatmentCounter + "' class=\"datepicker\" value=''/></td>" +
+		"<td>Treatment end date:<input type='text' name='ovary_treatment_end_date" + ovaryCancerTreatmentCounter + "' class=\"datepicker\" value=''/></td>" +
 		"<td>Treatment duration:<input type='text' name='ovary_treatment_duration" + ovaryCancerTreatmentCounter + "' value=''/></td>" +
 		"</tr><tr>" +
 		"<td>Comments: <textarea name='ovary_cancer_treatment_comments" + ovaryCancerTreatmentCounter + "' cols='7' rows='10' id='ovary_cancer_treatment_comments'></textarea></td>" +
@@ -968,7 +968,7 @@ function addOtherCancerDiagnosis(divName)
 			"<option value='Gastric'>Gastric</option>" +
 			"<option value='Others'>Others</option>" +
 		"</select> </td>" +
-		"<td>Date of diagnosis: <input type='text' name='other_date_of_diagnosis" + otherCancerDiagnosisCounter + "' value=''/></td>" +
+		"<td>Date of diagnosis: <input type='text' name='other_date_of_diagnosis" + otherCancerDiagnosisCounter + "' class=\"datepicker\" value=''/></td>" +
 		"<td>Age of diagnosis:<input type='text' name='other_age_of_diagnosis" + otherCancerDiagnosisCounter + "' value=''/></td>" +
 		"<td>Diagnosis centre:<input type='text' name='other_cancer_diagnosis_center" + otherCancerDiagnosisCounter + "' value=''/></td>" +
 		"</tr><tr>" +
@@ -992,7 +992,7 @@ function addOtherCancerDiagnosis(divName)
 			"<option value='Stereostatic biopsy'>Stereostatic biopsy</option>" +
 		"</select> " +
 		"</td>" +
-		"<td>Date of report:<br /><input type='text' name='breast_pathology_path_report_date" + breastCancerDiagnosisCounter + "' value=''/></td>" + 
+		"<td>Date of report:<br /><input type='text' name='breast_pathology_path_report_date" + breastCancerDiagnosisCounter + "' class=\"datepicker\" value=''/></td>" + 
 		"</tr><tr>" +
 		"<td>Pathology lab:<br /><input type='text' name='breast_pathology_lab" + breastCancerDiagnosisCounter + "' value=''/></td>" + 
 		"<td>Name of doctor:<br /><input type='text' name='breast_pathology_doctor" + breastCancerDiagnosisCounter + "' value=''/></td>" + 
@@ -1025,8 +1025,8 @@ function addOtherCancerDiagnosis(divName)
 			"<option value='TAHBSO'>TAHBSO</option>" +			
 			"<option value='None'>None</option>" +
 		"</select> </td>" +
-		"<td>Treatment start date: <input type='text' name='other_treatment_start_date" + otherCancerDiagnosisCounter + "' value=''/></td>" +
-		"<td>Treatment end date:<input type='text' name='other_treatment_end_date" + otherCancerDiagnosisCounter + "' value=''/></td>" +
+		"<td>Treatment start date: <input type='text' name='other_treatment_start_date" + otherCancerDiagnosisCounter + "' class=\"datepicker\" value=''/></td>" +
+		"<td>Treatment end date:<input type='text' name='other_treatment_end_date" + otherCancerDiagnosisCounter + "' class=\"datepicker\" value=''/></td>" +
 		"<td>Treatment duration:<input type='text' name='other_treatment_duration" + otherCancerDiagnosisCounter + "' value=''/></td>" +
 		"</tr><tr>" +
 		"<td>Comments: <textarea name='other_cancer_treatment_comments" + otherCancerDiagnosisCounter + "' cols='7' rows='10' id='other_cancer_treatment_comments'></textarea></td>" +
@@ -1090,8 +1090,8 @@ function addOtherCancerTreatmentInput(divName)
 			"<option value='TAHBSO'>TAHBSO</option>" +
 			"<option value='None'>None</option>" +
 		"</select> " +
-		"<td>Treatment start date: <input type='text' name='other_treatment_start_date" + otherCancerTreatmentCounter + "' value=''/></td>" +
-		"<td>Treatment end date:<input type='text' name='other_treatment_end_date" + otherCancerTreatmentCounter + "' value=''/></td>" +
+		"<td>Treatment start date: <input type='text' name='other_treatment_start_date" + otherCancerTreatmentCounter + "' class=\"datepicker\" value=''/></td>" +
+		"<td>Treatment end date:<input type='text' name='other_treatment_end_date" + otherCancerTreatmentCounter + "' class=\"datepicker\" value=''/></td>" +
 		"<td>Treatment duration:<input type='text' name='other_treatment_duration" + otherCancerTreatmentCounter + "' value=''/></td>" +
 		"</tr><tr>" +
 		"<td>Comments: <textarea name='other_cancer_treatment_comments" + otherCancerTreatmentCounter + "' cols='7' rows='10' id='other_cancer_treatment_comments'></textarea></td>" +
@@ -1155,8 +1155,8 @@ function addCancerTreatmentInput(divName)
 			"<option value='TAHBSO'>TAHBSO</option>" +
 			"<option value='None'>None</option>" +
 		"</select> " +
-		"<td>Treatment start date: <input type='text' name='treatment_start_date" + cancerTreatmentCounter + "' value=''/></td>" +
-		"<td>Treatment end date:<input type='text' name='treatment_end_date" + cancerTreatmentCounter + "' value=''/></td>" +
+		"<td>Treatment start date: <input type='text' name='treatment_start_date" + cancerTreatmentCounter + "' class=\"datepicker\" value=''/></td>" +
+		"<td>Treatment end date:<input type='text' name='treatment_end_date" + cancerTreatmentCounter + "' class=\"datepicker\" value=''/></td>" +
 		"<td>Treatment duration:<input type='text' name='treatment_duration" + cancerTreatmentCounter + "' value=''/></td>" +
 		"</tr><tr>" +
 		"<td>Comments: <textarea name='breast_cancer_treatment_comments" + cancerTreatmentCounter + "' cols='7' rows='10' id='breast_cancer_treatment_comments'></textarea></td>" +
@@ -1272,7 +1272,7 @@ function addOtherDisease(divName)
 			"<option value='Mental Disorder'>Mental Disorder</option>" +
 		"</select> " +
 		"</td>" +
-		"<td>Date of diagnosis: <input type='text' name='year_of_diagnosis" + otherdiseasesCounter + "' value=''/></td>" +
+		"<td>Date of diagnosis: <input type='text' name='year_of_diagnosis" + otherdiseasesCounter + "' class=\"datepicker\" value=''/></td>" +
 		"<td> Age at diagnosis:<input type='text' name='diagnosis_age" + otherdiseasesCounter + "' value=''/></td>" +
 		"</tr><tr>" +
 		"<td>Diagnosis center:<input type='text' name='diagnosis_center" + otherdiseasesCounter + "' value=''/></td>" +
@@ -1282,8 +1282,8 @@ function addOtherDisease(divName)
 		"<table id=\"other_disease_medication_section" + otherdiseasesCounter + "\"><tr>" +
 		"<td>Is on medication?: <input type='text' name='is_on_medication_flag" + otherdiseasesCounter + "' value=''/></td>" +
 		"<td>Type of medication: <input type='text' name='medication_type_name" + otherdiseasesCounter + "' value=''/></td>" +
-		"<td>Medication start date:<input type='text' name='medication_start_date" + otherdiseasesCounter + "' value=''/></td>" +
-		"<td>Medication end date:<input type='text' name='medication_end_date" + otherdiseasesCounter + "' value=''/></td>" +
+		"<td>Medication start date:<input type='text' name='medication_start_date" + otherdiseasesCounter + "' class=\"datepicker\" value=''/></td>" +
+		"<td>Medication end date:<input type='text' name='medication_end_date" + otherdiseasesCounter + "' class=\"datepicker\" value=''/></td>" +
 		"</tr><tr>" +
 		"<td>Medication duration:<input type='text' name='medication_duration" + otherdiseasesCounter + "' value=''/></td>" +
 		"<td>Comment: <textarea name='medication_comments" + otherdiseasesCounter + "' cols='7' rows='10' id='medication_comments'></textarea></td>" +
@@ -1328,8 +1328,8 @@ function addOtherDiseasesMedication(divName)
 		
 		var formInputHTML = "<table><tr>" +
 		"<td>Type of medication: <input type='text' name='medication_type_name" + otherdiseasesMedicationCounter + "' value=''/></td>" +
-		"<td>Medication start date:<input type='text' name='medication_start_date" + otherdiseasesMedicationCounter + "' value=''/></td>" +
-		"<td>Medication end date:<input type='text' name='medication_end_date" + otherdiseasesMedicationCounter + "' value=''/></td>" +
+		"<td>Medication start date:<input type='text' name='medication_start_date" + otherdiseasesMedicationCounter + "' class=\"datepicker\" value=''/></td>" +
+		"<td>Medication end date:<input type='text' name='medication_end_date" + otherdiseasesMedicationCounter + "' class=\"datepicker\" value=''/></td>" +
 		"<td>Medication duration:<input type='text' name='medication_duration" + otherdiseasesMedicationCounter + "' value=''/></td>" +
 		"</tr><tr>" +
 		"<td>Comment: <textarea name='medication_comments" + otherdiseasesMedicationCounter + "' cols='7' rows='10' id='medication_comments'></textarea></td>" +
@@ -1374,8 +1374,8 @@ function addInterviewNoteInput(divName)
 		var formInputHTML = "<fieldset><legend>Interview Note " + interviewNoteCounter + "</legend>" +
 		"<table>" +
 		"<tr>" +
-		"<td>Interview date: <input type='text' name='interview_date" + interviewNoteCounter + "' value=''/></td></tr>" +
-		"<tr><td>Setup next interview date:<input type='text' name='interview_next_date" + interviewNoteCounter + "' value=''/></td>" +
+		"<td>Interview date: <input type='text' name='interview_date" + interviewNoteCounter + "' class=\"datepicker\" value=''/></td></tr>" +
+		"<tr><td>Setup next interview date:<input type='text' name='interview_next_date" + interviewNoteCounter + "' class=\"datepicker\" value=''/></td>" +
 		"</tr><tr>" +
 		"<tr><td>Send email reminder to officer?:<input type='checkbox' name='is_send_email_reminder" + interviewNoteCounter + "' value=''/></td>" +
 		"</tr><tr>" +
@@ -1437,7 +1437,7 @@ function addPregnancyInput(divName)
 			"<option value='Male'>Male</option>" +
 			"<option value='Female'>Female</option>" +
 		"</select> " +
-		"<td>Date of birth<input type='text' name='child_birthyear" + pregnancyDetailsCounter + "' value=''/></td>" +
+		"<td>Date of birth<input type='text' name='child_birthyear" + pregnancyDetailsCounter + "' class=\"datepicker\" value=''/></td>" +
 		"</tr>" +
 		"<tr><td>Year of birth<input type='text' name='child_birthyear" + pregnancyDetailsCounter + "' value=''/></td>" +
 		"<td>Age child at consent<input type='text' name='child_age_at_consent" + pregnancyDetailsCounter + "' value=''/></td>" +
@@ -1502,7 +1502,7 @@ function addSurvivalStatusInput(divName)
 			"<option value='Dead'>Dead</option>" +
 			"<option value='Unknown'>Unknown</option>" +
 		"</select> </td>" +
-		"<td> Status collected on: <input type='text' name='status_gathered_date" + survivalStatusCounter + "' value=''/></td>" +
+		"<td> Status collected on: <input type='text' name='status_gathered_date" + survivalStatusCounter + "' class=\"datepicker\" value=''/></td>" +
 		"<td><input type='button' value='Delete' onClick='window.parent.deleteSurvivalStatusInput(" + survivalStatusCounter + ");'></td>" +
 		"<tr>" +
 		"</table>";
@@ -1550,7 +1550,7 @@ function addHospitalNoInput(divName)
 		var formInputHTML = "<div height=\"30px\">&nbsp;</div>" + 
 		"<table>" + 
 		"<tr>" +
-		"<td>Hospital No.:<input type='text' name='fullname" + hospitalNoCounter + "' value=''/></td>" + 
+		"<td>Hospital No.:<input type='text' name='hospital_no" + hospitalNoCounter + "' value=''/></td>" + 
 		"<td><input type='button' value='Delete' onClick='window.parent.deleteHospitalNoInput(" + hospitalNoCounter + ");'></td>" +
 		"</tr>" + 
 		"</table>";
@@ -1598,7 +1598,7 @@ function addPatientPrivateNoInput(divName)
 		var formInputHTML = "<div height=\"30px\">&nbsp;</div>" + 
 		"<table>" + 
 		"<tr>" +
-		"<td>Patient No.:<input type='text' name='fullname" + privateNoCounter + "' value=''/></td>" + 
+		"<td>Patient No.:<input type='text' name='private_patient_no" + privateNoCounter + "' value=''/></td>" + 
 		"<td><input type='button' value='Delete' onClick='window.parent.deletePatientPrivateNoInput(" + privateNoCounter + ");'></td>" +
 		"</tr>" + 
 		"</table>";
@@ -1709,7 +1709,7 @@ function addBreastCancerPathology(divName)
 			"<option value='Stereostatic biopsy'>Stereostatic biopsy</option>" +
 		"</select> " +
 		"</td>" +
-		"<td>Date of report:<br /><input type='text' name='breast_pathology_path_report_date" + breastCancerPathologyCounter + "' value=''/></td>" + 
+		"<td>Date of report:<br /><input type='text' name='breast_pathology_path_report_date" + breastCancerPathologyCounter + "' class=\"datepicker\" value=''/></td>" + 
 		"</tr><tr>" +
 		"<td>Pathology lab:<br /><input type='text' name='breast_pathology_lab" + breastCancerPathologyCounter + "' value=''/></td>" + 
 		"<td>Name of doctor:<br /><input type='text' name='breast_pathology_doctor" + breastCancerPathologyCounter + "' value=''/></td>" + 
@@ -1856,7 +1856,7 @@ function addOvaryCancerPathology(divName)
 			"<option value='Stereostatic biopsy'>Stereostatic biopsy</option>" +
 		"</select> " +
 		"</td>" +
-		"<td>Date of report:<br /><input type='text' name='ovary_pathology_path_report_date" + ovaryCancerPathologyCounter + "' value=''/></td>" + 
+		"<td>Date of report:<br /><input type='text' name='ovary_pathology_path_report_date" + ovaryCancerPathologyCounter + "' class=\"datepicker\" value=''/></td>" + 
 		"</tr><tr>" +
 		"<td>Pathology lab:<br /><input type='text' name='ovary_pathology_lab" + ovaryCancerPathologyCounter + "' value=''/></td>" + 
 		"<td>Name of doctor:<br /><input type='text' name='ovary_pathology_doctor" + ovaryCancerPathologyCounter + "' value=''/></td>" + 
@@ -1970,7 +1970,7 @@ function addOtherCancerPathology(divName)
 			"<option value='Stereostatic biopsy'>Stereostatic biopsy</option>" +
 		"</select> " +
 		"</td>" +
-		"<td>Date of report:<br /><input type='text' name='other_pathology_path_report_date" + otherCancerPathologyCounter + "' value=''/></td>" + 
+		"<td>Date of report:<br /><input type='text' name='other_pathology_path_report_date" + otherCancerPathologyCounter + "' class=\"datepicker\" value=''/></td>" + 
 		"</tr><tr>" +
 		"<td>Pathology lab:<br /><input type='text' name='other_pathology_lab" + otherCancerPathologyCounter + "' value=''/></td>" + 
 		"<td>Name of doctor:<br /><input type='text' name='other_pathology_doctor" + otherCancerPathologyCounter + "' value=''/></td>" + 
@@ -2022,7 +2022,7 @@ function addMutationAnalysis(divName)
 		newdiv.setAttributeNode(att2);
 		
 		var formInputHTML = " <div height=\"30px\">&nbsp;</div><table><tr><td id=\"label1\">Analysis " + mutationAnalysisCounter + "</td><td><input type='button' value='Delete Mutation Analysis' onClick='window.parent.deleteMutationAnalysis(" + mutationAnalysisCounter + ");'></td></tr><tr>" +
-		"<td>Date test ordered:<br /><input type='text' name='date_test_ordered" + mutationAnalysisCounter + "' value=''/></td>" + 
+		"<td>Date test ordered:<br /><input type='text' name='date_test_ordered" + mutationAnalysisCounter + "' class=\"datepicker\" value=''/></td>" + 
 		"<td>Ordered by:<br /><input type='text' name='test_ordered_by" + mutationAnalysisCounter + "' value=''/></td>" + 
 		"<td>Request for result notification?: <input type='checkbox' name='testing_results_notification_flag" + mutationAnalysisCounter + "' value='1' checked='checked'/></td>" +
 		"</tr><tr>" +
@@ -2035,7 +2035,7 @@ function addMutationAnalysis(divName)
 		"</select> " +
 		"</td>" +
 		"<td>Testing batch:<br /><input type='text' name='investigation_project_batch" + mutationAnalysisCounter + "' value=''/></td>" + 
-		"<td>Testing date:<br /><input type='text' name='investigation_project_date" + mutationAnalysisCounter + "' value=''/></td>" + 
+		"<td>Testing date:<br /><input type='text' name='investigation_project_date" + mutationAnalysisCounter + "' class=\"datepicker\" value=''/></td>" + 
 		"<td>Gene tested:<br />" +
 		"<select name='investigation_gene_tested" + mutationAnalysisCounter + "'>" +
 			"<option value=''></option>" +
@@ -2112,8 +2112,8 @@ function addMutationAnalysis(divName)
 			"<option value='Unaffected non carrier'>Unaffected non carrier</option>" +
 		"</select> " +
 		"</td>" +
-		"<td>Report date:<br /><input type='text' name='investigation_report_date" + mutationAnalysisCounter + "' value=''/></td>" + 
-		"<td>Date client notified:<br /><input type='text' name='investigation_date_notified" + mutationAnalysisCounter + "' value=''/></td>" + 
+		"<td>Report date:<br /><input type='text' name='investigation_report_date" + mutationAnalysisCounter + "' class=\"datepicker\" value=''/></td>" + 
+		"<td>Date client notified:<br /><input type='text' name='investigation_date_notified" + mutationAnalysisCounter + "' class=\"datepicker\" value=''/></td>" + 
 		"<td>Counselling: <input type='checkbox' name='mutation_is_counselling_flag" + relativeCounter + "' value='1'/></td>" +
 		"</tr><tr>" +
 		"<td>Comments:<br /><textarea name='investigation_test_comment" + mutationAnalysisCounter + "' cols='7' rows='3' id='investigation_test_comment' ></textarea></td>" + 
@@ -2174,7 +2174,7 @@ function addOvarianScreeningPhycialExamsInfo(divName)
 			"<option value='Biopsy'>Biopsy</option>" +
 		"</select> " +
 		"</td>" +
-		"<td>Date:<input type='text' name='physical_exam_date" + ovarianPhysicalExamsCounter + "' value=''/></td>" + 
+		"<td>Date:<input type='text' name='physical_exam_date" + ovarianPhysicalExamsCounter + "' class=\"datepicker\" value=''/></td>" + 
 		"<td>Is abnormality detected?: <input type='checkbox' name='physical_exam_is_abnormality_detected" + ovarianPhysicalExamsCounter + "' value='1'/></td>" +
 		"</tr><tr>" +
 		"<td>Additional Info:<br /><textarea name='physical_exam_additional_info" + ovarianPhysicalExamsCounter + "' cols='7' rows='3' id='physical_exam_additional_info' ></textarea></td>" + 
@@ -2223,7 +2223,7 @@ function addOvarianScreeningAbdominalUltrasoundInfo(divName)
 		newdiv.setAttributeNode(att2);
 		
 		var formInputHTML = "<table><tr>" +
-		"<td>Date:<input type='text' name='abdominal_ultrasound_date" + ovarianAbdominalUltrasoundCounter + "' value=''/></td>" + 
+		"<td>Date:<input type='text' name='abdominal_ultrasound_date" + ovarianAbdominalUltrasoundCounter + "' class=\"datepicker\" value=''/></td>" + 
 		"<td>Is abnormality detected?: <input type='checkbox' name='abdominal_ultrasound_is_abnormality_detected" + ovarianAbdominalUltrasoundCounter + "' value='1'/></td>" +
 		"<td>Additional Info:<textarea name='abdominal_ultrasound_additional_info" + ovarianAbdominalUltrasoundCounter + "' cols='7' rows='3' id='abdominal_ultrasound_additional_info' ></textarea></td>" + 
 		"<td><input type='button' value='Delete' onClick='window.parent.deleteOvarianScreeningAbdominalUltrasoundInfo(" + ovarianAbdominalUltrasoundCounter + ");'></td>" +
@@ -2271,7 +2271,7 @@ function addOvarianScreeningTransvaginalUltrasoundInfo(divName)
 		newdiv.setAttributeNode(att2);
 		
 		var formInputHTML = "<table><tr>" +
-		"<td>Date:<input type='text' name='transvaginal_ultrasound_date" + ovarianTransvaginalUltrasoundCounter + "' value=''/></td>" + 
+		"<td>Date:<input type='text' name='transvaginal_ultrasound_date" + ovarianTransvaginalUltrasoundCounter + "' class=\"datepicker\" value=''/></td>" + 
 		"<td>Is abnormality detected?: <input type='checkbox' name='transvaginal_ultrasound_is_abnormality_detected" + ovarianTransvaginalUltrasoundCounter + "' value='1'/></td>" +
 		"<td>Additional Info:<textarea name='transvaginal_ultrasound_additional_info" + ovarianTransvaginalUltrasoundCounter + "' cols='7' rows='3' id='transvaginal_ultrasound_additional_info' ></textarea></td>" + 
 		"<td><input type='button' value='Delete' onClick='window.parent.deleteOvarianScreeningTransvaginalUltrasoundInfo(" + ovarianTransvaginalUltrasoundCounter + ");'></td>" +
@@ -2320,7 +2320,7 @@ function addOvarianScreeningCA125BloodtestInfo(divName)
 		newdiv.setAttributeNode(att2);
 		
 		var formInputHTML = "<table><tr>" +
-		"<td>Date:<input type='text' name='CA125_blood_test_date" + ovarianCA125bloodtestCounter + "' value=''/></td>" + 
+		"<td>Date:<input type='text' name='CA125_blood_test_date" + ovarianCA125bloodtestCounter + "' class=\"datepicker\" value=''/></td>" + 
 		"<td>Is abnormality detected?: <input type='checkbox' name='CA125_blood_test_is_abnormality_detected" + ovarianCA125bloodtestCounter + "' value='1'/></td>" +
 		"<td>Additional Info:<textarea name='CA125_blood_test_additional_info" + ovarianCA125bloodtestCounter + "' cols='7' rows='3' id='CA125_blood_test_additional_info' ></textarea></td>" + 
 		"<td><input type='button' value='Delete' onClick='window.parent.deleteOvarianScreeningCA125BloodtestInfo(" + ovarianCA125bloodtestCounter + ");'></td>" +
@@ -2369,7 +2369,7 @@ function addOvarianScreeningBiopsyInfo(divName)
 		newdiv.setAttributeNode(att2);
 		
 		var formInputHTML = "<table><tr>" +
-		"<td>Date:<input type='text' name='biopsy_date" + ovarianBiopsyCounter + "' value=''/></td>" + 
+		"<td>Date:<input type='text' name='biopsy_date" + ovarianBiopsyCounter + "' class=\"datepicker\" value=''/></td>" + 
 		"<td>Is abnormality detected?: <input type='checkbox' name='biopsy_is_abnormality_detected" + ovarianBiopsyCounter + "' value='1'/></td>" +
 		"<td>Additional Info:<textarea name='biopsy_additional_info" + ovarianBiopsyCounter + "' cols='7' rows='3' id='biopsy_additional_info' ></textarea></td>" + 
 		"<td><input type='button' value='Delete' onClick='window.parent.deleteOvarianScreeningBiopsyInfo(" + ovarianBiopsyCounter + ");'></td>" +
@@ -2427,7 +2427,7 @@ function addRiskReducingSurgeryBenignInfo(divName)
 			"<option value='Right Ovary'>Right Ovary</option>" +
 			"<option value='Uterus'>Uterus</option>" +
 		"</select> " +
-		"<td>Date:<input type='text' name='non_cancerous_benign_date" + riskReducingSurgeryCounter + "' value=''/></td>" + 
+		"<td>Date:<input type='text' name='non_cancerous_benign_date" + riskReducingSurgeryCounter + "' class=\"datepicker\" value=''/></td>" + 
 		"<td><input type='button' value='Delete' onClick='window.parent.deleteRiskReducingSurgeryBenignInfo(" + riskReducingSurgeryCounter + ");'></td>" +
 		"</tr>" + 
 		"</table>" +
@@ -2483,7 +2483,7 @@ function addRiskReducingSurgeryCompleteRemovalInfo(divName)
 			"<option value='Right Ovary'>Right Ovary</option>" +
 			"<option value='Uterus'>Uterus</option>" +
 		"</select> " +
-		"<td>Date:<input type='text' name='non_cancerous_complete_removal_date" + riskReducingSurgeryCompleteRemovalCounter + "' value=''/></td>" + 
+		"<td>Date:<input type='text' name='non_cancerous_complete_removal_date" + riskReducingSurgeryCompleteRemovalCounter + "' class=\"datepicker\" value=''/></td>" + 
 		"<td>Reason:" +
 		"<select name='non_cancerous_complete_removal_reason" + riskReducingSurgeryCompleteRemovalCounter + "'>" +
 			"<option value=''></option>" +
@@ -2789,16 +2789,26 @@ function addmotherDiagnosisInput(divName)
 		"<table>" + 
 		"<tr>" +
 		"<td>Type of cancer :" +
-		"<select name='COGS_study_id" + motherDiagnosisCounter + "'>" +
+		"<select name='mother_cancer_name" + motherDiagnosisCounter + "'>" +
 			"<option value=''></option>" +
-			"<option value='CIMBA'>CIMBA</option>" +
-			"<option value='OCAC'>OCAC</option>" +
-			"<option value='BCAC'>BCAC</option>" +
-			"<option value='Practical'>Practical</option>" +
+			"<option value='None'>None</option>" +	
+			"<option value='Breast'>Breast</option>" +
+			"<option value='Ovaries'>Ovaries</option>" +
+			"<option value='Prostate'>Prostate</option>" +
+			"<option value='Cervical'>Cervical</option>" +
+			"<option value='Lung'>Lung</option>" +
+			"<option value='Colorectal'>Colorectal</option>" +
+			"<option value='Uterine'>Uterine</option>" +
+			"<option value='Peritaneum'>Peritaneum</option>" +
+			"<option value='Pancreatic'>Pancreatic</option>" +
+			"<option value='Nasopharyngeal'>Nasopharyngeal</option>" +
+			"<option value='Liver'>Liver</option>" +
+			"<option value='Gastric'>Gastric</option>" +
+			"<option value='Others'>Others</option>" +
 		"</select> " +
-                "<td>Date of Diagnosis:<input type='text' name='study_no" + motherDiagnosisCounter + "' value=''/></td>" +
-                "<td>Age of Diagnosis:<input type='text' name='study_no" + motherDiagnosisCounter + "' value=''/></td>" + 
-                "<td>Diagnosis Detail:<input type='text' name='study_no" + motherDiagnosisCounter + "' value=''/></td>" + 
+                "<td>Date of Diagnosis:<input type='text' name='mother_date_of_diagnosis" + motherDiagnosisCounter + "' class=\"datepicker\" value=''/></td>" +
+                "<td>Age of Diagnosis:<input type='text' name='mother_age_of_diagnosis" + motherDiagnosisCounter + "' value=''/></td>" + 
+                "<td>Diagnosis Detail:<input type='text' name='mother_diagnosis_other_details" + motherDiagnosisCounter + "' value=''/></td>" + 
 		"<td><input type='button' value='Delete' onClick='window.parent.deletemotherDiagnosisInput(" + motherDiagnosisCounter + ");'></td>" +
 		"</tr>" + 
 		"</table>";
@@ -2821,7 +2831,7 @@ function deletemotherDiagnosisInput(divCounterName)
 	motherDiagnosisCounter--;
 }
 
-// ===== ADD Mother Diagnosis =============== //
+// ===== ADD Father Diagnosis =============== //
 var fatherDiagnosisCounter = 2;
 var limit = 20;
 
@@ -2847,16 +2857,26 @@ function addfatherDiagnosisInput(divName)
 		"<table>" + 
 		"<tr>" +
 		"<td>Type of cancer :" +
-		"<select name='COGS_study_id" + fatherDiagnosisCounter + "'>" +
+		"<select name='father_cancer_name" + fatherDiagnosisCounter + "'>" +
 			"<option value=''></option>" +
-			"<option value='CIMBA'>CIMBA</option>" +
-			"<option value='OCAC'>OCAC</option>" +
-			"<option value='BCAC'>BCAC</option>" +
-			"<option value='Practical'>Practical</option>" +
+			"<option value='None'>None</option>" +	
+			"<option value='Breast'>Breast</option>" +
+			"<option value='Ovaries'>Ovaries</option>" +
+			"<option value='Prostate'>Prostate</option>" +
+			"<option value='Cervical'>Cervical</option>" +
+			"<option value='Lung'>Lung</option>" +
+			"<option value='Colorectal'>Colorectal</option>" +
+			"<option value='Uterine'>Uterine</option>" +
+			"<option value='Peritaneum'>Peritaneum</option>" +
+			"<option value='Pancreatic'>Pancreatic</option>" +
+			"<option value='Nasopharyngeal'>Nasopharyngeal</option>" +
+			"<option value='Liver'>Liver</option>" +
+			"<option value='Gastric'>Gastric</option>" +
+			"<option value='Others'>Others</option>" +
 		"</select> " +
-                "<td>Date of Diagnosis:<input type='text' name='study_no" + fatherDiagnosisCounter + "' value=''/></td>" +
-                "<td>Age of Diagnosis:<input type='text' name='study_no" + fatherDiagnosisCounter + "' value=''/></td>" + 
-                "<td>Diagnosis Detail:<input type='text' name='study_no" + fatherDiagnosisCounter + "' value=''/></td>" + 
+                "<td>Date of Diagnosis:<input type='text' name='father_date_of_diagnosis" + fatherDiagnosisCounter + "' class=\"datepicker\" value=''/></td>" +
+                "<td>Age of Diagnosis:<input type='text' name='father_age_of_diagnosis" + fatherDiagnosisCounter + "' value=''/></td>" + 
+                "<td>Diagnosis Detail:<input type='text' name='father_diagnosis_other_details" + fatherDiagnosisCounter + "' value=''/></td>" + 
 		"<td><input type='button' value='Delete' onClick='window.parent.deletefatherDiagnosisInput(" + fatherDiagnosisCounter + ");'></td>" +
 		"</tr>" + 
 		"</table>";
