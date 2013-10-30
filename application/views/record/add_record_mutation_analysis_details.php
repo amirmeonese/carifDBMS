@@ -112,42 +112,47 @@
                 <td>&nbsp;</td>
             </tr>
             <tr>
-				 <td>
+                <td>
                     <?php echo $investigation_mutation_pathogenicity; ?>:  <br />
                     <?php echo form_dropdown('investigation_mutation_pathogenicity', $investigation_mutation_pathogenicity_lists); ?>
                 </td>
-				 <td>
+                <td>
                     <?php echo $investigation_mutation_nomenclature; ?>:  <br />
                     <?php echo form_dropdown('investigation_mutation_nomenclature', $investigation_mutation_nomenclature_lists); ?>
                 </td>
-				 <td>
+                <td>
+                    <?php echo $investigation_mutation_name; ?>: </br>
+                    <?php echo form_input('investigation_mutation_name'); ?>
+                </td>
+                </td>
+                <td>
                     <?php echo $investigation_mutation_type; ?>: </br>
                     <?php echo form_input('investigation_mutation_type'); ?>
                 </td>
-				 <td>
+            </tr>
+            <tr>
+                <td>
                     <?php echo $investigation_exon; ?>: </br>
                     <?php echo form_input('investigation_exon'); ?>
                 </td>
-            </tr>
-            <tr>
-				<td>
+                <td>
                     <?php echo $investigation_carrier_status; ?>:  <br />
                     <?php echo form_dropdown('investigation_carrier_status', $investigation_carrier_status_lists); ?>
                 </td>
-				 <td>
+                <td>
                     <?php echo $investigation_report_date; ?>: </br>
-					<?php echo form_input(array('name'=>'investigation_report_date','class'=>'datepicker')); ?>
+                    <?php echo form_input(array('name' => 'investigation_report_date', 'class' => 'datepicker')); ?>
                 </td>
-				<td>
+                <td>
                     <?php echo $investigation_date_notified; ?>:  <br />
-					<?php echo form_input(array('name'=>'investigation_date_notified','class'=>'datepicker')); ?>
-                </td>
-				<td>
-                    <?php echo $mutation_is_counselling_flag; ?>:  
-                    <?php echo form_checkbox('mutation_is_counselling_flag', '1', FALSE); ?>
+                    <?php echo form_input(array('name' => 'investigation_date_notified', 'class' => 'datepicker')); ?>
                 </td>
             </tr>
             <tr>
+                <td>
+                    <?php echo $mutation_is_counselling_flag; ?>:  
+                    <?php echo form_checkbox('mutation_is_counselling_flag', '1', FALSE); ?>
+                </td>
                 <td>
                     <?php echo $investigation_test_comment; ?>:  <br />
                     <?php

@@ -51,7 +51,7 @@
             <tr>
                 <td>
                     <?php echo $DOB; ?>:
-                    <?php echo form_input(array('name'=>'DOB','class'=>'datepicker')); ?>
+                    <?php echo form_input(array('name'=>'d_o_b','class'=>'datepicker')); ?>
                 
                 </td>
                 <td>
@@ -147,11 +147,11 @@
             <tr>
                 <td>
 					<?php echo $COGS_study_id; ?>:
-                    <?php echo form_dropdown('COGS_study_id', $COGS_study_id_lists); ?>
+                    <?php echo form_dropdown('COGS_studies_id', $COGS_study_id_lists); ?>
                 </td>
                 <td>
 					<?php echo 'Study no'; ?>: 
-					<?php echo form_input('study_no'); ?>
+					<?php echo form_input('COGS_studies_no'); ?>
                 </td>
                 <td>
 				<input type="button" value="Add" onClick="window.parent.addPatientStudyNoInput('add_record_form_section_personal6'); window.parent.calcHeight();">
@@ -283,18 +283,21 @@
                     <?php echo $total_no_of_female_siblings; ?>: 
                     <?php echo form_input('total_no_of_female_siblings'); ?>
                 </td>
-				<td>
+                <td>
                     <?php echo $total_no_of_affected_siblings; ?>: 
                     <?php echo form_input('total_no_of_affected_siblings'); ?>
-				</td>
-				<td>&nbsp;</td>
-			</tr>
-			<tr>
-               <td>
-                    <?php echo $total_no_male_children; ?>: 
-                    <?php echo form_input('total_no_male_children'); ?>
                 </td>
                 <td>
+                    <?php echo $total_no_of_siblings; ?>: 
+                    <?php echo form_input('total_no_of_siblings'); ?>
+                </td>
+                </tr>
+                <tr>
+                              <td>
+                                  <?php echo $total_no_male_children; ?>: 
+                                  <?php echo form_input('total_no_male_children'); ?>
+                              </td>
+                              <td>
                     <?php echo $total_no_female_children; ?>: 
                     <?php echo form_input('total_no_female_children'); ?>
                 </td>

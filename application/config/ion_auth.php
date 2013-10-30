@@ -75,6 +75,14 @@ $config['tables']['patient_boadicea'] = 'patient_boadicea';
 $config['tables']['patient_interview_manager'] = 'patient_interview_manager';
 $config['tables']['patient_survival_status'] = 'patient_survival_status';
 $config['tables']['patient_relatives_summary'] = 'patient_relatives_summary';
+$config['tables']['patient_mutation_analysis'] = 'patient_mutation_analysis';
+$config['tables']['patient_risk_reducing_surgery_complete_removal'] = 'patient_risk_reducing_surgery_complete_removal';
+$config['tables']['patient_risk_reducing_surgery_lesion'] = 'patient_risk_reducing_surgery_lesion';
+$config['tables']['patient_risk_reducing_surgery'] = 'patient_risk_reducing_surgery';
+$config['tables']['patient_ovarian_screening'] = 'patient_ovarian_screening';
+$config['tables']['patient_non_cancer_surgery'] = 'patient_non_cancer_surgery';
+$config['tables']['patient_risk_assessment'] = 'patient_risk_assessment';
+
 
 
 /*
