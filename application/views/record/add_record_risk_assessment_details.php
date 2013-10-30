@@ -2,21 +2,19 @@
     <div id="add_record_header" class="row">
         <p>Add Risk Assessment</p>
     </div>
-    <?php echo form_open_multipart("record/risk_assessment_insertion"); ?>
+	<?php 
+	$attributes = array('id' => 'risk-assessment-details-form');
+	echo form_open("record/risk_assessment_insertion", $attributes);
+	?>
 	<div class="container" id="add_record_form_section_risk_assessment">
         <div height="30px">&nbsp;</div>
 		<div height="30px">&nbsp;</div>
 		<table>
 		<tr> 
 			<td>
-                    <?php echo $IC_no; ?>: 
-                    <?php echo form_input('patient_ic_no'); ?>
+				<label for="IC_no"><?php echo $IC_no; ?>: </label>
+                    <?php echo form_input('IC_no'); ?>
 			</td>
-<!--			<td>
-				<?php echo $studies_name; ?>: 
-				<?php echo form_dropdown('studies_name', $studies_name_lists); ?>
-				<?php echo '<br/>'; ?>
-			</td>-->
 		</tr>
 		</table>
         <div class="container" id="add_record_form_manchester_score1">
@@ -187,7 +185,9 @@
             </tr>
         </table>
         </div>
-        <?php echo form_fieldset_close(); ?>
+		 <?php echo form_fieldset_close(); ?>
+		 <?php echo form_submit('mysubmit', 'Save'); ?>
+        <?php echo form_close(); ?> 
 </div>
      <?php echo form_submit('mysubmit', 'Save'); ?>
      <?php echo form_close(); ?>

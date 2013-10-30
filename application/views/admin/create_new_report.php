@@ -1,39 +1,13 @@
 <div class="container" id="submit_report_div">
 	<div id="add_record_header" class="row">
-		<p>Create New Report</p>
+		<p>Form Fields Customization</p>
 	</div>
-	<?php echo form_open('report/add_record_admin_detail'); ?>
-	<div class="container" id="report_form_section">
+	<div class="container">
 		<div height="30px">&nbsp;</div>
-		<table>
-			<tr><td>
-			<?php echo 'Form Title'; ?></td>
-			<td>:</td> 
-			<td><?php echo form_input('mother_fullname'); ?>
-			</td>
-			</tr>
-			<tr><td>
-			<?php echo $fullname; ?></td>
-			<td>:</td>
-			<td><?php echo form_input('mother_maiden_name'); ?>
-			</td>
-			<td>
-			<?php echo $surname; ?></td>
-			<td>:</td>
-			<td><?php echo form_input('mother_DOB'); ?></td>
-			</td></tr>
-		
-		</table>	
-			<p><?php echo form_submit('submit','Save Form');  ?> </p>
-
-	<p></p>
-	<p align="center">Select Field</p>
-	<table border="1" align="center" width="30%">
-        <thead>
-        	<tr>
-                <th colspan="2" id="design-customized-form-table">Basic Field</th>
+		<table border="1" align="lefts" width="30%">
+			<tr>
+                <td colspan="2" id="design-customized-form-table">Basic Field</td>
             </tr>
-        </thead>
             <tr>
                 <td>Text Box</td>
                 <td>Text Area</td>
@@ -46,14 +20,36 @@
                 <td>Radio Button</td>
                 <td>Checkbox</td>
             </tr>
-                </table>
-                </div>
-                	<p></p>
-
-	<p align="center"><?php echo form_submit('submit','Submit');  ?></p>
-
-	<?php echo form_close(); ?>
-	<a class="doneButton" href="<?php echo base_url(). '/admin/'; ?>">Back</a>
+		</table>
+		<div height="30px">&nbsp;</div>
+		<table>
+			<tr><td id="label1">Dropdowns</td></tr>
+			<tr>
+				<td colspan="2">
+					<select id="first-choice">
+					<option selected value="base">Please Select</option>
+					<option value="nationality">Nationality</option>
+					<option value="gender">Gender</option>
+					<option value="marital_status">Marital Status</option>
+					<option value="COGS_study_id">COGS Study ID</option>
+					<option value="income_level">Income Level</option>
+					<option value="status_source">Status Source</option>
+					<option value="alive_status">Alive Status</option>
+					<option value="studies_name">Studies Names</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<select id="second-choice">
+					<option>Please choose from above</option>
+					</select>
+				</td>
+				<td><button id="renameBtnID" class="rename">Rename</button><button id="addBtnID" class="add-new">Add new</button><button id="deleteBtnID" class="delete">Delete</button></td>
+			</tr>
+		</table>	
+		<p><a class="doneButton" href="<?php echo base_url(). '/admin/'; ?>">Back</a></p>
+	</div>
  </div>
 
 

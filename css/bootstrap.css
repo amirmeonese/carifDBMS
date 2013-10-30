@@ -6770,6 +6770,22 @@ div #label1
 	font-size: 12px;
 	border: 1px solid #A9A9A9;
 }
+
+form label.error{
+    font:12px Tahoma,sans-serif;
+    color:#ED7476;
+    margin-left:5px;
+}
+
+input.error
+{  
+border-color:Red;
+border-style:solid;
+border-width:1px; }
+ 
+.error
+{
+color:Red; }
 /* ----------------------------- */
 /* CARIF DEFINITIONS ENDS HERE */
 /* ----------------------------- */

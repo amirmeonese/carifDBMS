@@ -53,6 +53,95 @@ class Record extends CI_Controller {
         //$this->load->view('record/add_record', $data);
     }
 
+	function getDynamicFieldsInputsArray( $sectionName)
+	{
+		/*section lists
+		//FAMILY TAB
+		mother cancer
+		father cancer
+		relative
+		relative cancer
+		//DIANOSIS TAB
+		breast cancer: diagnosis
+		breast cancer:pathology
+		breast cancer:pathology:staining status
+		breast cancer treatment
+		ovary cancer: diagnosis
+		ovary cancer:pathology
+		ovary cancer:pathology:staining status
+		ovary cancer treatment
+		other cancer: diagnosis
+		other cancer:pathology
+		other cancer:pathology:staining status
+		other cancer treatment
+		other disease
+		other disease: medication
+		//SCREENINGS TAB
+		*/
+		switch ($sectionName) {
+			case "hospital_no":
+			{
+				$fieldCount = 2;
+				$allFieldArray = array();
+				
+				while($this->input->post('hospital_no'.$fieldCount))
+				{
+				}
+			}
+			case "private_patient_no":
+			{
+				$fieldCount = 2;
+				$allFieldArray = array();
+				
+				while($this->input->post('private_patient_no'.$fieldCount))
+				{
+				}
+			}
+			case "cogs_study":
+			{
+				$fieldCount = 2;
+				$allFieldArray = array();
+				
+				while($this->input->post('COGS_study_id'.$fieldCount))
+				{
+				}
+			}
+			case "survival_status":
+			{
+				$fieldCount = 2;
+				$allFieldArray = array();
+				
+				while($this->input->post('status_source'.$fieldCount))
+				{
+					$alive_status = $this->input->post('alive_status'.$fieldCount);
+					
+					echo $this->input->post('status_source'.$fieldCount) . ', ' .
+					$alive_status . ', ' .$this->input->post('status_gathered_date'.$fieldCount) . '</br>';
+					
+					if ($alive_status == 'Alive')
+						$alive_status_flag = TRUE;
+					else if ($alive_status == 'Dead')
+						$alive_status_flag = FALSE;
+					else
+						$alive_status_flag = FALSE;
+
+					$data_patient_survival_status = array(
+						'patient_ic_no' => $this->input->post('IC_no'),
+						'source' => $this->input->post('status_source'.$fieldCount),
+						'alive_status' => $alive_status_flag,
+						'status_gathering_date' => $this->input->post('status_gathered_date'.$fieldCount)
+					 );
+					 
+					$fieldCount++;
+					array_push($allFieldArray,$data_patient_survival_status);
+				}
+				echo count($allFieldArray);
+				break;
+			}
+		}
+
+	}
+	
     function patient_record_insertion() {
         //print_r($this->input->post());
         //$data = array();
@@ -62,6 +151,7 @@ class Record extends CI_Controller {
 //        
 //        print_r($dod);exit;
         
+		
         $this->form_validation->set_rules('fullname', 'Full name', 'required|xss_clean');
         if ($this->form_validation->run() == true) {
 
@@ -171,7 +261,10 @@ class Record extends CI_Controller {
             }
             echo '<br/>';
 
-            $data_patient_relatives_summary = array(
+			/* NOTE: Call getDynamicFieldsInputsArray() function to fetch the data array of dynamic fields. Parameter: Name of dynamic field's section */
+			//$dynamicFieldsArray = $this->getDynamicFieldsInputsArray("survival_status");
+            
+			$data_patient_relatives_summary = array(
                 'patient_ic_no' => $this->input->post('IC_no'),
                 'total_no_of_male_siblings' => $this->input->post('total_no_of_male_siblings'),
                 'total_no_of_female_siblings' => $this->input->post('total_no_of_female_siblings'),

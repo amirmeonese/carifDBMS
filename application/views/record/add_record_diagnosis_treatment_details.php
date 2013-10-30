@@ -2,17 +2,20 @@
     <div id="add_record_header" class="row">
         <p>Add Diagnosis & Treatment</p>
     </div>
-    <?php echo form_open('record/patient_diagnosis_treatment_record_insertion'); ?>
+	 <?php 
+	$attributes = array('id' => 'diagnosis-treatment-details-form');
+	echo form_open("record/diagnosis_treatment_record_insertion", $attributes);
+	?>
     <div class="container" id="add_record_form_section_breast_cancer">
         <div height="30px">&nbsp;</div>
         <table>
             <tr> 
                 <td>
-                    <?php echo $IC_no; ?>: 
+                    <label for="IC_no"><?php echo $IC_no; ?>: </label>
                     <?php echo form_input('IC_no'); ?>
                 </td>
                 <td>
-                    <?php echo $studies_name; ?>: 
+                    <label for="studies_name"><?php echo $studies_name; ?>: </label>
                     <?php echo form_dropdown('studies_name', $studies_name_lists); ?>
                     <?php echo '<br/>'; ?>
                 </td>
