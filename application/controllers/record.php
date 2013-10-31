@@ -1587,7 +1587,7 @@ class Record extends CI_Controller {
             //echo '<h3>Your file was successfully uploaded!</h3>';
             //echo $data['upload_data']['full_path'];
             $temp = $data['upload_data']['file_name'];
-            echo $temp;
+            //echo $temp;
             //print_r($data);
             //redirect('excell_parser/test/',$temp);
             $this->excell_parser_model->excell_file_parser($temp);
