@@ -579,6 +579,22 @@ class Excell_sheets_model extends CI_Model {
         return $result['patient_parity_id'];
     }
 
+     public function get_id($table_name,$selected_col_name,$comparable_col_name,$record_data) {
+        $data = array(
+        );
+        $query = $this->db->select($selected_col_name)
+                ->where($comparable_col_name, $record_data)
+                ->limit(1)
+                ->get($this->tables[$table_name]);
+
+        $result = null;
+        if ($query->num_rows() > 0) {
+            $result = $query->row_array();
+        }
+
+        return $result[$selected_col_name];
+    }
+    
     public function get_patient_family_no($record_data) {
         $data = array(
         );
@@ -633,26 +649,6 @@ class Excell_sheets_model extends CI_Model {
         return $result['studies_id'];
     }
     
-    public function get_patient_cancer_id($record_data) {
-        $data = array(
-        );
-        $query = $this->db->select('patient_cancer_id')
-                ->where('patient_studies_id', $record_data)
-                ->limit(1)
-                ->get($this->tables['patient_cancer']);
-        $result = null;
-        if ($query->num_rows() > 0) {
-            $result = $query->row_array();
-            //echo $result['relatives_id'];
-        }
-
-        //print_r($result['relatives_id']);
-
-        return $result['patient_cancer_id'];
-    }
-    
-   
-    
     public function get_patient_studies_id($patient_ic_no,$studies_id) {
         $data = array(
         );
@@ -691,6 +687,27 @@ class Excell_sheets_model extends CI_Model {
         //print_r($result['relatives_id']);
 
         return $result['patient_breast_screening_id'];
+    }
+    
+       public function get_patient_cancer_id($patient_studies_id,$cancer_id,$cancer_site_id) {
+        $data = array(
+        );
+        $query = $this->db->select('patient_cancer_id')
+                ->where('patient_studies_id', $patient_studies_id)
+                ->where('cancer_id',$cancer_id)
+                ->where('cancer_site_id',$cancer_site_id)
+                ->limit(1)
+                ->get($this->tables['patient_cancer']);
+        
+        $result = null;
+        if ($query->num_rows() > 0) {
+            $result = $query->row_array();
+            //echo $result['relatives_id'];
+        }
+
+        //print_r($result['relatives_id']);
+
+        return $result['patient_cancer_id'];
     }
 
 }
