@@ -16,7 +16,7 @@
                 </td>
                 <td>
                     <label for="studies_name"><?php echo $studies_name; ?>: </label>
-                    <?php echo form_dropdown('studies_name', $studies_name_lists); ?>
+					<?php echo form_dropdown('studies_name', $studies_name_lists, NULL, 'id="studies_name"'); ?>
                     <?php echo '<br/>'; ?>
                 </td>
             </tr>
