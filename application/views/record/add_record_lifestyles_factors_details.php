@@ -450,6 +450,14 @@
                     <?php echo $contraceptive_end_date; ?>: <br />
 					<?php echo form_input(array('name'=>'contraceptive_end_date','class'=>'datepicker')); ?>
                 </td>
+                <td>
+                    <?php echo $contraceptive_start_age; ?>: <br />
+                    <?php echo form_input('contraceptive_start_age'); ?>
+                </td>
+                <td>
+                    <?php echo $contraceptive_end_age; ?>: <br />
+                    <?php echo form_input('contraceptive_end_age'); ?>
+                </td>
                  <td>
                     <?php echo $contraceptive_duration; ?>: <br />
                     <?php echo form_input('contraceptive_duration'); ?>
@@ -480,6 +488,14 @@
                 <td>
                     <?php echo $HRT_end_date; ?>: <br />
 					<?php echo form_input(array('name'=>'hrt_end_date','class'=>'datepicker')); ?>
+                </td>
+               <td>
+                    <?php echo $HRT_start_age; ?>: <br />
+                    <?php echo form_input('hrt_start_age'); ?>
+                </td>
+                <td>
+                    <?php echo $HRT_end_age; ?>: <br />
+                    <?php echo form_input('hrt_end_age'); ?>
                 </td>
                <td>
                     <?php echo $HRT_duration; ?>: <br />

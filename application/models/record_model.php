@@ -551,6 +551,7 @@ class Record_model extends CI_Model {
 		$data['total_no_of_male_siblings'] = 'Total male siblings';
 		$data['total_no_of_female_siblings'] = 'Total female siblings';
 		$data['total_no_of_affected_siblings'] = 'Total of affected siblings';
+                $data['total_no_of_siblings'] = 'Total of siblings';
 		$data['total_no_male_children'] = 'Total of male children';
 		$data['total_no_female_children'] = 'Total of female children';
 		$data['total_no_of_affected_children'] = 'Total of affected children';
@@ -646,7 +647,26 @@ class Record_model extends CI_Model {
 
         //MAMMO
         $data['date_of_first_mammogram'] = 'Date of first mammogram';
+        $data['reason_of_mammogram'] = 'Reason for mammogram';
+        $data['details_for_mammogram'] = 'Details';
+        $data['action_suggested_on_mammogram_report'] = 'Action suggested on mammogram report';
+        $data['reason_of_action_suggested'] = 'Reason of action suggested';
+        $data['is_cancer'] = 'Cancer?';
+        $data['side_effected'] = 'Site effected';
+        $data['mammo_report_site'] = array(
+            '' => '',
+            'left' => 'Left',
+            'right' => 'Right',
+            'both' => 'both'
+        );
         $data['age_at_first_mammogram'] = 'Age at first mammogram';
+        $data['motivaters_at_first_mammogram'] = 'Motivaters at first mammogram';
+        $data['motivaters_at_recent_mammogram'] = 'Motivaters at recent mammogram';
+        $data['details_at_first_mammogram'] = 'Details at first mammogram';
+        $data['details_at_recent_mammogram'] = 'Details at recent mammogram';
+        $data['mammogram_in_sdmc'] = 'Mammogram in SDMC,SJ';
+        $data['screening_center_at_first_mammogram'] = 'Screening center at first mammogram';
+        $data['screening_center_at_recent_mammogram'] = 'Screening center at recent mammogram';
         $data['date_of_recent_mammogram'] = 'Date of recent mammogram';
 		$data['age_at_recent__mammogram'] = 'Age at recent mammogram';
         $data['screening_center'] = 'Screening centre';
@@ -766,7 +786,8 @@ class Record_model extends CI_Model {
 		 $data['patient_cancer_site_lists'] = array(
 			 '' => '',
             'Left' => 'Left',
-            'Right' => 'Right'
+            'Right' => 'Right',
+            'Bilateral' => 'Bilateral'
         );
         $data['cancer_site_details'] = 'Details';
 
@@ -777,7 +798,7 @@ class Record_model extends CI_Model {
         $data['cancer_diagnosis_center'] = 'Diagnosis centre';
         $data['cancer_doctor_name'] = 'Doctor\'s name';
         $data['detected_by'] = 'Detected by';
-        $data['patient_cancer_treatment_name'] = 'Treatment name';
+        $data['patient_cancer_treatment_name'] = 'Treatment type';
         $data['patient_cancer_treatment_name_lists'] = array(
 			 '' => '',
             'Lumpectomy' => 'Lumpectomy',
@@ -802,7 +823,14 @@ class Record_model extends CI_Model {
 		$data['cancer_is_recurrent'] = 'Recurrent';
         $data['treatment_start_date'] = 'Treatment start date';
         $data['treatment_end_date'] = 'Treatment end date';
+        $data['treatment_details'] = 'Treatment details';
         $data['treatment_drug_dose'] = 'Treatment drug dose';
+        $data['treatment_cycle'] = 'Treatment cycle';
+        $data['treatment_route'] = 'Treatment route';
+        $data['treatment_visidual_desease'] = 'Treatment visidual desease';
+        $data['treatment_primary_therapy_outcome'] = 'Primary therapy outcome';
+        $data['treatment_cal125_pretreatment'] = 'Cal125 pretreatment';
+        $data['treatment_cal125_posttreatment'] = 'Cal125 posttreatment';
         $data['is_recurrence_flag'] = 'Is there a recurrence cancer?';
         $data['recurrence_site'] = 'Recurrence site';
         $data['recurrence_date'] = 'Recurrence date';
@@ -818,7 +846,7 @@ class Record_model extends CI_Model {
 		$data['ovary_cancer_doctor_name'] = 'Doctor\'s name';
 		$data['ovary_detected_by'] = 'Detected by';
 		$data['ovary_detected_by_other_details'] = 'Other';
-		$data['ovary_patient_cancer_treatment_name'] = 'Treatment name';
+		$data['ovary_patient_cancer_treatment_name'] = 'Treatment type';
 		$data['ovary_treatment_start_date'] = 'Treatment start date';
 		$data['ovary_treatment_end_date'] = 'Treatment end date';
 		$data['ovary_treatment_duration'] = 'Treatment duration';
@@ -834,7 +862,7 @@ class Record_model extends CI_Model {
 		$data['other_cancer_diagnosis_center'] = 'Diagnosis centre';
 		$data['other_cancer_doctor_name'] = 'Doctor\'s name';
 		$data['other_cancer_comments'] = 'Comments';
-		$data['other_patient_cancer_treatment_name'] = 'Treatment name';
+		$data['other_patient_cancer_treatment_name'] = 'Treatment type';
 		$data['other_treatment_start_date'] = 'Treatment start date';
 		$data['other_treatment_end_date'] = 'Treatment end date';
 		$data['other_treatment_duration'] = 'Treatment duration';
@@ -1017,12 +1045,16 @@ class Record_model extends CI_Model {
         $data['currently_taking_contraceptive_pills_flag'] = 'Active use?';
         $data['contraceptive_start_date'] = 'Start date';
         $data['contraceptive_end_date'] = 'End date';
+        $data['contraceptive_start_age'] = 'Start age';
+        $data['contraceptive_end_age'] = 'End Age';
 		$data['contraceptive_duration'] = 'Duration';
         $data['HRT_flag'] = 'HRT use?';
         $data['HRT_details'] = 'Details';
         $data['currently_using_HRT_flag'] = 'Active use?';
         $data['HRT_start_date'] = 'Start date';
         $data['HRT_end_date'] = 'End date';
+        $data['HRT_start_age'] = 'Start age';
+        $data['HRT_end_age'] = 'End Age';
 		$data['HRT_duration'] = 'Duration';
         $data['had_gnc_surgery_flag'] = 'Has ever had gynaecological surgery?';
         $data['gnc_surgery_year'] = 'Surgery year';
@@ -1110,6 +1142,7 @@ class Record_model extends CI_Model {
 			'aa' => 'aa'
         );
         $data['investigation_reported_by'] = 'Reported by';
+        $data['investigation_mutation_name'] = 'Mutation name';
         $data['investigation_mutation_type'] = 'Mutation type';
         $data['investigation_mutation_pathogenicity'] = 'Mutation pathogenicity';
 		
@@ -1358,6 +1391,10 @@ class Record_model extends CI_Model {
         );
 		
 		//Ovary pathology
+                $data['ovary_pathology_report_no'] = 'No of report';
+                $data['ovary_tumor_subtypes'] = 'Tumor subtypes';
+                $data['ovary_tumor_behavior'] = 'Tumor behaviour';
+                $data['ovary_tumor_differentiation'] = 'Tumor differentiation';
 		$data['other_pathology_tissue_site'] = 'Site';
 		$data['other_pathology_doctor'] = 'Name of doctor';
         $data['other_pathology_lab'] = 'Pathology lab';
@@ -1472,12 +1509,34 @@ class Record_model extends CI_Model {
         $id = $this->db->insert_id();
         return $id;
     }
+    
+    public function insert_patient_cogs_studies($record_data) {
+        
+//       print_r($record_data);exit;
+        $data = array(
+        );
+        $record_data = array_merge($this->_filter_data($this->tables['patient_cogs_studies'], $data), $record_data);
+        $this->db->insert($this->tables['patient_cogs_studies'], $record_data);
+
+        $id = $this->db->insert_id();
+        return $id;
+    }
 
     public function insert_patient_family_record($record_data) {
         $data = array(
         );
         $record_data = array_merge($this->_filter_data($this->tables['patient_relatives'], $data), $record_data);
         $this->db->insert($this->tables['patient_relatives'], $record_data);
+
+        $id = $this->db->insert_id();
+        return $id;
+    }
+    
+    public function insert_patient_risk_assessment_record($record_data) {
+        $data = array(
+        );
+        $record_data = array_merge($this->_filter_data($this->tables['patient_risk_assessment'], $data), $record_data);
+        $this->db->insert($this->tables['patient_risk_assessment'], $record_data);
 
         $id = $this->db->insert_id();
         return $id;
@@ -1594,6 +1653,56 @@ class Record_model extends CI_Model {
         $id = $this->db->insert_id();
         return $id;
     }
+    
+    public function insert_patient_non_cancer_surgery($record_data) {
+        $data = array(
+        );
+        $record_data = array_merge($this->_filter_data($this->tables['patient_non_cancer_surgery'], $data), $record_data);
+        $this->db->insert($this->tables['patient_non_cancer_surgery'], $record_data);
+
+        $id = $this->db->insert_id();
+        return $id;
+    }
+    
+    public function insert_patient_risk_reducing_surgery($record_data) {
+        $data = array(
+        );
+        $record_data = array_merge($this->_filter_data($this->tables['patient_risk_reducing_surgery'], $data), $record_data);
+        $this->db->insert($this->tables['patient_risk_reducing_surgery'], $record_data);
+
+        $id = $this->db->insert_id();
+        return $id;
+    }
+    
+    public function insert_patient_risk_reducing_surgery_complete_removal($record_data) {
+        $data = array(
+        );
+        $record_data = array_merge($this->_filter_data($this->tables['patient_risk_reducing_surgery_complete_removal'], $data), $record_data);
+        $this->db->insert($this->tables['patient_risk_reducing_surgery_complete_removal'], $record_data);
+
+        $id = $this->db->insert_id();
+        return $id;
+    }
+    
+    public function insert_patient_risk_reducing_surgery_lesion($record_data) {
+        $data = array(
+        );
+        $record_data = array_merge($this->_filter_data($this->tables['patient_risk_reducing_surgery_lesion'], $data), $record_data);
+        $this->db->insert($this->tables['patient_risk_reducing_surgery_lesion'], $record_data);
+
+        $id = $this->db->insert_id();
+        return $id;
+    }
+     
+    public function insert_patient_ovarian_screening($record_data) {
+        $data = array(
+        );
+        $record_data = array_merge($this->_filter_data($this->tables['patient_ovarian_screening'], $data), $record_data);
+        $this->db->insert($this->tables['patient_ovarian_screening'], $record_data);
+
+        $id = $this->db->insert_id();
+        return $id;
+    }
 
     public function insert_patient_other_screening($record_data) {
         $data = array(
@@ -1664,6 +1773,16 @@ class Record_model extends CI_Model {
         $id = $this->db->insert_id();
         return $id;
     }
+    
+    public function insert_patient_other_disease($record_data) {
+        $data = array(
+        );
+        $record_data = array_merge($this->_filter_data($this->tables['patient_other_disease'], $data), $record_data);
+        $this->db->insert($this->tables['patient_other_disease'], $record_data);
+
+        $id = $this->db->insert_id();
+        return $id;
+    }
 
     public function insert_patient_diagnosis($record_data) {
         $data = array(
@@ -1705,11 +1824,11 @@ class Record_model extends CI_Model {
         return $id;
     }
 
-    public function insert_patient_investigations($record_data) {
+    public function insert_patient_mutation_analysis($record_data) {
         $data = array(
         );
-        $record_data = array_merge($this->_filter_data($this->tables['patient_investigations'], $data), $record_data);
-        $this->db->insert($this->tables['patient_investigations'], $record_data);
+        $record_data = array_merge($this->_filter_data($this->tables['patient_mutation_analysis'], $data), $record_data);
+        $this->db->insert($this->tables['patient_mutation_analysis'], $record_data);
 
         $id = $this->db->insert_id();
         return $id;
@@ -1869,6 +1988,44 @@ class Record_model extends CI_Model {
         return $result['patient_studies_id'];
     }
     
+    public function get_studies_id($record_data) {
+        $data = array(
+        );
+        $query = $this->db->select('studies_id')
+                ->where('studies_name', $record_data)
+                ->limit(1)
+                ->get($this->tables['studies']);
+        $result = null;
+        if ($query->num_rows() > 0) {
+            $result = $query->row_array();
+            //echo $result['relatives_id'];
+        }
+
+        //print_r($result['relatives_id']);
+
+        return $result['studies_id'];
+    }
+    
+    public function get_non_cancerous_benign_site_id($record_data) {
+        $this->db->select('non_cancerous_site_id');
+        $this->db->where('non_cancerous_site_name',$record_data);
+        $l_record = $this->db->get('non_cancerous_site');
+        $patient_list = $l_record->row_array();
+        $l_record->free_result();
+
+        return $patient_list['non_cancerous_site_id'];
+    }
+    
+    public function get_ovarian_screening_type($record_data) {
+        $this->db->select('ovarian_screening_type_id');
+        $this->db->where('ovarian_screening_type_name',$record_data);
+        $o_record = $this->db->get('ovarian_screening_type');
+        $ovarian_screening_type_list = $o_record->row_array();
+        $o_record->free_result();
+
+        return $ovarian_screening_type_list['ovarian_screening_type_id'];
+    }
+       
     function getPatientInfo($record_data) {
         $query = $this->db->select('fullname, surname, ic_no')
                 ->like('fullname', $record_data['fullname'])

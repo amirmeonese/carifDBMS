@@ -1,6 +1,6 @@
 <div class="container" id="add_record_div">
     <div id="add_record_header" class="row">
-        <p>Add Screenings & Surveillance</p>
+        <p>Add Diagnosis & Treatment</p>
     </div>
 	 <?php 
 	$attributes = array('id' => 'diagnosis-treatment-details-form');
@@ -22,7 +22,7 @@
             </tr>
         </table>
         <?php
-        echo form_fieldset('Breast Cancer Diagnosis & TreatmenT');
+        echo form_fieldset('Breast Cancer Diagnosis & Treatment');
         ?>
         <input type="button" value="Add diagnosis" onClick="window.parent.addBreastCancerDiagnosis('add_record_form_section_breast_cancer');
                 window.parent.calcHeight();">
@@ -209,6 +209,10 @@
                         <?php echo form_dropdown('patient_cancer_treatment_name', $patient_cancer_treatment_name_lists); ?>
                     </td>
                     <td>
+                        <?php echo $treatment_details; ?>: 
+                        <?php echo form_input('treatment_details'); ?>
+                    </td>
+                    <td>
                         <?php echo $treatment_start_date; ?>: 
                         <?php echo form_input(array('name' => 'treatment_start_date', 'class' => 'datepicker')); ?>
                     </td>
@@ -216,12 +220,34 @@
                         <?php echo $treatment_end_date; ?>: 
                         <?php echo form_input(array('name' => 'treatment_end_date', 'class' => 'datepicker')); ?>
                     </td>
+                    </tr>
+                    <tr>
                     <td>
                         <?php echo $treatment_duration; ?>: 
                         <?php echo form_input('treatment_duration'); ?>
+                    </td>               
+                <td>
+                        <?php echo $treatment_drug_dose; ?>: 
+                        <?php echo form_input('treatment_drug_dose'); ?>
                     </td>
-                </tr>
-                <tr>
+                    <td>
+                        <?php echo $treatment_cycle; ?>: 
+                        <?php echo form_input('treatment_cycle'); ?>
+                    </td>
+                    <td>
+                        <?php echo $treatment_route; ?>: 
+                        <?php echo form_input('treatment_route'); ?>
+                    </td>
+                     </tr>
+                     <tr>
+                    <td>
+                        <?php echo $treatment_visidual_desease; ?>: 
+                        <?php echo form_input('treatment_visidual_desease'); ?>
+                    </td>
+                    <td>
+                        <?php echo $treatment_primary_therapy_outcome; ?>: 
+                        <?php echo form_input('treatment_primary_therapy_outcome'); ?>
+                    </td>
                     <td>
                         <?php echo $breast_cancer_treatment_comments; ?>: 
                         <?php
@@ -336,6 +362,10 @@
                         <?php echo $ovary_pathology_path_report_date; ?>: <br />
                         <?php echo form_input(array('name' => 'ovary_pathology_path_report_date', 'class' => 'datepicker')); ?>
                     </td>
+                    <td>
+                        <?php echo $ovary_pathology_report_no; ?>: <br />
+                        <?php echo form_input('ovary_pathology_report_no'); ?>
+                    </td>
                 </tr>
                 <tr>
                     <td>
@@ -350,7 +380,7 @@
                 <tr>
                     <td>
                         <?php echo $ovary_pathology_morphology; ?>: <br />
-                        <?php echo form_dropdown('ovary_pathology_morphology', $pathology_morphology_lists); ?>
+                        <?php echo form_input('ovary_pathology_morphology'); ?>
                     </td>
                     <td>
                         <?php echo $ovary_stage_classification; ?>: <br />
@@ -359,6 +389,10 @@
                     <td>
                         <?php echo $ovary_pathology_tumour_stage; ?>: <br />
                         <?php echo form_dropdown('ovary_pathology_tumour_stage', $pathology_tumour_stage_lists); ?>
+                    </td>
+                    <td>
+                        <?php echo $ovary_tumor_subtypes; ?>: <br />
+                        <?php echo form_dropdown('ovary_tumor_subtypes', $ovary_stage_classification_lists); ?>
                     </td>
                 </tr>
                 <tr>
@@ -369,6 +403,14 @@
                     <td>
                         <?php echo $ovary_pathology_tumour_size; ?>: <br />
                         <?php echo form_input('ovary_pathology_tumour_size'); ?>
+                    </td>
+                    <td>
+                        <?php echo $ovary_tumor_behavior; ?>: <br />
+                        <?php echo form_dropdown('ovary_tumor_behavior', $ovary_stage_classification_lists); ?>
+                    </td>
+                    <td>
+                        <?php echo $ovary_tumor_differentiation; ?>: <br />
+                        <?php echo form_dropdown('ovary_tumor_differentiation', $ovary_stage_classification_lists); ?>
                     </td>
                 </tr>
                 <tr>
@@ -401,6 +443,10 @@
                         <?php echo form_dropdown('ovary_patient_cancer_treatment_name', $patient_cancer_treatment_name_lists); ?>
                     </td>
                     <td>
+                        <?php echo $treatment_details; ?>: 
+                        <?php echo form_input('ovary_treatment_details'); ?>
+                    </td>
+                    <td>
                         <?php echo $ovary_treatment_start_date; ?>: 
                         <?php echo form_input(array('name' => 'ovary_treatment_start_date', 'class' => 'datepicker')); ?>
                     </td>
@@ -408,11 +454,43 @@
                         <?php echo $ovary_treatment_end_date; ?>: 
                         <?php echo form_input(array('name' => 'ovary_treatment_end_date', 'class' => 'datepicker')); ?>
                     </td>
+                     </tr>
+                     <tr>
                     <td>
                         <?php echo $ovary_treatment_duration; ?>: 
                         <?php echo form_input('ovary_treatment_duration'); ?>
                     </td>
-                </tr>
+               
+                <td>
+                        <?php echo $treatment_drug_dose; ?>: 
+                        <?php echo form_input('ovary_treatment_drug_dose'); ?>
+                    </td>
+                    <td>
+                        <?php echo $treatment_cycle; ?>: 
+                        <?php echo form_input('ovary_treatment_cycle'); ?>
+                    </td>
+                    <td>
+                        <?php echo $treatment_route; ?>: 
+                        <?php echo form_input('ovary_treatment_route'); ?>
+                    </td>
+                     </tr>
+                     <tr>
+                    <td>
+                        <?php echo $treatment_visidual_desease; ?>: 
+                        <?php echo form_input('ovary_treatment_visidual_desease'); ?>
+                    </td>
+                    <td>
+                        <?php echo $treatment_primary_therapy_outcome; ?>: 
+                        <?php echo form_input('treatment_privacy_outcome'); ?>
+                    </td>
+                    <td>
+                        <?php echo $treatment_cal125_pretreatment; ?>: 
+                        <?php echo form_input('ovary_cal125_pretreatment'); ?>
+                    </td>
+                    <td>
+                        <?php echo $treatment_cal125_posttreatment; ?>: 
+                        <?php echo form_input('ovary_cal125_posttreatment'); ?>
+                    </td>
                 <tr>
                     <td>
                         <?php echo $ovary_cancer_treatment_comments; ?>: 
@@ -539,10 +617,17 @@
             <div id="add_other_cancer_treatment_div_1" >
                 <table id="other_cancer_treatment_1">
                     <tr>
+                           <td id="label1">Treatment</td>
+                    </tr>
+                    <tr>
                         <td>
                             <?php echo $other_patient_cancer_treatment_name; ?>: 
                             <?php echo form_dropdown('other_patient_cancer_treatment_name', $patient_cancer_treatment_name_lists); ?>
                         </td>
+                        <td>
+                        <?php echo $treatment_details; ?>: 
+                        <?php echo form_input('other_treatment_details'); ?>
+                    </td>
                         <td>
                             <?php echo $other_treatment_start_date; ?>: 
                             <?php echo form_input(array('name' => 'other_treatment_start_date', 'class' => 'datepicker')); ?>
@@ -551,12 +636,34 @@
                             <?php echo $other_treatment_end_date; ?>: 
                             <?php echo form_input(array('name' => 'other_treatment_end_date', 'class' => 'datepicker')); ?>
                         </td>
+                    </tr>
+                    <tr>
                         <td>
                             <?php echo $other_treatment_duration; ?>: 
                             <?php echo form_input('other_treatment_duration'); ?>
                         </td>
-                    </tr>
-                    <tr>
+                        <td>
+                            <?php echo $treatment_drug_dose; ?>: 
+                            <?php echo form_input('other_treatment_drug_dose'); ?>
+                    </td>
+                    <td>
+                        <?php echo $treatment_cycle; ?>: 
+                        <?php echo form_input('other_treatment_cycle'); ?>
+                    </td>
+                    <td>
+                        <?php echo $treatment_route; ?>: 
+                        <?php echo form_input('other_treatment_route'); ?>
+                    </td>
+                     </tr>
+                     <tr>
+                    <td>
+                        <?php echo $treatment_visidual_desease; ?>: 
+                        <?php echo form_input('other_treatment_visidual_desease'); ?>
+                    </td>
+                    <td>
+                        <?php echo $treatment_primary_therapy_outcome; ?>: 
+                        <?php echo form_input('other_treatment_primary_therapy_outcome'); ?>
+                    </td>
                         <td>
                             <?php echo $other_cancer_treatment_comments; ?>: 
                             <?php
@@ -652,12 +759,12 @@
                     </tr>
                 </table>
             </div>
-            <?php echo form_fieldset_close(); ?>
         </div>
-        <?php echo form_submit('mysubmit', 'Save'); ?>
-        <?php echo form_close(); ?>
-
     </div>
+</div>
+    <?php echo form_fieldset_close(); ?>	
+           <?php echo form_submit('mysubmit', 'Save'); ?>
+           <?php echo form_close(); ?>
 </div>
 
 

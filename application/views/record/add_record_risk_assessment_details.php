@@ -49,15 +49,15 @@
             <tr>
                 <td>
                     <?php echo $ms_adjusted_BRCA1; ?>: 
-                    <?php echo form_input('ms_after_gc_BRCA1'); ?>
+                    <?php echo form_input('ms_adjusted_gc_BRCA1'); ?>
                 </td>
                <td>
                     <?php echo $ms_adjusted_BRCA2; ?>: 
-                    <?php echo form_input('ms_after_gc_BRCA2'); ?>
+                    <?php echo form_input('ms_adjusted_gc_BRCA2'); ?>
                 </td>
                <td>
                     <?php echo $ms_adjusted_Total; ?>: 
-                    <?php echo form_input('ms_after_gc_Total'); ?>
+                    <?php echo form_input('ms_adjusted_gc_Total'); ?>
                 </td>
             </tr>
 			<tr>
@@ -189,4 +189,6 @@
 		 <?php echo form_submit('mysubmit', 'Save'); ?>
         <?php echo form_close(); ?> 
 </div>
+     <?php echo form_submit('mysubmit', 'Save'); ?>
+     <?php echo form_close(); ?>
 </div>

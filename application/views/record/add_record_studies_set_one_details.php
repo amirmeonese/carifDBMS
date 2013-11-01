@@ -28,6 +28,16 @@
         <table id="mammo_first_section">
             <tr>
                 <td>
+                    <?php echo $reason_of_mammogram; ?>: 
+                    <?php echo form_input('reason_of_mammogram'); ?>
+                </td>
+                <td>
+                    <?php echo $details_for_mammogram; ?>: 
+                    <?php echo form_input('details_for_mammogram'); ?>
+                </td>
+            </tr>
+            <tr>
+                <td>
                     <?php echo $date_of_first_mammogram; ?>: 
                     <?php echo form_input(array('name'=>'date_of_first_mammogram','class'=>'datepicker')); ?>
                 </td>
@@ -36,6 +46,22 @@
                     <?php echo form_input('age_of_first_mammogram'); ?>
                 </td>
                 <td>
+                    <?php echo $screening_center_at_first_mammogram; ?>: 
+                    <?php echo form_input('screening_center_of_first_mammogram'); ?>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <?php echo $motivaters_at_first_mammogram; ?>: 
+                    <?php echo form_input('motivaters_at_first_mammogram'); ?>
+                </td>
+                <td>
+                    <?php echo $details_at_first_mammogram; ?>: 
+                    <?php echo form_input('details_at_first_mammogram'); ?>
+                </td>
+                </tr>
+                <tr>
+                <td>
                     <?php echo $date_of_recent_mammogram; ?>: 
 					<?php echo form_input(array('name'=>'date_of_recent_mammogram','class'=>'datepicker')); ?>
                 </td>
@@ -43,12 +69,26 @@
                     <?php echo $age_at_recent__mammogram; ?>: 
                     <?php echo form_input('age_at_recent__mammogram'); ?>
                 </td>
+                <td>
+                    <?php echo $screening_center_at_recent_mammogram; ?>: 
+                    <?php echo form_input('screening_center_of_recent_mammogram'); ?>
+                </td>
+                </tr>
+                <tr>
+                <td>
+                    <?php echo $motivaters_at_recent_mammogram; ?>: 
+                    <?php echo form_input('motivaters_at_recent_mammogram'); ?>
+                </td>
+                <td>
+                    <?php echo $details_at_recent_mammogram; ?>: 
+                    <?php echo form_input('details_at_recent_mammogram'); ?>
+                </td>
+                <td>
+                    <?php echo $mammogram_in_sdmc; ?>: 
+                    <?php echo form_checkbox('mammogram_in_sdmc', '1', FALSE); ?>
+                </td>
             </tr>
             <tr>
-				<td>
-                    <?php echo $screening_center; ?>: 
-                    <?php echo form_input('screening_center'); ?>
-                </td>
                 <td>
                     <?php echo $name_of_radiologist; ?>: 
                     <?php echo form_input('name_of_radiologist'); ?>
@@ -124,6 +164,25 @@
 				<?php echo $percentage_of_mammo_density; ?>: 
 				<?php echo form_input('percentage_of_mammo_density'); ?>
 			</td>
+                </tr>
+                <tr>
+                        <td>
+				<?php echo $action_suggested_on_mammogram_report; ?>: 
+				<?php echo form_input('action_suggested_on_mammogram_report'); ?>
+			</td>
+			<td>
+				<?php echo $reason_of_action_suggested; ?>: 
+				<?php echo form_input('reason_of_action_suggested'); ?>
+                        </td>
+                        <td>
+                            <?php echo $is_cancer; ?>: 
+                            <?php echo form_checkbox('is_cancer_mammogram_flag', '1', FALSE); ?>
+                        </td>
+                        <td>
+                            <?php echo $side_effected; ?>: 
+			    <?php echo form_dropdown('site_effected_of_mammogram', $mammo_report_site); ?>
+                        </td>
+
 			<td>&nbsp;</td>
 		</tr>
 	</table>
@@ -303,7 +362,7 @@
         <div height="30px">&nbsp;</div>
         <table id="mammo_non_cancer_surgery_section_1">
             <tr>
-                <td id="label1">Surgery for non-cancer</td>
+                <td id="label1">Breast Surgery for non-cancer</td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
             </tr>
@@ -338,10 +397,56 @@
                     echo form_textarea($data);
                     ?>
                 </td>
-                <td>
+<!--                <td>
                     <input type="button" value="Add surgery" onClick="window.parent.addNonCancerSurgeryDetailsInput('add_record_form_section_mammo_non_cancer_surgery');
                             window.parent.calcHeight();">
+                </td>-->
+            </tr>
+        </table>
+    </div>
+        <div class="container" id="add_record_form_section_mammo_non_cancer_surgery">
+        <div height="30px">&nbsp;</div>
+        <table id="mammo_non_cancer_surgery_section_1">
+            <tr>
+                <td id="label1">Ovary Surgery for non-cancer</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+			<tr>
+				 <td>
+                    <?php echo $non_cancer_surgery_type; ?>: 
+                    <?php echo form_input('ovary_non_cancer_surgery_type'); ?>
                 </td>
+				 <td>
+                    <?php echo $reason_for_non_cancer_surgery; ?>: 
+                    <?php echo form_input('ovary_reason_for_non_cancer_surgery'); ?>
+                </td>
+				 <td>
+                    <?php echo $date_of_non_cancer_surgery; ?>: 
+					<?php echo form_input(array('name'=>'ovary_date_of_non_cancer_surgery','class'=>'datepicker')); ?>
+                </td>
+				 <td>
+                    <?php echo $age_at_non_cancer_surgery; ?>: 
+                    <?php echo form_input('ovary_age_at_non_cancer_surgery'); ?>
+                </td>
+			</tr>
+            <tr>
+				 <td>
+                    <?php echo $non_cancer_surgery_comments; ?>: 
+                    <?php
+                    $data = array(
+                        'name' => 'ovary_non_cancer_surgery_comments',
+                        'id' => 'ovary_non_cancer_surgery_comments',
+                        'rows' => '3',
+                        'cols' => '7'
+                    );
+                    echo form_textarea($data);
+                    ?>
+                </td>
+<!--                <td>
+                    <input type="button" value="Add surgery" onClick="window.parent.addNonCancerSurgeryDetailsInput('add_record_form_section_mammo_non_cancer_surgery');
+                            window.parent.calcHeight();">
+                </td>-->
             </tr>
         </table>
     </div>
@@ -457,6 +562,7 @@
 			</table>
 		</div>
 	</div>
+<!--        end-->
     <div class="container" id="add_record_form_section_mammo_other_screenings">
         <div height="30px">&nbsp;</div>
         <table id="mammo_sixth_section">
