@@ -9,7 +9,7 @@
             <tr height="50px"><td width="10%" >
                     <?php echo $fullname; ?></td>
                 <td>: </td>
-                <td width="25%"><?php echo $patient_detail['fullname']; ?></td>
+                <td width="25%"><?php echo $patient_detail['given_name']; ?></td>
                 <td width="10%">
                     <?php echo $surname; ?></td>
                 <td>:</td> 

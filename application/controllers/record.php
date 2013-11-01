@@ -476,7 +476,7 @@ class Record extends CI_Controller {
         if($this->input->post('search')){
         
         $data_search_key = array(
-            'fullname' => $this->input->post('patient_name'),
+            'given_name' => $this->input->post('patient_name'),
             'ic_no' => $this->input->post('IC_no')
         );
         //print_r($data_search_key);
@@ -1630,7 +1630,8 @@ class Record extends CI_Controller {
 
         if ($var == 'personal') {
             $data['patient_detail'] = $this->record_model->get_view_patient_record($ic_no, 'patient', 'ic_no');
-            $this->template->load("templates/add_record_template", 'record/view_record_personal_details', $data);
+            $data['isUpdate'] = TRUE;
+            $this->template->load("templates/add_record_template", 'record/add_record_personal_details', $data);
         } else if ($var == 'family') {
             $data['patient_family'] = $a = $this->record_model->get_view_patient_record($ic_no, 'patient_relatives', 'patient_ic_no');
             $this->template->load("templates/add_record_template", 'record/view_record_family_details', $data);
