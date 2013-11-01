@@ -41,7 +41,7 @@
             <?php foreach ($patient_list as $list): ?>
                 <tr>
                     <td></td>
-                    <td><?php echo $list['fullname']; ?></td>
+                    <td><?php echo $list['given_name']; ?></td>
                     <td width="15%" align='center'>
                         <a href="<?php echo site_url('record/patient_record_view') . '/' . $list['ic_no'] ?>">
                         <img src="<?php echo base_url(); ?>img/view.png" alt="view_patient_detail" width="18" height="18"></a>

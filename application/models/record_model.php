@@ -2027,8 +2027,8 @@ class Record_model extends CI_Model {
     }
        
     function getPatientInfo($record_data) {
-        $query = $this->db->select('fullname, surname, ic_no')
-                ->like('fullname', $record_data['fullname'])
+        $query = $this->db->select('given_name, surname, ic_no')
+                ->like('given_name', $record_data['given_name'])
                 ->like('ic_no', $record_data['ic_no'])
                 ->limit(5)
                 ->get($this->tables['patient']);
