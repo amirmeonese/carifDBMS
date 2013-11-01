@@ -22,6 +22,8 @@ class Record extends CI_Controller {
 
     function input() {
         $this->load->model('Record_model');
+        
+        
         $data = $this->Record_model->general();
         //$this->load->view('books_input',$data);	
     }
@@ -29,6 +31,8 @@ class Record extends CI_Controller {
     function view_list($var = null) {
         $this->load->model('Record_model');
         $data = $this->Record_model->general();
+        
+        $data['isUpdate'] = FALSE;
 
         if ($var == 'personal')
             $this->template->load("templates/add_record_template", 'record/add_record_personal_details', $data);
@@ -151,6 +155,8 @@ class Record extends CI_Controller {
 //        
 //        print_r($dod);exit;
         
+        date_default_timezone_set("Asia/Kuala_lumpur"); 
+        $date = date('Y-m-d H:i:s'); //Returns IST        
 		
         $this->form_validation->set_rules('fullname', 'Full name', 'required|xss_clean');
         if ($this->form_validation->run() == true) {
@@ -188,6 +194,7 @@ class Record extends CI_Controller {
                 'height' => $this->input->post('height'),
                 'weight' => $this->input->post('weight'),
                 'bmi' => $this->input->post('bmi'),
+                'created_on' => $date,
                 'highest_education_level' => $this->input->post('highest_education_level')
             );
             echo '<pre>';
@@ -197,6 +204,7 @@ class Record extends CI_Controller {
                 'patient_ic_no' => $this->input->post('IC_no'),
                 'contact_name' => $this->input->post('contact_person_name'),
                 'contact_relationship' => $this->input->post('contact_person_relationship'),
+                'created_on' => $date,
                 'contact_telephone' => $this->input->post('contact_person_phone_number')
             );
             // print_r($data_patient_contact_person);
@@ -231,7 +239,8 @@ class Record extends CI_Controller {
                 'patient_ic_no' => $this->input->post('IC_no'),
                 'source' => $this->input->post('recurrence_site'),
                 'alive_status' => $alive_status_flag,
-                'status_gathering_date' => $this->input->post('status_gathered_date'),
+                'status_gathering_date' => date('Y-m-d',strtotime($this->input->post('status_gathered_date'))),
+                'created_on' => $date,
                 'source' => $this->input->post('status_source')
 
             );
@@ -247,6 +256,7 @@ class Record extends CI_Controller {
             $data_patient_COGS_study = array(
                 'patient_ic_no' => $this->input->post('IC_no'),
                 'COGS_studies_name' => $this->input->post('COGS_studies_id'),
+                'created_on' => $date,
                 'COGS_studies_no' => $this->input->post('COGS_studies_no')
             );
             
@@ -275,6 +285,7 @@ class Record extends CI_Controller {
                 'total_no_of_1st_degree' => $this->input->post('total_no_of_first_degree'),
                 'total_no_of_2nd_degree' => $this->input->post('total_no_of_second_degree'),
                 'total_no_of_3rd_degree' => $this->input->post('total_no_of_third_degree'),
+                'created_on' => $date,
                 'total_no_of_siblings' => $this->input->post('total_no_of_siblings')
                 //'unknown_reason_is_adopted' => $this->input->post('unknown_reason_is_adopted'),
                 //'unknown_reason_in_other_countries' => $this->input->post('unknown_reason_in_other_countries')
@@ -293,7 +304,7 @@ class Record extends CI_Controller {
             $data_patient_consent_detail = array(
                 'patient_ic_no' => $this->input->post('IC_no'),
                 'studies_id' => $studies_id,
-                'date_at_consent' => $this->input->post('date_at_consent'),
+                'date_at_consent' => date('Y-m-d',strtotime($this->input->post('date_at_consent'))),
                 'age_at_consent' => $this->input->post('age_at_consent'),
                 'double_consent_flag' => $this->input->post('is_double_consent_flag'),
                 'consent_given_by' => $this->input->post('consent_given_by'),
@@ -301,6 +312,7 @@ class Record extends CI_Controller {
                 'consent_version' => $this->input->post('consent_version'),
                 'relation_to_study' => $this->input->post('relations_to_study'),
                 'referral_to' => $this->input->post('referral_to'),
+                'created_on' => $date,
                 //'referral_date' => $this->input->post('referral_date'),
                 'referral_source' => $this->input->post('referral_source')
             );
@@ -321,6 +333,10 @@ class Record extends CI_Controller {
         //print_r($this->input->post());
         //$data = array();
         //validate form input
+        
+        date_default_timezone_set("Asia/Kuala_lumpur"); 
+        $date = date('Y-m-d H:i:s'); //Returns IST 
+        
         $this->form_validation->set_rules('mother_fullname', 'Full name', 'required|xss_clean');
         if ($this->form_validation->run() == true) {
 
@@ -339,7 +355,7 @@ class Record extends CI_Controller {
                 'is_alive_flag' => $this->input->post('father_still_alive_flag'),
                 'd_o_d' => $this->input->post('father_DOD'),
                 'is_cancer_diagnosed' => $this->input->post('father_is_cancer_diagnosed'),
-                'date_of_diagnosis' => $this->input->post('father_date_of_diagnosis'),
+                'date_of_diagnosis' => date('Y-m-d',strtotime($this->input->post('father_date_of_diagnosis'))),
                 'cancer_type_id' => $father_cancer_type_id,
                 'age_of_diagnosis' => $this->input->post('father_age_of_diagnosis'),
                 'other_detail' => $this->input->post('father_diagnosis_other_details'),
@@ -347,6 +363,7 @@ class Record extends CI_Controller {
                 'no_of_sisters' => $this->input->post('father_no_of_sisters'),
                 'total_half_sisters' => $this->input->post('father_no_of_half_sisters'),
                 'total_half_brothers' => $this->input->post('father_no_of_half_brothers'),
+                'created_on' => $date,
                 'vital_status' => $this->input->post('father_vital_status')
                 //'match_score_at_consent' => $this->input->post('father_mach_score_at_consent'),
                 //'match_score_past_consent' => $this->input->post('father_mach_score_past_consent'),
@@ -369,7 +386,7 @@ class Record extends CI_Controller {
                 'is_alive_flag' => $this->input->post('mother_still_alive_flag'),
                 'd_o_d' => $this->input->post('mother_DOD'),
                 'is_cancer_diagnosed' => $this->input->post('mother_is_cancer_diagnosed'),
-                'date_of_diagnosis' => $this->input->post('mother_date_of_diagnosis'),
+                'date_of_diagnosis' => date('Y-m-d',strtotime($this->input->post('mother_date_of_diagnosis'))),
                 'cancer_type_id' => $mother_cancer_type_id,
                 'age_of_diagnosis' => $this->input->post('mother_age_of_diagnosis'),
                 'other_detail' => $this->input->post('mother_diagnosis_other_details'),
@@ -377,6 +394,7 @@ class Record extends CI_Controller {
                 'total_half_sisters' => $this->input->post('mother_no_of_half_sisters'),
                 'total_half_brothers' => $this->input->post('mother_no_of_half_brothers'),
                 'no_of_sisters' => $this->input->post('mother_no_of_sisters'),
+                'created_on' => $date,
                 'vital_status' => $this->input->post('mother_vital_status')
                 //'match_score_at_consent' => $this->input->post('mother_mach_score_at_consent'),
                 //'match_score_past_consent' => $this->input->post('mother_mach_score_past_consent'),
@@ -410,6 +428,10 @@ class Record extends CI_Controller {
         //print_r($this->input->post());
         //$data = array();
         //validate form input
+        
+        date_default_timezone_set("Asia/Kuala_lumpur"); 
+        $date = date('Y-m-d H:i:s'); //Returns IST 
+        
         $this->form_validation->set_rules('patient_ic_no', 'IC No', 'required|xss_clean');
         if ($this->form_validation->run() == true) {
 
@@ -436,6 +458,7 @@ class Record extends CI_Controller {
                 'at_consent_gail_model_5years' => $this->input->post('gail_model_at_consent_5years'),
                 'at_consent_gail_model_10years' => $this->input->post('gail_model_at_consent_10years'),
                 'first_mammo_gail_model_10years' => $this->input->post('gail_model_first_mammo_10years'),
+                'created_on' => $date,
                 'first_mammo_gail_model_5years' => $this->input->post('gail_model_first_mammo_5years')
             );
             
@@ -493,6 +516,9 @@ class Record extends CI_Controller {
         //echo '<h1>Helllooo</h1>';
         //$this->form_validation->set_rules('mother_fullname', 'Full name', 'required|xss_clean');
         //if ($this->form_validation->run() == true)  {
+        
+        date_default_timezone_set("Asia/Kuala_lumpur"); 
+        $date = date('Y-m-d H:i:s'); //Returns IST 
 
         $studies_name = $this->input->post('studies_name');
         $studies_id = $this->excell_sheets_model->get_studies_id($studies_name);
@@ -535,9 +561,9 @@ class Record extends CI_Controller {
 
         $data_patient_breast_screening = array(
             'patient_ic_no' => $this->input->post('IC_no'),
-            'date_of_first_mammogram' => $this->input->post('date_of_first_mammogram'),
+            'date_of_first_mammogram' => date('Y-m-d',strtotime($this->input->post('date_of_first_mammogram'))),
             'age_of_first_mammogram' => $this->input->post('age_of_first_mammogram'),
-            'date_of_recent_mammogram' => $this->input->post('date_of_recent_mammogram'),
+            'date_of_recent_mammogram' => date('Y-m-d',strtotime($this->input->post('date_of_recent_mammogram'))),
             'screening_centre' => $this->input->post('screening_center'),
             //'action_suggested_on_memo_report' => $this->input->post('action_suggested_on_memo_report'),
             'total_no_of_mammogram' => $this->input->post('total_no_of_mammogram'),
@@ -570,6 +596,7 @@ class Record extends CI_Controller {
             'patient_studies_id' => $studies_id,
             'BIRADS_clinical_classification' => $this->input->post('BIRADS_clinical_classification'),
             'percentage_of_mammo_density' => $this->input->post('percentage_of_mammo_density'),
+            'created_on' => $date,
             'BIRADS_density_classification' => $this->input->post('BIRADS_density_classification')
         );
 
@@ -615,6 +642,7 @@ class Record extends CI_Controller {
             $data_patient_mammo_raw_images1 = array(
                 'patient_ic_no' => $this->input->post('IC_no'),
                 'patient_breast_screening_id' => $patient_breast_screening_id,
+                'created_on' => $date,
                 'raw_image_file_name' => $array_file_path[0]
             );
             $patient_mammo_raw_images_id1 = $this->record_model->insert_patient_mammo_raw_images($data_patient_mammo_raw_images1);
@@ -630,6 +658,7 @@ class Record extends CI_Controller {
             $data_patient_mammo_raw_images2 = array(
                 'patient_ic_no' => $this->input->post('IC_no'),
                 'patient_breast_screening_id' => $patient_breast_screening_id,
+                'created_on' => $date,
                 'raw_image_file_name' => $array_file_path[1]
             );
             $patient_mammo_raw_images_id2 = $this->record_model->insert_patient_mammo_raw_images($data_patient_mammo_raw_images2);
@@ -645,6 +674,7 @@ class Record extends CI_Controller {
             $data_patient_mammo_raw_images3 = array(
                 'patient_ic_no' => $this->input->post('IC_no'),
                 'patient_breast_screening_id' => $patient_breast_screening_id,
+                'created_on' => $date,
                 'raw_image_file_name' => $array_file_path[2]
             );
             $patient_mammo_raw_images_id3 = $this->record_model->insert_patient_mammo_raw_images($data_patient_mammo_raw_images3);
@@ -660,6 +690,7 @@ class Record extends CI_Controller {
             $data_patient_mammo_raw_images4 = array(
                 'patient_ic_no' => $this->input->post('IC_no'),
                 'patient_breast_screening_id' => $patient_breast_screening_id,
+                'created_on' => $date,
                 'raw_image_file_name' => $array_file_path[3]
             );
             $patient_mammo_raw_images_id4 = $this->record_model->insert_patient_mammo_raw_images($data_patient_mammo_raw_images4);
@@ -675,6 +706,7 @@ class Record extends CI_Controller {
             $data_patient_mammo_processed_images1 = array(
                 'patient_ic_no' => $this->input->post('IC_no'),
                 'patient_breast_screening_id' => $patient_breast_screening_id,
+                'created_on' => $date,
                 'processed_image_file_name' => $array_file_path[4]
             );
             $patient_mammo_processed_images_id1 = $this->record_model->insert_patient_mammo_processed_images($data_patient_mammo_processed_images1);
@@ -690,6 +722,7 @@ class Record extends CI_Controller {
             $data_patient_mammo_processed_images2 = array(
                 'patient_ic_no' => $this->input->post('IC_no'),
                 'patient_breast_screening_id' => $patient_breast_screening_id,
+                'created_on' => $date,
                 'processed_image_file_name' => $array_file_path[5]
             );
             $patient_mammo_processed_images_id2 = $this->record_model->insert_patient_mammo_processed_images($data_patient_mammo_processed_images2);
@@ -705,6 +738,7 @@ class Record extends CI_Controller {
             $data_patient_mammo_processed_images3 = array(
                 'patient_ic_no' => $this->input->post('IC_no'),
                 'patient_breast_screening_id' => $patient_breast_screening_id,
+                'created_on' => $date,
                 'processed_image_file_name' => $array_file_path[6]
             );
             $patient_mammo_processed_images_id3 = $this->record_model->insert_patient_mammo_processed_images($data_patient_mammo_processed_images3);
@@ -720,6 +754,7 @@ class Record extends CI_Controller {
             $data_patient_mammo_processed_images4 = array(
                 'patient_ic_no' => $this->input->post('IC_no'),
                 'patient_breast_screening_id' => $patient_breast_screening_id,
+                'created_on' => $date,
                 'processed_image_file_name' => $array_file_path[7]
             );
             $patient_mammo_processed_images_id4 = $this->record_model->insert_patient_mammo_processed_images($data_patient_mammo_processed_images4);
@@ -759,6 +794,7 @@ class Record extends CI_Controller {
             'left_breast' => $left_breast,
             'right_breast' => $right_breast,
             'upper' => $upper,
+            'created_on' => $date,
             'below' => $below
         );
         //print_r($data_patient_breast_abnormality);
@@ -772,6 +808,7 @@ class Record extends CI_Controller {
 
         $data_patient_ultrasound_abnormality = array(
             'comments' => $this->input->post('mammo_ultrasound_details'),
+            'created_on' => $date,
             'patient_breast_screening_id' => $patient_breast_screening_id
         );
         //print_r($data_patient_ultrasound_abnormality);
@@ -800,13 +837,14 @@ class Record extends CI_Controller {
             'patient_studies_id' => $studies_id,
             'breast_surgery_type' => $this->input->post('non_cancer_surgery_type'),
             'breast_reason_of_surgery' => $this->input->post('reason_for_non_cancer_surgery'),
-            'breast_date_of_surgery' => $this->input->post('date_of_non_cancer_surgery'),
+            'breast_date_of_surgery' => date('Y-m-d',strtotime($this->input->post('date_of_non_cancer_surgery'))),
             'breast_age_of_surgery' => $this->input->post('age_at_non_cancer_surgery'),
             'breast_comments' => $this->input->post('non_cancer_surgery_comments'),
             'surgery_type' => $this->input->post('ovary_non_cancer_surgery_type'),
             'reason_for_surgery' => $this->input->post('ovary_reason_for_non_cancer_surgery'),
-            'date_of_surgery' => $this->input->post('ovary_date_of_non_cancer_surgery'),
+            'date_of_surgery' => date('Y-m-d',strtotime($this->input->post('ovary_date_of_non_cancer_surgery'))),
             'age_at_surgery' => $this->input->post('ovary_age_at_non_cancer_surgery'),
+            'created_on' => $date,
             'comments' => $this->input->post('ovary_non_cancer_surgery_comments')
         );
         //print_r($data_patient_mri_abnormality);
@@ -821,6 +859,7 @@ class Record extends CI_Controller {
         $data_patient_risk_reducing_surgery = array(
             'patient_studies_id' => $studies_id,
             'had_new_lesion_surgery_flag' => $this->input->post('had_new_risk_reducing_surgery'),
+            'created_on' => $date,
             'had_complete_removal_surgery_flag' => $this->input->post('had_new_complete_removal_surgery')
         );
         //print_r($data_patient_mri_abnormality);
@@ -837,7 +876,8 @@ class Record extends CI_Controller {
         $data_patient_risk_reducing_surgery_complete_removal = array(
             'patient_risk_reducing_surgery_id' => $data_patient_risk_reducing_surgery_id,
             'non_cancerous_site_id' => $removal_non_cancerous_site,
-            'surgery_date' => $this->input->post('non_cancerous_complete_removal_date'),
+            'surgery_date' => date('Y-m-d',strtotime($this->input->post('non_cancerous_complete_removal_date'))),
+            'created_on' => $date,
             'surgery_reason' => $this->input->post('non_cancerous_complete_removal_reason')
         );
         //print_r($data_patient_mri_abnormality);
@@ -854,7 +894,8 @@ class Record extends CI_Controller {
         $data_patient_risk_reducing_surgery_lesion = array(
             'patient_risk_reducing_surgery_id' => $data_patient_risk_reducing_surgery_id,
             'non_cancerous_site_id' => $non_cancerous_site,
-            'surgery_date' => $this->input->post('non_cancerous_benign_date')
+            'created_on' => $date,
+            'surgery_date' => date('Y-m-d',strtotime($this->input->post('non_cancerous_benign_date')))
         );
         //print_r($data_patient_mri_abnormality);
         echo '<br/>';
@@ -870,8 +911,9 @@ class Record extends CI_Controller {
         $data_patient_ovarian_screening = array(
             'patient_studies_id' => $studies_id,
             'ovarian_screening_type_id' => $ovarian_screening_type,
-            'screening_date' => $this->input->post('physical_exam_date'),
+            'screening_date' => date('Y-m-d',strtotime($this->input->post('physical_exam_date'))),
             'is_abnormality_detected' => $this->input->post('physical_exam_is_abnormality_detected'),
+            'created_on' => $date,
             'additional_info' => $this->input->post('physical_exam_additional_info')
         );
         //print_r($data_patient_mri_abnormality);
@@ -890,7 +932,8 @@ class Record extends CI_Controller {
             //'total_no_of_screening' => $this->input->post('total_no_of_screening'),
             'age_at_screening' => $this->input->post('age_at_screening'),
             'screening_center' => $this->input->post('place_of_screening'),
-            'screening_result' => $this->input->post('screening_results'),
+            'created_on' => $date,
+            'screening_result' => $this->input->post('screening_results')
         );
 
         //print_r($data_patient_other_screening);
@@ -907,19 +950,20 @@ class Record extends CI_Controller {
             'patient_studies_id' => $studies_id,
             'recruitment_center' => $this->input->post('surveillance_recruitment_center'),
             'type' => $this->input->post('surveillance_type'),
-            'first_consultation_date' => $this->input->post('surveillance_first_consultation_date'),
+            'first_consultation_date' => date('Y-m-d',strtotime($this->input->post('surveillance_first_consultation_date'))),
             'first_consultation_place' => $this->input->post('surveillance_first_consultation_place'),
             'surveillance_interval' => $this->input->post('surveillance_interval'),
             'diagnosis' => $this->input->post('surveillance_diagnosis'),
-            'due_date' => $this->input->post('surveillance_due_date'),
-            'reminder_sent_date' => $this->input->post('surveillance_reminder_sent_date'),
-            'surveillance_done_date' => $this->input->post('surveillance_done_date'),
+            'due_date' => date('Y-m-d',strtotime($this->input->post('surveillance_due_date'))),
+            'reminder_sent_date' => date('Y-m-d',strtotime($this->input->post('surveillance_reminder_sent_date'))),
+            'surveillance_done_date' => date('Y-m-d',strtotime($this->input->post('surveillance_done_date'))),
             'reminded_by' => $this->input->post('surveillance_reminded_by'),
             'timing' => $this->input->post('surveillance_timing'),
             'symptoms' => $this->input->post('surveillance_symptoms'),
             'doctor_name' => $this->input->post('surveillance_doctor_name'),
             'surveillance_done_place' => $this->input->post('surveillance_place'),
             'outcome' => $this->input->post('surveillance_outcome'),
+            'created_on' => $date,
             'comments' => $this->input->post('surveillance_comments')
         );
 
@@ -938,6 +982,10 @@ class Record extends CI_Controller {
     function lifestyle_insertion() {
 
         //need to calculate $patient_studies_id by using study name-->studies_id and patient_ic_no
+        
+        date_default_timezone_set("Asia/Kuala_lumpur"); 
+        $date = date('Y-m-d H:i:s'); //Returns IST 
+        
         $studies_name = $this->input->post('studies_name');
         $studies_id = $this->excell_sheets_model->get_studies_id($studies_name);
         $data_keys = array(
@@ -952,7 +1000,7 @@ class Record extends CI_Controller {
 
         $data_patient_lifestyle_factors = array(
             'patient_studies_id' => $patient_studies_id,
-            'questionnaire_date' => $this->input->post('mutation_is_questionnaire_date_flag'),
+            'questionnaire_date' => date('Y-m-d',strtotime($this->input->post('mutation_is_questionnaire_date_flag'))),
             'self_image_at_7years' => $this->input->post('self_image_at_7years'),
             'self_image_at_18years' => $this->input->post('self_image_at_18years'),
             'self_image_now' => $this->input->post('self_image_now'),
@@ -987,6 +1035,7 @@ class Record extends CI_Controller {
             //'soya_products_average_other' => $this->input->post('soya_products_average_other'),
             'diabetes_flag' => $this->input->post('diabetes_flag'),
             'medicine_for_diabetes_flag' => $this->input->post('medicine_for_diabetes_flag'),
+            'created_on' => $date,
             'diabetes_medicine_name' => $this->input->post('diabates_medicine_name')
         );
         //print_r($data_patient_lifestyle_factors);
@@ -1008,8 +1057,9 @@ class Record extends CI_Controller {
             'period_cycle_days' => $this->input->post('period_cycle_days'),
             'period_cycle_days_other_details' => $this->input->post('period_cycle_days_other_details'),
             'age_at_menopause' => $this->input->post('age_period_stops'),
-            'date_period_stops' => $this->input->post('date_period_stops'),
+            'date_period_stops' => date('Y-m-d',strtotime($this->input->post('date_period_stops'))),
             'reason_period_stops' => $this->input->post('reason_period_stops'),
+            'created_on' => $date,
             'reason_period_stops_other_details' => $this->input->post('reason_period_stops_other_details')
         );
         //print_r($data_patient_menstruation);
@@ -1025,6 +1075,7 @@ class Record extends CI_Controller {
 
         $data_patient_parity_table = array(
             'patient_studies_id' => $patient_studies_id,
+            'created_on' => $date,
             //'pregnant_flag' => $this->input->post('never_been_pregnant_flag'),
             'pregnant_flag' => $this->input->post('pregnent_flag')
         );
@@ -1047,6 +1098,7 @@ class Record extends CI_Controller {
             'gender' => $this->input->post('child_gender'),
             'year_of_birth' => $this->input->post('child_birthyear'),
             'birthweight' => $this->input->post('child_birthweight'),
+            'created_on' => $date,
             'breastfeeding_duration' => $this->input->post('child_breastfeeding_duration')
         );
         //print_r($data_patient_parity_record);
@@ -1069,8 +1121,8 @@ class Record extends CI_Controller {
             'contraceptive_pills_flag' => $this->input->post('contraceptive_pills_flag'),
             //'contraceptive_pills_details' => $this->input->post('contraceptive_pills_details'),
             'currently_taking_contraceptive_pills_flag' => $this->input->post('currently_taking_contraceptive_pills_flag'),
-            'contraceptive_start_date' => $this->input->post('contraceptive_start_date'),
-            'contraceptive_end_date' => $this->input->post('contraceptive_end_date'),
+            'contraceptive_start_date' => date('Y-m-d',strtotime($this->input->post('contraceptive_start_date'))),
+            'contraceptive_end_date' => date('Y-m-d',strtotime($this->input->post('contraceptive_end_date'))),
             'contraceptive_end_age' => $this->input->post('contraceptive_end_age'),
             'contraceptive_start_age' => $this->input->post('contraceptive_start_age'),
             'hrt_start_age' => $this->input->post('hrt_start_age'),
@@ -1078,8 +1130,9 @@ class Record extends CI_Controller {
             'hrt_flag' => $this->input->post('HRT_flag'),
             //'hrt_details' => $this->input->post('HRT_details'),
             'currently_using_hrt_flag' => $this->input->post('currently_using_hrt_flag'),
-            'hrt_start_date' => $this->input->post('hrt_start_date'),
-            'hrt_end_date' => $this->input->post('hrt_end_date')
+            'hrt_start_date' => date('Y-m-d',strtotime($this->input->post('hrt_start_date'))),
+            'created_on' => $date,
+            'hrt_end_date' => date('Y-m-d',strtotime($this->input->post('hrt_end_date')))
         );
         // print_r($data_patient_infertility);
         //echo '<br/>';
@@ -1099,6 +1152,7 @@ class Record extends CI_Controller {
             'had_gnc_surgery_flag' => $this->input->post('had_gnc_surgery_flag'),
             'surgery_year' => $this->input->post('gnc_surgery_year'),
             'treatment_id' => $treatment_id,
+            'created_on' => $date,
             'gnc_treatment_name_other_details' => $this->input->post('gnc_treatment_name_other_details')
         );
         //print_r($data_patient_gynaecological_surgery_history);
@@ -1115,6 +1169,9 @@ class Record extends CI_Controller {
     }
 
     function investigation_insertion() {
+        
+        date_default_timezone_set("Asia/Kuala_lumpur"); 
+        $date = date('Y-m-d H:i:s'); //Returns IST 
 
         $config['upload_path'] = './images/';
         $config['allowed_types'] = 'gif|jpg|png';
@@ -1149,12 +1206,12 @@ class Record extends CI_Controller {
         //echo $patient_studies_id;echo '<br/>';
         $data_patient_investigations = array(
             'patient_studies_id' => $patient_studies_id,
-            'date_test_ordered' => $this->input->post('date_test_ordered'),
+            'date_test_ordered' => date('Y-m-d',strtotime($this->input->post('date_test_ordered'))),
             'ordered_by' => $this->input->post('test_ordered_by'),
             'testing_result_notification_flag' => $this->input->post('testing_results_notification_flag'),
             'service_provider' => $this->input->post('investigation_project_name'),
             'testing_batch' => $this->input->post('investigation_project_batch'),
-            'testing_date' => $this->input->post('investigation_project_date'),
+            'testing_date' => date('Y-m-d',strtotime($this->input->post('investigation_project_date'))),
             'gene_tested' => $this->input->post('investigation_gene_tested'),
             'types_of_testing' => $this->input->post('investigation_test_type'),
             'type_of_sample' => $this->input->post('investigation_sample_type'),
@@ -1170,12 +1227,13 @@ class Record extends CI_Controller {
             'mutation_pathogenicity' => $this->input->post('investigation_mutation_pathogenicity'),
             //'sample_id' => $this->input->post('investigation_sample_ID'),
             //'report_due' => $this->input->post('investigation_report_due'),
-            'report_date' => $this->input->post('investigation_report_date'),
-            'date_client_notified' => $this->input->post('investigation_date_notified'),
+            'report_date' => date('Y-m-d',strtotime($this->input->post('investigation_report_date'))),
+            'date_client_notified' => date('Y-m-d',strtotime($this->input->post('investigation_date_notified'))),
             'is_counselling_flag' => $this->input->post('mutation_is_counselling_flag'),
             'comments' => $this->input->post('investigation_test_comment'),
             'mutation_name' => $this->input->post('investigation_mutation_name'),
             'conformation_attachment' => $this->input->post('investigation_conformation_attachment'),
+            'created_on' => $date,
             'conformation_file_url' => @$attach_file_path
         );
 
@@ -1192,6 +1250,9 @@ class Record extends CI_Controller {
     }
 
     function surveillance_insertion() {
+        
+        date_default_timezone_set("Asia/Kuala_lumpur"); 
+        $date = date('Y-m-d H:i:s'); //Returns IST 
 
         $studies_name = $this->input->post('studies_name');
         $studies_id = $this->excell_sheets_model->get_studies_id($studies_name);
@@ -1208,19 +1269,20 @@ class Record extends CI_Controller {
             'patient_studies_id' => $patient_studies_id,
             'recruitment_center' => $this->input->post('surveillance_recruitment_center'),
             'type' => $this->input->post('surveillance_type'),
-            'first_consultation_date' => $this->input->post('surveillance_first_consultation_date'),
+            'first_consultation_date' => date('Y-m-d',strtotime($this->input->post('surveillance_first_consultation_date'))),
             'first_consultation_place' => $this->input->post('surveillance_first_consultation_place'),
             'surveillance_interval' => $this->input->post('surveillance_interval'),
             'diagnosis' => $this->input->post('surveillance_diagnosis'),
-            'due_date' => $this->input->post('surveillance_due_date'),
-            'reminder_sent_date' => $this->input->post('surveillance_reminder_sent_date'),
-            'surveillance_done_date' => $this->input->post('surveillance_done_date'),
+            'due_date' => date('Y-m-d',strtotime($this->input->post('surveillance_due_date'))),
+            'reminder_sent_date' => date('Y-m-d',strtotime($this->input->post('surveillance_reminder_sent_date'))),
+            'surveillance_done_date' => date('Y-m-d',strtotime($this->input->post('surveillance_done_date'))),
             'reminded_by' => $this->input->post('surveillance_reminded_by'),
             'timing' => $this->input->post('surveillance_timing'),
             'symptoms' => $this->input->post('surveillance_symptoms'),
             'doctor_name' => $this->input->post('surveillance_doctor_name'),
             'surveillance_done_place' => $this->input->post('surveillance_place'),
             'outcome' => $this->input->post('surveillance_outcome'),
+            'created_on' => $date,
             'comments' => $this->input->post('surveillance_comments')
         );
 
@@ -1237,6 +1299,9 @@ class Record extends CI_Controller {
     }
     
     function patient_diagnosis_treatment_record_insertion() {
+        
+        date_default_timezone_set("Asia/Kuala_lumpur"); 
+        $date = date('Y-m-d H:i:s'); //Returns IST 
 
         $studies_name = $this->input->post('studies_name');
         $studies_id = $this->excell_sheets_model->get_studies_id($studies_name);
@@ -1260,13 +1325,14 @@ class Record extends CI_Controller {
             'cancer_site_id' => $breast_cancer_site_id,
             'cancer_invasive_type' => $this->input->post('cancer_invasive_type'),
             'is_primary' => $this->input->post('primary_diagnosis'),
-            'date_of_diagnosis' => $this->input->post('date_of_diagnosis'),
+            'date_of_diagnosis' => date('Y-m-d',strtotime($this->input->post('date_of_diagnosis'))),
             'age_of_diagnosis' => $this->input->post('age_of_diagnosis'),
             'diagnosis_center' => $this->input->post('cancer_diagnosis_center'),
             'doctor_name' => $this->input->post('cancer_doctor_name'),
             'detected_by' => $this->input->post('detected_by'),
             //'detected_by' => $this->input->post('detected_by_other_details'),
             'bilateral_flag' => $this->input->post('cancer_is_bilateral'),
+            'created_on' => $date,
             'recurrence_flag' => $this->input->post('cancer_is_recurrent')
             );
             //$patient_breast_diagnosis_id = $this->db->insert('patient_cancer', $data_patient_breast_diagnosis);
@@ -1285,7 +1351,7 @@ class Record extends CI_Controller {
             'patient_cancer_id' => $patient_breast_diagnosis_id,
             'tissue_site' => $this->input->post('breast_pathology_tissue_site'),
             'type_of_report' => $this->input->post('breast_pathology_path_report_type'),
-            'date_of_report' => $this->input->post('breast_pathology_path_report_date'),
+            'date_of_report' => date('Y-m-d',strtotime($this->input->post('breast_pathology_path_report_date'))),
             'pathology_lab' => $this->input->post('breast_pathology_lab'),
             'name_of_doctor' => $this->input->post('breast_pathology_doctor'),
             'morphology' => $this->input->post('breast_pathology_morphology'),
@@ -1296,6 +1362,7 @@ class Record extends CI_Controller {
             'tumor_grade' => $this->input->post('breast_pathology_tumour_grade'),
             'total_lymph_nodes' => $this->input->post('breast_pathology_total_lymph_nodes'),
             'tumour_size' => $this->input->post('breast_pathology_tumour_size'),
+            'created_on' => $date,
             'comments' => $this->input->post('breast_pathology_tissue_path_comments')
         );
             
@@ -1313,6 +1380,7 @@ class Record extends CI_Controller {
             'patient_pathology_id' => $patient_breast_pathology_id,
             'ER_status' => $this->input->post('breast_pathology_ER_status'),
             'PR_status' => $this->input->post('breast_pathology_PR_status'),
+            'created_on' => $date,
             'HER2_status' => $this->input->post('breast_pathology_HER2_status'),
             );
             
@@ -1330,8 +1398,8 @@ class Record extends CI_Controller {
             $data_patient_breast_treatment = array(
             'patient_cancer_id' => $patient_breast_diagnosis_id,
             'treatment_id' => $treatment_id,
-            'treatment_start_date' => $this->input->post('treatment_start_date'),
-            'treatment_end_date' => $this->input->post('treatment_end_date'),
+            'treatment_start_date' => date('Y-m-d',strtotime($this->input->post('treatment_start_date'))),
+            'treatment_end_date' => date('Y-m-d',strtotime($this->input->post('treatment_end_date'))),
             'treatment_durations' => $this->input->post('treatment_duration'),
             'treatment_details' => $this->input->post('treatment_details'),
             'treatment_dose' => $this->input->post('treatment_dose'),
@@ -1341,6 +1409,7 @@ class Record extends CI_Controller {
             'treatment_privacy_outcome' => $this->input->post('treatment_privacy_outcome'),
             'treatment_cal125_pretreatment' => $this->input->post('treatment_cal125_pretreatment'),
             'treatment_cal125_posttreatment' => $this->input->post('treatment_cal125_posttreatment'),
+            'created_on' => $date,
             'comments' => $this->input->post('breast_cancer_treatment_comments')
         );
 
@@ -1364,13 +1433,14 @@ class Record extends CI_Controller {
             'cancer_site_id' => $ovary_cancer_site_id,
             'cancer_invasive_type' => $this->input->post('ovary_cancer_invasive_type'),
             'is_primary' => $this->input->post('ovary_primary_diagnosis'),
-            'date_of_diagnosis' => $this->input->post('ovary_date_of_diagnosis'),
+            'date_of_diagnosis' => date('Y-m-d',strtotime($this->input->post('ovary_date_of_diagnosis'))),
             'age_of_diagnosis' => $this->input->post('ovary_age_of_diagnosis'),
             'diagnosis_center' => $this->input->post('ovary_cancer_diagnosis_center'),
             'doctor_name' => $this->input->post('ovary_cancer_doctor_name'),
             'detected_by' => $this->input->post('ovary_detected_by'),
             //'detected_by_other_details' => $this->input->post('ovary_detected_by_other_details'),
             'bilateral_flag' => $this->input->post('ovary_cancer_is_bilateral'),
+            'created_on' => $date,
             'recurrence_flag' => $this->input->post('ovary_cancer_is_recurrent')
             );
             
@@ -1388,7 +1458,7 @@ class Record extends CI_Controller {
             'patient_cancer_id' => $patient_ovary_diagnosis_id,
             'tissue_site' => $this->input->post('ovary_pathology_tissue_site'),
             'type_of_report' => $this->input->post('ovary_pathology_path_report_type'),
-            'date_of_report' => $this->input->post('ovary_pathology_path_report_date'),
+            'date_of_report' => date('Y-m-d',strtotime($this->input->post('ovary_pathology_path_report_date'))),
             'pathology_lab' => $this->input->post('ovary_pathology_lab'),
             'name_of_doctor' => $this->input->post('ovary_pathology_doctor'),
             'morphology' => $this->input->post('ovary_pathology_morphology'),
@@ -1400,6 +1470,7 @@ class Record extends CI_Controller {
             'tumor_subtype' => $this->input->post('ovary_tumor_subtypes'),
             'tumor_behaviour' => $this->input->post('ovary_tumor_behavior'),
             'tumor_differentiation' => $this->input->post('ovary_tumor_differentiation'),
+            'created_on' => $date,
             'comments' => $this->input->post('ovary_pathology_tissue_path_comments')
             );
             
@@ -1419,10 +1490,11 @@ class Record extends CI_Controller {
             $data_patient_ovary_treatment = array(
             'patient_cancer_id' => $patient_ovary_diagnosis_id,
             'treatment_id' => $ovary_treatment_id,
-            'treatment_start_date' => $this->input->post('ovary_treatment_start_date'),
-            'treatment_end_date' => $this->input->post('ovary_treatment_end_date'),
+            'treatment_start_date' => date('Y-m-d',strtotime($this->input->post('ovary_treatment_start_date'))),
+            'treatment_end_date' => date('Y-m-d',strtotime($this->input->post('ovary_treatment_end_date'))),
             'treatment_durations' => $this->input->post('ovary_treatment_duration'),
-            'comments' => $this->input->post('ovary_cancer_treatment_comments'),
+            'created_on' => $date,
+            'comments' => $this->input->post('ovary_cancer_treatment_comments')
             );
             
             $patient_ovary_treatment_id = $this->db->insert('patient_cancer_treatment', $data_patient_ovary_treatment);
@@ -1439,11 +1511,12 @@ class Record extends CI_Controller {
             $data_patient_other_cancer_diagnosis = array(   
             'patient_studies_id' => $patient_studies_id,
             'cancer_id' => $other_cancer_id,
-            'date_of_diagnosis' => $this->input->post('other_date_of_diagnosis'),
+            'date_of_diagnosis' => date('Y-m-d',strtotime($this->input->post('other_date_of_diagnosis'))),
             'age_of_diagnosis' => $this->input->post('other_age_of_diagnosis'),
             'diagnosis_center' => $this->input->post('other_cancer_diagnosis_center'),
             'doctor_name' => $this->input->post('other_cancer_doctor_name'),
-            'comment' => $this->input->post('other_cancer_comments'),
+            'created_on' => $date,
+            'comment' => $this->input->post('other_cancer_comments')
             );
             
             $patient_other_diagnosis_id = $this->record_model->insert_patient_cancer($data_patient_other_cancer_diagnosis);            
@@ -1460,9 +1533,10 @@ class Record extends CI_Controller {
             'cancer_id' => $other_cancer_id,
             'tissue_site' => $this->input->post('other_pathology_tissue_site'),
             'type_of_report' => $this->input->post('other_pathology_path_report_type'),
-            'date_of_report' => $this->input->post('other_pathology_path_report_date'),
+            'date_of_report' => date('Y-m-d',strtotime($this->input->post('other_pathology_path_report_date'))),
             'pathology_lab' => $this->input->post('other_pathology_lab'),
             'name_of_doctor' => $this->input->post('other_pathology_doctor'),
+            'created_on' => $date,
             'comments' => $this->input->post('other_pathology_tissue_path_comments')
             );
             
@@ -1483,10 +1557,11 @@ class Record extends CI_Controller {
             $data_patient_other_cancer_treatment = array(
             'patient_cancer_id' => $patient_other_diagnosis_id,
             'treatment_id' => $other_cancer_treatment_id,
-            'treatment_start_date' => $this->input->post('other_treatment_start_date'),
-            'treatment_end_date' => $this->input->post('other_treatment_end_date'),
+            'treatment_start_date' => date('Y-m-d',strtotime($this->input->post('other_treatment_start_date'))),
+            'treatment_end_date' => date('Y-m-d',strtotime($this->input->post('other_treatment_end_date'))),
             'treatment_duration' => $this->input->post('other_treatment_duration'),
-            'comments' => $this->input->post('other_cancer_treatment_comments'),
+            'created_on' => $date,
+            'comments' => $this->input->post('other_cancer_treatment_comments')
             );
             
             $patient_other_cancer_treatment_id = $this->db->insert('patient_cancer_treatment', $data_patient_other_cancer_treatment);
@@ -1506,16 +1581,13 @@ class Record extends CI_Controller {
             $data_patient_other_diseases = array(
             'patient_studies_id' => $patient_studies_id,
             'diagnosis_id' => $other_diagnosis_id,
-            'date_of_diagnosis' => $this->input->post('year_of_diagnosis'),
+            'date_of_diagnosis' => date('Y-m-d',strtotime($this->input->post('year_of_diagnosis'))),
             'diagnosis_age' => $this->input->post('diagnosis_age'),
             'surveillance_done_place' => $this->input->post('diagnosis_center'),
             'doctor_name' => $this->input->post('diagnosis_doctor_name'),
-            'on_medication_flag' => $this->input->post('is_on_medication_flag'),
-            'medication_type' => $this->input->post('medication_type'),
-            'start_date' => $this->input->post('medication_start_date'),
-            'end_date' => $this->input->post('medication_end_date'),
-            'duration' => $this->input->post('medication_duration'),
-            'comments' => $this->input->post('medication_comments')
+            'created_on' => $date,
+            'on_medication_flag' => $this->input->post('is_on_medication_flag')
+            
         );
 
         // echo '<pre>';
@@ -1533,9 +1605,10 @@ class Record extends CI_Controller {
             'patient_studies_id' => $patient_studies_id,
             'patient_other_disease_id' => $patient_other_diseases_id,
             'medication_type' => $this->input->post('medication_type'),
-            'start_date' => $this->input->post('medication_start_date'),
-            'end_date' => $this->input->post('medication_end_date'),
+            'start_date' => date('Y-m-d',strtotime($this->input->post('medication_start_date'))),
+            'end_date' => date('Y-m-d',strtotime($this->input->post('medication_end_date'))),
             'duration' => $this->input->post('medication_duration'),
+            'created_on' => $date,
             'comments' => $this->input->post('medication_comments')
         );
 
@@ -1552,12 +1625,17 @@ class Record extends CI_Controller {
     }
 
     function interview_home_insersion() {
+        
+        date_default_timezone_set("Asia/Kuala_lumpur"); 
+        $date = date('Y-m-d H:i:s'); //Returns IST 
+        
         $data_patient_interview_manager = array(
             'patient_ic_no' => $this->input->post('IC_no'),
-            'interview_date' => $this->input->post('interview_date'),
-            'next_interview_date' => $this->input->post('interview_next_date'),
+            'interview_date' => date('Y-m-d',strtotime($this->input->post('interview_date'))),
+            'next_interview_date' => date('Y-m-d',strtotime($this->input->post('interview_next_date'))),
             'is_send_email_reminder_to_officers' => $this->input->post('is_send_email_reminder'),
             'officer_email_addresses' => $this->input->post('officer_email_addresses'),
+            'created_on' => $date,
             'comments' => $this->input->post('interview_note')
         );
         $patient_interview_manager_id = $this->record_model->insert_patient_interview_manager($data_patient_interview_manager);

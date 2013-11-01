@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Oct 17, 2013 at 07:25 AM
+-- Generation Time: Oct 29, 2013 at 06:52 AM
 -- Server version: 5.6.12
 -- PHP Version: 5.5.1
 
@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS `cancer` (
 
 INSERT INTO `cancer` (`cancer_id`, `cancer_name`, `cancer_detail`) VALUES
 (1, 'Breast', ''),
-(2, 'Ovarian', ''),
+(2, 'Ovaries', ''),
 (3, 'Prostate', ''),
 (4, 'Cervical', ''),
 (5, 'Cervical', ''),
@@ -265,7 +265,32 @@ CREATE TABLE IF NOT EXISTS `patient` (
   `is_deleted` tinyint(1) NOT NULL DEFAULT '0',
   `deleted_date` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`ic_no`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8902208900 ;
+
+--
+-- Dumping data for table `patient`
+--
+
+INSERT INTO `patient` (`given_name`, `surname`, `maiden_name`, `nationality`, `ic_no`, `family_no`, `gender`, `ethnicity`, `blood_group`, `comment`, `d_o_b`, `d_o_d`, `place_of_birth`, `marital_status`, `is_dead`, `reason_of_death`, `record_status`, `blood_card`, `blood_card_location`, `address`, `home_phone`, `cell_phone`, `work_phone`, `other_phone`, `fax`, `email`, `height`, `weight`, `bmi`, `highest_education_level`, `income_level`, `is_record_locked`, `created_on`, `modified_on`, `modified_by`, `locked_date`, `is_deleted`, `deleted_date`) VALUES
+('asyraf', 'amirul', 'abd rani', '', 8902208810, '1', '', '', '', '', '2013-03-10', '2013-01-10', '', '', 1, '', '', 1, 'bangi', '', '0321788655', '0123344522', '', '', '', '', 0, 0, 0, '0', '', 0, '0000-00-00 00:00:00', '2013-10-18 03:15:01', '', '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00'),
+('asyraf', 'amirul', 'abd rani', '', 8902208811, '1', '', '', '', '', '2013-03-10', '2013-01-10', '', '', 1, '', '', 1, 'bangi', '', '0321788655', '0123344522', '', '', '', '', 0, 0, 0, '0', '', 0, '0000-00-00 00:00:00', '2013-10-18 03:16:19', '', '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00'),
+('asyraf', 'amirul', 'abd rani', '', 8902208812, '1', '', '', '', '', '2013-03-10', '2013-01-10', '', '', 1, '', '', 1, 'bangi', '', '0321788655', '0123344522', '', '', '', '', 0, 0, 0, '0', '', 0, '0000-00-00 00:00:00', '2013-10-18 03:23:38', '', '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00'),
+('asyraf', 'amirul', 'abd rani', '', 8902208813, '1', '', '', '', '', '2013-03-10', '2013-01-10', '', '', 1, '', '', 1, 'bangi', '', '0321788655', '0123344522', '', '', '', '', 0, 0, 0, '0', '', 0, '0000-00-00 00:00:00', '2013-10-18 03:33:59', '', '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00'),
+('asyraf', 'amirul', 'abd rani', '', 8902208814, '1', '', '', '', '', '2013-03-10', '2013-01-10', '', '', 1, '', '', 1, 'bangi', '', '0321788655', '0123344522', '', '', '', '', 0, 0, 0, '0', '', 0, '0000-00-00 00:00:00', '2013-10-18 03:34:58', '', '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00'),
+('asyraf', 'amirul', 'abd rani', '', 8902208815, '1', '', '', '', '', '2013-03-10', '2013-01-10', '', '', 1, '', '', 1, 'bangi', '', '0321788655', '0123344522', '', '', '', '', 0, 0, 0, '0', '', 0, '0000-00-00 00:00:00', '2013-10-18 03:35:43', '', '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00'),
+('asyraf', 'amirul', 'abd rani', '', 8902208816, '1', '', '', '', '', '2013-03-10', '2013-01-10', '', '', 1, '', '', 1, 'bangi', '', '0321788655', '0123344522', '', '', '', '', 0, 0, 0, '0', '', 0, '0000-00-00 00:00:00', '2013-10-18 03:36:51', '', '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00'),
+('asyraf', 'amirul', 'abd rani', '', 8902208817, '', '', '', '', '', '1970-01-01', '1970-01-01', '', '', 1, '', '', 1, '', '', '', '', '', '', '', '', 0, 0, 0, '0', '', 0, '0000-00-00 00:00:00', '2013-10-18 03:38:49', '', '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00'),
+('asyraf', 'amirul', 'abd rani', '', 8902208819, '', '', '', '', '', '1970-01-01', '1970-01-01', '', '', 1, '', '', 1, '', '', '', '', '', '', '', '', 0, 0, 0, '0', '', 0, '0000-00-00 00:00:00', '2013-10-18 03:42:37', '', '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00'),
+('asyraf', 'amirul', 'abd rani', '', 8902208831, '', '', '', '', '', '1970-01-01', '1970-01-01', '', '', 1, '', '', 1, '', '', '', '', '', '', '', '', 0, 0, 0, '0', '', 0, '0000-00-00 00:00:00', '2013-10-18 04:00:54', '', '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00'),
+('asyraf', 'amirul', 'abd rani', 'Malaysian', 8902208890, '1', 'Male', 'malay', 'o', '', '0000-00-00', '0000-00-00', 'baling', 'Single', 1, '', '', 1, 'bangi', 'kajang', '0321788655', '0123344522', '', '', '', 'applepie1502@yahoo.com', 170, 65, 0, '0', '<5,000', 0, '0000-00-00 00:00:00', '2013-10-18 01:58:20', '', '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00'),
+('asyraf', 'amirul', 'abd rani', 'Malaysian', 8902208891, '1', 'Male', 'malay', 'o', '', '0000-00-00', '0000-00-00', 'baling', 'Single', 1, '', '', 1, 'bangi', 'kajang', '0321788655', '0123344522', '', '', '', 'applepie1502@yahoo.com', 170, 65, 0, '0', '<5,000', 0, '0000-00-00 00:00:00', '2013-10-18 02:14:48', '', '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00'),
+('asyraf', 'amirul', 'abd rani', 'Malaysian', 8902208892, '1', 'Male', 'malay', 'o', '', '0000-00-00', '0000-00-00', 'baling', 'Single', 1, '', '', 1, 'bangi', 'kajang', '0321788655', '0123344522', '', '', '', 'applepie1502@yahoo.com', 170, 65, 0, '0', '<5,000', 0, '0000-00-00 00:00:00', '2013-10-18 02:20:29', '', '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00'),
+('asyraf', 'amirul', 'abd rani', 'Malaysian', 8902208893, '1', 'Male', 'malay', 'o', '', '2013-10-18', '2013-10-18', 'baling', 'Single', 1, '', '', 1, 'bangi', 'kajang', '0321788655', '0123344522', '', '', '', 'applepie1502@yahoo.com', 170, 65, 0, '0', '<5,000', 0, '0000-00-00 00:00:00', '2013-10-18 02:26:31', '', '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00'),
+('asyraf', 'amirul', 'abd rani', 'Malaysian', 8902208894, '1', 'Male', 'malay', 'o', '', '1970-01-01', '2013-10-18', 'baling', 'Single', 1, '', '', 1, 'bangi', 'kajang', '0321788655', '0123344522', '', '', '', 'applepie1502@yahoo.com', 170, 65, 0, '0', '<5,000', 0, '0000-00-00 00:00:00', '2013-10-18 02:32:56', '', '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00'),
+('asyraf', 'amirul', 'abd rani', '', 8902208896, '1', '', '', '', '', '2013-03-10', '2013-01-10', '', '', 1, '', '', 1, 'bangi', '', '0321788655', '0123344522', '', '', '', '', 0, 0, 0, '0', '', 0, '0000-00-00 00:00:00', '2013-10-18 03:05:36', '', '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00'),
+('asyraf', 'amirul', 'abd rani', '', 8902208897, '1', '', '', '', '', '2013-03-10', '2013-01-10', '', '', 1, '', '', 1, 'bangi', '', '0321788655', '0123344522', '', '', '', '', 0, 0, 0, '0', '', 0, '0000-00-00 00:00:00', '2013-10-18 03:08:00', '', '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00'),
+('asyraf', 'amirul', 'abd rani', '', 8902208898, '1', '', '', '', '', '2013-03-10', '2013-01-10', '', '', 1, '', '', 1, 'bangi', '', '0321788655', '0123344522', '', '', '', '', 0, 0, 0, '0', '', 0, '0000-00-00 00:00:00', '2013-10-18 03:12:46', '', '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00'),
+('asyraf', 'amirul', 'abd rani', '', 8902208899, '1', '', '', '', '', '2013-03-10', '2013-01-10', '', '', 1, '', '', 1, 'bangi', '', '0321788655', '0123344522', '', '', '', '', 0, 0, 0, '0', '', 0, '0000-00-00 00:00:00', '2013-10-18 03:14:01', '', '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -322,6 +347,19 @@ CREATE TABLE IF NOT EXISTS `patient_breast_screening` (
   `modified_by` varchar(50) NOT NULL,
   `is_deleted` tinyint(1) NOT NULL DEFAULT '0',
   `deleted_on` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `screening_center_of_first_mammogram` varchar(60) DEFAULT NULL,
+  `screening_center_of_recent_mammogram` varchar(100) DEFAULT NULL,
+  `details_of_first_mammogram` varchar(100) DEFAULT NULL,
+  `details_of_recent_mammogram` varchar(100) DEFAULT NULL,
+  `motivaters_of_first_mammogram` varchar(100) DEFAULT NULL,
+  `motivaters_of_recent_mammogram` varchar(100) DEFAULT NULL,
+  `reason_of_mammogram` varchar(100) DEFAULT NULL,
+  `reason_of_mammogram_details` varchar(100) DEFAULT NULL,
+  `mammogram_in_sdmc` tinyint(1) DEFAULT NULL,
+  `action_suggested_on_mammogram_report` varchar(100) NOT NULL,
+  `reason_of_action_suggested` varchar(100) NOT NULL,
+  `site_effected_of_mammogram` varchar(50) NOT NULL,
+  `is_cancer_mammogram_flag` int(3) NOT NULL,
   PRIMARY KEY (`patient_breast_screening_id`),
   KEY `fk_patient_breast_screening_patient_studies_id` (`patient_studies_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
@@ -376,6 +414,14 @@ CREATE TABLE IF NOT EXISTS `patient_cancer_treatment` (
   `modified_by` varchar(50) NOT NULL,
   `is_deleted` tinyint(1) NOT NULL DEFAULT '0',
   `deleted_on` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `treatment_details` varchar(150) DEFAULT NULL,
+  `treatment_dose` varchar(60) DEFAULT NULL,
+  `treatment_cycle` varchar(100) DEFAULT NULL,
+  `treatment_frequency` varchar(100) DEFAULT NULL,
+  `treatment_visidual_desease` varchar(100) DEFAULT NULL,
+  `treatment_privacy_outcome` varchar(100) DEFAULT NULL,
+  `treatment_cal125_pretreatment` varchar(100) DEFAULT NULL,
+  `treatment_cal125_posttreatment` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`patient_cancer_treatment_id`),
   KEY `fk_patient_cancer_treatment_patient_cancer_id` (`patient_cancer_id`),
   KEY `fk_patient_cancer_treatment_treatment_id` (`treatment_id`)
@@ -397,8 +443,16 @@ CREATE TABLE IF NOT EXISTS `patient_cogs_studies` (
   `modified_by` varchar(50) NOT NULL,
   `is_deleted` tinyint(1) NOT NULL,
   `deleted_on` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  PRIMARY KEY (`COGS_studies_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  PRIMARY KEY (`COGS_studies_id`),
+  KEY `fk_patient_ic_no` (`patient_ic_no`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `patient_cogs_studies`
+--
+
+INSERT INTO `patient_cogs_studies` (`COGS_studies_id`, `patient_ic_no`, `COGS_studies_name`, `COGS_studies_no`, `created_on`, `modified_on`, `modified_by`, `is_deleted`, `deleted_on`) VALUES
+(1, 8902208819, 'CIMBA', '12456', '0000-00-00', '2013-10-18 03:42:37', '', 0, '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -419,7 +473,32 @@ CREATE TABLE IF NOT EXISTS `patient_contact_person` (
   `deleted_on` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`patient_contact_person_id`),
   KEY `fk_patient_contact_person_patient_ic_no` (`patient_ic_no`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=20 ;
+
+--
+-- Dumping data for table `patient_contact_person`
+--
+
+INSERT INTO `patient_contact_person` (`patient_contact_person_id`, `patient_ic_no`, `contact_name`, `contact_relationship`, `contact_telephone`, `created_on`, `modified_on`, `modified_by`, `is_deleted`, `deleted_on`) VALUES
+(1, 8902208890, 'ali', 'boss', '01254617189', '0000-00-00', '2013-10-18 01:58:21', '', 0, '0000-00-00 00:00:00'),
+(2, 8902208891, 'ali', 'boss', '01254617189', '0000-00-00', '2013-10-18 02:14:48', '', 0, '0000-00-00 00:00:00'),
+(3, 8902208892, 'ali', 'boss', '01254617189', '0000-00-00', '2013-10-18 02:20:29', '', 0, '0000-00-00 00:00:00'),
+(4, 8902208893, 'ali', 'boss', '01254617189', '0000-00-00', '2013-10-18 02:26:31', '', 0, '0000-00-00 00:00:00'),
+(5, 8902208894, 'ali', 'boss', '01254617189', '0000-00-00', '2013-10-18 02:32:56', '', 0, '0000-00-00 00:00:00'),
+(6, 8902208896, '', '', '', '0000-00-00', '2013-10-18 03:05:37', '', 0, '0000-00-00 00:00:00'),
+(7, 8902208897, '', '', '', '0000-00-00', '2013-10-18 03:08:00', '', 0, '0000-00-00 00:00:00'),
+(8, 8902208898, '', '', '', '0000-00-00', '2013-10-18 03:12:46', '', 0, '0000-00-00 00:00:00'),
+(9, 8902208899, '', '', '', '0000-00-00', '2013-10-18 03:14:01', '', 0, '0000-00-00 00:00:00'),
+(10, 8902208810, '', '', '', '0000-00-00', '2013-10-18 03:15:01', '', 0, '0000-00-00 00:00:00'),
+(11, 8902208811, '', '', '', '0000-00-00', '2013-10-18 03:16:19', '', 0, '0000-00-00 00:00:00'),
+(12, 8902208812, '', '', '', '0000-00-00', '2013-10-18 03:23:38', '', 0, '0000-00-00 00:00:00'),
+(13, 8902208813, '', '', '', '0000-00-00', '2013-10-18 03:33:59', '', 0, '0000-00-00 00:00:00'),
+(14, 8902208814, '', '', '', '0000-00-00', '2013-10-18 03:34:58', '', 0, '0000-00-00 00:00:00'),
+(15, 8902208815, '', '', '', '0000-00-00', '2013-10-18 03:35:44', '', 0, '0000-00-00 00:00:00'),
+(16, 8902208816, '', '', '', '0000-00-00', '2013-10-18 03:36:51', '', 0, '0000-00-00 00:00:00'),
+(17, 8902208817, '', '', '', '0000-00-00', '2013-10-18 03:38:49', '', 0, '0000-00-00 00:00:00'),
+(18, 8902208819, '', '', '', '0000-00-00', '2013-10-18 03:42:37', '', 0, '0000-00-00 00:00:00'),
+(19, 8902208831, '', '', '', '0000-00-00', '2013-10-18 04:00:54', '', 0, '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -511,6 +590,10 @@ CREATE TABLE IF NOT EXISTS `patient_infertility` (
   `modified_by` varchar(50) NOT NULL,
   `is_deleted` tinyint(1) NOT NULL DEFAULT '0',
   `deleted_on` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `contraceptive_end_age` varchar(60) DEFAULT NULL,
+  `contraceptive_start_age` varchar(60) DEFAULT NULL,
+  `hrt_start_age` varchar(60) DEFAULT NULL,
+  `hrt_end_age` varchar(60) DEFAULT NULL,
   PRIMARY KEY (`patient_infertility_id`),
   KEY `fk_patient_infertility_patient_studies_id` (`patient_studies_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
@@ -776,6 +859,7 @@ CREATE TABLE IF NOT EXISTS `patient_mutation_analysis` (
   `modified_by` varchar(50) NOT NULL,
   `is_deleted` tinyint(1) NOT NULL DEFAULT '0',
   `deleted_on` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `mutation_name` varchar(150) NOT NULL,
   PRIMARY KEY (`patient_investigations_id`),
   KEY `fk_patient_investigations_patient_studies_id` (`patient_studies_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
@@ -799,6 +883,11 @@ CREATE TABLE IF NOT EXISTS `patient_non_cancer_surgery` (
   `modified_by` varchar(50) NOT NULL,
   `is_deleted` tinyint(1) NOT NULL,
   `deleted_on` date NOT NULL,
+  `breast_surgery_type` varchar(60) DEFAULT NULL,
+  `breast_reason_of_surgery` varchar(60) DEFAULT NULL,
+  `breast_comments` varchar(150) DEFAULT NULL,
+  `breast_age_of_surgery` varchar(60) DEFAULT NULL,
+  `breast_date_of_surgery` date NOT NULL,
   PRIMARY KEY (`patient_non_cancer_surgery_id`),
   KEY `patient_studies_id` (`patient_studies_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
@@ -970,6 +1059,10 @@ CREATE TABLE IF NOT EXISTS `patient_pathology` (
   `is_deleted` tinyint(1) NOT NULL DEFAULT '0',
   `deleted_on` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `patient_cancer_id` int(5) DEFAULT NULL,
+  `no_of_report` varchar(50) NOT NULL,
+  `tumor_subtype` varchar(50) NOT NULL,
+  `tumor_behaviour` varchar(100) NOT NULL,
+  `tumor_differentiation` varchar(150) NOT NULL,
   PRIMARY KEY (`patient_pathology_id`),
   KEY `cancer_id` (`cancer_id`),
   KEY `fk_patient_cancer_id` (`patient_cancer_id`)
@@ -1061,9 +1154,17 @@ CREATE TABLE IF NOT EXISTS `patient_relatives` (
   KEY `fk_patient_relatives_cancer_type_id` (`cancer_type_id`),
   KEY `fk_patient_relatives_family_family_no` (`family_no`),
   KEY `fk_patient_relatives_patient_ic_no` (`patient_ic_no`),
-  KEY `fk_patient_relatives_relatives_id` (`relatives_id`),
-  KEY `degree_of_relativeness` (`degree_of_relativeness`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  KEY `fk_patient_relatives_relatives_id` (`relatives_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+
+--
+-- Dumping data for table `patient_relatives`
+--
+
+INSERT INTO `patient_relatives` (`patient_relatives_id`, `patient_ic_no`, `relatives_id`, `degree_of_relativeness`, `family_no`, `full_name`, `sur_name`, `maiden_name`, `ethnicity`, `nationality`, `town_of_residence`, `d_o_b`, `is_alive_flag`, `d_o_d`, `is_cancer_diagnosed`, `date_of_diagnosis`, `cancer_type_id`, `age_of_diagnosis`, `other_detail`, `no_of_brothers`, `no_of_sisters`, `total_half_brothers`, `total_half_sisters`, `sex`, `is_paternal`, `is_maternal`, `vital_status`, `comments`, `created_on`, `modified_on`, `modified_by`, `is_deleted`, `deleted_on`, `is_adopted`, `is_in_other_country`) VALUES
+(2, 8902208810, 1, 0, 1, 'ali', '0', 'ahmad', 'malay', '', 'baling', '0000-00-00', 1, '0000-00-00', 1, '0000-00-00', 2, 4, 'father Diagnosis details', 1, 2, 3, 4, '', 0, 0, 'Vital status', '', '0000-00-00', '2013-10-24 02:07:36', '', 0, '0000-00-00 00:00:00', 0, 0),
+(3, 8902208811, 1, 0, 1, 'ali', '0', 'ahmad', 'malay', '', 'baling', '0000-00-00', 1, '0000-00-00', 1, '0000-00-00', 2, 4, 'father Diagnosis details', 1, 2, 3, 4, '', 0, 0, 'Vital status', '', '0000-00-00', '2013-10-24 02:14:28', '', 0, '0000-00-00 00:00:00', 0, 0),
+(4, 8902208811, 2, 0, 1, 'aminah', '0', 'zainab', '0', '', 'baling', '0000-00-00', 1, '0000-00-00', 1, '0000-00-00', 1, 3, 'diagnosis details', 1, 2, 3, 4, '', 0, 0, '1', '', '0000-00-00', '2013-10-24 02:14:28', '', 0, '0000-00-00 00:00:00', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -1088,9 +1189,22 @@ CREATE TABLE IF NOT EXISTS `patient_relatives_summary` (
   `modified_by` varchar(50) NOT NULL,
   `is_deleted` tinyint(1) NOT NULL DEFAULT '0',
   `deleted_on` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `total_no_of_siblings` int(3) DEFAULT NULL,
   PRIMARY KEY (`patient_relatives_summary_ID`),
   KEY `fk_patient_relatives_summary_patient_ic_no` (`patient_ic_no`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+
+--
+-- Dumping data for table `patient_relatives_summary`
+--
+
+INSERT INTO `patient_relatives_summary` (`patient_relatives_summary_ID`, `patient_ic_no`, `total_no_of_male_siblings`, `total_no_of_female_siblings`, `total_no_of_affected_siblings`, `total_no_of_male_children`, `total_no_of_female_children`, `total_no_of_affected_children`, `total_no_of_1st_degree`, `total_no_of_2nd_degree`, `total_no_of_3rd_degree`, `created_on`, `modified_on`, `modified_by`, `is_deleted`, `deleted_on`, `total_no_of_siblings`) VALUES
+(3, 8902208890, 3, 4, 7, 3, 3, 6, 2, 3, 4, '0000-00-00', '2013-10-18 01:58:21', '', 0, '0000-00-00 00:00:00', NULL),
+(4, 8902208891, 3, 4, 7, 3, 3, 6, 2, 3, 4, '0000-00-00', '2013-10-18 02:14:49', '', 0, '0000-00-00 00:00:00', NULL),
+(5, 8902208892, 3, 4, 7, 3, 3, 6, 2, 3, 4, '0000-00-00', '2013-10-18 02:20:29', '', 0, '0000-00-00 00:00:00', NULL),
+(6, 8902208893, 3, 4, 7, 3, 3, 6, 2, 3, 4, '0000-00-00', '2013-10-18 02:26:32', '', 0, '0000-00-00 00:00:00', NULL),
+(7, 8902208894, 3, 4, 7, 3, 3, 6, 2, 3, 4, '0000-00-00', '2013-10-18 02:32:56', '', 0, '0000-00-00 00:00:00', NULL),
+(8, 8902208819, 0, 0, 0, 0, 0, 0, 0, 0, 0, '0000-00-00', '2013-10-18 03:42:37', '', 0, '0000-00-00 00:00:00', NULL);
 
 -- --------------------------------------------------------
 
@@ -1278,7 +1392,32 @@ CREATE TABLE IF NOT EXISTS `patient_survival_status` (
   `deleted_on` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`patient_survival_status_id`),
   KEY `fk_patient_survival_status_patient_ic_no` (`patient_ic_no`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=20 ;
+
+--
+-- Dumping data for table `patient_survival_status`
+--
+
+INSERT INTO `patient_survival_status` (`patient_survival_status_id`, `patient_ic_no`, `source`, `alive_status`, `status_gathering_date`, `created_on`, `modified_on`, `modified_by`, `is_deleted`, `deleted_on`) VALUES
+(1, 8902208890, 'JPN', 1, '0000-00-00', '0000-00-00', '2013-10-18 01:58:21', '', 0, '0000-00-00 00:00:00'),
+(2, 8902208891, 'JPN', 1, '0000-00-00', '0000-00-00', '2013-10-18 02:14:48', '', 0, '0000-00-00 00:00:00'),
+(3, 8902208892, 'JPN', 1, '0000-00-00', '0000-00-00', '2013-10-18 02:20:29', '', 0, '0000-00-00 00:00:00'),
+(4, 8902208893, 'JPN', 1, '0000-00-00', '0000-00-00', '2013-10-18 02:26:32', '', 0, '0000-00-00 00:00:00'),
+(5, 8902208894, 'JPN', 1, '0000-00-00', '0000-00-00', '2013-10-18 02:32:56', '', 0, '0000-00-00 00:00:00'),
+(6, 8902208896, '', 0, '0000-00-00', '0000-00-00', '2013-10-18 03:05:37', '', 0, '0000-00-00 00:00:00'),
+(7, 8902208897, '', 0, '0000-00-00', '0000-00-00', '2013-10-18 03:08:00', '', 0, '0000-00-00 00:00:00'),
+(8, 8902208898, '', 0, '0000-00-00', '0000-00-00', '2013-10-18 03:12:46', '', 0, '0000-00-00 00:00:00'),
+(9, 8902208899, '', 0, '0000-00-00', '0000-00-00', '2013-10-18 03:14:01', '', 0, '0000-00-00 00:00:00'),
+(10, 8902208810, '', 0, '0000-00-00', '0000-00-00', '2013-10-18 03:15:01', '', 0, '0000-00-00 00:00:00'),
+(11, 8902208811, '', 0, '0000-00-00', '0000-00-00', '2013-10-18 03:16:19', '', 0, '0000-00-00 00:00:00'),
+(12, 8902208812, '', 0, '0000-00-00', '0000-00-00', '2013-10-18 03:23:38', '', 0, '0000-00-00 00:00:00'),
+(13, 8902208813, '', 0, '0000-00-00', '0000-00-00', '2013-10-18 03:33:59', '', 0, '0000-00-00 00:00:00'),
+(14, 8902208814, '', 0, '0000-00-00', '0000-00-00', '2013-10-18 03:34:58', '', 0, '0000-00-00 00:00:00'),
+(15, 8902208815, '', 0, '0000-00-00', '0000-00-00', '2013-10-18 03:35:44', '', 0, '0000-00-00 00:00:00'),
+(16, 8902208816, '', 0, '0000-00-00', '0000-00-00', '2013-10-18 03:36:51', '', 0, '0000-00-00 00:00:00'),
+(17, 8902208817, '', 0, '0000-00-00', '0000-00-00', '2013-10-18 03:38:49', '', 0, '0000-00-00 00:00:00'),
+(18, 8902208819, '', 0, '0000-00-00', '0000-00-00', '2013-10-18 03:42:37', '', 0, '0000-00-00 00:00:00'),
+(19, 8902208831, '', 0, '0000-00-00', '0000-00-00', '2013-10-18 04:00:54', '', 0, '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -1369,7 +1508,7 @@ CREATE TABLE IF NOT EXISTS `studies` (
 --
 
 INSERT INTO `studies` (`studies_id`, `studies_name`) VALUES
-(1, 'MyBrCa'),
+(1, 'UM MyBrCa'),
 (2, 'EpBrCa'),
 (3, 'OvaCa'),
 (4, 'Mammo');
@@ -1454,7 +1593,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `suspend`, `reset_password_invalid_attempts`, `reset_password_counter`, `first_name`, `last_name`, `phone`, `current_city`, `country`, `profile_picture_path`, `user_language`, `add_privilege`, `view_privilege`, `edit_privilege`, `delete_privilege`) VALUES
-(1, '\0\0', 'administrator', '59beecdf7fc966e2f17fd8f65a4a9aeb09d4a3d4', '9462e8eee0', 'admin@admin.com', '', NULL, NULL, '9d029802e28cd9c768e8e62277c0df49ec65c48c', 1268889823, 1381478406, 1, 0, 0, 0, 'Admin', 'istrator', '0', NULL, NULL, NULL, NULL, 1, 1, 1, 0),
+(1, '\0\0', 'administrator', '59beecdf7fc966e2f17fd8f65a4a9aeb09d4a3d4', '9462e8eee0', 'asyraf.abdrani@gmail.com', '', NULL, NULL, '9d029802e28cd9c768e8e62277c0df49ec65c48c', 1268889823, 1383015052, 1, 0, 0, 0, 'Admin', 'istrator', '0', NULL, NULL, NULL, NULL, 1, 1, 1, 0),
 (2, '\0\0', 'nazmul', '59beecdf7fc966e2f17fd8f65a4a9aeb09d4a3d4', '9462e8eee0', 'nazmul@apurbatech.com', '', NULL, NULL, NULL, 1268889823, 1373438882, 1, 0, 0, 0, 'Nazmul', 'Hasan', '0', NULL, NULL, NULL, NULL, 1, 1, 1, 0),
 (3, '\0\0', 'alamgir', '59beecdf7fc966e2f17fd8f65a4a9aeb09d4a3d4', '9462e8eee0', 'alamgir@apurbatech.com', '', NULL, NULL, NULL, 1268889823, 1380003462, 1, 0, 0, 0, 'Alamgir', 'Kabir', '0', NULL, NULL, NULL, NULL, 1, 1, 1, 0),
 (4, '\0\0', 'fariza', '59beecdf7fc966e2f17fd8f65a4a9aeb09d4a3d4', '9462e8eee0', 'fariza@apurbatech.com', '', NULL, NULL, NULL, 1268889823, 1375689996, 1, 0, 0, 0, 'Fariza', 'Amir', '0', NULL, NULL, NULL, NULL, 1, 1, 1, 0),
@@ -1518,6 +1657,12 @@ ALTER TABLE `patient_cancer`
 ALTER TABLE `patient_cancer_treatment`
   ADD CONSTRAINT `fk_patient_cancer_treatment_patient_cancer_id` FOREIGN KEY (`patient_cancer_id`) REFERENCES `patient_cancer` (`patient_cancer_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_patient_cancer_treatment_treatment_id` FOREIGN KEY (`treatment_id`) REFERENCES `treatment` (`treatment_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `patient_cogs_studies`
+--
+ALTER TABLE `patient_cogs_studies`
+  ADD CONSTRAINT `patient_cogs_studies_ibfk_1` FOREIGN KEY (`patient_ic_no`) REFERENCES `patient` (`ic_no`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `patient_contact_person`
@@ -1657,8 +1802,7 @@ ALTER TABLE `patient_relatives`
   ADD CONSTRAINT `fk_patient_relatives_cancer_type_id` FOREIGN KEY (`cancer_type_id`) REFERENCES `cancer` (`cancer_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_patient_relatives_family_family_no` FOREIGN KEY (`family_no`) REFERENCES `family` (`family_no`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_patient_relatives_patient_ic_no` FOREIGN KEY (`patient_ic_no`) REFERENCES `patient` (`ic_no`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_patient_relatives_relatives_id` FOREIGN KEY (`relatives_id`) REFERENCES `relatives` (`relatives_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `patient_relatives_ibfk_1` FOREIGN KEY (`degree_of_relativeness`) REFERENCES `relative_degrees` (`relative_degree_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_patient_relatives_relatives_id` FOREIGN KEY (`relatives_id`) REFERENCES `relatives` (`relatives_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `patient_risk_assessment`

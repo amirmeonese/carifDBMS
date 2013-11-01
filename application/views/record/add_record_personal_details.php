@@ -2,10 +2,10 @@
     <div id="add_record_header" class="row">
         <p>Add Patient</p>
     </div>
-    <?php 
-	$attributes = array('id' => 'personal-details-form');
-	echo form_open("record/patient_record_insertion", $attributes);
-	?>
+    <?php
+    $attributes = array('id' => 'personal-details-form');
+    echo form_open("record/patient_record_insertion", $attributes);
+    ?>
     <div class="container" id="add_record_form_section_personal">
         <div height="30px">&nbsp;</div>
         <?php
@@ -13,34 +13,32 @@
         ?>
         <table>
             <tr>
-               <td>
-					<label for="surname"><?php echo $surname; ?>: </label>
-                    <?php echo form_input('surname'); ?>
+                <td>
+                    <label for="surname"><?php echo $surname; ?>: </label>
+                   <?php echo ($isUpdate) ? form_input(array('name' => 'surname', 'value' => $patient_detail['surname'])) : form_input(array('name'=>'surname','value'=> set_value('surname')))?>
                 </td>
-				<td>
-					<label for="fullname"><?php echo $fullname; ?>: </label>
-                    <?php echo form_input('fullname'); ?>
+                <td>
+                    <label for="fullname"><?php echo $fullname; ?>: </label>
+                    <?php echo ($isUpdate) ? form_input(array('name' => 'fullname', 'value' => $patient_detail['given_name'])) : form_input(array('name'=>'fullname','value'=> set_value('fullname')))?>
                 </td>
-                
+
                 <td>
                     <?php echo $maiden_name; ?>: 
-                    <?php echo form_input('maiden_name'); ?>
+                    <?php echo ($isUpdate) ? form_input(array('name' => 'maiden_name', 'value' => $patient_detail['maiden_name'])) : form_input(array('name'=>'maiden_name','value'=> set_value('maiden_name')))?>
                 </td>
                 <td>
-					<label for="family_no"><?php echo $family_no; ?>: </label>
-                    <?php echo form_input('family_no'); ?>
+                    <label for="family_no"><?php echo $family_no; ?>: </label>
+                    <?php echo ($isUpdate) ? form_input(array('name' => 'family_no', 'value' => $patient_detail['family_no'])) : form_input(array('name'=>'family_no','value'=> set_value('family_no')))?>
                 </td>
             </tr>
             <tr>
                 <td>
                     <?php echo $nationality; ?>: 
-                    <?php echo form_dropdown('nationality', $nationalities, NULL, 'id="nationality"'); ?>
+                    <?php echo ($isUpdate) ?  form_dropdown('nationality',$nationalities, $patient_detail['nationality']) : form_dropdown('nationality', $nationalities, NULL, 'id="nationality"'); ?>
                 </td>
                 <td>
-					<label for="IC_no"><?php echo $IC_no; ?>: </label>
-                    <?php echo form_input("IC_no"); ?>
-
-
+                    <label for="IC_no"><?php echo $IC_no; ?>: </label>
+                    <?php echo ($isUpdate) ? form_input(array('name' => 'IC_no', 'value' => $patient_detail['ic_no'])) : form_input(array('name'=>'IC_no','value'=> set_value('IC_no')))?>
                 </td>
                 <td>
                     <?php echo $gender; ?>: 
@@ -48,28 +46,27 @@
                 </td>
                 <td>
                     <?php echo $ethinicity; ?>: 
-                    <?php echo form_input('ethnicity'); ?>
+                    <?php echo ($isUpdate) ? form_input(array('name' => 'ethnicity', 'value' => $patient_detail['ethnicity'])) : form_input(array('name'=>'ethnicity','value'=> set_value('ethnicity')))?>
                 </td>
             </tr>
             <tr>
                 <td>
                     <?php echo $DOB; ?>:
-                    <?php echo form_input(array('name'=>'d_o_b','class'=>'datepicker')); ?>
-                
+                    <?php echo ($isUpdate) ? form_input(array('name' => 'd_o_b', 'value' => $patient_detail['d_o_b'],'class' => 'datepicker')) : form_input(array('name' => 'd_o_b', 'class' => 'datepicker'))?>
+
                 </td>
                 <td>
                     <?php echo $place_of_birth; ?>: 
-                    <?php
-                    echo form_input('place_of_birth');
-                    ?>
+                    <?php echo ($isUpdate) ? form_input(array('name' => 'place_of_birth', 'value' => $patient_detail['place_of_birth'])) : form_input(array('name'=>'place_of_birth','value'=> set_value('place_of_birth')))?>
+                    
                 </td>
                 <td>
                     <?php echo $marital_status; ?>: 
-					<?php echo form_dropdown('marital_status', $marital_status_lists, NULL, 'id="marital_status"'); ?>
+                    <?php echo form_dropdown('marital_status', $marital_status_lists, NULL, 'id="marital_status"'); ?>
                 </td>
                 <td>
                     <?php echo $blood_group; ?>: 
-                    <?php echo form_input('blood_group'); ?>
+                    <?php echo ($isUpdate) ? form_input(array('name' => 'blood_group', 'value' => $patient_detail['blood_group'])) : form_input(array('name'=>'blood_group','value'=> set_value('blood_group')))?>                  
                 </td>
             </tr>
             <tr>
@@ -79,100 +76,96 @@
                 </td>
                 <td>
                     <?php echo $DOD; ?>: 
-                    <?php echo form_input(array('name' => 'd_o_d', 'class' => 'datepicker')); ?>
+                    <?php echo ($isUpdate) ? form_input(array('name' => 'd_o_d', 'value' => $patient_detail['d_o_d'],'class' => 'datepicker')) : form_input(array('name' => 'd_o_d', 'class' => 'datepicker'))?>
                 </td>
                 <td>
                     <?php echo $reason_of_death; ?>: 
-                    <?php
-                    $data = array(
-                        'name' => 'reason_of_death',
-                        'id' => 'reason_of_death',
-                        'rows' => '3',
-                        'cols' => '7'
-                    );
-                    echo form_textarea($data);
-                    ?>
+                    <?php echo ($isUpdate) ? form_textarea(array('name' => 'reason_of_death','id' => 'reason_of_death','rows' => '3','cols' => '7', 'value' => $patient_detail['blood_group'])) : form_textarea(array('name'=>'reason_of_death','id' => 'reason_of_death','rows' => '3','cols' => '7','value'=> set_value('reason_of_death')))?>                                      
                 </td>
             </tr>
-		</table>
-	</div>
-	 <div class="container" id="add_record_form_section_personal2">
-		<table id="hospital_no_section_1">
-			<tr>
+        </table>
+    </div>
+    <div class="container" id="add_record_form_section_personal2">
+        <table id="hospital_no_section_1">
+            <tr>
                 <td id="label1">Hospital numbers</td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <?php echo $hospital_no; ?>: 
-                                <?php
-                                //echo form_textarea
-                                echo form_input('hospital_no');
-                                ?>
-                            </td>
-                            <td>
-                                <input type="button" value="Add Hospital No." onClick="window.parent.addHospitalNoInput('add_record_form_section_personal2'); window.parent.calcHeight();">
-                            </td>
-                        </tr>
-                </table>
-         </div>
-         <div class="container" id="add_record_form_section_personal3">
-	<div height="30px">&nbsp;</div>
-	<table id="add_private_patient_no_section_1">
-		<tr>
+            </tr>
+            <tr>
+                <td>
+                    <?php echo $hospital_no; ?>: 
+                    <?php
+                    //echo form_textarea
+                    echo form_input('hospital_no');
+                    ?>
+                </td>
+                <td>
+                    <input type="button" value="Add Hospital No." onClick="window.parent.addHospitalNoInput('add_record_form_section_personal2');
+                                        window.parent.calcHeight();">
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="container" id="add_record_form_section_personal3">
+        <div height="30px">&nbsp;</div>
+        <table id="add_private_patient_no_section_1">
+            <tr>
                 <td id="label1">Private patient numbers</td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
-		</tr>
-		<tr>
-			<td>
-				<?php echo $private_patient_no; ?>: 
-				<?php echo form_input('private_patient_no'); ?>
-			</td>
-			<td>
-				<input type="button" value="Add patient no." onClick="window.parent.addPatientPrivateNoInput('add_record_form_section_personal3'); window.parent.calcHeight();">
-			</td>
-		</tr>
-		</table>
-	</div>
-        <div class="container" id="add_record_form_section_personal6">
-	<div height="30px">&nbsp;</div>
-	<table id="add_study_no_section_1">
-			<tr>
+            </tr>
+            <tr>
+                <td>
+                    <?php echo $private_patient_no; ?>: 
+                    <?php echo form_input('private_patient_no'); ?>
+                </td>
+                <td>
+                    <input type="button" value="Add patient no." onClick="window.parent.addPatientPrivateNoInput('add_record_form_section_personal3');
+                                        window.parent.calcHeight();">
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="container" id="add_record_form_section_personal6">
+        <div height="30px">&nbsp;</div>
+        <table id="add_study_no_section_1">
+            <tr>
                 <td id="label1">COGS study numbers</td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
-			</tr>
+            </tr>
             <tr>
                 <td>
-					<?php echo $COGS_study_id; ?>:
-					<?php echo form_dropdown('COGS_study_id', $COGS_study_id_lists, NULL, 'id="COGS_study_id"'); ?>
+                    <?php echo $COGS_study_id; ?>:
+                    <?php echo form_dropdown('COGS_study_id', $COGS_study_id_lists, NULL, 'id="COGS_study_id"'); ?>
                 </td>
                 <td>
-					<?php echo 'Study no'; ?>: 
-					<?php echo form_input('COGS_studies_no'); ?>
+                    <?php echo 'Study no'; ?>: 
+                    <?php echo form_input('COGS_studies_no'); ?>
                 </td>
                 <td>
-				<input type="button" value="Add" onClick="window.parent.addPatientStudyNoInput('add_record_form_section_personal6'); window.parent.calcHeight();">
+                    <input type="button" value="Add" onClick="window.parent.addPatientStudyNoInput('add_record_form_section_personal6');
+                                        window.parent.calcHeight();">
                 </td>
-                </tr>
-       </table>
-        </div>
-        <div class="container" id="add_record_form_section_personal4">
-	<div height="30px">&nbsp;</div>
-		<table>
-                <tr>
+            </tr>
+        </table>
+    </div>
+    <div class="container" id="add_record_form_section_personal4">
+        <div height="30px">&nbsp;</div>
+        <table>
+            <tr>
                 <td>
-					<?php echo $is_blood_card_exist; ?>: 
+                    <?php echo $is_blood_card_exist; ?>: 
                     <?php echo form_checkbox('is_blood_card_exist', '1', TRUE); ?>
+                    <?php echo ($isUpdate) ? form_input(array('name' => 'fullname', 'value' => $patient_detail['given_name'])) : form_input(array('name'=>'fullname','value'=> set_value('fullname')))?>                    
                 </td>
                 <td>
-					<?php echo $blood_card_location; ?>: 
-					<?php echo form_input('blood_card_location'); ?>
+                    <?php echo $blood_card_location; ?>: 
+                    <?php echo form_input('blood_card_location'); ?>
                 </td>
             </tr>
             <tr>
@@ -197,8 +190,8 @@
                     <?php echo form_input('cell_phone'); ?>
                 </td>
                 <td>
-					<?php echo $work_phone; ?>: 
-					<?php echo form_input('work_phone'); ?>
+                    <?php echo $work_phone; ?>: 
+                    <?php echo form_input('work_phone'); ?>
                 </td>
             </tr>
             <tr>
@@ -211,10 +204,10 @@
                     <?php echo form_input('fax'); ?>
                 </td>
                 <td>
-					<?php echo $email; ?>: 
-					<?php echo form_input('email'); ?>
+                    <?php echo $email; ?>: 
+                    <?php echo form_input('email'); ?>
                 </td>
-				 <td>
+                <td>
                     <?php echo $highest_level_of_education; ?>: 
                     <?php
                     $data = array(
@@ -240,9 +233,9 @@
                     <?php echo $BMI; ?>: 
                     <?php echo form_input('BMI'); ?>
                 </td>
-				<td>
+                <td>
                     <?php echo $income_level; ?>: 
-					<?php echo form_dropdown('income_level', $income_level_lists, NULL, 'id="income_level"'); ?>
+                    <?php echo form_dropdown('income_level', $income_level_lists, NULL, 'id="income_level"'); ?>
                 </td>
             </tr>
             <tr>
@@ -277,7 +270,7 @@
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
             </tr>
-			  <tr>
+            <tr>
                 <td>
                     <?php echo $total_no_of_male_siblings; ?>: 
                     <?php echo form_input('total_no_of_male_siblings'); ?>
@@ -294,21 +287,21 @@
                     <?php echo $total_no_of_siblings; ?>: 
                     <?php echo form_input('total_no_of_siblings'); ?>
                 </td>
-                </tr>
-                <tr>
-                              <td>
-                                  <?php echo $total_no_male_children; ?>: 
-                                  <?php echo form_input('total_no_male_children'); ?>
-                              </td>
-                              <td>
+            </tr>
+            <tr>
+                <td>
+                    <?php echo $total_no_male_children; ?>: 
+                    <?php echo form_input('total_no_male_children'); ?>
+                </td>
+                <td>
                     <?php echo $total_no_female_children; ?>: 
                     <?php echo form_input('total_no_female_children'); ?>
                 </td>
-				<td>
+                <td>
                     <?php echo $total_no_of_affected_children; ?>: 
                     <?php echo form_input('total_no_of_affected_children'); ?>
-				</td>
-				<td>&nbsp;</td>
+                </td>
+                <td>&nbsp;</td>
             </tr>
             <tr>
                 <td>
@@ -323,12 +316,12 @@
                     <?php echo $total_no_of_third_degree; ?>: 
                     <?php echo form_input('total_no_of_third_degree'); ?>
                 </td>
-				<td>&nbsp;</td>
+                <td>&nbsp;</td>
             </tr>
         </table>
     </div>
 
-	<?php echo form_fieldset_close(); ?>	
+    <?php echo form_fieldset_close(); ?>	
     <div class="container" id="add_record_form_section_personal_5">
         <div height="30px">&nbsp;</div>
         <table id="survival_section_1">
@@ -341,11 +334,11 @@
             <tr>
                 <td>
                     <?php echo $status_source; ?>: 
-					<?php echo form_dropdown('status_source', $status_source_lists, NULL, 'id="status_source"'); ?>
+                    <?php echo form_dropdown('status_source', $status_source_lists, NULL, 'id="status_source"'); ?>
                 </td>
                 <td>
                     <?php echo $alive_status; ?>: 
-					<?php echo form_dropdown('alive_status', $alive_status_lists, NULL, 'id="alive_status"'); ?>
+                    <?php echo form_dropdown('alive_status', $alive_status_lists, NULL, 'id="alive_status"'); ?>
                 </td>
                 <td>
                     <?php echo $status_gathered_date; ?>: 
@@ -358,7 +351,7 @@
             </tr>
         </table>
     </div>
-	<div class="container" id="add_consent_details_section">
+    <div class="container" id="add_consent_details_section">
         <div height="30px">&nbsp;</div>
         <?php
         echo form_fieldset('Consent Details');
@@ -367,11 +360,11 @@
             <tr>
                 <td>
                     <?php echo $studies_name; ?>: 
-					<?php echo form_dropdown('studies_name', $studies_name_lists, NULL, 'id="studies_name"'); ?>
+                    <?php echo form_dropdown('studies_name', $studies_name_lists, NULL, 'id="studies_name"'); ?>
                 </td>
                 <td>
                     <?php echo $date_at_consent; ?>: 
-					<?php echo form_input(array('name'=>'date_at_consent','class'=>'datepicker')); ?>
+                    <?php echo form_input(array('name' => 'date_at_consent', 'class' => 'datepicker')); ?>
                 </td>
                 <td>
                     <?php echo $age_at_consent; ?>: 
@@ -397,7 +390,7 @@
                 </td>
                 <td>
                     <?php echo $relations_to_study; ?>: 
-                    <?php echo form_input('relations_to_study');?>
+                    <?php echo form_input('relations_to_study'); ?>
                 </td>
             </tr>
             <tr>
@@ -421,8 +414,8 @@
         </table>
         <?php echo form_fieldset_close(); ?>	
     </div>
-<?php echo form_submit('mysubmit', 'Save'); ?>
-<?php echo form_close(); ?>
+    <?php echo form_submit('mysubmit', 'Save'); ?>
+    <?php echo form_close(); ?>
 </div>
 
 
