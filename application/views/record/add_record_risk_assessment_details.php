@@ -188,9 +188,7 @@
                 </tr>
             </table>
         </div>
-        <?php echo form_fieldset_close(); ?>
-        <?php echo form_submit('mysubmit', 'Save'); ?>
-        <?php echo form_close(); ?> 
+        <?php echo form_fieldset_close(); ?> 
     </div>
     <?php echo form_submit('mysubmit', 'Save'); ?>
     <?php echo form_close(); ?>

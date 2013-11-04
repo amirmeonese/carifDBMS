@@ -178,7 +178,6 @@ class Record extends CI_Controller {
                 'reason_of_death' => $this->input->post('reason_of_death'),
                 //'padigree_labelling' => $this->input->post('padigree_labelling'),
                 'blood_group' => $this->input->post('blood_group'),
-                //'hospital_no' => $this->input->post('hospital_no'), patient_hosp_no
                 //'private_patient_no' => $this->input->post('private_patient_no'), patient_private_no
                 'marital_status' => $this->input->post('marital_status'),
                 'blood_card' => $this->input->post('is_blood_card_exist'),
@@ -195,6 +194,7 @@ class Record extends CI_Controller {
                 'weight' => $this->input->post('weight'),
                 'bmi' => $this->input->post('bmi'),
                 'created_on' => $date,
+                'comments' => $this->input->post('patient_comments'),
                 'highest_education_level' => $this->input->post('highest_education_level')
             );
             echo '<pre>';
@@ -212,9 +212,9 @@ class Record extends CI_Controller {
             //array_push($data, $this->input->post('firstname'));
             $id_patient_record = $this->record_model->insert_at_patient_record($data_patient);
             if ($id_patient_record > 0) {
-                echo "<h2>Data Added successfully at Patient table</h2>";
+                echo "<h2>Data Added successfully at patient_studies table</h2>";
             } else {
-                echo "<h2>Failed to insert at Patient table</h2>";
+                echo "<h2>Failed to insert at patient_studies table</h2>";
             }
             echo '<br/>';
             
@@ -223,6 +223,40 @@ class Record extends CI_Controller {
                 echo "<h2>Data Added successfully at patient_contact_person table</h2>";
             } else {
                 echo "<h2>Failed to insert at patient_contact_person table</h2>";
+            }
+            echo '<br/>';
+            
+            $data_patient_hospital_no = array(
+                'patient_ic_no' => $this->input->post('IC_no'),
+                'created_on' => $date,
+                'hospital_no' => $this->input->post('hospital_no')           
+            );
+            // print_r($data_patient_contact_person);
+            //echo '<br/>';
+            //array_push($data, $this->input->post('firstname'));
+            $id_patient_hospital_no = $this->db->insert('patient_hospital_no', $data_patient_hospital_no);
+
+            if ($id_patient_hospital_no > 0) {
+                echo "<h2>Data Added successfully at Patient_hospital_no table</h2>";
+            } else {
+                echo "<h2>Failed to insert at Patient_hospital_no table</h2>";
+            }
+            echo '<br/>';
+            
+            $data_patient_private_no = array(
+                'patient_ic_no' => $this->input->post('IC_no'),
+                'created_on' => $date,
+                'private_no' => $this->input->post('private_patient_no')
+            );
+            // print_r($data_patient_contact_person);
+            //echo '<br/>';
+            //array_push($data, $this->input->post('firstname'));
+            $id_patient_private_no = $this->db->insert('patient_private_no', $data_patient_private_no);
+
+            if ($id_patient_private_no > 0) {
+                echo "<h2>Data Added successfully at patient_private_no table</h2>";
+            } else {
+                echo "<h2>Failed to insert at patient_private_no table</h2>";
             }
             echo '<br/>';
 
@@ -313,7 +347,7 @@ class Record extends CI_Controller {
                 'relation_to_study' => $this->input->post('relations_to_study'),
                 'referral_to' => $this->input->post('referral_to'),
                 'created_on' => $date,
-                //'referral_date' => $this->input->post('referral_date'),
+                'referral_to_genetic_counselling' => $this->input->post('referral_date'),
                 'referral_source' => $this->input->post('referral_source')
             );
             //print_r($data_patient_relatives_summary);
@@ -1125,6 +1159,7 @@ class Record extends CI_Controller {
             'contraceptive_end_date' => date('Y-m-d',strtotime($this->input->post('contraceptive_end_date'))),
             'contraceptive_end_age' => $this->input->post('contraceptive_end_age'),
             'contraceptive_start_age' => $this->input->post('contraceptive_start_age'),
+            'contraceptive_duration' => $this->input->post('contraceptive_duration'),
             'hrt_start_age' => $this->input->post('hrt_start_age'),
             'hrt_end_age' => $this->input->post('hrt_end_age'),
             'hrt_flag' => $this->input->post('HRT_flag'),
@@ -1132,6 +1167,7 @@ class Record extends CI_Controller {
             'currently_using_hrt_flag' => $this->input->post('currently_using_hrt_flag'),
             'hrt_start_date' => date('Y-m-d',strtotime($this->input->post('hrt_start_date'))),
             'created_on' => $date,
+            'hrt_duration' => date('Y-m-d',strtotime($this->input->post('HRT_duration'))),
             'hrt_end_date' => date('Y-m-d',strtotime($this->input->post('hrt_end_date')))
         );
         // print_r($data_patient_infertility);
@@ -1708,6 +1744,13 @@ class Record extends CI_Controller {
 
         if ($var == 'personal') {
             $data['patient_detail'] = $this->record_model->get_view_patient_record($ic_no, 'patient', 'ic_no');
+            $data['patient_consent_detail'] = $this->record_model->get_view_patient_record($ic_no, 'patient_studies', 'patient_ic_no');
+            $data['patient_private_no'] = $this->record_model->get_view_patient_record($ic_no, 'patient_private_no', 'patient_ic_no');            
+            $data['patient_hospital_no'] = $this->record_model->get_view_patient_record($ic_no, 'patient_hospital_no', 'patient_ic_no');
+            $data['patient_cogs_studies'] = $this->record_model->get_view_patient_record($ic_no, 'patient_cogs_studies', 'patient_ic_no');            
+            $data['patient_contact_person'] = $this->record_model->get_view_patient_record($ic_no, 'patient_contact_person', 'patient_ic_no');                        
+            $data['patient_survival_status'] = $this->record_model->get_view_patient_record($ic_no, 'patient_survival_status', 'patient_ic_no');
+            $data['patient_relatives_summary'] = $this->record_model->get_view_patient_record($ic_no, 'patient_relatives_summary', 'patient_ic_no');                                                
             $data['isUpdate'] = TRUE;
             $this->template->load("templates/add_record_template", 'record/add_record_personal_details', $data);
         } else if ($var == 'family') {

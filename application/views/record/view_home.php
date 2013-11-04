@@ -52,12 +52,13 @@
 				<div>
 					<a class="add_record_tab_btn" href="<?php echo site_url('record/view_record_list/personal'.'/'.$ic_no);?>" target="iframe_record_home" >Personal</a>
 					<a class="add_record_tab_btn" href="<?php echo site_url('record/view_record_list/family'.'/'.$ic_no);?>" target="iframe_record_home" >Family</a>
-					<a class="add_record_tab_btn" href="<?php echo site_url('record/view_record_list/studies_setOne'.'/'.$ic_no);?>" target="iframe_record_home" >Studies, Mammo, Cancer, Diagnosis & Pathology</a>
+					<a class="add_record_tab_btn" href="<?php echo site_url('record/view_record_list/diagnosis'.'/'.$ic_no);?>" target="iframe_record_home" >Diagnosis & Treatment</a>
+					<a class="add_record_tab_btn" href="<?php echo site_url('record/view_record_list/studies_setOne'.'/'.$ic_no);?>" target="iframe_record_home" >Screenings & Surveillance</a>
+					<a class="add_record_tab_btn" href="<?php echo site_url('record/view_record_list/mutation_analysis'.'/'.$ic_no);?>" target="iframe_record_home" >Mutation Analysis</a>
+					<a class="add_record_tab_btn" href="<?php echo site_url('record/view_record_list/risk_assessment'.'/'.$ic_no);?>" target="iframe_record_home" >Risk Assessment</a>
 					<a class="add_record_tab_btn" href="<?php echo site_url('record/view_record_list/lifestyleFactors'.'/'.$ic_no);?>" target="iframe_record_home" >Lifestyle Factors</a>
-					<a class="add_record_tab_btn" href="<?php echo site_url('record/view_record_list/investigations'.'/'.$ic_no);?>" target="iframe_record_home" >Investigations</a>
-					<a class="add_record_tab_btn" href="<?php echo site_url('record/view_record_list/surveillance'.'/'.$ic_no);?>" target="iframe_record_home" >Surveillance</a>
-					<a class="add_record_tab_btn" href="<?php echo site_url('record/view_record_list/interview_manager'.'/'.$ic_no);?>" target="iframe_record_home" >Patient Interview Manager</a>
-					<iframe src="<?php echo site_url('record/view_record_list/personal'.'/'.$ic_no);?>" id="iframe_record_home" name="iframe_record_home" onLoad="calcHeight();" width="100%" height="700px" scrolling="no"></iframe>
+                                        <a class="add_record_tab_btn" href="<?php echo site_url('record/view_record_list/counselling'.'/'.$ic_no);?>" target="iframe_record_home" >Counselling</a>
+                                        <iframe src="<?php echo site_url('record/view_record_list/personal'.'/'.$ic_no);?>" id="iframe_record_home" name="iframe_record_home" onLoad="calcHeight();" width="100%" height="700px" scrolling="no"></iframe>
 				</div>
 				<div id="footer" class="row">
 					<p>Copyright. @2013. Carif.</p>

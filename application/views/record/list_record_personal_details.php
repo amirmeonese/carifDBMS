@@ -30,6 +30,8 @@
         
         <?php if($submit):?>
         
+        
+        
         <table border="1" width="50%" style="margin-left:180px;">
             <thead>
                 <tr align='center'>
@@ -38,6 +40,7 @@
                     <th style="background-color:Crimson;">Action</th>
                 </tr>
             </thead>
+            <?php if(!empty($patient_list)) { ?>
             <?php foreach ($patient_list as $list): ?>
                 <tr>
                     <td></td>
@@ -63,7 +66,13 @@
                     </td>
                 </tr>
             <?php endforeach; ?>
-        </table>
+                        <?php } else { ?>
+                <tr><td colspan="3" style="center">
+          <?php  echo 'no data';?>
+            </td><tr>
+   <?php     }
+?>
+        </table>        
         </br>
         <a style="margin-left:180px;" class="doneButton" href="<?php echo base_url(); ?>">Done</a>
         <?php endif;?>
