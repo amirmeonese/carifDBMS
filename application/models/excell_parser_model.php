@@ -226,8 +226,7 @@ class Excell_parser_model extends CI_Model {
                             break;
                         }
                     }
-                }
-                else if ($loadedSheetName == 'Diagnosis & Treatment') {
+                } else if ($loadedSheetName == 'Diagnosis & Treatment') {
                     $array_studies_name = array();
                     $array_studies_name = null;
                     foreach ($sheet->getRowIterator() as $row) {
@@ -250,20 +249,19 @@ class Excell_parser_model extends CI_Model {
                             if ($key == 1 && $cell_value != NULL) {
                                 $array_studies_name[] = $cell_value;
                             }
-                            
+
                             if ($key == 2 && $cell_value != NULL) {
                                 $array_cancer_name_Diagnosis[] = $cell_value;
                             }
-                            
+
                             if ($key == 3 && $cell_value != NULL) {
                                 $array_cancer_site_name_Diagnosis[] = $cell_value;
                             }
-                            
+
                             if ($key == 13 && $cell_value != NULL) {
                                 $array_treatment_name_Diagnosis[] = $cell_value;
                                 break;
                             }
-                            
                         }
                     }
 
@@ -287,7 +285,7 @@ class Excell_parser_model extends CI_Model {
                             break;
                         }
                     }
-                    
+
                     $temp_result_cancer_name = array();
                     $temp_result_cancer_name = null;
                     $this->db->select('cancer_name');
@@ -310,7 +308,7 @@ class Excell_parser_model extends CI_Model {
                             break;
                         }
                     }
-                    
+
                     $temp_result_cancer_site_name = array();
                     $temp_result_cancer_site_name = null;
                     $this->db->select('cancer_site_name');
@@ -331,7 +329,7 @@ class Excell_parser_model extends CI_Model {
                             break;
                         }
                     }
-                    
+
                     $temp_result_treatment_name = array();
                     $temp_result_treatment_name = null;
                     $this->db->select('treatment_name');
@@ -353,8 +351,7 @@ class Excell_parser_model extends CI_Model {
                             break;
                         }
                     }
-                }
-                else if ($loadedSheetName == 'Sreening and Surveilance1') {
+                } else if ($loadedSheetName == 'Sreening and Surveilance1') {
                     $array_studies_name = array();
                     $array_studies_name = null;
                     foreach ($sheet->getRowIterator() as $row) {
@@ -1002,67 +999,67 @@ class Excell_parser_model extends CI_Model {
                         );
                     }
                     echo '<pre>';
-                    /* print_r($data_patient);
-                      print_r($data_patient_hospital_no);
-                      print_r($data_patient_private_no);
-                      print_r($data_patient_cogs_studies);
-                      print_r($data_patient_contact_person);
-                      print_r($data_patient_relatives_summary);
-                      print_r($data_patient_survival_status); */
+                      //print_r($data_patient);
+                      //print_r($data_patient_hospital_no);
+                      //print_r($data_patient_private_no);
+                      //print_r($data_patient_cogs_studies);
+                      //print_r($data_patient_contact_person);
+                      //print_r($data_patient_relatives_summary);
+                      //print_r($data_patient_survival_status); 
 
-                     $id_data_patient = $this->excell_sheets_model->insert_record($data_patient, 'patient');
-                      if ($id_data_patient > 0)
-                      echo 'Data added succesfully at patient table';
-                      else
-                      echo 'Failed to insert at patient table';
-                      echo '<br/>';
+                    $id_data_patient = $this->excell_sheets_model->insert_record($data_patient, 'patient');
+                    if ($id_data_patient > 0)
+                        echo 'Data added succesfully at patient table';
+                    else
+                        echo 'Failed to insert at patient table';
+                    echo '<br/>';
 
-                      $id_data_patient_hospital_no = $this->excell_sheets_model->insert_record($data_patient_hospital_no, 'patient_hospital_no');
+                    $id_data_patient_hospital_no = $this->excell_sheets_model->insert_record($data_patient_hospital_no, 'patient_hospital_no');
 
-                      if ($id_data_patient_hospital_no > 0)
-                      echo 'Data added succesfully at patient_hospital_no table';
-                      else
-                      echo 'Failed to insert at patient_hospital_no table';
-                      echo '<br/>';
+                    if ($id_data_patient_hospital_no > 0)
+                        echo 'Data added succesfully at patient_hospital_no table';
+                    else
+                        echo 'Failed to insert at patient_hospital_no table';
+                    echo '<br/>';
 
-                      $id_data_patient_private_no = $this->excell_sheets_model->insert_record($data_patient_private_no, 'patient_private_no');
+                    $id_data_patient_private_no = $this->excell_sheets_model->insert_record($data_patient_private_no, 'patient_private_no');
 
-                      if ($id_data_patient_private_no > 0)
-                      echo 'Data added succesfully at patient_private_no table';
-                      else
-                      echo 'Failed to insert at patient_private_no table';
-                      echo '<br/>';
+                    if ($id_data_patient_private_no > 0)
+                        echo 'Data added succesfully at patient_private_no table';
+                    else
+                        echo 'Failed to insert at patient_private_no table';
+                    echo '<br/>';
 
-                      $id_data_patient_cogs_studies = $this->excell_sheets_model->insert_record($data_patient_cogs_studies, 'patient_cogs_studies');
+                    $id_data_patient_cogs_studies = $this->excell_sheets_model->insert_record($data_patient_cogs_studies, 'patient_cogs_studies');
 
-                      if ($id_data_patient_cogs_studies > 0)
-                      echo 'Data added succesfully at patient_cogs_studies table';
-                      else
-                      echo 'Failed to insert at patient_cogs_studies table';
-                      echo '<br/>';
+                    if ($id_data_patient_cogs_studies > 0)
+                        echo 'Data added succesfully at patient_cogs_studies table';
+                    else
+                        echo 'Failed to insert at patient_cogs_studies table';
+                    echo '<br/>';
 
-                      $id_data_patient_contact_person = $this->excell_sheets_model->insert_record($data_patient_contact_person, 'patient_contact_person');
-                      if ($id_data_patient_contact_person > 0)
-                      echo 'Data added succesfully at patient_contact_person table';
-                      else
-                      echo 'Failed to insert at patient_contact_person table';
-                      echo '<br/>';
+                    $id_data_patient_contact_person = $this->excell_sheets_model->insert_record($data_patient_contact_person, 'patient_contact_person');
+                    if ($id_data_patient_contact_person > 0)
+                        echo 'Data added succesfully at patient_contact_person table';
+                    else
+                        echo 'Failed to insert at patient_contact_person table';
+                    echo '<br/>';
 
-                      $id_data_patient_relatives_summary = $this->excell_sheets_model->insert_record($data_patient_relatives_summary, 'patient_relatives_summary');
+                    $id_data_patient_relatives_summary = $this->excell_sheets_model->insert_record($data_patient_relatives_summary, 'patient_relatives_summary');
 
-                      if ($id_data_patient_relatives_summary > 0)
-                      echo 'Data added succesfully at patient_relatives_summary table';
-                      else
-                      echo 'Failed to insert at patient_relatives_summary table';
-                      echo '<br/>';
+                    if ($id_data_patient_relatives_summary > 0)
+                        echo 'Data added succesfully at patient_relatives_summary table';
+                    else
+                        echo 'Failed to insert at patient_relatives_summary table';
+                    echo '<br/>';
 
-                      $id_data_patient_survival_status = $this->excell_sheets_model->insert_record($data_patient_survival_status, 'patient_survival_status');
+                    $id_data_patient_survival_status = $this->excell_sheets_model->insert_record($data_patient_survival_status, 'patient_survival_status');
 
-                      if ($id_data_patient_survival_status > 0)
-                      echo 'Data added succesfully at patient_survival_status table';
-                      else
-                      echo 'Failed to insert at patient_survival_status table';
-                      echo '<br/>';
+                    if ($id_data_patient_survival_status > 0)
+                        echo 'Data added succesfully at patient_survival_status table';
+                    else
+                        echo 'Failed to insert at patient_survival_status table';
+                    echo '<br/>';
                 } else if ($loadedSheetName == 'Family') {
                     $temp_ic_no = NULL;
                     foreach ($sheet->getRowIterator() as $row) {
@@ -1169,12 +1166,12 @@ class Excell_parser_model extends CI_Model {
                         );
                     }
                     // print_r($data_patient_relatives);
-                     $id_data_patient_relatives = $this->excell_sheets_model->insert_record($data_patient_relatives, 'patient_relatives');
-                      if ($id_data_patient_relatives > 0)
-                      echo 'Data added succesfully at patient_relatives table';
-                      else
-                      echo 'Failed to insert at patient_relatives table';
-                      echo '<br/>';
+                    $id_data_patient_relatives = $this->excell_sheets_model->insert_record($data_patient_relatives, 'patient_relatives');
+                    if ($id_data_patient_relatives > 0)
+                        echo 'Data added succesfully at patient_relatives table';
+                    else
+                        echo 'Failed to insert at patient_relatives table';
+                    echo '<br/>';
                 }
                 else if ($loadedSheetName == 'Personal2') {
                     foreach ($sheet->getRowIterator() as $row) {
@@ -1195,7 +1192,7 @@ class Excell_parser_model extends CI_Model {
 
                         $studies_id = $this->excell_sheets_model->get_id('studies', 'studies_id', 'studies_name', $temp3[1]);
 
-                        $relations_to_study = $temp3[9];
+                        $relations_to_study = $temp3[8];
 
                         if ($relations_to_study == 'Yes' || $relations_to_study == 'yes')
                             $relations_to_study_flag = TRUE;
@@ -1217,23 +1214,23 @@ class Excell_parser_model extends CI_Model {
                             'date_at_consent' => $temp3[2],
                             'age_at_consent' => $temp3[3],
                             'double_consent_flag' => $double_consent_flag,
-                            'consent_given_by' => $temp3[6],
-                            'consent_response' => $temp3[7],
-                            'consent_version' => $temp3[8],
+                            'consent_given_by' => $temp3[5],
+                            'consent_response' => $temp3[6],
+                            'consent_version' => $temp3[7],
                             'relation_to_study' => $relations_to_study_flag,
-                            'referral_to' => $temp3[10],
-                            'referral_to_genetic_counselling' => $temp3[11],
-                            'referral_source' => $temp3[12],
+                            'referral_to' => $temp3[9],
+                            'referral_to_genetic_counselling' => $temp3[10],
+                            'referral_source' => $temp3[11],
                             'created_on' => $created_date
                         );
                     }
                     //print_r($data_patient_studies);
-                     $id_data_patient_studies = $this->excell_sheets_model->insert_record($data_patient_studies, 'patient_studies');
-                      if ($id_data_patient_studies > 0)
-                      echo 'Data added succesfully at patient_studies table';
-                      else
-                      echo 'Failed to insert at patient_studies table';
-                      echo '<br/>';
+                    $id_data_patient_studies = $this->excell_sheets_model->insert_record($data_patient_studies, 'patient_studies');
+                    if ($id_data_patient_studies > 0)
+                        echo 'Data added succesfully at patient_studies table';
+                    else
+                        echo 'Failed to insert at patient_studies table';
+                    echo '<br/>';
                 }
                 else if ($loadedSheetName == 'Diagnosis & Treatment') {
                     $temp_ic_no = NULL;
@@ -1333,7 +1330,7 @@ class Excell_parser_model extends CI_Model {
                             $recurrence_flag = FALSE;
 
                         $patient_ic_no = $temp14[0];
-                        $studies_name = $temp14[1];//echo 'studies_name'.$studies_name.'</br>';
+                        $studies_name = $temp14[1]; //echo 'studies_name'.$studies_name.'</br>';
                         $studies_id = $this->excell_sheets_model->get_id('studies', 'studies_id', 'studies_name', $temp14[1]);
                         $patient_studies_id = $this->excell_sheets_model->get_patient_studies_id($patient_ic_no, $studies_id);
                         //echo 'patient_studies_id'.$patient_studies_id.'</br>';
@@ -1365,83 +1362,82 @@ class Excell_parser_model extends CI_Model {
                             $treatment_patient_studies_id[] = $patient_studies_id;
                             $treatment_cancer_id[] = $cancer_id;
                             $treatment_cancer_site_id[] = $cancer_site_id;
-                            
+
                             $treatment_id = $this->excell_sheets_model->get_id('treatment', 'treatment_id', 'treatment_name', $temp14[13]);
-                            
+
                             $data_patient_cancer_treatment[] = array(
-                            'treatment_id' => $treatment_id,
-                            'patient_cancer_id' => 1,
-                            'treatment_start_date' => $temp14[14],
-                            'treatment_end_date' => $temp14[15],
-                            'treatment_durations' => $temp14[16],
-                            'comments' => $temp14[17],
-                            'created_on' => $created_date,
-                            'treatment_details' => $temp14[18],
-                            'treatment_dose' => $temp14[19],
-                            'treatment_cycle' => $temp14[20],
-                            'treatment_frequency' => $temp14[21],
-                            'treatment_visidual_desease' => $temp14[22],
-                            'treatment_privacy_outcome' => $temp14[23],
-                            'treatment_cal125_pretreatment' => $temp14[24],
-                            'treatment_cal125_posttreatment' => $temp14[25]
+                                'treatment_id' => $treatment_id,
+                                'patient_cancer_id' => 1,
+                                'treatment_start_date' => $temp14[14],
+                                'treatment_end_date' => $temp14[15],
+                                'treatment_durations' => $temp14[16],
+                                'comments' => $temp14[17],
+                                'created_on' => $created_date,
+                                'treatment_details' => $temp14[18],
+                                'treatment_dose' => $temp14[19],
+                                'treatment_cycle' => $temp14[20],
+                                'treatment_frequency' => $temp14[21],
+                                'treatment_visidual_desease' => $temp14[22],
+                                'treatment_privacy_outcome' => $temp14[23],
+                                'treatment_cal125_pretreatment' => $temp14[24],
+                                'treatment_cal125_posttreatment' => $temp14[25]
                             );
                         }
                         $flag_treatment_name = FALSE;
-                        
+
                         if (!$flag_pathology_tissue_site) {
                             $cancer_site_id = $this->excell_sheets_model->get_id('cancer_site', 'cancer_site_id', 'cancer_site_name', $temp14[3]);
                             $pathology_patient_studies_id[] = $patient_studies_id;
                             $pathology_cancer_id[] = $cancer_id;
                             $pathology_cancer_site_id[] = $cancer_site_id;
                             $cancer_id = $this->excell_sheets_model->get_id('cancer', 'cancer_id', 'cancer_name', $temp14[2]);
-                            
+
                             $data_patient_pathology[] = array(
-                            'cancer_id' => $cancer_id,
-                            'tissue_site' => $temp14[26],
-                            'type_of_report' => $temp14[27],
-                            'date_of_report' => $temp14[28],
-                            'pathology_lab' => $temp14[29],
-                            'name_of_doctor' => $temp14[30],
-                            'morphology' => $temp14[31],
-                            't_staging' => $temp14[32],
-                            'n_staging' => $temp14[33],
-                            'm_staging' => $temp14[34],
-                            'stage_classifications' => $temp14[35],
-                            'tumour_stage' => $temp14[36],
-                            'tumour_grade' => $temp14[37],
-                            'total_lymph_nodes' => $temp14[38],
-                            'tumour_size' => $temp14[39],
-                            'comments' => $temp14[40],
-                            'created_on' => $created_date,
-                            'patient_cancer_id' => 1,
-                            'no_of_report' => $temp14[41],
-                            'tumor_subtype' => $temp14[42],
-                            'tumor_behaviour' => $temp14[43],
-                            'tumor_differentiation' => $temp14[44]
+                                'cancer_id' => $cancer_id,
+                                'tissue_site' => $temp14[26],
+                                'type_of_report' => $temp14[27],
+                                'date_of_report' => $temp14[28],
+                                'pathology_lab' => $temp14[29],
+                                'name_of_doctor' => $temp14[30],
+                                'morphology' => $temp14[31],
+                                't_staging' => $temp14[32],
+                                'n_staging' => $temp14[33],
+                                'm_staging' => $temp14[34],
+                                'stage_classifications' => $temp14[35],
+                                'tumour_stage' => $temp14[36],
+                                'tumour_grade' => $temp14[37],
+                                'total_lymph_nodes' => $temp14[38],
+                                'tumour_size' => $temp14[39],
+                                'comments' => $temp14[40],
+                                'created_on' => $created_date,
+                                'patient_cancer_id' => 1,
+                                'no_of_report' => $temp14[41],
+                                'tumor_subtype' => $temp14[42],
+                                'tumor_behaviour' => $temp14[43],
+                                'tumor_differentiation' => $temp14[44]
                             );
                             $flag_pathology_tissue_site = FALSE;
                         }
-                        
                     }
 
                     //print_r($data_patient_cancer);
                     //print_r($data_patient_cancer_treatment);
                     //print_r($data_patient_pathology);        
-                    /*print_r($treatment_patient_studies_id);
-		    print_r($treatment_cancer_id);
-                    print_r($treatment_cancer_site_id);
-                    
-                    print_r($pathology_patient_studies_id);
-                    print_r($pathology_cancer_id);
-                    print_r($pathology_cancer_site_id);*/
-                    
+                      //print_r($treatment_patient_studies_id);
+                      //print_r($treatment_cancer_id);
+                      //print_r($treatment_cancer_site_id);
+
+                      //print_r($pathology_patient_studies_id);
+                      //print_r($pathology_cancer_id);
+                      //print_r($pathology_cancer_site_id);
+
                     $id_data_patient_cancer = $this->excell_sheets_model->insert_record($data_patient_cancer, 'patient_cancer');
-                      if ($id_data_patient_cancer > 0)
-                      echo 'Data added succesfully at patient_cancer table';
-                      else
-                      echo 'Failed to insert at patient_cancer table';
-                      echo '<br/>';
-                    
+                    if ($id_data_patient_cancer > 0)
+                        echo 'Data added succesfully at patient_cancer table';
+                    else
+                        echo 'Failed to insert at patient_cancer table';
+                    echo '<br/>';
+
                     $tempLength = sizeof($data_patient_cancer_treatment);
 
                     for ($key = 0; $key < $tempLength; $key++) {
@@ -1449,10 +1445,10 @@ class Excell_parser_model extends CI_Model {
                         $patient_cancer_id = $this->excell_sheets_model->get_patient_cancer_id($treatment_patient_studies_id[$key], $treatment_cancer_id[$key], $treatment_cancer_site_id[$key]);
                         $data_patient_cancer_treatment[$key]['patient_cancer_id'] = $patient_cancer_id;
                     }
-                    
-                   // print_r($data_patient_cancer_treatment);
-                    
-                   $tempLength = sizeof($data_patient_pathology);
+
+                    // print_r($data_patient_cancer_treatment);
+
+                    $tempLength = sizeof($data_patient_pathology);
 
                     for ($key = 0; $key < $tempLength; $key++) {
                         //echo $treatment_patient_studies_id[$key].'      '.$treatment_cancer_id[$key].'      '.$treatment_cancer_site_id[$key].'<br/>';
@@ -1461,19 +1457,18 @@ class Excell_parser_model extends CI_Model {
                     }
                     //print_r($data_patient_pathology);  
                     $id_patient_cancer_treatment = $this->excell_sheets_model->insert_record($data_patient_cancer_treatment, 'patient_cancer_treatment');
-                      if ($id_patient_cancer_treatment > 0)
-                      echo 'Data added succesfully at patient_cancer_treatment table';
-                      else
-                      echo 'Failed to insert at patient_cancer_treatment table';
-                      echo '<br/>';
-                      
-                     $id_patient_pathology = $this->excell_sheets_model->insert_record($data_patient_pathology, 'patient_pathology');
-                      if ($id_patient_pathology > 0)
-                      echo 'Data added succesfully at patient_pathology table';
-                      else
-                      echo 'Failed to insert at patient_pathology table';
-                      echo '<br/>';
-                      
+                    if ($id_patient_cancer_treatment > 0)
+                        echo 'Data added succesfully at patient_cancer_treatment table';
+                    else
+                        echo 'Failed to insert at patient_cancer_treatment table';
+                    echo '<br/>';
+
+                    $id_patient_pathology = $this->excell_sheets_model->insert_record($data_patient_pathology, 'patient_pathology');
+                    if ($id_patient_pathology > 0)
+                        echo 'Data added succesfully at patient_pathology table';
+                    else
+                        echo 'Failed to insert at patient_pathology table';
+                    echo '<br/>';
                 } else if ($loadedSheetName == 'Sreening and Surveilance1') {
                     $temp_patient_ic_no = array();
                     $temp_patient_studies_id = array();
@@ -1527,7 +1522,7 @@ class Excell_parser_model extends CI_Model {
                             $abnormality_MRI_flag = FALSE;
                         else
                             $abnormality_MRI_flag = FALSE;
-                        
+
                         if ($temp4[41] == 'Yes' || $temp4[41] == 'yes')
                             $is_cancer_mammogram_flag = TRUE;
                         else if ($temp4[41] == 'No' || $temp4[41] == 'no')
@@ -1674,12 +1669,12 @@ class Excell_parser_model extends CI_Model {
                     //print_r($data_patient_ultrasound_abnormality);
                     // print_r($data_patient_mri_abnormality);
 
-                     $id_patient_breast_screening = $this->excell_sheets_model->insert_record($data_patient_breast_screening, 'patient_breast_screening');
-                      if ($id_patient_breast_screening > 0)
-                      echo 'Data added succesfully at patient_breast_screening table';
-                      else
-                      echo 'Failed to insert at patient_breast_screening table';
-                      echo '<br/>';
+                    $id_patient_breast_screening = $this->excell_sheets_model->insert_record($data_patient_breast_screening, 'patient_breast_screening');
+                    if ($id_patient_breast_screening > 0)
+                        echo 'Data added succesfully at patient_breast_screening table';
+                    else
+                        echo 'Failed to insert at patient_breast_screening table';
+                    echo '<br/>';
 
                     $tempLength = sizeof($temp_patient_ic_no);
 
@@ -1693,26 +1688,26 @@ class Excell_parser_model extends CI_Model {
                     //print_r($data_patient_breast_abnormality);
                     //print_r($data_patient_ultrasound_abnormality);
                     //print_r($data_patient_mri_abnormality);
-                      $id_patient_breast_abnormality = $this->excell_sheets_model->insert_record($data_patient_breast_abnormality, 'patient_breast_abnormality');
-                      if ($id_patient_breast_abnormality > 0)
-                      echo 'Data added succesfully at patient_breast_abnormality table';
-                      else
-                      echo 'Failed to insert at patient_breast_abnormality table';
-                      echo '<br/>';
+                    $id_patient_breast_abnormality = $this->excell_sheets_model->insert_record($data_patient_breast_abnormality, 'patient_breast_abnormality');
+                    if ($id_patient_breast_abnormality > 0)
+                        echo 'Data added succesfully at patient_breast_abnormality table';
+                    else
+                        echo 'Failed to insert at patient_breast_abnormality table';
+                    echo '<br/>';
 
-                      $id_patient_ultrasound_abnormality = $this->excell_sheets_model->insert_record($data_patient_ultrasound_abnormality, 'patient_ultrasound_abnormality');
-                      if ($id_patient_ultrasound_abnormality > 0)
-                      echo 'Data added succesfully at patient_ultrasound_abnormality table';
-                      else
-                      echo 'Failed to insert at patient_ultrasound_abnormality table';
-                      echo '<br/>';
+                    $id_patient_ultrasound_abnormality = $this->excell_sheets_model->insert_record($data_patient_ultrasound_abnormality, 'patient_ultrasound_abnormality');
+                    if ($id_patient_ultrasound_abnormality > 0)
+                        echo 'Data added succesfully at patient_ultrasound_abnormality table';
+                    else
+                        echo 'Failed to insert at patient_ultrasound_abnormality table';
+                    echo '<br/>';
 
-                      $id_patient_mri_abnormality = $this->excell_sheets_model->insert_record($data_patient_mri_abnormality, 'patient_mri_abnormality');
-                      if ($id_patient_mri_abnormality > 0)
-                      echo 'Data added succesfully at patient_mri_abnormality table';
-                      else
-                      echo 'Failed to insert at patient_mri_abnormality table';
-                      echo '<br/>'; 
+                    $id_patient_mri_abnormality = $this->excell_sheets_model->insert_record($data_patient_mri_abnormality, 'patient_mri_abnormality');
+                    if ($id_patient_mri_abnormality > 0)
+                        echo 'Data added succesfully at patient_mri_abnormality table';
+                    else
+                        echo 'Failed to insert at patient_mri_abnormality table';
+                    echo '<br/>';
                 } else if ($loadedSheetName == 'Sreening and Surveilance2') {
                     foreach ($sheet->getRowIterator() as $row) {
                         $i++;
@@ -1750,12 +1745,12 @@ class Excell_parser_model extends CI_Model {
                         );
                     }
                     //print_r($data_patient_non_cancer_surgery);
-                     $id_data_patient_studies = $this->excell_sheets_model->insert_record($data_patient_non_cancer_surgery, 'patient_non_cancer_surgery');
-                      if ($id_data_patient_studies > 0)
-                      echo 'Data added succesfully at patient_non_cancer_surgery table';
-                      else
-                      echo 'Failed to insert at patient_non_cancer_surgery table';
-                      echo '<br/>';
+                    $id_data_patient_studies = $this->excell_sheets_model->insert_record($data_patient_non_cancer_surgery, 'patient_non_cancer_surgery');
+                    if ($id_data_patient_studies > 0)
+                        echo 'Data added succesfully at patient_non_cancer_surgery table';
+                    else
+                        echo 'Failed to insert at patient_non_cancer_surgery table';
+                    echo '<br/>';
                 } else if ($loadedSheetName == 'Sreening and Surveilance3') {
                     $temp_patient_studies_id = array();
                     foreach ($sheet->getRowIterator() as $row) {
@@ -1819,12 +1814,12 @@ class Excell_parser_model extends CI_Model {
                     // print_r($patient_risk_reducing_surgery_lesion);
                     //print_r($patient_risk_reducing_surgery_complete_removal);
 
-                     $id_patient_risk_reducing_surgery = $this->excell_sheets_model->insert_record($data_patient_risk_reducing_surgery, 'patient_risk_reducing_surgery');
-                      if ($id_patient_risk_reducing_surgery > 0)
-                      echo 'Data added succesfully at patient_risk_reducing_surgery table';
-                      else
-                      echo 'Failed to insert at patient_risk_reducing_surgery table';
-                      echo '<br/>';
+                    $id_patient_risk_reducing_surgery = $this->excell_sheets_model->insert_record($data_patient_risk_reducing_surgery, 'patient_risk_reducing_surgery');
+                    if ($id_patient_risk_reducing_surgery > 0)
+                        echo 'Data added succesfully at patient_risk_reducing_surgery table';
+                    else
+                        echo 'Failed to insert at patient_risk_reducing_surgery table';
+                    echo '<br/>';
 
                     $tempLength = sizeof($temp_patient_studies_id);
 
@@ -1836,19 +1831,19 @@ class Excell_parser_model extends CI_Model {
 
                     //print_r($patient_risk_reducing_surgery_lesion);
                     // print_r($patient_risk_reducing_surgery_complete_removal);
-                     $id_patient_risk_reducing_surgery_lesion = $this->excell_sheets_model->insert_record($data_patient_risk_reducing_surgery_lesion, 'patient_risk_reducing_surgery_lesion');
-                      if ($id_patient_risk_reducing_surgery_lesion > 0)
-                      echo 'Data added succesfully at patient_risk_reducing_surgery_lesion table';
-                      else
-                      echo 'Failed to insert at patient_risk_reducing_surgery_lesion table';
-                      echo '<br/>';
+                    $id_patient_risk_reducing_surgery_lesion = $this->excell_sheets_model->insert_record($data_patient_risk_reducing_surgery_lesion, 'patient_risk_reducing_surgery_lesion');
+                    if ($id_patient_risk_reducing_surgery_lesion > 0)
+                        echo 'Data added succesfully at patient_risk_reducing_surgery_lesion table';
+                    else
+                        echo 'Failed to insert at patient_risk_reducing_surgery_lesion table';
+                    echo '<br/>';
 
-                      $id_patient_risk_reducing_surgery_complete_removal = $this->excell_sheets_model->insert_record($data_patient_risk_reducing_surgery_complete_removal, 'patient_risk_reducing_surgery_complete_removal');
-                      if ($id_patient_risk_reducing_surgery_complete_removal > 0)
-                      echo 'Data added succesfully at patient_risk_reducing_surgery_complete_removal table';
-                      else
-                      echo 'Failed to insert at patient_risk_reducing_surgery_complete_removal table';
-                      echo '<br/>';
+                    $id_patient_risk_reducing_surgery_complete_removal = $this->excell_sheets_model->insert_record($data_patient_risk_reducing_surgery_complete_removal, 'patient_risk_reducing_surgery_complete_removal');
+                    if ($id_patient_risk_reducing_surgery_complete_removal > 0)
+                        echo 'Data added succesfully at patient_risk_reducing_surgery_complete_removal table';
+                    else
+                        echo 'Failed to insert at patient_risk_reducing_surgery_complete_removal table';
+                    echo '<br/>';
                 } else if ($loadedSheetName == 'Sreening and Surveilance4') {
                     foreach ($sheet->getRowIterator() as $row) {
                         $i++;
@@ -1898,19 +1893,19 @@ class Excell_parser_model extends CI_Model {
                     //print_r($data_patient_ovarian_screening);
                     //print_r($patient_other_screening);
 
-                      $id_patient_ovarian_screening = $this->excell_sheets_model->insert_record($data_patient_ovarian_screening, 'patient_ovarian_screening');
-                      if ($id_patient_ovarian_screening > 0)
-                      echo 'Data added succesfully at patient_ovarian_screening table';
-                      else
-                      echo 'Failed to insert at patient_ovarian_screening table';
-                      echo '<br/>';
+                    $id_patient_ovarian_screening = $this->excell_sheets_model->insert_record($data_patient_ovarian_screening, 'patient_ovarian_screening');
+                    if ($id_patient_ovarian_screening > 0)
+                        echo 'Data added succesfully at patient_ovarian_screening table';
+                    else
+                        echo 'Failed to insert at patient_ovarian_screening table';
+                    echo '<br/>';
 
-                      $id_patient_other_screening = $this->excell_sheets_model->insert_record($data_patient_other_screening, 'patient_other_screening');
-                      if ($id_patient_other_screening > 0)
-                      echo 'Data added succesfully at patient_other_screening table';
-                      else
-                      echo 'Failed to insert at patient_other_screening table';
-                      echo '<br/>';
+                    $id_patient_other_screening = $this->excell_sheets_model->insert_record($data_patient_other_screening, 'patient_other_screening');
+                    if ($id_patient_other_screening > 0)
+                        echo 'Data added succesfully at patient_other_screening table';
+                    else
+                        echo 'Failed to insert at patient_other_screening table';
+                    echo '<br/>';
                 }
                 else if ($loadedSheetName == 'Sreening and Surveilance5') {
                     foreach ($sheet->getRowIterator() as $row) {
@@ -1976,19 +1971,19 @@ class Excell_parser_model extends CI_Model {
                     //print_r($data_patient_other_disease);
                     //print_r($data_patient_surveillance);
 
-                     $id_patient_other_disease = $this->excell_sheets_model->insert_record($data_patient_other_disease, 'patient_other_disease');
-                      if ($id_patient_other_disease > 0)
-                      echo 'Data added succesfully at patient_other_disease table';
-                      else
-                      echo 'Failed to insert at patient_other_disease table';
-                      echo '<br/>';
+                    $id_patient_other_disease = $this->excell_sheets_model->insert_record($data_patient_other_disease, 'patient_other_disease');
+                    if ($id_patient_other_disease > 0)
+                        echo 'Data added succesfully at patient_other_disease table';
+                    else
+                        echo 'Failed to insert at patient_other_disease table';
+                    echo '<br/>';
 
-                      $id_patient_surveillance = $this->excell_sheets_model->insert_record($data_patient_surveillance, 'patient_surveillance');
-                      if ($id_patient_surveillance > 0)
-                      echo 'Data added succesfully at patient_surveillance table';
-                      else
-                      echo 'Failed to insert at patient_surveillance table';
-                      echo '<br/>';
+                    $id_patient_surveillance = $this->excell_sheets_model->insert_record($data_patient_surveillance, 'patient_surveillance');
+                    if ($id_patient_surveillance > 0)
+                        echo 'Data added succesfully at patient_surveillance table';
+                    else
+                        echo 'Failed to insert at patient_surveillance table';
+                    echo '<br/>';
                 }
                 else if ($loadedSheetName == 'Mutation analysis') {
                     foreach ($sheet->getRowIterator() as $row) {
@@ -2057,18 +2052,18 @@ class Excell_parser_model extends CI_Model {
                             'comments' => $temp9[23],
                             'patient_studies_id' => $patient_studies_id,
                             'created_on' => $created_date,
-                            'mutation_name' => $temp9[24],
+                            'mutation_name' => $temp9[24]
                         );
                     }
                     // print_r($data_patient_mutation_analysis);
 
 
-                     $id_patient_mutation_analysis = $this->excell_sheets_model->insert_record($data_patient_mutation_analysis, 'patient_mutation_analysis');
-                      if ($id_patient_mutation_analysis > 0)
-                      echo 'Data added succesfully at patient_mutation_analysis table';
-                      else
-                      echo 'Failed to insert at patient_mutation_analysis table';
-                      echo '<br/>';
+                    $id_patient_mutation_analysis = $this->excell_sheets_model->insert_record($data_patient_mutation_analysis, 'patient_mutation_analysis');
+                    if ($id_patient_mutation_analysis > 0)
+                        echo 'Data added succesfully at patient_mutation_analysis table';
+                    else
+                        echo 'Failed to insert at patient_mutation_analysis table';
+                    echo '<br/>';
                 }
                 else if ($loadedSheetName == 'Risk Assesment') {
                     foreach ($sheet->getRowIterator() as $row) {
@@ -2116,12 +2111,12 @@ class Excell_parser_model extends CI_Model {
                     //print_r($data_patient_risk_assessment);
 
 
-                     $id_patient_risk_assessment = $this->excell_sheets_model->insert_record($data_patient_risk_assessment, 'patient_risk_assessment');
-                      if ($id_patient_risk_assessment > 0)
-                      echo 'Data added succesfully at patient_risk_assessment table';
-                      else
-                      echo 'Failed to insert at patient_risk_assessment table';
-                      echo '<br/>'; 
+                    $id_patient_risk_assessment = $this->excell_sheets_model->insert_record($data_patient_risk_assessment, 'patient_risk_assessment');
+                    if ($id_patient_risk_assessment > 0)
+                        echo 'Data added succesfully at patient_risk_assessment table';
+                    else
+                        echo 'Failed to insert at patient_risk_assessment table';
+                    echo '<br/>';
                 } else if ($loadedSheetName == 'Lifestyles1') {
                     foreach ($sheet->getRowIterator() as $row) {
                         $i++;
@@ -2250,12 +2245,12 @@ class Excell_parser_model extends CI_Model {
                     //print_r($data_patient_lifestyle_factors);
 
 
-                     $id_patient_lifestyle_factors = $this->excell_sheets_model->insert_record($data_patient_lifestyle_factors, 'patient_lifestyle_factors');
-                      if ($id_patient_lifestyle_factors > 0)
-                      echo 'Data added succesfully at patient_lifestyle_factors table';
-                      else
-                      echo 'Failed to insert at patient_lifestyle_factors table';
-                      echo '<br/>';
+                    $id_patient_lifestyle_factors = $this->excell_sheets_model->insert_record($data_patient_lifestyle_factors, 'patient_lifestyle_factors');
+                    if ($id_patient_lifestyle_factors > 0)
+                        echo 'Data added succesfully at patient_lifestyle_factors table';
+                    else
+                        echo 'Failed to insert at patient_lifestyle_factors table';
+                    echo '<br/>';
                 }
                 else if ($loadedSheetName == 'Lifestyle2') {
                     foreach ($sheet->getRowIterator() as $row) {
@@ -2293,15 +2288,15 @@ class Excell_parser_model extends CI_Model {
                             'period_cycle_days' => $temp12[5],
                             'period_cycle_days_other_details' => $temp12[6],
                             'age_at_menopause' => $temp12[7],
-                            'reason_period_stops' => $temp12[9],
-                            'date_period_stops' => $temp12[10],
-                            'reason_period_stops_other_details' => $temp12[11],
+                            'reason_period_stops' => $temp12[8],
+                            'date_period_stops' => $temp12[9],
+                            'reason_period_stops_other_details' => $temp12[10],
                             'created_on' => $created_date
                         );
 
-                        if ($temp12[12] == 'Yes' || $temp12[12] == 'yes')
+                        if ($temp12[11] == 'Yes' || $temp12[11] == 'yes')
                             $pregnant_flag = TRUE;
-                        else if ($temp12[12] == 'No' || $temp12[12] == 'no')
+                        else if ($temp12[11] == 'No' || $temp12[11] == 'no')
                             $pregnant_flag = FALSE;
                         else
                             $pregnant_flag = FALSE;
@@ -2312,37 +2307,37 @@ class Excell_parser_model extends CI_Model {
                             'created_on' => $created_date
                         );
 
-                        if ($temp12[13] == 'Yes' || $temp12[13] == 'yes')
+                        if ($temp12[12] == 'Yes' || $temp12[12] == 'yes')
                             $infertility_testing_flag = TRUE;
-                        else if ($temp12[13] == 'No' || $temp12[13] == 'no')
+                        else if ($temp12[12] == 'No' || $temp12[12] == 'no')
                             $infertility_testing_flag = FALSE;
                         else
                             $infertility_testing_flag = FALSE;
+
+                        if ($temp12[16] == 'Yes' || $temp12[16] == 'yes')
+                            $contraceptive_pills_flag = TRUE;
+                        else if ($temp12[16] == 'No' || $temp12[16] == 'no')
+                            $contraceptive_pills_flag = FALSE;
+                        else
+                            $contraceptive_pills_flag = FALSE;
 
                         if ($temp12[17] == 'Yes' || $temp12[17] == 'yes')
-                            $contraceptive_pills_flag = TRUE;
-                        else if ($temp12[17] == 'No' || $temp12[17] == 'no')
-                            $contraceptive_pills_flag = FALSE;
-                        else
-                            $contraceptive_pills_flag = FALSE;
-
-                        if ($temp12[18] == 'Yes' || $temp12[18] == 'yes')
                             $currently_taking_contraceptive_pills_flag = TRUE;
-                        else if ($temp12[18] == 'No' || $temp12[18] == 'no')
+                        else if ($temp12[17] == 'No' || $temp12[17] == 'no')
                             $currently_taking_contraceptive_pills_flag = FALSE;
                         else
                             $currently_taking_contraceptive_pills_flag = FALSE;
+
+                        if ($temp12[21] == 'Yes' || $temp12[21] == 'yes')
+                            $hrt_flag = TRUE;
+                        else if ($temp12[21] == 'No' || $temp12[21] == 'no')
+                            $hrt_flag = FALSE;
+                        else
+                            $hrt_flag = FALSE;
 
                         if ($temp12[22] == 'Yes' || $temp12[22] == 'yes')
-                            $hrt_flag = TRUE;
-                        else if ($temp12[22] == 'No' || $temp12[22] == 'no')
-                            $hrt_flag = FALSE;
-                        else
-                            $hrt_flag = FALSE;
-
-                        if ($temp12[23] == 'Yes' || $temp12[23] == 'yes')
                             $currently_using_hrt_flag = TRUE;
-                        else if ($temp12[23] == 'No' || $temp12[23] == 'no')
+                        else if ($temp12[22] == 'No' || $temp12[22] == 'no')
                             $currently_using_hrt_flag = FALSE;
                         else
                             $currently_using_hrt_flag = FALSE;
@@ -2351,40 +2346,40 @@ class Excell_parser_model extends CI_Model {
                         $data_patient_infertility[] = array(
                             'patient_studies_id' => $patient_studies_id,
                             'infertility_testing_flag' => $infertility_testing_flag,
-                            'infertility_treatment_type' => $temp12[14],
-                            'infertility_treatment_duration' => $temp12[15],
-                            'infertility_comments' => $temp12[16],
+                            'infertility_treatment_type' => $temp12[13],
+                            'infertility_treatment_duration' => $temp12[14],
+                            'infertility_comments' => $temp12[15],
                             'contraceptive_pills_flag' => $contraceptive_pills_flag,
                             'currently_taking_contraceptive_pills_flag' => $currently_taking_contraceptive_pills_flag,
-                            'contraceptive_start_date' => $temp12[20],
-                            'contraceptive_end_date' => $temp12[21],
-                            'contraceptive_duration' => $temp12[19],
+                            'contraceptive_start_date' => $temp12[19],
+                            'contraceptive_end_date' => $temp12[20],
+                            'contraceptive_duration' => $temp12[18],
                             'hrt_flag' => $hrt_flag,
                             'currently_using_hrt_flag' => $currently_using_hrt_flag,
-                            'hrt_start_date' => $temp12[25],
-                            'hrt_end_date' => $temp12[26],
-                            'hrt_duration' => $temp12[24],
+                            'hrt_start_date' => $temp12[24],
+                            'hrt_end_date' => $temp12[25],
+                            'hrt_duration' => $temp12[23],
                             'created_on' => $created_date,
-                            'contraceptive_end_age'=> $temp12[27],
-                            'contraceptive_start_age'=> $temp12[28],
-                            'hrt_start_age'=> $temp12[29],
-                            'hrt_end_age'=> $temp12[30]
+                            'contraceptive_end_age' => $temp12[26],
+                            'contraceptive_start_age' => $temp12[27],
+                            'hrt_start_age' => $temp12[28],
+                            'hrt_end_age' => $temp12[29]
                         );
-                        
-                        if ($temp12[31] == 'Yes' || $temp12[31] == 'yes')
+
+                        if ($temp12[30] == 'Yes' || $temp12[30] == 'yes')
                             $had_gnc_surgery_flag = TRUE;
-                        else if ($temp12[31] == 'No' || $temp12[31] == 'no')
+                        else if ($temp12[30] == 'No' || $temp12[30] == 'no')
                             $had_gnc_surgery_flag = FALSE;
                         else
                             $had_gnc_surgery_flag = FALSE;
                         
-                        $treatment_id = $this->excell_sheets_model->get_id('treatment', 'treatment_id', 'treatment_name', $temp12[33]);
+                        $treatment_Id = $this->excell_sheets_model->get_id('treatment', 'treatment_id', 'treatment_name', $temp12[32]);
                         $data_patient_gynaecological_surgery_history[] = array(
                             'patient_studies_id' => $patient_studies_id,
                             'had_gnc_surgery_flag' => $had_gnc_surgery_flag,
-                            'surgery_year' => $temp12[32],
-                            'treatment_id' => $treatment_id,
-                            'gnc_treatment_name_other_details' => $temp12[34],
+                            'surgery_year' => $temp12[31],
+                            'treatment_id' => $treatment_Id,
+                            'gnc_treatment_name_other_details' => $temp12[33],
                             'created_on' => $created_date
                         );
                     }
@@ -2392,33 +2387,78 @@ class Excell_parser_model extends CI_Model {
                     //print_r($data_patient_parity_table); 
                     // print_r($data_patient_infertility);
                     // print_r($data_patient_gynaecological_surgery_history);
-                     $id_patient_menstruation = $this->excell_sheets_model->insert_record($data_patient_menstruation, 'patient_menstruation');
-                      if ($id_patient_menstruation > 0)
-                      echo 'Data added succesfully at patient_menstruation table';
-                      else
-                      echo 'Failed to insert at patient_menstruation table';
-                      echo '<br/>';
+                    $id_patient_menstruation = $this->excell_sheets_model->insert_record($data_patient_menstruation, 'patient_menstruation');
+                    if ($id_patient_menstruation > 0)
+                        echo 'Data added succesfully at patient_menstruation table';
+                    else
+                        echo 'Failed to insert at patient_menstruation table';
+                    echo '<br/>';
 
-                      $id_patient_parity_table = $this->excell_sheets_model->insert_record($data_patient_parity_table, 'patient_parity_table');
-                      if ($id_patient_parity_table > 0)
-                      echo 'Data added succesfully at patient_parity_table table';
-                      else
-                      echo 'Failed to insert at patient_parity_table table';
-                      echo '<br/>';
+                    $id_patient_parity_table = $this->excell_sheets_model->insert_record($data_patient_parity_table, 'patient_parity_table');
+                    if ($id_patient_parity_table > 0)
+                        echo 'Data added succesfully at patient_parity_table table';
+                    else
+                        echo 'Failed to insert at patient_parity_table table';
+                    echo '<br/>';
 
-                      $id_patient_infertility = $this->excell_sheets_model->insert_record($data_patient_infertility, 'patient_infertility');
-                      if ($id_patient_infertility > 0)
-                      echo 'Data added succesfully at patient_infertility table';
-                      else
-                      echo 'Failed to insert at patient_infertility table';
-                      echo '<br/>';
+                    $id_patient_infertility = $this->excell_sheets_model->insert_record($data_patient_infertility, 'patient_infertility');
+                    if ($id_patient_infertility > 0)
+                        echo 'Data added succesfully at patient_infertility table';
+                    else
+                        echo 'Failed to insert at patient_infertility table';
+                    echo '<br/>';
 
-                      $id_patient_gynaecological_surgery_history = $this->excell_sheets_model->insert_record($data_patient_gynaecological_surgery_history, 'patient_gynaecological_surgery_history');
-                      if ($id_patient_gynaecological_surgery_history > 0)
-                      echo 'Data added succesfully at patient_gynaecological_surgery_history table';
-                      else
-                      echo 'Failed to insert at patient_gynaecological_surgery_history table';
-                      echo '<br/>';
+                    $id_patient_gynaecological_surgery_history = $this->excell_sheets_model->insert_record($data_patient_gynaecological_surgery_history, 'patient_gynaecological_surgery_history');
+                    if ($id_patient_gynaecological_surgery_history > 0)
+                        echo 'Data added succesfully at patient_gynaecological_surgery_history table';
+                    else
+                        echo 'Failed to insert at patient_gynaecological_surgery_history table';
+                    echo '<br/>';
+                }
+                else if ($loadedSheetName == 'Lifestyle3') {
+                    foreach ($sheet->getRowIterator() as $row) {
+                        $i++;
+
+                        if ($i == 1)//ommiting cell header name
+                            continue;
+
+                        $cellIterator = $row->getCellIterator();
+                        $cellIterator->setIterateOnlyExistingCells(false);
+                        $temp13 = array();
+                        foreach ($cellIterator as $key => $cell) {
+                            $cell_value = $cell->getFormattedValue();
+                            //echo $key; // 0, 1, 2..
+                            $temp13[] = $cell_value;
+                        }
+                        
+                        $patient_ic_no = $temp13[0];
+                        $studies_name = $temp13[1];
+                        $studies_id = $this->excell_sheets_model->get_id('studies', 'studies_id', 'studies_name', $studies_name);
+                        $patient_studies_id = $this->excell_sheets_model->get_patient_studies_id($patient_ic_no, $studies_id);
+                        $patient_parity_table_id = $this->excell_sheets_model->get_patient_parity_table_id($patient_studies_id);
+
+                        $data_patient_Lifestyle3[] = array(
+                            'patient_parity_table_id' => $patient_parity_table_id,
+                            'pregnancy_type' => $temp13[2],
+                            'gender' => $temp13[3],
+                            'date_of_birth' => $temp13[4],
+                            'year_of_birth' => $temp13[5],
+                            'age_child_at_consent' => $temp13[6],
+                            'birthweight' => $temp13[7],
+                            'breastfeeding_duration' => $temp13[8],
+                            'created_on' => $created_date
+                        );
+                    }
+                     //print_r($data_patient_Lifestyle3);
+
+
+                    $id_patient_Lifestyle3 = $this->excell_sheets_model->insert_record($data_patient_Lifestyle3, 'patient_parity_record');
+                    
+                    if ($id_patient_Lifestyle3 > 0)
+                        echo 'Data added succesfully at patient_parity_record table';
+                    else
+                        echo 'Failed to insert at patient_parity_record table';
+                    echo '<br/>';
                 }
             }
 
