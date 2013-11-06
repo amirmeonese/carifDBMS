@@ -174,7 +174,7 @@ class Admin extends CI_Controller {
     function submit_report() {
 
         $config['upload_path'] = './email_attachment_dir/';
-        $config['allowed_types'] = 'jpg|jpeg|png|gif|pdf';
+        $config['allowed_types'] = 'jpg|jpeg|png|gif|pdf|xlsx|txt|doc|docx';
         $config['max_size'] = '100000';
         //$config['max_width']  = '1024';
         //$config['max_height']  = '768';
@@ -220,7 +220,7 @@ class Admin extends CI_Controller {
         $this->email->message($message);
         $this->email->attach($file_path.$temp);
         if ($this->email->send() == TRUE) {
-            echo 'Success';
+            echo '<h2>Email has been sent SuccessFully!</h2>';
             //$this->email->print_debugger();
             //redirect('admin/admin_panel/submit_report','refresh');
         }
