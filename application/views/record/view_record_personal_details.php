@@ -1,193 +1,393 @@
-<div class="container" id="view_record_div">
-    <div id="report_header" class="row">
-        <p>View Personal Information</p>
+<div class="container" id="add_record_div">
+    <div id="add_record_header" class="row">
+        <p>Add Patient</p>
     </div>
-    <?php //echo form_open['report/process_report']; ?>
-    <div class="container" id="report_form_section">
+    <?php
+    $attributes = array('id' => 'personal-details-form');
+    echo form_open("record/patient_record_insertion", $attributes);
+    ?>
+    <?php foreach ($patient_list as $list): ?>
+    <div class="container" id="add_record_form_section_personal">
+        <div height="30px">&nbsp;</div>
+        <?php
+        echo form_fieldset('Patient');
+        ?>
+        <table>
+            <tr>
+                <td>
+                    <label for="surname"><?php echo $surname; ?>: </label>
+                   <?php echo form_input(array('name' => 'surname', 'value' => $patient_detail['surname']))?>
+                </td>
+                <td>
+                    <label for="fullname"><?php echo $fullname; ?>: </label>
+                    <?php echo form_input(array('name' => 'fullname', 'value' => $patient_detail['given_name']))?>
+                </td>
+
+                <td>
+                    <?php echo $maiden_name; ?>: 
+                    <?php echo form_input(array('name' => 'maiden_name', 'value' => $patient_detail['maiden_name']))?>
+                </td>
+                <td>
+                    <label for="family_no"><?php echo $family_no; ?>: </label>
+                    <?php echo form_input(array('name' => 'family_no', 'value' => $patient_detail['family_no']))?>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <?php echo $nationality; ?>: 
+                    <?php echo  form_dropdown('nationality',$nationalities, $patient_detail['nationality']); ?>
+                </td>
+                <td>
+                    <label for="IC_no"><?php echo $IC_no; ?>: </label>
+                    <?php echo form_input(array('name' => 'IC_no', 'value' => $patient_detail['ic_no']))?>
+                </td>
+                <td>
+                    <?php echo $gender; ?>: 
+                    <?php echo  form_dropdown('gender',$genderTypes, $patient_detail['gender']) ?>
+                </td>
+                <td>
+                    <?php echo $ethinicity; ?>: 
+                    <?php echo form_input(array('name' => 'ethnicity', 'value' => $patient_detail['ethnicity']))?>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <?php echo $DOB; ?>:
+                    <?php echo form_input(array('name' => 'd_o_b', 'value' => $patient_detail['d_o_b'],'class' => 'datepicker'))?>
+
+                </td>
+                <td>
+                    <?php echo $place_of_birth; ?>: 
+                    <?php echo form_input(array('name' => 'place_of_birth', 'value' => $patient_detail['place_of_birth']))?>
+                    
+                </td>
+                <td>
+                    <?php echo $marital_status; ?>:
+                    <?php echo  form_dropdown('marital_status',$marital_status_lists, $patient_detail['marital_status'])?>                    
+                </td>
+                <td>
+                    <?php echo $blood_group; ?>: 
+                    <?php echo form_input(array('name' => 'blood_group', 'value' => $patient_detail['blood_group']))?>                  
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <?php echo $still_alive_flag; ?>:
+                    <?php echo form_checkbox(array('name' => 'still_alive_flag', 'value' => $patient_detail['is_dead']))?>                    
+                </td>
+                <td>
+                    <?php echo $DOD; ?>: 
+                    <?php echo form_input(array('name' => 'd_o_d', 'value' => $patient_detail['d_o_d'],'class' => 'datepicker'))?>
+                </td>
+                <td>
+                    <?php echo $reason_of_death; ?>: 
+                    <?php echo form_textarea(array('name' => 'reason_of_death','id' => 'reason_of_death','rows' => '3','cols' => '7', 'value' => $patient_detail['blood_group']))?>                                      
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="container" id="add_record_form_section_personal2">
+        <table id="hospital_no_section_1">
+            <tr>
+                <td id="label1">Hospital numbers</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>
+                <?php echo $hospital_no; ?>: 
+                <?php echo form_input(array('name' => 'hospital_no', 'value' => @$patient_hospital_no['hospital_no']))?>
+                </td>
+                <td>
+                    <input type="button" value="Add Hospital No." onClick="window.parent.addHospitalNoInput('add_record_form_section_personal2');
+                                        window.parent.calcHeight();">
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="container" id="add_record_form_section_personal3">
+        <div height="30px">&nbsp;</div>
+        <table id="add_private_patient_no_section_1">
+            <tr>
+                <td id="label1">Private patient numbers</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>
+                    <?php echo $private_patient_no; ?>: 
+                    <?php echo form_input(array('name' => 'private_patient_no', 'value' => @$patient_private_no['private_patient_no']))?>
+                </td>
+                <td>
+                    <input type="button" value="Add patient no." onClick="window.parent.addPatientPrivateNoInput('add_record_form_section_personal3');
+                                        window.parent.calcHeight();">
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="container" id="add_record_form_section_personal6">
+        <div height="30px">&nbsp;</div>
+        <table id="add_study_no_section_1">
+            <tr>
+                <td id="label1">COGS study numbers</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>
+                    <?php echo $COGS_study_id; ?>:
+                    <?php echo  form_dropdown('COGS_study_id',$COGS_study_id_lists, $patient_cogs_studies['COGS_studies_id'])?>                    
+                </td>
+                <td>
+                    <?php echo 'Study no'; ?>: 
+                    <?php echo form_input(array('name' => 'COGS_studies_no', 'value' => $patient_cogs_studies['COGS_studies_no']))?>                    
+                </td>
+                <td>
+                    <input type="button" value="Add" onClick="window.parent.addPatientStudyNoInput('add_record_form_section_personal6');
+                                        window.parent.calcHeight();">
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="container" id="add_record_form_section_personal4">
         <div height="30px">&nbsp;</div>
         <table>
-            <tr height="50px"><td width="10%" >
-                    <?php echo $fullname; ?></td>
-                <td>: </td>
-                <td width="25%"><?php echo $patient_detail['given_name']; ?></td>
-                <td width="10%">
-                    <?php echo $surname; ?></td>
-                <td>:</td> 
-                <td  width="25%"><?php echo $patient_detail['surname']; ?>
-                </td><td width="10%">
-                    <?php echo $maiden_name; ?></td>
-                <td>:</td>  
-                <td width="30%"><?php echo $patient_detail['maiden_name']; ?>
-                </td></tr>
-            <tr height="50px"><td>
-                    <?php echo $IC_no; ?></td>
-                <td>:</td>  
-                <td><?php echo $patient_detail['ic_no']; ?>
-                </td><td>
-                    <?php echo $nationality; ?> </td>
-                <td>:</td>
-                <td><?php echo $patient_detail['nationality']; ?>
-                </td><td>
-                    <?php echo $DOB; ?></td>
-                <td>:</td> 
-                <td><?php echo $patient_detail['d_o_b']; ?>
-                </td></tr>
-
-
-            <tr height="50px"><td>
-                    <?php echo $pedigree_label; ?></td>
-                <td>:</td> 
-                <td><?php echo $patient_detail['padigree_labelling']; ?>
+            <tr>
+                <td>
+                    <?php echo $is_blood_card_exist; ?>: 
+                    <?php echo form_checkbox(array('name' => 'is_blood_card_exist', 'value' => $patient_detail['blood_card']))?>                    
                 </td>
                 <td>
-                    <?php echo $gender; ?></td>
-                <td>:</td> 
-                <td><?php echo $patient_detail['gender']; ?>
-                </td><td>
-                    <?php echo $ethinicity; ?></td>
-                <td>:</td>
-                <td><?php echo $patient_detail['ethnicity']; ?>
-                </td></tr>
-            <tr height="50px"><td>
-                    <?php echo $blood_group; ?></td>
-                <td>:</td> 
-                <td><?php echo $patient_detail['blood_group']; ?>
-
-                </td><td>
-                    <?php echo $comment; ?></td>
-                <td>:</td>
-                <td><?php echo $patient_detail['comment']; ?>
-
-                </td><td>
-                    <?php echo $hospital_no; ?></td>
-                <td>:</td> 
-                <td> <?php echo $patient_detail['hospital_no']; ?>                    
-                </td></tr>
-
-            <tr height="50px"><td>
-                    <?php echo $family_no; ?></td>
-                <td>:</td>
-                <td><?php echo $patient_detail['family_no']; ?>
-                </td>
-                <td>
-                    <?php echo $place_of_birth; ?></td>
-                <td>:</td>
-                <td><?php echo $patient_detail['place_of_birth']; ?>
-                </td>
-                <td>
-                    <?php echo $income_level; ?></td>
-                <td>:</td>
-                <td><?php echo $patient_detail['income_level']; ?>
+                    <?php echo $blood_card_location; ?>: 
+                    <?php echo form_input(array('name' => 'blood_card_location', 'value' => $patient_detail['blood_card_location']))?>
                 </td>
             </tr>
-            <tr height="50px">
+            <tr>
                 <td>
-                    <?php echo $home_phone; ?></td>
-                <td>:</td>
-                <td><?php echo $patient_detail['home_phone']; ?>
+                    <?php echo $address; ?>: 
+                    <?php echo form_textarea(array('name' => 'address','id' => 'address','rows' => '5','cols' => '10', 'value' => $patient_detail['address']))?>                                      
                 </td>
                 <td>
-                    <?php echo $cell_phone; ?></td>
-                <td>:</td>
-                <td><?php echo $patient_detail['cell_phone']; ?>
+                    <?php echo $home_phone; ?>: 
+                    <?php echo form_input(array('name' => 'home_phone', 'value' => $patient_detail['home_phone']))?>
                 </td>
                 <td>
-                    <?php echo $work_phone; ?></td>
-                <td>:</td>
-                <td><?php echo $patient_detail['work_phone']; ?>
-                </td>
-            </tr>
-            <tr height="50px">
-                <td>
-                    <?php echo $height; ?></td>
-                <td>:</td>
-                <td><?php echo $patient_detail['height']; ?>
+                    <?php echo $cell_phone; ?>: 
+                    <?php echo form_input(array('name' => 'cell_phone', 'value' => $patient_detail['cell_phone']))?>
                 </td>
                 <td>
-                    <?php echo $weight; ?></td>
-                <td>:</td>
-                <td><?php echo $patient_detail['weight']; ?>
-                </td>
-                <td>
-                    <?php echo $BMI; ?></td>
-                <td>:</td>
-                <td><?php echo $patient_detail['bmi']; ?>
-                </td>
-
-            </tr>
-            <tr height="50px">
-                <td>
-                    <?php echo $still_alive_flag; ?></td>
-                <td>:</td>
-                <td><?php echo $patient_detail['is_dead'];?>
-                </td>
-                <td>
-                    <?php echo $DOD; ?></td>
-                <td>:</td>
-                <td><?php //echo $patient_detail['d_o_d'];?>
-                </td>
-                <td>
-                    <?php echo $reason_of_death; ?></td>
-                <td>:</td>
-                <td><?php
-                    echo $patient_detail['reason_of_death'];
-                    ?>
+                    <?php echo $work_phone; ?>: 
+                    <?php echo form_input(array('name' => 'work_phone', 'value' => $patient_detail['work_phone']))?>
                 </td>
             </tr>
-
-            <tr height="50px">
+            <tr>
                 <td>
-                    <?php echo $marital_status; ?></td>
-                <td>:</td>
-                <td><?php echo $patient_detail['marital_status']; ?>
+                    <?php echo $other_phone; ?>: 
+                    <?php echo form_input(array('name' => 'other_phone', 'value' => $patient_detail['other_phone']))?>                    
                 </td>
                 <td>
-                    <?php echo $is_blood_card_exist; ?></td>
-                <td>:</td>
-                <td><?php echo $patient_detail['blood_card']; ?>
+                    <?php echo $fax; ?>: 
+                    <?php echo form_input(array('name' => 'fax', 'value' => $patient_detail['fax']))?>                                        
                 </td>
                 <td>
-                    <?php echo $blood_card_location; ?></td>
-                <td>:</td>
-                <td><?php echo $patient_detail['blood_card_location']; ?>
-                </td>
-            </tr>
-            <tr height="50px">
-                <td>
-                    <?php echo $status_source; ?></td>
-                <td>:</td>
-                <td><?php echo @$patient_detail['status_source']; ?>
+                    <?php echo $email; ?>: 
+                    <?php echo form_input(array('name' => 'email', 'value' => $patient_detail['email']))?>                                        
                 </td>
                 <td>
-                    <?php echo $alive_status; ?></td>
-                <td>:</td>
-                <td><?php echo @$patient_detail['alive_status']; ?>
-                </td>
-                <td>
-                    <?php echo $status_gathered_date; ?></td>
-                <td>:</td>
-                <td><?php echo @$patient_detail['status_gathered_date']; ?>
-                </td>
-
-            </tr>
-            <tr height="50px">
-
-                <td>
-                    <?php echo $private_patient_no; ?></td>
-                <td>:</td>
-                <td><?php echo @$patient_detail['private_patient_no']; ?>
-                </td>
-                <td>
-                    <?php echo $address; ?></td>
-                <td>:</td>
-                <td><?php echo $patient_detail['address']; ?>
+                    <?php echo $highest_level_of_education; ?>: 
+                    <?php echo form_textarea(array('name' => 'highest_level_of_education','id' => 'highest_level_of_education','rows' => '3','cols' => '7', 'value' => $patient_detail['highest_education_level']))?>                                      
                 </td>
             </tr>
-
+            <tr>
+                <td>
+                    <?php echo $height; ?>: 
+                    <?php echo form_input(array('name' => 'height', 'value' => $patient_detail['height']))?>                                                            
+                </td>
+                <td>
+                    <?php echo $weight; ?>: 
+                    <?php echo form_input(array('name' => 'weight', 'value' => $patient_detail['weight']))?>                                                            
+                </td>
+                <td>
+                    <?php echo $BMI; ?>: 
+                    <?php echo form_input(array('name' => 'BMI', 'value' => $patient_detail['bmi']))?>                                                            
+                </td>
+                <td>
+                    <?php echo $income_level; ?>:
+                    <?php echo  form_dropdown('income_level',$income_level_lists, $patient_detail['income_level']);?>                                        
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <?php echo $contact_person_name; ?>: 
+                    <?php echo form_input(array('name' => 'contact_person_name', 'value' => $patient_contact_person['contact_name']))?>                    
+                </td>
+                <td>
+                    <?php echo $contact_person_phone_number; ?>: 
+                    <?php echo form_input(array('name' => 'contact_person_phone_number', 'value' => $patient_contact_person['contact_telephone']))?>                    
+                </td>
+                <td>
+                    <?php echo $contact_person_relationship; ?>: 
+                    <?php echo form_input(array('name' => 'contact_person_relationship', 'value' => $patient_contact_person['contact_relationship']))?>                    
+                </td>
+                <td>
+                    <?php echo $patient_comments; ?>: 
+                    <?php echo form_textarea(array('name' => 'patient_comments','id' => 'patient_comments','rows' => '3','cols' => '7', 'value' => $patient_detail['comment']))?>                                      
+                </td>
+            </tr>
+            <tr>
+                <td id="label1">Relative summary details</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>
+                    <?php echo $total_no_of_male_siblings; ?>:
+                    <?php echo form_input(array('name' => 'total_no_of_male_siblings', 'value' => $patient_relatives_summary['total_no_of_male_siblings']))?>                    
+                </td>
+                <td>
+                    <?php echo $total_no_of_female_siblings; ?>:
+                    <?php echo form_input(array('name' => 'total_no_of_female_siblings', 'value' => $patient_relatives_summary['total_no_of_female_siblings']))?>                    
+                </td>
+                <td>
+                    <?php echo $total_no_of_affected_siblings; ?>:
+                    <?php echo form_input(array('name' => 'total_no_of_affected_siblings', 'value' => $patient_relatives_summary['total_no_of_affected_siblings']))?>                                        
+                </td>
+                <td>
+                    <?php echo $total_no_of_siblings; ?>:
+                    <?php echo form_input(array('name' => 'total_no_of_siblings', 'value' => $patient_relatives_summary['total_no_of_siblings']))?>                                                            
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <?php echo $total_no_male_children; ?>:
+                    <?php echo form_input(array('name' => 'total_no_male_children', 'value' => $patient_relatives_summary['total_no_of_male_children']))?>                                                                                
+                </td>
+                <td>
+                    <?php echo $total_no_female_children; ?>:
+                    <?php echo form_input(array('name' => 'total_no_female_children', 'value' => $patient_relatives_summary['total_no_of_female_children']))?>                                                                                                    
+                </td>
+                <td>
+                    <?php echo $total_no_of_affected_children; ?>:
+                    <?php echo form_input(array('name' => 'total_no_of_affected_children', 'value' => $patient_relatives_summary['total_no_of_affected_children']))?>                                                                                                                        
+                </td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>
+                    <?php echo $total_no_of_first_degree; ?>:
+                    <?php echo form_input(array('name' => 'total_no_of_first_degree', 'value' => $patient_relatives_summary['total_no_of_1st_degree']))?>                                                                                                                        
+                </td>
+                <td>
+                    <?php echo $total_no_of_second_degree; ?>:
+                    <?php echo form_input(array('name' => 'total_no_of_second_degree', 'value' => $patient_relatives_summary['total_no_of_2nd_degree']))?>                                                                                                                        
+                </td>
+                <td>
+                    <?php echo $total_no_of_third_degree; ?>:
+                    <?php echo form_input(array('name' => 'total_no_of_third_degree', 'value' => $patient_relatives_summary['total_no_of_3rd_degree']))?>                                                                                                                        
+                </td>
+                <td>&nbsp;</td>
+            </tr>
         </table>
-        </br>
-<!--        <a align="center" class="doneButton" href="<?php echo base_url(); ?>">Done</a>-->
     </div>
+
+    <?php echo form_fieldset_close(); ?>	
+    <div class="container" id="add_record_form_section_personal_5">
+        <div height="30px">&nbsp;</div>
+        <table id="survival_section_1">
+            <tr>
+                <td id="label1">Survival status</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>
+                    <?php echo $status_source; ?>:
+                    <?php echo  form_dropdown('status_source',$status_source_lists, $patient_survival_status['source']); ?>                                                            
+                </td>
+                <td>
+                    <?php echo $alive_status; ?>:
+                    <?php echo  form_dropdown('alive_status',$alive_status_lists, $patient_survival_status['alive_status']); ?>                                                            
+                </td>
+                <td>
+                    <?php echo $status_gathered_date; ?>: 
+                    <?php echo form_input(array('name' => 'status_gathered_date', 'class' => 'datepicker')); ?>
+                </td>
+                <td>
+                    <input type="button" value="Add more survival status" onClick="window.parent.addSurvivalStatusInput('add_record_form_section_personal_5');
+                            window.parent.calcHeight();">
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="container" id="add_consent_details_section">
+        <div height="30px">&nbsp;</div>
+        <?php
+        echo form_fieldset('Consent Details');
+        ?>
+        <table>
+            <tr>
+                <td>
+                    <?php echo $studies_name; ?>:
+                    <?php echo  form_dropdown('studies_name',$studies_name_lists, $patient_consent_detail['studies_id']); ?>                                                                                
+                </td>
+                <td>
+                    <?php echo $date_at_consent; ?>:
+                    <?php echo form_input(array('name' => 'date_at_consent', 'value' => $patient_consent_detail['date_at_consent'],'class' => 'datepicker'))?>                    
+                </td>
+                <td>
+                    <?php echo $age_at_consent; ?>: 
+                    <?php echo form_input(array('name' => 'age_at_consent', 'value' => $patient_consent_detail['age_at_consent']))?>                    
+                </td>
+                <td>
+                    <?php echo $is_double_consent_flag; ?>: 
+                    <?php echo form_checkbox(array('name' => 'is_double_consent_flag', 'value' => $patient_consent_detail['double_consent_flag']))?>                    
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <?php echo $consent_given_by; ?>: 
+                    <?php echo form_input(array('name' => 'consent_given_by', 'value' => $patient_consent_detail['consent_given_by']))?>                   
+                </td>
+                <td>
+                    <?php echo $consent_response; ?>: 
+                    <?php echo form_input(array('name' => 'consent_response', 'value' => $patient_consent_detail['consent_response']))?>
+                </td>
+                <td>
+                    <?php echo $consent_version; ?>: 
+                    <?php echo form_input(array('name' => 'consent_version', 'value' => $patient_consent_detail['consent_version']))?>
+                </td>
+                <td>
+                    <?php echo $relations_to_study; ?>: 
+                    <?php echo form_input(array('name' => 'relations_to_study', 'value' => $patient_consent_detail['relation_to_study']))?>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <?php echo $referral_to; ?>: 
+                    <?php echo form_input(array('name' => 'referral_to', 'value' => $patient_consent_detail['referral_to']))?>                    
+                </td>
+                <td>
+                    <?php echo $referral_date; //referral to genetic counselling ?>:
+                    <?php echo form_input(array('name' => 'referral_date', 'value' => $patient_consent_detail['referral_to_genetic_counselling'],'class' => 'datepicker'))?>                                        
+                </td>
+                <td>
+                    <?php echo $referral_source; ?>: 
+                    <?php echo form_input(array('name' => 'referral_source', 'value' => $patient_consent_detail['referral_source']))?>                    
+                </td>
+            </tr>
+        </table>
+        <?php echo form_fieldset_close(); ?>	
+    </div>
+    <?php endforeach; ?>
+    <?php echo form_submit('mysubmit', 'Save'); ?>
+    <?php echo form_close(); ?>
 </div>
+
+
 
 

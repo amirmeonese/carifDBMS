@@ -1745,48 +1745,34 @@ class Record extends CI_Controller {
         if ($var == 'personal') {
             $data['patient_detail'] = $this->record_model->get_view_patient_record($ic_no, 'patient', 'ic_no');
             $data['patient_consent_detail'] = $this->record_model->get_view_patient_record($ic_no, 'patient_studies', 'patient_ic_no');
-            $data['patient_private_no'] = $this->record_model->get_view_patient_record($ic_no, 'patient_private_no', 'patient_ic_no');            
+            $data['patient_private_no'] = $this->record_model->get_view_patient_record($ic_no, 'patient_private_no', 'patient_ic_no');
             $data['patient_hospital_no'] = $this->record_model->get_view_patient_record($ic_no, 'patient_hospital_no', 'patient_ic_no');
-            $data['patient_cogs_studies'] = $this->record_model->get_view_patient_record($ic_no, 'patient_cogs_studies', 'patient_ic_no');            
-            $data['patient_contact_person'] = $this->record_model->get_view_patient_record($ic_no, 'patient_contact_person', 'patient_ic_no');                        
+            $data['patient_cogs_studies'] = $this->record_model->get_view_patient_record($ic_no, 'patient_cogs_studies', 'patient_ic_no');
+            $data['patient_contact_person'] = $this->record_model->get_view_patient_record($ic_no, 'patient_contact_person', 'patient_ic_no');
             $data['patient_survival_status'] = $this->record_model->get_view_patient_record($ic_no, 'patient_survival_status', 'patient_ic_no');
-            $data['patient_relatives_summary'] = $this->record_model->get_view_patient_record($ic_no, 'patient_relatives_summary', 'patient_ic_no');                                                
+            $data['patient_relatives_summary'] = $this->record_model->get_view_patient_record($ic_no, 'patient_relatives_summary', 'patient_ic_no');
             $data['isUpdate'] = TRUE;
             $this->template->load("templates/add_record_template", 'record/add_record_personal_details', $data);
         } else if ($var == 'family') {
             $data['patient_family'] = $a = $this->record_model->get_view_patient_record($ic_no, 'patient_relatives', 'patient_ic_no');
-            $this->template->load("templates/add_record_template", 'record/view_record_family_details', $data);
+            $this->template->load("templates/add_record_template", 'record/add_record_family_details', $data);
+        } else if ($var == 'diagnosis') {
+            $this->template->load("templates/add_record_template", 'record/add_record_diagnosis_treatment_details', $data);
         } else if ($var == 'studies_setOne') {
-            $data['patient_studies'] = $this->record_model->get_view_patient_record($ic_no, 'patient_studies', 'patient_ic_no');
-
-            $patient_breast_screening = $this->record_model->get_view_patient_record($ic_no, 'patient_breast_screening', 'patient_ic_no');
-
-            $data['patient_mammogram'] = $patient_breast_screening;
-
-            $a = @$patient_breast_screening['patient_breast_screening_id'];
-
-            $data['patient_other_screening'] = $this->record_model->get_patient_other_screening($a);
-
-            $patient_cancer = $this->record_model->get_view_patient_record($ic_no, 'patient_cancer', 'patient_ic_no');
-
-            $data['patient_cancer'] = $patient_cancer;
-
-            $data['patient_cancer_treatment'] = $this->record_model->get_patient_cancer_treatment(@$patient_cancer['patient_cancer_id']);
-            $data['patient_diagnosis'] = $this->record_model->get_view_patient_record($ic_no, 'patient_diagnosis', 'patient_ic_no');
-            $data['patient_pathology'] = $this->record_model->get_view_patient_record($ic_no, 'patient_pathology', 'patient_ic_no');
-            $this->template->load("templates/add_record_template", 'record/view_record_studies_set_one_details', $data);
-        } else if ($var == 'investigations') {
-            $data['patient_investigation'] = $this->record_model->get_view_patient_record($ic_no, 'patient_investigations', 'patient_ic_no');
-            $this->template->load("templates/add_record_template", 'record/view_record_investigation_details', $data);
-        } else if ($var == 'surveillance') {
-            $data['patient_surveillance'] = $this->record_model->get_view_patient_record($ic_no, 'patient_surveillance', 'patient_ic_no');
-            $this->template->load("templates/add_record_template", 'record/view_record_surveillance_details', $data);
+            $this->template->load("templates/add_record_template", 'record/add_record_studies_set_one_details', $data);
+        } else if ($var == 'mutation_analysis') {
+            $data['patient_mutation_analysis'] = $this->record_model->get_view_patient_record($ic_no, 'patient_mutation_analysis', 'patient_ic_no');
+            $this->template->load("templates/add_record_template", 'record/view_record_mutation_analysis_details', $data);
+        } else if ($var == 'pathology') {
+            $this->template->load("templates/add_record_template", 'record/add_record_pathology_details', $data);
+        } else if ($var == 'risk_assessment') {
+            $this->template->load("templates/add_record_template", 'record/add_record_risk_assessment_details', $data);
         } else if ($var == 'lifestyleFactors') {
-            $data['patient_lifestyle'] = $this->record_model->get_view_patient_record($ic_no, 'patient_lifestyle_factors', 'patient_ic_no');
-            $this->template->load("templates/add_record_template", 'record/view_record_lifestyles_factors_details', $data);
-        } else if ($var == 'interview_manager') {
-            $data['patient_interview_manager'] = $this->record_model->get_view_patient_record($ic_no, 'patient_interview_manager', 'patient_ic_no');
-            $this->template->load("templates/add_record_template", 'record/view_record_interview_manager', $data);
+            $this->template->load("templates/add_record_template", 'record/add_record_lifestyles_factors_details', $data);
+        } else if ($var == 'counselling') {
+            $this->template->load("templates/add_record_template", 'record/interview_home', $data);
+        } else if ($var == 'bulkImport') {
+            $this->template->load("templates/add_record_template", 'record/upload_xlsx_file', $data);
         }
     }
 
