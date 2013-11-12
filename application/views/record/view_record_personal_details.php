@@ -6,7 +6,6 @@
     $attributes = array('id' => 'personal-details-form');
     echo form_open("record/patient_record_insertion", $attributes);
     ?>
-    <?php foreach ($patient_list as $list): ?>
     <div class="container" id="add_record_form_section_personal">
         <div height="30px">&nbsp;</div>
         <?php
@@ -324,6 +323,7 @@
             </tr>
         </table>
     </div>
+    <?php foreach ($patient_consent_detail as $list): ?>
     <div class="container" id="add_consent_details_section">
         <div height="30px">&nbsp;</div>
         <?php
@@ -333,51 +333,51 @@
             <tr>
                 <td>
                     <?php echo $studies_name; ?>:
-                    <?php echo  form_dropdown('studies_name',$studies_name_lists, $patient_consent_detail['studies_id']); ?>                                                                                
+                    <?php echo  form_dropdown('studies_name',$studies_name_lists, $list['studies_id']); ?>                                                                                
                 </td>
                 <td>
                     <?php echo $date_at_consent; ?>:
-                    <?php echo form_input(array('name' => 'date_at_consent', 'value' => $patient_consent_detail['date_at_consent'],'class' => 'datepicker'))?>                    
+                    <?php echo form_input(array('name' => 'date_at_consent', 'value' => $list['date_at_consent'],'class' => 'datepicker'))?>                    
                 </td>
                 <td>
                     <?php echo $age_at_consent; ?>: 
-                    <?php echo form_input(array('name' => 'age_at_consent', 'value' => $patient_consent_detail['age_at_consent']))?>                    
+                    <?php echo form_input(array('name' => 'age_at_consent', 'value' => $list['age_at_consent']))?>                    
                 </td>
                 <td>
                     <?php echo $is_double_consent_flag; ?>: 
-                    <?php echo form_checkbox(array('name' => 'is_double_consent_flag', 'value' => $patient_consent_detail['double_consent_flag']))?>                    
+                    <?php echo form_checkbox(array('name' => 'is_double_consent_flag', 'value' => $list['double_consent_flag']))?>                    
                 </td>
             </tr>
             <tr>
                 <td>
                     <?php echo $consent_given_by; ?>: 
-                    <?php echo form_input(array('name' => 'consent_given_by', 'value' => $patient_consent_detail['consent_given_by']))?>                   
+                    <?php echo form_input(array('name' => 'consent_given_by', 'value' => $list['consent_given_by']))?>                   
                 </td>
                 <td>
                     <?php echo $consent_response; ?>: 
-                    <?php echo form_input(array('name' => 'consent_response', 'value' => $patient_consent_detail['consent_response']))?>
+                    <?php echo form_input(array('name' => 'consent_response', 'value' => $list['consent_response']))?>
                 </td>
                 <td>
                     <?php echo $consent_version; ?>: 
-                    <?php echo form_input(array('name' => 'consent_version', 'value' => $patient_consent_detail['consent_version']))?>
+                    <?php echo form_input(array('name' => 'consent_version', 'value' => $list['consent_version']))?>
                 </td>
                 <td>
                     <?php echo $relations_to_study; ?>: 
-                    <?php echo form_input(array('name' => 'relations_to_study', 'value' => $patient_consent_detail['relation_to_study']))?>
+                    <?php echo form_input(array('name' => 'relations_to_study', 'value' => $list['relation_to_study']))?>
                 </td>
             </tr>
             <tr>
                 <td>
                     <?php echo $referral_to; ?>: 
-                    <?php echo form_input(array('name' => 'referral_to', 'value' => $patient_consent_detail['referral_to']))?>                    
+                    <?php echo form_input(array('name' => 'referral_to', 'value' => $list['referral_to']))?>                    
                 </td>
                 <td>
                     <?php echo $referral_date; //referral to genetic counselling ?>:
-                    <?php echo form_input(array('name' => 'referral_date', 'value' => $patient_consent_detail['referral_to_genetic_counselling'],'class' => 'datepicker'))?>                                        
+                    <?php echo form_input(array('name' => 'referral_date', 'value' => $list['referral_to_genetic_counselling'],'class' => 'datepicker'))?>                                        
                 </td>
                 <td>
                     <?php echo $referral_source; ?>: 
-                    <?php echo form_input(array('name' => 'referral_source', 'value' => $patient_consent_detail['referral_source']))?>                    
+                    <?php echo form_input(array('name' => 'referral_source', 'value' => $list['referral_source']))?>                    
                 </td>
             </tr>
         </table>

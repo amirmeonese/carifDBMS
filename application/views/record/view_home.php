@@ -50,13 +50,13 @@
 					<table border="0" width="60%"><tr><td><a class="btn btn-large btn-info home_btn" href="<?php echo base_url(); ?>">Home</a></td><td><span class="welcome_msg">Welcome to CARIF database system</span></td><td><a class="btn btn-large btn-info logout_btn" href="templates/home.html">Logout</a></td><tr></table>
 				</div>
 				<div>
-					<a class="add_record_tab_btn" href="<?php echo site_url('record/view_record_list/personal'.'/'.$ic_no);?>" target="iframe_record_home" >Personal</a>
+					<a class="add_record_tab_btn" href="<?php echo site_url('record/view_record_list/personal'.'/'.$ic_no.'/'.$patient_studies_id);?>" target="iframe_record_home" >Personal</a>
 					<a class="add_record_tab_btn" href="<?php echo site_url('record/view_record_list/family'.'/'.$ic_no);?>" target="iframe_record_home" >Family</a>
-					<a class="add_record_tab_btn" href="<?php echo site_url('record/view_record_list/diagnosis'.'/'.$ic_no);?>" target="iframe_record_home" >Diagnosis & Treatment</a>
-					<a class="add_record_tab_btn" href="<?php echo site_url('record/view_record_list/studies_setOne'.'/'.$ic_no);?>" target="iframe_record_home" >Screenings & Surveillance</a>
-					<a class="add_record_tab_btn" href="<?php echo site_url('record/view_record_list/mutation_analysis'.'/'.$ic_no);?>" target="iframe_record_home" >Mutation Analysis</a>
-					<a class="add_record_tab_btn" href="<?php echo site_url('record/view_record_list/risk_assessment'.'/'.$ic_no);?>" target="iframe_record_home" >Risk Assessment</a>
-					<a class="add_record_tab_btn" href="<?php echo site_url('record/view_record_list/lifestyleFactors'.'/'.$ic_no);?>" target="iframe_record_home" >Lifestyle Factors</a>
+					<a class="add_record_tab_btn" href="<?php echo site_url('record/view_record_list/diagnosis'.'/'.$ic_no.'/'.$patient_studies_id);?>" target="iframe_record_home" >Diagnosis & Treatment</a>
+					<a class="add_record_tab_btn" href="<?php echo site_url('record/view_record_list/studies_setOne'.'/'.$ic_no.'/'.$patient_studies_id);?>" target="iframe_record_home" >Screenings & Surveillance</a>
+					<a class="add_record_tab_btn" href="<?php echo site_url('record/view_record_list/mutation_analysis'.'/'.$ic_no.'/'.$patient_studies_id);?>" target="iframe_record_home" >Mutation Analysis</a>
+					<a class="add_record_tab_btn" href="<?php echo site_url('record/view_record_list/risk_assessment'.'/'.$ic_no.'/'.$patient_studies_id);?>" target="iframe_record_home" >Risk Assessment</a>
+					<a class="add_record_tab_btn" href="<?php echo site_url('record/view_record_list/lifestyleFactors'.'/'.$ic_no.'/'.$patient_studies_id);?>" target="iframe_record_home" >Lifestyle Factors</a>
                                         <a class="add_record_tab_btn" href="<?php echo site_url('record/view_record_list/counselling'.'/'.$ic_no);?>" target="iframe_record_home" >Counselling</a>
                                         <iframe src="<?php echo site_url('record/view_record_list/personal'.'/'.$ic_no);?>" id="iframe_record_home" name="iframe_record_home" onLoad="calcHeight();" width="100%" height="700px" scrolling="no"></iframe>
 				</div>

@@ -9,14 +9,7 @@
     <div class="container" id="add_record_form_section_risk_assessment">
         <div height="30px">&nbsp;</div>
         <div height="30px">&nbsp;</div>
-        <table>
-            <tr> 
-                <td>
-                    <label for="IC_no"><?php echo $IC_no; ?>: </label>
-                    <?php echo form_input('IC_no'); ?>
-                </td>
-            </tr>
-        </table>
+       <?php foreach ($patient_risk_assessment as $list): ?>
         <div class="container" id="add_record_form_manchester_score1">
             <div height="30px">&nbsp;</div>
             <?php
@@ -32,15 +25,15 @@
                 <tr>
                     <td>
                         <?php echo $ms_at_consent_BRCA1; ?>: 
-                        <?php echo form_input(array('name' => 'ms_at_consent_BRCA1', 'value' => $patient_detail['at_consent_mach_brca1']))?>
+                        <?php echo form_input(array('name' => 'ms_at_consent_BRCA1', 'value' => $list['at_consent_mach_brca1']))?>
                     </td>
                     <td>
                         <?php echo $ms_at_consent_BRCA2; ?>: 
-                        <?php echo form_input(array('name' => 'ms_at_consent_BRCA2', 'value' => $patient_detail['at_consent_mach_brca2']))?>
+                        <?php echo form_input(array('name' => 'ms_at_consent_BRCA2', 'value' => $list['at_consent_mach_brca2']))?>
                     </td>
                     <td>
                         <?php echo $ms_at_consent_Total; ?>: 
-                        <?php echo form_input(array('name' => 'ms_at_consent_Total', 'value' => $patient_detail['at_consent_mach_total']))?>
+                        <?php echo form_input(array('name' => 'ms_at_consent_Total', 'value' => $list['at_consent_mach_total']))?>
                     </td>
                 </tr>
                 <tr>
@@ -49,15 +42,15 @@
                 <tr>
                     <td>
                         <?php echo $ms_adjusted_BRCA1; ?>: 
-                        <?php echo form_input(array('name' => 'ms_adjusted_gc_BRCA1', 'value' => $patient_detail['adjusted_mach_brca1']))?>
+                        <?php echo form_input(array('name' => 'ms_adjusted_gc_BRCA1', 'value' => $list['adjusted_mach_brca1']))?>
                     </td>
                     <td>
                         <?php echo $ms_adjusted_BRCA2; ?>: 
-                        <?php echo form_input(array('name' => 'ms_adjusted_gc_BRCA2', 'value' => $patient_detail['adjusted_mach_brca2']))?>
+                        <?php echo form_input(array('name' => 'ms_adjusted_gc_BRCA2', 'value' => $list['adjusted_mach_brca2']))?>
                     </td>
                     <td>
                         <?php echo $ms_adjusted_Total; ?>: 
-                        <?php echo form_input(array('name' => 'ms_adjusted_gc_Total', 'value' => $patient_detail['adjusted_mach_total']))?>
+                        <?php echo form_input(array('name' => 'ms_adjusted_gc_Total', 'value' => $list['adjusted_mach_total']))?>
                     </td>
                 </tr>
                 <tr>
@@ -66,15 +59,15 @@
                 <tr>
                     <td>
                         <?php echo $ms_after_gc_BRCA1; ?>: 
-                        <?php echo form_input(array('name' => 'ms_after_gc_BRCA1', 'value' => $patient_detail['after_gc_brca1']))?>
+                        <?php echo form_input(array('name' => 'ms_after_gc_BRCA1', 'value' => $list['after_gc_brca1']))?>
                     </td>
                     <td>
                         <?php echo $ms_after_gc_BRCA2; ?>: 
-                        <?php echo form_input(array('name' => 'ms_after_gc_BRCA2', 'value' => $patient_detail['after_gc_brca2']))?>
+                        <?php echo form_input(array('name' => 'ms_after_gc_BRCA2', 'value' => $list['after_gc_brca2']))?>
                     </td>
                     <td>
                         <?php echo $ms_after_gc_Total; ?>: 
-                        <?php echo form_input(array('name' => 'ms_after_gc_Total', 'value' => $patient_detail['after_gc_total']))?>
+                        <?php echo form_input(array('name' => 'ms_after_gc_Total', 'value' => $list['after_gc_total']))?>
                     </td>               
                 </tr>
                 <tr>
@@ -97,11 +90,11 @@
                 <tr>
                     <td>
                         <?php echo $BOADICEA_at_consent_BRCA1; ?>: 
-                        <?php echo form_input(array('name' => 'BOADICEA_at_consent_BRCA1', 'value' => $patient_detail['at_consent_boadicea_brca1']))?>
+                        <?php echo form_input(array('name' => 'BOADICEA_at_consent_BRCA1', 'value' => $list['at_consent_boadicea_brca1']))?>
                     </td>
                     <td>
                         <?php echo $BOADICEA_at_consent_BRCA2; ?>: 
-                        <?php echo form_input(array('name' => 'BOADICEA_at_consent_BRCA2', 'value' => $patient_detail['at_consent_boadicea_brca2']))?>
+                        <?php echo form_input(array('name' => 'BOADICEA_at_consent_BRCA2', 'value' => $list['at_consent_boadicea_brca2']))?>
                     </td>
                     <td>
                         <?php echo $BOADICEA_at_consent_no_mutation; ?>: 
@@ -114,11 +107,11 @@
                 <tr>
                     <td>
                         <?php echo $BOADICEA_adjusted_BRCA1; ?>: 
-                        <?php echo form_input(array('name' => 'BOADICEA_adjusted_BRCA1', 'value' => $patient_detail['adjusted_boadicea_brca1']))?>
+                        <?php echo form_input(array('name' => 'BOADICEA_adjusted_BRCA1', 'value' => $list['adjusted_boadicea_brca1']))?>
                     </td>
                     <td>
                         <?php echo $BOADICEA_adjusted_BRCA2; ?>: 
-                        <?php echo form_input(array('name' => 'BOADICEA_adjusted_BRCA2', 'value' => $patient_detail['adjusted_boadicea_brca2']))?>
+                        <?php echo form_input(array('name' => 'BOADICEA_adjusted_BRCA2', 'value' => $list['adjusted_boadicea_brca2']))?>
                     </td>
                     <td>
                         <?php echo $BOADICEA_adjusted_no_mutation; ?>: 
@@ -131,11 +124,11 @@
                 <tr>
                     <td>
                         <?php echo $BOADICEA_after_gc_BRCA1; ?>: 
-                        <?php echo form_input(array('name' => 'BOADICEA_after_gc_BRCA1', 'value' => $patient_detail['after_gc_boadicea_brca1']))?>
+                        <?php echo form_input(array('name' => 'BOADICEA_after_gc_BRCA1', 'value' => $list['after_gc_boadicea_brca1']))?>
                     </td>
                     <td>
                         <?php echo $BOADICEA_after_gc_BRCA2; ?>: 
-                        <?php echo form_input(array('name' => 'BOADICEA_after_gc_BRCA2', 'value' => $patient_detail['after_gc_boadicea_brca2']))?>
+                        <?php echo form_input(array('name' => 'BOADICEA_after_gc_BRCA2', 'value' => $list['after_gc_boadicea_brca2']))?>
                     </td>
                     <td>
                         <?php echo $BOADICEA_after_gc_no_mutation; ?>: 
@@ -162,11 +155,11 @@
                 <tr>
                     <td>
                         <?php echo $gail_model_at_consent_5years; ?>: 
-                        <?php echo form_input(array('name' => 'gail_model_at_consent_5years', 'value' => $patient_detail['at_consent_gail_model_5years']))?>
+                        <?php echo form_input(array('name' => 'gail_model_at_consent_5years', 'value' => $list['at_consent_gail_model_5years']))?>
                     </td>
                     <td>
                         <?php echo $gail_model_at_consent_10years; ?>: 
-                        <?php echo form_input(array('name' => 'gail_model_at_consent_10years', 'value' => $patient_detail['at_consent_gail_model_10years']))?>
+                        <?php echo form_input(array('name' => 'gail_model_at_consent_10years', 'value' => $list['at_consent_gail_model_10years']))?>
                 </tr>
                 <tr>
                     <td id="label2" colspan="2">First mammogram</td>
@@ -174,11 +167,11 @@
                 <tr>
                     <td>
                         <?php echo $gail_model_first_mammo_5years; ?>: 
-                        <?php echo form_input(array('name' => 'gail_model_first_mammo_5years', 'value' => $patient_detail['first_mammo_gail_model_5years']))?>
+                        <?php echo form_input(array('name' => 'gail_model_first_mammo_5years', 'value' => $list['first_mammo_gail_model_5years']))?>
                     </td>
                     <td>
                         <?php echo $gail_model_first_mammo_10years; ?>: 
-                        <?php echo form_input(array('name' => 'gail_model_first_mammo_10years', 'value' => $patient_detail['first_mammo_gail_model_10years']))?>
+                        <?php echo form_input(array('name' => 'gail_model_first_mammo_10years', 'value' => $list['first_mammo_gail_model_10years']))?>
                 </tr>
                 <tr>
                     <td>
@@ -188,7 +181,8 @@
                 </tr>
             </table>
         </div>
-        <?php echo form_fieldset_close(); ?> 
+        <?php echo form_fieldset_close(); ?>
+        <?php endforeach; ?>
     </div>
     <?php echo form_submit('mysubmit', 'Save'); ?>
     <?php echo form_close(); ?>

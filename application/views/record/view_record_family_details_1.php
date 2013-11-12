@@ -9,19 +9,8 @@
 	?>
 	 <div class="container" id="add_record_form_section_1">
         <div height="30px">&nbsp;</div>
-		<table>
-		<tr> 
-			<td>
-				<label for="family_no"><?php echo $family_no; ?>: </label>
-				<?php echo form_input('family_no'); ?>
-			</td>
-			<td>
-				<label for="IC_no"><?php echo $IC_no; ?>: </label>
-				<?php echo form_input('IC_no'); ?>
-			</td>
-		</tr>
-		</table>
 		 <div height="30px">&nbsp;</div>
+        <?php foreach ($patient_family as $list): ?>
         <?php
         echo form_fieldset('Mother');
         ?>
@@ -29,47 +18,47 @@
             <tr>
                 <td>
                     <label for="IC_no"><?php echo $mother_fullname; ?>: </label>
-                    <?php echo form_input(array('name' => 'mother_fullname', 'value' => $patient_detail['mother_fullname']))?>
+                    <?php echo form_input(array('name' => 'mother_fullname', 'value' => $list['full_name']))?>
                 </td>
                 <td>
                     <?php echo $mother_maiden_name; ?>: 
-                    <?php echo form_input(array('name' => 'mother_maiden_name', 'value' => $patient_detail['mother_maiden_name']))?>
+                    <?php echo form_input(array('name' => 'mother_maiden_name', 'value' => $list['maiden_name']))?>
                 </td>
 				<td>
                     <?php echo $mother_unknown_reason_is_adopted; ?>: 
-                    <?php echo form_checkbox(array('name' => 'mother_unknown_reason_is_adopted', 'value' => $patient_detail['mother_unknown_reason_is_adopted']))?>
+                    <?php echo form_checkbox(array('name' => 'mother_unknown_reason_is_adopted', 'value' => $list['is_adopted']))?>
                 </td>
 				 <td>
                     <?php echo $mother_unknown_reason_in_other_countries; ?>: 
-                    <?php echo form_checkbox(array('name' => 'mother_unknown_reason_in_other_countries', 'value' => $patient_detail['mother_unknown_reason_in_other_countries']))?>
+                    <?php echo form_checkbox(array('name' => 'mother_unknown_reason_in_other_countries', 'value' => $list['is_in_other_country']))?>
                 </td>
             </tr>
             <tr>
                 <td>
                     <?php echo $mother_ethnicity; ?>: 
-                    <?php echo form_input(array('name' => 'mother_ethnicity', 'value' => $patient_detail['mother_ethnicity']))?>
+                    <?php echo form_input(array('name' => 'mother_ethnicity', 'value' => $list['ethnicity']))?>
                 </td>
                 <td>
                     <?php echo $mother_town_residence; ?>: 
-                    <?php echo form_input(array('name' => 'mother_town_residence', 'value' => $patient_detail['mother_town_residence']))?>
+                    <?php echo form_input(array('name' => 'mother_town_residence', 'value' => $list['town_of_residence']))?>
                 </td>
                 <td>
                     <?php echo $mother_DOB; ?>: 
-                    <?php echo form_input(array('name' => 'mother_DOB', 'value' => $patient_detail['mother_DOB'],'class'=>'datepicker'))?>
+                    <?php echo form_input(array('name' => 'mother_DOB', 'value' => $list['d_o_b'],'class'=>'datepicker'))?>
                 </td>
                 <td>
                     <?php echo $mother_still_alive_flag; ?>: 
-                    <?php echo form_checkbox(array('name' => 'mother_still_alive_flag', 'value' => $patient_detail['mother_still_alive_flag']))?>
+                    <?php echo form_checkbox(array('name' => 'mother_still_alive_flag', 'value' => $list['is_alive_flag']))?>
                 </td>
             </tr>
             <tr>
                 <td>
                     <?php echo $mother_DOD; ?>: 
-		    <?php echo form_input(array('name'=>'mother_DOD','value' => $patient_detail['mother_DOD'],'class'=>'datepicker')); ?>
+		    <?php echo form_input(array('name'=>'mother_DOD','value' => $list['d_o_d'],'class'=>'datepicker')); ?>
                 </td>
                 <td>
                     <?php echo $mother_is_cancer_diagnosed; ?>: 
-                    <?php echo form_checkbox(array('name' => 'mother_is_cancer_diagnosed', 'value' => $patient_detail['mother_is_cancer_diagnosed']))?>
+                    <?php echo form_checkbox(array('name' => 'mother_is_cancer_diagnosed', 'value' => $list['is_cancer_diagnosed']))?>
                 </td>
             </tr>
         </table>
@@ -80,7 +69,7 @@
                     <tr>
 				 <td>
                     <?php echo $mother_cancer_name; ?>: 
-                    <?php echo form_dropdown('mother_cancer_name', $patient_cancer_name_lists, $patient_detail['mother_cancer_name']); ?>
+                    <?php echo form_dropdown('mother_cancer_name', $patient_cancer_name_lists, $list['cancer_type_id']); ?>
                 </td>  
 <!--				<td>
                     <?php echo $mother_other_cancer_name; ?>: 
@@ -89,11 +78,11 @@
                 </td>				-->
 				 <td>
                     <?php echo $mother_date_of_diagnosis; ?>: 
-                    <?php echo form_input(array('name' => 'mother_date_of_diagnosis', 'value' => $patient_detail['mother_date_of_diagnosis'],'class'=>'datepicker'))?>
+                    <?php echo form_input(array('name' => 'mother_date_of_diagnosis', 'value' => $list['date_of_diagnosis'],'class'=>'datepicker'))?>
                 </td>
                 <td>
                     <?php echo $mother_age_of_diagnosis; ?>: 
-                    <?php echo form_input(array('name' => 'mother_age_of_diagnosis', 'value' => $patient_detail['mother_age_of_diagnosis']))?>
+                    <?php echo form_input(array('name' => 'mother_age_of_diagnosis', 'value' => $list['age_of_diagnosis']))?>
                 </td>
                 <td>
                     <?php echo $mother_diagnosis_other_details; ?>: 
@@ -121,25 +110,25 @@
 			<tr>
 				<td>
                     <?php echo $mother_no_of_brothers; ?>: 
-                    <?php echo form_input(array('name' => 'mother_no_of_brothers', 'value' => $patient_detail['mother_no_of_brothers']))?>
+                    <?php echo form_input(array('name' => 'mother_no_of_brothers', 'value' => $list['no_of_brothers']))?>
                 </td>
                 <td>
                     <?php echo $mother_no_of_sisters; ?>: 
-                    <?php echo form_input(array('name' => 'mother_no_of_sisters', 'value' => $patient_detail['mother_no_of_sisters']))?>
+                    <?php echo form_input(array('name' => 'mother_no_of_sisters', 'value' => $list['no_of_sisters']))?>
                 </td>
 				<td>
                     <?php echo $mother_no_of_half_brothers; ?>: 
-                    <?php echo form_input(array('name' => 'mother_no_of_half_brothers', 'value' => $patient_detail['mother_no_of_half_brothers']))?>
+                    <?php echo form_input(array('name' => 'mother_no_of_half_brothers', 'value' => $list['total_half_brothers']))?>
                 </td>
                 <td>
                     <?php echo $mother_no_of_half_sisters; ?>: 
-                    <?php echo form_input(array('name' => 'mother_no_of_half_sisters', 'value' => $patient_detail['mother_no_of_half_sisters']))?>
+                    <?php echo form_input(array('name' => 'mother_no_of_half_sisters', 'value' => $list['total_half_sisters']))?>
                 </td>
 			</tr>
             <tr>
                 <td>
                     <?php echo $mother_vital_status; ?>: 
-                    <?php echo form_input(array('name' => 'mother_vital_status', 'value' => $patient_detail['mother_vital_status']))?>
+                    <?php echo form_input(array('name' => 'mother_vital_status', 'value' => $list['vital_status']))?>
                 </td>
 				<td>
                     <?php echo $mother_comments; ?>: 
@@ -166,47 +155,47 @@
             <tr>
                 <td>
                     <?php echo $father_fullname; ?>: 
-                    <?php echo form_input(array('name' => 'father_fullname', 'value' => $patient_detail['father_fullname']))?>
+                    <?php echo form_input(array('name' => 'father_fullname', 'value' => $list['full_name']))?>
                 </td>
                 <td>
                     <?php echo $father_maiden_name; ?>: 
-                    <?php echo form_input(array('name' => 'father_maiden_name', 'value' => $patient_detail['father_maiden_name']))?>
+                    <?php echo form_input(array('name' => 'father_maiden_name', 'value' => $list['maiden_name']))?>
                 </td>
 				<td>
                     <?php echo $father_unknown_reason_is_adopted; ?>: 
-                    <?php echo form_checkbox(array('name' => 'father_unknown_reason_is_adopted', 'value' => $patient_detail['father_unknown_reason_is_adopted']))?>
+                    <?php echo form_checkbox(array('name' => 'father_unknown_reason_is_adopted', 'value' => $list['is_adopted']))?>
                 </td>
 				 <td>
                     <?php echo $father_unknown_reason_in_other_countries; ?>: 
-                    <?php echo form_checkbox(array('name' => 'father_unknown_reason_in_other_countries', 'value' => $patient_detail['father_unknown_reason_in_other_countries']))?>
+                    <?php echo form_checkbox(array('name' => 'father_unknown_reason_in_other_countries', 'value' => $list['is_in_other_country']))?>
                 </td>
             </tr>
             <tr>
                 <td>
                     <?php echo $father_ethnicity; ?>: 
-                    <?php echo form_input(array('name' => 'father_ethncity', 'value' => $patient_detail['father_ethncity']))?>
+                    <?php echo form_input(array('name' => 'father_ethncity', 'value' => $list['ethnicity']))?>
                 </td>
                 <td>
                     <?php echo $father_town_residence; ?>: 
-                    <?php echo form_input(array('name' => 'father_town_residence', 'value' => $patient_detail['father_town_residence']))?>
+                    <?php echo form_input(array('name' => 'father_town_residence', 'value' => $list['town_of_residence']))?>
                 </td>
                 <td>
                     <?php echo $father_DOB; ?>: 
-                    <?php echo form_input(array('name' => 'father_DOB', 'value' => $patient_detail['father_DOB'],'class'=>'datepicker'))?>
+                    <?php echo form_input(array('name' => 'father_DOB', 'value' => $list['d_o_b'],'class'=>'datepicker'))?>
                 </td>
 				<td>
                     <?php echo $father_still_alive_flag; ?>: 
-                    <?php echo form_checkbox(array('name' => 'father_still_alive_flag', 'value' => $patient_detail['father_still_alive_flag']))?>
+                    <?php echo form_checkbox(array('name' => 'father_still_alive_flag', 'value' => $list['is_alive_flag']))?>
                 </td>
             </tr>
             <tr>
                 <td>
                     <?php echo $father_DOD; ?>: 
-                    <?php echo form_input(array('name' => 'father_DOD', 'value' => $patient_detail['father_DOD'],'class'=>'datepicker'))?>
+                    <?php echo form_input(array('name' => 'father_DOD', 'value' => $list['d_o_d'],'class'=>'datepicker'))?>
                 </td>
                 <td>
                     <?php echo $father_is_cancer_diagnosed; ?>: 
-                    <?php echo form_checkbox(array('name' => 'father_is_cancer_diagnosed', 'value' => $patient_detail['father_is_cancer_diagnosed']))?>
+                    <?php echo form_checkbox(array('name' => 'father_is_cancer_diagnosed', 'value' => $list['is_cancer_diagnosed']))?>
                 </td>
             </tr>
             </table>
@@ -217,20 +206,20 @@
             <tr>
 				 <td>
                     <?php echo $father_cancer_name; ?>: 
-                    <?php echo form_dropdown('father_cancer_name', $patient_cancer_name_lists, $patient_detail['mother_cancer_name']); ?>
+                    <?php echo form_dropdown('father_cancer_name', $patient_cancer_name_lists, $list['cancer_type_id']); ?>
 <!--                </td>
 				 <td>
                     <?php echo $father_other_cancer_name; ?>: 
-                    <?php echo form_input(array('name' => 'father_other_cancer_name', 'value' => $patient_detail['father_other_cancer_name']))?>
+                    <?php echo form_input(array('name' => 'father_other_cancer_name', 'value' => $list['other_cancer_name']))?>
                 </td>-->
                <td>
                     <?php echo $father_date_of_diagnosis; ?>: 
-                    <?php echo form_input(array('name' => 'father_date_of_diagnosis', 'value' => $patient_detail['father_date_of_diagnosis'],'class'=>'datepicker'))?>
+                    <?php echo form_input(array('name' => 'father_date_of_diagnosis', 'value' => $list['date_of_diagnosis'],'class'=>'datepicker'))?>
 
                </td>
                 <td>
                     <?php echo $father_age_of_diagnosis; ?>: 
-                    <?php echo form_input(array('name' => 'father_age_of_diagnosis', 'value' => $patient_detail['father_age_of_diagnosis']))?>
+                    <?php echo form_input(array('name' => 'father_age_of_diagnosis', 'value' => $list['age_of_diagnosis']))?>
                 </td>
                 <td>
                     <?php echo $father_diagnosis_other_details; ?>: 
@@ -258,25 +247,25 @@
             <tr>
                 <td>
                     <?php echo $father_no_of_brothers; ?>: 
-                    <?php echo form_input(array('name' => 'father_no_of_brothers', 'value' => $patient_detail['father_no_of_brothers']))?>
+                    <?php echo form_input(array('name' => 'father_no_of_brothers', 'value' => $list['no_of_brothers']))?>
                 </td>
                 <td>
                     <?php echo $father_no_of_sisters; ?>: 
-                    <?php echo form_input(array('name' => 'father_no_of_sisters', 'value' => $patient_detail['father_no_of_sisters']))?>
+                    <?php echo form_input(array('name' => 'father_no_of_sisters', 'value' => $list['no_of_sisters']))?>
                 </td>
                 <td>
                     <?php echo $father_no_of_half_brothers; ?>: 
-                    <?php echo form_input(array('name' => 'father_no_of_half_brothers', 'value' => $patient_detail['father_no_of_half_brothers']))?>
+                    <?php echo form_input(array('name' => 'father_no_of_half_brothers', 'value' => $list['total_half_brothers']))?>
                 </td>
                 <td>
                     <?php echo $father_no_of_half_sisters; ?>: 
-                    <?php echo form_input(array('name' => 'father_no_of_half_sisters', 'value' => $patient_detail['father_no_of_half_sisters']))?>
+                    <?php echo form_input(array('name' => 'father_no_of_half_sisters', 'value' => $list['total_half_sisters']))?>
                 </td>
             </tr>
             <tr>
                 <td>
                     <?php echo $father_vital_status; ?>: 
-                    <?php echo form_input(array('name' => 'father_vital_status', 'value' => $patient_detail['father_vital_status']))?>
+                    <?php echo form_input(array('name' => 'father_vital_status', 'value' => $list['vital_status']))?>
                 </td>
 				<td>
                     <?php echo $father_comments; ?>: 
@@ -292,7 +281,8 @@
                 </td>
             </tr>
         </table>
-        <?php echo form_fieldset_close(); ?>		
+        <?php echo form_fieldset_close(); ?>
+        <?php endforeach; ?>
     </div>
     <input type="button" value="Add relative" onClick="window.parent.addInput('add_record_form_section_4');
             window.parent.calcHeight();"></br>

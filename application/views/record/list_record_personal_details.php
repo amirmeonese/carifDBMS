@@ -25,6 +25,17 @@
                 </td>
 
             </tr>
+            <tr>
+                <td>
+                    &nbsp;
+                </td>
+                <td id="label2">
+                <?php echo $studies_name; ?></td>
+                <td><?php echo form_dropdown('studies_name', $studies_name_lists, NULL, 'id="studies_name"'); ?>
+
+                </td>
+
+            </tr>
         </table>
         <?php echo form_submit('search','Search');  ?>
         
@@ -37,22 +48,24 @@
                 <tr align='center'>
                     <th style="background-color:Crimson;">Date</th>
                     <th style="background-color:Crimson;">Patient Name</th>
+                    <th style="background-color:Crimson;">Studies</th>
                     <th style="background-color:Crimson;">Action</th>
                 </tr>
             </thead>
             <?php if(!empty($patient_list)) { ?>
             <?php foreach ($patient_list as $list): ?>
                 <tr>
-                    <td></td>
+                    <td><?php echo $list['created_on']; ?></td>
                     <td><?php echo $list['given_name']; ?></td>
+                    <td><?php echo $studies_name_list[$list['studies_id']]; ?></td>
                     <td width="15%" align='center'>
-                        <a href="<?php echo site_url('record/patient_record_view') . '/' . $list['ic_no'] ?>">
+                        <a href="<?php echo site_url('record/patient_record_view') . '/' . $list['ic_no'] . '/' . $list['patient_studies_id'] ?>">
                         <img src="<?php echo base_url(); ?>img/view.png" alt="view_patient_detail" width="18" height="18"></a>
                         <a>&nbsp;</a>
-                        <a href="<?php echo site_url('record/test') . '/' . $list['ic_no'] ?>">
+                        <a href="<?php echo site_url('record/test') . '/' . $list['ic_no'] . '/' . $list['patient_studies_id'] ?>">
                         <img src="<?php echo base_url(); ?>img/edit.png" alt="view_patient_detail" width="18" height="18"></a>
                         <a>&nbsp;</a>
-                        <a href="<?php echo site_url('record/patient_record_view') . '/' . $list['ic_no'] ?>">
+                        <a href="<?php echo site_url('record/patient_record_view') . '/' . $list['ic_no'] . '/' . $list['patient_studies_id'] ?>">
                         <img src="<?php echo base_url(); ?>img/delete.png" alt="view_patient_detail" width="18" height="18"></a>
 <!--                            <form name="view_patient_detail" action="<?php echo site_url('record/patient_record_view') . '/' . $list['ic_no'] ?>" method="post">
                             <input type ="image" src="<?php echo base_url(); ?>img/view.png" alt="view_patient_detail" height="18px"></input>

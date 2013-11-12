@@ -1545,6 +1545,39 @@ class Record_model extends CI_Model {
     public function get_view_patient_record($ic_no,$table,$patient_ic_no){
     
 	$p_record = $this->db->get_where($table, array($patient_ic_no => $ic_no));
+        $patient_detail = $p_record->result_array();
+        //echo $this->db->last_query();exit;
+        $p_record->free_result();  
+
+        return $patient_detail;
+    }
+    
+    public function get_consent_detail_patient_record($ic_no,$patient_studies_id){
+         
+        $this->db->where('patient_ic_no',$ic_no);
+        $this->db->where('studies_id',$patient_studies_id);
+	$p_record = $this->db->get('patient_studies');
+        $patient_detail = $p_record->result_array();
+       // echo $this->db->last_query();exit;
+        $p_record->free_result();  
+
+        return $patient_detail;
+    }
+    
+    public function get_detail_record($ic_no,$table,$patient_ic_no){
+    
+	$p_record = $this->db->get_where($table, array($patient_ic_no => $ic_no));
+        $patient_detail = $p_record->row_array();
+        //echo $this->db->last_query();exit;
+        $p_record->free_result();  
+
+        return $patient_detail;
+    }
+    
+    public function get_detail_patient_record($ic_no){
+    
+        $this->db->where('ic_no',$ic_no);
+	$p_record = $this->db->get('patient');
         $patient_detail = $p_record->row_array();
         //echo $this->db->last_query();exit;
         $p_record->free_result();  
@@ -2016,6 +2049,19 @@ class Record_model extends CI_Model {
         return $patient_list['non_cancerous_site_id'];
     }
     
+    public function get_studies_name() {
+        $patientStudiesList = array();
+        $this->db->select('studies_id,studies_name');
+        $this->db->order_by('studies_id ASC');
+        //$this->db->order_by('studies_name asc');
+        $query = $this->db->get('studies');
+        foreach ($query->result() as $row) {
+            $patientStudiesList = $patientStudiesList + array($row->studies_id => $row->studies_name);
+        }
+        $query->free_result();
+        return $patientStudiesList;
+    }
+    
     public function get_ovarian_screening_type($record_data) {
         $this->db->select('ovarian_screening_type_id');
         $this->db->where('ovarian_screening_type_name',$record_data);
@@ -2027,7 +2073,7 @@ class Record_model extends CI_Model {
     }
        
     function getPatientInfo($record_data) {
-        $query = $this->db->select('given_name, surname, ic_no')
+        $query = $this->db->select('given_name,surname,ic_no')
                 ->like('given_name', $record_data['given_name'])
                 ->like('ic_no', $record_data['ic_no'])
                 ->limit(5)
@@ -2042,11 +2088,39 @@ class Record_model extends CI_Model {
         }
         return $result;
     }
+    
+    function getPatientList($record_data) {
+        $this->db->select('a.given_name, a.surname, a.ic_no, a.created_on, b.studies_id, b.patient_studies_id');
+        $this->db->from('patient a, patient_studies b');
+        $this->db->where('a.ic_no = b.patient_ic_no');
+        $this->db->like('a.given_name', $record_data['given_name']);
+        $this->db->like('a.ic_no', $record_data['ic_no']);
+        $this->db->limit(5);
+        $patient_list = $this->db->get('');
+        $list_patient = $patient_list->result_array();
+        $patient_list->free_result();
+
+        return $list_patient;
+    }
 
     /* public function test($fileName)
       {
       echo $fileName;
       } */
 }
+
+function get_family_patient_record($ic_no) {
+        $this->db->select('a.*,b.*,c.*');
+        $this->db->from('patient a, patient_studies b');
+        $this->db->where('a.ic_no = b.patient_ic_no');
+        $this->db->like('a.given_name', $record_data['given_name']);
+        $this->db->like('a.ic_no', $record_data['ic_no']);
+        $this->db->limit(5);
+        $patient_list = $this->db->get('');
+        $list_patient = $patient_list->result_array();
+        $patient_list->free_result();
+
+        return $list_patient;
+    }
 
 ?>

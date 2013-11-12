@@ -397,6 +397,8 @@ class Record extends CI_Controller {
                 'no_of_sisters' => $this->input->post('father_no_of_sisters'),
                 'total_half_sisters' => $this->input->post('father_no_of_half_sisters'),
                 'total_half_brothers' => $this->input->post('father_no_of_half_brothers'),
+                'is_adopted' => $this->input->post('father_unknown_reason_is_adopted'),
+                'is_in_other_country' => $this->input->post('father_unknown_reason_in_other_countries'),
                 'created_on' => $date,
                 'vital_status' => $this->input->post('father_vital_status')
                 //'match_score_at_consent' => $this->input->post('father_mach_score_at_consent'),
@@ -429,6 +431,8 @@ class Record extends CI_Controller {
                 'total_half_brothers' => $this->input->post('mother_no_of_half_brothers'),
                 'no_of_sisters' => $this->input->post('mother_no_of_sisters'),
                 'created_on' => $date,
+                'is_adopted' => $this->input->post('mother_unknown_reason_is_adopted'),
+                'is_in_other_country' => $this->input->post('mother_unknown_reason_in_other_countries'),
                 'vital_status' => $this->input->post('mother_vital_status')
                 //'match_score_at_consent' => $this->input->post('mother_mach_score_at_consent'),
                 //'match_score_past_consent' => $this->input->post('mother_mach_score_past_consent'),
@@ -512,10 +516,11 @@ class Record extends CI_Controller {
         }
     }
 
-    function patient_record_view($ic_no) {
-
+    function patient_record_view($ic_no,$patient_studies_id) {
+        
         $data['ic_no'] = $ic_no;
-
+        $data['patient_studies_id'] = $patient_studies_id;
+        
         $this->load->view('record/view_home', $data);
     }
 
@@ -538,9 +543,12 @@ class Record extends CI_Controller {
         );
         //print_r($data_search_key);
         $result = array();
-        $result = $this->Record_model->getPatientInfo($data_search_key);
-                
+        $result = $this->Record_model->getPatientList($data_search_key);
+                        
         $data['patient_list'] = $result;
+        
+        $data['studies_name_list'] = $this->Record_model->get_studies_name();
+
         }
         
         $this->template->load("templates/report_home_template", 'record/list_record_personal_details', $data);
@@ -1738,35 +1746,38 @@ class Record extends CI_Controller {
         $this->template->load("templates/report_home_template", 'record/view_record_home');
     }
 
-    function view_record_list($var = null, $ic_no) {
+    function view_record_list($var = null, $ic_no, $patient_studies_id = null) {
         $this->load->model('Record_model');
         $data = $this->Record_model->general();
 
-        if ($var == 'personal') {
-            $data['patient_detail'] = $this->record_model->get_view_patient_record($ic_no, 'patient', 'ic_no');
-            $data['patient_consent_detail'] = $this->record_model->get_view_patient_record($ic_no, 'patient_studies', 'patient_ic_no');
-            $data['patient_private_no'] = $this->record_model->get_view_patient_record($ic_no, 'patient_private_no', 'patient_ic_no');
-            $data['patient_hospital_no'] = $this->record_model->get_view_patient_record($ic_no, 'patient_hospital_no', 'patient_ic_no');
-            $data['patient_cogs_studies'] = $this->record_model->get_view_patient_record($ic_no, 'patient_cogs_studies', 'patient_ic_no');
-            $data['patient_contact_person'] = $this->record_model->get_view_patient_record($ic_no, 'patient_contact_person', 'patient_ic_no');
-            $data['patient_survival_status'] = $this->record_model->get_view_patient_record($ic_no, 'patient_survival_status', 'patient_ic_no');
-            $data['patient_relatives_summary'] = $this->record_model->get_view_patient_record($ic_no, 'patient_relatives_summary', 'patient_ic_no');
+        if ($var == 'personal') {            
+            $data['patient_detail'] = $this->record_model->get_detail_patient_record($ic_no,$patient_studies_id );
+            $data['patient_consent_detail'] = $this->record_model->get_consent_detail_patient_record($ic_no, $patient_studies_id);
+            $data['patient_private_no'] = $this->record_model->get_detail_record($ic_no, 'patient_private_no', 'patient_ic_no');
+            $data['patient_hospital_no'] = $this->record_model->get_detail_record($ic_no, 'patient_hospital_no', 'patient_ic_no');
+            $data['patient_cogs_studies'] = $this->record_model->get_detail_record($ic_no, 'patient_cogs_studies', 'patient_ic_no');
+            $data['patient_contact_person'] = $this->record_model->get_detail_record($ic_no, 'patient_contact_person', 'patient_ic_no');
+            $data['patient_survival_status'] = $this->record_model->get_detail_record($ic_no, 'patient_survival_status', 'patient_ic_no');
+            $data['patient_relatives_summary'] = $this->record_model->get_detail_record($ic_no, 'patient_relatives_summary', 'patient_ic_no');
             $data['isUpdate'] = TRUE;
-            $this->template->load("templates/add_record_template", 'record/add_record_personal_details', $data);
+            $this->template->load("templates/add_record_template", 'record/view_record_personal_details', $data);
         } else if ($var == 'family') {
-            $data['patient_family'] = $a = $this->record_model->get_view_patient_record($ic_no, 'patient_relatives', 'patient_ic_no');
-            $this->template->load("templates/add_record_template", 'record/add_record_family_details', $data);
+            $data['patient_family'] = $this->record_model->get_view_patient_record($ic_no, 'patient_relatives', 'patient_ic_no');
+            $this->template->load("templates/add_record_template", 'record/view_record_family_details_1', $data);
         } else if ($var == 'diagnosis') {
             $this->template->load("templates/add_record_template", 'record/add_record_diagnosis_treatment_details', $data);
         } else if ($var == 'studies_setOne') {
             $this->template->load("templates/add_record_template", 'record/add_record_studies_set_one_details', $data);
         } else if ($var == 'mutation_analysis') {
-            $data['patient_mutation_analysis'] = $this->record_model->get_view_patient_record($ic_no, 'patient_mutation_analysis', 'patient_ic_no');
+            
+            $data['patient_mutation_analysis'] = $this->record_model->get_view_patient_record($patient_studies_id, 'patient_mutation_analysis', 'patient_studies_id');
+            //print_r($a);exit;
             $this->template->load("templates/add_record_template", 'record/view_record_mutation_analysis_details', $data);
         } else if ($var == 'pathology') {
             $this->template->load("templates/add_record_template", 'record/add_record_pathology_details', $data);
         } else if ($var == 'risk_assessment') {
-            $this->template->load("templates/add_record_template", 'record/add_record_risk_assessment_details', $data);
+            $data['patient_risk_assessment'] = $this->record_model->get_view_patient_record($ic_no, 'patient_risk_assessment', 'patient_ic_no');
+            $this->template->load("templates/add_record_template", 'record/view_record_risk_assessment_details', $data);
         } else if ($var == 'lifestyleFactors') {
             $this->template->load("templates/add_record_template", 'record/add_record_lifestyles_factors_details', $data);
         } else if ($var == 'counselling') {
