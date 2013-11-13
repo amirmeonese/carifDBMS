@@ -29,8 +29,7 @@
             <tr>
                 <td>
                     <?php echo $questionnaire_date; ?>: 
-                    <?php echo form_input(array('name' => 'questionnaire_date', 'class' => 'datepicker')); ?>
-                    <?php echo form_input(array('name' => 'test_ordered_by', 'value' => $patient_detail['test_ordered_by']))?>
+                    <?php echo form_input(array('name' => 'questionnaire_date', 'value' => $patient_detail['questionnaire_date'], 'class' => 'datepicker'))?>
                 </td>
             </tr>
             <tr>
@@ -131,18 +130,15 @@
             <tr>
                 <td>
                     <?php echo $cigarettes_smoked_flag; ?>: 
-                    <?php echo form_checkbox('cigarettes_smoked_flag', '1', FALSE); ?>
-                    <?php echo form_checkbox(array('name' => 'testing_results_notification_flag', 'value' => $patient_detail['testing_results_notification_flag']))?>
+                    <?php echo form_checkbox(array('name' => 'cigarettes_smoked_flag', 'value' => $patient_detail['cigarettes_smoked_flag']))?>
                 </td>
                 <td>
                     <?php echo $cigarettes_still_smoked_flag; ?>: 
-                    <?php echo form_checkbox('cigarettes_still_smoked_flag', '1', FALSE); ?>
-                    <?php echo form_checkbox(array('name' => 'testing_results_notification_flag', 'value' => $patient_detail['testing_results_notification_flag']))?>
+                    <?php echo form_checkbox(array('name' => 'cigarettes_still_smoked_flag', 'value' => $patient_detail['cigarettes_still_smoked_flag']))?>
                 </td>
                 <td>
                     <?php echo $total_smoked_years; ?>: 
-                    <?php echo form_input('total_smoked_years'); ?>
-                    <?php echo form_input(array('name' => 'test_ordered_by', 'value' => $patient_detail['test_ordered_by']))?>
+\                    <?php echo form_input(array('name' => 'total_smoked_years', 'value' => $patient_detail['total_smoked_years']))?>
                 </td>
             </tr>
             <tr>
@@ -198,8 +194,7 @@
             <tr>
                 <td>
                     <?php echo $alcohol_drunk_flag; ?>:
-                    <?php echo form_checkbox('alcohol_drunk_flag', '1', FALSE); ?>
-                    <?php echo form_checkbox(array('name' => 'testing_results_notification_flag', 'value' => $patient_detail['testing_results_notification_flag']))?>
+                    <?php echo form_checkbox(array('name' => 'alcohol_drunk_flag', 'value' => $patient_detail['alcohol_drunk_flag']))?>
                 </td>
                 <td>
                     <?php echo $alcohol_average; ?>:  <br />
@@ -207,8 +202,7 @@
                 </td>
                 <td>
                     <?php echo $alcohol_average_details; ?>:  <br />
-                    <?php echo form_input('alcohol_average_details'); ?>
-                    <?php echo form_input(array('name' => 'test_ordered_by', 'value' => $patient_detail['test_ordered_by']))?>
+                    <?php echo form_input(array('name' => 'alcohol_average_details', 'value' => $patient_detail['alcohol_average_details']))?>
                 </td>
             </tr>
             <tr>
@@ -219,13 +213,11 @@
             <tr>
                 <td>
                     <?php echo $coffee_drunk_flag; ?>: 
-                    <?php echo form_checkbox('coffee_drunk_flag', '1', FALSE); ?>
-                    <?php echo form_checkbox(array('name' => 'testing_results_notification_flag', 'value' => $patient_detail['testing_results_notification_flag']))?>
+                    <?php echo form_checkbox(array('name' => 'coffee_drunk_flag', 'value' => $patient_detail['coffee_drunk_flag']))?>
                 </td>
                 <td>
                     <?php echo $coffee_age; ?>: <br />
-                    <?php echo form_input('coffee_age'); ?>
-                    <?php echo form_input(array('name' => 'test_ordered_by', 'value' => $patient_detail['test_ordered_by']))?>
+                    <?php echo form_input(array('name' => 'coffee_age', 'value' => $patient_detail['coffee_age']))?>
                 </td>
                 <td>
                     <?php echo $coffee_average; ?>: <br />
@@ -240,13 +232,11 @@
             <tr>
                 <td>
                     <?php echo $tea_drunk_flag; ?>: 
-                    <?php echo form_checkbox('tea_drunk_flag', '1', FALSE); ?>
-                    <?php echo form_checkbox(array('name' => 'testing_results_notification_flag', 'value' => $patient_detail['testing_results_notification_flag']))?>
+                    <?php echo form_checkbox(array('name' => 'tea_drunk_flag', 'value' => $patient_detail['tea_drunk_flag']))?>
                 </td>
                 <td>
                     <?php echo $tea_age; ?>: <br />
-                    <?php echo form_input('tea_age'); ?>
-                    <?php echo form_input(array('name' => 'test_ordered_by', 'value' => $patient_detail['test_ordered_by']))?>
+                    <?php echo form_input(array('name' => 'tea_age', 'value' => $patient_detail['tea_age']))?>
                 </td>
                 <td>
                     <?php echo $tea_average; ?>: <br />
@@ -260,8 +250,7 @@
                 </td>
                 <td>
                     <?php echo $tea_type_other; ?>: <br />
-                    <?php echo form_input('tea_type_other'); ?>
-                    <?php echo form_input(array('name' => 'test_ordered_by', 'value' => $patient_detail['test_ordered_by']))?>
+                    <?php echo form_input(array('name' => 'tea_type_other', 'value' => $patient_detail['tea_type_other']))?>
                 </td>
                 <td>
                     &nbsp;
@@ -275,8 +264,7 @@
             <tr>
                 <td>
                     <?php echo $soya_bean_drunk_flag; ?>: 
-                    <?php echo form_checkbox('soya_bean_drunk_flag', '1', FALSE); ?>
-                    <?php echo form_checkbox(array('name' => 'testing_results_notification_flag', 'value' => $patient_detail['testing_results_notification_flag']))?>
+                    <?php echo form_checkbox(array('name' => 'soya_bean_drunk_flag', 'value' => $patient_detail['soya_bean_drunk_flag']))?>
                 </td>
                 <td>
                     <?php echo $soya_bean_average; ?>: <br />
@@ -284,8 +272,7 @@
                 </td>
                 <td>
                     <?php echo $soya_products_flag; ?>: 
-                    <?php echo form_checkbox('soya_products_flag', '1', FALSE); ?>
-                    <?php echo form_checkbox(array('name' => 'testing_results_notification_flag', 'value' => $patient_detail['testing_results_notification_flag']))?>
+                    <?php echo form_checkbox(array('name' => 'soya_products_flag', 'value' => $patient_detail['soya_products_flag']))?>
                 </td>
             </tr>
             <tr>
@@ -296,7 +283,7 @@
                 <td>
                     <?php echo $soya_products_average_other; ?>: <br />
                     <?php echo form_input('soya_products_average_other'); ?>
-                    <?php echo form_input(array('name' => 'test_ordered_by', 'value' => $patient_detail['test_ordered_by']))?>
+                    <?php echo form_input(array('name' => 'soya_products_average_other', 'value' => $patient_detail['soya_products_average_other']))?>
                 </td>
                 <td>
                     &nbsp;
@@ -310,18 +297,15 @@
             <tr>
                 <td>
                     <?php echo $diabetes_flag; ?>: 
-                    <?php echo form_checkbox('diabetes_flag', '1', FALSE); ?>
-                    <?php echo form_checkbox(array('name' => 'testing_results_notification_flag', 'value' => $patient_detail['testing_results_notification_flag']))?>
+                    <?php echo form_checkbox(array('name' => 'diabetes_flag', 'value' => $patient_detail['diabetes_flag']))?>
                 </td>
                 <td>
                     <?php echo $medicine_for_diabetes_flag; ?>: 
-                    <?php echo form_checkbox('medicine_for_diabetes_flag', '1', FALSE); ?>
-                    <?php echo form_checkbox(array('name' => 'testing_results_notification_flag', 'value' => $patient_detail['testing_results_notification_flag']))?>
+                    <?php echo form_checkbox(array('name' => 'medicine_for_diabetes_flag', 'value' => $patient_detail['medicine_for_diabetes_flag']))?>
                 </td>
                 <td>
                     <?php echo $diabates_medicine_name; ?>: <br />
-                    <?php echo form_input('diabates_medicine_name'); ?>
-                    <?php echo form_input(array('name' => 'test_ordered_by', 'value' => $patient_detail['test_ordered_by']))?>
+                    <?php echo form_input(array('name' => 'diabates_medicine_name', 'value' => $patient_detail['diabates_medicine_name']))?>
                 </td>
             </tr>
             <tr>
@@ -341,13 +325,11 @@
             <tr>
                 <td>
                     <?php echo $age_period_starts; ?>: <br />
-                    <?php echo form_input('age_period_starts'); ?>
-                    <?php echo form_input(array('name' => 'test_ordered_by', 'value' => $patient_detail['test_ordered_by']))?>
+                    <?php echo form_input(array('name' => 'age_period_starts', 'value' => $patient_detail['age_period_starts']))?>
                 </td>
                 <td>
                     <?php echo $still_period_flag; ?>: 
-                    <?php echo form_checkbox('still_period_flag', '1', FALSE); ?>
-                    <?php echo form_checkbox(array('name' => 'testing_results_notification_flag', 'value' => $patient_detail['testing_results_notification_flag']))?>
+                    <?php echo form_checkbox(array('name' => 'still_period_flag', 'value' => $patient_detail['still_period_flag']))?>
                 </td>
                 <td>
                     <?php echo $period_type; ?>: 
@@ -361,21 +343,18 @@
                 </td>
                 <td>
                     <?php echo $period_cycle_days_other_details; ?>: <br />
-                    <?php echo form_input('period_cycle_days_other_details'); ?>
-                    <?php echo form_input(array('name' => 'test_ordered_by', 'value' => $patient_detail['test_ordered_by']))?>
+                    <?php echo form_input(array('name' => 'period_cycle_days_other_details', 'value' => $patient_detail['period_cycle_days_other_details']))?>
                 </td>
                 <td>&nbsp;</td>
             </tr>
             <tr>
                 <td>
                     <?php echo $age_period_stops; ?>: <br />
-                    <?php echo form_input('age_period_stops'); ?>
-                    <?php echo form_input(array('name' => 'test_ordered_by', 'value' => $patient_detail['test_ordered_by']))?>
+                    <?php echo form_input(array('name' => 'age_period_stops', 'value' => $patient_detail['age_period_stops']))?>
                 </td>
                 <td>
                     <?php echo $date_period_stops; ?>: <br />
-                    <?php echo form_input(array('name' => 'date_period_stops', 'class' => 'datepicker')); ?>
-                    <?php echo form_input(array('name' => 'test_ordered_by', 'value' => $patient_detail['test_ordered_by']))?>
+                    <?php echo form_input(array('name' => 'date_period_stops', 'value' => $patient_detail['date_period_stops'], 'class' => 'datepicker'))?>
                 </td>
                 <td>
                     <?php echo $reason_period_stops; ?>: <br />
@@ -383,8 +362,7 @@
                 </td>
                 <td>
                     <?php echo $reason_period_stops_other_details; ?>: <br />
-                    <?php echo form_input('reason_period_stops_other_details'); ?>
-                    <?php echo form_input(array('name' => 'test_ordered_by', 'value' => $patient_detail['test_ordered_by']))?>
+                    <?php echo form_input(array('name' => 'reason_period_stops_other_details', 'value' => $patient_detail['reason_period_stops_other_details']))?>
                 </td>
             </tr>
         </table>
@@ -398,13 +376,11 @@
                 <tr>
                     <td>
                         <?php echo $never_been_pregnant_flag; ?>: 
-                        <?php echo form_checkbox('never_been_pregnant_flag', '1', FALSE); ?>
-                        <?php echo form_checkbox(array('name' => 'testing_results_notification_flag', 'value' => $patient_detail['testing_results_notification_flag']))?>
+                        <?php echo form_checkbox(array('name' => 'never_been_pregnant_flag', 'value' => $patient_detail['never_been_pregnant_flag']))?>
                     </td>
                     <td>
                         <?php echo $pregnant_flag; ?>: 
-                        <?php echo form_checkbox('pregnant_flag', '1', FALSE); ?>
-                        <?php echo form_checkbox(array('name' => 'testing_results_notification_flag', 'value' => $patient_detail['testing_results_notification_flag']))?>
+                        <?php echo form_checkbox(array('name' => 'pregnant_flag', 'value' => $patient_detail['pregnant_flag']))?>
                     </td>
                     <td>
                         <input type="button" value="Add parity" onClick="window.parent.addPregnancyInput('parity_section_div_1');
@@ -426,18 +402,15 @@
 
                 <td>
                     <?php echo $infertility_testing_flag; ?>:
-                    <?php echo form_checkbox('infertility_testing_flag', '1', FALSE); ?>
-                    <?php echo form_checkbox(array('name' => 'testing_results_notification_flag', 'value' => $patient_detail['testing_results_notification_flag']))?>
+                    <?php echo form_checkbox(array('name' => 'infertility_testing_flag', 'value' => $patient_detail['infertility_testing_flag']))?>
                 </td>
                 <td>
                     <?php echo $infertility_treatment_details; ?>: <br />
-                    <?php echo form_input('infertility_treatment_details'); ?>
-                    <?php echo form_input(array('name' => 'test_ordered_by', 'value' => $patient_detail['test_ordered_by']))?>
+                    <?php echo form_input(array('name' => 'infertility_treatment_details', 'value' => $patient_detail['infertility_treatment_details']))?>
                 </td>
                 <td>
                     <?php echo $infertility_treatment_duration; ?>:  <br />
-                    <?php echo form_input('infertility_treatment_duration'); ?>
-                    <?php echo form_input(array('name' => 'test_ordered_by', 'value' => $patient_detail['test_ordered_by']))?>
+                    <?php echo form_input(array('name' => 'infertility_treatment_duration', 'value' => $patient_detail['infertility_treatment_duration']))?>
                 </td>
                 <td>
                     <?php echo $infertility_treatment_comments; ?>: <br />
@@ -458,45 +431,37 @@
             <tr>
                 <td>
                     <?php echo $contraceptive_pills_flag; ?>: 
-                    <?php echo form_checkbox('contraceptive_pills_flag', '1', FALSE); ?>
-                    <?php echo form_checkbox(array('name' => 'testing_results_notification_flag', 'value' => $patient_detail['testing_results_notification_flag']))?>
+                    <?php echo form_checkbox(array('name' => 'contraceptive_pills_flag', 'value' => $patient_detail['contraceptive_pills_flag']))?>
                 </td>
                 <td>
                     <?php echo $contraceptive_pills_details; ?>: <br />
-                    <?php echo form_input('contraceptive_pills_details'); ?>
-                    <?php echo form_input(array('name' => 'test_ordered_by', 'value' => $patient_detail['test_ordered_by']))?>
+                    <?php echo form_input(array('name' => 'contraceptive_pills_details', 'value' => $patient_detail['contraceptive_pills_details']))?>
                 </td>
                 <td>
                     <?php echo $currently_taking_contraceptive_pills_flag; ?>: <br />
-                    <?php echo form_checkbox('currently_taking_contraceptive_pills_flag', '1', FALSE); ?>
-                    <?php echo form_checkbox(array('name' => 'testing_results_notification_flag', 'value' => $patient_detail['testing_results_notification_flag']))?>
+                    <?php echo form_checkbox(array('name' => 'currently_taking_contraceptive_pills_flag', 'value' => $patient_detail['currently_taking_contraceptive_pills_flag']))?>
                 </td>
                 <td>
                     <?php echo $contraceptive_start_date; ?>: <br />
-                    <?php echo form_input(array('name' => 'contraceptive_start_date', 'class' => 'datepicker')); ?>
-                    <?php echo form_input(array('name' => 'test_ordered_by', 'value' => $patient_detail['test_ordered_by']))?>
+                    <?php echo form_input(array('name' => 'contraceptive_start_date', 'value' => $patient_detail['contraceptive_start_date'], 'class' => 'datepicker'))?>
                 </td>
             </tr>
             <tr>
                 <td>
                     <?php echo $contraceptive_end_date; ?>: <br />
-                    <?php echo form_input(array('name' => 'contraceptive_end_date', 'class' => 'datepicker')); ?>
-                    <?php echo form_input(array('name' => 'test_ordered_by', 'value' => $patient_detail['test_ordered_by']))?>
+                    <?php echo form_input(array('name' => 'contraceptive_end_date', 'value' => $patient_detail['contraceptive_end_date'], 'class' => 'datepicker'))?>
                 </td>
                 <td>
                     <?php echo $contraceptive_start_age; ?>: <br />
-                    <?php echo form_input('contraceptive_start_age'); ?>
-                    <?php echo form_input(array('name' => 'test_ordered_by', 'value' => $patient_detail['test_ordered_by']))?>
+                    <?php echo form_input(array('name' => 'contraceptive_start_age', 'value' => $patient_detail['contraceptive_start_age']))?>
                 </td>
                 <td>
                     <?php echo $contraceptive_end_age; ?>: <br />
-                    <?php echo form_input('contraceptive_end_age'); ?>
-                    <?php echo form_input(array('name' => 'test_ordered_by', 'value' => $patient_detail['test_ordered_by']))?>
+                    <?php echo form_input(array('name' => 'contraceptive_end_age', 'value' => $patient_detail['contraceptive_end_age']))?>
                 </td>
                 <td>
                     <?php echo $contraceptive_duration; ?>: <br />
-                    <?php echo form_input('contraceptive_duration'); ?>
-                    <?php echo form_input(array('name' => 'test_ordered_by', 'value' => $patient_detail['test_ordered_by']))?>
+                    <?php echo form_input(array('name' => 'contraceptive_duration', 'value' => $patient_detail['contraceptive_duration']))?>
                 </td>
             </tr>
             <tr>
@@ -506,22 +471,19 @@
                 <td>
                     <?php echo $HRT_flag; ?>: 
                     <?php echo form_checkbox('HRT_flag', '1', FALSE); ?>
-                    <?php echo form_checkbox(array('name' => 'testing_results_notification_flag', 'value' => $patient_detail['testing_results_notification_flag']))?>
+                    <?php echo form_checkbox(array('name' => 'HRT_flag', 'value' => $patient_detail['HRT_flag']))?>
                 </td>
                 <td>
                     <?php echo $HRT_details; ?>: <br />
-                    <?php echo form_input('HRT_details'); ?>
-                    <?php echo form_input(array('name' => 'test_ordered_by', 'value' => $patient_detail['test_ordered_by']))?>
+                    <?php echo form_input(array('name' => 'HRT_details', 'value' => $patient_detail['HRT_details']))?>
                 </td>
                 <td>
                     <?php echo $currently_using_HRT_flag; ?>: <br />
-                    <?php echo form_checkbox('currently_using_hrt_flag', '1', FALSE); ?>
-                    <?php echo form_checkbox(array('name' => 'testing_results_notification_flag', 'value' => $patient_detail['testing_results_notification_flag']))?>
+                    <?php echo form_checkbox(array('name' => 'currently_using_hrt_flag', 'value' => $patient_detail['currently_using_hrt_flag']))?>
                 </td>
                 <td>
                     <?php echo $HRT_start_date; ?>: <br />
-                    <?php echo form_input(array('name' => 'hrt_start_date', 'class' => 'datepicker')); ?>
-                    <?php echo form_input(array('name' => 'test_ordered_by', 'value' => $patient_detail['test_ordered_by']))?>
+                    <?php echo form_input(array('name' => 'hrt_start_date', 'value' => $patient_detail['hrt_start_date'], 'class' => 'datepicker'))?>
                 </td>
             </tr>
             <tr>
