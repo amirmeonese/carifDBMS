@@ -1779,7 +1779,8 @@ class Record extends CI_Controller {
             $data['patient_risk_assessment'] = $this->record_model->get_view_patient_record($ic_no, 'patient_risk_assessment', 'patient_ic_no');
             $this->template->load("templates/add_record_template", 'record/view_record_risk_assessment_details', $data);
         } else if ($var == 'lifestyleFactors') {
-            $this->template->load("templates/add_record_template", 'record/add_record_lifestyles_factors_details', $data);
+            $data['patient_lifestyle_factors'] = $this->record_model->get_lifestyle_detail_patient_record($ic_no, $patient_studies_id);
+            $this->template->load("templates/add_record_template", 'record/view_record_lifestyles_factors_details', $data);
         } else if ($var == 'counselling') {
             $this->template->load("templates/add_record_template", 'record/interview_home', $data);
         } else if ($var == 'bulkImport') {

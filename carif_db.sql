@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Nov 12, 2013 at 09:16 AM
+-- Generation Time: Nov 13, 2013 at 08:41 AM
 -- Server version: 5.6.12
 -- PHP Version: 5.5.1
 
@@ -695,9 +695,15 @@ CREATE TABLE IF NOT EXISTS `patient_lifestyle_factors` (
   `self_image_at_7years` longblob NOT NULL,
   `self_image_at_18years` longblob NOT NULL,
   `self_image_now` longblob NOT NULL,
-  `pa_sports_activitiy_childhood` text NOT NULL,
-  `pa_sports_activitiy_adult` text NOT NULL,
-  `pa_sports_activitiy_now` text NOT NULL,
+  `pa_strenuous_exercise_now` text NOT NULL,
+  `pa_moderate_exercise_now` text NOT NULL,
+  `pa_gentle_exercise_now` text NOT NULL,
+  `pa_strenuous_exercise_childhood` text NOT NULL,
+  `pa_moderate_exercise_childhood` text NOT NULL,
+  `pa_gentle_exercise_childhood` text NOT NULL,
+  `pa_strenuous_exercise_adult` text NOT NULL,
+  `pa_moderate_exercise_adult` text NOT NULL,
+  `pa_gentle_exercise_adult` text NOT NULL,
   `cigarrets_smoked_flag` tinyint(1) NOT NULL,
   `cigarrets_still_smoked_flag` tinyint(1) NOT NULL,
   `total_smoked_years` int(5) NOT NULL,
