@@ -14,11 +14,15 @@ $( document ).ready(function() {
 		$.each(data, function(key, value){
 			
 			vals = value.split(",");
-			var $secondChoice = $("#" + key);
-			$secondChoice.empty();
-			$.each(vals, function(index, value) {
-				$secondChoice.append("<option>" + value + "</option>");
-			});
+			
+			$("[id=" + key + "]").each(function( i, listItem )
+			{
+				var $elementObj = $( listItem );
+				$elementObj.empty();
+				$.each(vals, function(index, value) {
+					$elementObj.append("<option>" + value + "</option>");
+				});
+			});			
 		});
 	});
 	
