@@ -34,7 +34,7 @@
             <tr>
                 <td>
                     <?php echo $nationality; ?>: 
-                    <?php echo form_dropdown('nationality', $nationalities); ?>
+					<?php echo form_dropdown('nationality', $nationalities, NULL, 'id="nationality"'); ?>
                 </td>
                 <td>
                     <?php echo $IC_no; ?>: 
@@ -44,7 +44,7 @@
                 </td>
                 <td>
                     <?php echo $gender; ?>: 
-                    <?php echo form_dropdown('gender', $genderTypes); ?>
+					<?php echo form_dropdown('gender', $genderTypes, NULL, 'id="gender"'); ?>
                 </td>
                 <td>
                     <?php echo $ethinicity; ?>: 
@@ -65,7 +65,7 @@
                 </td>
                 <td>
                     <?php echo $marital_status; ?>: 
-                    <?php echo form_dropdown('marital_status', $marital_status_lists); ?>
+                   <?php echo form_dropdown('marital_status', $marital_status_lists, NULL, 'id="marital_status"'); ?>
                 </td>
                 <td>
                     <?php echo $blood_group; ?>: 
@@ -150,7 +150,7 @@
             <tr>
                 <td>
 					<?php echo $COGS_study_id; ?>:
-                    <?php echo form_dropdown('COGS_studies_id', $COGS_study_id_lists); ?>
+                    <?php echo form_dropdown('COGS_study_id', $COGS_study_id_lists, NULL, 'id="COGS_study_id"'); ?>
                 </td>
                 <td>
 					<?php echo 'Study no'; ?>: 
@@ -242,7 +242,7 @@
                 </td>
 				<td>
                     <?php echo $income_level; ?>: 
-                    <?php echo form_dropdown('income_level', $income_level_lists); ?>
+                    <?php echo form_dropdown('income_level', $income_level_lists, NULL, 'id="income_level"'); ?>
                 </td>
             </tr>
             <tr>
@@ -341,11 +341,12 @@
             <tr>
                 <td>
                     <?php echo $status_source; ?>: 
-                    <?php echo form_dropdown('status_source', $status_source_lists); ?>
+                    <?php echo form_dropdown('status_source', $status_source_lists, NULL, 'id="status_source"'); ?>
                 </td>
                 <td>
                     <?php echo $alive_status; ?>: 
-                    <?php echo form_dropdown('alive_status', $alive_status_lists); ?>
+                    <?php echo form_dropdown('alive_status', $alive_status_lists, NULL, 'id="alive_status"'); ?>
+
                 </td>
                 <td>
                     <?php echo $status_gathered_date; ?>: 
@@ -367,7 +368,7 @@
             <tr>
                 <td>
                     <?php echo $studies_name; ?>: 
-                    <?php echo form_dropdown('studies_name', $studies_name_lists); ?>
+                    <?php echo form_dropdown('studies_name', $studies_name_lists, NULL, 'id="studies_name"'); ?>
                 </td>
                 <td>
                     <?php echo $date_at_consent; ?>: 

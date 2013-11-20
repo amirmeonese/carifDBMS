@@ -37,6 +37,19 @@
 					<option value="alive_status">Alive Status</option>
 					<option value="studies_name">Studies Names</option>
 					<option value="patient_cancer_name_lists">Cancer Names</option>
+					<option value="cancer_site">Cancer Sites</option>
+					<option value="cancer_invasive_type">Cancer Invasive Types</option>
+					<option value="detected_by">Detected By</option>
+					<option value="pathology_path_report_type_lists">Pathology Type of Report</option>
+					<option value="pathology_morphology_lists">Morphology</option>
+					<option value="pathology_tissue_tumour_stage_lists">T Staging</option>
+					<option value="pathology_node_stage_lists">N Staging</option>
+					<option value="pathology_metastasis_stage_lists">M Staging</option>
+					<option value="pathology_tumour_stage_lists">Tumour Stage</option>
+					<option value="pathology_tumour_grade_lists">Tumour Grade</option>
+					<option value="patient_cancer_treatment_name_lists">Treatment Type</option>
+					<option value="ovary_stage_classification_lists">Pathology Stage Classification</option>
+					<option value="diagnosis_name_lists">Type of Diseases</option>
 					
 					</select>
 				</td>

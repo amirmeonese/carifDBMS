@@ -36,6 +36,46 @@
 			case 'patient_cancer_name_lists':
 				$data['patient_cancer_name_lists'] = $text;
 				break;
+			case 'cancer_site':
+				$data['cancer_site'] = $text;
+				break;
+			case 'cancer_invasive_type':
+				$data['cancer_invasive_type'] = $text;
+				break;
+			case 'detected_by':
+				$data['detected_by'] = $text;
+				break;
+			case 'pathology_path_report_type_lists':
+				$data['pathology_path_report_type_lists'] = $text;
+				break;
+			case 'pathology_morphology_lists':
+				$data['pathology_morphology_lists'] = $text;
+				break;
+			case 'pathology_tissue_tumour_stage_lists':
+				$data['pathology_tissue_tumour_stage_lists'] = $text;
+				break;
+			case 'pathology_node_stage_lists':
+				$data['pathology_node_stage_lists'] = $text;
+				break;
+			case 'pathology_metastasis_stage_lists':
+				$data['pathology_metastasis_stage_lists'] = $text;
+				break;
+			case 'pathology_tumour_stage_lists':
+				$data['pathology_tumour_stage_lists'] = $text;
+				break;
+			case 'pathology_tumour_grade_lists':
+				$data['pathology_tumour_grade_lists'] = $text;
+				break;
+			case 'patient_cancer_treatment_name_lists':
+				$data['patient_cancer_treatment_name_lists'] = $text;
+				break;
+			case 'ovary_stage_classification_lists':
+				$data['ovary_stage_classification_lists'] = $text;
+				break;
+			case 'diagnosis_name_lists':
+				$data['diagnosis_name_lists'] = $text;
+				break;
+			
 		}
 		
 		// Writing modified data:

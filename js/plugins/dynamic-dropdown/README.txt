@@ -4,7 +4,8 @@ Integration steps for dynamic dropdown
 Example:<?php echo form_dropdown('marital_status', $marital_status_lists, NULL, 'id="marital_status"'); ?>
 
 2) Insert the dropdown list items in data.json. Use the ID defined in step#1 ad the key item.
-Example:"marital_status":"Single,Married"
+Example:"marital_status":",Single,Married" 
+(Note: Copy and paste the example line above into the data file. And then modify the key and the value as necessary);
 
 3)Add the ID inside the switch-case in process.php
 Example:case 'marital_status':

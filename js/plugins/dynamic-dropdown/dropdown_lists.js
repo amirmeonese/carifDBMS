@@ -65,6 +65,45 @@ $( document ).ready(function() {
 				case 'patient_cancer_name_lists':
 					vals = data.patient_cancer_name_lists.split(",");
 					break;
+				case 'cancer_site':
+					vals = data.cancer_site.split(",");
+					break;
+				case 'cancer_invasive_type':
+					vals = data.cancer_invasive_type.split(",");
+					break;
+				case 'detected_by':
+					vals = data.detected_by.split(",");
+					break;
+				case 'pathology_path_report_type_lists':
+					vals = data.pathology_path_report_type_lists.split(",");
+					break;
+				case 'pathology_morphology_lists':
+					vals = data.pathology_morphology_lists.split(",");
+					break;
+				case 'pathology_tissue_tumour_stage_lists':
+					vals = data.pathology_tissue_tumour_stage_lists.split(",");
+					break;
+				case 'pathology_node_stage_lists':
+					vals = data.pathology_node_stage_lists.split(",");
+					break;
+				case 'pathology_metastasis_stage_lists':
+					vals = data.pathology_metastasis_stage_lists.split(",");
+					break;
+				case 'pathology_tumour_stage_lists':
+					vals = data.pathology_tumour_stage_lists.split(",");
+					break;
+				case 'pathology_tumour_grade_lists':
+					vals = data.pathology_tumour_grade_lists.split(",");
+					break;
+				case 'patient_cancer_treatment_name_lists':
+					vals = data.patient_cancer_treatment_name_lists.split(",");
+					break;
+				case 'ovary_stage_classification_lists':
+					vals = data.ovary_stage_classification_lists.split(",");
+					break;
+				case 'diagnosis_name_lists':
+					vals = data.diagnosis_name_lists.split(",");
+					break;
 				case 'base':
 					vals = ['Please choose from above'];
 			}
@@ -120,6 +159,45 @@ $( document ).ready(function() {
 						break;
 					case 'patient_cancer_name_lists':
 						vals = data.patient_cancer_name_lists.split(",");
+						break;
+					case 'cancer_site':
+						vals = data.cancer_site.split(",");
+						break;
+					case 'cancer_invasive_type':
+						vals = data.cancer_invasive_type.split(",");
+						break;
+					case 'detected_by':
+						vals = data.detected_by.split(",");
+						break;
+					case 'pathology_path_report_type_lists':
+						vals = data.pathology_path_report_type_lists.split(",");
+						break;
+					case 'pathology_morphology_lists':
+						vals = data.pathology_morphology_lists.split(",");
+						break;
+					case 'pathology_tissue_tumour_stage_lists':
+						vals = data.pathology_tissue_tumour_stage_lists.split(",");
+						break;
+					case 'pathology_node_stage_lists':
+						vals = data.pathology_node_stage_lists.split(",");
+						break;
+					case 'pathology_metastasis_stage_lists':
+						vals = data.pathology_metastasis_stage_lists.split(",");
+						break;
+					case 'pathology_tumour_stage_lists':
+						vals = data.pathology_tumour_stage_lists.split(",");
+						break;
+					case 'pathology_tumour_grade_lists':
+						vals = data.pathology_tumour_grade_lists.split(",");
+						break;
+					case 'patient_cancer_treatment_name_lists':
+						vals = data.patient_cancer_treatment_name_lists.split(",");
+						break;
+					case 'ovary_stage_classification_lists':
+						vals = data.ovary_stage_classification_lists.split(",");
+						break;
+					case 'diagnosis_name_lists':
+						vals = data.diagnosis_name_lists.split(",");
 						break;
 				}
 				
@@ -205,6 +283,46 @@ $( document ).ready(function() {
 					case 'patient_cancer_name_lists':
 						vals = data.patient_cancer_name_lists.split(",");
 						break;
+					case 'cancer_site':
+						vals = data.cancer_site.split(",");
+						break;
+					case 'cancer_invasive_type':
+						vals = data.cancer_invasive_type.split(",");
+						break;
+					case 'detected_by':
+						vals = data.detected_by.split(",");
+						break;
+					case 'pathology_path_report_type_lists':
+						vals = data.pathology_path_report_type_lists.split(",");
+						break;
+					case 'pathology_morphology_lists':
+						vals = data.pathology_morphology_lists.split(",");
+						break;
+					case 'pathology_tissue_tumour_stage_lists':
+						vals = data.pathology_tissue_tumour_stage_lists.split(",");
+						break;
+					case 'pathology_node_stage_lists':
+						vals = data.pathology_node_stage_lists.split(",");
+						break;
+					case 'pathology_metastasis_stage_lists':
+						vals = data.pathology_metastasis_stage_lists.split(",");
+						break;	
+					case 'pathology_tumour_stage_lists':
+						vals = data.pathology_tumour_stage_lists.split(",");
+						break;
+					case 'pathology_tumour_grade_lists':
+						vals = data.pathology_tumour_grade_lists.split(",");
+						break;
+					case 'patient_cancer_treatment_name_lists':
+						vals = data.patient_cancer_treatment_name_lists.split(",");
+						break;
+					case 'ovary_stage_classification_lists':
+						vals = data.ovary_stage_classification_lists.split(",");
+						break;
+					case 'diagnosis_name_lists':
+						vals = data.diagnosis_name_lists.split(",");
+						break;
+					
 				}
 				
 				//Add item into end of array
@@ -307,6 +425,45 @@ $( document ).ready(function() {
 					break;
 				case 'patient_cancer_name_lists':
 					vals = data.patient_cancer_name_lists.split(",");
+					break;
+				case 'cancer_site':
+					vals = data.cancer_site.split(",");
+					break;
+				case 'cancer_invasive_type':
+					vals = data.cancer_invasive_type.split(",");
+					break;
+				case 'detected_by':
+					vals = data.detected_by.split(",");
+					break;
+				case 'pathology_path_report_type_lists':
+					vals = data.pathology_path_report_type_lists.split(",");
+					break;
+				case 'pathology_morphology_lists':
+					vals = data.pathology_morphology_lists.split(",");
+					break;
+				case 'pathology_tissue_tumour_stage_lists':
+					vals = data.pathology_tissue_tumour_stage_lists.split(",");
+					break;
+				case 'pathology_node_stage_lists':
+					vals = data.pathology_node_stage_lists.split(",");
+					break;
+				case 'pathology_metastasis_stage_lists':
+					vals = data.pathology_metastasis_stage_lists.split(",");
+					break;
+				case 'pathology_tumour_stage_lists':
+					vals = data.pathology_tumour_stage_lists.split(",");
+					break;
+				case 'pathology_tumour_grade_lists':
+					vals = data.pathology_tumour_grade_lists.split(",");
+					break;
+				case 'patient_cancer_treatment_name_lists':
+					vals = data.patient_cancer_treatment_name_lists.split(",");
+					break;
+				case 'ovary_stage_classification_lists':
+					vals = data.ovary_stage_classification_lists.split(",");
+					break;
+				case 'diagnosis_name_lists':
+					vals = data.diagnosis_name_lists.split(",");
 					break;
 				case 'base':
 					vals = ['Please choose from above'];

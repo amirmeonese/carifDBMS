@@ -740,18 +740,24 @@ class Record_model extends CI_Model {
         //CANCER
 
         $data['cancer_invasive_type'] = 'Cancer type (invasive/non-invasive)';
-		$data['cancer_invasive_type_lists'] = array(
+		/* $data['cancer_invasive_type_lists'] = array(
 			 '' => '',
 			'Invasive' => 'Invasive',
 			'Non-invasive' => 'Non-invasive'
-		);
+		); */
+		$data['cancer_invasive_type_lists'] = array(
+			'Dynamic Dropdown' => 'Dynamic Dropdown'
+        );
 		$data['detected_by_other_details'] = 'Other';
-        $data['detected_by_lists'] = array(
+       /*  $data['detected_by_lists'] = array(
 			 '' => '',
 			'At a screening (mammography/ultrasound/MRI)' => 'At a screening (mammography/ultrasound/MRI)',
             'I felt a lump' => 'I felt a lump',
             'My doctor felt a lump' => 'My doctor felt a lump',
 			'Other' => 'Other',
+        ); */
+		$data['detected_by_lists'] = array(
+			'Dynamic Dropdown' => 'Dynamic Dropdown'
         );
 		$data['breast_cancer_treatment_comments'] = 'Comments';
 		$data['treatment_duration'] = 'Treatment duration';
@@ -786,12 +792,15 @@ class Record_model extends CI_Model {
             'Left Ovary' => 'Left Ovary',
             'Right Ovary' => 'Right Ovary'
         );
-		 $data['patient_cancer_site_lists'] = array(
+		$data['patient_cancer_site_lists'] = array(
+			'Dynamic Dropdown' => 'Dynamic Dropdown'
+        );
+		 /* $data['patient_cancer_site_lists'] = array(
 			 '' => '',
             'Left' => 'Left',
             'Right' => 'Right',
             'Bilateral' => 'Bilateral'
-        );
+        ); */
         $data['cancer_site_details'] = 'Details';
 
 
@@ -802,7 +811,7 @@ class Record_model extends CI_Model {
         $data['cancer_doctor_name'] = 'Doctor\'s name';
         $data['detected_by'] = 'Detected by';
         $data['patient_cancer_treatment_name'] = 'Treatment type';
-        $data['patient_cancer_treatment_name_lists'] = array(
+        /* $data['patient_cancer_treatment_name_lists'] = array(
 			 '' => '',
             'Lumpectomy' => 'Lumpectomy',
             'Mastectomy' => 'Mastectomy',
@@ -821,6 +830,9 @@ class Record_model extends CI_Model {
             'Bilateral Salpingo Oophorectomy' => 'Bilateral Salpingo Oophorectomy',
             'TAHBSO' => 'TAHBSO',
             'None' => 'None'
+        ); */
+		$data['patient_cancer_treatment_name_lists'] = array(
+			'Dynamic Dropdown' => 'Dynamic Dropdown'
         );
 		$data['cancer_is_bilateral'] = 'Bilateral';
 		$data['cancer_is_recurrent'] = 'Recurrent';
@@ -873,7 +885,7 @@ class Record_model extends CI_Model {
 		
         //DIAGNOSIS
         $data['patient_other_diagnosis_name'] = 'Type of diseases';
-        $data['diagnosis_name_lists'] = array(
+       /*  $data['diagnosis_name_lists'] = array(
 			 '' => '',
 			'None' => 'None',
             'Diabetes' => 'Diabetes',
@@ -883,6 +895,9 @@ class Record_model extends CI_Model {
             'Endochrine' => 'Endochrine',
             'Congenital' => 'Congenital',
             'Mental Disorder' => 'Mental Disorder'
+        ); */
+		$data['diagnosis_name_lists'] = array(
+			'Dynamic Dropdown' => 'Dynamic Dropdown'
         );
         $data['diagnosis_details'] = 'Diagnosis details';
         $data['diagnosis_age'] = 'Age at diagnosis';
@@ -1284,7 +1299,7 @@ class Record_model extends CI_Model {
         $data['breast_pathology_tissue_tumour_stage'] = 'T Staging';
         $data['breast_pathology_morphology'] = 'Morphology';
         $data['breast_pathology_node_stage'] = 'N staging';
-        $data['pathology_tissue_tumour_stage_lists'] = array(
+       /*  $data['pathology_tissue_tumour_stage_lists'] = array(
 			 '' => '',
             'T0' => 'T0',
             'T1' => 'T1',
@@ -1292,8 +1307,11 @@ class Record_model extends CI_Model {
             'T3' => 'T3',
             'T4' => 'T4',
             'Tx' => 'Tx'
+        ); */
+		$data['pathology_tissue_tumour_stage_lists'] = array(
+			'Dynamic Dropdown' => 'Dynamic Dropdown'
         );
-        $data['pathology_morphology_lists'] = array(
+       /*  $data['pathology_morphology_lists'] = array(
 			 '' => '',
             'DCIS' => 'DCIS',
             'LCIS' => 'LCIS',
@@ -1304,14 +1322,20 @@ class Record_model extends CI_Model {
             'Tubular carcinoma' => 'Tubular carcinoma',
             'Cribiform carcinoma' => 'Cribiform carcinoma',
             'Medullary carcinoma' => 'Medullary carcinoma'
+        ); */
+		$data['pathology_morphology_lists'] = array(
+			'Dynamic Dropdown' => 'Dynamic Dropdown'
         );
-        $data['pathology_node_stage_lists'] = array(
+       /*  $data['pathology_node_stage_lists'] = array(
 			 '' => '',
             'N0' => 'N0',
             'N1' => 'N1',
             'N2' => 'N2',
             'N3' => 'N3',
             'Nx' => 'Nx'
+        ); */
+		$data['pathology_node_stage_lists'] = array(
+			'Dynamic Dropdown' => 'Dynamic Dropdown'
         );
         $data['pathology_lymph_node_lists'] = array(
 			 '' => '',
@@ -1325,15 +1349,17 @@ class Record_model extends CI_Model {
         $data['breast_pathology_HER2_status'] = 'HER2 status';
         $data['breast_pathology_number_of_tumours'] = 'Number of tumours';
         $data['breast_pathology_metastasis_stage'] = 'M staging';
-        $data['pathology_metastasis_stage_lists'] = array(
+       /*  $data['pathology_metastasis_stage_lists'] = array(
 			 '' => '',
             'M0' => 'M0',
             'M1' => 'M1',
             'Mx' => 'Mx'
+        ); */
+       $data['pathology_metastasis_stage_lists'] = array(
+			'Dynamic Dropdown' => 'Dynamic Dropdown'
         );
-       
         $data['breast_pathology_tumour_stage'] = 'Tumour stage';
-        $data['pathology_tumour_stage_lists'] = array(
+        /* $data['pathology_tumour_stage_lists'] = array(
 			 '' => '',
             '0' => '0',
             '1' => '1',
@@ -1342,29 +1368,37 @@ class Record_model extends CI_Model {
             '3a' => '3a',
             '4' => '4',
             'Not stated' => 'Not stated'
+        ); */
+		$data['pathology_tumour_stage_lists'] = array(
+			'Dynamic Dropdown' => 'Dynamic Dropdown'
         );
         $data['breast_pathology_tumour_grade'] = 'Tumour grade';
-        $data['pathology_tumour_grade_lists'] = array(
+        /* $data['pathology_tumour_grade_lists'] = array(
 			 '' => '',
             '1: Well differentiated' => '1: Well differentiated',
             '2: Moderately differentiated' => '2: Moderately differentiated',
             '3: Poorly/un-differentiated' => '3: Poorly/un-differentiated',
             'High' => 'High',
             'Low' => 'Low'
+        ); */
+		$data['pathology_tumour_grade_lists'] = array(
+			'Dynamic Dropdown' => 'Dynamic Dropdown'
         );
         $data['breast_pathology_tumour_size'] = 'Size of tumor';
         $data['breast_pathology_doctor'] = 'Name of doctor';
         $data['breast_pathology_lab'] = 'Pathology lab';
 		$data['breast_pathology_path_report_date'] = 'Date of report';
         $data['breast_pathology_path_report_type'] = 'Type of report';
-        $data['pathology_path_report_type_lists'] = array(
+       /*  $data['pathology_path_report_type_lists'] = array(
 			 '' => '',
             'Pathology' => 'Pathology',
             'FNAC' => 'FNAC',
             'Core biopsy' => 'Core biopsy',
             'Stereostatic biopsy' => 'Stereostatic biopsy'
+        ); */
+		$data['pathology_path_report_type_lists'] = array(
+			'Dynamic Dropdown' => 'Dynamic Dropdown'
         );
-
         $data['breast_pathology_tissue_path_comments'] = 'Comments';
 
 		//Ovary pathology
@@ -1387,12 +1421,14 @@ class Record_model extends CI_Model {
         $data['ovary_pathology_path_report_type'] = 'Type of report';
 		$data['ovary_pathology_tissue_path_comments'] = 'Comments';
 		$data['ovary_stage_classification'] = 'Stage classification';
-		$data['ovary_stage_classification_lists'] = array(
+		/* $data['ovary_stage_classification_lists'] = array(
 			 '' => '',
             'SEER' => 'SEER',
             'FIGO' => 'FIGO'
+        ); */
+		$data['ovary_stage_classification_lists'] = array(
+			'Dynamic Dropdown' => 'Dynamic Dropdown'
         );
-		
 		//Ovary pathology
                 $data['ovary_pathology_report_no'] = 'No of report';
                 $data['ovary_tumor_subtypes'] = 'Tumor subtypes';
