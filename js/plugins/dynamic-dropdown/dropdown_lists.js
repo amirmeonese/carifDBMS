@@ -58,6 +58,9 @@ $( document ).ready(function() {
 				case 'studies_name':
 					vals = data.studies_name.split(",");
 					break;
+				case 'patient_cancer_name_lists':
+					vals = data.patient_cancer_name_lists.split(",");
+					break;
 				case 'base':
 					vals = ['Please choose from above'];
 			}
@@ -110,6 +113,9 @@ $( document ).ready(function() {
 						break;
 					case 'studies_name':
 						vals = data.studies_name.split(",");
+						break;
+					case 'patient_cancer_name_lists':
+						vals = data.patient_cancer_name_lists.split(",");
 						break;
 				}
 				
@@ -191,6 +197,9 @@ $( document ).ready(function() {
 						break;
 					case 'studies_name':
 						vals = data.studies_name.split(",");
+						break;
+					case 'patient_cancer_name_lists':
+						vals = data.patient_cancer_name_lists.split(",");
 						break;
 				}
 				
@@ -291,6 +300,9 @@ $( document ).ready(function() {
 					break;
 				case 'studies_name':
 					vals = data.studies_name.split(",");
+					break;
+				case 'patient_cancer_name_lists':
+					vals = data.patient_cancer_name_lists.split(",");
 					break;
 				case 'base':
 					vals = ['Please choose from above'];

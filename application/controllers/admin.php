@@ -260,12 +260,12 @@ class Admin extends CI_Controller {
         $this->template->load("templates/admin_panel_template", 'admin/add_record_admin_detail', $data);
     }
 
-    function create_new_report() {
+    function customize_form() {
 
         $this->load->model('Record_model');
         $data = $this->Record_model->general();
 
-        $this->template->load("templates/admin_panel_template", 'admin/create_new_report', $data);
+        $this->template->load("templates/admin_panel_template", 'admin/customize_form', $data);
     }
 
 }

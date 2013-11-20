@@ -33,6 +33,9 @@
 			case 'studies_name':
 				$data['studies_name'] = $text;
 				break;
+			case 'patient_cancer_name_lists':
+				$data['patient_cancer_name_lists'] = $text;
+				break;
 		}
 		
 		// Writing modified data:

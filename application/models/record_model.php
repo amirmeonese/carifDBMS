@@ -757,7 +757,10 @@ class Record_model extends CI_Model {
 		$data['treatment_duration'] = 'Treatment duration';
         $data['breast_cancer_diagnosed_flag'] = 'Is breast cancer diagnosed?';
         $data['patient_cancer_name'] = 'Cancer name';
-        $data['patient_cancer_name_lists'] = array(
+		$data['patient_cancer_name_lists'] = array(
+			'Dynamic Dropdown' => 'Dynamic Dropdown'
+        );
+       /*  $data['patient_cancer_name_lists'] = array(
 			 '' => '',
 			'None' => 'None',
             'Breast' => 'Breast',
@@ -773,7 +776,7 @@ class Record_model extends CI_Model {
             'Liver' => 'Liver',
             'Gastric' => 'Gastric',
             'Others' => 'Others'
-        );
+        ); */
         $data['primary_diagnosis'] = 'Is primary diagnosis?';
         $data['cancer_site'] = 'Select site';
         $data['patient_cancer_sites_lists'] = array(
