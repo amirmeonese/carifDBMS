@@ -11,7 +11,7 @@
         <?php
         echo form_fieldset('Patient');
         ?>
-        <table>
+        <table> 
             <tr>
                 <td>
                     <label for="surname"><?php echo $surname; ?>: </label>
