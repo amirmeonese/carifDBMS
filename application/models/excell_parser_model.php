@@ -141,7 +141,7 @@ class Excell_parser_model extends CI_Model {
 
                             if (($key == 8 || $key == 13 || $key == 49) && $cell_value != NULL) {
                                 //echo $key;
-                                list($month, $day, $year) = explode("/", $cell_value);
+                                list($day,$month,$year)=explode("/",$cell_value);
                                 if (!checkdate($month, $day, $year)) {
                                     echo '<h2>patient_DOB or patient_DOD or status_collection_date is not in appropriate format at Personal</h2>';
                                     $date_flag = TRUE;
@@ -249,7 +249,7 @@ class Excell_parser_model extends CI_Model {
                             }
 
                             if ($key == 2 && $cell_value != NULL) {
-                                list($month, $day, $year) = explode("/", $cell_value);
+                                list($day,$month,$year)=explode("/",$cell_value);
 
                                 if (!checkdate($month, $day, $year)) {
                                     echo '<h2>date_at_consent is not in appropriate format at Personal2</h2>';
@@ -318,7 +318,7 @@ class Excell_parser_model extends CI_Model {
                             }
 
                             if (($key == 9 || $key == 11 || $key == 13) && $cell_value != NULL) {
-                                list($month, $day, $year) = explode("/", $cell_value);
+                                list($day,$month,$year)=explode("/",$cell_value);
 
                                 if (!checkdate($month, $day, $year)) {
                                     echo '<h2>DOB or DOD or date_of_diagnosis is not in appropriate format at Family</h2>';
@@ -446,13 +446,17 @@ class Excell_parser_model extends CI_Model {
                             }
 
                             if (($key == 6 || $key == 14 || $key == 15 || $key == 28 ) && $cell_value != NULL) {
-                                list($month, $day, $year) = explode("/", $cell_value);
+                                //echo $cell_value.'         ';
+                                if(strlen($cell_value) > 8)
+                                {
+                                list($day,$month,$year)=explode("/",$cell_value);
 
                                 if (!checkdate($month, $day, $year)) {
                                     echo '<h2>date_of_diagnosis or treatment_start_date or treatment_end_date is not in appropriate format at Diagnosis & Treatment</h2>';
                                     $date_flag = TRUE;
                                     $abort = TRUE;
                                     break;
+                                }
                                 }
                             }
                         }
@@ -583,7 +587,7 @@ class Excell_parser_model extends CI_Model {
                             }
 
                             if (($key == 2 || $key == 20 || $key == 26) && $cell_value != NULL) {
-                                list($month, $day, $year) = explode("/", $cell_value);
+                                list($day,$month,$year)=explode("/",$cell_value);
 
                                 if (!checkdate($month, $day, $year)) {
                                     echo '<h2>date_of_first_mammogram or ultrasound_date or MRI_date is not in appropriate format at Surveilance1</h2>';
@@ -653,7 +657,7 @@ class Excell_parser_model extends CI_Model {
                             }
 
                             if (($key == 4 || $key == 10) && $cell_value != NULL) {
-                                list($month, $day, $year) = explode("/", $cell_value);
+                                list($day,$month,$year)=explode("/",$cell_value);
 
                                 if (!checkdate($month, $day, $year)) {
                                     echo '<h2>date_of_surgery or breast_date_of_surgery is not in appropriate format at Sreening and Surveilance2</h2>';
@@ -739,7 +743,7 @@ class Excell_parser_model extends CI_Model {
                             }
 
                             if (($key == 4 || $key == 7) && $cell_value != NULL) {
-                                list($month, $day, $year) = explode("/", $cell_value);
+                                list($day,$month,$year)=explode("/",$cell_value);
 
                                 if (!checkdate($month, $day, $year)) {
                                     echo '<h2>surgery_date or surgery_date is not in appropriate format at Sreening and Surveilance3</h2>';
@@ -850,7 +854,7 @@ class Excell_parser_model extends CI_Model {
                                 break;
 
                                 if ($key == 3 && $cell_value != NULL) {
-                                    list($month, $day, $year) = explode("/", $cell_value);
+                                    list($day,$month,$year)=explode("/",$cell_value);
 
                                     if (!checkdate($month, $day, $year)) {
                                         echo '<h2>screening_date is not in appropriate format at Sreening and Surveilance4</h2>';
@@ -963,7 +967,7 @@ class Excell_parser_model extends CI_Model {
                                 //echo $key.'     From line 952<br/>';
                                 //echo "cell value:   ".$cell_value.'<br/>';
                               
-                                list($month, $day, $year) = explode("/", $cell_value);
+                                list($day,$month,$year)=explode("/",$cell_value);
                                 if (!checkdate($month, $day, $year)) {
                                     echo '<h2>date_of_diagnosis or first_consultation_date or due_date or reminder_sent_date or surveillance_done_date is not in appropriate format at Sreening and Surveilance5</h2>';
                                     $date_flag = TRUE;
@@ -1058,7 +1062,7 @@ class Excell_parser_model extends CI_Model {
 
                             if (($key == 2 || $key == 7 || $key == 20 || $key == 21) && $cell_value != NULL) {
                                 //echo $key.'     From line 1045<br/>';
-                                list($month, $day, $year) = explode("/", $cell_value);
+                                list($day,$month,$year)=explode("/",$cell_value);
 
                                 if (!checkdate($month, $day, $year)) {
                                     echo '<h2>date_test_ordered or testing_date or report_date or date_notified is not in appropriate format at Mutation analysis</h2>';
@@ -1172,7 +1176,7 @@ class Excell_parser_model extends CI_Model {
                             }
 
                             if ($key == 2 && $cell_value != NULL) {
-                                list($month, $day, $year) = explode("/", $cell_value);
+                                list($day,$month,$year)=explode("/",$cell_value);
 
                                 if (!checkdate($month, $day, $year)) {
                                     echo '<h2>questionnaire_date is not in appropriate format at Lifestyles1</h2>';
@@ -1242,7 +1246,7 @@ class Excell_parser_model extends CI_Model {
                             }
 
                             if (($key == 9 || $key == 19 || $key == 20 || $key == 24 || $key == 25) && $cell_value != NULL) {
-                                list($month, $day, $year) = explode("/", $cell_value);
+                                list($day,$month,$year)=explode("/",$cell_value);
 
                                 if (!checkdate($month, $day, $year)) {
                                     echo '<h2>date_period_stops or start_date or end_date or hrt_start_date or hrt_end_date is not in appropriate format at Lifestyle2</h2>';
@@ -1312,7 +1316,7 @@ class Excell_parser_model extends CI_Model {
                             }
 
                             if ($key == 4 && $cell_value != NULL) {
-                                list($month, $day, $year) = explode("/", $cell_value);
+                                list($day,$month,$year)=explode("/",$cell_value);
 
                                 if (!checkdate($month, $day, $year)) {
                                     echo '<h2>date_of_birth is not in appropriate format at Lifestyle3</h2>';
