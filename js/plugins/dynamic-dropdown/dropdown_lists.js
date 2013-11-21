@@ -152,7 +152,40 @@ $( document ).ready(function() {
 				case 'investigation_carrier_status_lists':
 					vals = data.investigation_carrier_status_lists.split(",");
 					break;
-				
+				case 'self_image_lists':
+					vals = data.self_image_lists.split(",");
+					break;
+				case 'pa_activities_lists':
+					vals = data.pa_activities_lists.split(",");
+					break;
+				case 'cigarettes_average_count_lists':
+					vals = data.cigarettes_average_count_lists.split(",");
+					break;
+				case 'alcohol_drink_average_lists':
+					vals = data.alcohol_drink_average_lists.split(",");
+					break;
+				case 'coffee_tea_drink_average_lists':
+					vals = data.coffee_tea_drink_average_lists.split(",");
+					break;
+				case 'tea_type_lists':
+					vals = data.tea_type_lists.split(",");
+					break;
+				case 'soya_products_lists':
+					vals = data.soya_products_lists.split(",");
+					break;
+				case 'period_type_lists':
+					vals = data.period_type_lists.split(",");
+					break;
+				case 'period_cycle_days_lists':
+					vals = data.period_cycle_days_lists.split(",");
+					break;
+				case 'reason_period_stops_lists':
+					vals = data.reason_period_stops_lists.split(",");
+					break;
+				case 'gnc_treatment_lists':
+					vals = data.gnc_treatment_lists.split(",");
+					break;
+					
 				case 'base':
 					vals = ['Please choose from above'];
 			}
@@ -295,6 +328,39 @@ $( document ).ready(function() {
 						break;
 					case 'investigation_carrier_status_lists':
 						vals = data.investigation_carrier_status_lists.split(",");
+						break;
+					case 'self_image_lists':
+						vals = data.self_image_lists.split(",");
+						break;
+					case 'pa_activities_lists':
+						vals = data.pa_activities_lists.split(",");
+						break;
+					case 'cigarettes_average_count_lists':
+						vals = data.cigarettes_average_count_lists.split(",");
+						break;
+					case 'alcohol_drink_average_lists':
+						vals = data.alcohol_drink_average_lists.split(",");
+						break;
+					case 'coffee_tea_drink_average_lists':
+						vals = data.coffee_tea_drink_average_lists.split(",");
+						break;
+					case 'tea_type_lists':
+						vals = data.tea_type_lists.split(",");
+						break;
+					case 'soya_products_lists':
+						vals = data.soya_products_lists.split(",");
+						break;
+					case 'period_type_lists':
+						vals = data.period_type_lists.split(",");
+						break;
+					case 'period_cycle_days_lists':
+						vals = data.period_cycle_days_lists.split(",");
+						break;
+					case 'reason_period_stops_lists':
+						vals = data.reason_period_stops_lists.split(",");
+						break;
+					case 'gnc_treatment_lists':
+						vals = data.gnc_treatment_lists.split(",");
 						break;
 				}
 				
@@ -466,6 +532,39 @@ $( document ).ready(function() {
 						break;
 					case 'investigation_carrier_status_lists':
 						vals = data.investigation_carrier_status_lists.split(",");
+						break;
+					case 'self_image_lists':
+						vals = data.self_image_lists.split(",");
+						break;
+					case 'pa_activities_lists':
+						vals = data.pa_activities_lists.split(",");
+						break;
+					case 'cigarettes_average_count_lists':
+						vals = data.cigarettes_average_count_lists.split(",");
+						break;
+					case 'alcohol_drink_average_lists':
+						vals = data.alcohol_drink_average_lists.split(",");
+						break;
+					case 'coffee_tea_drink_average_lists':
+						vals = data.coffee_tea_drink_average_lists.split(",");
+						break;
+					case 'tea_type_lists':
+						vals = data.tea_type_lists.split(",");
+						break;
+					case 'soya_products_lists':
+						vals = data.soya_products_lists.split(",");
+						break;
+					case 'period_type_lists':
+						vals = data.period_type_lists.split(",");
+						break;
+					case 'period_cycle_days_lists':
+						vals = data.period_cycle_days_lists.split(",");
+						break;
+					case 'reason_period_stops_lists':
+						vals = data.reason_period_stops_lists.split(",");
+						break;
+					case 'gnc_treatment_lists':
+						vals = data.gnc_treatment_lists.split(",");
 						break;
 				}
 				
@@ -656,6 +755,39 @@ $( document ).ready(function() {
 					break;
 				case 'investigation_carrier_status_lists':
 					vals = data.investigation_carrier_status_lists.split(",");
+					break;
+				case 'self_image_lists':
+					vals = data.self_image_lists.split(",");
+					break;
+				case 'pa_activities_lists':
+					vals = data.pa_activities_lists.split(",");
+					break;
+				case 'cigarettes_average_count_lists':
+					vals = data.cigarettes_average_count_lists.split(",");
+					break;
+				case 'alcohol_drink_average_lists':
+					vals = data.alcohol_drink_average_lists.split(",");
+					break;	
+				case 'coffee_tea_drink_average_lists':
+					vals = data.coffee_tea_drink_average_lists.split(",");
+					break;
+				case 'tea_type_lists':
+					vals = data.tea_type_lists.split(",");
+					break;
+				case 'soya_products_lists':
+					vals = data.soya_products_lists.split(",");
+					break;
+				case 'period_type_lists':
+					vals = data.period_type_lists.split(",");
+					break;
+				case 'period_cycle_days_lists':
+					vals = data.period_cycle_days_lists.split(",");
+					break;
+				case 'reason_period_stops_lists':
+					vals = data.reason_period_stops_lists.split(",");
+					break;
+				case 'gnc_treatment_lists':
+					vals = data.gnc_treatment_lists.split(",");
 					break;
 				case 'base':
 					vals = ['Please choose from above'];

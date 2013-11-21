@@ -123,8 +123,41 @@
 			case 'investigation_carrier_status_lists':
 				$data['investigation_carrier_status_lists'] = $text;
 				break;
+			case 'self_image_lists':
+				$data['self_image_lists'] = $text;
+				break;
+			case 'pa_activities_lists':
+				$data['pa_activities_lists'] = $text;
+				break;
+			case 'cigarettes_average_count_lists':
+				$data['cigarettes_average_count_lists'] = $text;
+				break;
+			case 'alcohol_drink_average_lists':
+				$data['alcohol_drink_average_lists'] = $text;
+				break;
+			case 'coffee_tea_drink_average_lists':
+				$data['coffee_tea_drink_average_lists'] = $text;
+				break;
+			case 'tea_type_lists':
+				$data['tea_type_lists'] = $text;
+				break;
+			case 'soya_products_lists':
+				$data['soya_products_lists'] = $text;
+				break;
+			case 'period_type_lists':
+				$data['period_type_lists'] = $text;
+				break;
+			case 'period_cycle_days_lists':
+				$data['period_cycle_days_lists'] = $text;
+				break;
+			case 'reason_period_stops_lists':
+				$data['reason_period_stops_lists'] = $text;
+				break;
+			case 'gnc_treatment_lists':
+				$data['gnc_treatment_lists'] = $text;
+				break;
 				
-			
+				
 		}
 		
 		// Writing modified data:

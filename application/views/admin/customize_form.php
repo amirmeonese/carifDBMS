@@ -75,9 +75,20 @@
 						<option value="investigation_mutation_pathogenicity_lists">Mutation Pathogenicity</option>
 						<option value="investigation_mutation_nomenclature_lists">Mutation Nomenclature</option>
 						<option value="investigation_carrier_status_lists">Carrier Status</option>
-						
 					</optgroup>
 					<optgroup label="Lifestyle Factors">
+						<option value="self_image_lists">Self Image</option>
+						<option value="pa_activities_lists">Physical Activities</option>
+						<option value="cigarettes_average_count_lists">Smoking Average</option>
+						<option value="alcohol_drink_average_lists">Alcohol Average</option>
+						<option value="coffee_tea_drink_average_lists">Coffee/Tea Average</option>
+						<option value="tea_type_lists">Tea Type</option>	
+						<option value="soya_products_lists">Soy Products Average</option>
+						<option value="period_type_lists">Period Regularity</option>
+						<option value="period_cycle_days_lists">Period Cycle Days</option>
+						<option value="reason_period_stops_lists">Reason Period Stops</option>
+						<option value="gnc_treatment_lists">GNC Surgery Type</option>
+						
 					</optgroup>
 					</select>
 				</td>

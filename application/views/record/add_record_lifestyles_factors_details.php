@@ -43,15 +43,15 @@
             <tr>
                 <td>
                     <?php echo $self_image_at_7years; ?>: 
-                    <?php echo form_dropdown('self_image_at_7years', $self_image_lists); ?>
+                    <?php echo form_dropdown('self_image_at_7years',$self_image_lists, NULL, 'id="self_image_lists"'); ?>
                 </td>
                 <td>
                     <?php echo $self_image_at_18years; ?>: 
-                    <?php echo form_dropdown('self_image_at_18years', $self_image_lists); ?>
+                    <?php echo form_dropdown('self_image_at_7years',$self_image_lists, NULL, 'id="self_image_lists"'); ?>
                 </td>
                 <td>
                     <?php echo $self_image_now; ?>: 
-                    <?php echo form_dropdown('self_image_now', $self_image_lists); ?>
+                   <?php echo form_dropdown('self_image_at_7years',$self_image_lists, NULL, 'id="self_image_lists"'); ?>
                 </td>
             </tr>
 		</table>
@@ -70,15 +70,15 @@
             <tr>
                 <td>
                     Strenuous Exercise: 
-                    <?php echo form_dropdown('pa_at_childhood', $pa_activities_lists); ?>
+                    <?php echo form_dropdown('pa_at_childhood',$pa_activities_lists, NULL, 'id="pa_activities_lists"'); ?>
                 </td>
                 <td>
                     Moderate Exercise: 
-                    <?php echo form_dropdown('pa_at_adulthood', $pa_activities_lists); ?>
+                    <?php echo form_dropdown('pa_at_adulthood',$pa_activities_lists, NULL, 'id="pa_activities_lists"'); ?>
                 </td>
                 <td>
                     Gentle Exercise: 
-                    <?php echo form_dropdown('pa_now', $pa_activities_lists); ?>
+                   <?php echo form_dropdown('pa_now',$pa_activities_lists, NULL, 'id="pa_activities_lists"'); ?>
                 </td>
             </tr>
             <tr>
@@ -89,15 +89,15 @@
             <tr>
                 <td>
                     Strenuous Exercise: 
-                    <?php echo form_dropdown('pa_at_childhood', $pa_activities_lists); ?>
+                    <?php echo form_dropdown('pa_at_childhood',$pa_activities_lists, NULL, 'id="pa_activities_lists"'); ?>
                 </td>
                 <td>
                     Moderate Exercise: 
-                    <?php echo form_dropdown('pa_at_adulthood', $pa_activities_lists); ?>
+                    <?php echo form_dropdown('pa_at_adulthood',$pa_activities_lists, NULL, 'id="pa_activities_lists"'); ?>
                 </td>
                 <td>
                     Gentle Exercise: 
-                    <?php echo form_dropdown('pa_now', $pa_activities_lists); ?>
+                    <?php echo form_dropdown('pa_now',$pa_activities_lists, NULL, 'id="pa_activities_lists"'); ?>
                 </td>
             </tr>
             <tr>
@@ -108,15 +108,15 @@
             <tr>
                 <td>
                     Strenuous Exercise: 
-                    <?php echo form_dropdown('pa_at_childhood', $pa_activities_lists); ?>
+                    <?php echo form_dropdown('pa_at_childhood',$pa_activities_lists, NULL, 'id="pa_activities_lists"'); ?>
                 </td>
                 <td>
                     Moderate Exercise: 
-                    <?php echo form_dropdown('pa_at_adulthood', $pa_activities_lists); ?>
+                    <?php echo form_dropdown('pa_at_adulthood',$pa_activities_lists, NULL, 'id="pa_activities_lists"'); ?>
                 </td>
                 <td>
                     Gentle Exercise: 
-                    <?php echo form_dropdown('pa_now', $pa_activities_lists); ?>
+                    <?php echo form_dropdown('pa_now',$pa_activities_lists, NULL, 'id="pa_activities_lists"'); ?>
                 </td>
             </tr>
 		</table>
@@ -149,35 +149,35 @@
             <tr>
                 <td>
                     <?php echo $cigarettes_count_at_teen; ?>: <br />
-                    <?php echo form_dropdown('cigarettes_count_at_teen', $cigarettes_average_count_lists); ?>
+					<?php echo form_dropdown('cigarettes_count_at_teen',$cigarettes_average_count_lists, NULL, 'id="cigarettes_average_count_lists"'); ?>
                 </td>
                 <td>
                     <?php echo $cigarettes_count_at_twenties; ?>:  <br />
-                    <?php echo form_dropdown('cigarettes_count_at_twenties', $cigarettes_average_count_lists); ?>
+                    <?php echo form_dropdown('cigarettes_count_at_twenties',$cigarettes_average_count_lists, NULL, 'id="cigarettes_average_count_lists"'); ?>
                 </td>
                 <td>
                     <?php echo $cigarettes_count_at_thirties; ?>:  <br />
-                    <?php echo form_dropdown('cigarettes_count_at_thirties', $cigarettes_average_count_lists); ?>
+                    <?php echo form_dropdown('cigarettes_count_at_thirties',$cigarettes_average_count_lists, NULL, 'id="cigarettes_average_count_lists"'); ?>
                 </td>
             </tr>
             <tr>
                 <td>
                     <?php echo $cigarettes_count_at_forties; ?>: <br />
-                    <?php echo form_dropdown('cigarettes_count_at_forties', $cigarettes_average_count_lists); ?>
+                    <?php echo form_dropdown('cigarettes_count_at_forties',$cigarettes_average_count_lists, NULL, 'id="cigarettes_average_count_lists"'); ?>
                 </td>
                 <td>
                     <?php echo $cigarettes_count_at_fifties; ?>:  <br />
-                    <?php echo form_dropdown('cigarettes_count_at_fifties', $cigarettes_average_count_lists); ?>
+                    <?php echo form_dropdown('cigarettes_count_at_fifties',$cigarettes_average_count_lists, NULL, 'id="cigarettes_average_count_lists"'); ?>
                 </td>
                 <td>
                     <?php echo $cigarettes_count_at_sixties_and_above; ?>:  <br />
-                    <?php echo form_dropdown('cigarettes_count_at_sixties_and_above', $cigarettes_average_count_lists); ?>
+					<?php echo form_dropdown('cigarettes_count_at_sixties_and_above',$cigarettes_average_count_lists, NULL, 'id="cigarettes_average_count_lists"'); ?>
                 </td>
             </tr>
             <tr>
                 <td>
                     <?php echo $cigarettes_count_one_year_before_diagnosed; ?>:  <br />
-                    <?php echo form_dropdown('cigarettes_count_one_year_before_diagnosed', $cigarettes_average_count_lists); ?>
+                    <?php echo form_dropdown('cigarettes_count_one_year_before_diagnosed',$cigarettes_average_count_lists, NULL, 'id="cigarettes_average_count_lists"'); ?>
                 </td>
                 <td>
                     &nbsp;
@@ -198,7 +198,7 @@
                 </td>
                 <td>
                     <?php echo $alcohol_average; ?>:  <br />
-                    <?php echo form_dropdown('alcohol_average', $alcohol_drink_average_lists); ?>
+                    <?php echo form_dropdown('alcohol_average',$alcohol_drink_average_lists, NULL, 'id="alcohol_drink_average_lists"'); ?>
                 </td>
                 <td>
                     <?php echo $alcohol_average_details; ?>:  <br />
@@ -221,7 +221,7 @@
                 </td>
                 <td>
                     <?php echo $coffee_average; ?>: <br />
-                    <?php echo form_dropdown('coffee_average', $coffee_tea_drink_average_lists); ?>
+                    <?php echo form_dropdown('coffee_average',$coffee_tea_drink_average_lists, NULL, 'id="coffee_tea_drink_average_lists"'); ?>
                 </td>
             </tr>
             <tr>
@@ -240,13 +240,13 @@
                 </td>
                 <td>
                     <?php echo $tea_average; ?>: <br />
-                    <?php echo form_dropdown('tea_average', $coffee_tea_drink_average_lists); ?>
+					<?php echo form_dropdown('tea_average',$coffee_tea_drink_average_lists, NULL, 'id="coffee_tea_drink_average_lists"'); ?>
                 </td>
             </tr>
             <tr>
                 <td>
                     <?php echo $tea_type; ?>: <br />
-                    <?php echo form_dropdown('tea_type', $tea_type_lists); ?>
+                    <?php echo form_dropdown('tea_type',$tea_type_lists, NULL, 'id="tea_type_lists"'); ?>
                 </td>
                 <td>
                     <?php echo $tea_type_other; ?>: <br />
@@ -268,7 +268,7 @@
                 </td>
                 <td>
                     <?php echo $soya_bean_average; ?>: <br />
-                    <?php echo form_dropdown('soya_bean_average', $coffee_tea_drink_average_lists); ?>
+					<?php echo form_dropdown('soya_bean_average',$coffee_tea_drink_average_lists, NULL, 'id="coffee_tea_drink_average_lists"'); ?>
                 </td>
                 <td>
                     <?php echo $soya_products_flag; ?>: 
@@ -278,7 +278,7 @@
             <tr>
                 <td>
                     <?php echo $soya_products_average; ?>: <br />
-                    <?php echo form_dropdown('soya_products_average', $soya_products_lists); ?>
+					<?php echo form_dropdown('soya_products_average',$soya_products_lists, NULL, 'id="soya_products_lists"'); ?>
                 </td>
                 <td>
                     <?php echo $soya_products_average_other; ?>: <br />
@@ -332,13 +332,13 @@
                 </td>
                 <td>
                     <?php echo $period_type; ?>: 
-                    <?php echo form_dropdown('period_type', $period_type_lists); ?>
+                    <?php echo form_dropdown('period_type',$period_type_lists, NULL, 'id="period_type_lists"'); ?>
                 </td>
             </tr>
             <tr>
                 <td>
                     <?php echo $period_cycle_days; ?>: <br />
-                    <?php echo form_dropdown('period_cycle_days', $period_cycle_days_lists); ?>
+                    <?php echo form_dropdown('period_cycle_days',$period_cycle_days_lists, NULL, 'id="period_cycle_days_lists"'); ?>
                 </td>
                 <td>
                     <?php echo $period_cycle_days_other_details; ?>: <br />
@@ -357,7 +357,7 @@
                 </td>
                 <td>
                     <?php echo $reason_period_stops; ?>: <br />
-                    <?php echo form_dropdown('reason_period_stops', $reason_period_stops_lists); ?>
+					<?php echo form_dropdown('reason_period_stops',$reason_period_stops_lists, NULL, 'id="reason_period_stops_lists"'); ?>
                 </td>
                 <td>
                     <?php echo $reason_period_stops_other_details; ?>: <br />
@@ -513,7 +513,7 @@
                 </td>
                 <td>
                     <?php echo $gnc_treatment_name; ?>: <br />
-                    <?php echo form_dropdown('gnc_treatment_name', $gnc_treatment_lists); ?>
+					<?php echo form_dropdown('gnc_treatment_name',$gnc_treatment_lists, NULL, 'id="gnc_treatment_lists"'); ?>
                 </td>
 				 <td>
                     <?php echo $gnc_treatment_name_other_details; ?>: <br />
