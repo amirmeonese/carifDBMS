@@ -675,16 +675,22 @@ class Record_model extends CI_Model {
         $data['abnormalities_mammo_flag'] = 'Abnormalities detected';
 		$data['mammo_comments'] = 'Comments';
         $data['mammo_left_right_breast_side'] = 'Left/right breast side';
-        $data['mammo_left_right_breast_side_lists'] = array(
+        /* $data['mammo_left_right_breast_side_lists'] = array(
 			 '' => '',
             'left' => 'Left',
             'right' => 'Right'
+        ); */
+		$data['mammo_left_right_breast_side_lists'] = array(
+			'Dynamic Dropdown' => 'Dynamic Dropdown'
         );
         $data['mammo_upper_below_breast_side'] = 'Upper/below breast side';
-        $data['mammo_upper_below_breast_side_lists'] = array(
+        /* $data['mammo_upper_below_breast_side_lists'] = array(
 			'' => '',
             'upper' => 'Upper',
             'below' => 'Below'
+        ); */
+		$data['mammo_upper_below_breast_side_lists'] = array(
+			'Dynamic Dropdown' => 'Dynamic Dropdown'
         );
 		$data['mammo_is_abnormality_detected'] = 'Is abnormality detected?';
         $data['mammo_breast_other_descriptions'] = 'Other details';
@@ -722,7 +728,7 @@ class Record_model extends CI_Model {
        $data['non_cancer_surgery_comments'] = 'Comments';
         $data['other_screening_flag'] = 'Had other screenings done before?';
         $data['screening_name'] = 'Screening type';
-		$data['screening_name_lists'] = array(
+		/* $data['screening_name_lists'] = array(
 			 '' => '',
 			'Pap Smear' => 'Pap Smear',
 			'Chest XRay' => 'Chest XRay',
@@ -731,7 +737,10 @@ class Record_model extends CI_Model {
 			'Fecal Occult Blood Test (FOBT)' => 'Fecal Occult Blood Test (FOBT)',
 			'Sigmoidoscopy' => 'Sigmoidoscopy',
 			'Double Contrast Berium Enema (DCBE)' => 'Double Contrast Berium Enema (DCBE)'
-		);
+		); */
+		$data['screening_name_lists'] = array(
+			'Dynamic Dropdown' => 'Dynamic Dropdown'
+        );
         $data['total_no_of_screening'] = 'Total no. of screenings';
         $data['age_at_screening'] = 'Age at screening';
         $data['place_of_screening'] = 'Screening centre';
@@ -1102,16 +1111,19 @@ class Record_model extends CI_Model {
         $data['test_ordered_by'] = 'Ordered by';
         $data['testing_results_notification_flag'] = 'Request for result notification';
         $data['investigation_project_name'] = 'Service provider';
-        $data['investigation_project_name_lists'] = array(
+        /* $data['investigation_project_name_lists'] = array(
 			 '' => '',
             'GTG' => 'GTG',
             'Sequenom' => 'Sequenom',
 			'BGI' => 'BGI'
+        ); */
+		$data['investigation_project_name_lists'] = array(
+			'Dynamic Dropdown' => 'Dynamic Dropdown'
         );
         $data['investigation_project_batch'] = 'Testing batch';
 		$data['investigation_gene_tested'] = 'Gene tested';
         $data['investigation_test_type'] = 'Types of testing';
-		$data['investigation_gene_tested_lists'] = array(
+		/* $data['investigation_gene_tested_lists'] = array(
 			 '' => '',
             'APC' => 'APC',
             'ATM' => 'ATM',
@@ -1122,57 +1134,78 @@ class Record_model extends CI_Model {
             'BRCX' => 'BRCX',
             'APOE' => 'APOE',
             'Others' => 'Others'
+        ); */
+		$data['investigation_gene_tested_lists'] = array(
+			'Dynamic Dropdown' => 'Dynamic Dropdown'
         );
 		$data['investigation_gene_tested_other'] = 'Other';
-        $data['investigation_test_type_lists'] = array(
+       /*  $data['investigation_test_type_lists'] = array(
 			 '' => '',
             'Full analysis' => 'Full analysis',
             'MLPA' => 'MLPA',
             'Genotyping' => 'Genotyping',
             'Predictive testing' => 'Predictive testing'
+        ); */
+		$data['investigation_test_type_lists'] = array(
+			'Dynamic Dropdown' => 'Dynamic Dropdown'
         );
         $data['investigation_sample_type'] = 'Sample type';
-        $data['investigation_sample_type_lists'] = array(
+        /* $data['investigation_sample_type_lists'] = array(
 			 '' => '',
             'DNA' => 'DNA',
             'Serum' => 'Serum',
             'Plasma' => 'Plasma'
+        ); */
+		$data['investigation_sample_type_lists'] = array(
+			'Dynamic Dropdown' => 'Dynamic Dropdown'
         );
         $data['investigation_test_reason'] = 'Test reason';
         $data['investigation_new_mutation_flag'] = 'Is new mutation?';
         $data['investigation_test_results'] = 'Test results';
-        $data['investigation_test_results_lists'] = array(
+        /* $data['investigation_test_results_lists'] = array(
 			'' => '',
             'AA changes' => 'AA changes',
             'Exon details' => 'Exon details',
             'Other details' => 'Other details'
+        ); */
+		$data['investigation_test_results_lists'] = array(
+			'Dynamic Dropdown' => 'Dynamic Dropdown'
         );
         $data['investigation_test_results_other_details'] = 'Other details';
         $data['investigation_carrier_status'] = 'Carrier status';
-        $data['investigation_carrier_status_lists'] = array(
+        /* $data['investigation_carrier_status_lists'] = array(
 			 '' => '',
             'Affected carrier' => 'Affected carrier',
             'Unaffected carrier' => 'Unaffected carrier',
             'Affected non carrier' => 'Affected non carrier',
             'Unaffected non carrier' => 'Unaffected non carrier'
+        ); */
+		$data['investigation_carrier_status_lists'] = array(
+			'Dynamic Dropdown' => 'Dynamic Dropdown'
         );
         $data['investigation_mutation_nomenclature'] = 'Mutation nomenclature';
-        $data['investigation_mutation_nomenclature_lists'] = array(
+        /* $data['investigation_mutation_nomenclature_lists'] = array(
 			 '' => '',
             'BIC' => 'BIC',
             'HGVC' => 'HGVC',
 			'aa' => 'aa'
+        ); */
+		$data['investigation_mutation_nomenclature_lists'] = array(
+			'Dynamic Dropdown' => 'Dynamic Dropdown'
         );
         $data['investigation_reported_by'] = 'Reported by';
         $data['investigation_mutation_name'] = 'Mutation name';
         $data['investigation_mutation_type'] = 'Mutation type';
         $data['investigation_mutation_pathogenicity'] = 'Mutation pathogenicity';
 		
-		 $data['investigation_mutation_pathogenicity_lists'] = array(
+		/*  $data['investigation_mutation_pathogenicity_lists'] = array(
 			 '' => '',
             'Del' => 'Del',
             'VUS' => 'VUS',
 			'SNP' => 'SNP'
+        ); */
+		$data['investigation_mutation_pathogenicity_lists'] = array(
+			'Dynamic Dropdown' => 'Dynamic Dropdown'
         );
         $data['investigation_sample_ID'] = 'Sample ID';
         $data['investigation_report_due'] = 'Report due date';
@@ -1186,17 +1219,23 @@ class Record_model extends CI_Model {
 		
         //SURVEILLANCE
         $data['surveillance_recruitment_center'] = 'Recruitment centre';
-        $data['surveillance_recruitment_center_lists'] = array(
+       /*  $data['surveillance_recruitment_center_lists'] = array(
 			 '' => '',
             'UMMC' => 'UMMC',
             'SD' => 'SD',
             'UMSC' => 'UMSC'
+        ); */
+		$data['surveillance_recruitment_center_lists'] = array(
+			'Dynamic Dropdown' => 'Dynamic Dropdown'
         );
         $data['surveillance_type'] = 'Surveillance type';
-        $data['surveillance_type_lists'] = array(
+        /* $data['surveillance_type_lists'] = array(
 			 '' => '',
             'New' => 'New',
             'Follow up' => 'Follow up'
+        ); */
+		$data['surveillance_type_lists'] = array(
+			'Dynamic Dropdown' => 'Dynamic Dropdown'
         );
         $data['surveillance_first_consultation_date'] = 'Date of 1st consultation';
         $data['surveillance_first_consultation_place'] = 'Place of 1st consultation';
@@ -1240,13 +1279,16 @@ class Record_model extends CI_Model {
 		//OVARIAN SCREENINGS INFOS
 		$data['ovarian_screening_type_name'] = 'Ovarian screening type';
 		
-		$data['ovarian_screening_type_name_lists'] = array(
+		/* $data['ovarian_screening_type_name_lists'] = array(
 			 '' => '',
             'Physical pelvic examinations' => 'Physical pelvic examinations',
             'Abdominal ultrasound' => 'Abdominal ultrasound',
             'Trans-vaginal ultrasound' => 'Trans-vaginal ultrasound',
             'CA125 blood test' => 'CA125 blood test',
             'Biopsy' => 'Biopsy'
+        ); */
+		$data['ovarian_screening_type_name_lists'] = array(
+			'Dynamic Dropdown' => 'Dynamic Dropdown'
         );
 		$data['had_physical_pelvic_exams'] = 'Had new physical examinations?';
 		$data['physical_exam_date'] = 'Date';
@@ -1276,13 +1318,16 @@ class Record_model extends CI_Model {
 		//RISK REDUCING STRATEGY
 		$data['had_new_risk_reducing_surgery'] = 'Had new surgery?';
 		$data['non_cancerous_benign_site'] = 'Select site';
-        $data['non_cancerous_benign_site_lists'] = array(
+        /* $data['non_cancerous_benign_site_lists'] = array(
 			 '' => '',
             'Right breast' => 'Right breast',
             'Left breast' => 'Left breast',
             'Right Ovary' => 'Right Ovary',
             'Left Ovary' => 'Left Ovary',
             'Uterus' => 'Uterus'
+        ); */
+		$data['non_cancerous_benign_site_lists'] = array(
+			'Dynamic Dropdown' => 'Dynamic Dropdown'
         );
         $data['non_cancerous_benign_date'] = 'Date';
 		
@@ -1291,11 +1336,14 @@ class Record_model extends CI_Model {
 		$data['non_cancerous_complete_removal_site'] = 'Select site';
 		$data['non_cancerous_complete_removal_date'] = 'Date';
         $data['non_cancerous_complete_removal_reason'] = 'Reason';
-		 $data['non_cancerous_complete_removal_reason_lists'] = array(
+		/*  $data['non_cancerous_complete_removal_reason_lists'] = array(
 			'' => '',
 			'Prevention of cancer' => 'Prevention of cancer',
             'Treatment of cancer' => 'Treatment of cancer',
             'Other medical treatment' => 'Other medical treatment'
+        ); */
+		$data['non_cancerous_complete_removal_reason_lists'] = array(
+			'Dynamic Dropdown' => 'Dynamic Dropdown'
         );
 		
         //PATHOLOGY

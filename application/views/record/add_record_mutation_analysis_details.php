@@ -48,7 +48,7 @@
             <tr>
                 <td>
                     <?php echo $investigation_project_name; ?>:  <br />
-                    <?php echo form_dropdown('investigation_project_name', $investigation_project_name_lists); ?>
+					<?php echo form_dropdown('investigation_project_name',$investigation_project_name_lists, NULL, 'id="investigation_project_name_lists"'); ?>
                 </td>
                 <td>
                     <?php echo $investigation_project_batch; ?>:  <br />
@@ -60,7 +60,7 @@
                 </td>
                <td>
                     <?php echo $investigation_gene_tested; ?>:  <br />
-                    <?php echo form_dropdown('investigation_gene_tested', $investigation_gene_tested_lists); ?>
+					<?php echo form_dropdown('investigation_gene_tested',$investigation_gene_tested_lists, NULL, 'id="investigation_gene_tested_lists"'); ?>
                 </td>
             </tr>
             <tr>
@@ -70,11 +70,11 @@
                 </td>
 				<td>
                     <?php echo $investigation_test_type; ?>:  <br />
-                    <?php echo form_dropdown('investigation_test_type', $investigation_test_type_lists); ?>
+                    <?php echo form_dropdown('investigation_test_type',$investigation_test_type_lists, NULL, 'id="investigation_test_type_lists"'); ?>
                 </td>
                 <td>
                     <?php echo $investigation_sample_type; ?>:  <br />
-                    <?php echo form_dropdown('investigation_sample_type', $investigation_sample_type_lists); ?>
+                    <?php echo form_dropdown('investigation_sample_type',$investigation_sample_type_lists, NULL, 'id="investigation_sample_type_lists"'); ?>
                 </td>
             </tr>
 			<tr>
@@ -98,7 +98,7 @@
             <tr>
                 <td>
                     <?php echo $investigation_test_results; ?>:  <br />
-                    <?php echo form_dropdown('investigation_test_results', $investigation_test_results_lists); ?>
+					<?php echo form_dropdown('investigation_test_results',$investigation_test_results_lists, NULL, 'id="investigation_test_results_lists"'); ?>
                 </td>
                 <td>
                     <?php echo $investigation_test_results_other_details; ?>:  <br />
@@ -117,11 +117,11 @@
             <tr>
                 <td>
                     <?php echo $investigation_mutation_pathogenicity; ?>:  <br />
-                    <?php echo form_dropdown('investigation_mutation_pathogenicity', $investigation_mutation_pathogenicity_lists); ?>
+					<?php echo form_dropdown('investigation_mutation_pathogenicity',$investigation_mutation_pathogenicity_lists, NULL, 'id="investigation_mutation_pathogenicity_lists"'); ?>
                 </td>
                 <td>
                     <?php echo $investigation_mutation_nomenclature; ?>:  <br />
-                    <?php echo form_dropdown('investigation_mutation_nomenclature', $investigation_mutation_nomenclature_lists); ?>
+                    <?php echo form_dropdown('investigation_mutation_nomenclature',$investigation_mutation_nomenclature_lists, NULL, 'id="investigation_mutation_nomenclature_lists"'); ?>
                 </td>
                 <td>
                     <?php echo $investigation_mutation_name; ?>: </br>
@@ -140,7 +140,7 @@
                 </td>
                 <td>
                     <?php echo $investigation_carrier_status; ?>:  <br />
-                    <?php echo form_dropdown('investigation_carrier_status', $investigation_carrier_status_lists); ?>
+                    <?php echo form_dropdown('investigation_carrier_status',$investigation_carrier_status_lists, NULL, 'id="investigation_carrier_status_lists"'); ?>
                 </td>
                 <td>
                     <?php echo $investigation_report_date; ?>: </br>

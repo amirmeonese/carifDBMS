@@ -57,8 +57,25 @@
 						<option value="diagnosis_name_lists">Type of Diseases</option>
 					</optgroup>
 					<optgroup label="Screenings">
+						<option value="mammo_left_right_breast_side_lists">Breast Left/Right Sides</option>
+						<option value="mammo_upper_below_breast_side_lists">Breast Upper/Below Sides</option>
+						<option value="non_cancerous_benign_site_lists">Non-Cancerous Sides</option>
+						<option value="non_cancerous_complete_removal_reason_lists">Removal Reasons</option>
+						<option value="ovarian_screening_type_name_lists">Ovarian Screenings Type</option>
+						<option value="screening_name_lists">Other Screening Type</option>
+						<option value="surveillance_recruitment_center_lists">Recruitment Centers</option>
+						<option value="surveillance_type_lists">Surveillance Type</option>
 					</optgroup>
 					<optgroup label="Mutation">
+						<option value="investigation_project_name_lists">Service Providers</option>
+						<option value="investigation_gene_tested_lists">Gene Tested</option>
+						<option value="investigation_test_type_lists">Types of Testing</option>
+						<option value="investigation_sample_type_lists">Sample Type</option>
+						<option value="investigation_test_results_lists">Test Results</option>
+						<option value="investigation_mutation_pathogenicity_lists">Mutation Pathogenicity</option>
+						<option value="investigation_mutation_nomenclature_lists">Mutation Nomenclature</option>
+						<option value="investigation_carrier_status_lists">Carrier Status</option>
+						
 					</optgroup>
 					<optgroup label="Lifestyle Factors">
 					</optgroup>

@@ -104,6 +104,55 @@ $( document ).ready(function() {
 				case 'diagnosis_name_lists':
 					vals = data.diagnosis_name_lists.split(",");
 					break;
+				case 'mammo_left_right_breast_side_lists':
+					vals = data.mammo_left_right_breast_side_lists.split(",");
+					break;
+				case 'mammo_upper_below_breast_side_lists':
+					vals = data.mammo_upper_below_breast_side_lists.split(",");
+					break;
+				case 'non_cancerous_benign_site_lists':
+					vals = data.non_cancerous_benign_site_lists.split(",");
+					break;
+				case 'non_cancerous_complete_removal_reason_lists':
+					vals = data.non_cancerous_complete_removal_reason_lists.split(",");
+					break;
+				case 'ovarian_screening_type_name_lists':
+					vals = data.ovarian_screening_type_name_lists.split(",");
+					break;
+				case 'screening_name_lists':
+					vals = data.screening_name_lists.split(",");
+					break;
+				case 'surveillance_recruitment_center_lists':
+					vals = data.surveillance_recruitment_center_lists.split(",");
+					break;
+				case 'surveillance_type_lists':
+					vals = data.surveillance_type_lists.split(",");
+					break;
+				case 'investigation_project_name_lists':
+					vals = data.investigation_project_name_lists.split(",");
+					break;
+				case 'investigation_gene_tested_lists':
+					vals = data.investigation_gene_tested_lists.split(",");
+					break;
+				case 'investigation_test_type_lists':
+					vals = data.investigation_test_type_lists.split(",");
+					break;
+				case 'investigation_sample_type_lists':
+					vals = data.investigation_sample_type_lists.split(",");
+					break
+				case 'investigation_test_results_lists':
+					vals = data.investigation_test_results_lists.split(",");
+					break;
+				case 'investigation_mutation_pathogenicity_lists':
+					vals = data.investigation_mutation_pathogenicity_lists.split(",");
+					break;
+				case 'investigation_mutation_nomenclature_lists':
+					vals = data.investigation_mutation_nomenclature_lists.split(",");
+					break;
+				case 'investigation_carrier_status_lists':
+					vals = data.investigation_carrier_status_lists.split(",");
+					break;
+				
 				case 'base':
 					vals = ['Please choose from above'];
 			}
@@ -198,6 +247,54 @@ $( document ).ready(function() {
 						break;
 					case 'diagnosis_name_lists':
 						vals = data.diagnosis_name_lists.split(",");
+						break;
+					case 'mammo_left_right_breast_side_lists':
+						vals = data.mammo_left_right_breast_side_lists.split(",");
+						break;
+					case 'mammo_upper_below_breast_side_lists':
+						vals = data.mammo_upper_below_breast_side_lists.split(",");
+						break;
+					case 'non_cancerous_benign_site_lists':
+						vals = data.non_cancerous_benign_site_lists.split(",");
+						break;
+					case 'non_cancerous_complete_removal_reason_lists':
+						vals = data.non_cancerous_complete_removal_reason_lists.split(",");
+						break;
+					case 'ovarian_screening_type_name_lists':
+						vals = data.ovarian_screening_type_name_lists.split(",");
+						break;
+					case 'screening_name_lists':
+						vals = data.screening_name_lists.split(",");
+						break;
+					case 'surveillance_recruitment_center_lists':
+						vals = data.surveillance_recruitment_center_lists.split(",");
+						break;
+					case 'surveillance_type_lists':
+						vals = data.surveillance_type_lists.split(",");
+						break;
+					case 'investigation_project_name_lists':
+						vals = data.investigation_project_name_lists.split(",");
+						break;
+					case 'investigation_gene_tested_lists':
+						vals = data.investigation_gene_tested_lists.split(",");
+						break;
+					case 'investigation_test_type_lists':
+						vals = data.investigation_test_type_lists.split(",");
+						break;
+					case 'investigation_sample_type_lists':
+						vals = data.investigation_sample_type_lists.split(",");
+						break;
+					case 'investigation_test_results_lists':
+						vals = data.investigation_test_results_lists.split(",");
+						break;
+					case 'investigation_mutation_pathogenicity_lists':
+						vals = data.investigation_mutation_pathogenicity_lists.split(",");
+						break;
+					case 'investigation_mutation_nomenclature_lists':
+						vals = data.investigation_mutation_nomenclature_lists.split(",");
+						break;
+					case 'investigation_carrier_status_lists':
+						vals = data.investigation_carrier_status_lists.split(",");
 						break;
 				}
 				
@@ -322,7 +419,54 @@ $( document ).ready(function() {
 					case 'diagnosis_name_lists':
 						vals = data.diagnosis_name_lists.split(",");
 						break;
-					
+					case 'mammo_left_right_breast_side_lists':
+						vals = data.mammo_left_right_breast_side_lists.split(",");
+						break;
+					case 'mammo_upper_below_breast_side_lists':
+						vals = data.mammo_upper_below_breast_side_lists.split(",");
+						break;
+					case 'non_cancerous_benign_site_lists':
+						vals = data.non_cancerous_benign_site_lists.split(",");
+						break;
+					case 'non_cancerous_complete_removal_reason_lists':
+						vals = data.non_cancerous_complete_removal_reason_lists.split(",");
+						break;
+					case 'ovarian_screening_type_name_lists':
+						vals = data.ovarian_screening_type_name_lists.split(",");
+						break;
+					case 'screening_name_lists':
+						vals = data.screening_name_lists.split(",");
+						break;
+					case 'surveillance_recruitment_center_lists':
+						vals = data.surveillance_recruitment_center_lists.split(",");
+						break;
+					case 'surveillance_type_lists':
+						vals = data.surveillance_type_lists.split(",");
+						break;
+					case 'investigation_project_name_lists':
+						vals = data.investigation_project_name_lists.split(",");
+						break;
+					case 'investigation_gene_tested_lists':
+						vals = data.investigation_gene_tested_lists.split(",");
+						break;
+					case 'investigation_test_type_lists':
+						vals = data.investigation_test_type_lists.split(",");
+						break;
+					case 'investigation_sample_type_lists':
+						vals = data.investigation_sample_type_lists.split(",");
+						break;
+					case 'investigation_test_results_lists':
+						vals = data.investigation_test_results_lists.split(",");
+						break;
+					case 'investigation_mutation_pathogenicity_lists':
+						vals = data.investigation_mutation_pathogenicity_lists.split(",");
+						break;
+					case 'investigation_mutation_nomenclature_lists':
+						vals = data.investigation_mutation_nomenclature_lists.split(",");
+						break;
+					case 'investigation_carrier_status_lists':
+						vals = data.investigation_carrier_status_lists.split(",");
+						break;
 				}
 				
 				//Add item into end of array
@@ -464,6 +608,54 @@ $( document ).ready(function() {
 					break;
 				case 'diagnosis_name_lists':
 					vals = data.diagnosis_name_lists.split(",");
+					break;
+				case 'mammo_left_right_breast_side_lists':
+					vals = data.mammo_left_right_breast_side_lists.split(",");
+					break;
+				case 'mammo_upper_below_breast_side_lists':
+					vals = data.mammo_upper_below_breast_side_lists.split(",");
+					break;
+				case 'non_cancerous_benign_site_lists':
+					vals = data.non_cancerous_benign_site_lists.split(",");
+					break;
+				case 'non_cancerous_complete_removal_reason_lists':
+					vals = data.non_cancerous_complete_removal_reason_lists.split(",");
+					break;
+				case 'ovarian_screening_type_name_lists':
+					vals = data.ovarian_screening_type_name_lists.split(",");
+					break;
+				case 'screening_name_lists':
+					vals = data.screening_name_lists.split(",");
+					break;
+				case 'surveillance_recruitment_center_lists':
+					vals = data.surveillance_recruitment_center_lists.split(",");
+					break;
+				case 'surveillance_type_lists':
+					vals = data.surveillance_type_lists.split(",");
+					break;
+				case 'investigation_project_name_lists':
+					vals = data.investigation_project_name_lists.split(",");
+					break;
+				case 'investigation_gene_tested_lists':
+					vals = data.investigation_gene_tested_lists.split(",");
+					break;
+				case 'investigation_test_type_lists':
+					vals = data.investigation_test_type_lists.split(",");
+					break;
+				case 'investigation_sample_type_lists':
+					vals = data.investigation_sample_type_lists.split(",");
+					break;
+				case 'investigation_test_results_lists':
+					vals = data.investigation_test_results_lists.split(",");
+					break;
+				case 'investigation_mutation_pathogenicity_lists':
+					vals = data.investigation_mutation_pathogenicity_lists.split(",");
+					break;
+				case 'investigation_mutation_nomenclature_lists':
+					vals = data.investigation_mutation_nomenclature_lists.split(",");
+					break;
+				case 'investigation_carrier_status_lists':
+					vals = data.investigation_carrier_status_lists.split(",");
 					break;
 				case 'base':
 					vals = ['Please choose from above'];

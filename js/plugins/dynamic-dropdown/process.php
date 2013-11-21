@@ -75,6 +75,55 @@
 			case 'diagnosis_name_lists':
 				$data['diagnosis_name_lists'] = $text;
 				break;
+			case 'mammo_left_right_breast_side_lists':
+				$data['mammo_left_right_breast_side_lists'] = $text;
+				break;
+			case 'mammo_upper_below_breast_side_lists':
+				$data['mammo_upper_below_breast_side_lists'] = $text;
+				break;
+			case 'non_cancerous_benign_site_lists':
+				$data['non_cancerous_benign_site_lists'] = $text;
+				break;
+			case 'non_cancerous_complete_removal_reason_lists':
+				$data['non_cancerous_complete_removal_reason_lists'] = $text;
+				break;
+			case 'ovarian_screening_type_name_lists':
+				$data['ovarian_screening_type_name_lists'] = $text;
+				break;
+			case 'screening_name_lists':
+				$data['screening_name_lists'] = $text;
+				break;
+			case 'surveillance_recruitment_center_lists':
+				$data['surveillance_recruitment_center_lists'] = $text;
+				break;
+			case 'surveillance_type_lists':
+				$data['surveillance_type_lists'] = $text;
+				break;
+			case 'investigation_project_name_lists':
+				$data['investigation_project_name_lists'] = $text;
+				break;
+			case 'investigation_gene_tested_lists':
+				$data['investigation_gene_tested_lists'] = $text;
+				break;
+			case 'investigation_test_type_lists':
+				$data['investigation_test_type_lists'] = $text;
+				break;
+			case 'investigation_sample_type_lists':
+				$data['investigation_sample_type_lists'] = $text;
+				break;
+			case 'investigation_test_results_lists':
+				$data['investigation_test_results_lists'] = $text;
+				break;
+			case 'investigation_mutation_pathogenicity_lists':
+				$data['investigation_mutation_pathogenicity_lists'] = $text;
+				break;
+			case 'investigation_mutation_nomenclature_lists':
+				$data['investigation_mutation_nomenclature_lists'] = $text;
+				break;
+			case 'investigation_carrier_status_lists':
+				$data['investigation_carrier_status_lists'] = $text;
+				break;
+				
 			
 		}
 		

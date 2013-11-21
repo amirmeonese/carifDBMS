@@ -135,11 +135,11 @@
             <tr>
                 <td>
                     <?php echo $mammo_left_right_breast_side; ?>: 
-                    <?php echo form_dropdown('mammo_left_right_breast_side', $mammo_left_right_breast_side_lists); ?>
+					<?php echo form_dropdown('mammo_left_right_breast_side', $mammo_left_right_breast_side_lists, NULL, 'id="mammo_left_right_breast_side_lists"'); ?>
                 </td>
                 <td>
-                    <?php echo $mammo_upper_below_breast_side; ?>: 
-                    <?php echo form_dropdown('mammo_upper_below_breast_side', $mammo_upper_below_breast_side_lists); ?>
+					<?php echo $mammo_upper_below_breast_side; ?>: 
+					<?php echo form_dropdown('mammo_upper_below_breast_side', $mammo_upper_below_breast_side_lists, NULL, 'id="mammo_upper_below_breast_side_lists"'); ?>
                 </td>
 				 <td>
                     <?php echo $mammo_is_abnormality_detected; ?>: 
@@ -180,7 +180,7 @@
                         </td>
                         <td>
                             <?php echo $side_effected; ?>: 
-			    <?php echo form_dropdown('site_effected_of_mammogram', $mammo_report_site); ?>
+							<?php echo form_dropdown('site_effected_of_mammogram', $patient_cancer_site_lists, NULL, 'id="cancer_site"'); ?>
                         </td>
 
 			<td>&nbsp;</td>
@@ -472,7 +472,7 @@
 				<tr>
 					<td>
 						<?php echo $non_cancerous_benign_site; ?>: 
-						<?php echo form_dropdown('non_cancerous_benign_site', $non_cancerous_benign_site_lists); ?>
+						<?php echo form_dropdown('non_cancerous_benign_site', $non_cancerous_benign_site_lists, NULL, 'id="non_cancerous_benign_site_lists"'); ?>
 					</td>
 					<td>
 						<?php echo $non_cancerous_benign_date; ?>: 
@@ -498,7 +498,7 @@
 				<tr>
 					<td>
 						<?php echo $non_cancerous_complete_removal_site; ?>: 
-						<?php echo form_dropdown('non_cancerous_complete_removal_site', $non_cancerous_benign_site_lists); ?>
+						<?php echo form_dropdown('non_cancerous_complete_removal_site', $non_cancerous_benign_site_lists, NULL, 'id="non_cancerous_benign_site_lists"'); ?>
 					</td>
 					<td>
 						<?php echo $non_cancerous_complete_removal_date; ?>: 
@@ -506,7 +506,7 @@
 					</td>
 					<td>
 						<?php echo $non_cancerous_complete_removal_reason; ?>: 
-						<?php echo form_dropdown('non_cancerous_complete_removal_reason', $non_cancerous_complete_removal_reason_lists); ?>
+						<?php echo form_dropdown('non_cancerous_complete_removal_reason', $non_cancerous_complete_removal_reason_lists, NULL, 'id="non_cancerous_complete_removal_reason_lists"'); ?>
 					</td>
 					<td>
 						<input type="button" value="Add" onClick="window.parent.addRiskReducingSurgeryCompleteRemovalInfo('non_cancerous_complete_removal_section_1');
@@ -530,7 +530,7 @@
 				<tr>
 					<td>
 						<?php echo $ovarian_screening_type_name; ?>: 
-						 <?php echo form_dropdown('ovarian_screening_type_name', $ovarian_screening_type_name_lists); ?>
+						<?php echo form_dropdown('ovarian_screening_type_name',$ovarian_screening_type_name_lists, NULL, 'id="ovarian_screening_type_name_lists"'); ?>
 					</td>
 					<td>
 						<?php echo $physical_exam_date; ?>:
@@ -576,7 +576,7 @@
             <tr>
                 <td>
                     <?php echo $screening_name; ?>: 
-                    <?php echo form_dropdown('screening_name', $screening_name_lists); ?>
+                    <?php echo form_dropdown('screening_name',$screening_name_lists, NULL, 'id="screening_name_lists"'); ?>
                 </td>
                 <td>
                     <?php echo $age_at_screening; ?>: 
@@ -617,11 +617,11 @@
             <tr>
                 <td>
                     <?php echo $surveillance_recruitment_center; ?>: 
-                    <?php echo form_dropdown('surveillance_recruitment_center', $surveillance_recruitment_center_lists); ?>
+					<?php echo form_dropdown('surveillance_recruitment_center',$surveillance_recruitment_center_lists, NULL, 'id="surveillance_recruitment_center_lists"'); ?>
                 </td>
                 <td>
                     <?php echo $surveillance_type; ?>: 
-                    <?php echo form_dropdown('surveillance_type', $surveillance_type_lists); ?>
+                    <?php echo form_dropdown('surveillance_type',$surveillance_type_lists, NULL, 'id="surveillance_type_lists"'); ?>
                 </td>
                 <td>&nbsp;</td>
             </tr>
