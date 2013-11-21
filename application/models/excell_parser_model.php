@@ -502,7 +502,7 @@ class Excell_parser_model extends CI_Model {
                         $val_cancer_name = in_array($array_cancer_name_Diagnosis[$i], $result_cancer_name);
 
                         if (!$val_cancer_name) {
-                            echo 'Should ommit import for invalid cancer_name data at Diagnosis worksheet' . '<br/>';
+                            echo 'Should ommit import for invalid cancer_name data at Diagnosis & Treatment worksheet' . '<br/>';
                             $abort = TRUE;
                             break;
                         }
@@ -523,7 +523,7 @@ class Excell_parser_model extends CI_Model {
                         $val_cancer_site_name = in_array($array_cancer_site_name_Diagnosis[$i], $result_cancer_site_name);
 
                         if (!$val_cancer_site_name) {
-                            echo 'Should ommit import for invalid cancer_site_name data at Diagnosis worksheet' . '<br/>';
+                            echo 'Should ommit import for invalid cancer_site_name data at Diagnosis & Treatment worksheet' . '<br/>';
                             $abort = TRUE;
                             break;
                         }
@@ -694,6 +694,11 @@ class Excell_parser_model extends CI_Model {
                 } else if ($loadedSheetName == 'Sreening and Surveilance3') {
                     $array_studies_name = array();
                     $array_studies_name = null;
+                    $array_lesion_surgery_site = array();
+                    $array_lesion_surgery_site = null;
+                    $array_surgery_site = array();
+                    $array_surgery_site = null;
+                    
                     foreach ($sheet->getRowIterator() as $row) {
                         $ic_no_validator = TRUE;
                         $date_flag = FALSE;
@@ -804,6 +809,9 @@ class Excell_parser_model extends CI_Model {
                 } else if ($loadedSheetName == 'Sreening and Surveilance4') {
                     $array_studies_name = array();
                     $array_studies_name = null;
+                    $array_other_screening_type = array();
+                    $array_other_screening_type = null;
+                    
                     foreach ($sheet->getRowIterator() as $row) {
                         $ic_no_validator = TRUE;
                         $date_flag = TRUE;
@@ -953,6 +961,8 @@ class Excell_parser_model extends CI_Model {
 
                              if (($key == 3 || $key == 10 || $key == 14 || $key == 15 || $key == 16) && $cell_value != NULL) {
                                 //echo $key.'     From line 952<br/>';
+                                //echo "cell value:   ".$cell_value.'<br/>';
+                              
                                 list($month, $day, $year) = explode("/", $cell_value);
                                 if (!checkdate($month, $day, $year)) {
                                     echo '<h2>date_of_diagnosis or first_consultation_date or due_date or reminder_sent_date or surveillance_done_date is not in appropriate format at Sreening and Surveilance5</h2>';
@@ -961,10 +971,9 @@ class Excell_parser_model extends CI_Model {
                                     break;
                                 }
                             }
-                            //echo $cell_value.'      ';
                             
                         }
-                        echo '<br/>';
+                        
                         if (!$ic_no_validator)
                             break;
 
@@ -984,7 +993,7 @@ class Excell_parser_model extends CI_Model {
 
                     // print_r($temp_diagnonis_name);
                     $result_diagnonis_name = array();
-                    $result_diagnonis_name = NULL;
+                    $result_diagnonis_name = null;
                     for ($i = 0; $i < sizeof($temp_diagnonis_name); $i++) {
                         //echo $result_relationship[$j]['relatives_type']. '<br/>';
                         $result_diagnonis_name[$i] = $temp_diagnonis_name[$i]['diagnosis_name'];
@@ -2219,7 +2228,7 @@ class Excell_parser_model extends CI_Model {
           else
           echo 'Failed to insert at patient_non_cancer_surgery table';
           echo '<br/>';
-          } else if ($loadedSheetName == 'Sreening and Surveilance3') {
+          }else if ($loadedSheetName == 'Sreening and Surveilance3') {
           $temp_patient_studies_id = array();
           foreach ($sheet->getRowIterator() as $row) {
           $i++;
