@@ -18,7 +18,7 @@
             </div>
             <div class="span3">
 
-                <form name="add_record" action="admin/create_new_report" method="post">
+                <form name="add_record" action="admin/customize_form" method="post">
                     <input type ="image" src="<?php echo base_url(); ?>img/customize_form.png" alt="add_new_form_button" height="120px"></input>
                 </form>
             </div>
