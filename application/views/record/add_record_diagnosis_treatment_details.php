@@ -532,7 +532,7 @@
                     </td>
                     <td>
                     <?php echo $cancer_site; ?>: 
-                    <?php echo form_dropdown('other_cancer_site', $patient_cancer_site_lists); ?>
+                    <?php echo form_dropdown('other_cancer_site', $patient_cancer_site_lists, NULL, 'id="cancer_site"'); ?>
                     </td>
                     <td>
                         <?php echo $other_date_of_diagnosis; ?>: 
