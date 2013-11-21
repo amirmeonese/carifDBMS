@@ -70,15 +70,7 @@
                 <tr>
                     <td>
                         <?php echo $investigation_test_reason; ?>:  <br />
-                        <?php
-                        $data = array(
-                            'name' => 'investigation_test_reason',
-                            'id' => 'investigation_test_reason',
-                            'rows' => '3',
-                            'cols' => '7'
-                        );
-                        echo form_textarea($data);
-                        ?>
+                        <?php echo form_textarea(array('name' => 'investigation_test_reason','id' => 'investigation_test_reason','rows' => '3','cols' => '7', 'value' => $list['reasons']))?>
                     </td>
                     <td>
                         <?php echo $investigation_new_mutation_flag; ?>:  
@@ -92,15 +84,7 @@
                     </td>
                     <td>
                         <?php echo $investigation_test_results_other_details; ?>:  <br />
-                        <?php
-                        $data = array(
-                            'name' => 'investigation_test_results_other_details',
-                            'id' => 'investigation_test_results_other_details',
-                            'rows' => '3',
-                            'cols' => '7'
-                        );
-                        echo form_textarea($data);
-                        ?>
+                        <?php echo form_textarea(array('name' => 'investigation_test_results_other_details','id' => 'investigation_test_results_other_details','rows' => '3','cols' => '7', 'value' => $list['investigation_test_results_other_details']))?>
                     </td>
                     <td>&nbsp;</td>
                 </tr>
@@ -148,15 +132,7 @@
                     </td>
                     <td>
                         <?php echo $investigation_test_comment; ?>:  <br />
-                        <?php
-                        $data = array(
-                            'name' => 'investigation_test_comment',
-                            'id' => 'investigation_test_comment',
-                            'rows' => '3',
-                            'cols' => '7'
-                        );
-                        echo form_textarea($data);
-                        ?>
+                        <?php echo form_textarea(array('name' => 'investigation_test_comment','id' => 'investigation_test_comment','rows' => '3','cols' => '7', 'value' => $list['comments']))?>
                     </td>
                     <td>
                         <?php echo $investigation_conformation_attachment; ?>: 	

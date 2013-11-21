@@ -98,7 +98,7 @@
                     </td>
                     <td>
                         <?php echo $BOADICEA_at_consent_no_mutation; ?>: 
-                        <?php echo form_checkbox('BOADICEA_at_consent_no_mutation', '1', FALSE); ?>
+                        <?php echo form_checkbox(array('name' => 'BOADICEA_at_consent_no_mutation', 'value' => $list['at_consent_boadicea_no_mutation']))?>
                     </td>
                 </tr>
                 <tr>
@@ -115,7 +115,7 @@
                     </td>
                     <td>
                         <?php echo $BOADICEA_adjusted_no_mutation; ?>: 
-                        <?php echo form_checkbox('BOADICEA_adjusted_no_mutation', '1', FALSE); ?>
+                        <?php echo form_checkbox(array('name' => 'BOADICEA_adjusted_no_mutation', 'value' => $list['adjusted_boadicea_no_mutation']))?>
                     </td>
                 </tr>
                 <tr>
@@ -132,7 +132,7 @@
                     </td>
                     <td>
                         <?php echo $BOADICEA_after_gc_no_mutation; ?>: 
-                        <?php echo form_checkbox('BOADICEA_after_gc_no_mutation', '1', FALSE); ?>
+                        <?php echo form_checkbox(array('name' => 'BOADICEA_after_gc_no_mutation', 'value' => $list['after_gc_boadicea_no_mutation']))?>
                     </td>
                 </tr>
                 <tr>

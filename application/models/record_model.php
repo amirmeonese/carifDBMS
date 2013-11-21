@@ -785,9 +785,9 @@ class Record_model extends CI_Model {
         );
 		 $data['patient_cancer_site_lists'] = array(
 			 '' => '',
-            'Left' => 'Left',
-            'Right' => 'Right',
-            'Bilateral' => 'Bilateral'
+            'Left' => 'Left Breast',
+            'Right' => 'Right Breast',
+            //'Bilateral' => 'Bilateral'
         );
         $data['cancer_site_details'] = 'Details';
 
@@ -1569,7 +1569,67 @@ class Record_model extends CI_Model {
         //$this->db->where('patient_ic_no',$ic_no);
         $this->db->where('patient_studies_id',$patient_studies_id);
 	$p_record = $this->db->get('patient_lifestyle_factors');
-        $patient_lifestyle = $p_record->result_array();
+        $patient_lifestyle = $p_record->row_array();
+       // echo $this->db->last_query();exit;
+        $p_record->free_result();  
+
+        return $patient_lifestyle;
+    }
+    
+    public function get_patient_menstruation_record($ic_no,$patient_studies_id){
+         
+        //$this->db->where('patient_ic_no',$ic_no);
+        $this->db->where('patient_studies_id',$patient_studies_id);
+	$p_record = $this->db->get('patient_menstruation');
+        $patient_lifestyle = $p_record->row_array();
+       // echo $this->db->last_query();exit;
+        $p_record->free_result();  
+
+        return $patient_lifestyle;
+    }
+    
+    public function get_patient_parity_table_record($ic_no,$patient_studies_id){
+         
+        //$this->db->where('patient_ic_no',$ic_no);
+        $this->db->where('patient_studies_id',$patient_studies_id);
+	$p_record = $this->db->get('patient_parity_table');
+        $patient_lifestyle = $p_record->row_array();
+       // echo $this->db->last_query();exit;
+        $p_record->free_result();  
+
+        return $patient_lifestyle;
+    }
+    
+    public function get_patient_parity_record($ic_no,$patient_studies_id){
+         
+        //$this->db->where('patient_ic_no',$ic_no);
+        $this->db->where('patient_studies_id',$patient_studies_id);
+	$p_record = $this->db->get('patient_parity_record');
+        $patient_lifestyle = $p_record->row_array();
+       // echo $this->db->last_query();exit;
+        $p_record->free_result();  
+
+        return $patient_lifestyle;
+    }
+    
+    public function get_patient_infertility_record($ic_no,$patient_studies_id){
+         
+        //$this->db->where('patient_ic_no',$ic_no);
+        $this->db->where('patient_studies_id',$patient_studies_id);
+	$p_record = $this->db->get('patient_infertility');
+        $patient_lifestyle = $p_record->row_array();
+       // echo $this->db->last_query();exit;
+        $p_record->free_result();  
+
+        return $patient_lifestyle;
+    }
+    
+    public function get_patient_gynaecological_record($ic_no,$patient_studies_id){
+         
+        //$this->db->where('patient_ic_no',$ic_no);
+        $this->db->where('patient_studies_id',$patient_studies_id);
+	$p_record = $this->db->get('patient_gynaecological_surgery_history');
+        $patient_lifestyle = $p_record->row_array();
        // echo $this->db->last_query();exit;
         $p_record->free_result();  
 
@@ -1971,7 +2031,7 @@ class Record_model extends CI_Model {
             //echo $result['relatives_id'];
         }
 
-        //print_r($result['relatives_id']);
+        //print_r($result['cancer_site_id']);
 
         return $result['cancer_site_id'];
     }
@@ -2119,7 +2179,6 @@ class Record_model extends CI_Model {
       {
       echo $fileName;
       } */
-}
 
 function get_family_patient_record($ic_no) {
         $this->db->select('a.*,b.*,c.*');
@@ -2134,5 +2193,182 @@ function get_family_patient_record($ic_no) {
 
         return $list_patient;
     }
+    
+    function get_patient_lifstyle_record($patient_studies_id) {
+    $this->db->select('a.*,b.*,c.*,d.*,e.*,f.*');
+    $this->db->from('patient_lifestyle_factors a, patient_menstruation b, patient_parity_table c, patient_parity_record d, patient_infertility e,patient_gynaecological_surgery_history f');
+    $this->db->where('a.patient_studies_id = b.patient_studies_id');
+    $this->db->where('a.patient_studies_id = c.patient_studies_id');
+    $this->db->where('c.patient_parity_id = d.patient_parity_table_id');
+    $this->db->where('a.patient_studies_id = e.patient_studies_id');
+    $this->db->where('a.patient_studies_id = f.patient_studies_id');
+    $this->db->where('a.patient_studies_id',$patient_studies_id);
+    $patient_lifestyle_list = $this->db->get('');
+    $list_patient_lifestyle = $patient_lifestyle_list->result_array();
+    $patient_lifestyle_list->free_result();
+    
+    //print_r($list_patient_lifestyle);exit;
+
+    return $list_patient_lifestyle;
+}
+
+function get_patient_breast_diagnosis_record($patient_studies_id) {
+    $this->db->select('a.*,b.*,c.*,d.*');
+    $this->db->from('patient_cancer a, patient_pathology b, patient_pathology_staining_status c, patient_cancer_treatment d');
+    $this->db->where('a.patient_cancer_id = b.patient_cancer_id');
+    $this->db->where('b.patient_pathology_id = c.patient_pathology_id');
+    $this->db->where('a.patient_cancer_id = d.patient_cancer_id');
+    $this->db->where('a.patient_studies_id',$patient_studies_id);
+    $this->db->where('a.cancer_id',1);
+    $patient_lifestyle_list = $this->db->get('');
+    $list_patient_lifestyle = $patient_lifestyle_list->result_array();
+    $patient_lifestyle_list->free_result();
+    
+    //print_r($list_patient_lifestyle);exit;
+
+    return $list_patient_lifestyle;
+}
+
+function get_patient_ovary_diagnosis_record($patient_studies_id) {
+    $this->db->select('a.*,b.*,c.*');
+    $this->db->from('patient_cancer a, patient_pathology b, patient_cancer_treatment c');
+    $this->db->where('a.patient_cancer_id = b.patient_cancer_id');
+    $this->db->where('a.patient_cancer_id = c.patient_cancer_id');
+    $this->db->where('a.patient_studies_id',$patient_studies_id);
+    $this->db->where('a.cancer_id',2);
+    $patient_lifestyle_list = $this->db->get('');
+    $list_patient_lifestyle = $patient_lifestyle_list->result_array();
+    $patient_lifestyle_list->free_result();
+    
+    //print_r($list_patient_lifestyle);exit;
+
+    return $list_patient_lifestyle;
+}
+
+function get_patient_others_diagnosis_record($patient_studies_id) {
+    $this->db->select('a.*,b.*,c.*');
+    $this->db->from('patient_cancer a, patient_pathology b, patient_cancer_treatment c');
+    $this->db->where('a.patient_cancer_id = b.patient_cancer_id');
+    $this->db->where('a.patient_cancer_id = c.patient_cancer_id');
+    $this->db->where('a.patient_studies_id',$patient_studies_id);
+    $this->db->where('a.cancer_id !=', '1');
+    $this->db->where('a.cancer_id !=', '2');
+    $patient_lifestyle_list = $this->db->get('');
+    $list_patient_lifestyle = $patient_lifestyle_list->result_array();
+    $patient_lifestyle_list->free_result();
+    
+    //print_r($list_patient_lifestyle);exit;
+
+    return $list_patient_lifestyle;
+}
+
+function get_patient_others_desease_record($patient_studies_id) {
+    $this->db->select('a.*,b.*');
+    $this->db->from('patient_other_disease a, patient_other_disease_medication b');
+    $this->db->where('a.patient_other_disease_id = b.patient_other_disease_id');
+    $this->db->where('a.patient_studies_id',$patient_studies_id);
+    $other_desease_list = $this->db->get('');
+    $list_patient_other_desease = $other_desease_list->result_array();
+    $other_desease_list->free_result();
+    
+    //print_r($list_patient_lifestyle);exit;
+
+    return $list_patient_other_desease;
+}
+
+function get_patient_counselling_record($patient_studies_id) {
+    $this->db->from('patient_interview_manager');
+    $this->db->where('patient_studies_id',$patient_studies_id);
+    $patient_counselling_list = $this->db->get('');
+    $list_patient_counselling = $patient_counselling_list->result_array();
+    $patient_counselling_list->free_result();
+    
+    //print_r($list_patient_lifestyle);exit;
+
+    return $list_patient_counselling;
+}
+
+function get_patient_breast_screening_record($patient_studies_id) {
+    
+    $this->db->select('a.*,b.*,c.*,d.*');
+    $this->db->from('patient_breast_screening a, patient_breast_abnormality b, patient_ultrasound_abnormality c, patient_mri_abnormality d');
+    $this->db->where('a.patient_breast_screening_id = b.patient_breast_screening_id');
+    $this->db->where('a.patient_breast_screening_id = c.patient_breast_screening_id');
+    $this->db->where('a.patient_breast_screening_id = d.patient_breast_screening_id');    
+    $this->db->where('a.patient_studies_id',$patient_studies_id);
+    $patient_lifestyle_list = $this->db->get('');
+    $list_patient_lifestyle = $patient_lifestyle_list->result_array();
+    $patient_lifestyle_list->free_result();
+    
+    //print_r($list_patient_lifestyle);exit;
+
+    return $list_patient_lifestyle;
+}
+
+function get_patient_non_cancer_record($patient_studies_id) {
+    $this->db->from('patient_non_cancer_surgery');
+    $this->db->where('patient_studies_id',$patient_studies_id);
+    $patient_counselling_list = $this->db->get('');
+    $list_patient_counselling = $patient_counselling_list->result_array();
+    $patient_counselling_list->free_result();
+    
+    //print_r($list_patient_lifestyle);exit;
+
+    return $list_patient_counselling;
+}
+
+function get_patient_risk_reducing_surgery_record($patient_studies_id) {
+    $this->db->select('a.*,b.*,c.*');
+    $this->db->from('patient_risk_reducing_surgery a, patient_risk_reducing_surgery_complete_removal b, patient_risk_reducing_surgery_lesion c');
+    $this->db->where('a.patient_risk_reducing_surgery_id = b.patient_risk_reducing_surgery_id');
+    $this->db->where('a.patient_risk_reducing_surgery_id = c.patient_risk_reducing_surgery_id');
+    $this->db->where('a.patient_studies_id',$patient_studies_id);
+    $patient_lifestyle_list = $this->db->get('');
+    $list_patient_lifestyle = $patient_lifestyle_list->result_array();
+    $patient_lifestyle_list->free_result();
+    
+    //print_r($list_patient_lifestyle);exit;
+
+    return $list_patient_lifestyle;
+}
+
+function get_patient_ovarian_screening_record($patient_studies_id) {
+    $this->db->from('patient_ovarian_screening');
+    $this->db->where('patient_studies_id',$patient_studies_id);
+    $patient_counselling_list = $this->db->get('');
+    $list_patient_counselling = $patient_counselling_list->result_array();
+    $patient_counselling_list->free_result();
+    
+    //print_r($list_patient_lifestyle);exit;
+
+    return $list_patient_counselling;
+}
+
+function get_patient_surveillance_record($patient_studies_id) {
+    $this->db->from('patient_surveillance');
+    $this->db->where('patient_studies_id',$patient_studies_id);
+    $patient_counselling_list = $this->db->get('');
+    $list_patient_counselling = $patient_counselling_list->result_array();
+    $patient_counselling_list->free_result();
+    
+    //print_r($list_patient_lifestyle);exit;
+
+    return $list_patient_counselling;
+}
+
+function get_patient_other_screening_record($patient_studies_id) {
+    $this->db->from('patient_other_screening');
+    $this->db->where('patient_studies_id',$patient_studies_id);
+    $patient_counselling_list = $this->db->get('');
+    $list_patient_counselling = $patient_counselling_list->result_array();
+    $patient_counselling_list->free_result();
+    
+    //print_r($list_patient_lifestyle);exit;
+
+    return $list_patient_counselling;
+}
+
+}
+
 
 ?>

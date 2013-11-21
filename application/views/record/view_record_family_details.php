@@ -86,15 +86,7 @@
                 </td>
                 <td>
                     <?php echo $mother_diagnosis_other_details; ?>: 
-                    <?php
-                    $data = array(
-                        'name' => 'mother_diagnosis_other_details',
-                        'id' => 'mother_diagnosis_other_details',
-                        'rows' => '3',
-                        'cols' => '7'
-                    );
-                    echo form_textarea($data);
-                    ?>
+                    <?php echo form_textarea(array('name' => 'mother_diagnosis_other_details','id' => 'mother_diagnosis_other_details','rows' => '3','cols' => '7', 'value' => $list['other_detail']))?> 
                 </td>
               </tr>
             <tr>
@@ -131,16 +123,7 @@
                     <?php echo form_input(array('name' => 'mother_vital_status', 'value' => $list['vital_status']))?>
                 </td>
 				<td>
-                    <?php echo $mother_comments; ?>: 
-					<?php
-                    $data = array(
-                        'name' => 'mother_comments',
-                        'id' => 'mother_comments',
-                        'rows' => '5',
-                        'cols' => '10'
-                    );
-                    echo form_textarea($data);
-                    ?>
+                    <?php echo form_textarea(array('name' => 'mother_comments','id' => 'mother_comments','rows' => '5','cols' => '10', 'value' => $patient_detail['comments']))?> 
                 </td>
                 </td>
             </tr>
@@ -223,15 +206,7 @@
                 </td>
                 <td>
                     <?php echo $father_diagnosis_other_details; ?>: 
-                    <?php
-                    $data = array(
-                        'name' => 'father_diagnosis_other_details',
-                        'id' => 'father_diagnosis_other_details',
-                        'rows' => '3',
-                        'cols' => '7'
-                    );
-                    echo form_textarea($data);
-                    ?>
+                    <?php echo form_textarea(array('name' => 'father_diagnosis_other_details','id' => 'father_diagnosis_other_details','rows' => '3','cols' => '7', 'value' => $patient_detail['other_detail']))?> 
                 </td>
             </tr>
             <tr>
@@ -268,16 +243,7 @@
                     <?php echo form_input(array('name' => 'father_vital_status', 'value' => $list['vital_status']))?>
                 </td>
 				<td>
-                    <?php echo $father_comments; ?>: 
-					<?php
-                    $data = array(
-                        'name' => 'father_comments',
-                        'id' => 'father_comments',
-                        'rows' => '5',
-                        'cols' => '10'
-                    );
-                    echo form_textarea($data);
-                    ?>
+                    <?php echo form_textarea(array('name' => 'father_comments','id' => 'father_comments','rows' => '5','cols' => '10', 'value' => $patient_detail['comments']))?> 
                 </td>
             </tr>
         </table>
