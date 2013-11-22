@@ -157,7 +157,7 @@
 					<?php echo form_input('COGS_studies_no'); ?>
                 </td>
                 <td>
-				<input type="button" value="Add" onClick="window.parent.addPatientStudyNoInput('add_record_form_section_personal6'); window.parent.calcHeight();">
+				<input type="button" value="Add" onClick="window.parent.addPatientStudyNoInput('add_record_form_section_personal6'); window.parent.calcHeight(); applyDynamicDropdown()">
                 </td>
                 </tr>
        </table>
@@ -354,7 +354,7 @@
                 </td>
                 <td>
                     <input type="button" value="Add more survival status" onClick="window.parent.addSurvivalStatusInput('add_record_form_section_personal_5');
-                            window.parent.calcHeight();">
+                            window.parent.calcHeight();applyDynamicDropdown();">
                 </td>
             </tr>
         </table>

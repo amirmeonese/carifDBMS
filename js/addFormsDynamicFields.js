@@ -1468,7 +1468,7 @@ function deletePregnancyInput(divCounterName)
 }
 
 
-// ==== SURVIVAL STATU DETAILS ====
+// ==== SURVIVAL STATUS DETAILS ====
 var survivalStatusCounter = 2;
 var limit = 20;
 
@@ -1488,7 +1488,7 @@ function addSurvivalStatusInput(divName)
 		var formInputHTML = "<table>" +
 		"<tr>" +
 		"<td>Source:" +
-		"<select name='status_source" + survivalStatusCounter + "'>" +
+		"<select id=\"status_source\" name='status_source" + survivalStatusCounter + "'>" +
 			"<option value=''></option>" +
 			"<option value='JPN'>JPN</option>" +
 			"<option value='Others'>Others</option>" +
@@ -1496,7 +1496,7 @@ function addSurvivalStatusInput(divName)
 		"</select> " +
 		"</td>" +
 		"<td>Status: " +
-		"<select name='alive_status" + survivalStatusCounter + "'>" +
+		"<select id=\"alive_status\" name='alive_status" + survivalStatusCounter + "'>" +
 			"<option value=''></option>" +
 			"<option value='Alive'>Alive</option>" +
 			"<option value='Dead'>Dead</option>" +
@@ -2733,7 +2733,7 @@ function addPatientStudyNoInput(divName)
 		"<table>" + 
 		"<tr>" +
 		"<td>COGS Study ID :" +
-		"<select name='COGS_study_id" + studyNoCounter + "'>" +
+		"<select id=\"COGS_study_id\" name='COGS_study_id" + studyNoCounter + "'>" +
 			"<option value=''></option>" +
 			"<option value='CIMBA'>CIMBA</option>" +
 			"<option value='OCAC'>OCAC</option>" +
@@ -2789,7 +2789,7 @@ function addmotherDiagnosisInput(divName)
 		"<table>" + 
 		"<tr>" +
 		"<td>Type of cancer :" +
-		"<select name='mother_cancer_name" + motherDiagnosisCounter + "'>" +
+		"<select id=\"patient_cancer_name_lists\" name='mother_cancer_name" + motherDiagnosisCounter + "'>" +
 			"<option value=''></option>" +
 			"<option value='None'>None</option>" +	
 			"<option value='Breast'>Breast</option>" +
@@ -2857,7 +2857,7 @@ function addfatherDiagnosisInput(divName)
 		"<table>" + 
 		"<tr>" +
 		"<td>Type of cancer :" +
-		"<select name='father_cancer_name" + fatherDiagnosisCounter + "'>" +
+		"<select id=\"patient_cancer_name_lists\" name='father_cancer_name" + fatherDiagnosisCounter + "'>" +
 			"<option value=''></option>" +
 			"<option value='None'>None</option>" +	
 			"<option value='Breast'>Breast</option>" +

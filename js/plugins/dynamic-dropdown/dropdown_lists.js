@@ -1,12 +1,12 @@
-$( document ).ready(function() {
-	
+function applyDynamicDropdown()
+{
 	if (!window.location.origin)
 		window.location.origin = window.location.protocol+"//"+window.location.host;
-   
-   // =================================================== //
-   // ================ FORMS SETUP ====================== //
-   // == FIlls in dropdowns with values from json file == //
-   // =================================================== //
+		
+	// =================================================== //
+	// ================ FORMS SETUP ====================== //
+	// == FIlls in dropdowns with values from json file == //
+	// =================================================== //
 	$.getJSON(window.location.origin + "/carifDBMS/js/plugins/dynamic-dropdown/data.json", function(data) 
 	{	
 		var vals = [];
@@ -26,6 +26,15 @@ $( document ).ready(function() {
 		});
 	});
 	
+	
+}
+
+$( document ).ready(function() {
+	
+	if (!window.location.origin)
+		window.location.origin = window.location.protocol+"//"+window.location.host;
+   
+   applyDynamicDropdown();
 	// ======================== //
 	//== ADMIN PANEL SETUPS ==//
 	// ======================== //

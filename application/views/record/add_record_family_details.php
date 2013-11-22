@@ -109,7 +109,7 @@
               </tr>
             <tr>
             <td>
-            <input type="button" value="Add more" onClick="window.parent.addmotherDiagnosisInput('add_record_mother_cancer_record_1');window.parent.calcHeight();"></b
+            <input type="button" value="Add more" onClick="window.parent.addmotherDiagnosisInput('add_record_mother_cancer_record_1');window.parent.calcHeight();applyDynamicDropdown();"></b
             </td>
             </tr>
             </table>
@@ -245,7 +245,7 @@
             </tr>
             <tr>
             <td>
-            <input type="button" value="Add more" onClick="window.parent.addfatherDiagnosisInput('add_record_father_cancer_record_1');window.parent.calcHeight();"></b
+            <input type="button" value="Add more" onClick="window.parent.addfatherDiagnosisInput('add_record_father_cancer_record_1');window.parent.calcHeight();applyDynamicDropdown();"></b
             </td>
             </tr>
         </table>
