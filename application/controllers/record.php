@@ -1827,7 +1827,7 @@ class Record extends CI_Controller {
             //$data['patient_lifestyle_factors'] = $this->record_model->get_patient_lifstyle_record($patient_studies_id);
             $this->template->load("templates/add_record_template", 'record/view_record_lifestyles_factors_details', $data);
         } else if ($var == 'counselling') {
-            $data['patient_interview_manager'] = $this->record_model->get_patient_gynaecological_record($ic_no, $patient_studies_id);
+            $data['patient_interview_manager'] = $this->record_model->get_patient_counselling_record($ic_no, $patient_studies_id);
             
             $this->template->load("templates/add_record_template", 'record/view_interview_home', $data);
         } else if ($var == 'bulkImport') {

@@ -33,17 +33,14 @@
                     <td>
                         <?php echo $ms_at_consent_BRCA1; ?>: 
                         <?php echo form_input('ms_at_consent_BRCA1'); ?>
-                        <?php echo ($isUpdate) ? form_input(array('name' => 'ms_at_consent_BRCA1', 'value' => $patient_detail['at_consent_mach_brca1'])) : form_input('ms_at_consent_BRCA1')?>
                     </td>
                     <td>
                         <?php echo $ms_at_consent_BRCA2; ?>: 
                         <?php echo form_input('ms_at_consent_BRCA2'); ?>
-                        <?php echo ($isUpdate) ? form_input(array('name' => 'ms_at_consent_BRCA2', 'value' => $patient_detail['at_consent_mach_brca2'])) : form_input('ms_at_consent_BRCA2')?>
                     </td>
                     <td>
                         <?php echo $ms_at_consent_Total; ?>: 
                         <?php echo form_input('ms_at_consent_Total'); ?>
-                        <?php echo ($isUpdate) ? form_input(array('name' => 'ms_at_consent_Total', 'value' => $patient_detail['at_consent_mach_total'])) : form_input('ms_at_consent_Total')?>
                     </td>
                 </tr>
                 <tr>
@@ -53,17 +50,14 @@
                     <td>
                         <?php echo $ms_adjusted_BRCA1; ?>: 
                         <?php echo form_input('ms_adjusted_gc_BRCA1'); ?>
-                        <?php echo ($isUpdate) ? form_input(array('name' => 'ms_adjusted_gc_BRCA1', 'value' => $patient_detail['adjusted_mach_brca1'])) : form_input('ms_adjusted_gc_BRCA1')?>
                     </td>
                     <td>
                         <?php echo $ms_adjusted_BRCA2; ?>: 
                         <?php echo form_input('ms_adjusted_gc_BRCA2'); ?>
-                        <?php echo ($isUpdate) ? form_input(array('name' => 'ms_adjusted_gc_BRCA2', 'value' => $patient_detail['adjusted_mach_brca2'])) : form_input('ms_adjusted_gc_BRCA2')?>
                     </td>
                     <td>
                         <?php echo $ms_adjusted_Total; ?>: 
                         <?php echo form_input('ms_adjusted_gc_Total'); ?>
-                        <?php echo ($isUpdate) ? form_input(array('name' => 'ms_adjusted_gc_Total', 'value' => $patient_detail['adjusted_mach_total'])) : form_input('ms_adjusted_gc_Total')?>
                     </td>
                 </tr>
                 <tr>
@@ -73,17 +67,14 @@
                     <td>
                         <?php echo $ms_after_gc_BRCA1; ?>: 
                         <?php echo form_input('ms_after_gc_BRCA1'); ?>
-                        <?php echo ($isUpdate) ? form_input(array('name' => 'ms_after_gc_BRCA1', 'value' => $patient_detail['after_gc_brca1'])) : form_input('ms_after_gc_BRCA1')?>
                     </td>
                     <td>
                         <?php echo $ms_after_gc_BRCA2; ?>: 
                         <?php echo form_input('ms_after_gc_BRCA2'); ?>
-                        <?php echo ($isUpdate) ? form_input(array('name' => 'ms_after_gc_BRCA2', 'value' => $patient_detail['after_gc_brca2'])) : form_input('ms_after_gc_BRCA2')?>
                     </td>
                     <td>
                         <?php echo $ms_after_gc_Total; ?>: 
                         <?php echo form_input('ms_after_gc_Total'); ?>
-                        <?php echo ($isUpdate) ? form_input(array('name' => 'ms_after_gc_Total', 'value' => $patient_detail['after_gc_total'])) : form_input('ms_after_gc_Total')?>
                     </td>               
                 </tr>
                 <tr>
