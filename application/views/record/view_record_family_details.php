@@ -69,7 +69,7 @@
                     <tr>
 				 <td>
                     <?php echo $mother_cancer_name; ?>: 
-                    <?php echo form_dropdown('mother_cancer_name', $patient_cancer_name_lists, $list['cancer_type_id']); ?>
+                    <?php echo form_dropdown('mother_cancer_name', $patient_cancer_name_lists, $list['cancer_type_id'], 'id="patient_cancer_name_lists"'); ?>
                 </td>  
 <!--				<td>
                     <?php echo $mother_other_cancer_name; ?>: 
@@ -189,7 +189,7 @@
             <tr>
 				 <td>
                     <?php echo $father_cancer_name; ?>: 
-                    <?php echo form_dropdown('father_cancer_name', $patient_cancer_name_lists, $list['cancer_type_id']); ?>
+                    <?php echo form_dropdown('father_cancer_name', $patient_cancer_name_lists, $list['cancer_type_id'], 'id="patient_cancer_name_lists"'); ?>
 <!--                </td>
 				 <td>
                     <?php echo $father_other_cancer_name; ?>: 

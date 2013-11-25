@@ -38,7 +38,7 @@
                 <tr>
                     <td>
                         <?php echo $investigation_project_name; ?>:  <br />
-                        <?php echo form_dropdown('investigation_project_name', $investigation_project_name_lists, $list['service_provider']); ?>
+                        <?php echo form_dropdown('investigation_project_name', $investigation_project_name_lists, $list['service_provider'], 'id="investigation_project_name_lists"'); ?>
                     </td>
                     <td>
                         <?php echo $investigation_project_batch; ?>:  <br />
@@ -50,7 +50,7 @@
                     </td>
                     <td>
                         <?php echo $investigation_gene_tested; ?>:  <br />
-                        <?php echo form_dropdown('investigation_gene_tested', $investigation_gene_tested_lists, $list['gene_tested']); ?>
+                        <?php echo form_dropdown('investigation_gene_tested', $investigation_gene_tested_lists, $list['gene_tested'], 'id="investigation_gene_tested_lists"'); ?>
                     </td>
                 </tr>
                 <tr>
@@ -60,11 +60,11 @@
                     </td>-->
                     <td>
                         <?php echo $investigation_test_type; ?>:  <br />
-                        <?php echo form_dropdown('investigation_test_type', $investigation_test_type_lists, $list['types_of_testing']); ?>
+                        <?php echo form_dropdown('investigation_test_type', $investigation_test_type_lists, $list['types_of_testing'], 'id="investigation_test_type_lists"'); ?>
                     </td>
                     <td>
                         <?php echo $investigation_sample_type; ?>:  <br />
-                        <?php echo form_dropdown('investigation_sample_type', $investigation_sample_type_lists, $list['type_of_sample']); ?>
+                        <?php echo form_dropdown('investigation_sample_type', $investigation_sample_type_lists, $list['type_of_sample'], 'id="investigation_sample_type_lists"'); ?>
                     </td>
                 </tr>
                 <tr>
@@ -80,7 +80,7 @@
                 <tr>
                     <td>
                         <?php echo $investigation_test_results; ?>:  <br />
-                        <?php echo form_dropdown('investigation_test_results', $investigation_test_results_lists, $list['test_result']); ?>
+                        <?php echo form_dropdown('investigation_test_results', $investigation_test_results_lists, $list['test_result'], 'id="investigation_test_results_lists"'); ?>
                     </td>
                     <td>
                         <?php echo $investigation_test_results_other_details; ?>:  <br />
@@ -91,11 +91,11 @@
                 <tr>
                     <td>
                         <?php echo $investigation_mutation_pathogenicity; ?>:  <br />
-                        <?php echo form_dropdown('investigation_mutation_pathogenicity', $investigation_mutation_pathogenicity_lists, $list['mutation_pathogenicity']); ?>
+                        <?php echo form_dropdown('investigation_mutation_pathogenicity', $investigation_mutation_pathogenicity_lists, $list['mutation_pathogenicity'], 'id="investigation_mutation_pathogenicity_lists"'); ?>
                     </td>
                     <td>
                         <?php echo $investigation_mutation_nomenclature; ?>:  <br />
-                        <?php echo form_dropdown('investigation_mutation_nomenclature', $investigation_mutation_nomenclature_lists, $list['mutation_nomenclature']); ?>
+                        <?php echo form_dropdown('investigation_mutation_nomenclature', $investigation_mutation_nomenclature_lists, $list['mutation_nomenclature'], 'id="investigation_mutation_nomenclature_lists"'); ?>
                     </td>
                     <td>
                         <?php echo $investigation_mutation_name; ?>: </br>
@@ -114,7 +114,7 @@
                     </td>
                     <td>
                         <?php echo $investigation_carrier_status; ?>:  <br />
-                        <?php echo form_dropdown('investigation_carrier_status', $investigation_carrier_status_lists, $list['carrier_status']); ?>
+                        <?php echo form_dropdown('investigation_carrier_status', $investigation_carrier_status_lists, $list['carrier_status'], 'id="investigation_carrier_status_lists"'); ?>
                     </td>
                     <td>
                         <?php echo $investigation_report_date; ?>: </br>

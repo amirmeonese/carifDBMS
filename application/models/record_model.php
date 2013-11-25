@@ -1329,7 +1329,7 @@ class Record_model extends CI_Model {
     public function get_consent_detail_patient_record($ic_no,$patient_studies_id){
          
         $this->db->where('patient_ic_no',$ic_no);
-        $this->db->where('studies_id',$patient_studies_id);
+        //$this->db->where('studies_id',$patient_studies_id);
 	$p_record = $this->db->get('patient_studies');
         $patient_detail = $p_record->result_array();
        // echo $this->db->last_query();exit;
@@ -2050,9 +2050,9 @@ function get_patient_others_desease_record($patient_studies_id) {
     return $list_patient_other_desease;
 }
 
-function get_patient_counselling_record($patient_studies_id) {
+function get_patient_counselling_record($icno) {
     $this->db->from('patient_interview_manager');
-    $this->db->where('patient_studies_id',$patient_studies_id);
+    $this->db->where('patient_ic_no',$icno);
     $patient_counselling_list = $this->db->get('');
     $list_patient_counselling = $patient_counselling_list->result_array();
     $patient_counselling_list->free_result();

@@ -22,11 +22,11 @@
             <tr>
                 <td>
                     <?php echo $cancer_site; ?>: 
-                    <?php echo form_dropdown('cancer_site', $patient_cancer_site_lists, $breast_cancer['cancer_site_id']); ?>
+                    <?php echo form_dropdown('cancer_site', $patient_cancer_site_lists, $breast_cancer['cancer_site_id'], 'id="cancer_site"'); ?>
                 </td>
                 <td>
                     <?php echo $cancer_invasive_type; ?>: 
-                    <?php echo form_dropdown('cancer_invasive_type', $cancer_invasive_type_lists, $breast_cancer['cancer_invasive_type']); ?>
+                    <?php echo form_dropdown('cancer_invasive_type', $cancer_invasive_type_lists, $breast_cancer['cancer_invasive_type'], 'id="cancer_invasive_type"'); ?>
                 </td>
                 <td>
                     <?php echo $primary_diagnosis; ?>: 
@@ -56,7 +56,7 @@
                 </td>
                 <td>
                     <?php echo $detected_by; ?>: <br />
-                    <?php echo form_dropdown('detected_by', $detected_by_lists, $breast_cancer['detected_by']); ?>
+                    <?php echo form_dropdown('detected_by', $detected_by_lists, $breast_cancer['detected_by'], 'id="detected_by"'); ?>
                 </td>
 <!--                <td>
                     <?php echo $detected_by_other_details; ?>: 
@@ -86,11 +86,11 @@
             <tr>
                 <td>
                     <?php echo $breast_pathology_tissue_site; ?>: <br />
-                    <?php echo form_dropdown('breast_pathology_tissue_site', $patient_cancer_site_lists, $breast_cancer['tissue_site']); ?>
+                    <?php echo form_dropdown('breast_pathology_tissue_site', $patient_cancer_site_lists, $breast_cancer['tissue_site'], 'id="cancer_site"'); ?>
                 </td>
                 <td>
                     <?php echo $breast_pathology_path_report_type; ?>: <br />
-                    <?php echo form_dropdown('breast_pathology_path_report_type', $pathology_path_report_type_lists, $breast_cancer['type_of_report']); ?>
+                    <?php echo form_dropdown('breast_pathology_path_report_type', $pathology_path_report_type_lists, $breast_cancer['type_of_report'], 'id="pathology_path_report_type_lists"'); ?>
                 </td>
                 <td>
                     <?php echo $breast_pathology_path_report_date; ?>: <br />
@@ -110,29 +110,29 @@
             <tr>
                 <td>
                     <?php echo $breast_pathology_morphology; ?>: <br />
-                    <?php echo form_dropdown('breast_pathology_morphology', $pathology_morphology_lists, $breast_cancer['morphology']); ?>
+                    <?php echo form_dropdown('breast_pathology_morphology', $pathology_morphology_lists, $breast_cancer['morphology'], 'id="pathology_morphology_lists"'); ?>
                 </td>
                 <td>
                     <?php echo $breast_pathology_tissue_tumour_stage; ?>: <br />
-                    <?php echo form_dropdown('breast_pathology_tissue_tumour_stage', $pathology_tissue_tumour_stage_lists, $breast_cancer['t_staging']); ?>
+                    <?php echo form_dropdown('breast_pathology_tissue_tumour_stage', $pathology_tissue_tumour_stage_lists, $breast_cancer['t_staging'], 'id="pathology_tissue_tumour_stage_lists"'); ?>
                 </td>
                 <td>
                     <?php echo $breast_pathology_node_stage; ?>: <br />
-                    <?php echo form_dropdown('breast_pathology_node_stage', $pathology_node_stage_lists, $breast_cancer['n_staging']); ?>
+                    <?php echo form_dropdown('breast_pathology_node_stage', $pathology_node_stage_lists, $breast_cancer['n_staging'], 'id="pathology_node_stage_lists"'); ?>
                 </td>
             </tr>
             <tr>
                 <td>
                     <?php echo $breast_pathology_metastasis_stage; ?>: <br />
-                    <?php echo form_dropdown('breast_pathology_metastasis_stage', $pathology_metastasis_stage_lists, $breast_cancer['m_staging']); ?>
+                    <?php echo form_dropdown('breast_pathology_metastasis_stage', $pathology_metastasis_stage_lists, $breast_cancer['m_staging'], 'id="pathology_metastasis_stage_lists"'); ?>
                 </td>
                 <td>
                     <?php echo $breast_pathology_tumour_stage; ?>: <br />
-                    <?php echo form_dropdown('breast_pathology_tumour_stage', $pathology_tumour_stage_lists, $breast_cancer['tumour_stage']); ?>
+                    <?php echo form_dropdown('breast_pathology_tumour_stage', $pathology_tumour_stage_lists, $breast_cancer['tumour_stage'], 'id="pathology_tumour_stage_lists"'); ?>
                 </td>
                 <td>
                     <?php echo $breast_pathology_tumour_grade; ?>: <br />
-                    <?php echo form_dropdown('breast_pathology_tumour_grade', $pathology_tumour_grade_lists, $breast_cancer['tumour_grade']); ?>
+                    <?php echo form_dropdown('breast_pathology_tumour_grade', $pathology_tumour_grade_lists, $breast_cancer['tumour_grade'], 'id="pathology_tumour_grade_lists"'); ?>
                 </td>
             </tr>
             <tr>
@@ -187,7 +187,7 @@
                 <tr>
                     <td>
                         <?php echo $patient_cancer_treatment_name; ?>: 
-                        <?php echo form_dropdown('patient_cancer_treatment_name', $patient_cancer_treatment_name_lists, $breast_cancer['treatment_id']); ?>
+                        <?php echo form_dropdown('patient_cancer_treatment_name', $patient_cancer_treatment_name_lists, $breast_cancer['treatment_id'], 'id="patient_cancer_treatment_name_lists"'); ?>
                     </td>
                     <td>
                         <?php echo $treatment_details; ?>: 
@@ -261,11 +261,11 @@
             <tr>
                 <td>
                     <?php echo $ovary_cancer_site; ?>: 
-                    <?php echo form_dropdown('ovary_cancer_site', $patient_cancer_site_lists, $ovary_cancer['cancer_site_id']); ?>
+                    <?php echo form_dropdown('ovary_cancer_site', $patient_cancer_site_lists, $ovary_cancer['cancer_site_id'], 'id="cancer_site"'); ?>
                 </td>
                 <td>
                     <?php echo $ovary_cancer_invasive_type; ?>: 
-                    <?php echo form_dropdown('ovary_cancer_invasive_type', $cancer_invasive_type_lists, $ovary_cancer['cancer_invasive_type']); ?>
+                    <?php echo form_dropdown('ovary_cancer_invasive_type', $cancer_invasive_type_lists, $ovary_cancer['cancer_invasive_type'], 'id="cancer_invasive_type"'); ?>
                 </td>
                 <td>
                     <?php echo $ovary_primary_diagnosis; ?>: 
@@ -295,7 +295,7 @@
                 </td>
                 <td>
                     <?php echo $ovary_detected_by; ?>: <br />
-                    <?php echo form_dropdown('ovary_detected_by', $detected_by_lists, $ovary_cancer['detected_by']); ?>
+                    <?php echo form_dropdown('ovary_detected_by', $detected_by_lists, $ovary_cancer['detected_by'], 'id="detected_by"'); ?>
                 </td>
 <!--                <td>
                     <?php echo $ovary_detected_by_other_details; ?>: 
@@ -328,11 +328,11 @@
                 <tr>
                     <td>
                         <?php echo $ovary_pathology_tissue_site; ?>: <br />
-                        <?php echo form_dropdown('ovary_pathology_tissue_site', $patient_cancer_site_lists, $ovary_cancer['tissue_site']); ?>
+                        <?php echo form_dropdown('ovary_pathology_tissue_site', $patient_cancer_site_lists, $ovary_cancer['tissue_site'], 'id="cancer_site"'); ?>
                     </td>
                     <td>
                         <?php echo $ovary_pathology_path_report_type; ?>: <br />
-                        <?php echo form_dropdown('ovary_pathology_path_report_type', $pathology_path_report_type_lists, $ovary_cancer['type_of_report']); ?>
+                        <?php echo form_dropdown('ovary_pathology_path_report_type', $pathology_path_report_type_lists, $ovary_cancer['type_of_report'], 'id="pathology_path_report_type_lists"'); ?>
                     </td>
                     <td>
                         <?php echo $ovary_pathology_path_report_date; ?>: <br />
@@ -360,21 +360,21 @@
                     </td>
                     <td>
                         <?php echo $ovary_stage_classification; ?>: <br />
-                        <?php echo form_dropdown('ovary_stage_classification', $ovary_stage_classification_lists, $ovary_cancer['stage_classifications']); ?>
+                        <?php echo form_dropdown('ovary_stage_classification', $ovary_stage_classification_lists, $ovary_cancer['stage_classifications'], 'id="ovary_stage_classification_lists"'); ?>
                     </td>
                     <td>
                         <?php echo $ovary_pathology_tumour_stage; ?>: <br />
-                        <?php echo form_dropdown('ovary_pathology_tumour_stage', $pathology_tumour_stage_lists, $ovary_cancer['tumour_stage']); ?>
+                        <?php echo form_dropdown('ovary_pathology_tumour_stage', $pathology_tumour_stage_lists, $ovary_cancer['tumour_stage'], 'id="pathology_tumour_stage_lists"'); ?>
                     </td>
                     <td>
                         <?php echo $ovary_tumor_subtypes; ?>: <br />
-                        <?php echo form_dropdown('ovary_tumor_subtypes', $ovary_stage_classification_lists, $ovary_cancer['tumor_subtype']); ?>
+                        <?php echo form_dropdown('ovary_tumor_subtypes', $ovary_stage_classification_lists, $ovary_cancer['tumor_subtype'], 'id="ovary_stage_classification_lists"'); ?>
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <?php echo $ovary_pathology_tumour_grade; ?>: <br />
-                        <?php echo form_dropdown('ovary_pathology_tumour_grade', $pathology_tumour_grade_lists, $ovary_cancer['tumour_grade']); ?>
+                        <?php echo form_dropdown('ovary_pathology_tumour_grade', $pathology_tumour_grade_lists, $ovary_cancer['tumour_grade'], 'id="pathology_tumour_grade_lists"'); ?>
                     </td>
                     <td>
                         <?php echo $ovary_pathology_tumour_size; ?>: <br />
@@ -382,11 +382,11 @@
                     </td>
                     <td>
                         <?php echo $ovary_tumor_behavior; ?>: <br />
-                        <?php echo form_dropdown('ovary_tumor_behavior', $ovary_stage_classification_lists, $ovary_cancer['tumor_behaviour']); ?>
+                        <?php echo form_dropdown('ovary_tumor_behavior', $ovary_stage_classification_lists, $ovary_cancer['tumor_behaviour'], 'id="ovary_stage_classification_lists"'); ?>
                     </td>
                     <td>
                         <?php echo $ovary_tumor_differentiation; ?>: <br />
-                        <?php echo form_dropdown('ovary_tumor_differentiation', $ovary_stage_classification_lists, $ovary_cancer['tumor_differentiation']); ?>
+                        <?php echo form_dropdown('ovary_tumor_differentiation', $ovary_stage_classification_lists, $ovary_cancer['tumor_differentiation'], 'id="ovary_stage_classification_lists"'); ?>
                     </td>
                 </tr>
                 <tr>
@@ -408,7 +408,7 @@
                 <tr>
                     <td>
                         <?php echo $ovary_patient_cancer_treatment_name; ?>: 
-                        <?php echo form_dropdown('ovary_patient_cancer_treatment_name', $patient_cancer_treatment_name_lists, $ovary_cancer['treatment_id']); ?>
+                        <?php echo form_dropdown('ovary_patient_cancer_treatment_name', $patient_cancer_treatment_name_lists, $ovary_cancer['treatment_id'], 'id="patient_cancer_treatment_name_lists"'); ?>
                     </td>
                     <td>
                         <?php echo $treatment_details; ?>: 
@@ -490,11 +490,11 @@
                 <tr>
                     <td>
                         <?php echo $other_cancer_type; ?>: 
-                        <?php echo form_dropdown('other_cancer_type', $patient_cancer_name_lists, $other_cancer['cancer_id']); ?>
+                        <?php echo form_dropdown('other_cancer_type', $patient_cancer_name_lists, $other_cancer['cancer_id'], 'id="patient_cancer_name_lists"'); ?>
                     </td>
                     <td>
                     <?php echo $cancer_site; ?>: 
-                    <?php echo form_dropdown('other_cancer_site', $patient_cancer_site_lists, $breast_cancer['cancer_site_id']); ?>
+                    <?php echo form_dropdown('other_cancer_site', $patient_cancer_site_lists, $breast_cancer['cancer_site_id'], 'id="cancer_site"'); ?>
                     </td>
                     <td>
                         <?php echo $other_date_of_diagnosis; ?>: 
@@ -532,11 +532,11 @@
                     <tr>
                         <td>
                             <?php echo $other_pathology_tissue_site; ?>: <br />
-                            <?php echo form_dropdown('other_pathology_tissue_site', $patient_cancer_site_lists, $other_cancer['tissue_site']); ?>
+                            <?php echo form_dropdown('other_pathology_tissue_site', $patient_cancer_site_lists, $other_cancer['tissue_site'], 'id="cancer_site"'); ?>
                         </td>
                         <td>
                             <?php echo $other_pathology_path_report_type; ?>: <br />
-                            <?php echo form_dropdown('other_pathology_path_report_type', $pathology_path_report_type_lists, $other_cancer['type_of_report']); ?>
+                            <?php echo form_dropdown('other_pathology_path_report_type', $pathology_path_report_type_lists, $other_cancer['type_of_report'], 'id="pathology_path_report_type_lists"'); ?>
                         </td>
                         <td>
                             <?php echo $other_pathology_path_report_date; ?>: <br />
@@ -572,7 +572,7 @@
                     <tr>
                         <td>
                             <?php echo $other_patient_cancer_treatment_name; ?>: 
-                            <?php echo form_dropdown('other_patient_cancer_treatment_name', $patient_cancer_treatment_name_lists, $other_cancer['treatment_id']); ?>
+                            <?php echo form_dropdown('other_patient_cancer_treatment_name', $patient_cancer_treatment_name_lists, $other_cancer['treatment_id'], 'id="patient_cancer_treatment_name_lists"'); ?>
                         </td>
                         <td>
                             <?php echo $treatment_details; ?>: 
@@ -645,7 +645,7 @@
                     <tr>
                         <td>
                             <?php echo $patient_other_diagnosis_name; ?>: 
-                            <?php echo form_dropdown('diagnosis_name', $diagnosis_name_lists, $other_disease['diagnosis_id']); ?>
+                            <?php echo form_dropdown('diagnosis_name', $diagnosis_name_lists, $other_disease['diagnosis_id'], 'id="diagnosis_name_lists"'); ?>
                         </td>
                         <td>
                             <?php echo $year_of_diagnosis; ?>: 
