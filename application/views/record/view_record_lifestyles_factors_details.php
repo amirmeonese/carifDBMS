@@ -29,15 +29,15 @@
             <tr>
                 <td>
                     <?php echo $self_image_at_7years; ?>: 
-                    <?php echo form_dropdown('self_image_at_7years', $self_image_lists, @$patient_lifestyle_factors['self_image_at_7years'], 'id="self_image_lists"'); ?>
+                    <?php echo form_dropdown('self_image_at_7years', $self_image_lists, @$patient_lifestyle_factors['self_image_at_7years'], 'id="self_image_lists" preload_val="'.$patient_lifestyle_factors['self_image_at_7years'].'"'); ?>
                 </td>
                 <td>
                     <?php echo $self_image_at_18years; ?>: 
-                    <?php echo form_dropdown('self_image_at_18years', $self_image_lists, @$patient_lifestyle_factors['self_image_at_18years'], 'id="self_image_lists"'); ?>
+                    <?php echo form_dropdown('self_image_at_18years', $self_image_lists, @$patient_lifestyle_factors['self_image_at_18years'], 'id="self_image_lists" preload_val="'.$patient_lifestyle_factors['self_image_at_18years'].'"'); ?>
                 </td>
                 <td>
                     <?php echo $self_image_now; ?>: 
-                    <?php echo form_dropdown('self_image_now', $self_image_lists, @$patient_lifestyle_factors['self_image_now'], 'id="self_image_lists"'); ?>
+                    <?php echo form_dropdown('self_image_now', $self_image_lists, @$patient_lifestyle_factors['self_image_now'], 'id="self_image_lists" preload_val="'.$patient_lifestyle_factors['self_image_now'].'"'); ?>
                 </td>
             </tr>
         </table>
@@ -56,15 +56,15 @@
             <tr>
                 <td>
                     Strenuous Exercise: 
-                    <?php echo form_dropdown('pa_strenuous_exercise_childhood', $pa_activities_lists, @$patient_lifestyle_factors['pa_strenuous_exercise_childhood'], 'id="pa_activities_lists"'); ?>
+                    <?php echo form_dropdown('pa_strenuous_exercise_childhood', $pa_activities_lists, @$patient_lifestyle_factors['pa_strenuous_exercise_childhood'], 'id="pa_activities_lists" preload_val="'.@$patient_lifestyle_factors['pa_strenuous_exercise_childhood'].'"'); ?>
                 </td>
                 <td>
                     Moderate Exercise: 
-                    <?php echo form_dropdown('pa_moderate_exercise_childhood', $pa_activities_lists, @$patient_lifestyle_factors['pa_moderate_exercise_childhood'], 'id="pa_activities_lists"'); ?>
+                    <?php echo form_dropdown('pa_moderate_exercise_childhood', $pa_activities_lists, @$patient_lifestyle_factors['pa_moderate_exercise_childhood'], 'id="pa_activities_lists" preload_val="'.@$patient_lifestyle_factors['pa_moderate_exercise_childhood'].'"'); ?>
                 </td>
                 <td>
                     Gentle Exercise: 
-                    <?php echo form_dropdown('pa_gentle_exercise_childhood', $pa_activities_lists, @$patient_lifestyle_factors['pa_gentle_exercise_childhood'], 'id="pa_activities_lists"'); ?>
+                    <?php echo form_dropdown('pa_gentle_exercise_childhood', $pa_activities_lists, @$patient_lifestyle_factors['pa_gentle_exercise_childhood'], 'id="pa_activities_lists" preload_val="'.@$patient_lifestyle_factors['pa_gentle_exercise_childhood'].'"'); ?>
                 </td>
             </tr>
             <tr>
@@ -75,15 +75,15 @@
             <tr>
                 <td>
                     Strenuous Exercise: 
-                    <?php echo form_dropdown('pa_strenuous_exercise_adult', $pa_activities_lists, @$patient_lifestyle_factors['pa_strenuous_exercise_adult'], 'id="pa_activities_lists"'); ?>
+                    <?php echo form_dropdown('pa_strenuous_exercise_adult', $pa_activities_lists, @$patient_lifestyle_factors['pa_strenuous_exercise_adult'], 'id="pa_activities_lists" preload_val="'.@$patient_lifestyle_factors['pa_strenuous_exercise_adult'].'"'); ?>
                 </td>
                 <td>
                     Moderate Exercise: 
-                    <?php echo form_dropdown('pa_moderate_exercise_adult', $pa_activities_lists, @$patient_lifestyle_factors['pa_moderate_exercise_adult'], 'id="pa_activities_lists"'); ?>
+                    <?php echo form_dropdown('pa_moderate_exercise_adult', $pa_activities_lists, @$patient_lifestyle_factors['pa_moderate_exercise_adult'], 'id="pa_activities_lists" preload_val="'.@$patient_lifestyle_factors['pa_moderate_exercise_adult'].'"'); ?>
                 </td>
                 <td>
                     Gentle Exercise: 
-                    <?php echo form_dropdown('pa_gentle_exercise_adult', $pa_activities_lists, @$patient_lifestyle_factors['pa_gentle_exercise_adult'], 'id="pa_activities_lists"'); ?>
+                    <?php echo form_dropdown('pa_gentle_exercise_adult', $pa_activities_lists, @$patient_lifestyle_factors['pa_gentle_exercise_adult'], 'id="pa_activities_lists" preload_val="'.@$patient_lifestyle_factors['pa_gentle_exercise_adult'].'"'); ?>
                 </td>
             </tr>
             <tr>
@@ -94,15 +94,15 @@
             <tr>
                 <td>
                     Strenuous Exercise: 
-                    <?php echo form_dropdown('pa_strenuous_exercise_now', $pa_activities_lists, @$patient_lifestyle_factors['pa_strenuous_exercise_now'], 'id="pa_activities_lists"'); ?>
+                    <?php echo form_dropdown('pa_strenuous_exercise_now', $pa_activities_lists, @$patient_lifestyle_factors['pa_strenuous_exercise_now'], 'id="pa_activities_lists" preload_val="'.@$patient_lifestyle_factors['pa_strenuous_exercise_now'].'"'); ?>
                 </td>
                 <td>
                     Moderate Exercise: 
-                    <?php echo form_dropdown('pa_moderate_exercise_now', $pa_activities_lists, @$patient_lifestyle_factors['pa_moderate_exercise_now'], 'id="pa_activities_lists"'); ?>
+                    <?php echo form_dropdown('pa_moderate_exercise_now', $pa_activities_lists, @$patient_lifestyle_factors['pa_moderate_exercise_now'], 'id="pa_activities_lists" preload_val="'.@$patient_lifestyle_factors['pa_moderate_exercise_now'].'"'); ?>
                 </td>
                 <td>
                     Gentle Exercise: 
-                    <?php echo form_dropdown('pa_gentle_exercise_now', $pa_activities_lists, @$patient_lifestyle_factors['pa_gentle_exercise_now'], 'id="pa_activities_lists"'); ?>
+                    <?php echo form_dropdown('pa_gentle_exercise_now', $pa_activities_lists, @$patient_lifestyle_factors['pa_gentle_exercise_now'], 'id="pa_activities_lists" preload_val="'.@$patient_lifestyle_factors['pa_gentle_exercise_now'].'"'); ?>
                 </td>
             </tr>
         </table>
@@ -135,35 +135,35 @@
             <tr>
                 <td>
                     <?php echo $cigarettes_count_at_teen; ?>: <br />
-                    <?php echo form_dropdown('cigarettes_count_at_teen', $cigarettes_average_count_lists, @$patient_lifestyle_factors['cigarrets_count_at_teen'], 'id="cigarettes_average_count_lists"'); ?>
+                    <?php echo form_dropdown('cigarettes_count_at_teen', $cigarettes_average_count_lists, @$patient_lifestyle_factors['cigarrets_count_at_teen'], 'id="cigarettes_average_count_lists" preload_val="'.$patient_lifestyle_factors['cigarrets_count_at_teen'].'"'); ?>
                 </td>
                 <td>
                     <?php echo $cigarettes_count_at_twenties; ?>:  <br />
-                    <?php echo form_dropdown('cigarettes_count_at_twenties', $cigarettes_average_count_lists, @$patient_lifestyle_factors['cigarrets_count_at_twenties'], 'id="cigarettes_average_count_lists"'); ?>
+                    <?php echo form_dropdown('cigarettes_count_at_twenties', $cigarettes_average_count_lists, @$patient_lifestyle_factors['cigarrets_count_at_twenties'], 'id="cigarettes_average_count_lists" preload_val="'.$patient_lifestyle_factors['cigarrets_count_at_twenties'].'"'); ?>
                 </td>
                 <td>
                     <?php echo $cigarettes_count_at_thirties; ?>:  <br />
-                    <?php echo form_dropdown('cigarettes_count_at_thirties', $cigarettes_average_count_lists, @$patient_lifestyle_factors['cigarrets_count_at_thirties'], 'id="cigarettes_average_count_lists"'); ?>
+                    <?php echo form_dropdown('cigarettes_count_at_thirties', $cigarettes_average_count_lists, @$patient_lifestyle_factors['cigarrets_count_at_thirties'], 'id="cigarettes_average_count_lists" preload_val="'.$patient_lifestyle_factors['cigarrets_count_at_thirties'].'"'); ?>
                 </td>
             </tr>
             <tr>
                 <td>
                     <?php echo $cigarettes_count_at_forties; ?>: <br />
-                    <?php echo form_dropdown('cigarettes_count_at_forties', $cigarettes_average_count_lists, @$patient_lifestyle_factors['cigarrets_count_at_fourrties'], 'id="cigarettes_average_count_lists"'); ?>
+                    <?php echo form_dropdown('cigarettes_count_at_forties', $cigarettes_average_count_lists, @$patient_lifestyle_factors['cigarrets_count_at_fourrties'], 'id="cigarettes_average_count_lists" preload_val="'.$patient_lifestyle_factors['cigarrets_count_at_fourrties'].'"'); ?>
                 </td>
                 <td>
                     <?php echo $cigarettes_count_at_fifties; ?>:  <br />
-                    <?php echo form_dropdown('cigarettes_count_at_fifties', $cigarettes_average_count_lists, @$patient_lifestyle_factors['cigarrets_count_at_fifties'], 'id="cigarettes_average_count_lists"'); ?>
+                    <?php echo form_dropdown('cigarettes_count_at_fifties', $cigarettes_average_count_lists, @$patient_lifestyle_factors['cigarrets_count_at_fifties'], 'id="cigarettes_average_count_lists" preload_val="'.$patient_lifestyle_factors['cigarrets_count_at_fifties'].'"'); ?>
                 </td>
                 <td>
                     <?php echo $cigarettes_count_at_sixties_and_above; ?>:  <br />
-                    <?php echo form_dropdown('cigarettes_count_at_sixties_and_above', $cigarettes_average_count_lists, @$patient_lifestyle_factors['cigarrets_count_at_sixties_and_above'], 'id="cigarettes_average_count_lists"'); ?>
+                    <?php echo form_dropdown('cigarettes_count_at_sixties_and_above', $cigarettes_average_count_lists, @$patient_lifestyle_factors['cigarrets_count_at_sixties_and_above'], 'id="cigarettes_average_count_lists" preload_val="'.$patient_lifestyle_factors['cigarrets_count_at_sixties_and_above'].'"'); ?>
                 </td>
             </tr>
             <tr>
                 <td>
                     <?php echo $cigarettes_count_one_year_before_diagnosed; ?>:  <br />
-                    <?php echo form_dropdown('cigarettes_count_one_year_before_diagnosed', $cigarettes_average_count_lists, @$patient_lifestyle_factors['cigarrets_count_one_year_before_diagnosed'], 'id="cigarettes_average_count_lists"'); ?>
+                    <?php echo form_dropdown('cigarettes_count_one_year_before_diagnosed', $cigarettes_average_count_lists, @$patient_lifestyle_factors['cigarrets_count_one_year_before_diagnosed'], 'id="cigarettes_average_count_lists" preload_val="'.$patient_lifestyle_factors['cigarrets_count_one_year_before_diagnosed'].'"'); ?>
                 </td>
                 <td>
                     &nbsp;
@@ -184,7 +184,7 @@
                 </td>
                 <td>
                     <?php echo $alcohol_average; ?>:  <br />
-                    <?php echo form_dropdown('alcohol_average', $alcohol_drink_average_lists, @$patient_lifestyle_factors['alcohol_frequency'], 'id="alcohol_drink_average_lists"'); ?>
+                    <?php echo form_dropdown('alcohol_average', $alcohol_drink_average_lists, @$patient_lifestyle_factors['alcohol_frequency'], 'id="alcohol_drink_average_lists" preload_val="'.$patient_lifestyle_factors['alcohol_frequency'].'"'); ?>
                 </td>
                 <td>
                     <?php echo $alcohol_average_details; ?>:  <br />
@@ -207,7 +207,7 @@
                 </td>
                 <td>
                     <?php echo $coffee_average; ?>: <br />
-                    <?php echo form_dropdown('coffee_average', $coffee_tea_drink_average_lists, @$patient_lifestyle_factors['coffee_frequency'], 'id="coffee_tea_drink_average_lists"'); ?>
+                    <?php echo form_dropdown('coffee_average', $coffee_tea_drink_average_lists, @$patient_lifestyle_factors['coffee_frequency'], 'id="coffee_tea_drink_average_lists" preload_val="'.$patient_lifestyle_factors['coffee_frequency'].'"'); ?>
                 </td>
             </tr>
             <tr>
@@ -226,13 +226,13 @@
                 </td>
                 <td>
                     <?php echo $tea_average; ?>: <br />
-                    <?php echo form_dropdown('tea_average', $coffee_tea_drink_average_lists, @$patient_lifestyle_factors['tea_frequency'], 'id="coffee_tea_drink_average_lists"'); ?>
+                    <?php echo form_dropdown('tea_average', $coffee_tea_drink_average_lists, @$patient_lifestyle_factors['tea_frequency'], 'id="coffee_tea_drink_average_lists" preload_val="'.$patient_lifestyle_factors['tea_frequency'].'"'); ?>
                 </td>
             </tr>
             <tr>
                 <td>
                     <?php echo $tea_type; ?>: <br />
-                    <?php echo form_dropdown('tea_type', $tea_type_lists, @$patient_lifestyle_factors['tea_type'], 'id="tea_type_lists"'); ?>
+                    <?php echo form_dropdown('tea_type', $tea_type_lists, @$patient_lifestyle_factors['tea_type'], 'id="tea_type_lists" preload_val="'.$patient_lifestyle_factors['tea_type'].'"'); ?>
                 </td>
                 <td>
                     &nbsp;
@@ -250,7 +250,7 @@
                 </td>
                 <td>
                     <?php echo $soya_bean_average; ?>: <br />
-                    <?php echo form_dropdown('soya_bean_average', $coffee_tea_drink_average_lists, @$patient_lifestyle_factors['soya_bean_frequency'], 'id="coffee_tea_drink_average_lists"'); ?>
+                    <?php echo form_dropdown('soya_bean_average', $coffee_tea_drink_average_lists, @$patient_lifestyle_factors['soya_bean_frequency'], 'id="coffee_tea_drink_average_lists" preload_val="'.$patient_lifestyle_factors['soya_bean_frequency'].'"'); ?>
                 </td>
                 <td>
                     <?php echo $soya_products_flag; ?>: 
@@ -260,7 +260,7 @@
             <tr>
                 <td>
                     <?php echo $soya_products_average; ?>: <br />
-                    <?php echo form_dropdown('soya_products_average', $soya_products_lists, @$patient_lifestyle_factors['soya_products_average'], 'id="soya_products_lists"'); ?>
+                    <?php echo form_dropdown('soya_products_average', $soya_products_lists, @$patient_lifestyle_factors['soya_products_average'], 'id="soya_products_lists" preload_val="'.$patient_lifestyle_factors['soya_products_average'].'"'); ?>
                 </td>
                 <td>
                     &nbsp;
@@ -310,13 +310,13 @@
                 </td>
                 <td>
                     <?php echo $period_type; ?>: 
-                    <?php echo form_dropdown('period_type', $period_type_lists, @$patient_menstruation['period_type'], 'id="period_type_lists"'); ?>
+                    <?php echo form_dropdown('period_type', $period_type_lists, @$patient_menstruation['period_type'], 'id="period_type_lists" preload_val="'.$patient_menstruation['period_type'].'"'); ?>
                 </td>
             </tr>
             <tr>
                 <td>
                     <?php echo $period_cycle_days; ?>: <br />
-                    <?php echo form_dropdown('period_cycle_days', $period_cycle_days_lists, @$patient_menstruation['period_cycle_days'], 'id="period_cycle_days_lists"'); ?>
+                    <?php echo form_dropdown('period_cycle_days', $period_cycle_days_lists, @$patient_menstruation['period_cycle_days'], 'id="period_cycle_days_lists" preload_val="'.$patient_menstruation['period_cycle_days'].'"'); ?>
                 </td>
                 <td>
                     <?php echo $period_cycle_days_other_details; ?>: <br />
@@ -335,7 +335,7 @@
                 </td>
                 <td>
                     <?php echo $reason_period_stops; ?>: <br />
-                    <?php echo form_dropdown('reason_period_stops', $reason_period_stops_lists, @$patient_menstruation['reason_period_stops'], 'id="reason_period_stops_lists"'); ?>
+                    <?php echo form_dropdown('reason_period_stops', $reason_period_stops_lists, @$patient_menstruation['reason_period_stops'], 'id="reason_period_stops_lists" preload_val="'.$patient_menstruation['reason_period_stops'].'"'); ?>
                 </td>
                 <td>
                     <?php echo $reason_period_stops_other_details; ?>: <br />
@@ -484,7 +484,7 @@
                 </td>
                 <td>
                     <?php echo $gnc_treatment_name; ?>: <br />
-                    <?php echo form_dropdown('gnc_treatment_name', $gnc_treatment_lists, @$patient_gynaecological['treatment_id'], 'id="gnc_treatment_lists"'); ?>
+                    <?php echo form_dropdown('gnc_treatment_name', $gnc_treatment_lists, @$patient_gynaecological['treatment_id'], 'id="gnc_treatment_lists" preload_val="'.$patient_gynaecological['treatment_id'].'"'); ?>
                 </td>
 <!--                <td>
                     <?php echo $gnc_treatment_name_other_details; ?>: <br />

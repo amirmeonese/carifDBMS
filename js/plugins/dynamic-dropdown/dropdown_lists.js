@@ -18,10 +18,15 @@ function applyDynamicDropdown()
 			$("[id=" + key + "]").each(function( i, listItem )
 			{
 				var $elementObj = $( listItem );
+				var preloadVal = $elementObj.attr("preload_val");
+				
 				$elementObj.empty();
 				$.each(vals, function(index, value) {
 					$elementObj.append("<option>" + value + "</option>");
 				});
+				
+				if(preloadVal)
+					$elementObj.val(preloadVal);
 			});			
 		});
 	});

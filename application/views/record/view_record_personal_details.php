@@ -34,7 +34,7 @@
             <tr>
                 <td>
                     <?php echo $nationality; ?>: 
-                    <?php echo  form_dropdown('nationality',$nationalities, $patient_detail['nationality'], 'id="nationality"'); ?>
+                    <?php echo  form_dropdown('nationality',$nationalities, $patient_detail['nationality'], 'id="nationality" preload_val="'.$patient_detail['nationality'].'"'); ?>
                 </td>
                 <td>
                     <label for="IC_no"><?php echo $IC_no; ?>: </label>
@@ -42,7 +42,7 @@
                 </td>
                 <td>
                     <?php echo $gender; ?>: 
-                    <?php echo  form_dropdown('gender',$genderTypes, $patient_detail['gender'], 'id="gender"') ?>
+                    <?php echo  form_dropdown('gender',$genderTypes, $patient_detail['gender'], 'id="gender" preload_val="'.$patient_detail['gender'].'"') ?>
                 </td>
                 <td>
                     <?php echo $ethinicity; ?>: 
@@ -62,7 +62,7 @@
                 </td>
                 <td>
                     <?php echo $marital_status; ?>:
-                    <?php echo  form_dropdown('marital_status',$marital_status_lists, $patient_detail['marital_status'], 'id="marital_status"')?>                    
+                    <?php echo  form_dropdown('marital_status',$marital_status_lists, $patient_detail['marital_status'], 'id="marital_status" preload_val="'.$patient_detail['marital_status'].'"')?>                    
                 </td>
                 <td>
                     <?php echo $blood_group; ?>: 
@@ -138,7 +138,7 @@
             <tr>
                 <td>
                     <?php echo $COGS_study_id; ?>:
-                    <?php echo  form_dropdown('COGS_study_id',$COGS_study_id_lists, $patient_cogs_studies['COGS_studies_id'], 'id="COGS_study_id"')?>                    
+                    <?php echo  form_dropdown('COGS_study_id',$COGS_study_id_lists, $patient_cogs_studies['COGS_studies_id'], 'id="COGS_study_id" preload_val="'.$patient_cogs_studies['COGS_studies_id'].'"')?>                    
                 </td>
                 <td>
                     <?php echo 'Study no'; ?>: 
@@ -215,7 +215,7 @@
                 </td>
                 <td>
                     <?php echo $income_level; ?>:
-                    <?php echo  form_dropdown('income_level',$income_level_lists, $patient_detail['income_level'], 'id="income_level"');?>                                        
+                    <?php echo  form_dropdown('income_level',$income_level_lists, $patient_detail['income_level'], 'id="income_level" preload_val="'.$patient_detail['income_level'].'"');?>                                        
                 </td>
             </tr>
             <tr>
@@ -306,11 +306,11 @@
             <tr>
                 <td>
                     <?php echo $status_source; ?>:
-                    <?php echo  form_dropdown('status_source',$status_source_lists, $patient_survival_status['source'], 'id="status_source"'); ?>                                                            
+                    <?php echo  form_dropdown('status_source',$status_source_lists, $patient_survival_status['source'], 'id="status_source" preload_val="'.$patient_survival_status['source'].'"'); ?>                                                            
                 </td>
                 <td>
                     <?php echo $alive_status; ?>:
-                    <?php echo  form_dropdown('alive_status',$alive_status_lists, $patient_survival_status['alive_status'], 'id="alive_status"'); ?>                                                            
+                    <?php echo  form_dropdown('alive_status',$alive_status_lists, $patient_survival_status['alive_status'], 'id="alive_status" preload_val="'.$patient_survival_status['alive_status'].'"'); ?>                                                            
                 </td>
                 <td>
                     <?php echo $status_gathered_date; ?>: 
@@ -333,7 +333,7 @@
             <tr>
                 <td>
                     <?php echo $studies_name; ?>:
-                    <?php echo  form_dropdown('studies_name',$studies_name_lists, $list['studies_id'], 'id="studies_name"'); ?>                                                                                
+                    <?php echo  form_dropdown('studies_name',$studies_name_lists, $list['studies_id'], 'id="studies_name" preload_val="'.$list['studies_id'].'"'); ?>                                                                                
                 </td>
                 <td>
                     <?php echo $date_at_consent; ?>:

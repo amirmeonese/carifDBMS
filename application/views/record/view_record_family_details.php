@@ -69,7 +69,7 @@
                     <tr>
 				 <td>
                     <?php echo $mother_cancer_name; ?>: 
-                    <?php echo form_dropdown('mother_cancer_name', $patient_cancer_name_lists, $list['cancer_type_id'], 'id="patient_cancer_name_lists"'); ?>
+                    <?php echo form_dropdown('mother_cancer_name', $patient_cancer_name_lists, $list['cancer_type_id'], 'id="patient_cancer_name_lists" preload_val="'.$list['cancer_type_id'].'"'); ?>
                 </td>  
 <!--				<td>
                     <?php echo $mother_other_cancer_name; ?>: 
@@ -123,7 +123,7 @@
                     <?php echo form_input(array('name' => 'mother_vital_status', 'value' => $list['vital_status']))?>
                 </td>
 				<td>
-                    <?php echo form_textarea(array('name' => 'mother_comments','id' => 'mother_comments','rows' => '5','cols' => '10', 'value' => $patient_detail['comments']))?> 
+                    <?php echo form_textarea(array('name' => 'mother_comments','id' => 'mother_comments','rows' => '5','cols' => '10', 'value' => $list['comments']))?> 
                 </td>
                 </td>
             </tr>
@@ -189,7 +189,7 @@
             <tr>
 				 <td>
                     <?php echo $father_cancer_name; ?>: 
-                    <?php echo form_dropdown('father_cancer_name', $patient_cancer_name_lists, $list['cancer_type_id'], 'id="patient_cancer_name_lists"'); ?>
+                    <?php echo form_dropdown('father_cancer_name', $patient_cancer_name_lists, $list['cancer_type_id'], 'id="patient_cancer_name_lists" preload_val="'.$list['cancer_type_id'].'"'); ?>
 <!--                </td>
 				 <td>
                     <?php echo $father_other_cancer_name; ?>: 
@@ -206,7 +206,7 @@
                 </td>
                 <td>
                     <?php echo $father_diagnosis_other_details; ?>: 
-                    <?php echo form_textarea(array('name' => 'father_diagnosis_other_details','id' => 'father_diagnosis_other_details','rows' => '3','cols' => '7', 'value' => $patient_detail['other_detail']))?> 
+                    <?php echo form_textarea(array('name' => 'father_diagnosis_other_details','id' => 'father_diagnosis_other_details','rows' => '3','cols' => '7', 'value' => $list['other_detail']))?> 
                 </td>
             </tr>
             <tr>
@@ -243,7 +243,7 @@
                     <?php echo form_input(array('name' => 'father_vital_status', 'value' => $list['vital_status']))?>
                 </td>
 				<td>
-                    <?php echo form_textarea(array('name' => 'father_comments','id' => 'father_comments','rows' => '5','cols' => '10', 'value' => $patient_detail['comments']))?> 
+                    <?php echo form_textarea(array('name' => 'father_comments','id' => 'father_comments','rows' => '5','cols' => '10', 'value' => $list['comments']))?> 
                 </td>
             </tr>
         </table>
