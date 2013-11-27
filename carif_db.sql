@@ -3,9 +3,10 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Nov 22, 2013 at 09:45 AM
--- Server version: 5.6.12
--- PHP Version: 5.5.1
+
+-- Generation Time: Nov 25, 2013 at 11:14 AM
+-- Server version: 5.1.41
+-- PHP Version: 5.3.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -66,7 +67,7 @@ CREATE TABLE IF NOT EXISTS `cancer_site` (
   `cancer_site_id` int(10) NOT NULL AUTO_INCREMENT,
   `cancer_site_name` text NOT NULL,
   PRIMARY KEY (`cancer_site_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
 
 --
 -- Dumping data for table `cancer_site`
@@ -77,7 +78,10 @@ INSERT INTO `cancer_site` (`cancer_site_id`, `cancer_site_name`) VALUES
 (2, 'Right Breast'),
 (3, 'Left Ovary'),
 (4, 'Right Ovary'),
-(5, 'Bilateral');
+(5, 'Bilateral'),
+(6, 'None'),
+(7, 'Left (fallopian tube)'),
+(8, 'Bilateral (fallopian tube)');
 
 -- --------------------------------------------------------
 
@@ -90,7 +94,7 @@ CREATE TABLE IF NOT EXISTS `diagnosis` (
   `diagnosis_name` text NOT NULL,
   `diagnosis_details` longtext NOT NULL,
   PRIMARY KEY (`diagnosis_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
 
 --
 -- Dumping data for table `diagnosis`
@@ -103,7 +107,8 @@ INSERT INTO `diagnosis` (`diagnosis_id`, `diagnosis_name`, `diagnosis_details`) 
 (4, 'Cardiovaskular Disease', ''),
 (5, 'Endochrine', ''),
 (6, 'Congenital', ''),
-(7, 'Mental Disorder', '');
+(7, 'Mental Disorder', ''),
+(8, 'None', '');
 
 -- --------------------------------------------------------
 
@@ -184,7 +189,7 @@ CREATE TABLE IF NOT EXISTS `non_cancerous_site` (
   `non_cancerous_site_id` int(10) NOT NULL AUTO_INCREMENT,
   `non_cancerous_site_name` text NOT NULL,
   PRIMARY KEY (`non_cancerous_site_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `non_cancerous_site`
@@ -195,7 +200,8 @@ INSERT INTO `non_cancerous_site` (`non_cancerous_site_id`, `non_cancerous_site_n
 (2, 'Right breast'),
 (3, 'Left Ovary'),
 (4, 'Right Ovary'),
-(5, 'Uterus');
+(5, 'Uterus'),
+(6, 'None');
 
 -- --------------------------------------------------------
 
@@ -207,7 +213,7 @@ CREATE TABLE IF NOT EXISTS `ovarian_screening_type` (
   `ovarian_screening_type_id` int(10) NOT NULL AUTO_INCREMENT,
   `ovarian_screening_type_name` text NOT NULL,
   PRIMARY KEY (`ovarian_screening_type_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `ovarian_screening_type`
@@ -218,7 +224,8 @@ INSERT INTO `ovarian_screening_type` (`ovarian_screening_type_id`, `ovarian_scre
 (2, 'Abdominal ultrasound'),
 (3, 'Trans-vaginal Ultrasound'),
 (4, 'CA125 blood test'),
-(5, 'Biopsy');
+(5, 'Biopsy'),
+(6, 'None');
 
 -- --------------------------------------------------------
 
@@ -1756,7 +1763,7 @@ INSERT INTO `treatment` (`treatment_id`, `treatment_name`, `treatment_detail`) V
 (10, 'Transplantation', ''),
 (11, 'Neo Adjurant', ''),
 (12, 'Sterilisation', ''),
-(13, 'Tubal Ligation', ''),
+(13, 'Tubal ligation', ''),
 (14, 'Unilateral Salpingo Oophorectomy', ''),
 (15, 'Bilateral Salpingo Oophorectomy', ''),
 (16, 'TAHBSO', ''),
