@@ -30,6 +30,7 @@
         <script type="text/javascript" src="<?php echo base_url(); ?>js/jquery.min.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>js/bootstrap.js"></script>
 		<script type="text/javascript" src="<?php echo base_url(); ?>js/plugins/category/textext.js"></script>
+		<script type="text/javascript" src="<?php echo base_url(); ?>js/plugins/dynamic-dropdown/dropdown_lists.js"></script>
 		<script type="text/javascript">
 		
 		$(document).ready(function() {
