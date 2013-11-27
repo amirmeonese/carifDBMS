@@ -40,13 +40,12 @@
         <?php echo form_submit('search','Search');  ?>
         
         <?php //if($submit):?>
-        
-        
-        
+        <div style="margin-left:180px;"><?php echo count($patient_list) . " record found."?></div>
         <table border="1" width="50%" style="margin-left:180px;">
             <thead>
                 <tr align='center'>
                     <th style="background-color:Crimson;">Date</th>
+					<th style="background-color:Crimson;">IC No</th>
                     <th style="background-color:Crimson;">Patient Name</th>
                     <th style="background-color:Crimson;">Studies</th>
                     <th style="background-color:Crimson;">Action</th>
@@ -56,6 +55,7 @@
             <?php foreach ($patient_list as $list): ?>
                 <tr>
                     <td><?php echo $list['created_on']; ?></td>
+					<td><?php echo $list['ic_no']; ?></td>
                     <td><?php echo $list['given_name']; ?></td>
                     <td><?php echo $studies_name_list[$list['studies_id']]; ?></td>
                     <td width="15%" align='center'>
@@ -80,7 +80,7 @@
                 </tr>
             <?php endforeach; ?>
                         <?php } else { ?>
-                <tr><td colspan="3" style="center">
+                <tr><td colspan="5" style="center">
           <?php  echo 'no data';?>
             </td><tr>
    <?php     }
