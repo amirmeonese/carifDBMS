@@ -530,7 +530,7 @@ class Record_model extends CI_Model {
         $data['email'] = 'Email';
         $data['height'] = 'Height';
         $data['weight'] = 'Weight';
-        $data['BMI'] = 'BMI';
+        $data['BMI'] = 'BMI(auto-calculated)';
         $data['highest_level_of_education'] = 'Highest level of education';
 
         $data['income_level'] = 'Income level';
@@ -541,7 +541,7 @@ class Record_model extends CI_Model {
 		$data['total_no_of_male_siblings'] = 'Total male siblings';
 		$data['total_no_of_female_siblings'] = 'Total female siblings';
 		$data['total_no_of_affected_siblings'] = 'Total of affected siblings';
-                $data['total_no_of_siblings'] = 'Total of siblings';
+                $data['total_no_of_siblings'] = 'Total of siblings(auto-calculated)';
 		$data['total_no_male_children'] = 'Total of male children';
 		$data['total_no_female_children'] = 'Total of female children';
 		$data['total_no_of_affected_children'] = 'Total of affected children';
@@ -720,7 +720,7 @@ class Record_model extends CI_Model {
 		$data['cancer_invasive_type_lists'] = array(
 			'Dynamic Dropdown' => 'Dynamic Dropdown'
         );
-		$data['detected_by_other_details'] = 'Other';
+		$data['detected_by_other_details'] = 'If detected by other, please specify';
 		$data['detected_by_lists'] = array(
 			'Dynamic Dropdown' => 'Dynamic Dropdown'
         );
@@ -782,7 +782,7 @@ class Record_model extends CI_Model {
 		$data['ovary_cancer_diagnosis_center'] = 'Diagnosis centre';
 		$data['ovary_cancer_doctor_name'] = 'Doctor\'s name';
 		$data['ovary_detected_by'] = 'Detected by';
-		$data['ovary_detected_by_other_details'] = 'Other';
+		$data['ovary_detected_by_other_details'] = 'If detected by other, please specify';
 		$data['ovary_patient_cancer_treatment_name'] = 'Treatment type';
 		$data['ovary_treatment_start_date'] = 'Treatment start date';
 		$data['ovary_treatment_end_date'] = 'Treatment end date';
@@ -870,7 +870,7 @@ class Record_model extends CI_Model {
 		$data['tea_type_lists'] = array(
 			'Dynamic Dropdown' => 'Dynamic Dropdown'
         );
-		$data['tea_type_other'] = 'Other';
+		$data['tea_type_other'] = 'If there\'s other tea type, please specify';
         $data['soya_bean_drunk_flag'] = 'Regular consumption?';
         $data['soya_bean_average'] = 'Soya bean frequency';
         $data['soya_products_flag'] = 'Soya product frequency';
@@ -878,7 +878,7 @@ class Record_model extends CI_Model {
 		$data['soya_products_lists'] = array(
 			'Dynamic Dropdown' => 'Dynamic Dropdown'
         );
-		$data['soya_products_average_other'] = 'Other';
+		$data['soya_products_average_other'] = 'If there\'s other soya products average, please specify';
         $data['diabetes_flag'] = 'Patient has diabetes?';
         $data['medicine_for_diabetes_flag'] = 'Current taking any diabetes medication?';
         $data['diabates_medicine_name'] = 'Medicine name';
@@ -900,7 +900,7 @@ class Record_model extends CI_Model {
 		$data['reason_period_stops_lists'] = array(
 			'Dynamic Dropdown' => 'Dynamic Dropdown'
         );
-        $data['reason_period_stops_other_details'] = 'Comment';
+        $data['reason_period_stops_other_details'] = 'Specify other reason why period stops';
 		
 		$data['never_been_pregnant_flag'] = 'Null parity';
         $data['pregnant_flag'] = 'Parity';
@@ -940,7 +940,7 @@ class Record_model extends CI_Model {
         $data['had_gnc_surgery_flag'] = 'Has ever had gynaecological surgery?';
         $data['gnc_surgery_year'] = 'Surgery year';
         $data['gnc_treatment_name'] = 'Surgery type';
-        $data['gnc_treatment_name_other_details'] = 'Other';
+        $data['gnc_treatment_name_other_details'] = 'If there\'s other surgery type, please specify';
 		$data['gnc_treatment_lists'] = array(
 			'Dynamic Dropdown' => 'Dynamic Dropdown'
         );
@@ -973,7 +973,7 @@ class Record_model extends CI_Model {
 		$data['investigation_test_results_lists'] = array(
 			'Dynamic Dropdown' => 'Dynamic Dropdown'
         );
-        $data['investigation_test_results_other_details'] = 'Other details';
+        $data['investigation_test_results_other_details'] = 'Other details for tests results';
         $data['investigation_carrier_status'] = 'Carrier status';
 		$data['investigation_carrier_status_lists'] = array(
 			'Dynamic Dropdown' => 'Dynamic Dropdown'
@@ -1078,7 +1078,7 @@ class Record_model extends CI_Model {
         $data['biopsy_additional_info'] = 'Additional Info';
 		
 		//RISK REDUCING STRATEGY
-		$data['had_new_risk_reducing_surgery'] = 'Had new surgery?';
+		$data['had_new_risk_reducing_surgery'] = 'Had new lesion surgery?';
 		$data['non_cancerous_benign_site'] = 'Select site';
 		$data['non_cancerous_benign_site_lists'] = array(
 			'Dynamic Dropdown' => 'Dynamic Dropdown'
