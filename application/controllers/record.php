@@ -552,6 +552,20 @@ class Record extends CI_Controller {
         $data['studies_name_list'] = $this->Record_model->get_studies_name();
 
         }
+		else
+		{
+			$data_search_key = array(
+            'given_name' => "",
+            'ic_no' => ""
+			);
+			
+			$result = array();
+			$result = $this->Record_model->getPatientList($data_search_key);
+							
+			$data['patient_list'] = $result;
+			$data['studies_name_list'] = $this->Record_model->get_studies_name();
+			
+		}
         
         $this->template->load("templates/report_home_template", 'record/list_record_personal_details', $data);
     }

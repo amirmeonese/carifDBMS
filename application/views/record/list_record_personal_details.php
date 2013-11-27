@@ -39,7 +39,7 @@
         </table>
         <?php echo form_submit('search','Search');  ?>
         
-        <?php if($submit):?>
+        <?php //if($submit):?>
         
         
         
@@ -88,7 +88,7 @@
         </table>        
         </br>
         <a style="margin-left:180px;" class="doneButton" href="<?php echo base_url(); ?>">Done</a>
-        <?php endif;?>
+        <?php //endif;?>
     </div>
 </div>
 

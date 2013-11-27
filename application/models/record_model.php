@@ -1941,7 +1941,7 @@ class Record_model extends CI_Model {
         $this->db->where('a.ic_no = b.patient_ic_no');
         $this->db->like('a.given_name', $record_data['given_name']);
         $this->db->like('a.ic_no', $record_data['ic_no']);
-        $this->db->limit(5);
+        //$this->db->limit(5);
         $patient_list = $this->db->get('');
         $list_patient = $patient_list->result_array();
         $patient_list->free_result();
