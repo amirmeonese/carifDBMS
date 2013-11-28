@@ -621,6 +621,7 @@ class Record extends CI_Controller {
             'patient_ic_no' => $this->input->post('IC_no'),
             'date_of_first_mammogram' => date('Y-m-d',strtotime($this->input->post('date_of_first_mammogram'))),
             'age_of_first_mammogram' => $this->input->post('age_of_first_mammogram'),
+            'age_of_recent_mammogram' => $this->input->post('age_of_recent_mammogram'),
             'date_of_recent_mammogram' => date('Y-m-d',strtotime($this->input->post('date_of_recent_mammogram'))),
             'screening_centre' => $this->input->post('screening_center'),
             //'action_suggested_on_memo_report' => $this->input->post('action_suggested_on_memo_report'),

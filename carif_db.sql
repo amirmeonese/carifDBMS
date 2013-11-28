@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Nov 28, 2013 at 05:16 AM
+-- Generation Time: Nov 28, 2013 at 09:24 AM
 -- Server version: 5.6.12
 -- PHP Version: 5.5.1
 
@@ -308,6 +308,7 @@ CREATE TABLE IF NOT EXISTS `patient_breast_screening` (
   `patient_studies_id` int(10) NOT NULL,
   `date_of_first_mammogram` date NOT NULL,
   `age_of_first_mammogram` int(3) NOT NULL,
+  `age_of_recent_mammogram` int(3) NOT NULL,
   `date_of_recent_mammogram` date NOT NULL,
   `screening_centre` varchar(200) NOT NULL,
   `total_no_of_mammogram` int(5) NOT NULL,
@@ -401,7 +402,7 @@ CREATE TABLE IF NOT EXISTS `patient_cancer_treatment` (
   `treatment_cycle` varchar(100) DEFAULT NULL,
   `treatment_frequency` varchar(100) DEFAULT NULL,
   `treatment_visidual_desease` varchar(100) DEFAULT NULL,
-  `treatment_privacy_outcome` varchar(100) DEFAULT NULL,
+  `treatment_primary_outcome` varchar(100) DEFAULT NULL,
   `treatment_cal125_pretreatment` varchar(100) DEFAULT NULL,
   `treatment_cal125_posttreatment` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`patient_cancer_treatment_id`),
@@ -1444,7 +1445,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `suspend`, `reset_password_invalid_attempts`, `reset_password_counter`, `first_name`, `last_name`, `phone`, `current_city`, `country`, `profile_picture_path`, `user_language`, `add_privilege`, `view_privilege`, `edit_privilege`, `delete_privilege`) VALUES
-(1, '\0\0', 'administrator', '59beecdf7fc966e2f17fd8f65a4a9aeb09d4a3d4', '9462e8eee0', 'asyraf.abdrani@gmail.com', '', NULL, NULL, '9d029802e28cd9c768e8e62277c0df49ec65c48c', 1268889823, 1385557398, 1, 0, 0, 0, 'Admin', 'istrator', '0', NULL, NULL, NULL, NULL, 1, 1, 1, 0),
+(1, '\0\0', 'administrator', '59beecdf7fc966e2f17fd8f65a4a9aeb09d4a3d4', '9462e8eee0', 'asyraf.abdrani@gmail.com', '', NULL, NULL, '9d029802e28cd9c768e8e62277c0df49ec65c48c', 1268889823, 1385622388, 1, 0, 0, 0, 'Admin', 'istrator', '0', NULL, NULL, NULL, NULL, 1, 1, 1, 0),
 (2, '\0\0', 'nazmul', '59beecdf7fc966e2f17fd8f65a4a9aeb09d4a3d4', '9462e8eee0', 'nazmul@apurbatech.com', '', NULL, NULL, NULL, 1268889823, 1373438882, 1, 0, 0, 0, 'Nazmul', 'Hasan', '0', NULL, NULL, NULL, NULL, 1, 1, 1, 0),
 (3, '\0\0', 'alamgir', '59beecdf7fc966e2f17fd8f65a4a9aeb09d4a3d4', '9462e8eee0', 'alamgir@apurbatech.com', '', NULL, NULL, NULL, 1268889823, 1380003462, 1, 0, 0, 0, 'Alamgir', 'Kabir', '0', NULL, NULL, NULL, NULL, 1, 1, 1, 0),
 (4, '\0\0', 'fariza', '59beecdf7fc966e2f17fd8f65a4a9aeb09d4a3d4', '9462e8eee0', 'fariza@apurbatech.com', '', NULL, NULL, NULL, 1268889823, 1375689996, 1, 0, 0, 0, 'Fariza', 'Amir', '0', NULL, NULL, NULL, NULL, 1, 1, 1, 0),
