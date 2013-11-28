@@ -13,7 +13,7 @@
             <tr> 
                 <td>
                     <label for="IC_no"><?php echo $IC_no; ?>: </label>
-                    <?php echo form_input('IC_no'); ?>
+                    <?php echo form_input('patient_ic_no'); ?>
                 </td>
             </tr>
         </table>
