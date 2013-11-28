@@ -2,10 +2,10 @@
 -- version 4.0.4.1
 -- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Generation Time: Nov 27, 2013 at 02:03 PM
--- Server version: 5.6.11
--- PHP Version: 5.5.0
+-- Host: localhost
+-- Generation Time: Nov 28, 2013 at 05:16 AM
+-- Server version: 5.6.12
+-- PHP Version: 5.5.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -576,65 +576,6 @@ CREATE TABLE IF NOT EXISTS `patient_interview_manager` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `patient_lifestyle_adulthood_exercise`
---
-
-CREATE TABLE IF NOT EXISTS `patient_lifestyle_adulthood_exercise` (
-  `patient_lifestyle_adulthood_exercise_id` int(11) NOT NULL AUTO_INCREMENT,
-  `patient_lifestyle_factors_id` int(11) NOT NULL,
-  `exercise_id` int(11) NOT NULL,
-  `created_on` date NOT NULL,
-  `modified_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `modified_by` varchar(50) NOT NULL,
-  `is_deleted` tinyint(1) NOT NULL DEFAULT '0',
-  `deleted_on` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  PRIMARY KEY (`patient_lifestyle_adulthood_exercise_id`),
-  KEY `fk_patient_lifestyle_adulthood_exercise_exercise_id` (`exercise_id`),
-  KEY `fk_patient_lifestyle_adulthood_patient_lifestyle_factors_id` (`patient_lifestyle_factors_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `patient_lifestyle_childhood_exercise`
---
-
-CREATE TABLE IF NOT EXISTS `patient_lifestyle_childhood_exercise` (
-  `patient_lifestyle_childhood_exercise_id` int(11) NOT NULL AUTO_INCREMENT,
-  `patient_lifestyle_factors_id` int(11) NOT NULL,
-  `exercise_id` int(11) NOT NULL,
-  `created_on` date NOT NULL,
-  `modified_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `modified_by` varchar(50) NOT NULL,
-  `is_deleted` tinyint(1) NOT NULL DEFAULT '0',
-  `deleted_on` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  PRIMARY KEY (`patient_lifestyle_childhood_exercise_id`),
-  KEY `fk_patient_lifestyle_childhood_exercise_exercise_id` (`exercise_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `patient_lifestyle_current_exercise`
---
-
-CREATE TABLE IF NOT EXISTS `patient_lifestyle_current_exercise` (
-  `patient_lifestyle_current_exercise_id` int(11) NOT NULL AUTO_INCREMENT,
-  `patient_lifestyle_factors_id` int(11) NOT NULL,
-  `exercise_id` int(11) NOT NULL,
-  `created_on` date NOT NULL,
-  `modified_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `modified_by` varchar(50) NOT NULL,
-  `is_deleted` tinyint(1) NOT NULL DEFAULT '0',
-  `deleted_on` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  PRIMARY KEY (`patient_lifestyle_current_exercise_id`),
-  KEY `fk_patient_lifestyle_current_exercise_exercise_id` (`exercise_id`),
-  KEY `fk_patient_lifestyle_current_exercise_lifestyle_factors_id` (`patient_lifestyle_factors_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `patient_lifestyle_factors`
 --
 
@@ -645,9 +586,15 @@ CREATE TABLE IF NOT EXISTS `patient_lifestyle_factors` (
   `self_image_at_7years` longblob NOT NULL,
   `self_image_at_18years` longblob NOT NULL,
   `self_image_now` longblob NOT NULL,
-  `pa_sports_activitiy_childhood` text NOT NULL,
-  `pa_sports_activitiy_adult` text NOT NULL,
-  `pa_sports_activitiy_now` text NOT NULL,
+  `pa_strenuous_activity_childhood` text,
+  `pa_moderate_exercise_childhood` text,
+  `pa_gentle_exercise_childhood` text,
+  `pa_strenuous_activity_now` text,
+  `pa_moderate_exercise_now` text,
+  `pa_gentle_exercise_now` text,
+  `pa_strenuous_activity_adult` text,
+  `pa_moderate_exercise_adult` text,
+  `pa_gentle_exercise_adult` text,
   `cigarrets_smoked_flag` tinyint(1) NOT NULL,
   `cigarrets_still_smoked_flag` tinyint(1) NOT NULL,
   `total_smoked_years` int(5) NOT NULL,
