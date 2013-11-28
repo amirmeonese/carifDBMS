@@ -432,10 +432,10 @@
                     <?php echo $contraceptive_pills_flag; ?>: 
                     <?php echo form_checkbox('contraceptive_pills_flag', '1', FALSE); ?>
                 </td>
-                <td>
+<!--                <td>
                     <?php echo $contraceptive_pills_details; ?>: <br />
                     <?php echo form_input('contraceptive_pills_details'); ?>
-                </td>
+                </td>-->
                 <td>
                     <?php echo $currently_taking_contraceptive_pills_flag; ?>: <br />
                     <?php echo form_checkbox('currently_taking_contraceptive_pills_flag', '1', FALSE); ?>
@@ -471,10 +471,10 @@
                     <?php echo $HRT_flag; ?>: 
                     <?php echo form_checkbox('HRT_flag', '1', FALSE); ?>
                 </td>
-                <td>
+<!--                <td>
                     <?php echo $HRT_details; ?>: <br />
                     <?php echo form_input('HRT_details'); ?>
-                </td>
+                </td>-->
                 <td>
                     <?php echo $currently_using_HRT_flag; ?>: <br />
                     <?php echo form_checkbox('currently_using_hrt_flag', '1', FALSE); ?>

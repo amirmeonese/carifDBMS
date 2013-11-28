@@ -74,8 +74,8 @@
             </tr>
             <tr>
                 <td>
-                    <?php echo $still_alive_flag; ?>: 
-                    <?php echo form_checkbox('still_alive_flag', '1', TRUE); ?>
+                    <?php echo $is_dead; ?>: 
+                    <?php echo form_checkbox('is_dead', '1', TRUE); ?>
                 </td>
                 <td>
                     <?php echo $DOD; ?>: 

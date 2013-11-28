@@ -500,6 +500,7 @@ class Record_model extends CI_Model {
         $data['DOB'] = 'Date of birth';
         $data['place_of_birth'] = 'Place of birth';
         $data['still_alive_flag'] = 'Still alive?';
+        $data['is_dead'] = 'Is dead?';
         $data['DOD'] = 'Date of death';
         $data['reason_of_death'] = 'Reason of death';
         $data['gender'] = 'Gender';
@@ -636,7 +637,10 @@ class Record_model extends CI_Model {
         //MAMMO
         $data['date_of_first_mammogram'] = 'Date of first mammogram';
         $data['reason_of_mammogram'] = 'Reason for mammogram';
-        $data['details_for_mammogram'] = 'Details';
+        $data['reason_for_mammogram'] = array(
+            '' => ''
+        );
+        $data['details_for_mammogram'] = 'Details of mammogram';
         $data['action_suggested_on_mammogram_report'] = 'Action suggested on mammogram report';
         $data['reason_of_action_suggested'] = 'Reason of action suggested';
         $data['is_cancer'] = 'Cancer?';
@@ -763,7 +767,7 @@ class Record_model extends CI_Model {
         $data['treatment_details'] = 'Treatment details';
         $data['treatment_drug_dose'] = 'Treatment drug dose';
         $data['treatment_cycle'] = 'Treatment cycle';
-        $data['treatment_route'] = 'Treatment route';
+        $data['treatment_frequency'] = 'Treatment frequency';
         $data['treatment_visidual_desease'] = 'Treatment visidual desease';
         $data['treatment_primary_therapy_outcome'] = 'Primary therapy outcome';
         $data['treatment_cal125_pretreatment'] = 'Cal125 pretreatment';

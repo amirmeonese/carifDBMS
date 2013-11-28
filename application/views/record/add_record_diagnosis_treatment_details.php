@@ -235,8 +235,8 @@
                         <?php echo form_input('treatment_cycle'); ?>
                     </td>
                     <td>
-                        <?php echo $treatment_route; ?>: 
-                        <?php echo form_input('treatment_route'); ?>
+                        <?php echo $treatment_frequency; ?>: 
+                        <?php echo form_input('treatment_frequency'); ?>
                     </td>
                      </tr>
                      <tr>
@@ -470,7 +470,7 @@
                         <?php echo form_input('ovary_treatment_cycle'); ?>
                     </td>
                     <td>
-                        <?php echo $treatment_route; ?>: 
+                        <?php echo $treatment_frequency; ?>: 
                         <?php echo form_input('ovary_treatment_route'); ?>
                     </td>
                      </tr>
@@ -481,8 +481,8 @@
                     </td>
                     <td>
                         <?php echo $treatment_primary_therapy_outcome; ?>: 
-                        <?php echo form_input('treatment_privacy_outcome'); ?>
-                    </td>
+                        <?php echo form_input('treatment_primary_outcome'); ?>
+                    </td> 
                     <td>
                         <?php echo $treatment_cal125_pretreatment; ?>: 
                         <?php echo form_input('ovary_cal125_pretreatment'); ?>
@@ -655,8 +655,8 @@
                         <?php echo form_input('other_treatment_cycle'); ?>
                     </td>
                     <td>
-                        <?php echo $treatment_route; ?>: 
-                        <?php echo form_input('other_treatment_route'); ?>
+                        <?php echo $treatment_frequency; ?>: 
+                        <?php echo form_input('other_treatment_frequency'); ?>
                     </td>
                      </tr>
                      <tr>
