@@ -216,8 +216,8 @@
                         <?php echo form_input(array('name' => 'treatment_cycle', 'value' => $breast_cancer['treatment_cycle']))?>
                     </td>
                     <td>
-                        <?php echo $treatment_route; ?>: 
-                        <?php echo form_input(array('name' => 'treatment_route', 'value' => $breast_cancer['treatment_frequency']))?>
+                        <?php echo $treatment_frequency; ?>: 
+                        <?php echo form_input(array('name' => 'treatment_frequency', 'value' => $breast_cancer['treatment_frequency']))?>
                     </td>
                 </tr>
                 <tr>
@@ -438,7 +438,7 @@
                         <?php echo form_input(array('name' => 'ovary_treatment_cycle', 'value' => $ovary_cancer['treatment_cycle']))?>
                     </td>
                     <td>
-                        <?php echo $treatment_route; ?>: 
+                        <?php echo $treatment_frequency; ?>: 
                         <?php echo form_input(array('name' => 'ovary_treatment_route', 'value' => $ovary_cancer['treatment_frequency']))?>
                     </td>
                 </tr>
@@ -601,8 +601,8 @@
                             <?php echo form_input(array('name' => 'other_treatment_cycle', 'value' => $other_cancer['treatment_cycle']))?>
                         </td>
                         <td>
-                            <?php echo $treatment_route; ?>: 
-                            <?php echo form_input(array('name' => 'other_treatment_route', 'value' => $other_cancer['treatment_frequency']))?>
+                            <?php echo $treatment_frequency; ?>: 
+                            <?php echo form_input(array('name' => 'treatment_frequency', 'value' => $other_cancer['treatment_frequency']))?>
                         </td>
                     </tr>
                     <tr>
