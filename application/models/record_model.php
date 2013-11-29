@@ -1945,14 +1945,27 @@ class Record_model extends CI_Model {
         $this->db->where('a.ic_no = b.patient_ic_no');
         $this->db->like('a.given_name', $record_data['given_name']);
         $this->db->like('a.ic_no', $record_data['ic_no']);
-        //$this->db->limit(5);
         $patient_list = $this->db->get('');
         $list_patient = $patient_list->result_array();
         $patient_list->free_result();
 
         return $list_patient;
     }
+	
+	function getCurrentRangeOfPatientList($record_data,$limit,$start) {
+		
+		$this->db->select('a.given_name, a.surname, a.ic_no, a.created_on, b.studies_id, b.patient_studies_id');
+        $this->db->from('patient a, patient_studies b');
+        $this->db->where('a.ic_no = b.patient_ic_no');
+        $this->db->like('a.given_name', $record_data['given_name']);
+        $this->db->like('a.ic_no', $record_data['ic_no']);
+        $this->db->limit($limit, $start);
+        $patient_list = $this->db->get('');
+        $list_patient = $patient_list->result_array();
+        $patient_list->free_result();
 
+        return $list_patient;
+    }
     /* public function test($fileName)
       {
       echo $fileName;

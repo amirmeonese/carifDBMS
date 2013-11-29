@@ -13,6 +13,7 @@ class Record extends CI_Controller {
         $this->load->model('record_model');
         $this->load->model('excell_sheets_model');
         $this->load->model('excell_parser_model');
+		$this->load->library("pagination");
     }
 
     //redirect if needed, otherwise display the user list
@@ -539,34 +540,36 @@ class Record extends CI_Controller {
         
         if($this->input->post('search')){
         
-        $data_search_key = array(
-            'given_name' => $this->input->post('patient_name'),
-            'ic_no' => $this->input->post('IC_no')
-        );
-        //print_r($data_search_key);
-        $result = array();
-        $result = $this->Record_model->getPatientList($data_search_key);
-                        
-        $data['patient_list'] = $result;
-        
-        $data['studies_name_list'] = $this->Record_model->get_studies_name();
-
+			$data_search_key = array(
+				'given_name' => $this->input->post('patient_name'),
+				'ic_no' => $this->input->post('IC_no')
+			);
         }
 		else
 		{
 			$data_search_key = array(
             'given_name' => "",
             'ic_no' => ""
-			);
-			
-			$result = array();
-			$result = $this->Record_model->getPatientList($data_search_key);
-							
-			$data['patient_list'] = $result;
-			$data['studies_name_list'] = $this->Record_model->get_studies_name();
-			
+			);		
 		}
         
+		$limit = 30;
+		$allResult = $this->Record_model->getPatientList($data_search_key);
+		$config['total_rows'] = count($allResult);
+		$config['base_url'] = site_url('record/patient_record_list');
+		$config['per_page'] = $limit;
+		$config["uri_segment"] = 3;
+		$this->pagination->initialize($config);
+		$page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+		
+		$result = array();
+		$result = $this->Record_model->getCurrentRangeOfPatientList($data_search_key,$config["per_page"], $page);
+						
+		$data['patient_list'] = $result;
+		$data['studies_name_list'] = $this->Record_model->get_studies_name();
+		$data['counter'] = $page;
+		$data['pagination_links'] = $this->pagination->create_links();	
+		$data['total_results'] = count($allResult);
         $this->template->load("templates/report_home_template", 'record/list_record_personal_details', $data);
     }
 

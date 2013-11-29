@@ -40,10 +40,12 @@
         <?php echo form_submit('search','Search');  ?>
         
         <?php //if($submit):?>
-        <div style="margin-left:180px;"><?php echo count($patient_list) . " record found."?></div>
+        <div style="margin-left:180px;"><?php echo $total_results . " record found."?></div><br />
+		<div style="margin-left:180px;"><?php echo $pagination_links; ?></div>
         <table border="1" width="50%" style="margin-left:180px;">
             <thead>
                 <tr align='center'>
+					<th style="background-color:Crimson;">&nbsp;</th>
                     <th style="background-color:Crimson;">Date</th>
 					<th style="background-color:Crimson;">IC No</th>
                     <th style="background-color:Crimson;">Patient Name</th>
@@ -51,9 +53,10 @@
                     <th style="background-color:Crimson;">Action</th>
                 </tr>
             </thead>
-            <?php if(!empty($patient_list)) { ?>
+            <?php if(!empty($patient_list)) { $patientCounter = $counter + 1;?>
             <?php foreach ($patient_list as $list): ?>
                 <tr>
+					<td><?php echo $patientCounter; ?></td>
                     <td><?php echo $list['created_on']; ?></td>
 					<td><?php echo $list['ic_no']; ?></td>
                     <td><?php echo $list['given_name']; ?></td>
@@ -78,15 +81,16 @@
                         </form>-->
                     </td>
                 </tr>
-            <?php endforeach; ?>
+            <?php $patientCounter++; endforeach; ?>
                         <?php } else { ?>
-                <tr><td colspan="5" style="center">
+                <tr><td colspan="6" style="center">
           <?php  echo 'no data';?>
             </td><tr>
    <?php     }
 ?>
         </table>        
         </br>
+		<div style="margin-left:180px;"><?php echo $pagination_links; ?></div>
         <a style="margin-left:180px;" class="doneButton" href="<?php echo base_url(); ?>">Done</a>
         <?php //endif;?>
     </div>
