@@ -45,12 +45,12 @@
         <table border="1" width="50%" style="margin-left:180px;">
             <thead>
                 <tr align='center'>
-					<th style="background-color:Crimson;">&nbsp;</th>
-                    <th style="background-color:Crimson;">Date</th>
-					<th style="background-color:Crimson;">IC No</th>
-                    <th style="background-color:Crimson;">Patient Name</th>
-                    <th style="background-color:Crimson;">Studies</th>
-                    <th style="background-color:Crimson;">Action</th>
+					<th id="view-page-tr">&nbsp;</th>
+                    <th id="view-page-tr">Date</th>
+					<th id="view-page-tr">IC No</th>
+                    <th id="view-page-tr">Patient Name</th>
+                    <th id="view-page-tr">Studies</th>
+                    <th id="view-page-tr">Action</th>
                 </tr>
             </thead>
             <?php if(!empty($patient_list)) { $patientCounter = $counter + 1;?>
