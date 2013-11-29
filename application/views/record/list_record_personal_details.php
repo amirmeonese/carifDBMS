@@ -40,7 +40,7 @@
         <?php echo form_submit('search','Search');  ?>
         
         <?php //if($submit):?>
-        <div style="margin-left:180px;"><?php echo $total_results . " record found. Showing ". ($start_from + 1 ). "-" . ($start_from + count($patient_list))?></div><br />
+        <div style="margin-left:180px;"><?php echo $total_results . " record(s) found. Showing ". ($start_from + 1 ). "-" . ($start_from + count($patient_list))?></div><br />
 		<div style="margin-left:180px;"><?php echo $pagination_links; ?></div>
         <table border="1" width="50%" style="margin-left:180px;">
             <thead>
