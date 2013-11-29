@@ -570,6 +570,7 @@ class Record extends CI_Controller {
 		$data['counter'] = $page;
 		$data['pagination_links'] = $this->pagination->create_links();	
 		$data['total_results'] = count($allResult);
+		$data['start_from'] = $page;
         $this->template->load("templates/report_home_template", 'record/list_record_personal_details', $data);
     }
 
