@@ -41,7 +41,7 @@ class Excell_parser_model extends CI_Model {
         echo $objPHPExcel->getSheetCount(), ' worksheet', (($objPHPExcel->getSheetCount() == 1) ? '' : 's'), ' loaded<br /><br />';
 
         $loadedSheetNames = $objPHPExcel->getSheetNames();
-        $created_date = date("Y-m-d");
+        $created_date = date('Y-m-d H:i:s');//date("Y-m-d");
         $array_IC_no = array();
         $abort = FALSE;
 
@@ -1542,11 +1542,17 @@ class Excell_parser_model extends CI_Model {
                             'total_no_of_siblings' => $temp1[46]
                         );
 
-
+                        if ($temp1[48] == 'Alive' || $temp1[48] == 'alive')
+                            $alive_status = TRUE;
+                        else if ($temp1[48] == 'Dead' || $temp1[48] == 'dead')
+                            $alive_status = FALSE;
+                        else
+                            $alive_status = 2;
+                        
                         $data_patient_survival_status[] = array(
                             'patient_ic_no' => $temp1[5],
                             'source' => $temp1[47],
-                            'alive_status' => $temp1[48],
+                            'alive_status' => $alive_status,
                             'status_gathering_date' => $temp1[49],
                             'created_on' => $created_date
                         );
