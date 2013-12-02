@@ -138,7 +138,7 @@
             <tr>
                 <td>
                     <?php echo $COGS_study_id; ?>:
-                    <?php echo  form_dropdown('COGS_study_id',$COGS_study_id_lists, $patient_cogs_studies['COGS_studies_id'], 'id="COGS_study_id" preload_val="'.$patient_cogs_studies['COGS_studies_id'].'"')?>                    
+                    <?php echo form_dropdown('COGS_study_id',$COGS_study_id_lists, $patient_cogs_studies['COGS_studies_name'], 'id="COGS_study_id" preload_val="'.$patient_cogs_studies['COGS_studies_name'].'"')?>                    
                 </td>
                 <td>
                     <?php echo 'Study no'; ?>: 
@@ -314,7 +314,7 @@
                 </td>
                 <td>
                     <?php echo $status_gathered_date; ?>: 
-                    <?php echo form_input(array('name' => 'status_gathered_date', 'class' => 'datepicker')); ?>
+                    <?php echo form_input(array('name' => 'status_gathered_date', 'value' => $patient_survival_status['status_gathering_date'],'class' => 'datepicker')); ?>
                 </td>
                 <td>
                     <input type="button" value="Add more survival status" onClick="window.parent.addSurvivalStatusInput('add_record_form_section_personal_5');
