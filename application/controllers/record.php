@@ -1738,6 +1738,31 @@ class Record extends CI_Controller {
         }
         echo '<br/>';
     }
+    
+    function interview_home_update() {
+        
+        date_default_timezone_set("Asia/Kuala_lumpur"); 
+        $date = date('Y-m-d H:i:s'); //Returns IST 
+        
+        $icno = $this->input->post('icno');
+        //$id = $this->input->post('patient_interview_manager_id');
+        
+        //print_r($id);exit;
+        
+        $data_patient_interview_manager = array(
+            //'patient_ic_no' => $this->input->post('IC_no'),
+            'interview_date' => date('Y-m-d',strtotime($this->input->post('interview_date'))),
+            'next_interview_date' => date('Y-m-d',strtotime($this->input->post('interview_next_date'))),
+            'is_send_email_reminder_to_officers' => $this->input->post('is_send_email_reminder'),
+            'officer_email_addresses' => $this->input->post('officer_email_addresses'),
+            'created_on' => $date,
+            'comments' => $this->input->post('interview_note')
+        );
+        
+        //$this->db->where('patient_interview_manager_id', $id);
+        $this->db->where('patient_ic_no', $icno);
+        $this->db->update('patient_interview_manager', $data_patient_interview_manager); 
+    }
 
     function do_upload_xlsx() {
         $config['upload_path'] = './uploads/';

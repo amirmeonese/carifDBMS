@@ -4,7 +4,7 @@
     </div>
     <?php
     $attributes = array('id' => 'interview-details-form');
-    echo form_open("record/interview_home_insersion", $attributes);
+    echo form_open("record/interview_home_update", $attributes);
     ?>
     <div class="container" id="interview_form_section">
         <div height="30px">&nbsp;</div>
@@ -49,11 +49,13 @@
                             window.parent.calcHeight();">
                 </td>
             </tr>
+            <input type="hidden" name="icno" value="<?php print $patient_counselling['patient_ic_no']; ?>"/>
+<!--            <input type="hidden" name="patient_interview_manager_id" value="<?php print $patient_counselling['patient_interview_manager_id']; ?>"/>-->
         </table>
         <?php echo form_fieldset_close(); ?>
         <?php endforeach; ?>
     </div>
-    <?php echo form_submit('mysubmit', 'Save'); ?>
+    <?php echo form_submit('mysubmit', 'Update'); ?>
     <?php echo form_close(); ?>
 </div>
 
