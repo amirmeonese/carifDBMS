@@ -70,17 +70,24 @@
                 </td>
             </tr>
             <tr>
+               <?php if($patient_detail['is_dead'] == 1){?>
                 <td>
-                    <?php echo $still_alive_flag; ?>:
-                    <?php echo form_checkbox(array('name' => 'still_alive_flag', 'value' => $patient_detail['is_dead']))?>                    
+                    <?php echo $is_dead; ?>:
+                    <?php echo form_checkbox(array('name' => 'is_dead', 'value' => $patient_detail['is_dead'],'checked'=>"checked"))?>                    
                 </td>
+               <?php } else {?>
+                <td>
+                    <?php echo $is_dead; ?>:
+                    <?php echo form_checkbox(array('name' => 'is_dead', 'value' => $patient_detail['is_dead']))?>                    
+                </td>
+               <?php } ?>
                 <td>
                     <?php echo $DOD; ?>: 
                     <?php echo form_input(array('name' => 'd_o_d', 'value' => $patient_detail['d_o_d'],'class' => 'datepicker'))?>
                 </td>
                 <td>
                     <?php echo $reason_of_death; ?>: 
-                    <?php echo form_textarea(array('name' => 'reason_of_death','id' => 'reason_of_death','rows' => '3','cols' => '7', 'value' => $patient_detail['blood_group']))?>                                      
+                    <?php echo form_textarea(array('name' => 'reason_of_death','id' => 'reason_of_death','rows' => '3','cols' => '7', 'value' => $patient_detail['reason_of_death']))?>                                      
                 </td>
             </tr>
         </table>
@@ -117,7 +124,7 @@
             <tr>
                 <td>
                     <?php echo $private_patient_no; ?>: 
-                    <?php echo form_input(array('name' => 'private_patient_no', 'value' => @$patient_private_no['private_patient_no']))?>
+                    <?php echo form_input(array('name' => 'private_patient_no', 'value' => @$patient_private_no['private_no']))?>
                 </td>
                 <td>
                     <input type="button" value="Add patient no." onClick="window.parent.addPatientPrivateNoInput('add_record_form_section_personal3');
@@ -155,10 +162,17 @@
         <div height="30px">&nbsp;</div>
         <table>
             <tr>
+                <?php if($patient_detail['is_dead'] == 1){?>
+                <td>
+                    <?php echo $is_blood_card_exist; ?>: 
+                    <?php echo form_checkbox(array('name' => 'is_blood_card_exist', 'value' => $patient_detail['blood_card'],'checked'=>"checked"))?>                    
+                </td>
+               <?php } else {?>
                 <td>
                     <?php echo $is_blood_card_exist; ?>: 
                     <?php echo form_checkbox(array('name' => 'is_blood_card_exist', 'value' => $patient_detail['blood_card']))?>                    
                 </td>
+               <?php } ?>
                 <td>
                     <?php echo $blood_card_location; ?>: 
                     <?php echo form_input(array('name' => 'blood_card_location', 'value' => $patient_detail['blood_card_location']))?>
@@ -310,7 +324,7 @@
                 </td>
                 <td>
                     <?php echo $alive_status; ?>:
-                    <?php echo  form_dropdown('alive_status',$alive_status_lists, $patient_survival_status['alive_status'], 'id="alive_status" preload_val="'.$patient_survival_status['alive_status'].'"'); ?>                                                            
+                    <?php echo  form_dropdown('alive_status',$alive_status_lists, $alive_id[$patient_survival_status['alive_status']], 'id="alive_status" preload_val="'.$alive_id[$patient_survival_status['alive_status']].'"'); ?>                                                            
                 </td>
                 <td>
                     <?php echo $status_gathered_date; ?>: 
@@ -333,7 +347,7 @@
             <tr>
                 <td>
                     <?php echo $studies_name; ?>:
-                    <?php echo  form_dropdown('studies_name',$studies_name_lists, $list['studies_id'], 'id="studies_name" preload_val="'.$list['studies_id'].'"'); ?>                                                                                
+                    <?php echo  form_dropdown('studies_name',$studies_name_lists, @$studies_id[$list['studies_id']], 'id="studies_name" preload_val="'.@$studies_id[$list['studies_id']].'"'); ?>                                                                                
                 </td>
                 <td>
                     <?php echo $date_at_consent; ?>:

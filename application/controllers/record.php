@@ -193,7 +193,7 @@ class Record extends CI_Controller {
                 'email' => $this->input->post('email'),
                 'height' => $this->input->post('height'),
                 'weight' => $this->input->post('weight'),
-                'bmi' => $this->input->post('bmi'),
+                'bmi' => $this->input->post('BMI'),
                 'created_on' => $date,
                 'comment' => $this->input->post('patient_comments'),
                 'highest_education_level' => $this->input->post('highest_education_level')
@@ -418,11 +418,11 @@ class Record extends CI_Controller {
                 'full_name' => $this->input->post('mother_fullname'),
                 'sur_name' => $this->input->post('mother_surname'),
                 'maiden_name' => $this->input->post('mother_maiden_name'),
-                'ethnicity' => $this->input->post('mother_ethncity'),
+                'ethnicity' => $this->input->post('mother_ethnicity'),
                 'town_of_residence' => $this->input->post('mother_town_residence'),
-                'd_o_b' => $this->input->post('mother_DOB'),
+                'd_o_b' => date('Y-m-d',strtotime($this->input->post('mother_DOB'))),
                 'is_alive_flag' => $this->input->post('mother_still_alive_flag'),
-                'd_o_d' => $this->input->post('mother_DOD'),
+                'd_o_d' => date('Y-m-d',strtotime($this->input->post('mother_DOD'))),
                 'is_cancer_diagnosed' => $this->input->post('mother_is_cancer_diagnosed'),
                 'date_of_diagnosis' => date('Y-m-d',strtotime($this->input->post('mother_date_of_diagnosis'))),
                 'cancer_type_id' => $mother_cancer_type_id,
@@ -1826,16 +1826,20 @@ class Record extends CI_Controller {
         if ($var == 'personal') {            
             $data['patient_detail'] = $this->record_model->get_detail_patient_record($ic_no,$patient_studies_id );
             $data['patient_consent_detail'] = $this->record_model->get_consent_detail_patient_record($ic_no, $patient_studies_id);
+            $data['studies_id'] = $this->record_model->get_studies_name_by_id();
             $data['patient_private_no'] = $this->record_model->get_detail_record($ic_no, 'patient_private_no', 'patient_ic_no');
             $data['patient_hospital_no'] = $this->record_model->get_detail_record($ic_no, 'patient_hospital_no', 'patient_ic_no');
             $data['patient_cogs_studies'] = $this->record_model->get_detail_record($ic_no, 'patient_cogs_studies', 'patient_ic_no');
             $data['patient_contact_person'] = $this->record_model->get_detail_record($ic_no, 'patient_contact_person', 'patient_ic_no');
             $data['patient_survival_status'] = $this->record_model->get_detail_record($ic_no, 'patient_survival_status', 'patient_ic_no');
+            $data['alive_id'] = $this->record_model->get_alive_status_by_id();
             $data['patient_relatives_summary'] = $this->record_model->get_detail_record($ic_no, 'patient_relatives_summary', 'patient_ic_no');
             $data['isUpdate'] = TRUE;
             $this->template->load("templates/add_record_template", 'record/view_record_personal_details', $data);
         } else if ($var == 'family') {
-            $data['patient_family'] = $this->record_model->get_view_patient_record($ic_no, 'patient_relatives', 'patient_ic_no');
+            $data['patient_family_mother'] = $this->record_model->get_view_family_record($ic_no, 2);
+            $data['patient_family_father'] = $this->record_model->get_view_family_record($ic_no, 1);
+            $data['cancer_name'] = $this->record_model->get_cancer_by_id();
             $this->template->load("templates/add_record_template", 'record/view_record_family_details', $data);
         } else if ($var == 'diagnosis') {
             $data['patient_breast_cancer'] = $this->record_model->get_patient_breast_diagnosis_record($patient_studies_id);

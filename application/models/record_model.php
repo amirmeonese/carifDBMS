@@ -1330,6 +1330,18 @@ class Record_model extends CI_Model {
         return $patient_detail;
     }
     
+    public function get_view_family_record($ic_no,$relative_id){
+    
+        $this->db->where('patient_ic_no',$ic_no);
+        $this->db->where('relatives_id',$relative_id);
+	$f_record = $this->db->get('patient_relatives');
+        $patient_family_detail = $f_record->result_array();
+        //echo $this->db->last_query();exit;
+        $f_record->free_result();  
+
+        return $patient_family_detail;
+    }
+    
     public function get_consent_detail_patient_record($ic_no,$patient_studies_id){
          
         $this->db->where('patient_ic_no',$ic_no);
@@ -2159,7 +2171,43 @@ function get_patient_other_screening_record($patient_studies_id) {
     return $list_patient_counselling;
 }
 
+function get_studies_name_by_id() {
+
+        $studiesnamelist = array();
+        $this->db->select('studies_id,studies_name');
+        $this->db->order_by('studies_name asc');
+        $query = $this->db->get('studies');
+        foreach ($query->result() as $row) {
+            $studiesnamelist = $studiesnamelist + array($row->studies_id => $row->studies_name);
+        }
+        $query->free_result();
+        return $studiesnamelist;
+    }
+    
+    function get_alive_status_by_id() {
+        
+        $alivestatuslist = array(
+            
+            '1' => 'Alive',
+            '2' => 'Dead',
+            '3' => 'Unknown'
+        );
+        
+        return $alivestatuslist;
+    }
+    
+    function get_cancer_by_id() {
+
+        $cancernamelist = array();
+        $this->db->select('cancer_id,cancer_name');
+        $this->db->order_by('cancer_name asc');
+        $query = $this->db->get('cancer');
+        foreach ($query->result() as $row) {
+            $cancernamelist = $cancernamelist + array($row->cancer_id => $row->cancer_name);
+        }
+        $query->free_result();
+        return $cancernamelist;
+    }
+
 }
-
-
 ?>
