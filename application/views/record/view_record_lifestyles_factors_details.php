@@ -1,6 +1,6 @@
 <div class="container" id="add_record_div">
     <div id="add_record_header" class="row">
-        <p>Add Lifestyle Factors Details</p>
+        <p>View Lifestyle Factors Details</p>
     </div>
     <?php
     $attributes = array('id' => 'lifestyle-details-form');
@@ -360,7 +360,7 @@
                         <?php echo form_checkbox(array('name' => 'pregnant_flag', 'value' => @$patient_parity_table['pregnant_flag']))?>
                     </td>
                     <td>
-                        <input type="button" value="Add parity" onClick="window.parent.addPregnancyInput('parity_section_div_1');
+                        <input type="button" value="View parity" onClick="window.parent.addPregnancyInput('parity_section_div_1');
                             window.parent.calcHeight();">
                     </td>
                 </tr>

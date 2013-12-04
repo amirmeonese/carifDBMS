@@ -2191,8 +2191,8 @@ function get_studies_name_by_id() {
         $alivestatuslist = array(
             
             '1' => 'Alive',
-            '2' => 'Dead',
-            '3' => 'Unknown'
+            '0' => 'Dead',
+            '2' => 'Unknown'
         );
         
         return $alivestatuslist;

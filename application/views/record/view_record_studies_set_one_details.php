@@ -1,6 +1,6 @@
 <div class="container" id="add_record_div">
     <div id="add_record_header" class="row">
-        <p>Add Screenings & Surveillance</p>
+        <p>View Screenings & Surveillance</p>
     </div>
     <?php
     $attributes = array('id' => 'screenings-details-form');
@@ -105,7 +105,7 @@
         <table id="mammo_second_section_1">
             <tr>
                 <td>
-                    <input type="button" value="Add more site details" onClick="window.parent.addBreastSiteInput('add_record_form_section_mammo');
+                    <input type="button" value="View more site details" onClick="window.parent.addBreastSiteInput('add_record_form_section_mammo');
                             window.parent.calcHeight();">
                 </td>
                 <td>&nbsp;</td>
@@ -270,7 +270,7 @@
                     <?php echo form_textarea(array('name' => 'mammo_ultrasound_details','id' => 'mammo_ultrasound_details','rows' => '3','cols' => '7', 'value' => $breast_screening['comments']))?>
                 </td>
                 <td>
-                    <input type="button" value="Add ultrasound" onClick="window.parent.addUltrasoundDetailsInput('add_record_form_section_mammo_ultrasound');
+                    <input type="button" value="View ultrasound" onClick="window.parent.addUltrasoundDetailsInput('add_record_form_section_mammo_ultrasound');
                             window.parent.calcHeight();">
                 </td>
             </tr>
@@ -315,7 +315,7 @@
                     <?php echo form_textarea(array('name' => 'mammo_MRI_details','id' => 'mammo_MRI_details','rows' => '3','cols' => '7', 'value' => $breast_screening['comments']))?>
                 </td>
                 <td>
-                    <input type="button" value="Add MRI" onClick="window.parent.addMRIDetailsInput('add_record_form_section_mammo_MRI');
+                    <input type="button" value="View MRI" onClick="window.parent.addMRIDetailsInput('add_record_form_section_mammo_MRI');
                             window.parent.calcHeight();">
                 </td>
             </tr>
@@ -355,7 +355,7 @@
                     <?php echo form_textarea(array('name' => 'non_cancer_surgery_comments','id' => 'non_cancer_surgery_comments','rows' => '3','cols' => '7', 'value' => $non_cancer['breast_comments']))?>
                 </td>
 <!--                <td>
-                    <input type="button" value="Add surgery" onClick="window.parent.addNonCancerSurgeryDetailsInput('add_record_form_section_mammo_non_cancer_surgery');
+                    <input type="button" value="View surgery" onClick="window.parent.addNonCancerSurgeryDetailsInput('add_record_form_section_mammo_non_cancer_surgery');
                             window.parent.calcHeight();">
                 </td>-->
             </tr>
@@ -393,7 +393,7 @@
                     <?php echo form_textarea(array('name' => 'ovary_non_cancer_surgery_comments','id' => 'ovary_non_cancer_surgery_comments','rows' => '3','cols' => '7', 'value' => $non_cancer['comments']))?>
                 </td>
 <!--                <td>
-                    <input type="button" value="Add surgery" onClick="window.parent.addNonCancerSurgeryDetailsInput('add_record_form_section_mammo_non_cancer_surgery');
+                    <input type="button" value="View surgery" onClick="window.parent.addNonCancerSurgeryDetailsInput('add_record_form_section_mammo_non_cancer_surgery');
                             window.parent.calcHeight();">
                 </td>-->
             </tr>
@@ -430,7 +430,7 @@
                         <?php echo form_input(array('name' => 'non_cancerous_benign_date', 'value' => $risk_reducing_surgery['surgery_date'], 'class' => 'datepicker')) ?>
                     </td>
                         <td>
-                            <input type="button" value="Add" onClick="window.parent.addRiskReducingSurgeryBenignInfo('non_cancerous_benign_section_1');
+                            <input type="button" value="View" onClick="window.parent.addRiskReducingSurgeryBenignInfo('non_cancerous_benign_section_1');
                             window.parent.calcHeight();">
                     </td>
                 </tr>
@@ -460,7 +460,7 @@
                         <?php echo form_dropdown('non_cancerous_complete_removal_reason', $non_cancerous_complete_removal_reason_lists, $risk_reducing_surgery['surgery_reason'], 'id="non_cancerous_complete_removal_reason_lists" preload_val="'.$risk_reducing_surgery['surgery_reason'].'"'); ?>
                     </td>
                         <td>
-                            <input type="button" value="Add" onClick="window.parent.addRiskReducingSurgeryCompleteRemovalInfo('non_cancerous_complete_removal_section_1');
+                            <input type="button" value="View" onClick="window.parent.addRiskReducingSurgeryCompleteRemovalInfo('non_cancerous_complete_removal_section_1');
                             window.parent.calcHeight();">
                     </td>
                 </tr>
@@ -500,7 +500,7 @@
                         <?php echo form_textarea(array('name' => 'physical_exam_additional_info','id' => 'physical_exam_additional_info','rows' => '3','cols' => '7', 'value' => $ovarian_screening['additional_info']))?>
                     </td>
                     <td>
-                        <input type="button" value="Add" onClick="window.parent.addOvarianScreeningPhycialExamsInfo('ovarian_cancer_screening_record_physical_exam_div_section');
+                        <input type="button" value="View" onClick="window.parent.addOvarianScreeningPhycialExamsInfo('ovarian_cancer_screening_record_physical_exam_div_section');
                             window.parent.calcHeight();">
                     </td>
                 </tr>
@@ -540,7 +540,7 @@
                     <?php echo form_textarea(array('name' => 'screening_results','id' => 'screening_results','rows' => '3','cols' => '7', 'value' => $other_screening['screening_result']))?>
                 </td>
                 <td>
-                            <input type="button" value="Add screenings" onClick="window.parent.addScreeningDetailsInput('add_record_form_section_mammo_other_screenings');
+                            <input type="button" value="View screenings" onClick="window.parent.addScreeningDetailsInput('add_record_form_section_mammo_other_screenings');
                             window.parent.calcHeight();">
                 </td>
             </tr>

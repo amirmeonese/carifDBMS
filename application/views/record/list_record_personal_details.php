@@ -65,10 +65,10 @@
                         <a href="<?php echo site_url('record/patient_record_view') . '/' . $list['ic_no'] . '/' . $list['patient_studies_id'] ?>">
                         <img src="<?php echo base_url(); ?>img/view.png" alt="view_patient_detail" width="18" height="18"></a>
                         <a>&nbsp;</a>
-                        <a href="<?php echo site_url('record/test') . '/' . $list['ic_no'] . '/' . $list['patient_studies_id'] ?>">
+                        <!-- <a href="<?php echo site_url('record/test') . '/' . $list['ic_no'] . '/' . $list['patient_studies_id'] ?>"> -->
                         <img src="<?php echo base_url(); ?>img/edit.png" alt="view_patient_detail" width="18" height="18"></a>
                         <a>&nbsp;</a>
-                        <a href="<?php echo site_url('record/patient_record_view') . '/' . $list['ic_no'] . '/' . $list['patient_studies_id'] ?>">
+						<!-- <a href="<?php echo site_url('record/patient_record_view') . '/' . $list['ic_no'] . '/' . $list['patient_studies_id'] ?>"> -->
                         <img src="<?php echo base_url(); ?>img/delete.png" alt="view_patient_detail" width="18" height="18"></a>
 <!--                            <form name="view_patient_detail" action="<?php echo site_url('record/patient_record_view') . '/' . $list['ic_no'] ?>" method="post">
                             <input type ="image" src="<?php echo base_url(); ?>img/view.png" alt="view_patient_detail" height="18px"></input>

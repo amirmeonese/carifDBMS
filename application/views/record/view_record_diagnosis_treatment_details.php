@@ -1,6 +1,6 @@
 <div class="container" id="add_record_div">
     <div id="add_record_header" class="row">
-        <p>Add Diagnosis & Treatment</p>
+        <p>View Diagnosis & Treatment</p>
     </div>
     <?php
     $attributes = array('id' => 'diagnosis-treatment-details-form');
@@ -12,7 +12,7 @@
         <?php
         echo form_fieldset('Breast Cancer Diagnosis & Treatment');
         ?>
-        <input type="button" value="Add diagnosis" onClick="window.parent.addBreastCancerDiagnosis('add_record_form_section_breast_cancer');
+        <input type="button" value="View diagnosis" onClick="window.parent.addBreastCancerDiagnosis('add_record_form_section_breast_cancer');
                 window.parent.calcHeight();">
         <div height="30px">&nbsp;</div>
         <table id="breast_cancer_section_1">
@@ -80,7 +80,7 @@
         <table id="breast_cancer_pathology_section">
             <tr>
                 <td id="label1">Pathology</td>
-                <td><input type="button" value="Add pathology" onClick="window.parent.addBreastCancerPathology('add_record_form_section_breast_cancer_pathology_section_1');
+                <td><input type="button" value="View pathology" onClick="window.parent.addBreastCancerPathology('add_record_form_section_breast_cancer_pathology_section_1');
                         window.parent.calcHeight();"></td>
             </tr>
             <tr>
@@ -163,7 +163,7 @@
                         <?php echo form_input(array('name' => 'breast_pathology_HER2_status', 'value' => $breast_cancer['HER2_status']))?>
                     </td>
                     <td>
-                        <input type="button" value="Add staining status" onClick="window.parent.addBreastCancerStainingStatusInput('breast_cancer_staining_status_div_1');
+                        <input type="button" value="View staining status" onClick="window.parent.addBreastCancerStainingStatusInput('breast_cancer_staining_status_div_1');
                                 window.parent.calcHeight();">
                     </td>
                 </tr>
@@ -234,7 +234,7 @@
                         <?php echo form_textarea(array('name' => 'breast_cancer_treatment_comments','id' => 'breast_cancer_treatment_comments','rows' => '3','cols' => '7', 'value' => $breast_cancer['comments']))?>
                     </td>
                     <td>
-                        <input type="button" value="Add treatment" onClick="window.parent.addCancerTreatmentInput('add_breast_cancer_treatment_div_1');
+                        <input type="button" value="View treatment" onClick="window.parent.addCancerTreatmentInput('add_breast_cancer_treatment_div_1');
                                 window.parent.calcHeight();">
                     </td>
                 </tr>&nbsp;</td>
@@ -251,7 +251,7 @@
         <?php
         echo form_fieldset('Ovary Cancer Diagnosis & Treatment');
         ?>
-        <input type="button" value="Add diagnosis" onClick="window.parent.addOvaryCancerDiagnosis('add_record_form_section_ovary_cancer');
+        <input type="button" value="View diagnosis" onClick="window.parent.addOvaryCancerDiagnosis('add_record_form_section_ovary_cancer');
                 window.parent.calcHeight();">
         <div height="30px">&nbsp;</div>
         <table id="ovary_cancer_section_1">
@@ -322,7 +322,7 @@
             <table id="ovary_cancer_pathology_section">
                 <tr>
                     <td id="label1">Pathology</td>
-                    <td><input type="button" value="Add pathology" onClick="window.parent.addOvaryCancerPathology('add_record_form_section_ovary_cancer_pathology_section_1');
+                    <td><input type="button" value="View pathology" onClick="window.parent.addOvaryCancerPathology('add_record_form_section_ovary_cancer_pathology_section_1');
                             window.parent.calcHeight();"></td>
                 </tr>
                 <tr>
@@ -465,7 +465,7 @@
                         <?php echo form_textarea(array('name' => 'ovary_cancer_treatment_comments','id' => 'ovary_cancer_treatment_comments','rows' => '3','cols' => '7', 'value' => $ovary_cancer['comments']))?>
                     </td>
                     <td>
-                        <input type="button" value="Add treatment" onClick="window.parent.addOvaryCancerTreatmentInput('add_ovary_cancer_treatment_div_1');
+                        <input type="button" value="View treatment" onClick="window.parent.addOvaryCancerTreatmentInput('add_ovary_cancer_treatment_div_1');
                                 window.parent.calcHeight();">
                     </td>
                 </tr>&nbsp;</td>
@@ -480,7 +480,7 @@
             <?php
             echo form_fieldset('Other Cancer Diagnosis & Treatment');
             ?>
-            <input type="button" value="Add diagnosis" onClick="window.parent.addOtherCancerDiagnosis('add_record_form_section_other_cancer');
+            <input type="button" value="View diagnosis" onClick="window.parent.addOtherCancerDiagnosis('add_record_form_section_other_cancer');
                     window.parent.calcHeight();">
             <div height="30px">&nbsp;</div>
             <table id="other_cancer_section_1">
@@ -526,7 +526,7 @@
                 <table id="other_cancer_pathology_section">
                     <tr>
                         <td id="label1">Other Cancer Tumor Pathology</td>
-                        <td><input type="button" value="Add pathology" onClick="window.parent.addOtherCancerPathology('add_record_form_section_other_cancer_pathology_section_1');
+                        <td><input type="button" value="View pathology" onClick="window.parent.addOtherCancerPathology('add_record_form_section_other_cancer_pathology_section_1');
                                         window.parent.calcHeight();"></td>
                     </tr>
                     <tr>
@@ -619,7 +619,7 @@
                             <?php echo form_textarea(array('name' => 'other_cancer_treatment_comments','id' => 'other_cancer_treatment_comments','rows' => '3','cols' => '7', 'value' => $list['other_detail']))?>
                         </td>
                         <td>
-                            <input type="button" value="Add treatment" onClick="window.parent.addOtherCancerTreatmentInput('add_other_cancer_treatment_div_1');
+                            <input type="button" value="View treatment" onClick="window.parent.addOtherCancerTreatmentInput('add_other_cancer_treatment_div_1');
                                     window.parent.calcHeight();">
                         </td>
                     </tr>&nbsp;</td>
@@ -635,7 +635,7 @@
                 <?php
                 echo form_fieldset('Other diseases');
                 ?>
-                <input type="button" value="Add other disease" onClick="window.parent.addOtherDisease('add_record_form_section_other_disease_diagnosis');
+                <input type="button" value="View other disease" onClick="window.parent.addOtherDisease('add_record_form_section_other_disease_diagnosis');
                     window.parent.calcHeight();">
                 <div height="30px">&nbsp;</div>
                 <table id="other_disease_diagnosis_section">
@@ -697,7 +697,7 @@
                                 <?php echo form_input(array('name' => 'medication_comments', 'value' => $other_disease['comments']))?>
                             </td>
                             <td>
-                                <input type="button" value="Add medication" onClick="window.parent.addOtherDiseasesMedication('add_record_form_section_other_disease_diagnosis_medication');
+                                <input type="button" value="View medication" onClick="window.parent.addOtherDiseasesMedication('add_record_form_section_other_disease_diagnosis_medication');
                                     window.parent.calcHeight();">
                             </td>
                         </tr>

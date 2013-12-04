@@ -1,6 +1,6 @@
 <div class="container" id="add_record_div">
     <div id="add_record_header" class="row">
-        <p>Add Investigation Details</p>
+        <p>View Investigation Details</p>
     </div>
     <div class="container" id="add_record_form_section_studies">
         <div height="30px">&nbsp;</div>

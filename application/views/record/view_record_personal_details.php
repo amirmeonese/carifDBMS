@@ -1,6 +1,6 @@
 <div class="container" id="add_record_div">
     <div id="add_record_header" class="row">
-        <p>Add Patient</p>
+        <p>View Patient</p>
     </div>
     <?php
     $attributes = array('id' => 'personal-details-form');
@@ -106,7 +106,7 @@
                 <?php echo form_input(array('name' => 'hospital_no', 'value' => @$patient_hospital_no['hospital_no']))?>
                 </td>
                 <td>
-                    <input type="button" value="Add Hospital No." onClick="window.parent.addHospitalNoInput('add_record_form_section_personal2');
+                    <input type="button" value="View Hospital No." onClick="window.parent.addHospitalNoInput('add_record_form_section_personal2');
                                         window.parent.calcHeight(); applyDynamicDropdown();">
                 </td>
             </tr>
@@ -127,7 +127,7 @@
                     <?php echo form_input(array('name' => 'private_patient_no', 'value' => @$patient_private_no['private_no']))?>
                 </td>
                 <td>
-                    <input type="button" value="Add patient no." onClick="window.parent.addPatientPrivateNoInput('add_record_form_section_personal3');
+                    <input type="button" value="View patient no." onClick="window.parent.addPatientPrivateNoInput('add_record_form_section_personal3');
                                         window.parent.calcHeight(); applyDynamicDropdown();">
                 </td>
             </tr>
@@ -152,7 +152,7 @@
                     <?php echo form_input(array('name' => 'COGS_studies_no', 'value' => $patient_cogs_studies['COGS_studies_no']))?>                    
                 </td>
                 <td>
-                    <input type="button" value="Add" onClick="window.parent.addPatientStudyNoInput('add_record_form_section_personal6');
+                    <input type="button" value="View" onClick="window.parent.addPatientStudyNoInput('add_record_form_section_personal6');
                                         window.parent.calcHeight(); applyDynamicDropdown();">
                 </td>
             </tr>
@@ -331,7 +331,7 @@
                     <?php echo form_input(array('name' => 'status_gathered_date', 'value' => $patient_survival_status['status_gathering_date'],'class' => 'datepicker')); ?>
                 </td>
                 <td>
-                    <input type="button" value="Add more survival status" onClick="window.parent.addSurvivalStatusInput('add_record_form_section_personal_5');
+                    <input type="button" value="View more survival status" onClick="window.parent.addSurvivalStatusInput('add_record_form_section_personal_5');
                             window.parent.calcHeight(); applyDynamicDropdown();">
                 </td>
             </tr>

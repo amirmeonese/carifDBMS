@@ -1,6 +1,6 @@
 <div class="container" id="add_record_div">
     <div id="add_record_header" class="row">
-        <p>Add Mutation Analysis</p>
+        <p>View Mutation Analysis</p>
     </div>
     <?php
     $attributes = array('id' => 'mutation-analysis-details-form');
@@ -18,7 +18,7 @@
             <table id="mutation_section_1">
                 <tr>
                     <td id="label1">Analysis 1</td>
-                    <td><input type="button" value="Add mutation analysis" onClick="window.parent.addMutationAnalysis('add_record_form_mutation_analysis_div_1');
+                    <td><input type="button" value="View mutation analysis" onClick="window.parent.addMutationAnalysis('add_record_form_mutation_analysis_div_1');
                                             window.parent.calcHeight();"></td>
                 </tr>
                 <tr>

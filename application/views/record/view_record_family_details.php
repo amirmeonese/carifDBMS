@@ -1,6 +1,6 @@
 <div class="container" id="add_record_div">
     <div id="add_record_header" class="row">
-        <p>Add Family</p>
+        <p>View Family</p>
     </div>
 	
     <?php 
@@ -120,7 +120,7 @@
               </tr>
             <tr>
             <td>
-            <input type="button" value="Add more" onClick="window.parent.addmotherDiagnosisInput('add_record_mother_cancer_record_1');window.parent.calcHeight();"></b
+            <input type="button" value="View more" onClick="window.parent.addmotherDiagnosisInput('add_record_mother_cancer_record_1');window.parent.calcHeight();"></b
             </td>
             </tr>
             </table>
@@ -271,7 +271,7 @@
             </tr>
             <tr>
             <td>
-            <input type="button" value="Add more" onClick="window.parent.addfatherDiagnosisInput('add_record_father_cancer_record_1');window.parent.calcHeight();"></b
+            <input type="button" value="View more" onClick="window.parent.addfatherDiagnosisInput('add_record_father_cancer_record_1');window.parent.calcHeight();"></b
             </td>
             </tr>
         </table>
@@ -311,7 +311,7 @@
         <?php echo form_fieldset_close(); ?>
         <?php endforeach; ?>
     </div>
-    <input type="button" value="Add relative" onClick="window.parent.addInput('add_record_form_section_4');
+    <input type="button" value="View relative" onClick="window.parent.addInput('add_record_form_section_4');
             window.parent.calcHeight();"></br>
            <?php echo form_fieldset_close(); ?>	
            <?php echo form_submit('mysubmit', 'Save'); ?>

@@ -1,6 +1,6 @@
 <div class="container" id="add_record_div">
     <div id="add_record_header" class="row">
-        <p>Add Risk Assessment</p>
+        <p>View Risk Assessment</p>
     </div>
     <?php
     $attributes = array('id' => 'risk-assessment-details-form');
@@ -72,7 +72,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <input type="button" value="Add Manchester Score " onClick="window.parent.addManchesterScoreInput('add_record_form_manchester_score1');
+                        <input type="button" value="View Manchester Score " onClick="window.parent.addManchesterScoreInput('add_record_form_manchester_score1');
                                         window.parent.calcHeight();">
                     </td>
                 </tr>
@@ -137,7 +137,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <input type="button" value="Add BOADICEA" onClick="window.parent.addBOADICEAInput('add_record_form_BOADICEA1');
+                        <input type="button" value="View BOADICEA" onClick="window.parent.addBOADICEAInput('add_record_form_BOADICEA1');
                                         window.parent.calcHeight();">
                     </td>
                 </tr>
@@ -175,7 +175,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <input type="button" value="Add Gail Model" onClick="window.parent.addGailModelInput('add_record_form_Gail_model_1');
+                        <input type="button" value="View Gail Model" onClick="window.parent.addGailModelInput('add_record_form_Gail_model_1');
                                         window.parent.calcHeight();">
                     </td>
                 </tr>
