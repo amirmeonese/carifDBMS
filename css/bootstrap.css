@@ -6812,6 +6812,11 @@ div #label1
 	color: #ffffff;
 }
 
+.stripped-row
+{
+	background-color: #CEDCB7;
+}
+
 #locked-items-td
 {
 	text-align:left;

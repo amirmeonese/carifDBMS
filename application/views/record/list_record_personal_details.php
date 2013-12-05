@@ -54,8 +54,11 @@
                 </tr>
             </thead>
             <?php if(!empty($patient_list)) { $patientCounter = $counter + 1;?>
-            <?php foreach ($patient_list as $list): ?>
-                <tr>
+            <?php foreach ($patient_list as $list): 
+			if($patientCounter % 2 == 0) 
+				echo "<tr class=\"stripped-row\">";
+			else
+				echo "<tr>";?>
 					<td><?php echo $patientCounter; ?></td>
                     <td><?php echo $list['created_on']; ?></td>
 					<td><?php echo $list['ic_no']; ?></td>
