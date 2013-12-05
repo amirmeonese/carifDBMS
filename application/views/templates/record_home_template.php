@@ -10,7 +10,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="">
         <meta name="author" content="">
-
+		<link href="<?php echo base_url(); ?>img/favicon.ico" rel="icon" type="image/x-icon" /> 
         <link href="<?php echo base_url(); ?>css/bootstrap.css" rel="stylesheet">
         <link href="<?php echo base_url(); ?>css/bootstrap-responsive.min.css" rel="stylesheet">
 
