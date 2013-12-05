@@ -46,7 +46,7 @@
             <thead>
                 <tr align='center'>
 					<th id="view-page-tr">&nbsp;</th>
-                    <th id="view-page-tr">Date</th>
+                    <th id="view-page-tr">Creation Date</th>
 					<th id="view-page-tr">IC No</th>
                     <th id="view-page-tr">Patient Name</th>
                     <th id="view-page-tr">Studies</th>
