@@ -224,8 +224,17 @@
                     <?php echo form_input(array('name' => 'weight', 'value' => $patient_detail['weight']))?>                                                            
                 </td>
                 <td>
+                    <?php if(!empty($patient_detail['weight']) && ($patient_detail['height'] )) {
+                        $bmi = $patient_detail['weight']/($patient_detail['height']*$patient_detail['height']); ?>
+                        
                     <?php echo $BMI; ?>: 
-                    <?php echo form_input(array('name' => 'BMI', 'value' => $patient_detail['bmi']))?>                                                            
+                    <?php echo form_input(array('name' => 'BMI', 'value' => round($bmi,1)))?>   
+                    <?php } else {?>
+                    
+                    <?php echo $BMI; ?>: 
+                    <?php echo form_input(array('name' => 'BMI', 'value' => ''))?>    
+                    
+                    <?php } ?>
                 </td>
                 <td>
                     <?php echo $income_level; ?>:
@@ -270,8 +279,9 @@
                     <?php echo form_input(array('name' => 'total_no_of_affected_siblings', 'value' => $patient_relatives_summary['total_no_of_affected_siblings']))?>                                        
                 </td>
                 <td>
+                   <?php $total_sibling = $patient_relatives_summary['total_no_of_male_siblings'] + $patient_relatives_summary['total_no_of_female_siblings'];?>
                     <?php echo $total_no_of_siblings; ?>:
-                    <?php echo form_input(array('name' => 'total_no_of_siblings', 'value' => $patient_relatives_summary['total_no_of_siblings']))?>                                                            
+                    <?php echo form_input(array('name' => 'total_no_of_siblings', 'value' => $total_sibling))?>                                                            
                 </td>
             </tr>
             <tr>
@@ -324,7 +334,7 @@
                 </td>
                 <td>
                     <?php echo $alive_status; ?>:
-                    <?php echo  form_dropdown('alive_status',$alive_status_lists, $alive_id[$patient_survival_status['alive_status']], 'id="alive_status" preload_val="'.$alive_id[$patient_survival_status['alive_status']].'"'); ?>                                                            
+                    <?php echo  form_dropdown('alive_status',$alive_status_lists, @$alive_id[$patient_survival_status['alive_status']], 'id="alive_status" preload_val="'.@$alive_id[$patient_survival_status['alive_status']].'"'); ?>                                                            
                 </td>
                 <td>
                     <?php echo $status_gathered_date; ?>: 
