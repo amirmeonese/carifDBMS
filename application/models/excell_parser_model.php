@@ -297,7 +297,7 @@ class Excell_parser_model extends CI_Model {
                         }
 
                         if (!$val_studies_id) {
-                            echo 'Should ommit import for invalid studies_id at Personal2 worksheet' . '<br/>';
+                            echo 'Should ommit import for invalid studies_id at Personal2 worksheet' .' row '.$i. '<br/>';
                             $abort = TRUE;
                             break;
                         }
@@ -459,7 +459,7 @@ class Excell_parser_model extends CI_Model {
                             }
 
                             if ($key == 3 && $cell_value != NULL) {
-                                $array_cancer_site_name_Diagnosis[] = $cell_value;
+                                $array_cancer_site_name_Diagnosis[] = trim($cell_value);
                             }
                             if ($key == 13 && $cell_value == NULL) {
                                 $cell_value = 'None';
@@ -477,7 +477,17 @@ class Excell_parser_model extends CI_Model {
                                     list($day, $month, $year) = explode("/", $cell_value);
 
                                     if (!checkdate($month, $day, $year)) {
-                                        echo '<h2>date_of_diagnosis or treatment_start_date or treatment_end_date is not in appropriate format at Diagnosis & Treatment</h2>';
+                                        //echo '<h2>date_of_diagnosis or treatment_start_date or treatment_end_date is not in appropriate format at Diagnosis & Treatment</h2>';
+                                         if ($key == 6)
+                                            echo '<h2>date_of_diagnosis is not in appropriate format at Diagnosis & Treatment' . '		row	' . $i . '</h2>';
+                                         if ($key == 14)
+                                            echo '<h2>treatment_start_date is not in appropriate format at Diagnosis & Treatment' . '	row	' . $i . '</h2>';
+                                         if ($key == 15)
+                                            echo '<h2>treatment_end_date is not in appropriate format at Diagnosis & Treatment' . '		row	' . $i . '</h2>';
+                                         
+                                         if ($key == 28)
+                                            echo '<h2>date_of_report is not in appropriate format at Diagnosis & Treatment' . '		row	' . $i . '</h2>';
+                                         
                                         $date_flag = TRUE;
                                         $abort = TRUE;
                                         break;
@@ -552,7 +562,7 @@ class Excell_parser_model extends CI_Model {
                         $val_cancer_site_name = in_array($array_cancer_site_name_Diagnosis[$i], $result_cancer_site_name);
 
                         if (!$val_cancer_site_name) {
-                            echo 'Should ommit import for invalid cancer_site_name data at Diagnosis & Treatment worksheet' . '<br/>';
+                            echo 'Should ommit import for invalid cancer_site_name data at Diagnosis & Treatment worksheet' .'  row '.$i. '<br/>';
                             $abort = TRUE;
                             break;
                         }
@@ -1608,6 +1618,7 @@ class Excell_parser_model extends CI_Model {
           //print_r($data_patient_survival_status);
 
           $id_data_patient = $this->excell_sheets_model->insert_record($data_patient, 'patient');
+          //echo 'inserted_id     '.$id_data_patient;
           if ($id_data_patient > 0)
           echo 'Data added succesfully at patient table';
           else
@@ -1911,8 +1922,10 @@ class Excell_parser_model extends CI_Model {
           }
 
           if ($key == 3 && $cell_value != NULL)
-          $temp_cancer_site_name = $cell_value;
-
+          {
+            $cell_value = trim($cell_value);  
+            $temp_cancer_site_name = $cell_value;
+          }
           if ($key == 3 && $cell_value == NULL) {
           $cell_value = 'None';
           }
@@ -3187,7 +3200,7 @@ class Excell_parser_model extends CI_Model {
           }
 
           // all loop ends
-          } 
+          }
     }
 
     function check_name($name) {
