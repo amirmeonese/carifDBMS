@@ -2210,6 +2210,32 @@ function get_studies_name_by_id() {
         $query->free_result();
         return $cancernamelist;
     }
+    
+    function get_cancer_site() {
+
+        $cancersitelist = array();
+        $this->db->select('cancer_site_id,cancer_site_name');
+        $this->db->order_by('cancer_site_name asc');
+        $query = $this->db->get('cancer_site');
+        foreach ($query->result() as $row) {
+            $cancersitelist = $cancersitelist + array($row->cancer_site_id => $row->cancer_site_name);
+        }
+        $query->free_result();
+        return $cancersitelist;
+    }
+    
+    function get_treatment_type() {
+
+        $treatmenttypelist = array();
+        $this->db->select('treatment_id,treatment_name');
+        $this->db->order_by('treatment_name asc');
+        $query = $this->db->get('treatment');
+        foreach ($query->result() as $row) {
+            $treatmenttypelist = $treatmenttypelist + array($row->treatment_id => $row->treatment_name);
+        }
+        $query->free_result();
+        return $treatmenttypelist;
+    }
 
 }
 ?>

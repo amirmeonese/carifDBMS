@@ -70,15 +70,15 @@
             <tr>
                 <td>
                     Strenuous Exercise: 
-                    <?php echo form_dropdown('pa_at_childhood',$pa_activities_lists, NULL, 'id="pa_activities_lists"'); ?>
+                    <?php echo form_dropdown('pa_strenuous_exercise_childhood',$pa_activities_lists, NULL, 'id="pa_activities_lists"'); ?>
                 </td>
                 <td>
                     Moderate Exercise: 
-                    <?php echo form_dropdown('pa_at_adulthood',$pa_activities_lists, NULL, 'id="pa_activities_lists"'); ?>
+                    <?php echo form_dropdown('pa_moderate_exercise_childhood',$pa_activities_lists, NULL, 'id="pa_activities_lists"'); ?>
                 </td>
                 <td>
                     Gentle Exercise: 
-                   <?php echo form_dropdown('pa_now',$pa_activities_lists, NULL, 'id="pa_activities_lists"'); ?>
+                   <?php echo form_dropdown('pa_gentle_exercise_childhood',$pa_activities_lists, NULL, 'id="pa_activities_lists"'); ?>
                 </td>
             </tr>
             <tr>
@@ -89,15 +89,15 @@
             <tr>
                 <td>
                     Strenuous Exercise: 
-                    <?php echo form_dropdown('pa_at_childhood',$pa_activities_lists, NULL, 'id="pa_activities_lists"'); ?>
+                    <?php echo form_dropdown('pa_strenuous_exercise_adult',$pa_activities_lists, NULL, 'id="pa_activities_lists"'); ?>
                 </td>
                 <td>
                     Moderate Exercise: 
-                    <?php echo form_dropdown('pa_at_adulthood',$pa_activities_lists, NULL, 'id="pa_activities_lists"'); ?>
+                    <?php echo form_dropdown('pa_moderate_exercise_adult',$pa_activities_lists, NULL, 'id="pa_activities_lists"'); ?>
                 </td>
                 <td>
                     Gentle Exercise: 
-                    <?php echo form_dropdown('pa_now',$pa_activities_lists, NULL, 'id="pa_activities_lists"'); ?>
+                    <?php echo form_dropdown('pa_gentle_exercise_adult',$pa_activities_lists, NULL, 'id="pa_activities_lists"'); ?>
                 </td>
             </tr>
             <tr>
@@ -108,15 +108,15 @@
             <tr>
                 <td>
                     Strenuous Exercise: 
-                    <?php echo form_dropdown('pa_at_childhood',$pa_activities_lists, NULL, 'id="pa_activities_lists"'); ?>
+                    <?php echo form_dropdown('pa_strenuous_exercise_now',$pa_activities_lists, NULL, 'id="pa_activities_lists"'); ?>
                 </td>
                 <td>
                     Moderate Exercise: 
-                    <?php echo form_dropdown('pa_at_adulthood',$pa_activities_lists, NULL, 'id="pa_activities_lists"'); ?>
+                    <?php echo form_dropdown('pa_moderate_exercise_now',$pa_activities_lists, NULL, 'id="pa_activities_lists"'); ?>
                 </td>
                 <td>
                     Gentle Exercise: 
-                    <?php echo form_dropdown('pa_now',$pa_activities_lists, NULL, 'id="pa_activities_lists"'); ?>
+                    <?php echo form_dropdown('pa_gentle_exercise_now',$pa_activities_lists, NULL, 'id="pa_activities_lists"'); ?>
                 </td>
             </tr>
 		</table>

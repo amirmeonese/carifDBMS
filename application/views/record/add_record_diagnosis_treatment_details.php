@@ -481,7 +481,7 @@
                     </td>
                     <td>
                         <?php echo $treatment_primary_therapy_outcome; ?>: 
-                        <?php echo form_input('treatment_primary_outcome'); ?>
+                        <?php echo form_input('oavry_treatment_primary_therapy_outcome'); ?>
                     </td> 
                     <td>
                         <?php echo $treatment_cal125_pretreatment; ?>: 
@@ -709,7 +709,7 @@
                     </td>
                     <td>
                         <?php echo $year_of_diagnosis; ?>: 
-                        <?php echo form_input('year_of_diagnosis'); ?>
+                         <?php echo form_input(array('name' => 'year_of_diagnosis', 'class' => 'datepicker')); ?>
                     </td>
                     <td>
                         <?php echo $diagnosis_age; ?>: 

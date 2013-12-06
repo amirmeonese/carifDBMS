@@ -22,7 +22,7 @@
             <tr>
                 <td>
                     <?php echo $cancer_site; ?>: 
-                    <?php echo form_dropdown('cancer_site', $patient_cancer_site_lists, $breast_cancer['cancer_site_id'], 'id="cancer_site" preload_val="'.$breast_cancer['cancer_site_id'].'"'); ?>
+                    <?php echo form_dropdown('cancer_site', $patient_cancer_site_lists, $site_cancer[$breast_cancer['cancer_site_id']], 'id="cancer_site" preload_val="'.$site_cancer[$breast_cancer['cancer_site_id']].'"'); ?>
                 </td>
                 <td>
                     <?php echo $cancer_invasive_type; ?>: 
@@ -159,7 +159,6 @@
                     </td>
                     <td>
                         <?php echo $breast_pathology_HER2_status; ?>: <br />
-                        <?php echo form_input('breast_pathology_HER2_status'); ?>
                         <?php echo form_input(array('name' => 'breast_pathology_HER2_status', 'value' => $breast_cancer['HER2_status']))?>
                     </td>
                     <td>
@@ -187,7 +186,7 @@
                 <tr>
                     <td>
                         <?php echo $patient_cancer_treatment_name; ?>: 
-                        <?php echo form_dropdown('patient_cancer_treatment_name', $patient_cancer_treatment_name_lists, $breast_cancer['treatment_id'], 'id="patient_cancer_treatment_name_lists" preload_val="'.$breast_cancer['treatment_id'].'"'); ?>
+                        <?php echo form_dropdown('patient_cancer_treatment_name', $patient_cancer_treatment_name_lists, $treatment_type[$breast_cancer['treatment_id']], 'id="patient_cancer_treatment_name_lists" preload_val="'.$treatment_type[$breast_cancer['treatment_id']].'"'); ?>
                     </td>
                     <td>
                         <?php echo $treatment_details; ?>: 
@@ -227,7 +226,7 @@
                     </td>
                     <td>
                         <?php echo $treatment_primary_therapy_outcome; ?>: 
-                        <?php echo form_input(array('name' => 'treatment_privacy_outcome', 'value' => $breast_cancer['treatment_privacy_outcome']))?>
+                        <?php echo form_input(array('name' => 'treatment_privacy_outcome', 'value' => $breast_cancer['treatment_primary_outcome']))?>
                     </td>
                     <td>
                         <?php echo $breast_cancer_treatment_comments; ?>: 
@@ -261,7 +260,7 @@
             <tr>
                 <td>
                     <?php echo $ovary_cancer_site; ?>: 
-                    <?php echo form_dropdown('ovary_cancer_site', $patient_cancer_site_lists, $ovary_cancer['cancer_site_id'], 'id="cancer_site" preload_val="'.$ovary_cancer['cancer_site_id'].'"'); ?>
+                    <?php echo form_dropdown('ovary_cancer_site', $patient_cancer_site_lists, $site_cancer[$ovary_cancer['cancer_site_id']], 'id="cancer_site" preload_val="'.$site_cancer[$ovary_cancer['cancer_site_id']].'"'); ?>
                 </td>
                 <td>
                     <?php echo $ovary_cancer_invasive_type; ?>: 
@@ -408,7 +407,7 @@
                 <tr>
                     <td>
                         <?php echo $ovary_patient_cancer_treatment_name; ?>: 
-                        <?php echo form_dropdown('ovary_patient_cancer_treatment_name', $patient_cancer_treatment_name_lists, $ovary_cancer['treatment_id'], 'id="patient_cancer_treatment_name_lists" preload_val="'.$ovary_cancer['treatment_id'].'"'); ?>
+                        <?php echo form_dropdown('ovary_patient_cancer_treatment_name', $patient_cancer_treatment_name_lists, $treatment_type[$ovary_cancer['treatment_id']], 'id="patient_cancer_treatment_name_lists" preload_val="'.$treatment_type[$ovary_cancer['treatment_id']].'"'); ?>
                     </td>
                     <td>
                         <?php echo $treatment_details; ?>: 
@@ -449,7 +448,7 @@
                     </td>
                     <td>
                         <?php echo $treatment_primary_therapy_outcome; ?>: 
-                        <?php echo form_input(array('name' => 'ovary_treatment_privacy_outcome', 'value' => $ovary_cancer['treatment_privacy_outcome']))?>
+                        <?php echo form_input(array('name' => 'ovary_treatment_privacy_outcome', 'value' => $ovary_cancer['treatment_primary_outcome']))?>
                     </td>
                     <td>
                         <?php echo $treatment_cal125_pretreatment; ?>: 
@@ -490,16 +489,18 @@
                 <tr>
                     <td>
                         <?php echo $other_cancer_type; ?>: 
-                        <?php echo form_dropdown('other_cancer_type', $patient_cancer_name_lists, $other_cancer['cancer_id'], 'id="patient_cancer_name_lists" preload_val="'.$other_cancer['cancer_id'].'"'); ?>
+                        <?php echo form_dropdown('other_cancer_type', $patient_cancer_name_lists, $cancer_name[$other_cancer['cancer_id']], 'id="patient_cancer_name_lists" preload_val="'.$cancer_name[$other_cancer['cancer_id']].'"'); ?>
                     </td>
                     <td>
                     <?php echo $cancer_site; ?>: 
-                    <?php echo form_dropdown('other_cancer_site', $patient_cancer_site_lists, $breast_cancer['cancer_site_id'], 'id="cancer_site" preload_val="'.$breast_cancer['cancer_site_id'].'"'); ?>
+                    <?php echo form_dropdown('other_cancer_site', $patient_cancer_site_lists, $site_cancer[$breast_cancer['cancer_site_id']], 'id="cancer_site" preload_val="'.$site_cancer[$breast_cancer['cancer_site_id']].'"'); ?>
                     </td>
                     <td>
                         <?php echo $other_date_of_diagnosis; ?>: 
                         <?php echo form_input(array('name' => 'other_date_of_diagnosis', 'value' => $other_cancer['date_of_diagnosis'], 'class' => 'datepicker'))?>
                     </td>
+                    </tr>
+                    <tr>
                     <td>
                         <?php echo $other_age_of_diagnosis; ?>: <br />
                         <?php echo form_input(array('name' => 'other_age_of_diagnosis', 'value' => $other_cancer['age_of_diagnosis']))?>
@@ -572,7 +573,7 @@
                     <tr>
                         <td>
                             <?php echo $other_patient_cancer_treatment_name; ?>: 
-                            <?php echo form_dropdown('other_patient_cancer_treatment_name', $patient_cancer_treatment_name_lists, $other_cancer['treatment_id'], 'id="patient_cancer_treatment_name_lists" preload_val="'.$other_cancer['treatment_id'].'"'); ?>
+                            <?php echo form_dropdown('other_patient_cancer_treatment_name', $patient_cancer_treatment_name_lists, $treatment_type[$other_cancer['treatment_id']], 'id="patient_cancer_treatment_name_lists" preload_val="'.$treatment_type[$other_cancer['treatment_id']].'"'); ?>
                         </td>
                         <td>
                             <?php echo $treatment_details; ?>: 
@@ -590,7 +591,7 @@
                     <tr>
                         <td>
                             <?php echo $other_treatment_duration; ?>: 
-                            <?php echo form_input(array('name' => 'other_treatment_duration', 'value' => $other_cancer['treatment_duration']))?>
+                            <?php echo form_input(array('name' => 'other_treatment_duration', 'value' => $other_cancer['treatment_durations']))?>
                         </td>
                         <td>
                             <?php echo $treatment_drug_dose; ?>: 
@@ -612,11 +613,11 @@
                         </td>
 <!--                        <td>
                             <?php echo $treatment_primary_therapy_outcome; ?>: 
-                            <?php echo form_input(array('name' => 'other_treatment_primary_therapy_outcome', 'value' => $other_cancer['treatment_privacy_outcome']))?>
+                            <?php echo form_input(array('name' => 'other_treatment_primary_therapy_outcome', 'value' => $other_cancer['treatment_primary_outcome']))?>
                         </td>-->
                         <td>
                             <?php echo $other_cancer_treatment_comments; ?>: 
-                            <?php echo form_textarea(array('name' => 'other_cancer_treatment_comments','id' => 'other_cancer_treatment_comments','rows' => '3','cols' => '7', 'value' => $list['other_detail']))?>
+                            <?php echo form_textarea(array('name' => 'other_cancer_treatment_comments','id' => 'other_cancer_treatment_comments','rows' => '3','cols' => '7', 'value' => $other_cancer['comments']))?>
                         </td>
                         <td>
                             <input type="button" value="View treatment" onClick="window.parent.addOtherCancerTreatmentInput('add_other_cancer_treatment_div_1');

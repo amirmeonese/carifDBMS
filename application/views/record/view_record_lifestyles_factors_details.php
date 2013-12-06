@@ -29,15 +29,15 @@
             <tr>
                 <td>
                     <?php echo $self_image_at_7years; ?>: 
-                    <?php echo form_dropdown('self_image_at_7years', $self_image_lists, @$patient_lifestyle_factors['self_image_at_7years'], 'id="self_image_lists" preload_val="'.$patient_lifestyle_factors['self_image_at_7years'].'"'); ?>
+                    <?php echo form_dropdown('self_image_at_7years', $self_image_lists, @$patient_lifestyle_factors['self_image_at_7years'], 'id="self_image_lists" preload_val="'.@$patient_lifestyle_factors['self_image_at_7years'].'"'); ?>
                 </td>
                 <td>
                     <?php echo $self_image_at_18years; ?>: 
-                    <?php echo form_dropdown('self_image_at_18years', $self_image_lists, @$patient_lifestyle_factors['self_image_at_18years'], 'id="self_image_lists" preload_val="'.$patient_lifestyle_factors['self_image_at_18years'].'"'); ?>
+                    <?php echo form_dropdown('self_image_at_18years', $self_image_lists, @$patient_lifestyle_factors['self_image_at_18years'], 'id="self_image_lists" preload_val="'.@$patient_lifestyle_factors['self_image_at_18years'].'"'); ?>
                 </td>
                 <td>
                     <?php echo $self_image_now; ?>: 
-                    <?php echo form_dropdown('self_image_now', $self_image_lists, @$patient_lifestyle_factors['self_image_now'], 'id="self_image_lists" preload_val="'.$patient_lifestyle_factors['self_image_now'].'"'); ?>
+                    <?php echo form_dropdown('self_image_now', $self_image_lists, @$patient_lifestyle_factors['self_image_now'], 'id="self_image_lists" preload_val="'.@$patient_lifestyle_factors['self_image_now'].'"'); ?>
                 </td>
             </tr>
         </table>

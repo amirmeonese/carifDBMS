@@ -24,16 +24,23 @@
                 <tr>
                     <td>
                         <?php echo $date_test_ordered; ?>: <br />
-                        <?php echo form_input(array('name' => 'date_test_ordered', 'class' => 'datepicker')); ?>
+                        <?php echo form_input(array('name' => 'date_test_ordered', 'value' => $list['date_test_ordered'],'class' => 'datepicker')); ?>
                     </td>
                     <td>
                         <?php echo $test_ordered_by; ?>:  <br />
                         <?php echo form_input(array('name' => 'test_ordered_by', 'value' => $list['ordered_by'])) ?>
                     </td>
+                    <?php if($list['testing_result_notification_flag'] == 1){?>
                     <td>
+                        <?php echo $testing_results_notification_flag; ?>:  
+                        <?php echo form_checkbox(array('name' => 'testing_results_notification_flag', 'value' => $list['testing_result_notification_flag'],'checked'=>"checked")) ?>
+                    </td>
+               <?php } else {?>
+                <td>
                         <?php echo $testing_results_notification_flag; ?>:  
                         <?php echo form_checkbox(array('name' => 'testing_results_notification_flag', 'value' => $list['testing_result_notification_flag'])) ?>
                     </td>
+               <?php } ?>
                 </tr>
                 <tr>
                     <td>
@@ -46,7 +53,7 @@
                     </td>
                     <td>
                         <?php echo $investigation_project_date; ?>:  <br />
-                        <?php echo form_input(array('name' => 'investigation_project_date', 'class' => 'datepicker')); ?>
+                        <?php echo form_input(array('name' => 'investigation_project_date', 'value' => $list['testing_date'], 'class' => 'datepicker')); ?>
                     </td>
                     <td>
                         <?php echo $investigation_gene_tested; ?>:  <br />
@@ -72,10 +79,17 @@
                         <?php echo $investigation_test_reason; ?>:  <br />
                         <?php echo form_textarea(array('name' => 'investigation_test_reason','id' => 'investigation_test_reason','rows' => '3','cols' => '7', 'value' => $list['reasons']))?>
                     </td>
+                    <?php if($list['new_mutation_flag'] == 1){?>
+                        <td>
+                        <?php echo $investigation_new_mutation_flag; ?>:  
+                        <?php echo form_checkbox(array('name' => 'investigation_new_mutation_flag', 'value' => $list['new_mutation_flag'],'checked'=>"checked")) ?>
+                    </td>
+               <?php } else {?>
                     <td>
                         <?php echo $investigation_new_mutation_flag; ?>:  
                         <?php echo form_checkbox(array('name' => 'investigation_new_mutation_flag', 'value' => $list['new_mutation_flag'])) ?>
                     </td>
+                    <?php } ?>
                 </tr>
                 <tr>
                     <td>
@@ -126,18 +140,32 @@
                     </td>
                 </tr>
                 <tr>
+                    <?php if($list['is_counselling_flag'] == 1){?>
+                    <td>
+                        <?php echo $mutation_is_counselling_flag; ?>:  
+                        <?php echo form_checkbox(array('name' => 'mutation_is_counselling_flag', 'value' => $list['is_counselling_flag'],'checked'=>"checked")) ?>
+                    </td>
+               <?php } else {?>
                     <td>
                         <?php echo $mutation_is_counselling_flag; ?>:  
                         <?php echo form_checkbox(array('name' => 'mutation_is_counselling_flag', 'value' => $list['is_counselling_flag'])) ?>
                     </td>
+                    <?php } ?>
                     <td>
                         <?php echo $investigation_test_comment; ?>:  <br />
                         <?php echo form_textarea(array('name' => 'investigation_test_comment','id' => 'investigation_test_comment','rows' => '3','cols' => '7', 'value' => $list['comments']))?>
                     </td>
+                     <?php if($list['is_counselling_flag'] == 1){?>
+                    <td>
+                        <?php echo $investigation_conformation_attachment; ?>: 	
+                        <?php echo form_checkbox(array('name' => 'investigation_conformation_attachment', 'value' => $list['conformation_attachment'],'checked'=>"checked")) ?>
+                    </td>
+               <?php } else {?>
                     <td>
                         <?php echo $investigation_conformation_attachment; ?>: 	
                         <?php echo form_checkbox(array('name' => 'investigation_conformation_attachment', 'value' => $list['conformation_attachment'])) ?>
                     </td>
+                    <?php } ?>
                     <td>
                         <input type="file" name="userfile" size="100000" />
                     </td>
