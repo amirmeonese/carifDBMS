@@ -584,45 +584,19 @@ class Record extends CI_Controller {
 
         $studies_name = $this->input->post('studies_name');
         $studies_id = $this->excell_sheets_model->get_studies_id($studies_name);
-        $relations_to_study = $this->input->post('relations_to_study');
-
-        if ($relations_to_study == 'Yes' || $relations_to_study == 'yes')
-            $relations_to_study_flag = TRUE;
-        else if ($relations_to_study == 'No' || $relations_to_study == 'no')
-            $relations_to_study_flag = FALSE;
-        else
-            $relations_to_study_flag = FALSE;
-
-
-//        $data_patient_studies = array(
-//            'patient_ic_no' => $this->input->post('IC_no'),
-//            'studies_id' => $studies_id,
-//            'date_at_consent' => $this->input->post('date_at_consent'),
-//            'age_at_consent' => $this->input->post('age_at_consent'),
-//            'double_consent_flag' => $this->input->post('is_double_consent_flag'),
-//            //'double_consent_detail' => $this->input->post('double_consent_detail'),
-//            'consent_given_by' => $this->input->post('consent_given_by'),
-//            'consent_response' => $this->input->post('consent_response'),
-//            'consent_version' => $this->input->post('consent_version'),
-//            'relation_to_study' => $relations_to_study_flag,
-//            'referral_to' => $this->input->post('referral_to'),
-//            'referral_to_service' => $this->input->post('referral_to_service'),
-//            'referral_date' => $this->input->post('referral_date'),
-//            'referral_source' => $this->input->post('referral_source')
-//        );
+        $data_keys = array(
+            'patient_ic_no' => $this->input->post('IC_no'),
+            'studies_id' => $studies_id
+        );
 //        echo '<pre>';
-//        //print_r($data_patient_studies);
-//        echo '<br/>';
-//        $patient_studies_id = $this->record_model->insert_patient_studies_record($data_patient_studies);
-//        if ($patient_studies_id > 0) {
-//            echo "Data Added successfully at patient_studies";
-//        } else {
-//            echo "Failed to insert at patient_studies";
-//        } echo '<br/>';
-
+        //print_r($data_keys);echo '<br/>';
+        $patient_studies_id = $this->record_model->get_patient_suudies_id($data_keys);
+        //echo $patient_studies_id;
+        //echo '<br/>';
 
         $data_patient_breast_screening = array(
             'patient_ic_no' => $this->input->post('IC_no'),
+            'patient_studies_id' => $patient_studies_id,
             'date_of_first_mammogram' => date('Y-m-d',strtotime($this->input->post('date_of_first_mammogram'))),
             'age_of_first_mammogram' => $this->input->post('age_of_first_mammogram'),
             'age_of_recent_mammogram' => $this->input->post('age_of_recent_mammogram'),
@@ -631,12 +605,12 @@ class Record extends CI_Controller {
             //'action_suggested_on_memo_report' => $this->input->post('action_suggested_on_memo_report'),
             'total_no_of_mammogram' => $this->input->post('total_no_of_mammogram'),
             'screening_interval' => $this->input->post('screening_interval'),
-            'abnormalities_mammo_flag' => $this->input->post('abnormality_mammo_flag'),
+            'abnormalities_mammo_flag' => $this->input->post('abnormalities_mammo_flag'),
             //'mammo_abnormality_details' => $this->input->post('mammo_breast_other_descriptions'),
             'name_of_radiologist' => $this->input->post('name_of_radiologist'),
             'had_ultrasound_flag' => $this->input->post('had_ultrasound_flag'), //from Ultrasound Details part
             'total_no_of_ultrasound' => $this->input->post('total_no_of_ultrasound'),
-            'abnormalities_ultrasound_flag' => $this->input->post('abnormality_ultrasound_flag'),
+            'abnormalities_ultrasound_flag' => $this->input->post('abnormalities_ultrasound_flag'),
             'had_mri_flag' => $this->input->post('had_mri_flag'), // from MRI Details part
             'abnormalities_MRI_flag' => $this->input->post('abnormalities_MRI_flag'),
             'total_no_of_mri' => $this->input->post('total_no_of_mri'),
@@ -645,9 +619,9 @@ class Record extends CI_Controller {
             //'other_screening_flag' => $this->input->post('other_screening_flag'),
             'screening_center_of_first_mammogram' => $this->input->post('screening_center_of_first_mammogram'),
             'screening_center_of_recent_mammogram' => $this->input->post('screening_center_of_recent_mammogram'),
-            'details_of_first_mammogram' => $this->input->post('details_of_first_mammogram'),
-            'details_of_recent_mammogram' => $this->input->post('details_of_recent_mammogram'),
-            'motivaters_of_first_mammogram' => $this->input->post('motivaters_of_first_mammogram'),
+            'details_of_first_mammogram' => $this->input->post('details_at_first_mammogram'),
+            'details_of_recent_mammogram' => $this->input->post('details_at_recent_mammogram'),
+            'motivaters_of_first_mammogram' => $this->input->post('motivaters_at_first_mammogram'),
             'motivaters_of_recent_mammogram' => $this->input->post('motivaters_at_recent_mammogram'),
             'mammogram_in_sdmc' => $this->input->post('mammogram_in_sdmc'),
             'reason_of_mammogram' => $this->input->post('reason_of_mammogram'),
@@ -656,7 +630,6 @@ class Record extends CI_Controller {
             'reason_of_action_suggested' => $this->input->post('reason_of_action_suggested'),
             'is_cancer_mammogram_flag' => $this->input->post('is_cancer_mammogram_flag'),
             'site_effected_of_mammogram' => $this->input->post('site_effected_of_mammogram'),
-            'patient_studies_id' => $studies_id,
             'BIRADS_clinical_classification' => $this->input->post('BIRADS_clinical_classification'),
             'percentage_of_mammo_density' => $this->input->post('percentage_of_mammo_density'),
             'mammo_comments' => $this->input->post('mammo_comments'),
@@ -664,7 +637,7 @@ class Record extends CI_Controller {
             'BIRADS_density_classification' => $this->input->post('BIRADS_density_classification')
         );
 
-        //print_r($data_patient_breast_screening);
+        //print_r($data_patient_breast_screening);exit;
         //echo '<br/>';
         $patient_breast_screening_id = $this->record_model->insert_at_patient_breast_screening($data_patient_breast_screening);
         //echo $patient_breast_screening_id;
@@ -871,8 +844,8 @@ class Record extends CI_Controller {
         } echo '<br/>';
 
         $data_patient_ultrasound_abnormality = array(
-            'is_abnormality_detected' => $this->input->post('mammo_ultrasound_is_abnormality_detected'),
-            'ultrasound_date' => $this->input->post('mammo_ultrasound_date'),
+            'is_abnormality_detected' => $this->input->post('abnormalities_ultrasound_flag'),
+            'ultrasound_date' => date('Y-m-d',strtotime($this->input->post('mammo_ultrasound_date'))),
             'comments' => $this->input->post('mammo_ultrasound_details'),
             'created_on' => $date,
             'patient_breast_screening_id' => $patient_breast_screening_id
@@ -887,8 +860,8 @@ class Record extends CI_Controller {
         } echo '<br/>';
 
         $data_patient_mri_abnormality = array(
-            'is_abnormality_detected' => $this->input->post('mammo_mri_is_abnormality_detected'),
-            'mri_date' => $this->input->post('mammo_mri_date'),
+            'is_abnormality_detected' => $this->input->post('abnormalities_mri_flag'),
+            'mri_date' => date('Y-m-d',strtotime($this->input->post('mammo_mri_date'))),
             'comments' => $this->input->post('mammo_MRI_details'),
             'patient_breast_screening_id' => $patient_breast_screening_id
         );
@@ -902,7 +875,7 @@ class Record extends CI_Controller {
         } echo '<br/>';
         
         $data_patient_non_cancer_surgery = array(
-            'patient_studies_id' => $studies_id,
+            'patient_studies_id' => $patient_studies_id,
             'breast_surgery_type' => $this->input->post('non_cancer_surgery_type'),
             'breast_reason_of_surgery' => $this->input->post('reason_for_non_cancer_surgery'),
             'breast_date_of_surgery' => date('Y-m-d',strtotime($this->input->post('date_of_non_cancer_surgery'))),
@@ -925,7 +898,7 @@ class Record extends CI_Controller {
         } echo '<br/>';
         
         $data_patient_risk_reducing_surgery = array(
-            'patient_studies_id' => $studies_id,
+            'patient_studies_id' => $patient_studies_id,
             'had_new_lesion_surgery_flag' => $this->input->post('had_new_risk_reducing_surgery'),
             'created_on' => $date,
             'had_complete_removal_surgery_flag' => $this->input->post('had_new_complete_removal_surgery')
@@ -977,7 +950,7 @@ class Record extends CI_Controller {
         $ovarian_screening_type_id = $this->input->post('ovarian_screening_type_name');            
         $ovarian_screening_type= $this->record_model->get_ovarian_screening_type($ovarian_screening_type_id);
         $data_patient_ovarian_screening = array(
-            'patient_studies_id' => $studies_id,
+            'patient_studies_id' => $patient_studies_id,
             'ovarian_screening_type_id' => $ovarian_screening_type,
             'screening_date' => date('Y-m-d',strtotime($this->input->post('physical_exam_date'))),
             'is_abnormality_detected' => $this->input->post('physical_exam_is_abnormality_detected'),
@@ -995,7 +968,7 @@ class Record extends CI_Controller {
 
 
         $data_patient_other_screening = array(
-            'patient_studies_id' => $studies_id,
+            'patient_studies_id' => $patient_studies_id,
             'screening_type' => $this->input->post('screening_name'),
             //'total_no_of_screening' => $this->input->post('total_no_of_screening'),
             'age_at_screening' => $this->input->post('age_at_screening'),
@@ -1015,7 +988,7 @@ class Record extends CI_Controller {
 
         
         $data_patient_surveillance = array(
-            'patient_studies_id' => $studies_id,
+            'patient_studies_id' => $patient_studies_id,
             'recruitment_center' => $this->input->post('surveillance_recruitment_center'),
             'type' => $this->input->post('surveillance_type'),
             'first_consultation_date' => date('Y-m-d',strtotime($this->input->post('surveillance_first_consultation_date'))),
@@ -1112,7 +1085,7 @@ class Record extends CI_Controller {
             'created_on' => $date,
             'diabetes_medicine_name' => $this->input->post('diabates_medicine_name')
         );
-        //print_r($data_patient_lifestyle_factors);
+//        print_r($data_patient_lifestyle_factors);exit;
         //echo '<br/>';
 
         $patient_lifestyle_factors_id = $this->record_model->insert_patient_lifestyle_factors($data_patient_lifestyle_factors);
@@ -1857,7 +1830,10 @@ class Record extends CI_Controller {
             $data['patient_risk_reducing_surgery'] = $this->record_model->get_patient_risk_reducing_surgery_record($patient_studies_id);
             $data['patient_ovarian_screening'] = $this->record_model->get_patient_ovarian_screening_record($patient_studies_id);
             $data['patient_surveillance'] = $this->record_model->get_patient_surveillance_record($patient_studies_id);
-            $data['patient_other_screening'] = $this->record_model->get_patient_other_screening_record($patient_studies_id);           
+            $data['patient_other_screening'] = $this->record_model->get_patient_other_screening_record($patient_studies_id); 
+            $data['ovarian_screening_type'] = $this->record_model->get_ovarian_screening_type_by_id();
+            $data['site_breast'] = $this->record_model->get_site_breast_by_id();
+            $data['upperbelow_breast'] = $this->record_model->get_upperbellow_breast_by_id();
             
             $this->template->load("templates/add_record_template", 'record/view_record_studies_set_one_details', $data);
         } else if ($var == 'mutation_analysis') {
@@ -1869,7 +1845,7 @@ class Record extends CI_Controller {
             $data['patient_risk_assessment'] = $this->record_model->get_view_patient_record($ic_no, 'patient_risk_assessment', 'patient_ic_no');
             $this->template->load("templates/add_record_template", 'record/view_record_risk_assessment_details', $data);
         } else if ($var == 'lifestyleFactors') {
-            $data['patient_lifestyle_factors'] = $this->record_model->get_lifestyle_detail_patient_record($ic_no, $patient_studies_id);
+            $data['patient_lifestyle_factors'] = $this->record_model->get_lifestyle_detail_patient_record($patient_studies_id);
             $data['patient_menstruation'] = $this->record_model->get_patient_menstruation_record($ic_no, $patient_studies_id);
             $data['patient_parity_table'] = $this->record_model->get_patient_parity_table_record($ic_no, $patient_studies_id);
             //$data['patient_parity_record'] = $this->record_model->get_patient_parity_record($ic_no, $patient_studies_id);

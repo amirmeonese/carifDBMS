@@ -1354,7 +1354,7 @@ class Record_model extends CI_Model {
         return $patient_detail;
     }
     
-    public function get_lifestyle_detail_patient_record($ic_no,$patient_studies_id){
+    public function get_lifestyle_detail_patient_record($patient_studies_id){
          
         //$this->db->where('patient_ic_no',$ic_no);
         $this->db->where('patient_studies_id',$patient_studies_id);
@@ -2235,6 +2235,41 @@ function get_studies_name_by_id() {
         }
         $query->free_result();
         return $treatmenttypelist;
+    }
+    
+    function get_ovarian_screening_type_by_id() {
+
+        $ovarianscreeninglist = array();
+        $this->db->select('ovarian_screening_type_id,ovarian_screening_type_name');
+        $this->db->order_by('ovarian_screening_type_name asc');
+        $query = $this->db->get('ovarian_screening_type');
+        foreach ($query->result() as $row) {
+            $ovarianscreeninglist = $ovarianscreeninglist + array($row->ovarian_screening_type_id => $row->ovarian_screening_type_name);
+        }
+        $query->free_result();
+        return $ovarianscreeninglist;
+    }
+    
+    function get_site_breast_by_id() {
+        
+        $sitebreastlist = array(
+            
+            '1' => 'Left',
+            '0' => 'Right',
+        );
+        
+        return $sitebreastlist;
+    }
+    
+    function get_upperbellow_breast_by_id() {
+        
+        $sitebreastlist = array(
+            
+            '1' => 'Upper',
+            '0' => 'Below',
+        );
+        
+        return $sitebreastlist;
     }
 
 }

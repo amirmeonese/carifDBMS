@@ -33,7 +33,7 @@
                 </td>
                 <td>
                     <?php echo $details_for_mammogram; ?>: 
-                    <?php echo form_input('details_for_mammogram'); ?>
+                    <?php echo form_input('reason_of_mammogram_details'); ?>
                 </td>
             </tr>
             <tr>
@@ -281,10 +281,10 @@
                     <?php echo $mammo_ultrasound_date; ?>: 
 					<?php echo form_input(array('name'=>'mammo_ultrasound_date','class'=>'datepicker')); ?>
                 </td>
-				 <td>
+<!--				 <td>
                     <?php echo $mammo_ultrasound_is_abnormality_detected; ?>: 
                     <?php echo form_checkbox('mammo_ultrasound_is_abnormality_detected', '1', FALSE); ?>
-                </td>
+                </td>-->
                 <td>
                     <?php echo $mammo_ultrasound_details; ?>: 
                     <?php
@@ -334,10 +334,10 @@
                     <?php echo $mammo_MRI_date; ?>: 
 					<?php echo form_input(array('name'=>'mammo_mri_date','class'=>'datepicker')); ?>
                 </td>
-				 <td>
+<!--				 <td>
                     <?php echo $mammo_MRI_is_abnormality_detected; ?>: 
                     <?php echo form_checkbox('mammo_mri_is_abnormality_detected', '1', FALSE); ?>
-                </td>
+                </td>-->
                 <td>
                     <?php echo $mammo_MRI_details; ?>: 
 
