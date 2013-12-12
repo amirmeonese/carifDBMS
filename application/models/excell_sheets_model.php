@@ -710,6 +710,25 @@ class Excell_sheets_model extends CI_Model {
         return $result['patient_cancer_id'];
     }
 
+     public function get_patient_other_disease_id($patient_studies_id,$diagnosis_id) {
+        $data = array(
+        );
+        $query = $this->db->select('patient_other_disease_id')
+                ->where('patient_studies_id', $patient_studies_id)
+                ->where('diagnosis_id',$diagnosis_id)
+                ->limit(1)
+                ->get($this->tables['patient_other_disease']);
+        
+        $result = null;
+        if ($query->num_rows() > 0) {
+            $result = $query->row_array();
+            //echo $result['relatives_id'];
+        }
+
+        //print_r($result['relatives_id']);
+
+        return $result['patient_other_disease_id'];
+    }
 }
 
 ?>
