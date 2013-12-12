@@ -3,7 +3,7 @@ $( document ).ready(function() {
 			$("#personal-details-form").validate({
 				rules: {
 					surname : {
-						required: true
+						required: false
 					},
 					fullname : {
 						required: true
@@ -18,22 +18,22 @@ $( document ).ready(function() {
 						maxlength: 12
 					},
 					nationality : {
-						required: true
+						required: false
 					},
 					gender : {
-						required: true
+						required: false
 					},
 					ethinicity : {
-						required: true
+						required: false
 					},
 					DOB : {
-						required: true
+						required: false
 					},
 					place_of_birth :{
-						required: true
+						required: false
 					},
 					email : {
-						email: true
+						email: false
 					}
 				},
 				messages: {
