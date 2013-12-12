@@ -59,6 +59,20 @@ class Excell_parser_model extends CI_Model {
             $result_studies_name[$i] = $temp_result_studies_name[$i]['studies_name'];
             //echo $result_studies_name[$i] . '<br/>';
         }
+        
+        $temp_result_diagnonis_name = array();
+        $temp_result_diagnonis_name = null;
+        $this->db->select('diagnosis_name');
+        $this->db->from('diagnosis');
+        $temp_result_diagnonis_name = $this->db->get()->result_array();
+
+        //print_r($temp_result_relationship);
+        $result_diagnonis_name = array();
+        for ($i = 0; $i < sizeof($temp_result_diagnonis_name); $i++) {
+            //echo $result_relationship[$j]['relatives_type']. '<br/>';
+            $result_diagnonis_name[$i] = $temp_result_diagnonis_name[$i]['diagnosis_name'];
+            //echo $result_studies_name[$i] . '<br/>';
+        }
 
         //Checking sheets data here
         foreach ($loadedSheetNames as $sheetIndex => $loadedSheetName) {
@@ -603,7 +617,9 @@ class Excell_parser_model extends CI_Model {
                     $array_studies_name = null;
                     $array_IC_no_Diagnosis2 = array();
                     $array_IC_no_Diagnosis2 = null;
-
+                    $array_diagnosis_name = array();
+                    $array_diagnosis_name = null;
+                    
                     foreach ($sheet->getRowIterator() as $row) {
                         $ic_no_validator = TRUE;
                         $date_flag = FALSE;
@@ -634,7 +650,17 @@ class Excell_parser_model extends CI_Model {
                             if ($key == 1 && $cell_value != NULL) {
                                 $array_studies_name[] = $cell_value;
                             }
-
+                            
+                            if ($key == 2 && $cell_value != NULL) {
+                                $cell_value = trim($cell_value);
+                                $array_diagnosis_name[] = $cell_value;
+                            }
+                            
+                            if ($key == 2 && $cell_value == NULL) {
+                                $cell_value = 'None';
+                                $array_diagnosis_name[] = $cell_value;
+                            }
+                            
                             if (($key == 3 || $key == 9 || $key == 10) && $cell_value != NULL) {
                                 if (strpos($cell_value, '-') !== FALSE)
                                     $cell_value = date("d/m/Y", strtotime($cell_value));
@@ -663,6 +689,8 @@ class Excell_parser_model extends CI_Model {
                         //echo $val . '<br/>';
                         $val_studies_id = in_array($array_studies_name[$i], $result_studies_name);
 
+                        $val_diagnosis_id = in_array($array_diagnosis_name[$i], $result_diagnonis_name);
+                        
                         if (!$val_ic_no) {
                             echo 'Should ommit import for invalid ic_no data at Diagnosis & Treatment2 worksheet' . '<br/>';
                             $abort = TRUE;
@@ -671,6 +699,12 @@ class Excell_parser_model extends CI_Model {
 
                         if (!$val_studies_id) {
                             echo 'Should ommit import for invalid studies_id data at Diagnosis & Treatment2 worksheet' . '<br/>';
+                            $abort = TRUE;
+                            break;
+                        }
+                        
+                        if (!$val_diagnosis_id) {
+                            echo 'Should ommit import for invalid diagnosis_id data at Diagnosis & Treatment2 worksheet' . '<br/>';
                             $abort = TRUE;
                             break;
                         }
