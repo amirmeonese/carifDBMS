@@ -59,20 +59,6 @@ class Excell_parser_model extends CI_Model {
             $result_studies_name[$i] = $temp_result_studies_name[$i]['studies_name'];
             //echo $result_studies_name[$i] . '<br/>';
         }
-        //setting flag value for deciding either a sheet is empty or not
-        $Family_sheet = 0;
-        $Diagnosis_Treatment = 0;
-        $Sreening_Surveilance1 = 0;
-        $Sreening_Surveilance2 = 0;
-        $Sreening_Surveilance3 = 0;
-        $Sreening_Surveilance4 = 0;
-        $Sreening_Surveilance5 = 0;
-        $Mutation_analysis = 0;
-        $Risk_Assesment = 0;
-        $Lifestyles1 = 0;
-        $Lifestyle2 = 0;
-        $Lifestyle3 = 0;
-
 
         //Checking sheets data here
         foreach ($loadedSheetNames as $sheetIndex => $loadedSheetName) {
@@ -2229,9 +2215,7 @@ class Excell_parser_model extends CI_Model {
                     echo '<br/>';
                 }else if (($loadedSheetName == 'Diagnosis & Treatment2')) {
                     $Diagnosis2_patient_studies_id = array();
-                    $Diagnosis2_patient_studies_id = null;
                     $Diagnosis2_diagnosis_id = array();
-                    $Diagnosis2_diagnosis_id = null;
                     
                     $i = 0;
                     foreach ($sheet->getRowIterator() as $row) {
@@ -2302,7 +2286,7 @@ class Excell_parser_model extends CI_Model {
                         );
                     }
                     //print_r($data_patient_other_disease);
-                    //print_r($data_patient_surveillance);
+                    //print_r($data_patient_other_disease_medication);
 
                     $id_patient_other_disease = $this->excell_sheets_model->insert_record($data_patient_other_disease, 'patient_other_disease');
                     if ($id_patient_other_disease > 0)
