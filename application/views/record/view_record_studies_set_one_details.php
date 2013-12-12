@@ -16,7 +16,7 @@
             <tr>
                 <td>
                     <?php echo $reason_of_mammogram; ?>: 
-                    <?php echo form_input(array('name' => 'reason_of_mammogram', 'value' => $breast_screening['reason_of_mammogram'])) ?>
+                    <?php echo form_dropdown('reason_of_mammogram', $reason_for_mammogram, $breast_screening['reason_of_mammogram'], 'id="reason_of_mammogram" preload_val="'.$breast_screening['reason_of_mammogram'].'"'); ?>
                 </td>
                 <td>
                     <?php echo $details_for_mammogram; ?>: 
@@ -54,7 +54,6 @@
                 </td>
 <!--                <td>
                     <?php echo $age_at_recent__mammogram; ?>: 
-                    <?php echo form_input('age_at_recent__mammogram'); ?>
                     <?php echo form_input(array('name' => 'age_at_recent__mammogram', 'value' => $breast_screening['age_of_diagnosis'])) ?>
                 </td>-->
                 <td>

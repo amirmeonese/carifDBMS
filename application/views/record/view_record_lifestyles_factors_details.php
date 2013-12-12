@@ -608,10 +608,10 @@
                     <?php echo $gnc_treatment_name; ?>: <br />
                     <?php echo form_dropdown('gnc_treatment_name', $gnc_treatment_lists, @$patient_gynaecological['treatment_id'], 'id="gnc_treatment_lists" preload_val="'.$patient_gynaecological['treatment_id'].'"'); ?>
                 </td>
-<!--                <td>
+                <td>
                     <?php echo $gnc_treatment_name_other_details; ?>: <br />
                     <?php echo form_input(array('name' => 'gnc_treatment_name_other_details', 'value' => @$patient_gynaecological['gnc_treatment_name_other_details']))?>
-                </td>-->
+                </td>
             </tr>
         </table>
         <?php echo form_fieldset_close(); ?>

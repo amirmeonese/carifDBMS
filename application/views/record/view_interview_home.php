@@ -16,31 +16,31 @@
             <tr>
                 <td>
                     Counseling date
-                    <?php echo form_input(array('name' => 'interview_date', 'value' => $patient_counselling['interview_date'], 'class' => 'datepicker'))?>
+                    <?php echo form_input(array('name' => 'interview_date[]', 'value' => $patient_counselling['interview_date'], 'class' => 'datepicker'))?>
                 </td>
             </tr>
             <tr>
                 <td>
                     Setup next counseling date
-                    <?php echo form_input(array('name' => 'interview_next_date', 'value' => $patient_counselling['next_interview_date'], 'class' => 'datepicker'))?>
+                    <?php echo form_input(array('name' => 'interview_next_date[]', 'value' => $patient_counselling['next_interview_date'], 'class' => 'datepicker'))?>
                 </td>
             </tr>
             <tr>
                 <td>
                     Send email reminder to officer?
-                    <?php echo form_checkbox(array('name' => 'is_send_email_reminder', 'value' => $patient_counselling['is_send_email_reminder_to_officers']))?>
+                    <?php echo form_checkbox(array('name' => 'is_send_email_reminder[]', 'value' => $patient_counselling['is_send_email_reminder_to_officers']))?>
                 </td>
             </tr>
             <tr>
                 <td>
                     Set officer email addresses
-                    <?php echo form_input(array('name' => 'officer_email_addresses', 'value' => $patient_counselling['officer_email_addresses']))?>
+                    <?php echo form_input(array('name' => 'officer_email_addresses[]', 'value' => $patient_counselling['officer_email_addresses']))?>
                 </td>
             </tr>
             <tr>
                 <td>
                     Counseling note
-                    <?php echo form_textarea(array('name' => 'interview_note','id' => 'interview_note','rows' => '10','cols' => '15', 'value' => $patient_counselling['comments']))?>
+                    <?php echo form_textarea(array('name' => 'interview_note[]','id' => 'interview_note','rows' => '10','cols' => '15', 'value' => $patient_counselling['comments']))?>
                 </td>
             </tr>
             <tr>
@@ -50,7 +50,7 @@
                 </td>
             </tr>
             <input type="hidden" name="icno" value="<?php print $patient_counselling['patient_ic_no']; ?>"/>
-<!--            <input type="hidden" name="patient_interview_manager_id" value="<?php print $patient_counselling['patient_interview_manager_id']; ?>"/>-->
+            <input type="hidden" name="patient_interview_manager_id[]" value="<?php print $patient_counselling['patient_interview_manager_id']; ?>"/>
         </table>
         <?php echo form_fieldset_close(); ?>
         <?php endforeach; ?>
