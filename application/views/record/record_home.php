@@ -36,6 +36,7 @@
                 document.getElementById('iframe_record_home').height = document.getElementById('iframe_record_home').contentWindow.document.body.scrollHeight + 15; //FF, IE
             }
         </script>
+		<script src="<?php echo base_url(); ?>js/carif_general_scriptings.js" language="Javascript" type="text/javascript"></script>
         <script src="<?php echo base_url(); ?>js/addFormsDynamicFields.js" language="Javascript" type="text/javascript"></script>
 		 
     </head>

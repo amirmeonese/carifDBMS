@@ -228,17 +228,31 @@
                 </td>
             </tr>
             <tr>
-                <td>
-                    <?php echo $height; ?>: 
-                    <?php echo form_input('height'); ?>
+				<td>
+                    <?php echo $weight; ?>: 
+                    <?php $data = array(
+                        'name' => 'weight',
+                        'id' => 'weight',
+						'onkeypress' => 'window.parent.auto_calculate_bmi(event);'
+                    );
+					echo form_input($data); ?>
                 </td>
                 <td>
-                    <?php echo $weight; ?>: 
-                    <?php echo form_input('weight'); ?>
+                    <?php echo $height; ?>: 
+                    <?php $data = array(
+                        'name' => 'height',
+                        'id' => 'height',
+						'onkeypress' => 'window.parent.auto_calculate_bmi(event);'
+                    );
+					echo form_input($data); ?>
                 </td>
                 <td>
                     <?php echo $BMI; ?>: 
-                    <?php echo form_input('BMI'); ?>
+                    <?php $data = array(
+                        'name' => 'BMI',
+                        'id' => 'BMI'
+                    );
+					echo form_input($data); ?>
                 </td>
 				<td>
                     <?php echo $income_level; ?>: 
@@ -280,11 +294,21 @@
 			  <tr>
                 <td>
                     <?php echo $total_no_of_male_siblings; ?>: 
-                    <?php echo form_input('total_no_of_male_siblings'); ?>
+                    <?php $data = array(
+                        'name' => 'total_no_of_male_siblings',
+                        'id' => 'total_no_of_male_siblings',
+						'onkeypress' => 'window.parent.auto_calculate_total_siblings(event);'
+                    );
+					echo form_input($data); ?>
                 </td>
                 <td>
                     <?php echo $total_no_of_female_siblings; ?>: 
-                    <?php echo form_input('total_no_of_female_siblings'); ?>
+                    <?php $data = array(
+                        'name' => 'total_no_of_female_siblings',
+                        'id' => 'total_no_of_female_siblings',
+						'onkeypress' => 'window.parent.auto_calculate_total_siblings(event);'
+                    );
+					echo form_input($data); ?>
                 </td>
                 <td>
                     <?php echo $total_no_of_affected_siblings; ?>: 
@@ -292,7 +316,11 @@
                 </td>
                 <td>
                     <?php echo $total_no_of_siblings; ?>: 
-                    <?php echo form_input('total_no_of_siblings'); ?>
+                    <?php $data = array(
+                        'name' => 'total_no_of_siblings',
+                        'id' => 'total_no_of_siblings'
+                    );
+					echo form_input($data); ?>
                 </td>
                 </tr>
                 <tr>
