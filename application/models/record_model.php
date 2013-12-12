@@ -1961,9 +1961,7 @@ class Record_model extends CI_Model {
 		$this->db->order_by("a.given_name", "asc");
         $patient_list = $this->db->get('');
         $list_patient = $patient_list->result_array();
-        
-        echo $this->db->last_query();
-        
+                
         $patient_list->free_result();
 
         return $list_patient;
