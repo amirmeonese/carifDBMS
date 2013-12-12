@@ -53,7 +53,6 @@ function auto_calculate_bmi(evt)
 	if(idName == "height")
 	{
 		height = charFloat;
-		alert(height)
 		var val = iframeDoc.getElementById("weight").value;
 		
 		if(!val)
