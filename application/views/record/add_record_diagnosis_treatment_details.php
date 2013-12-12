@@ -392,7 +392,7 @@
                     </td>
                     <td>
                         <?php echo $ovary_tumor_subtypes; ?>: <br />
-                        <?php echo form_dropdown('ovary_tumor_subtypes', $ovary_stage_classification_lists, NULL, 'id="ovary_stage_classification_lists"'); ?>
+                        <?php echo form_dropdown('ovary_tumor_subtypes', $ovary_tumor_subtypes_lists, NULL, 'id="ovary_tumor_subtypes_lists"'); ?>
                     </td>
                 </tr>
                 <tr>
@@ -406,11 +406,11 @@
                     </td>
                     <td>
                         <?php echo $ovary_tumor_behavior; ?>: <br />
-                        <?php echo form_dropdown('ovary_tumor_behavior', $ovary_stage_classification_lists, NULL, 'id="ovary_stage_classification_lists"'); ?>
+                        <?php echo form_dropdown('ovary_tumor_behavior', $ovary_tumor_behavior_lists, NULL, 'id="ovary_tumor_behavior_lists"'); ?>
                     </td>
                     <td>
                         <?php echo $ovary_tumor_differentiation; ?>: <br />
-                        <?php echo form_dropdown('ovary_tumor_differentiation', $ovary_stage_classification_lists, NULL, 'id="ovary_stage_classification_lists"'); ?>
+                        <?php echo form_dropdown('ovary_tumor_differentiation', $ovary_tumor_differentiation_lists, NULL, 'id="ovary_tumor_differentiation_lists"'); ?>
                     </td>
                 </tr>
                 <tr>

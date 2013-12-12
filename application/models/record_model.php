@@ -1168,6 +1168,15 @@ class Record_model extends CI_Model {
 		$data['ovary_stage_classification_lists'] = array(
 			'Dynamic Dropdown' => 'Dynamic Dropdown'
         );
+		$data['ovary_tumor_subtypes_lists'] = array(
+			'Dynamic Dropdown' => 'Dynamic Dropdown'
+        );
+		$data['ovary_tumor_behavior_lists'] = array(
+			'Dynamic Dropdown' => 'Dynamic Dropdown'
+        );
+		$data['ovary_tumor_differentiation_lists'] = array(
+			'Dynamic Dropdown' => 'Dynamic Dropdown'
+        );
 		//Ovary pathology
 		$data['ovary_pathology_report_no'] = 'No of report';
 		$data['ovary_tumor_subtypes'] = 'Tumor subtypes';

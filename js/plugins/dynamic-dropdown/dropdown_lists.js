@@ -115,6 +115,15 @@ $( document ).ready(function() {
 				case 'ovary_stage_classification_lists':
 					vals = data.ovary_stage_classification_lists.split(",");
 					break;
+				case 'ovary_tumor_subtypes_lists':
+					vals = data.ovary_tumor_subtypes_lists.split(",");
+					break;
+				case 'ovary_tumor_behavior_lists':
+					vals = data.ovary_tumor_behavior_lists.split(",");
+					break;
+				case 'ovary_tumor_differentiation_lists':
+					vals = data.ovary_tumor_differentiation_lists.split(",");
+					break;					
 				case 'diagnosis_name_lists':
 					vals = data.diagnosis_name_lists.split(",");
 					break;
@@ -292,6 +301,15 @@ $( document ).ready(function() {
 					case 'ovary_stage_classification_lists':
 						vals = data.ovary_stage_classification_lists.split(",");
 						break;
+					case 'ovary_tumor_subtypes_lists':
+						vals = data.ovary_tumor_subtypes_lists.split(",");
+						break;
+					case 'ovary_tumor_behavior_lists':
+						vals = data.ovary_tumor_behavior_lists.split(",");
+						break;
+					case 'ovary_tumor_differentiation_lists':
+						vals = data.ovary_tumor_differentiation_lists.split(",");
+						break;			
 					case 'diagnosis_name_lists':
 						vals = data.diagnosis_name_lists.split(",");
 						break;
@@ -496,6 +514,15 @@ $( document ).ready(function() {
 					case 'ovary_stage_classification_lists':
 						vals = data.ovary_stage_classification_lists.split(",");
 						break;
+					case 'ovary_tumor_subtypes_lists':
+						vals = data.ovary_tumor_subtypes_lists.split(",");
+						break;
+					case 'ovary_tumor_behavior_lists':
+						vals = data.ovary_tumor_behavior_lists.split(",");
+						break;
+					case 'ovary_tumor_differentiation_lists':
+						vals = data.ovary_tumor_differentiation_lists.split(",");
+						break;			
 					case 'diagnosis_name_lists':
 						vals = data.diagnosis_name_lists.split(",");
 						break;
@@ -719,6 +746,15 @@ $( document ).ready(function() {
 				case 'ovary_stage_classification_lists':
 					vals = data.ovary_stage_classification_lists.split(",");
 					break;
+				case 'ovary_tumor_subtypes_lists':
+					vals = data.ovary_tumor_subtypes_lists.split(",");
+					break;
+				case 'ovary_tumor_behavior_lists':
+					vals = data.ovary_tumor_behavior_lists.split(",");
+					break;
+				case 'ovary_tumor_differentiation_lists':
+					vals = data.ovary_tumor_differentiation_lists.split(",");
+					break;			
 				case 'diagnosis_name_lists':
 					vals = data.diagnosis_name_lists.split(",");
 					break;

@@ -367,7 +367,7 @@
                     </td>
                     <td>
                         <?php echo $ovary_tumor_subtypes; ?>: <br />
-                        <?php echo form_dropdown('ovary_tumor_subtypes', $ovary_stage_classification_lists, $ovary_cancer['tumor_subtype'], 'id="ovary_stage_classification_lists" preload_val="'.$ovary_cancer['tumor_subtype'].'"'); ?>
+                        <?php echo form_dropdown('ovary_tumor_subtypes', $ovary_tumor_subtypes_lists, $ovary_cancer['tumor_subtype'], 'id="ovary_tumor_subtypes_lists" preload_val="'.$ovary_cancer['tumor_subtype'].'"'); ?>
                     </td>
                 </tr>
                 <tr>
@@ -381,11 +381,11 @@
                     </td>
                     <td>
                         <?php echo $ovary_tumor_behavior; ?>: <br />
-                        <?php echo form_dropdown('ovary_tumor_behavior', $ovary_stage_classification_lists, $ovary_cancer['tumor_behaviour'], 'id="ovary_stage_classification_lists" preload_val="'.$ovary_cancer['tumor_behaviour'].'"'); ?>
+                        <?php echo form_dropdown('ovary_tumor_behavior', $ovary_tumor_behavior_lists, $ovary_cancer['tumor_behaviour'], 'id="ovary_tumor_behavior_lists" preload_val="'.$ovary_cancer['tumor_behaviour'].'"'); ?>
                     </td>
                     <td>
                         <?php echo $ovary_tumor_differentiation; ?>: <br />
-                        <?php echo form_dropdown('ovary_tumor_differentiation', $ovary_stage_classification_lists, $ovary_cancer['tumor_differentiation'], 'id="ovary_stage_classification_lists" preload_val="'.$ovary_cancer['tumor_differentiation'].'"'); ?>
+                        <?php echo form_dropdown('ovary_tumor_differentiation', $ovary_tumor_differentiation_lists, $ovary_cancer['tumor_differentiation'], 'id="ovary_tumor_differentiation_lists" preload_val="'.$ovary_cancer['tumor_differentiation'].'"'); ?>
                     </td>
                 </tr>
                 <tr>
