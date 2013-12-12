@@ -537,19 +537,23 @@ class Record extends CI_Controller {
         $this->load->model('Record_model');
         $data = $this->Record_model->general();
         $data['submit'] = $this->input->post('search');
+        $studies_name = $this->input->post('studies_name');
+        $studies_id = $this->record_model->get_studies_id($studies_name);
         
         if($this->input->post('search')){
         
 			$data_search_key = array(
 				'given_name' => $this->input->post('patient_name'),
-				'ic_no' => $this->input->post('IC_no')
+				'ic_no' => $this->input->post('IC_no'),
+                                'studies_name' => $studies_id
 			);
         }
 		else
 		{
 			$data_search_key = array(
-            'given_name' => "",
-            'ic_no' => ""
+                            'given_name' => "",
+                            'ic_no' => "",
+                            'studies_name' => ""
 			);		
 		}
         
@@ -1717,23 +1721,106 @@ class Record extends CI_Controller {
         $date = date('Y-m-d H:i:s'); //Returns IST 
         
         $icno = $this->input->post('icno');
-        //$id = $this->input->post('patient_interview_manager_id');
+        $manager_id = $this->input->post('patient_interview_manager_id');
+        $interview_date = $this->input->post('interview_date');
+        $next_interview_date = $this->input->post('interview_next_date');
+        $is_send_email_reminder_to_officers = $this->input->post('is_send_email_reminder');
+        $officer_email_addresses = $this->input->post('officer_email_addresses');
+        $comments = $this->input->post('interview_note');
+        //print_r($manager_id);exit;
         
-        //print_r($id);exit;
+        //foreach ($manager_id as $test):
         
+        for($i=0;$i<count($manager_id);$i++){   
+            //print_r($test);exit;
+                    
         $data_patient_interview_manager = array(
             //'patient_ic_no' => $this->input->post('IC_no'),
-            'interview_date' => date('Y-m-d',strtotime($this->input->post('interview_date'))),
-            'next_interview_date' => date('Y-m-d',strtotime($this->input->post('interview_next_date'))),
-            'is_send_email_reminder_to_officers' => $this->input->post('is_send_email_reminder'),
-            'officer_email_addresses' => $this->input->post('officer_email_addresses'),
+            'interview_date' => date('Y-m-d',strtotime($interview_date[$i])),
+            'next_interview_date' => date('Y-m-d',strtotime($next_interview_date[$i])),
+            'is_send_email_reminder_to_officers' => $is_send_email_reminder_to_officers[$i],
+            'officer_email_addresses' => $officer_email_addresses[$i],
             'created_on' => $date,
-            'comments' => $this->input->post('interview_note')
+            'comments' => $comments[$i]
         );
         
-        //$this->db->where('patient_interview_manager_id', $id);
+        //print_r($data_patient_interview_manager);exit;
+        
+        $this->db->where('patient_interview_manager_id', $manager_id[$i]);
         $this->db->where('patient_ic_no', $icno);
-        $this->db->update('patient_interview_manager', $data_patient_interview_manager); 
+        $this->db->update('patient_interview_manager', $data_patient_interview_manager);
+        
+        //$this->db->last_query();
+        }
+        //endforeach;
+        
+    }
+    
+    function risk_assessment_update() {
+        
+        date_default_timezone_set("Asia/Kuala_lumpur");
+        $date = date('Y-m-d H:i:s'); //Returns IST 
+        
+        $icno = $this->input->post('icno');
+        $boadicea_id = $this->input->post('patient_boadicea_id');
+        $at_consent_mach_brca1 = $this->input->post('ms_at_consent_BRCA1');
+        $at_consent_mach_brca2 = $this->input->post('ms_at_consent_BRCA2');
+        $at_consent_mach_total = $this->input->post('ms_at_consent_Total');
+        $after_gc_brca1 = $this->input->post('ms_after_gc_BRCA1');
+        $after_gc_brca2 = $this->input->post('ms_after_gc_BRCA2');
+        $after_gc_total = $this->input->post('ms_after_gc_Total');
+        $adjusted_mach_brca1 = $this->input->post('ms_adjusted_gc_BRCA1');
+        $adjusted_mach_brca2 = $this->input->post('ms_adjusted_gc_BRCA2');
+        $adjusted_mach_total = $this->input->post('ms_adjusted_gc_Total');
+        $at_consent_boadicea_brca1 = $this->input->post('BOADICEA_at_consent_BRCA1');
+        $at_consent_boadicea_brca2 = $this->input->post('BOADICEA_at_consent_BRCA2');
+        $at_consent_boadicea_no_mutation = $this->input->post('BOADICEA_at_consent_no_mutation');
+        $adjusted_boadicea_brca1 = $this->input->post('BOADICEA_adjusted_BRCA1');
+        $adjusted_boadicea_brca2 = $this->input->post('BOADICEA_adjusted_BRCA2');
+        $adjusted_boadicea_no_mutation = $this->input->post('BOADICEA_adjusted_no_mutation');
+        $after_gc_boadicea_brca1 = $this->input->post('BOADICEA_after_gc_BRCA1');
+        $after_gc_boadicea_brca2 = $this->input->post('BOADICEA_after_gc_BRCA2');
+        $after_gc_boadicea_no_mutation = $this->input->post('BOADICEA_after_gc_no_mutation');
+        $at_consent_gail_model_5years = $this->input->post('gail_model_at_consent_5years');
+        $at_consent_gail_model_10years = $this->input->post('gail_model_at_consent_10years');
+        $first_mammo_gail_model_10years = $this->input->post('gail_model_first_mammo_10years');
+        $first_mammo_gail_model_5years = $this->input->post('gail_model_first_mammo_5years');
+
+        for ($i = 0; $i < count($boadicea_id); $i++) {
+
+            $data_patient_risk_assessment = array(
+                'at_consent_mach_brca1' => $at_consent_mach_brca1[$i],
+                'at_consent_mach_brca2' => $at_consent_mach_brca2[$i],
+                'at_consent_mach_total' => $at_consent_mach_total[$i],
+                'after_gc_brca1' => $after_gc_brca1[$i],
+                'after_gc_brca2' => $after_gc_brca2[$i],
+                'after_gc_total' => $after_gc_total[$i],
+                'adjusted_mach_brca1' => $adjusted_mach_brca1[$i],
+                'adjusted_mach_brca2' => $adjusted_mach_brca2[$i],
+                'adjusted_mach_total' => $adjusted_mach_total[$i],
+                'at_consent_boadicea_brca1' => $at_consent_boadicea_brca1[$i],
+                'at_consent_boadicea_brca2' => $at_consent_boadicea_brca2[$i],
+                'at_consent_boadicea_no_mutation' => $at_consent_boadicea_no_mutation[$i],
+                'adjusted_boadicea_brca1' => $adjusted_boadicea_brca1[$i],
+                'adjusted_boadicea_brca2' => $adjusted_boadicea_brca2[$i],
+                'adjusted_boadicea_no_mutation' => $adjusted_boadicea_no_mutation[$i],
+                'after_gc_boadicea_brca1' => $after_gc_boadicea_brca1[$i],
+                'after_gc_boadicea_brca2' => $after_gc_boadicea_brca2[$i],
+                'after_gc_boadicea_no_mutation' => $after_gc_boadicea_no_mutation[$i],
+                'at_consent_gail_model_5years' => $at_consent_gail_model_5years[$i],
+                'at_consent_gail_model_10years' => $at_consent_gail_model_10years[$i],
+                'first_mammo_gail_model_10years' => $first_mammo_gail_model_10years[$i],
+                'created_on' => $date,
+                'first_mammo_gail_model_5years' => $first_mammo_gail_model_5years[$i]
+                    
+                    );
+
+            $this->db->where('patient_boadicea_id', $boadicea_id[$i]);
+            $this->db->where('patient_ic_no', $icno);
+            $this->db->update('patient_risk_assessment', $data_patient_risk_assessment);
+
+            //$this->db->last_query();
+        }
     }
 
     function do_upload_xlsx() {
