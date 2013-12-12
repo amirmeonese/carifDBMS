@@ -88,6 +88,7 @@ $config['tables']['patient_cogs_studies'] = 'patient_cogs_studies';
 $config['tables']['patient_private_no'] = 'patient_private_no';
 $config['tables']['patient_mutation_analysis'] = 'patient_mutation_analysis';
 $config['tables']['patient_risk_assessment'] = 'patient_risk_assessment';
+$config['tables']['patient_other_disease_medication'] = 'patient_other_disease_medication';
 
 /*
  | Users table column and Group table column you want to join WITH.
