@@ -10,7 +10,6 @@
 					<th id="locked-items-tr">Lock Date</th>
 					<th id="locked-items-tr">IC No.</th>
 					<th id="locked-items-tr">Name</th>
-					<th id="locked-items-tr">MRN</th>
 					<th id="locked-items-tr">Action</th>
 				</tr>
 			</thead>
@@ -26,11 +25,7 @@
 						<?php echo $locked_patient_list->ic_no; ?>
 					</td>
 					<td id="locked-items-td">
-						<?php echo $locked_patient_list->fullname; ?>
-					</td>
-					
-					<td id="locked-items-td">
-						<?php echo $locked_patient_list->hospital_no; ?>
+						<?php echo $locked_patient_list->given_name; ?>
 					</td>
 					<td id="locked-items-td"><a href="<?php echo site_url('admin/release_locked_items') . '/' . $locked_patient_list->ic_no; ?>">Release</a></td>
 				</tr>

@@ -16,3 +16,5 @@ Example:case 'marital_status':
 
 5) Change the dropdown definition in record_model.php to 'Dynamic Dropdown'. (If necessary)
 
+6) System user can add, rename or delete dropdown items in Customize Form page in admin panel.
+
