@@ -1636,7 +1636,7 @@ class Excell_parser_model extends CI_Model {
                             if ($key == 5 && $cell_value != NULL)
                                 $cell_value = str_replace('-', '', $cell_value);
 
-                            if ($key == 8 || $key == 13 || $key == 49) {
+                            if ($key == 8 || $key == 13 || $key == 48) {
                                 if ($cell_value != NULL) {
                                     $cell_value = date('Y-m-d', strtotime(str_replace('/', '-', $cell_value)));
                                 }
