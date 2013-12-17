@@ -28,10 +28,18 @@
                     <?php echo $cancer_invasive_type; ?>: 
                     <?php echo form_dropdown('cancer_invasive_type', $cancer_invasive_type_lists, $breast_cancer['cancer_invasive_type'], 'id="cancer_invasive_type" preload_val="'.$breast_cancer['cancer_invasive_type'].'"'); ?>
                 </td>
+                 <?php if($breast_cancer['is_primary'] == 1){?>
+                <td>
+                    <?php echo $primary_diagnosis; ?>: 
+                    <?php echo form_checkbox(array('name' => 'primary_diagnosis', 'value' => $breast_cancer['is_primary'],'checked'=>"checked"))?>
+                </td>
+               <?php } else {?>
                 <td>
                     <?php echo $primary_diagnosis; ?>: 
                     <?php echo form_checkbox(array('name' => 'primary_diagnosis', 'value' => $breast_cancer['is_primary']))?>
                 </td>
+               <?php } ?>
+                
             </tr>&nbsp;</td>
             </tr>
             <tr>
@@ -65,14 +73,30 @@
             </tr>&nbsp;</td>
             </tr>
             <tr>
+                 <?php if($breast_cancer['bilateral_flag'] == 1){?>
+                <td>
+                    <?php echo $cancer_is_bilateral; ?>: <br /> 
+                    <?php echo form_checkbox(array('name' => 'cancer_is_bilateral', 'value' => $breast_cancer['bilateral_flag'],'checked'=>"checked"))?>
+                </td>
+               <?php } else {?>
                 <td>
                     <?php echo $cancer_is_bilateral; ?>: <br /> 
                     <?php echo form_checkbox(array('name' => 'cancer_is_bilateral', 'value' => $breast_cancer['bilateral_flag']))?>
                 </td>
+               <?php } ?>
+                
+                 <?php if($breast_cancer['recurrence_flag'] == 1){?>
+                <td>
+                    <?php echo $cancer_is_recurrent; ?>: <br /> 
+                    <?php echo form_checkbox(array('name' => 'cancer_is_recurrent', 'value' => $breast_cancer['recurrence_flag'],'checked'=>"checked"))?>
+                </td>
+               <?php } else {?>
                 <td>
                     <?php echo $cancer_is_recurrent; ?>: <br /> 
                     <?php echo form_checkbox(array('name' => 'cancer_is_recurrent', 'value' => $breast_cancer['recurrence_flag']))?>
                 </td>
+               <?php } ?>
+                
             </tr>&nbsp;</td>
             </tr>&nbsp;</td>
             </tr>
@@ -266,10 +290,18 @@
                     <?php echo $ovary_cancer_invasive_type; ?>: 
                     <?php echo form_dropdown('ovary_cancer_invasive_type', $cancer_invasive_type_lists, $ovary_cancer['cancer_invasive_type'], 'id="cancer_invasive_type" preload_val="'.$ovary_cancer['cancer_invasive_type'].'"'); ?>
                 </td>
+                 <?php if($ovary_cancer['is_primary'] == 1){?>
+                <td>
+                    <?php echo $ovary_primary_diagnosis; ?>: 
+                    <?php echo form_checkbox(array('name' => 'ovary_primary_diagnosis', 'value' => $ovary_cancer['is_primary'],'checked'=>"checked"))?>
+                </td>
+               <?php } else {?>
                 <td>
                     <?php echo $ovary_primary_diagnosis; ?>: 
                     <?php echo form_checkbox(array('name' => 'ovary_primary_diagnosis', 'value' => $ovary_cancer['is_primary']))?>
                 </td>
+               <?php } ?>
+                
             </tr>&nbsp;</td>
             </tr>
             <tr>
@@ -302,15 +334,30 @@
                 </td>-->
             </tr>&nbsp;</td>
             </tr>
-            <tr>
+             <?php if($ovary_cancer['bilateral_flag'] == 1){?>
+            <td>
+                    <?php echo $ovary_cancer_is_bilateral; ?>: <br /> 
+                    <?php echo form_checkbox(array('name' => 'ovary_cancer_is_bilateral', 'value' => $ovary_cancer['bilateral_flag'],'checked'=>"checked"))?>
+                </td>
+               <?php } else {?>
                 <td>
                     <?php echo $ovary_cancer_is_bilateral; ?>: <br /> 
                     <?php echo form_checkbox(array('name' => 'ovary_cancer_is_bilateral', 'value' => $ovary_cancer['bilateral_flag']))?>
                 </td>
+               <?php } ?>
+            <tr>
+                 <?php if($ovary_cancer['recurrence_flag'] == 1){?>
+                <td>
+                    <?php echo $ovary_cancer_is_recurrent; ?>: <br /> 
+                    <?php echo form_checkbox(array('name' => 'ovary_cancer_is_recurrent', 'value' => $ovary_cancer['recurrence_flag'],'checked'=>"checked"))?>
+                </td>
+               <?php } else {?>
                 <td>
                     <?php echo $ovary_cancer_is_recurrent; ?>: <br /> 
                     <?php echo form_checkbox(array('name' => 'ovary_cancer_is_recurrent', 'value' => $ovary_cancer['recurrence_flag']))?>
                 </td>
+               <?php } ?>
+                
             </tr>&nbsp;</td>
             </tr>&nbsp;</td>
             </tr>
@@ -671,10 +718,18 @@
                 <div id="add_record_form_section_other_disease_diagnosis_medication">
                     <table id="other_disease_medication_section">
                         <tr>
+                             <?php if($other_disease['on_medication_flag'] == 1){?>
                             <td>
+                                <?php echo $is_on_medication_flag; ?>: 
+                                <?php echo form_checkbox(array('name' => 'is_on_medication_flag', 'value' => $other_disease['on_medication_flag'],'checked'=>"checked"))?>
+                            </td>
+               <?php } else {?>
+                <td>
                                 <?php echo $is_on_medication_flag; ?>: 
                                 <?php echo form_checkbox(array('name' => 'is_on_medication_flag', 'value' => $other_disease['on_medication_flag']))?>
                             </td>
+               <?php } ?>
+                            
                             <td>
                                 <?php echo $medication_type_name; ?>: 
                                 <?php echo form_input(array('name' => 'medication_type_name', 'value' => $other_disease['medication_type']))?>

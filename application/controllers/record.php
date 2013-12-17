@@ -1274,12 +1274,9 @@ class Record extends CI_Controller {
             'investigation_test_results_other_details' => $this->input->post('investigation_test_results_other_details'),
             'carrier_status' => $this->input->post('investigation_carrier_status'),
             'mutation_nomenclature' => $this->input->post('investigation_mutation_nomenclature'),
-            //'reported_by' => $this->input->post('investigation_reported_by'),
             'exon' => $this->input->post('investigation_exon'),
             'mutation_type' => $this->input->post('investigation_mutation_type'),
             'mutation_pathogenicity' => $this->input->post('investigation_mutation_pathogenicity'),
-            //'sample_id' => $this->input->post('investigation_sample_ID'),
-            //'report_due' => $this->input->post('investigation_report_due'),
             'report_date' => date('Y-m-d',strtotime($this->input->post('investigation_report_date'))),
             'date_client_notified' => date('Y-m-d',strtotime($this->input->post('investigation_date_notified'))),
             'is_counselling_flag' => $this->input->post('mutation_is_counselling_flag'),
@@ -1300,6 +1297,110 @@ class Record extends CI_Controller {
             echo "<h2>Failed to insert at patient_mutation_analysis</h2>";
         }
         echo '<br/>';
+    }
+    
+    function investigation_update() {
+        
+        date_default_timezone_set("Asia/Kuala_lumpur"); 
+        $date = date('Y-m-d H:i:s'); //Returns IST 
+
+        $config['upload_path'] = './images/';
+        $config['allowed_types'] = 'gif|jpg|png';
+        $config['max_size'] = '100000';
+        //$config['max_width']  = '1024';
+        //$config['max_height']  = '768';
+
+        $this->load->library('upload', $config);
+
+        if (!$this->upload->do_upload()) {
+            $error = array('error' => $this->upload->display_errors());
+            $attach_file_path = 0;
+        } else {
+            $data = array('upload_data' => $this->upload->data());
+            //echo '<h3>Your file was successfully uploaded!</h3>';
+            //echo $data['upload_data']['full_path'];
+            $attach_file_path = $data['upload_data']['full_path'];
+            //echo $attach_file_path;
+            // echo '<br/>';
+        }
+
+        $patient_investigation_id = $this->input->post('patient_investigations_id');
+        $studies_name = $this->input->post('patient_studies_id');
+        $date_test_ordered = str_replace("/","-",$this->input->post('date_test_ordered'));
+        $ordered_by = $this->input->post('test_ordered_by');
+        $testing_result_notification_flag = $this->input->post('testing_results_notification_flag');
+        $service_provider = $this->input->post('investigation_project_name');
+        $testing_batch = $this->input->post('investigation_project_batch');
+        $testing_date = str_replace("/","-",$this->input->post('investigation_project_date'));
+        $gene_tested = $this->input->post('investigation_gene_tested');
+        $types_of_testing = $this->input->post('investigation_test_type');
+        $type_of_sample = $this->input->post('investigation_sample_type');
+        $reasons = $this->input->post('investigation_test_reason');
+        $new_mutation_flag = $this->input->post('investigation_new_mutation_flag');
+        $test_result = $this->input->post('investigation_test_results');
+        $investigation_test_results_other_details = $this->input->post('investigation_test_results_other_details');
+        $carrier_status = $this->input->post('investigation_carrier_status');
+        $mutation_nomenclature = $this->input->post('investigation_mutation_nomenclature');
+        $exon = $this->input->post('investigation_exon');
+        $mutation_type = $this->input->post('investigation_mutation_type');
+        $mutation_pathogenicity = $this->input->post('investigation_mutation_pathogenicity');
+        $report_date = str_replace("/","-",$this->input->post('investigation_report_date'));
+        $date_client_notified = str_replace("/","-",$this->input->post('investigation_date_notified'));
+        $is_counselling_flag = $this->input->post('mutation_is_counselling_flag');
+        $comments = $this->input->post('investigation_test_comment');
+        $mutation_name = $this->input->post('investigation_mutation_name');
+        $conformation_attachment = $this->input->post('investigation_conformation_attachment');
+        //echo '<pre>';
+        //print_r($date_test_ordered);exit;
+        //$patient_studies_id = $this->record_model->get_patient_suudies_id($data_keys);
+        //echo $patient_studies_id;echo '<br/>';
+        for($i=0;$i<count($patient_investigation_id);$i++){ 
+        
+        $data_patient_investigations = array(
+            'date_test_ordered' => date('Y-m-d',strtotime($date_test_ordered[$i])),
+            'ordered_by' => $ordered_by[$i],
+            'testing_result_notification_flag' => $testing_result_notification_flag[$i],
+            'service_provider' => $service_provider[$i],
+            'testing_batch' => $testing_batch[$i],
+            'testing_date' => date('Y-m-d',strtotime($testing_date[$i])),
+            'gene_tested' => $gene_tested[$i],
+            'types_of_testing' => $types_of_testing[$i],
+            'type_of_sample' => $type_of_sample[$i],
+            'reasons' => $reasons[$i],
+            'new_mutation_flag' => $new_mutation_flag[$i],
+            'test_result' => $test_result[$i],
+            'investigation_test_results_other_details' => $investigation_test_results_other_details[$i],
+            'carrier_status' => $carrier_status[$i],
+            'mutation_nomenclature' => $mutation_nomenclature[$i],
+            'exon' => $exon[$i],
+            'mutation_type' => $mutation_type[$i],
+            'mutation_pathogenicity' => $mutation_pathogenicity[$i],
+            'report_date' => date('Y-m-d',strtotime($report_date[$i])),
+            'date_client_notified' => date('Y-m-d',strtotime($date_client_notified[$i])),
+            'is_counselling_flag' => $is_counselling_flag[$i],
+            'comments' => $comments[$i],
+            'mutation_name' => $mutation_name[$i],
+            'conformation_attachment' => $conformation_attachment[$i],
+            'created_on' => $date,
+            'conformation_file_url' => @$attach_file_path[$i]
+        );
+
+        //print_r($data_patient_investigations);exit;
+        
+        $this->db->where('patient_investigations_id', $patient_investigation_id[$i]);
+        $this->db->where('patient_studies_id', $studies_name);
+        $this->db->update('patient_mutation_analysis', $data_patient_investigations);
+        
+        //$this->db->last_query();
+        }
+        //echo '<pre>';
+        // print_r($data_patient_investigations);echo '<br/>';
+//        if ($patient_investigations_id > 0) {
+//            echo "<h2>Data Updated successfully at patient_mutation_analysis</h2>";
+//        } else {
+//            echo "<h2>Failed to update at patient_mutation_analysis</h2>";
+//        }
+//        echo '<br/>';
     }
 
     function surveillance_insertion() {
@@ -1722,8 +1823,8 @@ class Record extends CI_Controller {
         
         $icno = $this->input->post('icno');
         $manager_id = $this->input->post('patient_interview_manager_id');
-        $interview_date = $this->input->post('interview_date');
-        $next_interview_date = $this->input->post('interview_next_date');
+        $interview_date = str_replace("/","-",$this->input->post('interview_date'));
+        $next_interview_date = str_replace("/","-",$this->input->post('interview_next_date'));
         $is_send_email_reminder_to_officers = $this->input->post('is_send_email_reminder');
         $officer_email_addresses = $this->input->post('officer_email_addresses');
         $comments = $this->input->post('interview_note');
