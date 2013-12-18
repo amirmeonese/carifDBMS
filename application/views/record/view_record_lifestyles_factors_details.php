@@ -4,7 +4,7 @@
     </div>
     <?php
     $attributes = array('id' => 'lifestyle-details-form');
-    echo form_open("record/lifestyle_insertion", $attributes);
+    echo form_open("record/lifestyle_update", $attributes);
     ?>
     <div class="container" id="add_record_form_section_lifestyle">      
         <div height="30px">&nbsp;</div>
@@ -613,10 +613,16 @@
                     <?php echo form_input(array('name' => 'gnc_treatment_name_other_details', 'value' => @$patient_gynaecological['gnc_treatment_name_other_details']))?>
                 </td>
             </tr>
+             <input type="hidden" name="patient_ic_no" value="<?php print @$patient_lifestyle_factors['patient_ic_no']; ?>"/>
+            <input type="hidden" name="patient_lifestyle_factors_id" value="<?php print @$patient_lifestyle_factors['patient_lifestyle_factors_id']; ?>"/>
+            <input type="hidden" name="patient_menstruation_id" value="<?php print @$patient_menstruation['patient_menstruation_id']; ?>"/>
+            <input type="hidden" name="patient_parity_table_id" value="<?php print @$patient_parity_table['patient_parity_table_id']; ?>"/>
+            <input type="hidden" name="patient_infertility_id" value="<?php print @$patient_infertility['patient_infertility_id']; ?>"/>
+            <input type="hidden" name="patient_gynaecological_surgery_history_id" value="<?php print @$patient_gynaecological['patient_gynaecological_surgery_history_id']; ?>"/>
         </table>
         <?php echo form_fieldset_close(); ?>
     </div>
-    <?php echo form_submit('mysubmit', 'Save'); ?>
+    <?php echo form_submit('mysubmit', 'Update'); ?>
     <?php echo form_close(); ?>
 </div>
 

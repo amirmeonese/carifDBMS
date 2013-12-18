@@ -2282,6 +2282,6 @@ function get_studies_name_by_id() {
         
         return $sitebreastlist;
     }
-
+    
 }
 ?>
