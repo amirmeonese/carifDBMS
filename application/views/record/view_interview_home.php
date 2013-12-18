@@ -26,10 +26,17 @@
                 </td>
             </tr>
             <tr>
+                <?php if($patient_counselling['is_send_email_reminder_to_officers'] == 1){?>
+                <td>
+                    Send email reminder to officer?
+                    <?php echo form_checkbox(array('name' => 'is_send_email_reminder[]', 'value' => $patient_counselling['is_send_email_reminder_to_officers'],'checked'=>"checked"))?>
+                </td>
+               <?php } else {?>
                 <td>
                     Send email reminder to officer?
                     <?php echo form_checkbox(array('name' => 'is_send_email_reminder[]', 'value' => $patient_counselling['is_send_email_reminder_to_officers']))?>
                 </td>
+               <?php } ?>
             </tr>
             <tr>
                 <td>

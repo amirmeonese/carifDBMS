@@ -147,6 +147,180 @@ class Record extends CI_Controller {
 
 	}
 	
+        function patient_record_update() {
+
+        date_default_timezone_set("Asia/Kuala_lumpur");
+        $date = date('Y-m-d H:i:s'); //Returns IST     
+        
+        $patient_ic_no = $this->input->post('IC_no');
+
+        $data_patient = array(
+            'given_name' => $this->input->post('fullname'),
+            'surname' => $this->input->post('surname'),
+            'maiden_name' => $this->input->post('maiden_name'),
+            'family_no' => $this->input->post('family_no'),
+            'nationality' => $this->input->post('nationality'),
+            'gender' => $this->input->post('gender'),
+            'ethnicity' => $this->input->post('ethnicity'),
+            'd_o_b' => date('Y-m-d', strtotime($this->input->post('d_o_b'))),
+            'place_of_birth' => $this->input->post('place_of_birth'),
+            'income_level' => $this->input->post('income_level'),
+            'is_dead' => $this->input->post('is_dead'),
+            'd_o_d' => date('Y-m-d', strtotime($this->input->post('d_o_d'))),
+            'reason_of_death' => $this->input->post('reason_of_death'),
+            //'padigree_labelling' => $this->input->post('padigree_labelling'),
+            'blood_group' => $this->input->post('blood_group'),
+            //'private_patient_no' => $this->input->post('private_patient_no'), patient_private_no
+            'marital_status' => $this->input->post('marital_status'),
+            'blood_card' => $this->input->post('is_blood_card_exist'),
+            'blood_card_location' => $this->input->post('blood_card_location'),
+            //'cogs_study_id' => $this->input->post('COGS_study_id'),
+            'address' => $this->input->post('address'),
+            'home_phone' => $this->input->post('home_phone'),
+            'cell_phone' => $this->input->post('cell_phone'),
+            'work_phone' => $this->input->post('work_phone'),
+            'other_phone' => $this->input->post('other_phone'),
+            'fax' => $this->input->post('fax'),
+            'email' => $this->input->post('email'),
+            'height' => $this->input->post('height'),
+            'weight' => $this->input->post('weight'),
+            'bmi' => $this->input->post('BMI'),
+            'created_on' => $date,
+            'comment' => $this->input->post('patient_comments'),
+            'highest_education_level' => $this->input->post('highest_education_level')
+        );
+
+        $this->db->where('patient_ic_no', $patient_ic_no);
+        $this->db->update('patient', $data_patient);
+
+
+        $data_patient_contact_person = array(
+            'contact_name' => $this->input->post('contact_person_name'),
+            'contact_relationship' => $this->input->post('contact_person_relationship'),
+            'created_on' => $date,
+            'contact_telephone' => $this->input->post('contact_person_phone_number')
+        );
+
+        $this->db->where('patient_ic_no', $patient_ic_no);
+        $this->db->update('patient_contact_person', $data_patient_contact_person);
+        // print_r($data_patient_contact_person);
+
+        $data_patient_hospital_no = array(
+            'modified_on' => $date,
+            'hospital_no' => $this->input->post('hospital_no')
+        );
+
+        $this->db->where('patient_ic_no', $patient_ic_no);
+        $this->db->update('patient_hospital_no', $data_patient_hospital_no);
+        // print_r($data_patient_contact_person);
+
+
+        $data_patient_private_no = array(
+            'modified_on' => $date,
+            'private_no' => $this->input->post('private_patient_no')
+        );
+
+        $this->db->where('patient_ic_no', $patient_ic_no);
+        $this->db->update('patient_private_no', $data_patient_private_no);
+        // print_r($data_patient_contact_person);
+        //echo '<br/>';
+        //array_push($data, $this->input->post('firstname'));
+
+
+        $alive_status = $this->input->post('alive_status');
+
+        if ($alive_status == 'Alive')
+            $alive_status_flag = TRUE;
+        else if ($alive_status == 'Dead')
+            $alive_status_flag = FALSE;
+        else
+            $alive_status_flag = FALSE;
+
+        $data_patient_survival_status = array(
+            'source' => $this->input->post('recurrence_site'),
+            'alive_status' => $alive_status_flag,
+            'status_gathering_date' => date('Y-m-d', strtotime($this->input->post('status_gathered_date'))),
+            'created_on' => $date,
+            'source' => $this->input->post('status_source')
+        );
+
+        $this->db->where('patient_ic_no', $patient_ic_no);
+        $this->db->update('patient_relatives', $data_patient_survival_status);
+
+
+
+        $data_patient_COGS_study = array(
+            'COGS_studies_name' => $this->input->post('COGS_studies_id'),
+            'modified_on' => $date,
+            'COGS_studies_no' => $this->input->post('COGS_studies_no')
+        );
+
+        $this->db->where('patient_ic_no', $patient_ic_no);
+        $this->db->update('patient_relatives', $data_patient_COGS_study);
+
+
+
+        /* NOTE: Call getDynamicFieldsInputsArray() function to fetch the data array of dynamic fields. Parameter: Name of dynamic field's section */
+        //$dynamicFieldsArray = $this->getDynamicFieldsInputsArray("survival_status");
+
+        $data_patient_relatives_summary = array(
+            'total_no_of_male_siblings' => $this->input->post('total_no_of_male_siblings'),
+            'total_no_of_female_siblings' => $this->input->post('total_no_of_female_siblings'),
+            'total_no_of_affected_siblings' => $this->input->post('total_no_of_affected_siblings'),
+            'total_no_of_male_children' => $this->input->post('total_no_male_children'),
+            'total_no_of_female_children' => $this->input->post('total_no_female_children'),
+            'total_no_of_affected_children' => $this->input->post('total_no_of_affected_children'),
+            'total_no_of_1st_degree' => $this->input->post('total_no_of_first_degree'),
+            'total_no_of_2nd_degree' => $this->input->post('total_no_of_second_degree'),
+            'total_no_of_3rd_degree' => $this->input->post('total_no_of_third_degree'),
+            'created_on' => $date,
+            'total_no_of_siblings' => $this->input->post('total_no_of_siblings')
+                //'unknown_reason_is_adopted' => $this->input->post('unknown_reason_is_adopted'),
+                //'unknown_reason_in_other_countries' => $this->input->post('unknown_reason_in_other_countries')
+        );
+
+        $this->db->where('patient_ic_no', $patient_ic_no);
+        $this->db->update('patient_relatives', $data_patient_relatives_summary);
+
+        //print_r($data_patient_relatives_summary);
+
+
+            $consent_studies_id = $this->input->post('studies_name');
+            $studies_id = $this->record_model->get_studies_id($consent_studies_id);
+            $date_at_consent = date('Y-m-d', strtotime($this->input->post('date_at_consent')));
+            $age_at_consent = $this->input->post('age_at_consent');
+            $double_consent_flag = $this->input->post('is_double_consent_flag');
+            $consent_given_by = $this->input->post('consent_given_by');
+            $consent_response = $this->input->post('consent_response');
+            $consent_version = $this->input->post('consent_version');
+            $relation_to_study = $this->input->post('relations_to_study');
+            $referral_to = $this->input->post('referral_to');
+            $referral_to_genetic_counselling = $this->input->post('referral_date');
+            $referral_source = $this->input->post('referral_source');
+        
+            for($i=0;$i<count($patient_ic_no);$i++){ 
+        
+            $data_patient_consent_detail = array(
+            'date_at_consent' => date('Y-m-d', strtotime($date_at_consent[$i])),
+            'age_at_consent' => $age_at_consent[$i],
+            'double_consent_flag' => $double_consent_flag[$i],
+            'consent_given_by' => $consent_given_by[$i],
+            'consent_response' => $consent_response[$i],
+            'consent_version' => $consent_version[$i],
+            'relation_to_study' => $relation_to_study[$i],
+            'referral_to' => $referral_to[$i],
+            'modified_on' => $date,
+            'referral_to_genetic_counselling' => $referral_to_genetic_counselling[$i],
+            'referral_source' => $referral_source[$i]
+        );
+
+        $this->db->where('studies_id', $studies_id[$i]);
+        $this->db->where('patient_ic_no', $patient_ic_no);
+        $this->db->update('patient_relatives', $data_patient_consent_detail);
+        //print_r($data_patient_relatives_summary);
+            }
+    }
+
     function patient_record_insertion() {
         //print_r($this->input->post());
         //$data = array();
@@ -463,6 +637,139 @@ class Record extends CI_Controller {
         } else {
             print_r(validation_errors());
         }
+    }
+    
+    public function patient_family_record_update() {
+        //print_r($this->input->post());
+        //$data = array();
+        //validate form input
+        
+        date_default_timezone_set("Asia/Kuala_lumpur"); 
+        $date = date('Y-m-d H:i:s'); //Returns IST 
+
+        $patient_ic_no = $this->input->post('IC_no');
+        $father_cancer_name = $this->input->post('father_cancer_name');
+        $family_no = $this->input->post('family_no');
+        $full_name = $this->input->post('father_fullname');
+        $sur_name = $this->input->post('father_surname');
+        $maiden_name = $this->input->post('father_maiden_name');
+        $ethnicity = $this->input->post('father_ethncity');
+        $town_of_residence = $this->input->post('father_town_residence');
+        $d_o_b = $this->input->post('father_DOB');
+        $is_alive_flag = $this->input->post('father_still_alive_flag');
+        $d_o_d = $this->input->post('father_DOD');
+        $is_cancer_diagnosed = $this->input->post('father_is_cancer_diagnosed');
+        $date_of_diagnosis = date('Y-m-d', strtotime($this->input->post('father_date_of_diagnosis')));
+        //$cancer_type_id = $father_cancer_type_id;
+        $age_of_diagnosis = $this->input->post('father_age_of_diagnosis');
+        $other_detail = $this->input->post('father_diagnosis_other_details');
+        $no_of_brothers = $this->input->post('father_no_of_brothers');
+        $no_of_sisters = $this->input->post('father_no_of_sisters');
+        $total_half_sisters = $this->input->post('father_no_of_half_sisters');
+        $total_half_brothers = $this->input->post('father_no_of_half_brothers');
+        $is_adopted = $this->input->post('father_unknown_reason_is_adopted');
+        $is_in_other_country = $this->input->post('father_unknown_reason_in_other_countries');
+        $comments = $this->input->post('father_comments');
+        $vital_status = $this->input->post('father_vital_status');
+
+        for($i=0;$i<count($patient_ic_no);$i++){ 
+        $data1_patient_relatives = array(
+                'family_no' => $family_no[$i],
+                'full_name' => $full_name[$i],
+                'sur_name' => $sur_name[$i],
+                'maiden_name' => $maiden_name[$i],
+                'ethnicity' => $ethnicity[$i],
+                'town_of_residence' => $town_of_residence[$i],
+                'd_o_b' => $d_o_b[$i],
+                'is_alive_flag' => $is_alive_flag[$i],
+                'd_o_d' => $d_o_d[$i],
+                'is_cancer_diagnosed' => $is_cancer_diagnosed[$i],
+                'date_of_diagnosis' => date('Y-m-d',strtotime($date_of_diagnosis[$i])),
+                'cancer_type_id' => $father_cancer_type_id,
+                'age_of_diagnosis' => $age_of_diagnosis[$i],
+                'other_detail' => $other_detail[$i],
+                'no_of_brothers' => $no_of_brothers[$i],
+                'no_of_sisters' => $no_of_sisters[$i],
+                'total_half_sisters' => $total_half_sisters[$i],
+                'total_half_brothers' => $total_half_brothers[$i],
+                'is_adopted' => $is_adopted[$i],
+                'is_in_other_country' => $is_in_other_country[$i],
+                'modified_on' => $date,
+                'comments' => $comments[$i],
+                'vital_status' => $vital_status[$i]
+                //'match_score_at_consent' => $this->input->post('father_mach_score_at_consent'),
+                //'match_score_past_consent' => $this->input->post('father_mach_score_past_consent'),
+                //'fh_category' => $this->input->post('father_FH_category')
+            );
+        
+        $this->db->where('relatives_id', 1);
+        $this->db->where('patient_ic_no', $patient_ic_no[$i]);
+        $this->db->update('patient_relatives', $data1_patient_relatives);
+
+        }
+        
+                        
+            $mother_cancer_name = $this->input->post('mother_cancer_name');
+            $mother_cancer_type_id = $this->record_model->get_cancer_id($mother_cancer_name);
+            
+                $mother_family_no = $this->input->post('family_no');
+                $mother_full_name = $this->input->post('mother_fullname');
+                $mother_sur_name = $this->input->post('mother_surname');
+                $mother_maiden_name = $this->input->post('mother_maiden_name');
+                $mother_ethnicity = $this->input->post('mother_ethnicity');
+                $mother_town_of_residence = $this->input->post('mother_town_residence');
+                $mother_d_o_b = $this->input->post('mother_DOB');
+                $mother_is_alive_flag = $this->input->post('mother_still_alive_flag');
+                $mother_d_o_d = $this->input->post('mother_DOD');
+                $mother_is_cancer_diagnosed = $this->input->post('mother_is_cancer_diagnosed');
+                $mother_date_of_diagnosis = $this->input->post('mother_date_of_diagnosis');
+                $mother_cancer_type_id = $mother_cancer_type_id;
+                $mother_age_of_diagnosis = $this->input->post('mother_age_of_diagnosis');
+                $mother_other_detail = $this->input->post('mother_diagnosis_other_details');
+                $mother_no_of_brothers = $this->input->post('mother_no_of_brothers');
+                $mother_total_half_sisters= $this->input->post('mother_no_of_half_sisters');
+                $mother_total_half_brothers = $this->input->post('mother_no_of_half_brothers');
+                $mother_no_of_sisters = $this->input->post('mother_no_of_sisters');
+                $mother_is_adopted = $this->input->post('mother_unknown_reason_is_adopted');
+                $mother_comments = $this->input->post('mother_comments');
+                $mother_is_in_other_country = $this->input->post('mother_unknown_reason_in_other_countries');
+                $mother_vital_status = $this->input->post('mother_vital_status');
+                        
+            for($j=0;$j<count($patient_ic_no);$j++){ 
+            
+            $data2_patient_relatives = array(
+                'family_no' => $mother_family_no[$j],
+                'full_name' => $mother_full_name[$j],
+                'sur_name' => $mother_sur_name[$j],
+                'maiden_name' => $mother_maiden_name[$j],
+                'ethnicity' => $mother_ethnicity[$j],
+                'town_of_residence' => $mother_town_of_residence[$j],
+                'd_o_b' => date('Y-m-d',strtotime($mother_d_o_b[$j])),
+                'is_alive_flag' => $mother_is_alive_flag[$j],
+                'd_o_d' => date('Y-m-d',strtotime($mother_d_o_d[$j])),
+                'is_cancer_diagnosed' => $mother_is_cancer_diagnosed[$j],
+                'date_of_diagnosis' => date('Y-m-d',strtotime($mother_date_of_diagnosis[$j])),
+                'cancer_type_id' => $mother_mother_cancer_type_id,
+                'age_of_diagnosis' => $mother_age_of_diagnosis[$j],
+                'other_detail' => $mother_other_detail[$j],
+                'no_of_brothers' => $mother_no_of_brothers[$j],
+                'total_half_sisters' => $mother_total_half_sisters[$j],
+                'total_half_brothers' => $mother_total_half_brothers[$j],
+                'no_of_sisters' => $mother_no_of_sisters[$j],
+                'modified_on' => $date,
+                'is_adopted' => $mother_is_adopted[$j],
+                'comments' => $mother_comments[$j],
+                'is_in_other_country' => $mother_is_in_other_country[$j],
+                'vital_status' => $mother_vital_status[$j]
+                //'match_score_at_consent' => $this->input->post('mother_mach_score_at_consent'),
+                //'match_score_past_consent' => $this->input->post('mother_mach_score_past_consent'),
+                //'fh_category' => $this->input->post('mother_FH_category')
+            );
+            
+            $this->db->where('relatives_id', 2);
+            $this->db->where('patient_ic_no', $patient_ic_no[$j]);
+            $this->db->update('patient_relatives', $data2_patient_relatives);
+            }
     }
     
     public function risk_assessment_insertion() {
@@ -1219,6 +1526,169 @@ class Record extends CI_Controller {
             echo "<h2>Failed to insert at patient_gynaecological_surgery_history</h2>";
         }
         echo '<br/>';
+    }
+    
+    function lifestyle_update() {
+
+         //need to calculate $patient_studies_id by using study name-->studies_id and patient_ic_no
+        
+        date_default_timezone_set("Asia/Kuala_lumpur"); 
+        $date = date('Y-m-d H:i:s'); //Returns IST 
+        
+        $patient_lifestyle_factors_id = $this->input->post('patient_lifestyle_factors_id');
+        $patient_studies_id = $this->input->post('patient_studies_id');
+
+        $data_patient_lifestyle_factors = array(
+            'questionnaire_date' => date('Y-m-d',strtotime($this->input->post('questionnaire_date'))),
+            'self_image_at_7years' => $this->input->post('self_image_at_7years'),
+            'self_image_at_18years' => $this->input->post('self_image_at_18years'),
+            'self_image_now' => $this->input->post('self_image_now'),
+            'pa_strenuous_activity_childhood' => $this->input->post('pa_strenuous_exercise_childhood'),
+            'pa_moderate_exercise_childhood' => $this->input->post('pa_moderate_exercise_childhood'),
+            'pa_gentle_exercise_childhood' => $this->input->post('pa_gentle_exercise_childhood'),
+            'pa_strenuous_activity_adult' => $this->input->post('pa_strenuous_exercise_adult'),
+            'pa_moderate_exercise_adult' => $this->input->post('pa_moderate_exercise_adult'),
+            'pa_gentle_exercise_adult' => $this->input->post('pa_gentle_exercise_adult'),
+            'pa_strenuous_activity_now' => $this->input->post('pa_strenuous_exercise_now'),
+            'pa_moderate_exercise_now' => $this->input->post('pa_moderate_exercise_now'),
+            'pa_gentle_exercise_now' => $this->input->post('pa_gentle_exercise_now'),
+            'cigarrets_smoked_flag' => $this->input->post('cigarettes_smoked_flag'),
+            'cigarrets_still_smoked_flag' => $this->input->post('cigarettes_still_smoked_flag'),
+            'total_smoked_years' => $this->input->post('total_smoked_years'),
+            'cigarrets_count_at_teen' => $this->input->post('cigarettes_count_at_teen'),
+            'cigarrets_count_at_twenties' => $this->input->post('cigarettes_count_at_twenties'),
+            'cigarrets_count_at_thirties' => $this->input->post('cigarettes_count_at_thirties'),
+            'cigarrets_count_at_fourrties' => $this->input->post('cigarettes_count_at_forties'),
+            'cigarrets_count_at_fifties' => $this->input->post('cigarettes_count_at_fifties'),
+            'cigarrets_count_at_sixties_and_above' => $this->input->post('cigarettes_count_at_sixties_and_above'),
+            'cigarrets_count_one_year_before_diagnosed' => $this->input->post('cigarettes_count_one_year_before_diagnosed'),
+            'alcohol_drunk_flag' => $this->input->post('alcohol_drunk_flag'),
+            'alcohol_frequency' => $this->input->post('alcohol_average'),
+            'alcohol_comments' => $this->input->post('alcohol_average_details'),
+            'coffee_drunk_flag' => $this->input->post('coffee_drunk_flag'),
+            'coffee_age' => $this->input->post('coffee_age'),
+            'coffee_frequency' => $this->input->post('coffee_average'),
+            'tea_drunk_flag' => $this->input->post('tea_drunk_flag'),
+            'tea_age' => $this->input->post('tea_age'),
+            'tea_frequency' => $this->input->post('tea_average'),
+            'tea_type' => $this->input->post('tea_type'),
+            //'tea_type_other' => $this->input->post('tea_type_other'),
+            'soya_bean_drunk_flag' => $this->input->post('soya_bean_drunk_flag'),
+            'soya_bean_frequency' => $this->input->post('soya_bean_average'),
+            'soya_products_flag' => $this->input->post('soya_products_flag'),
+            'soya_products_average' => $this->input->post('soya_products_average'),
+            //'soya_products_average_other' => $this->input->post('soya_products_average_other'),
+            'diabetes_flag' => $this->input->post('diabetes_flag'),
+            'medicine_for_diabetes_flag' => $this->input->post('medicine_for_diabetes_flag'),
+            'created_on' => $date,
+            'diabetes_medicine_name' => $this->input->post('diabates_medicine_name')
+        );
+        
+//        print_r($data_patient_lifestyle_factors);exit;
+        //echo '<br/>';
+
+        $this->db->where('patient_lifestyle_factors_id', $patient_lifestyle_factors_id);
+        $this->db->where('patient_studies_id', $patient_studies_id);
+        $this->db->update('patient_lifestyle_factors', $data_patient_lifestyle_factors);
+        
+        
+        $patient_menstruation_id = $this->input->post('patient_menstruation_id'); 
+        
+        $data_patient_menstruation = array(
+            'age_period_starts' => $this->input->post('age_period_starts'),
+            'still_period_flag' => $this->input->post('still_period_flag'),
+            'period_type' => $this->input->post('period_type'),
+            'period_cycle_days' => $this->input->post('period_cycle_days'),
+            'period_cycle_days_other_details' => $this->input->post('period_cycle_days_other_details'),
+            'age_at_menopause' => $this->input->post('age_period_stops'),
+            'date_period_stops' => date('Y-m-d',strtotime($this->input->post('date_period_stops'))),
+            'reason_period_stops' => $this->input->post('reason_period_stops'),
+            'created_on' => $date,
+            'reason_period_stops_other_details' => $this->input->post('reason_period_stops_other_details')
+        );
+        //print_r($data_patient_menstruation);
+        //echo '<br/>';
+
+        $this->db->where('patient_menstruation_id', $patient_menstruation_id);
+        $this->db->where('patient_studies_id', $patient_studies_id);
+        $this->db->update('patient_menstruation', $data_patient_menstruation);
+
+        $patient_parity_table_id = $this->input->post('patient_parity_table_id');
+        $data_patient_parity_table = array(
+            'modified_on' => $date,
+            //'pregnant_flag' => $this->input->post('never_been_pregnant_flag'),
+            'pregnant_flag' => $this->input->post('pregnent_flag')
+        );
+
+        //print_r($data_patient_parity_table);
+        //echo '<br/>';
+        //patient_parity_table_id = //after inserting at patient_parity_table we will use it at next table
+
+        $this->db->where('patient_parity_table_id', $patient_parity_table_id);
+        $this->db->where('patient_studies_id', $patient_studies_id);
+        $this->db->update('patient_parity_table', $data_patient_parity_table);
+
+        $data_patient_parity_record = array(
+            'pregnancy_type' => $this->input->post('pregnancy_type'),
+            'gender' => $this->input->post('child_gender'),
+            'year_of_birth' => $this->input->post('child_birthyear'),
+            'birthweight' => $this->input->post('child_birthweight'),
+            'created_on' => $date,
+            'breastfeeding_duration' => $this->input->post('child_breastfeeding_duration')
+        );
+        //print_r($data_patient_parity_record);
+        //echo '<br/>';
+
+        $this->db->where('patient_parity_table_id', $patient_parity_table_id);
+        $this->db->update('patient_parity_record', $data_patient_parity_record);
+
+        $patient_infertility_id = $this->input->post('patient_infertility_id');
+        $data_patient_infertility = array(
+            'infertility_testing_flag' => $this->input->post('infertility_testing_flag'),
+            'infertility_comments' => $this->input->post('infertility_treatment_details'),
+            'infertility_treatment_duration' => $this->input->post('infertility_treatment_duration'),
+           'infertility_comments' => $this->input->post('infertility_treatment_comments'),
+            'contraceptive_pills_flag' => $this->input->post('contraceptive_pills_flag'),
+            //'contraceptive_pills_details' => $this->input->post('contraceptive_pills_details'),
+            'currently_taking_contraceptive_pills_flag' => $this->input->post('currently_taking_contraceptive_pills_flag'),
+            'contraceptive_start_date' => date('Y-m-d',strtotime($this->input->post('contraceptive_start_date'))),
+            'contraceptive_end_date' => date('Y-m-d',strtotime($this->input->post('contraceptive_end_date'))),
+            'contraceptive_end_age' => $this->input->post('contraceptive_end_age'),
+            'contraceptive_start_age' => $this->input->post('contraceptive_start_age'),
+            'contraceptive_duration' => $this->input->post('contraceptive_duration'),
+            'hrt_start_age' => $this->input->post('hrt_start_age'),
+            'hrt_end_age' => $this->input->post('hrt_end_age'),
+            'hrt_flag' => $this->input->post('HRT_flag'),
+            //'hrt_details' => $this->input->post('HRT_details'),
+            'currently_using_hrt_flag' => $this->input->post('currently_using_hrt_flag'),
+            'hrt_start_date' => date('Y-m-d',strtotime($this->input->post('hrt_start_date'))),
+            'created_on' => $date,
+            'hrt_duration' => $this->input->post('HRT_duration'),
+            'hrt_end_date' => date('Y-m-d',strtotime($this->input->post('hrt_end_date')))
+        );
+        // print_r($data_patient_infertility);
+        //echo '<br/>';
+
+        $this->db->where('patient_infertility_id', $patient_infertility_id);
+        $this->db->where('patient_studies_id', $patient_studies_id);
+        $this->db->update('patient_infertility', $data_patient_infertility);
+
+        $patient_gynaecological_surgery_history_id = $this->input->post('patient_gynaecological_surgery_history_id');
+        $treatment_name = $this->input->post('gnc_treatment_name');
+        $treatment_id = $this->record_model->get_treatment_id($treatment_name);
+        $data_patient_gynaecological_surgery_history = array(
+            'had_gnc_surgery_flag' => $this->input->post('had_gnc_surgery_flag'),
+            'surgery_year' => $this->input->post('gnc_surgery_year'),
+            'treatment_id' => $treatment_id,
+            'created_on' => $date,
+            'gnc_treatment_name_other_details' => $this->input->post('gnc_treatment_name_other_details')
+        );
+        //print_r($data_patient_gynaecological_surgery_history);
+        //echo '<br/>';
+
+        $this->db->where('patient_investigations_id', $patient_gynaecological_surgery_history_id);
+        $this->db->where('patient_studies_id', $patient_studies_id);
+        $this->db->update('patient_mutation_analysis', $data_patient_gynaecological_surgery_history);
     }
 
     function investigation_insertion() {
