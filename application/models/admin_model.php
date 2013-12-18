@@ -20,6 +20,16 @@ class Admin_model extends CI_Model {
         return $data;
     }
 
+	public function get_deleted_patient_lists(){
+		$query = $this->db->select('*')->from('patient')->where('is_deleted = 1')->get();
+
+        if ($query->num_rows() > 0) {
+            return $query->result();
+        } else {
+            return null;
+        }
+	}
+	
     public function get_locked_patient_lists() {
         $query = $this->db->select('*')->from('patient')->where('is_record_locked = 1')->get();
 

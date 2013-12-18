@@ -81,9 +81,18 @@ class Admin extends CI_Controller {
     }
 
     function deletion_history() {
-        $this->template->load("templates/admin_panel_template", 'admin/deletion_history');
+		$data['deleted_patient_lists'] = $this->admin_model->get_deleted_patient_lists();
+        $this->template->load("templates/admin_panel_template", 'admin/deletion_history', $data);
     }
 
+	function restore_deleted_items(){
+		$ic = $this->uri->segment(3);
+        $insert_status = $this->db->where('IC_no', $ic)->update('patient', array('is_deleted' => 0));
+
+        if ($insert_status)
+            redirect('admin/', 'refresh');
+	}
+	
     function list_record_locked_item() {
         $data['locked_patient_lists'] = $this->admin_model->get_locked_patient_lists();
         $this->template->load("templates/admin_panel_template", 'admin/list_record_locked_item', $data);
