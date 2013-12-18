@@ -143,7 +143,7 @@ class Admin extends CI_Controller {
         $this->email->message($error_list);
 		
         if ($this->email->send() == TRUE) {
-           redirect('admin/admin_panel');
+           redirect('admin');
         }
 		else
 			$this->write_error_into_log('Error in submitting error log email to consultant.');
