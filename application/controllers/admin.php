@@ -117,30 +117,36 @@ class Admin extends CI_Controller {
     }
 
     function submit_error_to_consultant() {
-        $error_list = $this->input->post('error_list');
+	
+		$errorNo = $this->input->get_post("logsubmit");
+		$errorNo = str_replace("Send error ", "", $errorNo);
+		$error_list = $this->input->post('error_list'.$errorNo);
+		
+		$welcomeMsg = "Dear consultant,<br><br>Kindly review the following error in carif_error log.<br><br>";
+		$endMsg = "sent via CarifDBMS.";
+		$error_list = $welcomeMsg . $error_list . '<br><br>'. $endMsg;
+		$config['protocol'] = 'smtp';
+        $config['smtp_host'] = 'ssl://smtp.gmail.com';
+        $config['smtp_port'] = '465';
+        $config['smtp_timeout'] = '7';
+        $config['smtp_user'] = 'cariftest@gmail.com';
+        $config['smtp_pass'] = 'carif123456';
+        $config['charset'] = 'utf-8';
+        $config['newline'] = "\r\n";
+        $config['mailtype'] = 'html'; // or text
+        $config['validation'] = TRUE; // bool whether to validate email or not     
+        $this->email->initialize($config);
 
-        $config = array(
-            'protocol' => 'smtp',
-            //'mailpath' => '/usr/sbin/sendmail',
-            'smtp_host' => 'ssl://smtp.googlemail.com',
-            'smtp_port' => 465,
-            'smtp_user' => 'apurbamy@gmail.com',
-            'smtp_pass' => 'apurbamy2012',
-            'mailtype' => 'html'
-        );
-
-        $this->load->library('email', $config);
-        $this->email->set_newline("\r\n");
-        $this->email->from('carif@errorlog.com', 'Carif Error Log sent via CarifDBMS');
-        $this->email->to('farizaamir@gmail.com');
+        $this->email->from('cariftest@gmail.com', 'Carif Error Log sent via CarifDBMS');
+        $this->email->to('amirul.asyraf@apurbatech.com.my,azriah.aziz@apurbatech.com,pulak@apurbatech.com');
         $this->email->subject('Carif Error Log Report');
         $this->email->message($error_list);
-        $send_status = $this->email->send();
-
-        if (send_status)
-            redirect('admin/admin_panel/submit_report', 'refresh');
-        else
-            $this->write_error_into_log('Error in submitting error log email to consultant.');
+		
+        if ($this->email->send() == TRUE) {
+           redirect('admin/admin_panel');
+        }
+		else
+			$this->write_error_into_log('Error in submitting error log email to consultant.');
     }
 
     function write_error_into_log($error_msg) {

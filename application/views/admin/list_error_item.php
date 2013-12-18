@@ -19,8 +19,8 @@
 			$list = addslashes($list);?>
             <tr>
 				<td id="error-log-td"><?php echo $i ?></td>
-				<td id="error-log-td"><input type="hidden" name="error_list" value="<?php echo $list; ?>"> <?php echo $list; ?></input></td>
-                <td id="error-log-td"><?php echo form_submit('logsubmit', 'Send error'); ?></td>
+				<td id="error-log-td"><input type="hidden" name="error_list<?php echo $i?>" value="<?php echo $list; ?>"> <?php echo $list; ?></input></td>
+                <td id="error-log-td"><?php echo form_submit('logsubmit', 'Send error '. $i); ?></td>
             </tr>
         <?php  if($i==10) break; $i++;  endforeach; ?>
 		<tr>
