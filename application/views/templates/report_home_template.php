@@ -36,7 +36,7 @@
 		$(document).ready(function() {
 			$('#data_field_textarea').textext({
 				plugins : 'tags prompt focus autocomplete ajax arrow',
-				tagsItems : [ 'IC_no', 'Fullname' ],
+				tagsItems : [ 'IC_no', 'Given_name' ],
 				prompt : 'Select..',
 				ajax : {
 					url : '<?php echo base_url(); ?>js/plugins/category/data/data.json',

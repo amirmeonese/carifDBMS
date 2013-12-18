@@ -208,7 +208,6 @@ $( document ).ready(function() {
 				case 'gnc_treatment_lists':
 					vals = data.gnc_treatment_lists.split(",");
 					break;
-					
 				case 'base':
 					vals = ['Please choose from above'];
 			}
@@ -222,7 +221,9 @@ $( document ).ready(function() {
 		});
 	});
    
-	$( ".dialog-form" ).dialog({
+	if($(".dialog-form").dialog)
+	{
+		$(".dialog-form").dialog({
       autoOpen: false,
       height: 200,
       width: 350,
@@ -436,7 +437,11 @@ $( document ).ready(function() {
       }
     });
 	
-	$( ".dialog-form-add-new" ).dialog({
+	}
+	
+	if($(".dialog-form-add-new").dialog)
+	{
+		$( ".dialog-form-add-new" ).dialog({
       autoOpen: false,
       height: 200,
       width: 350,
@@ -647,6 +652,7 @@ $( document ).ready(function() {
       }
     });
 
+	}
 	$( ".rename" ).button().click(function() {
 		
 		var selectedID = $('#first-choice').val();

@@ -43,6 +43,19 @@
                     <?php echo form_input('report_age'); ?>
                 </td>
             </tr>
+			<tr>
+                <td>
+                    &nbsp;
+                </td>
+                <td id="label2">
+                    Studies
+					<?php 
+					$options = array(
+						'Dynamic Dropdown'  => 'Dynamic Dropdown'
+					);
+					echo form_dropdown('studies_name', $options, NULL, 'id="studies_name"'); ?>
+				</td>
+            </tr>
             <tr>
                 <td id="label1">
 
