@@ -348,6 +348,10 @@ class Excell_parser_model extends CI_Model {
                                 }
                                 $array_IC_no_Family[] = $cell_value;
                             }
+                            
+                            if ($key == 1 && $cell_value == NULL) {
+                                $array_relationship_type[] = 'None';
+                            }
 
                             if ($key == 1 && $cell_value != NULL) {
                                 $array_relationship_type[] = $cell_value;
@@ -999,6 +1003,8 @@ class Excell_parser_model extends CI_Model {
                     $array_other_screening_type = null;
                     $array_IC_no_Surveilance4 = array();
                     $array_IC_no_Surveilance4 = null;
+                    $array_ovarian_screening_type = array();
+                    $array_ovarian_screening_type = null;;
 
                     foreach ($sheet->getRowIterator() as $row) {//echo '<br/>from Sreening and Surveilance4';
                         $ic_no_validator = TRUE;
@@ -1030,7 +1036,11 @@ class Excell_parser_model extends CI_Model {
                             if ($key == 1 && $cell_value != NULL) {
                                 $array_studies_name[] = $cell_value;
                             }
-
+                            
+                            if ($key == 2 && $cell_value == NULL) {
+                                $array_ovarian_screening_type[] = 'None';
+                            }
+                            
                             if ($key == 2 && $cell_value != NULL) {
                                 $array_ovarian_screening_type[] = $cell_value;
                             }
@@ -1047,7 +1057,7 @@ class Excell_parser_model extends CI_Model {
                                     break;
                                 }
                             }
-
+                            
                             if ($key == 6 && $cell_value == NULL) {
                                 $cell_value = 'None';
                             }
@@ -1550,7 +1560,7 @@ class Excell_parser_model extends CI_Model {
                                 $cell_value = str_replace('-', '', $cell_value);
                                 $ic_no_validator = $this->check_IC_NO($cell_value);
                                 if (!$ic_no_validator) {
-                                    echo '<h2>patient_IC_no is not in appropriate format at Lifestyle3</h2>';
+                                    echo '<h2>patient_IC_no is not in appropriate format at Lifestyle3'.'  row '.$i.'</h2>';
                                     $abort = TRUE;
                                     break;
                                 }
@@ -1616,6 +1626,7 @@ class Excell_parser_model extends CI_Model {
 
                 if ($loadedSheetName == 'Personal') {
                     $row_skip_flag = FALSE;
+                    $data_patient = array();
                     foreach ($sheet->getRowIterator() as $row) {
                         $i++;
 
@@ -1629,12 +1640,12 @@ class Excell_parser_model extends CI_Model {
                             //$cell_value = $cell->getCalculatedValue(); // Value here
                             $cell_value = $cell->getFormattedValue();
 
-                            if ($key == 0 && $cell_value == NULL) {
+                            /*if ($key == 0 && $cell_value == NULL) {
                                 $row_skip_flag = TRUE;
-                            }
+                            }*/
                             //echo $key; // 0, 1, 2..
                             if ($key == 5 && $cell_value != NULL)
-                                $cell_value = str_replace('-', '', $cell_value);
+                                $cell_value = str_replace('-', '', trim($cell_value));
 
                             if ($key == 8 || $key == 13 || $key == 48) {
                                 if ($cell_value != NULL) {
@@ -1646,10 +1657,10 @@ class Excell_parser_model extends CI_Model {
                             //echo $cell_value . '    ';
                         }
 
-                        if ($row_skip_flag == TRUE) {
+                        /*if ($row_skip_flag == TRUE) {
                             $row_skip_flag = FALSE;
                             continue;
-                        }
+                        }*/
 
                         $array_IC_no[] = $temp1[5];
 
@@ -1830,7 +1841,7 @@ class Excell_parser_model extends CI_Model {
                             $cell_value = $cell->getFormattedValue();
 
                             if ($key == 0 && $cell_value != NULL)
-                                $cell_value = str_replace('-', '', $cell_value);
+                                $cell_value = str_replace('-', '', trim($cell_value));
 
                             if ($key == 0 && $cell_value != NULL)
                                 $temp_ic_no = $cell_value;
@@ -1843,7 +1854,9 @@ class Excell_parser_model extends CI_Model {
                                     $cell_value = date('Y-m-d', strtotime(str_replace('/', '-', $cell_value)));
                                 }
                             }
-
+                            if ($key == 1 && $cell_value == NULL)
+                                $cell_value = 'None';
+         
                             if ($key == 14 && $cell_value == NULL)
                                 $cell_value = 'None';
                             //echo $key; // 0, 1, 2..
@@ -1950,7 +1963,7 @@ class Excell_parser_model extends CI_Model {
                             //$cell_value = $cell->getCalculatedValue(); // Value here
                             $cell_value = $cell->getFormattedValue();
                             if ($key == 0 && $cell_value != NULL)
-                                $cell_value = str_replace('-', '', $cell_value);
+                                $cell_value = str_replace('-', '', trim($cell_value));
 
                             if ($key == 2) {
                                 if ($cell_value != NULL) {
@@ -1978,7 +1991,7 @@ class Excell_parser_model extends CI_Model {
                             $double_consent_flag = FALSE;
                         else
                             $double_consent_flag = FALSE;
-
+                        //echo $temp3[0].'<br/>';
                         $data_patient_studies[] = array(
                             'patient_ic_no' => $temp3[0],
                             'studies_id' => $studies_id,
@@ -2216,9 +2229,9 @@ class Excell_parser_model extends CI_Model {
                         echo 'Failed to insert at patient_cancer table';
                     echo '<br/>';
 
-                    $tempLength = sizeof($data_patient_cancer_treatment);
+                    $tempLen = sizeof($data_patient_cancer_treatment);
 
-                    for ($key = 0; $key < $tempLength; $key++) {
+                    for ($key = 0; $key < $tempLen; $key++) {
                         //echo $treatment_patient_studies_id[$key].'      '.$treatment_cancer_id[$key].'      '.$treatment_cancer_site_id[$key].'<br/>';
                         $patient_cancer_id = $this->excell_sheets_model->get_patient_cancer_id($treatment_patient_studies_id[$key], $treatment_cancer_id[$key], $treatment_cancer_site_id[$key]);
                         $data_patient_cancer_treatment[$key]['patient_cancer_id'] = $patient_cancer_id;
@@ -2772,6 +2785,9 @@ class Excell_parser_model extends CI_Model {
                                 $cell_value = str_replace('-', '', $cell_value);
 
                             //echo $key; // 0, 1, 2..
+                            if ($key == 2 && $cell_value == NULL)
+                                $cell_value = 'None';
+        
                             if ($key == 6 && $cell_value == NULL)
                                 $cell_value = 'None';
 
@@ -3377,11 +3393,11 @@ class Excell_parser_model extends CI_Model {
                         $cellIterator->setIterateOnlyExistingCells(false);
                         $temp13 = array();
                         foreach ($cellIterator as $key => $cell) {
+                            $cell_value = $cell->getFormattedValue();
+                            
                             if ($key == 0 && $cell_value != NULL)
                                 $cell_value = str_replace('-', '', $cell_value);
-
-                            $cell_value = $cell->getFormattedValue();
-
+                            
                             if ($key == 4) {
                                 if ($cell_value != NULL) {
                                     $cell_value = date('Y-m-d', strtotime(str_replace('/', '-', $cell_value)));
@@ -3394,8 +3410,8 @@ class Excell_parser_model extends CI_Model {
                         $patient_ic_no = $temp13[0];
                         $studies_name = $temp13[1];
                         $studies_id = $this->excell_sheets_model->get_id('studies', 'studies_id', 'studies_name', $studies_name);
-                        $patient_studies_id = $this->excell_sheets_model->get_patient_studies_id($patient_ic_no, $studies_id);
-                        $patient_parity_table_id = $this->excell_sheets_model->get_patient_parity_table_id($patient_studies_id);
+                        $patient_studies_id = $this->excell_sheets_model->get_patient_studies_id($patient_ic_no, $studies_id);//echo $patient_studies_id.'    ';
+                        $patient_parity_table_id = $this->excell_sheets_model->get_patient_parity_table_id($patient_studies_id);//echo $patient_parity_table_id.'<br/>';
 
                         $data_patient_Lifestyle3[] = array(
                             'patient_parity_table_id' => $patient_parity_table_id,
