@@ -40,15 +40,16 @@
         <?php echo form_submit('search','Search');  ?>
         
         <?php //if($submit):?>
-        <div style="margin-left:180px;"><?php echo $total_results . " record(s) found. Showing ". ($start_from + 1 ). "-" . ($start_from + count($patient_list))?></div><br />
-		<div style="margin-left:180px;"><?php echo $pagination_links; ?></div>
-        <table border="1" width="50%" style="margin-left:180px;">
+        <div style="margin-left:100px;"><?php echo $total_results . " record(s) found. Showing ". ($start_from + 1 ). "-" . ($start_from + count($patient_list))?></div><br />
+		<div style="margin-left:100px;"><?php echo $pagination_links; ?></div>
+        <table border="1" width="60%" style="margin-left:100px;">
             <thead>
                 <tr align='center'>
 					<th id="view-page-tr">&nbsp;</th>
                     <th id="view-page-tr">Creation Date</th>
 					<th id="view-page-tr">IC No</th>
-                    <th id="view-page-tr">Patient Name</th>
+                    <th id="view-page-tr">Patient Given Name</th>
+					<th id="view-page-tr">Patient Surname</th>
                     <th id="view-page-tr">Studies</th>
                     <th id="view-page-tr">Action</th>
                 </tr>
@@ -63,6 +64,7 @@
                     <td><?php echo $list['created_on']; ?></td>
 					<td><?php echo $list['ic_no']; ?></td>
                     <td><?php echo $list['given_name']; ?></td>
+					<td><?php echo $list['surname']; ?></td>
                     <td><?php echo $studies_name_list[$list['studies_id']]; ?></td>
                     <td width="15%" align='center'>
                         <a href="<?php echo site_url('record/patient_record_view') . '/' . $list['ic_no'] . '/' . $list['patient_studies_id'] ?>">
@@ -86,7 +88,7 @@
                 </tr>
             <?php $patientCounter++; endforeach; ?>
                         <?php } else { ?>
-                <tr><td colspan="6" style="center">
+                <tr><td colspan="7" style="center">
           <?php  echo 'no data';?>
             </td><tr>
    <?php     }
