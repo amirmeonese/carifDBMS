@@ -42,7 +42,7 @@
         <?php //if($submit):?>
         <div style="margin-left:100px;"><?php echo $total_results . " record(s) found. Showing ". ($start_from + 1 ). "-" . ($start_from + count($patient_list))?></div><br />
 		<div style="margin-left:100px;"><?php echo $pagination_links; ?></div>
-        <table border="1" width="60%" style="margin-left:100px;">
+        <table id="patient-display-table" border="1" width="60%" style="margin-left:100px;">
             <thead>
                 <tr align='center'>
 					<th id="view-page-tr">&nbsp;</th>

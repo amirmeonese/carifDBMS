@@ -1,3 +1,9 @@
+$('#patient-display-table tr').hover(function() {
+    $(this).addClass('hover');
+}, function() {
+    $(this).removeClass('hover');
+});
+
 function auto_calculate_total_siblings(evt)
 {
 	evt = evt || window.event;

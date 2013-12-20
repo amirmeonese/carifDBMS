@@ -6804,6 +6804,10 @@ div #label1
 	color: #ffffff;
 }
 
+#patient-display-table tr:hover {
+    background-color:#D3F397;
+}
+
 #view-page-tr
 {
 	text-align: center;
