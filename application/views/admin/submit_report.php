@@ -2,7 +2,7 @@
     <div id="add_record_header" class="row">
         <p>Submit Report</p>
     </div>
-    <?php echo form_open_multipart('admin/submit_report'); ?>
+    <?php echo form_open_multipart('admin/submitReport'); ?>
     <div class="container" id="report_form_section">
         <div height="20px">&nbsp;</div>
         <table >
