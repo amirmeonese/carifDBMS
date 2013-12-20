@@ -186,14 +186,16 @@ class Admin extends CI_Controller {
         force_download($name, $data);
     }
 
-    function submit_report() {
+    function submitReport() {
 
         $config['upload_path'] = './email_attachment_dir/';
         $config['allowed_types'] = 'jpg|jpeg|png|gif|pdf|xlsx|txt|doc|docx';
         $config['max_size'] = '100000';
         //$config['max_width']  = '1024';
         //$config['max_height']  = '768';
-
+        $file_path = null;
+        $temp = null;
+        
         $this->load->library('upload', $config);
 
         if (!$this->upload->do_upload()) {
@@ -233,11 +235,10 @@ class Admin extends CI_Controller {
         $this->email->cc($cc);
         $this->email->subject($subject);
         $this->email->message($message);
-        $this->email->attach($file_path.$temp);
+        $this->email->attach($file_path.$temp);$this->load->helper('url');
         if ($this->email->send() == TRUE) {
-            echo '<h2>Email has been sent SuccessFully!</h2>';
             //$this->email->print_debugger();
-            //redirect('admin/admin_panel/submit_report','refresh');
+            redirect('admin/submit_report_form','refresh');
         }
     }
 
