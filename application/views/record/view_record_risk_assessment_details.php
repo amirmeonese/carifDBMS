@@ -71,10 +71,6 @@
                     </td>               
                 </tr>
                 <tr>
-                    <td>
-                        <input type="button" value="View Manchester Score " onClick="window.parent.addManchesterScoreInput('add_record_form_manchester_score1');
-                                        window.parent.calcHeight();">
-                    </td>
                 </tr>
             </table>
         </div>
@@ -135,12 +131,6 @@
                         <?php echo form_checkbox(array('name' => 'BOADICEA_after_gc_no_mutation[]', 'value' => $list['after_gc_boadicea_no_mutation']))?>
                     </td>
                 </tr>
-                <tr>
-                    <td>
-                        <input type="button" value="View BOADICEA" onClick="window.parent.addBOADICEAInput('add_record_form_BOADICEA1');
-                                        window.parent.calcHeight();">
-                    </td>
-                </tr>
             </table>
         </div>
         <div class="container" id="add_record_form_Gail_model_1">
@@ -172,12 +162,6 @@
                     <td>
                         <?php echo $gail_model_first_mammo_10years; ?>: 
                         <?php echo form_input(array('name' => 'gail_model_first_mammo_10years[]', 'value' => $list['first_mammo_gail_model_10years']))?>
-                </tr>
-                <tr>
-                    <td>
-                        <input type="button" value="View Gail Model" onClick="window.parent.addGailModelInput('add_record_form_Gail_model_1');
-                                        window.parent.calcHeight();">
-                    </td>
                 </tr>
                 <input type="hidden" name="icno" value="<?php print $list['patient_ic_no']; ?>"/>
             <input type="hidden" name="patient_boadicea_id[]" value="<?php print $list['patient_boadicea_id']; ?>"/>

@@ -119,9 +119,7 @@
                 </td>
               </tr>
             <tr>
-            <td>
-            <input type="button" value="View more" onClick="window.parent.addmotherDiagnosisInput('add_record_mother_cancer_record_1');window.parent.calcHeight();"></b
-            </td>
+            
             </tr>
             </table>
         </div>
@@ -270,9 +268,7 @@
                 </td>
             </tr>
             <tr>
-            <td>
-            <input type="button" value="View more" onClick="window.parent.addfatherDiagnosisInput('add_record_father_cancer_record_1');window.parent.calcHeight();"></b
-            </td>
+            
             </tr>
         </table>
         </div>
@@ -312,10 +308,9 @@
         <?php echo form_fieldset_close(); ?>
         <?php endforeach; ?>
     </div>
-    <input type="button" value="View relative" onClick="window.parent.addInput('add_record_form_section_4');
-            window.parent.calcHeight();"></br>
+    </br>
            <?php echo form_fieldset_close(); ?>	
-           <?php echo form_submit('mysubmit', 'Save'); ?>
+           <?php echo form_submit('mysubmit', 'Update'); ?>
            <?php echo form_close(); ?>
 </div>
 

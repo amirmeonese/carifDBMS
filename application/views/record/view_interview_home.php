@@ -51,10 +51,6 @@
                 </td>
             </tr>
             <tr>
-                <td>
-                    <input type="button" value="Add note" onClick="window.parent.addInterviewNoteInput('interview_form_section');
-                            window.parent.calcHeight();">
-                </td>
             </tr>
             <input type="hidden" name="icno" value="<?php print $patient_counselling['patient_ic_no']; ?>"/>
             <input type="hidden" name="patient_interview_manager_id[]" value="<?php print $patient_counselling['patient_interview_manager_id']; ?>"/>

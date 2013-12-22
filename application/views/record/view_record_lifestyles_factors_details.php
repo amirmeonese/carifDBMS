@@ -437,10 +437,6 @@
                         <?php echo form_checkbox(array('name' => 'pregnant_flag', 'value' => @$patient_parity_table['pregnant_flag']))?>
                     </td>
                <?php } ?>
-                    <td>
-                        <input type="button" value="View parity" onClick="window.parent.addPregnancyInput('parity_section_div_1');
-                            window.parent.calcHeight();">
-                    </td>
                 </tr>
             </table>
         </div>

@@ -287,7 +287,7 @@ class Record extends CI_Controller {
 
             $consent_studies_id = $this->input->post('studies_name');
             $studies_id = $this->record_model->get_studies_id($consent_studies_id);
-            $date_at_consent = date('Y-m-d', strtotime($this->input->post('date_at_consent')));
+            $date_at_consent = str_replace("/","-",$this->input->post('date_at_consent'));
             $age_at_consent = $this->input->post('age_at_consent');
             $double_consent_flag = $this->input->post('is_double_consent_flag');
             $consent_given_by = $this->input->post('consent_given_by');
@@ -659,7 +659,7 @@ class Record extends CI_Controller {
         $is_alive_flag = $this->input->post('father_still_alive_flag');
         $d_o_d = $this->input->post('father_DOD');
         $is_cancer_diagnosed = $this->input->post('father_is_cancer_diagnosed');
-        $date_of_diagnosis = date('Y-m-d', strtotime($this->input->post('father_date_of_diagnosis')));
+        $date_of_diagnosis = str_replace("/","-",$this->input->post('father_date_of_diagnosis'));
         //$cancer_type_id = $father_cancer_type_id;
         $age_of_diagnosis = $this->input->post('father_age_of_diagnosis');
         $other_detail = $this->input->post('father_diagnosis_other_details');
@@ -673,6 +673,9 @@ class Record extends CI_Controller {
         $vital_status = $this->input->post('father_vital_status');
 
         for($i=0;$i<count($patient_ic_no);$i++){ 
+            
+        $father_cancer_type_id = $this->record_model->get_cancer_id($father_cancer_name[$i]);
+            
         $data1_patient_relatives = array(
                 'family_no' => $family_no[$i],
                 'full_name' => $full_name[$i],
@@ -710,20 +713,17 @@ class Record extends CI_Controller {
         
                         
             $mother_cancer_name = $this->input->post('mother_cancer_name');
-            $mother_cancer_type_id = $this->record_model->get_cancer_id($mother_cancer_name);
-            
-                $mother_family_no = $this->input->post('family_no');
+                           $mother_family_no = $this->input->post('family_no');
                 $mother_full_name = $this->input->post('mother_fullname');
                 $mother_sur_name = $this->input->post('mother_surname');
                 $mother_maiden_name = $this->input->post('mother_maiden_name');
                 $mother_ethnicity = $this->input->post('mother_ethnicity');
                 $mother_town_of_residence = $this->input->post('mother_town_residence');
-                $mother_d_o_b = $this->input->post('mother_DOB');
+                $mother_d_o_b = str_replace("/","-",$this->input->post('mother_DOB'));
                 $mother_is_alive_flag = $this->input->post('mother_still_alive_flag');
-                $mother_d_o_d = $this->input->post('mother_DOD');
+                $mother_d_o_d = str_replace("/","-",$this->input->post('mother_DOD'));
                 $mother_is_cancer_diagnosed = $this->input->post('mother_is_cancer_diagnosed');
-                $mother_date_of_diagnosis = $this->input->post('mother_date_of_diagnosis');
-                $mother_cancer_type_id = $mother_cancer_type_id;
+                $mother_date_of_diagnosis = str_replace("/","-",$this->input->post('mother_date_of_diagnosis'));
                 $mother_age_of_diagnosis = $this->input->post('mother_age_of_diagnosis');
                 $mother_other_detail = $this->input->post('mother_diagnosis_other_details');
                 $mother_no_of_brothers = $this->input->post('mother_no_of_brothers');
@@ -736,6 +736,8 @@ class Record extends CI_Controller {
                 $mother_vital_status = $this->input->post('mother_vital_status');
                         
             for($j=0;$j<count($patient_ic_no);$j++){ 
+                
+                $mother_cancer_type_id = $this->record_model->get_cancer_id($mother_cancer_name[$i]);
             
             $data2_patient_relatives = array(
                 'family_no' => $mother_family_no[$j],
@@ -749,7 +751,7 @@ class Record extends CI_Controller {
                 'd_o_d' => date('Y-m-d',strtotime($mother_d_o_d[$j])),
                 'is_cancer_diagnosed' => $mother_is_cancer_diagnosed[$j],
                 'date_of_diagnosis' => date('Y-m-d',strtotime($mother_date_of_diagnosis[$j])),
-                'cancer_type_id' => $mother_mother_cancer_type_id,
+                'cancer_type_id' => $mother_cancer_type_id[$i],
                 'age_of_diagnosis' => $mother_age_of_diagnosis[$j],
                 'other_detail' => $mother_other_detail[$j],
                 'no_of_brothers' => $mother_no_of_brothers[$j],
@@ -833,6 +835,20 @@ class Record extends CI_Controller {
         
         $this->load->view('record/view_home', $data);
     }
+    
+    function patient_record_delete($ic_no,$patient_studies_id) {
+        
+       $this->load->model('Record_model'); 
+        
+        $data['ic_no'] = $ic_no;
+        $data['patient_studies_id'] = $patient_studies_id;
+        
+       $this->Record_model->patient_delete($ic_no);
+        
+        redirect('record/patient_record_list');
+        
+        //$this->load->view('record/view_home', $data);
+    }
 
     function record_list() {
 
@@ -882,7 +898,8 @@ class Record extends CI_Controller {
 		$data['pagination_links'] = $this->pagination->create_links();	
 		$data['total_results'] = count($allResult);
 		$data['start_from'] = $page;
-        $this->template->load("templates/report_home_template", 'record/list_record_personal_details', $data);
+        
+                $this->template->load("templates/report_home_template", 'record/list_record_personal_details', $data);
     }
 
     function studies_set_one_insertion() {
@@ -1329,6 +1346,473 @@ class Record extends CI_Controller {
             echo "<h2>Failed to insert patient_surveillance</h2>";
         }
         echo '<br/>';
+    }
+    
+    function studies_set_one_update() {
+        
+        date_default_timezone_set("Asia/Kuala_lumpur"); 
+        $date = date('Y-m-d H:i:s'); //Returns IST 
+
+        //$patient_studies_id = $this->input->post('studies_name');
+        $patient_ic_no = $this->input->post('patient_ic_no');
+            
+        $patient_breast_screening_id = $this->input->post('patient_breast_screening_id');
+        $date_of_first_mammogram = str_replace("/","-",$this->input->post('date_of_first_mammogram'));
+        $age_of_first_mammogram = $this->input->post('age_of_first_mammogram');
+        $age_of_recent_mammogram = $this->input->post('age_of_recent_mammogram');
+        $date_of_recent_mammogram = str_replace("/","-",$this->input->post('date_of_recent_mammogram'));
+        $screening_centre = $this->input->post('screening_center');
+        $total_no_of_mammogram = $this->input->post('total_no_of_mammogram');
+        $screening_interval = $this->input->post('screening_interval');
+        $abnormalities_mammo_flag = $this->input->post('abnormalities_mammo_flag');
+        $name_of_radiologist = $this->input->post('name_of_radiologist');
+        $had_ultrasound_flag = $this->input->post('had_ultrasound_flag'); //from Ultrasound Details part
+        $total_no_of_ultrasound = $this->input->post('total_no_of_ultrasound');
+        $abnormalities_ultrasound_flag = $this->input->post('abnormalities_ultrasound_flag');
+        $had_mri_flag = $this->input->post('had_mri_flag'); // from MRI Details part
+        $abnormalities_MRI_flag = $this->input->post('abnormalities_MRI_flag');
+        $total_no_of_mri = $this->input->post('total_no_of_mri');
+        $screening_center_of_first_mammogram = $this->input->post('screening_center_of_first_mammogram');
+        $screening_center_of_recent_mammogram = $this->input->post('screening_center_of_recent_mammogram');
+        $details_of_first_mammogram = $this->input->post('details_at_first_mammogram');
+        $details_of_recent_mammogram = $this->input->post('details_at_recent_mammogram');
+        $motivaters_of_first_mammogram = $this->input->post('motivaters_at_first_mammogram');
+        $motivaters_of_recent_mammogram = $this->input->post('motivaters_at_recent_mammogram');
+        $mammogram_in_sdmc = $this->input->post('mammogram_in_sdmc');
+        $reason_of_mammogram = $this->input->post('reason_of_mammogram');
+        $reason_of_mammogram_details = $this->input->post('reason_of_mammogram_details');
+        $action_suggested_on_mammogram_report = $this->input->post('action_suggested_on_mammogram_report');
+        $reason_of_action_suggested = $this->input->post('reason_of_action_suggested');
+        $is_cancer_mammogram_flag = $this->input->post('is_cancer_mammogram_flag');
+        $site_effected_of_mammogram = $this->input->post('site_effected_of_mammogram');
+        $BIRADS_clinical_classification = $this->input->post('BIRADS_clinical_classification');
+        $percentage_of_mammo_density = $this->input->post('percentage_of_mammo_density');
+        $mammo_comments = $this->input->post('mammo_comments');
+        $BIRADS_density_classification = $this->input->post('BIRADS_density_classification');
+
+        for ($i = 0; $i < count($patient_breast_screening_id); $i++) {
+        $data_patient_breast_screening = array(
+            'date_of_first_mammogram' => date('Y-m-d',strtotime($date_of_first_mammogram[$i])),
+            'age_of_first_mammogram' => $age_of_first_mammogram[$i],
+            'age_of_recent_mammogram' => $age_of_recent_mammogram[$i],
+            'date_of_recent_mammogram' => date('Y-m-d',strtotime($date_of_recent_mammogram[$i])),
+            'screening_centre' => $screening_centre[$i],
+            'total_no_of_mammogram' => $total_no_of_mammogram[$i],
+            'screening_interval' => $screening_interval[$i],
+            'abnormalities_mammo_flag' => $abnormalities_mammo_flag[$i],
+            'name_of_radiologist' => $name_of_radiologist[$i],
+            'had_ultrasound_flag' => $had_ultrasound_flag[$i], //from Ultrasound Details part
+            'total_no_of_ultrasound' => $total_no_of_ultrasound[$i],
+            'abnormalities_ultrasound_flag' => $abnormalities_ultrasound_flag[$i],
+            'had_mri_flag' => $had_mri_flag[$i], // from MRI Details part
+            'abnormalities_MRI_flag' => $abnormalities_MRI_flag[$i],
+            'total_no_of_mri' => $total_no_of_mri[$i],
+            'screening_center_of_first_mammogram' => $screening_center_of_first_mammogram[$i],
+            'screening_center_of_recent_mammogram' => $screening_center_of_recent_mammogram[$i],
+            'details_of_first_mammogram' => $details_of_first_mammogram[$i],
+            'details_of_recent_mammogram' => $details_of_recent_mammogram[$i],
+            'motivaters_of_first_mammogram' => $motivaters_of_first_mammogram[$i],
+            'motivaters_of_recent_mammogram' => $motivaters_of_recent_mammogram[$i],
+            'mammogram_in_sdmc' => $mammogram_in_sdmc[$i],
+            'reason_of_mammogram' => $reason_of_mammogram[$i],
+            'reason_of_mammogram_details' => $reason_of_mammogram_details[$i],
+            'action_suggested_on_mammogram_report' => $action_suggested_on_mammogram_report[$i],
+            'reason_of_action_suggested' => $reason_of_action_suggested[$i],
+            'is_cancer_mammogram_flag' => $is_cancer_mammogram_flag[$i],
+            'site_effected_of_mammogram' => $site_effected_of_mammogram[$i],
+            'BIRADS_clinical_classification' => $BIRADS_clinical_classification[$i],
+            'percentage_of_mammo_density' => $percentage_of_mammo_density[$i],
+            'mammo_comments' => $mammo_comments[$i],
+            'modified_on' => $date,
+            'BIRADS_density_classification' => $BIRADS_density_classification[$i]
+        );
+        
+         $this->db->where('patient_breast_screening_id', $patient_breast_screening_id[$i]);
+        $this->db->where('patient_ic_no', $patient_ic_no);
+        $this->db->update('patient_breast_screening', $data_patient_breast_screening);
+        
+        }
+
+//        $config['upload_path'] = './images/'; //$path=any path you want to save the file to...
+//        $config['allowed_types'] = 'gif|jpg|png|jpeg'; //this is the file types allowed
+//        $config['max_size'] = '100000'; //max file size
+//        //$config['max_width']  = '1024';//if file type is image
+//        //$config['max_height']  = '768';//if file type is image
+//        $array_file_path = array();
+//        $this->load->library('upload', $config);
+//
+//        foreach ($_FILES as $Key => $File) {
+//            if ($File['size'] > 0) {
+//                if ($this->upload->do_upload($Key)) {
+//                    $data = $this->upload->data();
+//                    //echo $data['full_path'];
+//                    $array_file_path[] = $data['full_path'];
+//                    //echo '<br/>';
+//                } else {
+//                    // throw error
+//                    echo $this->upload->display_errors();
+//                }
+//            }
+//        }
+//        /* echo $array_file_path[0].'<br/>'; 
+//          echo $array_file_path[1].'<br/>';
+//          echo $array_file_path[2].'<br/>';
+//          echo $array_file_path[3]; */
+//        $array_file_path_length = sizeof($array_file_path);
+//        $patient_mammo_raw_images_id = $this->input->post('patient_mammo_raw_images_id');
+//        $patient_mammo_processed_images_id = $this->input->post('patient_mammo_processed_images_id');
+//
+//        if ($array_file_path_length >= 1) {
+//            
+//            for ($i = 0; $i < count($patient_mammo_raw_images_id); $i++) {
+//            $data_patient_mammo_raw_images1 = array(
+//                'modified_on' => $date,
+//                'raw_image_file_name' => $array_file_path[0][$i]
+//            );
+//            
+//        $this->db->where('patient_mammo_raw_images_id', $patient_mammo_raw_images_id[$i]);
+//        $this->db->update('patient_relatives', $data_patient_mammo_raw_images1);
+//            }
+//        }
+//
+//        if ($array_file_path_length >= 2) {
+//            
+//            for ($i = 0; $i < count($patient_mammo_raw_images_id); $i++) {
+//            $data_patient_mammo_raw_images2 = array(
+//                'modified_on' => $date,
+//                'raw_image_file_name' => $array_file_path[1][$i]
+//            );
+//            
+//             $this->db->where('patient_mammo_raw_images_id', $patient_mammo_raw_images_id[$i]);
+//             $this->db->update('patient_mammo_raw_images', $data_patient_mammo_raw_images2);
+//            }
+//             
+//            }
+//
+//        if ($array_file_path_length >= 3) {
+//            
+//            for ($i = 0; $i < count($patient_mammo_raw_images_id); $i++) {
+//            $data_patient_mammo_raw_images3 = array(
+//                'modified_on' => $date,
+//                'raw_image_file_name' => $array_file_path[2][$i]
+//            );
+//            
+//             $this->db->where('patient_mammo_raw_images_id', $patient_mammo_raw_images_id[$i]);
+//             $this->db->update('patient_mammo_raw_images', $data_patient_mammo_raw_images3);
+//
+//            }
+//             
+//            }
+//
+//        if ($array_file_path_length >= 4) {
+//            
+//            for ($i = 0; $i < count($patient_mammo_raw_images_id); $i++) {
+//            $data_patient_mammo_raw_images4 = array(
+//                'modified_on' => $date,
+//                'raw_image_file_name' => $array_file_path[3][$i]
+//            );
+//            
+//             $this->db->where('patient_mammo_raw_images_id', $patient_mammo_raw_images_id[$i]);
+//             $this->db->update('patient_mammo_raw_images', $data_patient_mammo_raw_images4);
+//        }
+//        }
+//
+//        if ($array_file_path_length >= 5) {
+//            
+//            for ($i = 0; $i < count($patient_mammo_processed_images_id); $i++) {
+//            $data_patient_mammo_processed_images1 = array(
+//                'modified_on' => $date,
+//                'processed_image_file_name' => $array_file_path[4][$i]
+//            );
+//            
+//             $this->db->where('patient_mammo_processed_images_id', $patient_mammo_processed_images_id[$i]);
+//            $this->db->update('patient_mammo_processed_images', $data_patient_mammo_processed_images1);
+//        }
+//        }
+//
+//        if ($array_file_path_length >= 6) {
+//            
+//            for ($i = 0; $i < count($patient_mammo_processed_images_id); $i++) {
+//            $data_patient_mammo_processed_images2 = array(
+//                'modified_on' => $date,
+//                'processed_image_file_name' => $array_file_path[5][$i]
+//            );
+//            
+//             $this->db->where('patient_mammo_processed_images_id', $patient_mammo_processed_images_id[$i]);
+//            $this->db->update('patient_mammo_processed_images', $data_patient_mammo_processed_images2);
+//            }
+//        }
+//
+//        if ($array_file_path_length >= 7) {
+//            
+//            for ($i = 0; $i < count($patient_mammo_processed_images_id); $i++) {
+//            $data_patient_mammo_processed_images3 = array(
+//                'modified_on' => $date,
+//                'processed_image_file_name' => $array_file_path[6][$i]
+//            );
+//            
+//             $this->db->where('patient_mammo_processed_images_id', $patient_mammo_processed_images_id[$i]);
+//            $this->db->update('patient_mammo_processed_images', $data_patient_mammo_processed_images3);
+//            }
+//        }
+//
+//        if ($array_file_path_length >= 8) {
+//            
+//            for ($i = 0; $i < count($patient_mammo_processed_images_id); $i++) {
+//            $data_patient_mammo_processed_images4 = array(
+//                'modified_on' => $date,
+//                'processed_image_file_name' => $array_file_path[7][$i]
+//            );
+//            
+//             $this->db->where('patient_mammo_processed_images_id', $patient_mammo_processed_images_id[$i]);
+//            $this->db->update('patient_mammo_processed_images', $data_patient_mammo_processed_images4);
+//            }  
+//        }
+        
+        $mammo_left_right_breast_side = $this->input->post('mammo_left_right_breast_side');
+        $mammo_upper_below_breast_side = $this->input->post('mammo_upper_below_breast_side');
+        
+        $patient_breast_abnormality_side_id = $this->input->post('patient_breast_abnormality_side_id');
+
+        for ($i = 0; $i < count($patient_breast_abnormality_side_id); $i++) {
+        if ($mammo_left_right_breast_side == 'Left')
+            $left_breast = TRUE;
+        else
+            $left_breast = FALSE;
+
+        if ($mammo_left_right_breast_side == 'Right')
+            $right_breast = TRUE;
+        else
+            $right_breast = FALSE;
+
+        if ($mammo_upper_below_breast_side == 'Upper')
+            $upper = TRUE;
+        else
+            $upper = FALSE;
+
+        if ($mammo_upper_below_breast_side == 'Below')
+            $below = TRUE;
+        else
+            $below = FALSE;
+
+        $data_patient_breast_abnormality = array(
+            'left_breast' => $left_breast[$i],
+            'right_breast' => $right_breast[$i],
+            'upper' => $upper[$i],
+            'modified_on' => $date,
+            'below' => $below[$i]
+        );
+        
+        //$this->db->where('patient_breast_screening_id', $patient_breast_screening_id[$i]);
+        $this->db->where('patient_breast_abnormality_side_id', $patient_breast_abnormality_side_id[$i]);
+        $this->db->update('patient_breast_abnormality', $data_patient_breast_abnormality);
+        }
+        
+        $patient_ultra_abn = $this->input->post('patient_ultra_abn');
+        $is_abnormality_detected = $this->input->post('abnormalities_ultrasound_flag');
+        $ultrasound_date = str_replace("/","-",$this->input->post('mammo_ultrasound_date'));
+            $ultrasound_comments = $this->input->post('mammo_ultrasound_details');
+
+            for ($i = 0; $i < count($patient_ultra_abn); $i++) {
+        $data_patient_ultrasound_abnormality = array(
+            'is_abnormality_detected' => $is_abnormality_detected[$i],
+            'ultrasound_date' => date('Y-m-d',strtotime($ultrasound_date[$i])),
+            'comments' => $ultrasound_comments[$i],
+            'modified_on' => $date,
+            'patient_breast_screening_id' => $patient_breast_screening_id[$i]
+        );
+        
+        $this->db->where('patient_ultra_abn', $patient_ultra_abn[$i]);
+        $this->db->update('patient_ultrasound_abnormality', $data_patient_ultrasound_abnormality);
+            }
+            
+        $patient_mri_abnormality_id = $this->input->post('patient_mri_abnormality_id');
+        $mri_abnormality_detected = $this->input->post('abnormalities_mri_flag');
+            $mri_date = str_replace("/","-",$this->input->post('mammo_mri_date'));
+            $mri_comments = $this->input->post('mammo_MRI_details');
+       
+            for ($i = 0; $i < count($patient_mri_abnormality_id); $i++) {
+        $data_patient_mri_abnormality = array(
+            'is_abnormality_detected' => $mri_abnormality_detected[$i],
+            'mri_date' => date('Y-m-d',strtotime($mri_date[$i])),
+            'comments' => $mri_comments[$i],
+        );
+        
+        $this->db->where('patient_mri_abnormality_id', $patient_mri_abnormality_id[$i]);
+        $this->db->update('patient_mri_abnormality', $data_patient_mri_abnormality);
+    }
+        
+        $patient_non_cancer_surgery_id = $this->input->post('patient_non_cancer_surgery_id');
+        $breast_surgery_type = $this->input->post('non_cancer_surgery_type');
+        $breast_reason_of_surgery = $this->input->post('reason_for_non_cancer_surgery');
+        $breast_date_of_surgery = str_replace("/","-",$this->input->post('date_of_non_cancer_surgery'));
+        $breast_age_of_surgery = $this->input->post('age_at_non_cancer_surgery');
+        $breast_comments = $this->input->post('non_cancer_surgery_comments');
+        $surgery_type = $this->input->post('ovary_non_cancer_surgery_type');
+        $reason_for_surgery = $this->input->post('ovary_reason_for_non_cancer_surgery');
+        $date_of_surgery = str_replace("/","-",$this->input->post('ovary_date_of_non_cancer_surgery'));
+        $age_at_surgery = $this->input->post('ovary_age_at_non_cancer_surgery');
+        $non_surgery_comments = $this->input->post('ovary_non_cancer_surgery_comments');
+
+        for ($i = 0; $i < count($patient_non_cancer_surgery_id); $i++) {
+        $data_patient_non_cancer_surgery = array(
+            'breast_surgery_type' => $breast_surgery_type[$i],
+            'breast_reason_of_surgery' => $breast_reason_of_surgery[$i],
+            'breast_date_of_surgery' => date('Y-m-d',strtotime($breast_date_of_surgery[$i])),
+            'breast_age_of_surgery' => $breast_age_of_surgery[$i],
+            'breast_comments' => $breast_comments[$i],
+            'surgery_type' => $surgery_type[$i],
+            'reason_for_surgery' => $reason_for_surgery[$i],
+            'date_of_surgery' => date('Y-m-d',strtotime($date_of_surgery[$i])),
+            'age_at_surgery' => $age_at_surgery[$i],
+            'modified_on' => $date,
+            'comments' => $non_surgery_comments[$i]
+        );
+        
+        $this->db->where('patient_non_cancer_surgery_id', $patient_non_cancer_surgery_id[$i]);
+        //$this->db->where('patient_studies_id', $patient_studies_id);
+        $this->db->update('patient_non_cancer_surgery', $data_patient_non_cancer_surgery);
+    }
+        
+        $patient_risk_reducing_surgery_id = $this->input->post('patient_risk_reducing_surgery_id');
+        $had_new_lesion_surgery_flag = $this->input->post('had_new_risk_reducing_surgery');
+        $had_complete_removal_surgery_flag = $this->input->post('had_new_complete_removal_surgery');
+
+        for ($i = 0; $i < count($patient_risk_reducing_surgery_id); $i++) {
+        $data_patient_risk_reducing_surgery = array(
+            'had_new_lesion_surgery_flag' => $had_new_lesion_surgery_flag[$i],
+            'modified_on' => $date,
+            'had_complete_removal_surgery_flag' => $had_complete_removal_surgery_flag[$i]
+        );
+        
+        $this->db->where('patient_risk_reducing_surgery_id', $patient_risk_reducing_surgery_id[$i]);
+        $this->db->update('patient_risk_reducing_surgery', $data_patient_risk_reducing_surgery);
+    }
+        
+        $patient_risk_reducing_surgery_complete_removal_id = $this->input->post('patient_risk_reducing_surgery_complete_removal_id');
+        $removal_non_cancerous_site_id = $this->input->post('non_cancerous_complete_removal_site');
+        $surgery_date = str_replace("/","-",$this->input->post('non_cancerous_complete_removal_date'));
+        $surgery_reason = $this->input->post('non_cancerous_complete_removal_reason');
+
+        for ($i = 0; $i < count($patient_risk_reducing_surgery_complete_removal_id); $i++) {
+            
+        $removal_non_cancerous_site = $this->record_model->get_non_cancerous_benign_site_id($removal_non_cancerous_site_id[$i]);
+            
+        $data_patient_risk_reducing_surgery_complete_removal = array(
+            'non_cancerous_site_id' => $removal_non_cancerous_site[$i],
+            'surgery_date' => date('Y-m-d',strtotime($surgery_date[$i])),
+            'modified_on' => $date,
+            'surgery_reason' => $surgery_reason[$i]
+        );
+        
+        $this->db->where('patient_risk_reducing_surgery_complete_removal_id', $patient_risk_reducing_surgery_complete_removal_id[$i]);
+        $this->db->update('patient_risk_reducing_surgery_complete_removal', $data_patient_risk_reducing_surgery_complete_removal);
+    }
+        
+        $patient_risk_reducing_surgery_lesion_id = $this->input->post('patient_risk_reducing_surgery_lesion_id');
+        $non_cancerous_site_id = $this->input->post('non_cancerous_benign_site');            
+        $non_cancerous_surgery_date = str_replace("/","-",$this->input->post('non_cancerous_benign_date'));
+        
+        for ($i = 0; $i < count($patient_risk_reducing_surgery_lesion_id); $i++) {
+            
+            $non_cancerous_site = $this->record_model->get_non_cancerous_benign_site_id($non_cancerous_site_id[$i]);
+            
+        $data_patient_risk_reducing_surgery_lesion = array(
+            'non_cancerous_site_id' => $non_cancerous_site[$i],
+            'modified_on' => $date,
+            'surgery_date' => date('Y-m-d',strtotime($non_cancerous_surgery_date[$i]))
+        );
+        
+        $this->db->where('patient_risk_reducing_surgery_lesion_id', $patient_risk_reducing_surgery_lesion_id[$i]);
+        $this->db->update('patient_risk_reducing_surgery_lesion', $data_patient_risk_reducing_surgery_lesion);
+    }
+        
+        
+        $patient_ovarian_screening_id = $this->input->post('patient_ovarian_screening_id');
+        $ovarian_screening_type_id = $this->input->post('ovarian_screening_type_name');            
+        $oavrian_screening_date = $this->input->post('physical_exam_date');
+        $ovarian_screening_is_abnormality_detected = $this->input->post('physical_exam_is_abnormality_detected');
+        $ovarian_screening_additional_info = $this->input->post('physical_exam_additional_info');
+        
+        for ($i = 0; $i < count($patient_ovarian_screening_id); $i++) {
+            
+            $ovarian_screening_type= $this->record_model->get_ovarian_screening_type($ovarian_screening_type_id[$i]);
+            
+        $data_patient_ovarian_screening = array(
+            'ovarian_screening_type_id' => $ovarian_screening_type[$i],
+            'screening_date' => date('Y-m-d',strtotime($oavrian_screening_date[$i])),
+            'is_abnormality_detected' => $ovarian_screening_is_abnormality_detected[$i],
+            'modified_on' => $date,
+            'additional_info' => $ovarian_screening_additional_info[$i]
+        );
+        
+        $this->db->where('patient_ovarian_screening_id', $patient_ovarian_screening_id[$i]);
+        $this->db->update('patient_ovarian_screening', $data_patient_ovarian_screening);
+    }
+        
+            $patient_other_screening_id = $this->input->post('patient_other_screening_id');
+            $other_screening_type = $this->input->post('screening_name');
+            $other_age_at_screening = $this->input->post('age_at_screening');
+            $other_screening_center = $this->input->post('place_of_screening');
+            $other_screening_result = $this->input->post('screening_results');
+        
+            for ($i = 0; $i < count($patient_other_screening_id); $i++) {
+        $data_patient_other_screening = array(
+            'screening_type' => $other_screening_type[$i],
+            //'total_no_of_screening' => $this->input->post('total_no_of_screening'),
+            'age_at_screening' => $other_age_at_screening[$i],
+            'screening_center' => $other_screening_center[$i],
+            'modified_on' => $date,
+            'screening_result' => $other_screening_result[$i]
+        );
+        
+        $this->db->where('patient_other_screening_id', $patient_other_screening_id[$i]);
+        $this->db->update('patient_other_screening', $data_patient_other_screening);
+    }
+        
+        $patient_surveillance_id = $this->input->post('patient_surveillance_id');
+        $surveillance_recruitment_center = $this->input->post('surveillance_recruitment_center');
+        $surveillance_type = $this->input->post('surveillance_type');
+        $surveillance_first_consultation_date = str_replace("/","-",$this->input->post('surveillance_first_consultation_date'));
+        $surveillance_first_consultation_place = $this->input->post('surveillance_first_consultation_place');
+        $surveillance_surveillance_interval = $this->input->post('surveillance_interval');
+        $surveillance_diagnosis = $this->input->post('surveillance_diagnosis');
+        $surveillance_due_date = str_replace("/","-",$this->input->post('surveillance_due_date'));
+        $surveillance_reminder_sent_date = str_replace("/","-",$this->input->post('surveillance_reminder_sent_date'));
+        $surveillance_done_date = str_replace("/","-",$this->input->post('surveillance_done_date'));
+        $surveillance_reminded_by = $this->input->post('surveillance_reminded_by');
+        $surveillance_timing = $this->input->post('surveillance_timing');
+        $surveillance_symptoms = $this->input->post('surveillance_symptoms');
+        $surveillance_doctor_name = $this->input->post('surveillance_doctor_name');
+        $surveillance_done_place = $this->input->post('surveillance_place');
+        $surveillance_outcome = $this->input->post('surveillance_outcome');
+        $surveillance_comments = $this->input->post('surveillance_comments');
+
+        for ($i = 0; $i < count($patient_surveillance_id); $i++) {
+        $data_patient_surveillance = array(
+            'recruitment_center' => $surveillance_recruitment_center[$i],
+            'type' => $surveillance_type[$i],
+            'first_consultation_date' => date('Y-m-d',strtotime($surveillance_first_consultation_date[$i])),
+            'first_consultation_place' => $surveillance_first_consultation_place[$i],
+            'surveillance_interval' => $surveillance_surveillance_interval[$i],
+            'diagnosis' => $surveillance_diagnosis[$i],
+            'due_date' => date('Y-m-d',strtotime($surveillance_due_date[$i])),
+            'reminder_sent_date' => date('Y-m-d',strtotime($surveillance_reminder_sent_date[$i])),
+            'surveillance_done_date' => date('Y-m-d',strtotime($surveillance_done_date[$i])),
+            'reminded_by' => $surveillance_reminded_by[$i],
+            'timing' => $surveillance_timing[$i],
+            'symptoms' => $surveillance_symptoms[$i],
+            'doctor_name' => $surveillance_doctor_name[$i],
+            'surveillance_done_place' => $surveillance_done_place[$i],
+            'outcome' => $surveillance_outcome[$i],
+            'modified_on' => $date,
+            'comments' => $surveillance_comments[$i]
+        );
+        
+         //$this->db->where('patient_studies_id', $patient_studies_id);
+        $this->db->where('patient_surveillance_id', $patient_surveillance_id[$i]);
+        $this->db->update('patient_surveillance', $data_patient_surveillance);
+    }
     }
 
     function lifestyle_insertion() {
@@ -2190,7 +2674,6 @@ class Record extends CI_Controller {
             $data_patient_other_cancer_treatment = array(
             'patient_cancer_id' => $patient_other_diagnosis_id,
             'treatment_id' => $other_cancer_treatment_id,
-            'treatment_details' => $this->input->post('ovary_treatment_details'),
             'treatment_start_date' => date('Y-m-d',strtotime($this->input->post('other_treatment_start_date'))),
             'treatment_end_date' => date('Y-m-d',strtotime($this->input->post('other_treatment_end_date'))),
             'treatment_durations' => $this->input->post('other_treatment_duration'),
@@ -2256,11 +2739,418 @@ class Record extends CI_Controller {
         //array_push($data, $this->input->post('firstname'));
         $patient_other_diseases_medication_id = $this->db->insert('patient_other_disease_medication', $data_patient_other_diseases_medication);
         if ($patient_other_diseases_medication_id > 0) {
-            echo "<h2>Data Added successfully at patient_diagnosis</h2>";
+            echo "<h2>Data Added successfully at patient_other_disease_medication</h2>";
         } else {
-            echo "<h2>Failed to insert patient_diagnosis</h2>";
+            echo "<h2>Failed to insert patient_other_disease_medication</h2>";
         }
         echo '<br/>';
+    }
+    
+    function patient_diagnosis_treatment_record_update() {
+
+        date_default_timezone_set("Asia/Kuala_lumpur");
+        $date = date('Y-m-d H:i:s'); //Returns IST 
+
+        $patient_studies_id = $this->input->post('patient_studies_id');
+        $patient_cancer_id = $this->input->post('patient_cancer_id');
+        $patient_breast_cancer_site = $this->input->post('cancer_site'); //by this we will get treatment_id
+        $cancer_invasive_type = $this->input->post('cancer_invasive_type');
+        $is_primary = $this->input->post('primary_diagnosis');
+        $date_of_diagnosis = $this->input->post('date_of_diagnosis');
+        $age_of_diagnosis = $this->input->post('age_of_diagnosis');
+        $diagnosis_center = $this->input->post('cancer_diagnosis_center');
+        $doctor_name = $this->input->post('cancer_doctor_name');
+        $detected_by = $this->input->post('detected_by');
+        $bilateral_flag = $this->input->post('cancer_is_bilateral');
+        $recurrence_flag = $this->input->post('cancer_is_recurrent');
+
+        for ($i = 0; $i < count($patient_cancer_id); $i++) {
+            
+            $breast_cancer_site_id = $this->record_model->get_cancer_site_id($patient_breast_cancer_site[$i]);
+
+            $data_patient_breast_diagnosis = array(
+                'cancer_site_id' => $breast_cancer_site_id[$i],
+                'cancer_invasive_type' => $cancer_invasive_type[$i],
+                'is_primary' => $is_primary[$i],
+                'date_of_diagnosis' => date('Y-m-d', strtotime($date_of_diagnosis[$i])),
+                'age_of_diagnosis' => $age_of_diagnosis[$i],
+                'diagnosis_center' => $diagnosis_center[$i],
+                'doctor_name' => $doctor_name[$i],
+                'detected_by' => $detected_by[$i],
+                //'detected_by' => $this->input->post('detected_by_other_details'),
+                'bilateral_flag' => $bilateral_flag[$i],
+                'modified_on' => $date,
+                'recurrence_flag' => $recurrence_flag[$i]
+            );
+            //$patient_breast_diagnosis_id = $this->db->insert('patient_cancer', $data_patient_breast_diagnosis);
+
+            $this->db->where('cancer_id', 1);
+            $this->db->where('patient_studies_id', $patient_studies_id);
+            $this->db->where('patient_cancer_id', $patient_cancer_id[$i]);
+            $this->db->update('patient_cancer', $data_patient_breast_diagnosis);
+        }
+        $patient_pathology_id = $this->input->post('patient_pathology_id');
+        $tissue_site = $this->input->post('breast_pathology_tissue_site');
+        $type_of_report = $this->input->post('breast_pathology_path_report_type');
+        $date_of_report = str_replace("/","-",$this->input->post('breast_pathology_path_report_date'));
+        $pathology_lab = $this->input->post('breast_pathology_lab');
+        $name_of_doctor = $this->input->post('breast_pathology_doctor');
+        $morphology = $this->input->post('breast_pathology_morphology');
+        $t_staging = $this->input->post('breast_pathology_tissue_tumour_stage');
+        $n_staging = $this->input->post('breast_pathology_node_stage');
+        $m_staging = $this->input->post('breast_pathology_metastasis_stage');
+        $tumour_stage = $this->input->post('breast_pathology_tumour_stage');
+        $tumour_grade = $this->input->post('breast_pathology_tumour_grade');
+        $total_lymph_nodes = $this->input->post('breast_pathology_total_lymph_nodes');
+        $tumour_size = $this->input->post('breast_pathology_tumour_size');
+        $pathology_comments = $this->input->post('breast_pathology_tissue_path_comments');
+
+        for ($i = 0; $i < count($patient_pathology_id); $i++) {
+            $data_patient_breast_pathology = array(
+                'tissue_site' => $tissue_site[$i],
+                'type_of_report' => $type_of_report[$i],
+                'date_of_report' => date('Y-m-d', strtotime($date_of_report[$i])),
+                'pathology_lab' => $pathology_lab[$i],
+                'name_of_doctor' => $name_of_doctor[$i],
+                'morphology' => $morphology[$i],
+                't_staging' => $t_staging[$i],
+                'n_staging' => $n_staging[$i],
+                'm_staging' => $m_staging[$i],
+                'tumour_stage' => $tumour_stage[$i],
+                'tumour_grade' => $tumour_grade[$i],
+                'total_lymph_nodes' => $total_lymph_nodes[$i],
+                'tumour_size' => $tumour_size[$i],
+                'modified_on' => $date[$i],
+                'comments' => $pathology_comments[$i]
+            );
+
+            //$this->db->where('patient_cancer_id', $patient_cancer_id[$i]);
+            $this->db->where('patient_pathology_id', $patient_pathology_id[$i]);
+            $this->db->update('patient_pathology', $data_patient_breast_pathology);
+        }
+
+
+        //$patient_breast_pathology_staining_status_id = $this->input->post('patient_pathology_staining_status_id');
+        $patient_breast_pathology_staining_status_id = $this->input->post('patient_pathology_staining_status_id');
+        $ER_status = $this->input->post('breast_pathology_ER_status');
+        $PR_status = $this->input->post('breast_pathology_PR_status');
+        $HER2_status = $this->input->post('breast_pathology_HER2_status');
+
+        for ($i = 0; $i < count($patient_pathology_id); $i++) {
+            $data_patient_breast_pathology_staining = array(
+                'ER_status' => $ER_status[$i],
+                'PR_status' => $PR_status[$i],
+                'modified_on' => $date[$i],
+                'HER2_status' => $HER2_status[$i],
+            );
+
+            $this->db->where('patient_pathology_staining_status_id', $patient_breast_pathology_staining_status_id[$i]);
+            //$this->db->where('patient_pathology_id', $patient_pathology_id);
+            $this->db->update('patient_pathology_staining_status', $data_patient_breast_pathology_staining);
+        }
+
+        $treatment_start_date = str_replace("/","-",$this->input->post('treatment_start_date'));
+        $treatment_end_date = str_replace("/","-",$this->input->post('treatment_end_date'));
+        $treatment_durations = $this->input->post('treatment_duration');
+        $treatment_details = $this->input->post('treatment_details');
+        $treatment_dose = $this->input->post('treatment_dose');
+        $treatment_cycle = $this->input->post('treatment_cycle');
+        $treatment_frequency = $this->input->post('treatment_frequency');
+        $treatment_visidual_desease = $this->input->post('treatment_visidual_desease');
+        $treatment_primary_outcome = $this->input->post('treatment_primary_therapy_outcome');
+        $treatment_comments = $this->input->post('breast_cancer_treatment_comments');
+
+        $patient_cancer_treatment_id = $this->input->post('patient_cancer_treatment_id');
+        $patient_cancer_treatment_name = $this->input->post('patient_cancer_treatment_name'); //by this we will get treatment_id
+
+        for ($i = 0; $i < count($patient_cancer_treatment_id); $i++) {
+            
+            $treatment_id = $this->record_model->get_treatment_id($patient_cancer_treatment_name[$i]);
+            
+            $data_patient_breast_treatment = array(
+                'treatment_id' => $treatment_id,
+                'treatment_start_date' => date('Y-m-d', strtotime($treatment_start_date[$i])),
+                'treatment_end_date' => date('Y-m-d', strtotime($treatment_end_date[$i])),
+                'treatment_durations' => $treatment_durations[$i],
+                'treatment_details' => $treatment_details[$i],
+                'treatment_dose' => $treatment_dose[$i],
+                'treatment_cycle' => $treatment_cycle[$i],
+                'treatment_frequency' => $treatment_frequency[$i],
+                'treatment_visidual_desease' => $treatment_visidual_desease[$i],
+                'treatment_primary_outcome' => $treatment_primary_outcome[$i],
+                'created_on' => $date,
+                'comments' => $treatment_comments[$i]
+            );
+
+            //$this->db->where('patient_investigations_id', $patient_investigation_id[$i]);
+            $this->db->where('patient_cancer_treatment_id', $patient_cancer_treatment_id[$i]);
+            $this->db->update('patient_cancer_treatment', $data_patient_breast_treatment);
+        }
+
+        $ovary_patient_cancer_id = $this->input->post('ovary_patient_cancer_id');
+        $patient_ovary_cancer_site = $this->input->post('ovary_cancer_site'); //by this we will get treatment_id
+        $ovary_cancer_site_id = $this->record_model->get_cancer_site_id($patient_ovary_cancer_site);
+        $ovary_cancer_invasive_type = $this->input->post('ovary_cancer_invasive_type');
+        $ovary_primary_diagnosis = $this->input->post('ovary_primary_diagnosis');
+        $ovary_date_of_diagnosis = str_replace("/","-",$this->input->post('ovary_date_of_diagnosis'));
+        $ovary_age_of_diagnosis = $this->input->post('ovary_age_of_diagnosis');
+        $ovary_cancer_diagnosis_center = $this->input->post('ovary_cancer_diagnosis_center');
+        $ovary_cancer_doctor_name = $this->input->post('ovary_cancer_doctor_name');
+        $ovary_detected_by = $this->input->post('ovary_detected_by');
+        $ovary_cancer_is_bilateral = $this->input->post('ovary_cancer_is_bilateral');
+        $ovary_cancer_is_recurrent = $this->input->post('ovary_cancer_is_recurrent');
+
+        for ($i = 0; $i < count($ovary_patient_cancer_id); $i++) {
+            
+            $ovary_cancer_site_id = $this->record_model->get_cancer_site_id($patient_ovary_cancer_site[$i]);
+            
+            $data_patient_ovary_diagnosis = array(
+                'cancer_site_id' => $ovary_cancer_site_id[$i],
+                'cancer_invasive_type' => $ovary_cancer_invasive_type[$i],
+                'is_primary' => $ovary_primary_diagnosis[$i],
+                'date_of_diagnosis' => date('Y-m-d', strtotime($ovary_date_of_diagnosis[$i])),
+                'age_of_diagnosis' => $ovary_age_of_diagnosis[$i],
+                'diagnosis_center' => $ovary_cancer_diagnosis_center[$i],
+                'doctor_name' => $ovary_cancer_doctor_name[$i],
+                'detected_by' => $ovary_detected_by[$i],
+                'bilateral_flag' => $ovary_cancer_is_bilateral[$i],
+                'modified_on' => $date,
+                'recurrence_flag' => $ovary_cancer_is_recurrent[$i]
+            );
+
+            $this->db->where('cancer_id', 2);
+            $this->db->where('patient_studies_id', $patient_studies_id);
+            $this->db->where('patient_cancer_id', $ovary_patient_cancer_id[$i]);
+            $this->db->update('patient_cancer', $data_patient_ovary_diagnosis);
+        }
+
+        $ovary_patient_pathology_id = $this->input->post('ovary_patient_pathology_id');
+        $ovary_tissue_site = $this->input->post('ovary_pathology_tissue_site');
+        $ovary_type_of_report = $this->input->post('ovary_pathology_path_report_type');
+        $ovary_date_of_report = str_replace("/","-",$this->input->post('ovary_pathology_path_report_date'));
+        $ovary_pathology_lab = $this->input->post('ovary_pathology_lab');
+        $ovary_name_of_doctor = $this->input->post('ovary_pathology_doctor');
+        $ovary_morphology = $this->input->post('ovary_pathology_morphology');
+        $ovary_stage_classifications = $this->input->post('ovary_stage_classification');
+        $ovary_tumour_stage = $this->input->post('ovary_pathology_tumour_stage');
+        $ovary_tumour_grade = $this->input->post('ovary_pathology_tumour_grade');
+        $ovary_tumour_size = $this->input->post('ovary_pathology_tumour_size');
+        $ovary_no_of_report = $this->input->post('ovary_pathology_report_no');
+        $ovary_tumor_subtype = $this->input->post('ovary_tumor_subtypes');
+        $ovary_tumor_behaviour = $this->input->post('ovary_tumor_behavior');
+        $ovary_tumor_differentiation = $this->input->post('ovary_tumor_differentiation');
+        $ovary_comments = $this->input->post('ovary_pathology_tissue_path_comments');
+
+        for ($i = 0; $i < count($ovary_patient_pathology_id); $i++) {
+            $data_patient_ovary_pathology = array(
+                'tissue_site' => $ovary_tissue_site[$i],
+                'type_of_report' => $ovary_type_of_report[$i],
+                'date_of_report' => date('Y-m-d', strtotime($ovary_date_of_report[$i])),
+                'pathology_lab' => $ovary_pathology_lab[$i],
+                'name_of_doctor' => $ovary_name_of_doctor[$i],
+                'morphology' => $ovary_morphology[$i],
+                'stage_classifications' => $ovary_stage_classifications[$i],
+                'tumour_stage' => $ovary_tumour_stage[$i],
+                'tumour_grade' => $ovary_tumour_grade[$i],
+                'tumour_size' => $ovary_tumour_size[$i],
+                'no_of_report' => $ovary_no_of_report[$i],
+                'tumor_subtype' => $ovary_tumor_subtype[$i],
+                'tumor_behaviour' => $ovary_tumor_behaviour[$i],
+                'tumor_differentiation' => $ovary_tumor_differentiation[$i],
+                'modified_on' => $date,
+                'comments' => $ovary_comments[$i]
+            );
+
+            $this->db->where('patient_pathology_id', $ovary_patient_pathology_id[$i]);
+            $this->db->update('patient_pathology', $data_patient_ovary_pathology);
+        }
+
+        $ovary_patient_cancer_treatment_id = $this->input->post('ovary_patient_cancer_treatment_id');
+        $ovary_patient_cancer_treatment_name = $this->input->post('ovary_patient_cancer_treatment_name'); //by this we will get treatment_id
+        $ovary_treatment_id = $this->record_model->get_treatment_id($ovary_patient_cancer_treatment_name);
+        $ovary_treatment_start_date = str_replace("/","-",$this->input->post('ovary_treatment_start_date'));
+        $ovary_treatment_end_date = str_replace("/","-",$this->input->post('ovary_treatment_end_date'));
+        $ovary_treatment_durations = $this->input->post('ovary_treatment_duration');
+        $ovary_treatment_details = $this->input->post('ovary_treatment_details');
+        $ovary_treatment_dose = $this->input->post('ovary_treatment_drug_dose');
+        $ovary_treatment_cycle = $this->input->post('ovary_treatment_cycle');
+        $ovary_treatment_frequency = $this->input->post('ovary_treatment_frequency');
+        $ovary_treatment_visidual_desease = $this->input->post('ovary_treatment_visidual_desease');
+        $ovary_treatment_primary_outcome = $this->input->post('ovary_treatment_privacy_outcome');
+        $ovary_treatment_cal125_pretreatment = $this->input->post('ovary_cal125_pretreatment');
+        $ovary_treatment_cal125_posttreatment = $this->input->post('ovary_cal125_posttreatment');
+        $ovary_treatment_comments = $this->input->post('ovary_cancer_treatment_comments');
+
+        for ($i = 0; $i < count($ovary_patient_cancer_treatment_id); $i++) {
+            
+        $ovary_treatment_id = $this->record_model->get_treatment_id($ovary_patient_cancer_treatment_name[$i]);    
+            
+            $data_patient_ovary_treatment = array(
+                'treatment_id' => $ovary_treatment_id[$i],
+                'treatment_start_date' => date('Y-m-d', strtotime($ovary_treatment_start_date[$i])),
+                'treatment_end_date' => date('Y-m-d', strtotime($ovary_treatment_end_date[$i])),
+                'treatment_durations' => $ovary_treatment_durations[$i],
+                'treatment_details' => $ovary_treatment_details[$i],
+                'treatment_dose' => $ovary_treatment_dose[$i],
+                'treatment_cycle' => $ovary_treatment_cycle[$i],
+                'treatment_frequency' => $ovary_treatment_frequency[$i],
+                'treatment_visidual_desease' => $ovary_treatment_visidual_desease[$i],
+                'treatment_primary_outcome' => $ovary_treatment_primary_outcome[$i],
+                'treatment_cal125_pretreatment' => $ovary_treatment_cal125_pretreatment[$i],
+                'treatment_cal125_posttreatment' => $ovary_treatment_cal125_posttreatment[$i],
+                'modified_on' => $date,
+                'comments' => $ovary_treatment_comments[$i]
+            );
+
+            $this->db->where('patient_cancer_treatment_id', $ovary_patient_cancer_treatment_id[$i]);
+            $this->db->update('patient_cancer_treatment', $data_patient_ovary_treatment);
+        }
+
+        $patient_other_cancer_site = $this->input->post('other_cancer_site'); //by this we will get treatment_id
+        $other_cancer_site_id = $this->record_model->get_cancer_site_id($patient_other_cancer_site);
+
+        $patient_other_cancer_id = $this->input->post('patient_other_cancer_id');
+        $other_cancer_id = $this->input->post('patient_cancer_name');
+        //$other_cancer_id = $this->record_model->get_cancer_id($patient_other_cancer_name);
+        $other_date_of_diagnosis = str_replace("/","-",$this->input->post('other_date_of_diagnosis'));
+        $other_age_of_diagnosis = $this->input->post('other_age_of_diagnosis');
+        $other_diagnosis_center = $this->input->post('other_cancer_diagnosis_center');
+        $other_doctor_name = $this->input->post('other_cancer_doctor_name');
+
+        for ($i = 0; $i < count($patient_other_cancer_id); $i++) {
+            
+            $other_cancer_site_id = $this->record_model->get_cancer_site_id($patient_other_cancer_site[$i]);
+
+            $data_patient_other_cancer_diagnosis = array(
+                'cancer_id' => $other_cancer_id[$i],
+                'cancer_site_id' => $other_cancer_site_id[$i],
+                'date_of_diagnosis' => date('Y-m-d', strtotime($other_date_of_diagnosis[$i])),
+                'age_of_diagnosis' => $other_age_of_diagnosis[$i],
+                'diagnosis_center' => $other_diagnosis_center[$i],
+                'doctor_name' => $other_doctor_name[$i],
+                'modified_on' => $date,
+            );
+
+            $this->db->where('patient_studies_id', $patient_studies_id);
+            $this->db->where('patient_cancer_id', $patient_other_cancer_id[$i]);
+            $this->db->update('patient_cancer', $data_patient_other_cancer_diagnosis);
+        }
+
+        $patient_other_pathology_id = $this->input->post('patient_other_pathology_id');
+        $other_pathology_tissue_site = $this->input->post('other_pathology_tissue_site');
+        $other_pathology_type_of_report = $this->input->post('other_pathology_path_report_type');
+        $other_pathology_date_of_report = str_replace("/","-",$this->input->post('other_pathology_path_report_date'));
+        $other_pathology_pathology_lab = $this->input->post('other_pathology_lab');
+        $other_pathology_name_of_doctor = $this->input->post('other_pathology_doctor');
+        $other_pathology_comments = $this->input->post('other_pathology_tissue_path_comments');
+
+        for ($i = 0; $i < count($patient_other_pathology_id); $i++) {
+
+            $data_patient_other_cancer_pathology = array(
+                'tissue_site' => $other_pathology_tissue_site[$i],
+                'type_of_report' => $other_pathology_type_of_report[$i],
+                'date_of_report' => date('Y-m-d', strtotime($other_pathology_date_of_report[$i])),
+                'pathology_lab' => $other_pathology_pathology_lab[$i],
+                'name_of_doctor' => $other_pathology_name_of_doctor[$i],
+                'comments' => $other_pathology_comments[$i],
+                'modified_on' => $date,
+            );
+
+
+            $this->db->where('patient_pathology_id', $patient_other_pathology_id[$i]);
+            $this->db->update('patient_pathology', $data_patient_other_cancer_pathology);
+        }
+
+        $patient_other_cancer_treatment_id = $this->input->post('patient_other_cancer_treatment_id');
+        $patient_other_cancer_treatment_name = $this->input->post('other_patient_cancer_treatment_name'); //by this we will get treatment_id
+        $other_treatment_start_date = str_replace("/","-",$this->input->post('other_treatment_start_date'));
+        $other_treatment_end_date = str_replace("/","-",$this->input->post('other_treatment_end_date'));
+        $other_treatment_durations = $this->input->post('other_treatment_duration');
+        $other_treatment_details = $this->input->post('other_treatment_details');
+        $other_treatment_dose = $this->input->post('other_treatment_drug_dose');
+        $other_treatment_cycle = $this->input->post('other_treatment_cycle');
+        $other_treatment_frequency = $this->input->post('other_treatment_frequency');
+        $other_treatment_visidual_desease = $this->input->post('other_treatment_visidual_desease');
+        $other_treatment_primary_outcome = $this->input->post('other_treatment_primary_therapy_outcome');
+        $other_comments = $this->input->post('other_cancer_treatment_comments');
+
+        for ($i = 0; $i < count($patient_other_cancer_treatment_id); $i++) {
+            
+            $other_cancer_treatment_id = $this->record_model->get_treatment_id($patient_other_cancer_treatment_name);
+
+            $data_patient_other_cancer_treatment = array(
+                'treatment_id' => $other_cancer_treatment_id[$i],
+                'treatment_details' => $other_treatment_details[$i],
+                'treatment_start_date' => date('Y-m-d', strtotime($other_treatment_start_date[$i])),
+                'treatment_end_date' => date('Y-m-d', strtotime($other_treatment_end_date[$i])),
+                'treatment_durations' => $other_treatment_durations[$i],
+                'treatment_dose' => $other_treatment_dose[$i],
+                'treatment_cycle' => $other_treatment_cycle[$i],
+                'treatment_frequency' => $other_treatment_frequency[$i],
+                'treatment_visidual_desease' => $other_treatment_visidual_desease[$i],
+                'treatment_primary_outcome' => $other_treatment_primary_outcome[$i],
+                'modified_on' => $date,
+                'comments' => $other_comments[$i]
+            );
+
+            $this->db->where('patient_cancer_treatment_id', $patient_other_cancer_treatment_id[$i]);
+            $this->db->update('patient_cancer_treatment', $data_patient_other_cancer_treatment);
+        }
+
+        $patient_other_disease_id = $this->input->post('patient_other_disease_id');
+        $patient_diagnosis = $this->input->post('diagnosis_name'); //by this we will get treatment_id
+        $year_of_diagnosis = $this->input->post('year_of_diagnosis');
+        $diagnosis_age = $this->input->post('diagnosis_age');
+        $center = $this->input->post('diagnosis_center');
+        $diagnosis_doctor_name = $this->input->post('diagnosis_doctor_name');
+        $on_medication_flag = $this->input->post('is_on_medication_flag');
+            
+        //print_r($patient_other_disease_id);exit;
+
+        for ($i = 0; $i < count($patient_other_disease_id); $i++) {
+            
+            $other_diagnosis_id = $this->record_model->get_diagnosis_id($patient_diagnosis[$i]);
+
+            $data_patient_other_diseases = array(
+                'diagnosis_id' => $other_diagnosis_id[$i],
+                'date_of_diagnosis' => date('Y-m-d', strtotime($year_of_diagnosis[$i])),
+                'diagnosis_age' => $diagnosis_age[$i],
+                'diagnosis_center' => $center[$i],
+                'doctor_name' => $diagnosis_doctor_name[$i],
+                'created_on' => $date,
+                'on_medication_flag' => $on_medication_flag[$i]
+            );
+
+            $this->db->where('patient_other_disease_id', $patient_other_disease_id[$i]);
+            $this->db->where('patient_studies_id', $patient_studies_id);
+            $this->db->update('patient_other_disease', $data_patient_other_diseases);
+        }
+
+        $patient_other_disease_medication_id = $this->input->post('patient_other_disease_medication_id');
+        $medication_type = $this->input->post('medication_type_name');
+        $medication_start_date = str_replace("/","-",$this->input->post('medication_start_date'));
+        $medication_end_date = str_replace("/","-",$this->input->post('medication_end_date'));
+        $medication_duration = $this->input->post('medication_duration');
+        $medication_comments = $this->input->post('medication_comments');
+
+        for ($i = 0; $i < count($patient_other_disease_medication_id); $i++) {
+
+            $data_patient_other_diseases_medication = array(
+                'medication_type' => $medication_type[$i],
+                'start_date' => date('Y-m-d', strtotime($medication_start_date[$i])),
+                'end_date' => date('Y-m-d', strtotime($medication_end_date[$i])),
+                'duration' => $medication_duration[$i],
+                'modified_on' => $date,
+                'comments' => $medication_comments[$i]
+            );
+
+            // echo '<pre>';
+            // print_r($data_patient_surveillance);echo '<br/>';
+            //array_push($data, $this->input->post('firstname'));
+            $this->db->where('patient_other_disease_id', $patient_other_disease_id[$i]);
+            $this->db->where('patient_other_disease_medication_id', $patient_other_disease_medication_id[$i]);
+            $this->db->update('patient_other_disease_medication', $data_patient_other_diseases_medication);
+        }
     }
 
     function interview_home_insersion() {
@@ -2475,15 +3365,15 @@ class Record extends CI_Controller {
             $data['patient_breast_cancer'] = $this->record_model->get_patient_breast_diagnosis_record($patient_studies_id);
             $data['patient_ovary_cancer'] = $this->record_model->get_patient_ovary_diagnosis_record($patient_studies_id);
             $data['patient_others_cancer'] = $this->record_model->get_patient_others_diagnosis_record($patient_studies_id);
-            $data['patient_other_disease'] = $this->record_model->get_patient_others_desease_record($patient_studies_id);
-            
+            $data['patient_other_disease'] = $this->record_model->get_patient_others_desease_record($patient_studies_id);            
+            $data['diagnosis_name'] = $this->record_model->get_diagnosis();
             $data['site_cancer'] = $this->record_model->get_cancer_site();
             $data['treatment_type'] = $this->record_model->get_treatment_type();
             $data['cancer_name'] = $this->record_model->get_cancer_by_id();
             
             $this->template->load("templates/add_record_template", 'record/view_record_diagnosis_treatment_details', $data);
         } else if ($var == 'studies_setOne') {
-            $data['patient_breast_screening'] = $this->record_model->get_patient_breast_screening_record($patient_studies_id);
+            $data['patient_breast_screening'] = $this->record_model->get_patient_breast_screening_record($patient_studies_id,$ic_no);
             $data['patient_non_cancer'] = $this->record_model->get_patient_non_cancer_record($patient_studies_id);
             $data['patient_risk_reducing_surgery'] = $this->record_model->get_patient_risk_reducing_surgery_record($patient_studies_id);
             $data['patient_ovarian_screening'] = $this->record_model->get_patient_ovarian_screening_record($patient_studies_id);
@@ -2492,7 +3382,8 @@ class Record extends CI_Controller {
             $data['ovarian_screening_type'] = $this->record_model->get_ovarian_screening_type_by_id();
             $data['site_breast'] = $this->record_model->get_site_breast_by_id();
             $data['upperbelow_breast'] = $this->record_model->get_upperbellow_breast_by_id();
-            
+            $data['non_cocerous_site'] = $this->record_model->get_non_cancerous_benign_site_name();
+                                    
             $this->template->load("templates/add_record_template", 'record/view_record_studies_set_one_details', $data);
         } else if ($var == 'mutation_analysis') {
             
