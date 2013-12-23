@@ -4,7 +4,7 @@
     </div>
     <div class="container" id="report_form_section" >
         <div height="10px">&nbsp;</div>
-        <?php echo form_open('record/patient_record_list'); ?>
+        <?php echo form_open('record/patient_record_list_searched'); ?>
         <table>
         <tr>
                 <td id="label1">

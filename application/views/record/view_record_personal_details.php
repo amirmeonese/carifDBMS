@@ -333,6 +333,13 @@
                 </td>
                 
             </tr>
+            
+            <input type="hidden" name="COGS_studies_id" value="<?php print $patient_cogs_studies['COGS_studies_id']; ?>"/>
+                <input type="hidden" name="patient_contact_person_id" value="<?php print $patient_contact_person['patient_contact_person_id']; ?>"/>
+                <input type="hidden" name="patient_hospital_no_id" value="<?php print @$patient_hospital_no['patient_hospital_no_id']; ?>"/>
+                <input type="hidden" name="patient_private_no_id" value="<?php print @$patient_private_no['patient_private_no_id']; ?>"/>
+                <input type="hidden" name="patient_survival_status_id" value="<?php print $patient_survival_status['patient_survival_status_id']; ?>"/>
+                <input type="hidden" name="patient_relatives_summary_id" value="<?php print $patient_relatives_summary['patient_relatives_summary_id']; ?>"/>
         </table>
     </div>
     <?php foreach ($patient_consent_detail as $list): ?>
@@ -392,6 +399,7 @@
                     <?php echo form_input(array('name' => 'referral_source[]', 'value' => $list['referral_source']))?>                    
                 </td>
             </tr>
+            <input type="hidden" name="patient_studies_id[]" value="<?php print $list['patient_studies_id']; ?>"/>
         </table>
         <?php echo form_fieldset_close(); ?>	
     </div>

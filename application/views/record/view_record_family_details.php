@@ -155,6 +155,7 @@
                 </td>
                 </td>
             </tr>
+            <input type="hidden" name="mother_relatives_id" value="<?php print $list['patient_relatives_id']; ?>"/>
         </table>
         <?php endforeach; ?>
     </div>
@@ -304,6 +305,7 @@
                 </td>
             </tr>
             <input type="hidden" name="patient_ic_no" value="<?php print $father['patient_ic_no']; ?>"/>
+            <input type="hidden" name="father_relatives_id" value="<?php print $father['patient_relatives_id']; ?>"/>
         </table>
         <?php echo form_fieldset_close(); ?>
         <?php endforeach; ?>
