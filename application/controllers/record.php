@@ -197,7 +197,7 @@ class Record extends CI_Controller {
             'highest_education_level' => $this->input->post('highest_education_level')
         );
 
-        $this->db->where('patient_ic_no', $patient_ic_no);
+        $this->db->where('ic_no', $patient_ic_no);
         $this->db->update('patient', $data_patient);
 
 
@@ -264,7 +264,7 @@ class Record extends CI_Controller {
             );
 
             $this->db->where('COGS_studies_id', $COGS_studies_id);
-            $this->db->update('patient_COGS_study', $data_patient_COGS_study);
+            $this->db->update('patient_COGS_studies', $data_patient_COGS_study);
         }
 
         /* NOTE: Call getDynamicFieldsInputsArray() function to fetch the data array of dynamic fields. Parameter: Name of dynamic field's section */
