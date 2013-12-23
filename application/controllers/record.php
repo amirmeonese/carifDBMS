@@ -877,12 +877,16 @@ class Record extends CI_Controller {
         $data['submit'] = $this->input->post('search');
         $studies_name = $this->input->post('studies_name');
         $studies_id = $this->record_model->get_studies_id($studies_name);
+        $patient_name = $this->input->post('patient_name');
+        $IC_no = $this->input->post('IC_no');
+        
+    
         
         if($this->input->post('search')){
         
 			$data_search_key = array(
-				'given_name' => $this->input->post('patient_name'),
-				'ic_no' => $this->input->post('IC_no'),
+				'given_name' => $patient_name,
+				'ic_no' => $IC_no,
                                 'studies_name' => $studies_id
 			);
         }
@@ -894,12 +898,13 @@ class Record extends CI_Controller {
                             'studies_name' => ""
 			);		
 		}
-        
+                        
 		$limit = 30;
 		$allResult = $this->Record_model->getPatientList($data_search_key);
 		$config['total_rows'] = count($allResult);
-		$config['base_url'] = site_url('record/patient_record_list');
-		$config['per_page'] = $limit;
+		//$config['base_url'] = site_url('record/patient_record_list_searched'.'/'.$patient_name.'/'.$IC_no.'/'.$studies_id);
+		$config['base_url'] = site_url('record/patient_record_list/');
+                $config['per_page'] = $limit;
 		$config["uri_segment"] = 3;
 		$this->pagination->initialize($config);
 		$page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
@@ -917,28 +922,70 @@ class Record extends CI_Controller {
                 $this->template->load("templates/report_home_template", 'record/list_record_personal_details', $data);
     }
     
-    function patient_record_list_searched() {
+    function patient_record_list_searched($name = null,$IC_no = null,$studies_name = null) {
 
         $this->load->model('Record_model');
         $data = $this->Record_model->general();
-        $data['submit'] = $this->input->post('search');
-        $studies_name = $this->input->post('studies_name');
+        //$data['submit'] = $this->input->post('search');
+                
+        //$studies_name = $this->input->post('studies_name');
+        //$patient_name1 = $this->input->post('patient_name1');
+        //$patient_name = $this->input->post('patient_name');
+        //$IC_no = $this->input->post('IC_no');
+        
+       //echo '$patient_name:'; print_r($patient_name);
+        
         $studies_id = $this->record_model->get_studies_id($studies_name);
+        
+        if(!empty($name)){
+            
+            $patient_name = $name;
+            
+        } else {
+            
+            $patient_name = "";
+            
+        }
+        
+        if(!empty($IC_no)){
+            
+            $patient_ic_no = $IC_no;
+            
+        } else {
+            
+            $patient_ic_no = "";
+            
+        }
+        
+        if(!empty($studies_name)){
+            
+            $patient_studies = $studies_id;
+            
+        } else {
+            
+            $patient_studies = "";
+            
+        }
+        
+        //$studies_id = $this->record_model->get_studies_id($studies_name);
         
        // if($this->input->post('search')){
         
 			$data_search_key = array(
-				'given_name' => $this->input->post('patient_name'),
-				'ic_no' => $this->input->post('IC_no'),
-                                'studies_name' => $studies_id
+				'given_name' => $patient_name,
+				'ic_no' => $patient_ic_no,
+                                'studies_name' => $patient_studies
 			);
         //}
+                        
+                        print_r($data_search_key);
 		
         
 		$limit = 30;
 		$allResult = $this->Record_model->getPatientList($data_search_key);
 		$config['total_rows'] = count($allResult);
-		$config['base_url'] = site_url('record/patient_record_list');
+                                
+		$config['base_url'] = site_url('record/patient_record_list_searched'.'/'.$patient_name.'/'.$IC_no);
 		$config['per_page'] = $limit;
 		$config["uri_segment"] = 3;
 		$this->pagination->initialize($config);
