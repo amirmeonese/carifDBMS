@@ -114,7 +114,7 @@ class Excell_parser_model extends CI_Model {
                             }
 
                             if ($key == 5 && $cell_value != NULL) {
-                                $cell_value = str_replace('-', '', $cell_value);
+                                $cell_value = preg_replace("/[^0-9]/", "", $cell_value);
                                 $ic_no_validator = $this->check_IC_NO($cell_value);
                                 $cell_value_ic = $cell_value;
                             }
@@ -260,7 +260,7 @@ class Excell_parser_model extends CI_Model {
                             $cell_value = $cell->getFormattedValue();
                             //echo $key; // 0, 1, 2..
                             if ($key == 0 && $cell_value != NULL) {
-                                $cell_value = str_replace('-', '', $cell_value);
+                                $cell_value = preg_replace("/[^0-9]/", "", $cell_value);
                                 $ic_no_validator = $this->check_IC_NO($cell_value);
                                 if (!$ic_no_validator) {
                                     echo '<h2>patient_IC_no is not in appropriate format at Personal2</h2>';
@@ -339,7 +339,7 @@ class Excell_parser_model extends CI_Model {
                             //echo $key; // 0, 1, 2..
 
                             if ($key == 0 && $cell_value != NULL) {
-                                $cell_value = str_replace('-', '', $cell_value);
+                                $cell_value = preg_replace("/[^0-9]/", "", $cell_value);
                                 $ic_no_validator = $this->check_IC_NO($cell_value);
                                 if (!$ic_no_validator) {
                                     echo '<h2>patient_IC_no is not in appropriate format at Family</h2>';
@@ -462,7 +462,7 @@ class Excell_parser_model extends CI_Model {
                             //echo $key; // 0, 1, 2..
 
                             if ($key == 0 && $cell_value != NULL) {
-                                $cell_value = str_replace('-', '', $cell_value);
+                                $cell_value = preg_replace("/[^0-9]/", "", $cell_value);
                                 $ic_no_validator = $this->check_IC_NO($cell_value);
                                 if (!$ic_no_validator) {
                                     echo '<h2>patient_IC_no is not in appropriate format at Diagnosis & Treatment</h2>';
@@ -641,7 +641,7 @@ class Excell_parser_model extends CI_Model {
 
                             //echo $key; // 0, 1, 2..
                             if ($key == 0 && $cell_value != NULL) {
-                                $cell_value = str_replace('-', '', $cell_value);
+                                $cell_value = preg_replace("/[^0-9]/", "", $cell_value);
                                 $ic_no_validator = $this->check_IC_NO($cell_value);
                                 if (!$ic_no_validator) {
                                     echo '<h2>patient_IC_no is not in appropriate format at Diagnosis & Treatment2</h2>';
@@ -737,7 +737,7 @@ class Excell_parser_model extends CI_Model {
 
                             //echo $key; // 0, 1, 2..
                             if ($key == 0 && $cell_value != NULL) {
-                                $cell_value = str_replace('-', '', $cell_value);
+                                $cell_value = preg_replace("/[^0-9]/", "", $cell_value);
                                 $ic_no_validator = $this->check_IC_NO($cell_value);
                                 if (!$ic_no_validator) {
                                     echo '<h2>patient_IC_no is not in appropriate format at Sreening and Surveilance1</h2>';
@@ -814,7 +814,7 @@ class Excell_parser_model extends CI_Model {
 
                             //echo $key; // 0, 1, 2..
                             if ($key == 0 && $cell_value != NULL) {
-                                $cell_value = str_replace('-', '', $cell_value);
+                                $cell_value = preg_replace("/[^0-9]/", "", $cell_value);
                                 $ic_no_validator = $this->check_IC_NO($cell_value);
                                 if (!$ic_no_validator) {
                                     echo '<h2>patient_IC_no is not in appropriate format at Sreening and Surveilance2</h2>';
@@ -896,7 +896,7 @@ class Excell_parser_model extends CI_Model {
 
                             //echo $key; // 0, 1, 2..
                             if ($key == 0 && $cell_value != NULL) {
-                                $cell_value = str_replace('-', '', $cell_value);
+                                $cell_value = preg_replace("/[^0-9]/", "", $cell_value);
                                 $ic_no_validator = $this->check_IC_NO($cell_value);
                                 if (!$ic_no_validator) {
                                     echo '<h2>patient_IC_no is not in appropriate format at Sreening and Sreening and Surveilance3</h2>';
@@ -1023,7 +1023,7 @@ class Excell_parser_model extends CI_Model {
 
                             //echo $key; // 0, 1, 2..
                             if ($key == 0 && $cell_value != NULL) {
-                                $cell_value = str_replace('-', '', $cell_value);
+                                $cell_value = preg_replace("/[^0-9]/", "", $cell_value);
                                 $ic_no_validator = $this->check_IC_NO($cell_value);
                                 if (!$ic_no_validator) {
                                     echo '<h2>patient_IC_no is not in appropriate format at Sreening and Surveilance4</h2>';
@@ -1148,7 +1148,7 @@ class Excell_parser_model extends CI_Model {
 
                             //echo $key; // 0, 1, 2..
                             if ($key == 0 && $cell_value != NULL) {
-                                $cell_value = str_replace('-', '', $cell_value);
+                                $cell_value = preg_replace("/[^0-9]/", "", $cell_value);
                                 $ic_no_validator = $this->check_IC_NO($cell_value);
                                 if (!$ic_no_validator) {
                                     echo '<h2>patient_IC_no is not in appropriate format at Sreening and Surveilance5</h2>';
@@ -1244,7 +1244,7 @@ class Excell_parser_model extends CI_Model {
 
                             //echo $key; // 0, 1, 2..
                             if ($key == 0 && $cell_value != NULL) {
-                                $cell_value = str_replace('-', '', $cell_value);
+                                $cell_value = preg_replace("/[^0-9]/", "", $cell_value);
                                 $ic_no_validator = $this->check_IC_NO($cell_value);
                                 if (!$ic_no_validator) {
                                     echo '<h2>patient_IC_no is not in appropriate format at Mutation analysis</h2>';
@@ -1320,7 +1320,7 @@ class Excell_parser_model extends CI_Model {
 
                             //echo $key; // 0, 1, 2..
                             if ($key == 0 && $cell_value != NULL) {
-                                $cell_value = str_replace('-', '', $cell_value);
+                                $cell_value = preg_replace("/[^0-9]/", "", $cell_value);
                                 $ic_no_validator = $this->check_IC_NO($cell_value);
                                 if (!$ic_no_validator) {
                                     echo '<h2>patient_IC_no is not in appropriate format at Risk Assesment</h2>';
@@ -1371,7 +1371,7 @@ class Excell_parser_model extends CI_Model {
 
                             //echo $key; // 0, 1, 2..
                             if ($key == 0 && $cell_value != NULL) {
-                                $cell_value = str_replace('-', '', $cell_value);
+                                $cell_value = preg_replace("/[^0-9]/", "", $cell_value);
                                 $ic_no_validator = $this->check_IC_NO($cell_value);
                                 if (!$ic_no_validator) {
                                     echo '<h2>patient_IC_no is not in appropriate format at Lifestyles1</h2>';
@@ -1450,7 +1450,7 @@ class Excell_parser_model extends CI_Model {
 
                             //echo $key; // 0, 1, 2..
                             if ($key == 0 && $cell_value != NULL) {
-                                $cell_value = str_replace('-', '', $cell_value);
+                                $cell_value = preg_replace("/[^0-9]/", "", $cell_value);
                                 $ic_no_validator = $this->check_IC_NO($cell_value);
                                 if (!$ic_no_validator) {
                                     echo '<h2>patient_IC_no is not in appropriate format at Lifestyle2</h2>';
@@ -1557,7 +1557,7 @@ class Excell_parser_model extends CI_Model {
 
                             //echo $key; // 0, 1, 2..
                             if ($key == 0 && $cell_value != NULL) {
-                                $cell_value = str_replace('-', '', $cell_value);
+                                $cell_value = preg_replace("/[^0-9]/", "", $cell_value);
                                 $ic_no_validator = $this->check_IC_NO($cell_value);
                                 if (!$ic_no_validator) {
                                     echo '<h2>patient_IC_no is not in appropriate format at Lifestyle3'.'  row '.$i.'</h2>';
@@ -1627,6 +1627,7 @@ class Excell_parser_model extends CI_Model {
                 if ($loadedSheetName == 'Personal') {
                     $row_skip_flag = FALSE;
                     $data_patient = array();
+                    $old_ic_no = NULL;
                     foreach ($sheet->getRowIterator() as $row) {
                         $i++;
 
@@ -1645,8 +1646,10 @@ class Excell_parser_model extends CI_Model {
                             }*/
                             //echo $key; // 0, 1, 2..
                             if ($key == 5 && $cell_value != NULL)
+                            {
+                                $old_ic_no = $cell_value;
                                 $cell_value = str_replace('-', '', trim($cell_value));
-
+                            }    
                             if ($key == 8 || $key == 13 || $key == 48) {
                                 if ($cell_value != NULL) {
                                     $cell_value = date('Y-m-d', strtotime(str_replace('/', '-', $cell_value)));
@@ -1677,6 +1680,7 @@ class Excell_parser_model extends CI_Model {
                             'maiden_name' => $temp1[2],
                             'nationality' => $temp1[4],
                             'ic_no' => $temp1[5],
+                            'old_ic_no' => $old_ic_no,
                             'family_no' => $temp1[3],
                             'gender' => $temp1[6],
                             'ethnicity' => $temp1[7],
@@ -1827,6 +1831,7 @@ class Excell_parser_model extends CI_Model {
                 }
                 else if (($loadedSheetName == 'Family')) {
                     $temp_ic_no = NULL;
+                    
                     foreach ($sheet->getRowIterator() as $row) {
                         $i++;
 
@@ -1841,7 +1846,9 @@ class Excell_parser_model extends CI_Model {
                             $cell_value = $cell->getFormattedValue();
 
                             if ($key == 0 && $cell_value != NULL)
+                            {
                                 $cell_value = str_replace('-', '', trim($cell_value));
+                            }
 
                             if ($key == 0 && $cell_value != NULL)
                                 $temp_ic_no = $cell_value;
@@ -1950,6 +1957,7 @@ class Excell_parser_model extends CI_Model {
                     echo '<br/>';
                 }
                 else if ($loadedSheetName == 'Personal2') {
+                    
                     foreach ($sheet->getRowIterator() as $row) {
                         $i++;
 
@@ -1963,8 +1971,10 @@ class Excell_parser_model extends CI_Model {
                             //$cell_value = $cell->getCalculatedValue(); // Value here
                             $cell_value = $cell->getFormattedValue();
                             if ($key == 0 && $cell_value != NULL)
+                            {
                                 $cell_value = str_replace('-', '', trim($cell_value));
-
+                            }
+                            
                             if ($key == 2) {
                                 if ($cell_value != NULL) {
                                     $cell_value = date('Y-m-d', strtotime(str_replace('/', '-', $cell_value)));
@@ -2017,7 +2027,6 @@ class Excell_parser_model extends CI_Model {
                     echo '<br/>';
                 }
                 else if ($loadedSheetName == 'Diagnosis & Treatment') {
-                    $temp_ic_no = NULL;
                     $temp_cancer_name = NULL;
                     $temp_cancer_site_name = NULL;
                     $temp_studies_name = NULL;
@@ -2050,8 +2059,10 @@ class Excell_parser_model extends CI_Model {
                             $cell_value = $cell->getFormattedValue();
 
                             if ($key == 0 && $cell_value != NULL)
-                                $cell_value = str_replace('-', '', $cell_value);
-
+                            {
+                                $cell_value = preg_replace("/[^0-9]/", "", $cell_value);
+                            }
+                            
                             if ($key == 0 && $cell_value != NULL)
                                 $temp_ic_no = $cell_value;
 
@@ -2278,7 +2289,7 @@ class Excell_parser_model extends CI_Model {
                             $cell_value = $cell->getFormattedValue();
 
                             if ($key == 0 && $cell_value != NULL)
-                                $cell_value = str_replace('-', '', $cell_value);
+                                $cell_value = preg_replace("/[^0-9]/", "", $cell_value);
 
                             if ($key == 2 && $cell_value == NULL)
                                 $cell_value = 'None';
@@ -2375,7 +2386,7 @@ class Excell_parser_model extends CI_Model {
                             $cell_value = $cell->getFormattedValue();
 
                             if ($key == 0 && $cell_value != NULL)
-                                $cell_value = str_replace('-', '', $cell_value);
+                                $cell_value = preg_replace("/[^0-9]/", "", $cell_value);
                             //echo $key; // 0, 1, 2..
                             if ($key == 2 || $key == 4 || $key == 21 || $key == 27) {
                                 if ($cell_value != NULL) {
@@ -2621,7 +2632,7 @@ class Excell_parser_model extends CI_Model {
                             $cell_value = $cell->getFormattedValue();
 
                             if ($key == 0 && $cell_value != NULL)
-                                $cell_value = str_replace('-', '', $cell_value);
+                                $cell_value = preg_replace("/[^0-9]/", "", $cell_value);
                             //echo $key; // 0, 1, 2..
                             if ($key == 4 || $key == 10) {
                                 if ($cell_value != NULL) {
@@ -2674,7 +2685,7 @@ class Excell_parser_model extends CI_Model {
                             $cell_value = $cell->getFormattedValue();
 
                             if ($key == 0 && $cell_value != NULL)
-                                $cell_value = str_replace('-', '', $cell_value);
+                                $cell_value = preg_replace("/[^0-9]/", "", $cell_value);
 
                             //echo $key; // 0, 1, 2..
                             if ($key == 3 && $cell_value == NULL)
@@ -2782,7 +2793,7 @@ class Excell_parser_model extends CI_Model {
                             $cell_value = $cell->getFormattedValue();
 
                             if ($key == 0 && $cell_value != NULL)
-                                $cell_value = str_replace('-', '', $cell_value);
+                                $cell_value = preg_replace("/[^0-9]/", "", $cell_value);
 
                             //echo $key; // 0, 1, 2..
                             if ($key == 2 && $cell_value == NULL)
@@ -2862,7 +2873,7 @@ class Excell_parser_model extends CI_Model {
                             $cell_value = $cell->getFormattedValue();
 
                             if ($key == 0 && $cell_value != NULL)
-                                $cell_value = str_replace('-', '', $cell_value);
+                                $cell_value = preg_replace("/[^0-9]/", "", $cell_value);
 
                             if ($key == 2 && $cell_value == NULL)
                                 $cell_value = 'None';
@@ -2928,7 +2939,7 @@ class Excell_parser_model extends CI_Model {
                             $cell_value = $cell->getFormattedValue();
 
                             if ($key == 0 && $cell_value != NULL)
-                                $cell_value = str_replace('-', '', $cell_value);
+                                $cell_value = preg_replace("/[^0-9]/", "", $cell_value);
 
                             if ($key == 2 || $key == 7 || $key == 20 || $key == 21) {
                                 if ($cell_value != NULL) {
@@ -3017,7 +3028,7 @@ class Excell_parser_model extends CI_Model {
                             $cell_value = $cell->getFormattedValue();
 
                             if ($key == 0 && $cell_value != NULL)
-                                $cell_value = str_replace('-', '', $cell_value);
+                                $cell_value = preg_replace("/[^0-9]/", "", $cell_value);
 
                             //echo $key; // 0, 1, 2..
                             $temp10[] = $cell_value;
@@ -3074,7 +3085,7 @@ class Excell_parser_model extends CI_Model {
                             $cell_value = $cell->getFormattedValue();
 
                             if ($key == 0 && $cell_value != NULL)
-                                $cell_value = str_replace('-', '', $cell_value);
+                                $cell_value = preg_replace("/[^0-9]/", "", $cell_value);
                             //echo $key; // 0, 1, 2..
                             if ($key == 2) {
                                 if ($cell_value != NULL) {
@@ -3222,7 +3233,7 @@ class Excell_parser_model extends CI_Model {
                             $cell_value = $cell->getFormattedValue();
 
                             if ($key == 0 && $cell_value != NULL)
-                                $cell_value = str_replace('-', '', $cell_value);
+                                $cell_value = preg_replace("/[^0-9]/", "", $cell_value);
                             //echo $key; // 0, 1, 2..
                             if ($key == 32)
                                 $cell_value = 'None';
@@ -3396,7 +3407,7 @@ class Excell_parser_model extends CI_Model {
                             $cell_value = $cell->getFormattedValue();
                             
                             if ($key == 0 && $cell_value != NULL)
-                                $cell_value = str_replace('-', '', $cell_value);
+                                $cell_value = preg_replace("/[^0-9]/", "", $cell_value);
                             
                             if ($key == 4) {
                                 if ($cell_value != NULL) {
