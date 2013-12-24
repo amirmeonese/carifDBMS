@@ -438,6 +438,38 @@
                     </td>
                <?php } ?>
                 </tr>
+                <tr>
+                <td>
+                    <?php echo $pregnancy_type; ?>: <br />
+                    <?php echo form_dropdown('pregnancy_type', $pregnancy_type_lists, @$patient_parity_record['pregnancy_type'], 'id="pregnancy_type" preload_val="'.@$patient_parity_record['pregnancy_type'].'"'); ?>
+                </td>
+                <td>
+                    <?php echo $child_gender; ?>: <br />
+                    <?php echo form_dropdown('child_gender', $genderTypes, @$patient_parity_record['gender'], 'id="gender" preload_val="'.@$patient_parity_record['gender'].'"'); ?>
+                </td>
+                <td>
+                    <?php echo $child_birthdate; ?>: <br />
+                    <?php echo form_input(array('name' => 'child_birthdate', 'value' => @$patient_parity_record['date_of_birth'], 'class' => 'datepicker'))?>
+                </td>
+                </tr>
+                <tr>
+                    <td>
+                    <?php echo $child_age_at_consent; ?>: <br />
+                    <?php echo form_input(array('name' => 'child_age_at_consent', 'value' => @$patient_parity_record['age_child_at_consent']))?>
+                </td>
+                <td>
+                    <?php echo $child_birthweight; ?>: <br />
+                    <?php echo form_input(array('name' => 'child_birthweight', 'value' => @$patient_parity_record['birthweight']))?>
+                </td>
+                <td>
+                    <?php echo $child_breastfeeding_duration; ?>: <br />
+                    <?php echo form_input(array('name' => 'breastfeeding_duration', 'value' => @$patient_parity_record['breastfeeding_duration']))?>
+                </td>
+                <td>
+                    <?php echo $child_birthyear; ?>: <br />
+                    <?php echo form_input(array('name' => 'child_birthyear', 'value' => @$patient_parity_record['year_of_birth']))?>
+                </td>
+                </tr>
             </table>
         </div>
         <?php echo form_fieldset_close(); ?>	

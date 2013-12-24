@@ -1188,6 +1188,11 @@ class Record_model extends CI_Model {
 		$data['other_pathology_path_report_date'] = 'Date of report';
         $data['other_pathology_path_report_type'] = 'Type of report';
 		$data['other_pathology_tissue_path_comments'] = 'Comments';
+                $data['child_birthdate'] = 'Date of Birth';
+                $data['child_age_at_consent'] = 'Age child at consent';
+                $data['child_birthweight'] = 'Birthweight';
+                $data['child_breastfeeding_duration'] = 'Duration of breastfeeding';
+                $data['child_birthyear'] = 'Year of birth';
 		
         //$data[''] = ''; 
         return $data;
