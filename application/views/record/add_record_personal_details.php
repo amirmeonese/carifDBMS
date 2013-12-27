@@ -39,19 +39,21 @@
                 <td>
                     <?php echo $IC_no; ?>: 
                     <?php echo form_input('IC_no'); ?>
-
-
+                </td>
+                <td>
+                    <?php echo $old_IC_no; ?>: 
+                    <?php echo form_input('old_IC_no'); ?>
                 </td>
                 <td>
                     <?php echo $gender; ?>: 
 					<?php echo form_dropdown('gender', $genderTypes, NULL, 'id="gender"'); ?>
                 </td>
+                </tr>
+                <tr>
                 <td>
                     <?php echo $ethinicity; ?>: 
                     <?php echo form_input('ethnicity'); ?>
                 </td>
-            </tr>
-            <tr>
                 <td>
                     <?php echo $DOB; ?>:
                     <?php echo form_input(array('name'=>'d_o_b','class'=>'datepicker')); ?>
@@ -67,12 +69,12 @@
                     <?php echo $marital_status; ?>: 
                    <?php echo form_dropdown('marital_status', $marital_status_lists, NULL, 'id="marital_status"'); ?>
                 </td>
+                </tr>
+                <tr>
                 <td>
                     <?php echo $blood_group; ?>: 
                     <?php echo form_input('blood_group'); ?>
                 </td>
-            </tr>
-            <tr>
                 <td>
                     <?php echo $is_dead; ?>: 
                     <?php echo form_checkbox('is_dead', '1', TRUE); ?>

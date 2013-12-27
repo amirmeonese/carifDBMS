@@ -11,12 +11,12 @@ $( document ).ready(function() {
 					family_no : {	
 						required: true
 					},
-					IC_no: {
-						required: true,
-						number: true,
-						minlength: 12,
-						maxlength: 12
-					},
+//					IC_no: {
+//						required: true,
+//						number: true,
+//						minlength: 12,
+//						maxlength: 12
+//					},
 					nationality : {
 						required: false
 					},
@@ -36,9 +36,9 @@ $( document ).ready(function() {
 						email: false
 					}
 				},
-				messages: {
-				   IC_no: "Please enter a valid IC no."
-				}
+//				messages: {
+//				   //IC_no: "Please enter a valid IC no."
+//				}
 			});
 			
 			$("#family-details-form").validate({

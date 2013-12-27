@@ -2,10 +2,12 @@
     <div id="add_record_header" class="row">
         <p>Counselling</p>
     </div>
+    
 	<?php 
 	$attributes = array('id' => 'interview-details-form');
 	echo form_open("record/interview_home_insersion", $attributes);
 	?>
+
     <div class="container" id="interview_form_section">
         <div height="30px">&nbsp;</div>
         <?php

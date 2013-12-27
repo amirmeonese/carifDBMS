@@ -41,6 +41,10 @@
                     <?php echo form_input(array('name' => 'IC_no', 'value' => $patient_detail['ic_no']))?>
                 </td>
                 <td>
+                    <label for="old_IC_no"><?php echo $old_IC_no; ?>: </label>
+                    <?php echo form_input(array('name' => 'old_IC_no', 'value' => $patient_detail['old_ic_no']))?>
+                </td>
+                <td>
                     <?php echo $gender; ?>: 
                     <?php echo  form_dropdown('gender',$genderTypes, $patient_detail['gender'], 'id="gender" preload_val="'.$patient_detail['gender'].'"') ?>
                 </td>

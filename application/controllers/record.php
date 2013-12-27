@@ -32,7 +32,7 @@ class Record extends CI_Controller {
     function view_list($var = null) {
         $this->load->model('Record_model');
         $data = $this->Record_model->general();
-        
+                
         $data['isUpdate'] = FALSE;
 
         if ($var == 'personal')
@@ -51,8 +51,9 @@ class Record extends CI_Controller {
             $this->template->load("templates/add_record_template", 'record/add_record_risk_assessment_details', $data);
 		else if ($var == 'lifestyleFactors')
             $this->template->load("templates/add_record_template", 'record/add_record_lifestyles_factors_details', $data);
-        else if ($var == 'counselling')
+        else if ($var == 'counselling'){
             $this->template->load("templates/add_record_template", 'record/interview_home', $data);
+        }
         else if ($var == 'bulkImport')
             $this->template->load("templates/add_record_template", 'record/upload_xlsx_file', $data);
         //$this->load->view('record/add_record', $data);
@@ -345,13 +346,27 @@ class Record extends CI_Controller {
 		
         $this->form_validation->set_rules('fullname', 'Full name', 'required|xss_clean');
         if ($this->form_validation->run() == true) {
+          
+            $ic_no = $this->input->post('IC_no');
+            $old_ic_no = $this->input->post('old_IC_no');
+            
+            if(!empty($old_ic_no)){
+                
+                $new_ic_no = substr($old_ic_no, 1);;
+                
+            } else {
+                
+                $new_ic_no = $ic_no;
+            }
+
 
             $data_patient = array(
                 'given_name' => $this->input->post('fullname'),
                 'surname' => $this->input->post('surname'),
                 'maiden_name' => $this->input->post('maiden_name'),
                 'family_no' => $this->input->post('family_no'),
-                'ic_no' => $this->input->post('IC_no'),
+                'ic_no' => $new_ic_no,
+                'old_ic_no' => $old_ic_no,
                 'nationality' => $this->input->post('nationality'),
                 'gender' => $this->input->post('gender'),
                 'ethnicity' => $this->input->post('ethnicity'),
@@ -386,7 +401,7 @@ class Record extends CI_Controller {
 //             print_r($data_patient);exit;
             echo '<br/>';
             $data_patient_contact_person = array(
-                'patient_ic_no' => $this->input->post('IC_no'),
+                'patient_ic_no' => $new_ic_no,
                 'contact_name' => $this->input->post('contact_person_name'),
                 'contact_relationship' => $this->input->post('contact_person_relationship'),
                 'created_on' => $date,
@@ -397,6 +412,7 @@ class Record extends CI_Controller {
             //array_push($data, $this->input->post('firstname'));
             $id_patient_record = $this->record_model->insert_at_patient_record($data_patient);
             if ($id_patient_record > 0) {
+            
                 echo "<h2>Data Added successfully at patient_studies table</h2>";
             } else {
                 echo "<h2>Failed to insert at patient_studies table</h2>";
@@ -412,7 +428,7 @@ class Record extends CI_Controller {
             echo '<br/>';
             
             $data_patient_hospital_no = array(
-                'patient_ic_no' => $this->input->post('IC_no'),
+                'patient_ic_no' => $new_ic_no,
                 'created_on' => $date,
                 'hospital_no' => $this->input->post('hospital_no')           
             );
@@ -429,7 +445,7 @@ class Record extends CI_Controller {
             echo '<br/>';
             
             $data_patient_private_no = array(
-                'patient_ic_no' => $this->input->post('IC_no'),
+                'patient_ic_no' => $new_ic_no,
                 'created_on' => $date,
                 'private_no' => $this->input->post('private_patient_no')
             );
@@ -455,7 +471,7 @@ class Record extends CI_Controller {
                 $alive_status_flag = FALSE;
 
             $data_patient_survival_status = array(
-                'patient_ic_no' => $this->input->post('IC_no'),
+                'patient_ic_no' => $new_ic_no,
                 'source' => $this->input->post('recurrence_site'),
                 'alive_status' => $alive_status_flag,
                 'status_gathering_date' => date('Y-m-d',strtotime($this->input->post('status_gathered_date'))),
@@ -473,7 +489,7 @@ class Record extends CI_Controller {
             echo '<br/>';
             
             $data_patient_COGS_study = array(
-                'patient_ic_no' => $this->input->post('IC_no'),
+                'patient_ic_no' => $new_ic_no,
                 'COGS_studies_name' => $this->input->post('COGS_studies_id'),
                 'created_on' => $date,
                 'COGS_studies_no' => $this->input->post('COGS_studies_no')
@@ -494,7 +510,7 @@ class Record extends CI_Controller {
 			//$dynamicFieldsArray = $this->getDynamicFieldsInputsArray("survival_status");
             
 			$data_patient_relatives_summary = array(
-                'patient_ic_no' => $this->input->post('IC_no'),
+                'patient_ic_no' => $new_ic_no,
                 'total_no_of_male_siblings' => $this->input->post('total_no_of_male_siblings'),
                 'total_no_of_female_siblings' => $this->input->post('total_no_of_female_siblings'),
                 'total_no_of_affected_siblings' => $this->input->post('total_no_of_affected_siblings'),
@@ -521,7 +537,7 @@ class Record extends CI_Controller {
             $consent_studies_id = $this->input->post('studies_name');            
             $studies_id = $this->record_model->get_studies_id($consent_studies_id);
             $data_patient_consent_detail = array(
-                'patient_ic_no' => $this->input->post('IC_no'),
+                'patient_ic_no' => $new_ic_no,
                 'studies_id' => $studies_id,
                 'date_at_consent' => date('Y-m-d',strtotime($this->input->post('date_at_consent'))),
                 'age_at_consent' => $this->input->post('age_at_consent'),
@@ -2133,6 +2149,11 @@ class Record extends CI_Controller {
             echo "<h2>Failed to insert at patient_gynaecological_surgery_history</h2>";
         }
         echo '<br/>';
+        if ($patient_gynaecological_surgery_history_id && $patient_lifestyle_factors_id && $patient_menstruation_id && $patient_parity_table_id && $patient_parity_record_id && $patient_infertility_id && $patient_gynaecological_surgery_history_id > 0) {
+            echo "<h2>Data Added successfully.</h2>";
+        } else {
+            echo "<h2>Failed to insert data.</h2>";
+        }
     }
     
     function lifestyle_update() {
@@ -2311,9 +2332,9 @@ class Record extends CI_Controller {
         //print_r($data_patient_gynaecological_surgery_history);
         //echo '<br/>';
 
-        $this->db->where('patient_investigations_id', $patient_gynaecological_surgery_history_id);
-        $this->db->where('patient_studies_id', $patient_studies_id);
-        $this->db->update('patient_mutation_analysis', $data_patient_gynaecological_surgery_history);
+        $this->db->where('patient_gynaecological_surgery_history_id', $patient_gynaecological_surgery_history_id);
+        //$this->db->where('patient_studies_id', $patient_studies_id);
+        $this->db->update('patient_gynaecological_surgery_history', $data_patient_gynaecological_surgery_history);
     }
     }
 
@@ -2388,9 +2409,12 @@ class Record extends CI_Controller {
         //array_push($data, $this->input->post('firstname'));
         $patient_investigations_id = $this->record_model->insert_patient_mutation_analysis($data_patient_investigations);
         if ($patient_investigations_id > 0) {
-            echo "<h2>Data Added successfully at patient_mutation_analysis</h2>";
+            
+            //$this->session->set_flashdata('msg', 'success');
+            //redirect('record/subject_list/');
+            echo "<h2>Data Added successfully.</h2>";
         } else {
-            echo "<h2>Failed to insert at patient_mutation_analysis</h2>";
+            echo "<h2>Failed to insert the data</h2>";
         }
         echo '<br/>';
     }
@@ -2484,6 +2508,16 @@ class Record extends CI_Controller {
         $this->db->where('patient_studies_id', $studies_name);
         $this->db->update('patient_mutation_analysis', $data_patient_investigations);
         
+        
+        if ($this->db->affected_rows() > 0)
+        {
+            echo '<h2>Data for id '.$patient_investigation_id[$i].' update successfully<h2>';
+        }
+            else
+        {
+            echo '<h2>No update data for id '.$patient_investigation_id[$i].'</h2>';
+        }
+        echo '<br/>';
         }
     }
 
@@ -3312,7 +3346,7 @@ class Record extends CI_Controller {
     function interview_home_insersion() {
         
         date_default_timezone_set("Asia/Kuala_lumpur"); 
-        $date = date('Y-m-d H:i:s'); //Returns IST 
+        $date = date('Y-m-d H:i:s'); //Returns IST
         
         $data_patient_interview_manager = array(
             'patient_ic_no' => $this->input->post('IC_no'),
@@ -3325,11 +3359,12 @@ class Record extends CI_Controller {
         );
         $patient_interview_manager_id = $this->record_model->insert_patient_interview_manager($data_patient_interview_manager);
         if ($patient_interview_manager_id > 0) {
-            echo "<h2>Data Added successfully at patient_interview_manager</h2>";
+            echo "<h2>Data Added successfully.</h2>";
         } else {
-            echo "<h2>Failed to insert patient_interview_manager</h2>";
+            echo "<h2>Failed to added data. Please try again.</h2>";
         }
         echo '<br/>';
+        
     }
     
     function interview_home_update() {
@@ -3367,9 +3402,20 @@ class Record extends CI_Controller {
         $this->db->where('patient_ic_no', $icno);
         $this->db->update('patient_interview_manager', $data_patient_interview_manager);
         
-        //$this->db->last_query();
+        
+        if ($this->db->affected_rows() > 0)
+        {
+            echo '<h2>Data for counselling '.$i.' update successfully<h2>';
+        }
+            else
+        {
+            echo '<h2>No update data for id '.$i.'</h2>';
+        }
+        echo '<br/>';
+        
         }
         //endforeach;
+
         
     }
     

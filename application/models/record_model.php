@@ -488,6 +488,7 @@ class Record_model extends CI_Model {
         $data['maiden_name'] = 'Maiden name';
         $data['family_no'] = 'Family No';
         $data['IC_no'] = 'IC No';
+        $data['old_IC_no'] = 'Old IC No';
 
         $data['nationality'] = 'Nationality';
         $data['nationalities'] = array(
@@ -2349,5 +2350,11 @@ function get_studies_name_by_id() {
         return $noncanceroussite;
     }
     
+    function update_patient_data($id,$table) {
+        
+        $this->db->where('patient_interview_manager_id', $id[$i]);
+        $this->db->update('patient_interview_manager', $data_patient_interview_manager);
+    
+}
 }
 ?>
