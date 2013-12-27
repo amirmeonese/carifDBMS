@@ -280,7 +280,7 @@ class Excell_parser_model extends CI_Model {
                                 list($day, $month, $year) = explode("/", $cell_value);
 
                                 if (!checkdate($month, $day, $year)) {
-                                    echo '<h2>date_at_consent is not in appropriate format at Personal2</h2>';
+                                    echo '<h2>date_at_consent is not in appropriate format at Personal2  </h2>'.$i;
                                     $date_flag = TRUE;
                                     $abort = TRUE;
                                     break;
@@ -544,7 +544,7 @@ class Excell_parser_model extends CI_Model {
                         }
 
                         if (!$val_studies_id) {
-                            echo 'Should ommit import for invalid studies_id data at Diagnosis & Treatment worksheet' . '<br/>';
+                            echo 'Should ommit import for invalid studies_id data at Diagnosis & Treatment worksheet' .$i.'<br/>';
                             $abort = TRUE;
                             break;
                         }
@@ -1648,7 +1648,7 @@ class Excell_parser_model extends CI_Model {
                             if ($key == 5 && $cell_value != NULL)
                             {
                                 $old_ic_no = $cell_value;
-                                $cell_value = str_replace('-', '', trim($cell_value));
+                                $cell_value = preg_replace("/[^0-9]/", "", $cell_value);
                             }    
                             if ($key == 8 || $key == 13 || $key == 48) {
                                 if ($cell_value != NULL) {
@@ -1847,7 +1847,7 @@ class Excell_parser_model extends CI_Model {
 
                             if ($key == 0 && $cell_value != NULL)
                             {
-                                $cell_value = str_replace('-', '', trim($cell_value));
+                                $cell_value = preg_replace("/[^0-9]/", "", $cell_value);
                             }
 
                             if ($key == 0 && $cell_value != NULL)
@@ -1972,7 +1972,7 @@ class Excell_parser_model extends CI_Model {
                             $cell_value = $cell->getFormattedValue();
                             if ($key == 0 && $cell_value != NULL)
                             {
-                                $cell_value = str_replace('-', '', trim($cell_value));
+                                $cell_value = preg_replace("/[^0-9]/", "", $cell_value);
                             }
                             
                             if ($key == 2) {
