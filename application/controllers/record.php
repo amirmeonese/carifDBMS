@@ -2149,11 +2149,11 @@ class Record extends CI_Controller {
             echo "<h2>Failed to insert at patient_gynaecological_surgery_history</h2>";
         }
         echo '<br/>';
-        if ($patient_gynaecological_surgery_history_id && $patient_lifestyle_factors_id && $patient_menstruation_id && $patient_parity_table_id && $patient_parity_record_id && $patient_infertility_id && $patient_gynaecological_surgery_history_id > 0) {
-            echo "<h2>Data Added successfully.</h2>";
-        } else {
-            echo "<h2>Failed to insert data.</h2>";
-        }
+//        if ($patient_gynaecological_surgery_history_id && $patient_lifestyle_factors_id && $patient_menstruation_id && $patient_parity_table_id && $patient_parity_record_id && $patient_infertility_id && $patient_gynaecological_surgery_history_id > 0) {
+//            echo "<h2>Data Added successfully.</h2>";
+//        } else {
+//            echo "<h2>Failed to insert data.</h2>";
+//        }
     }
     
     function lifestyle_update() {

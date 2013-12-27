@@ -48,12 +48,12 @@
                     <?php echo $gender; ?>: 
                     <?php echo  form_dropdown('gender',$genderTypes, $patient_detail['gender'], 'id="gender" preload_val="'.$patient_detail['gender'].'"') ?>
                 </td>
+                    </tr>
+            <tr>
                 <td>
                     <?php echo $ethinicity; ?>: 
                     <?php echo form_input(array('name' => 'ethnicity', 'value' => $patient_detail['ethnicity']))?>
                 </td>
-            </tr>
-            <tr>
                 <td>
                     <?php echo $DOB; ?>:
                     <?php echo form_input(array('name' => 'd_o_b', 'value' => $patient_detail['d_o_b'],'class' => 'datepicker'))?>
@@ -68,12 +68,13 @@
                     <?php echo $marital_status; ?>:
                     <?php echo  form_dropdown('marital_status',$marital_status_lists, $patient_detail['marital_status'], 'id="marital_status" preload_val="'.$patient_detail['marital_status'].'"')?>                    
                 </td>
+                          </tr>
+            <tr>
                 <td>
                     <?php echo $blood_group; ?>: 
                     <?php echo form_input(array('name' => 'blood_group', 'value' => $patient_detail['blood_group']))?>                  
                 </td>
-            </tr>
-            <tr>
+  
                <?php if($patient_detail['is_dead'] == 1){?>
                 <td>
                     <?php echo $is_dead; ?>:
