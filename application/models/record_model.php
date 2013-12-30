@@ -1917,13 +1917,21 @@ class Record_model extends CI_Model {
     }
     
     public function get_non_cancerous_benign_site_id($record_data) {
-        $this->db->select('non_cancerous_site_id');
-        $this->db->where('non_cancerous_site_name',$record_data);
-        $l_record = $this->db->get('non_cancerous_site');
-        $patient_list = $l_record->row_array();
-        $l_record->free_result();
+        $data = array(
+        );
+        $query = $this->db->select('non_cancerous_site_id')
+                ->where('non_cancerous_site_name', $record_data)
+                ->get($this->tables['non_cancerous_site']);
 
-        return $patient_list['non_cancerous_site_id'];
+        $result = null;;
+        if ($query->num_rows() > 0) {
+            $result = $query->row_array();
+            //echo $result['relatives_id'];
+        }
+
+        //print_r($result['non_cancerous_site_id']);
+
+        return $result['non_cancerous_site_id'];
     }
     
     public function get_studies_name() {
@@ -2165,7 +2173,7 @@ function get_patient_non_cancer_record($patient_studies_id) {
 }
 
 function get_patient_risk_reducing_surgery_record($patient_studies_id) {
-    $this->db->select('a.*,b.*,c.*');
+    $this->db->select('a.*,b.*,c.patient_risk_reducing_surgery_lesion_id,c.non_cancerous_site_id as lesion_non_cancerous_site_id, c.surgery_date as lesion_surgery_date');
     $this->db->from('patient_risk_reducing_surgery a');
     $this->db->join('patient_risk_reducing_surgery_complete_removal b','a.patient_risk_reducing_surgery_id = b.patient_risk_reducing_surgery_id','left');
     $this->db->join('patient_risk_reducing_surgery_lesion c','a.patient_risk_reducing_surgery_id = c.patient_risk_reducing_surgery_id','left');
@@ -2175,6 +2183,8 @@ function get_patient_risk_reducing_surgery_record($patient_studies_id) {
     $patient_lifestyle_list->free_result();
     
     //echo $this->db->last_query();exit;
+    
+    //print_r($list_patient_lifestyle);exit;
     
     return $list_patient_lifestyle;
 }
@@ -2350,10 +2360,16 @@ function get_studies_name_by_id() {
         return $noncanceroussite;
     }
     
-    function update_patient_data($id,$table) {
+    function update_counselling_data($data,$id) {
         
-        $this->db->where('patient_interview_manager_id', $id[$i]);
-        $this->db->update('patient_interview_manager', $data_patient_interview_manager);
+        
+        $this->db->where('patient_interview_manager_id', $id);
+        //$this->db->where('patient_ic_no', $icno);
+        $this->db->update('patient_interview_manager', $data);
+        
+        //echo $this->db->last_query();
+        
+        return true;
     
 }
 }

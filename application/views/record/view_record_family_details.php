@@ -5,7 +5,7 @@
 	
     <?php 
 	$attributes = array('id' => 'family-details-form');
-	echo form_open("record/patient_family_record_insertion", $attributes);
+	echo form_open("record/patient_family_record_update", $attributes);
 	?>
 	 <div class="container" id="add_record_form_section_1">
         <div height="30px">&nbsp;</div>

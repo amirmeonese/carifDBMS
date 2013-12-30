@@ -462,11 +462,11 @@
                 <tr>
                     <td>
                         <?php echo $non_cancerous_benign_site; ?>: 
-                        <?php echo form_dropdown('non_cancerous_benign_site[]', $non_cancerous_benign_site_lists, @$non_cocerous_site[$risk_reducing_surgery['non_cancerous_site_id']], 'id="non_cancerous_benign_site_lists" preload_val="'. @$non_cocerous_site[$risk_reducing_surgery['non_cancerous_site_id']].'"'); ?>
+                        <?php echo form_dropdown('non_cancerous_benign_site[]', $non_cancerous_benign_site_lists, @$non_cancerous_site[$risk_reducing_surgery['lesion_non_cancerous_site_id']], 'id="non_cancerous_benign_site_lists" preload_val="'.@$non_cancerous_site[$risk_reducing_surgery['lesion_non_cancerous_site_id']].'"'); ?>
                     </td>
                     <td>
                         <?php echo $non_cancerous_benign_date; ?>: 
-                        <?php echo form_input(array('name' => 'non_cancerous_benign_date[]', 'value' => $risk_reducing_surgery['surgery_date'], 'class' => 'datepicker')) ?>
+                        <?php echo form_input(array('name' => 'non_cancerous_benign_date[]', 'value' => $risk_reducing_surgery['lesion_surgery_date'], 'class' => 'datepicker')) ?>
                     </td>
                 </tr>
             </table>

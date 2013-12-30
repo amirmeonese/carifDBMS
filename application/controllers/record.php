@@ -314,7 +314,7 @@ class Record extends CI_Controller {
                 $data_patient_consent_detail = array(
                     'date_at_consent' => date('Y-m-d', strtotime($date_at_consent[$i])),
                     'age_at_consent' => $age_at_consent[$i],
-                    'studies_id' => $studies_id[$i],
+                    'studies_id' => $studies_id,
                     'double_consent_flag' => $double_consent_flag[$i],
                     'consent_given_by' => $consent_given_by[$i],
                     'consent_response' => $consent_response[$i],
@@ -673,7 +673,6 @@ class Record extends CI_Controller {
         date_default_timezone_set("Asia/Kuala_lumpur"); 
         $date = date('Y-m-d H:i:s'); //Returns IST 
 
-        $patient_ic_no = $this->input->post('IC_no');
         $father_relatives_id = $this->input->post('father_relatives_id');
         $father_cancer_name = $this->input->post('father_cancer_name');
         $family_no = $this->input->post('family_no');
@@ -698,7 +697,7 @@ class Record extends CI_Controller {
         $is_in_other_country = $this->input->post('father_unknown_reason_in_other_countries');
         $comments = $this->input->post('father_comments');
         $vital_status = $this->input->post('father_vital_status');
-
+        
         if(!empty($father_relatives_id)){
         for($i=0;$i<count($father_relatives_id);$i++){ 
             
@@ -741,8 +740,8 @@ class Record extends CI_Controller {
         }
         
                 $mother_relatives_id = $this->input->post('mother_relatives_id');
-            $mother_cancer_name = $this->input->post('mother_cancer_name');
-                           $mother_family_no = $this->input->post('family_no');
+                $mother_cancer_name = $this->input->post('mother_cancer_name');
+                $mother_family_no = $this->input->post('family_no');
                 $mother_full_name = $this->input->post('mother_fullname');
                 $mother_sur_name = $this->input->post('mother_surname');
                 $mother_maiden_name = $this->input->post('mother_maiden_name');
@@ -765,41 +764,42 @@ class Record extends CI_Controller {
                 $mother_vital_status = $this->input->post('mother_vital_status');
                   
                 if(!empty($mother_relatives_id)){
-            for($j=0;$j<count($mother_relatives_id);$j++){ 
+                for($i=0;$i<count($mother_relatives_id);$i++){ 
                 
                 $mother_cancer_type_id = $this->record_model->get_cancer_id($mother_cancer_name[$i]);
             
             $data2_patient_relatives = array(
-                'family_no' => $mother_family_no[$j],
-                'full_name' => $mother_full_name[$j],
-                'sur_name' => $mother_sur_name[$j],
-                'maiden_name' => $mother_maiden_name[$j],
-                'ethnicity' => $mother_ethnicity[$j],
-                'town_of_residence' => $mother_town_of_residence[$j],
-                'd_o_b' => date('Y-m-d',strtotime($mother_d_o_b[$j])),
-                'is_alive_flag' => $mother_is_alive_flag[$j],
-                'd_o_d' => date('Y-m-d',strtotime($mother_d_o_d[$j])),
-                'is_cancer_diagnosed' => $mother_is_cancer_diagnosed[$j],
-                'date_of_diagnosis' => date('Y-m-d',strtotime($mother_date_of_diagnosis[$j])),
-                'cancer_type_id' => $mother_cancer_type_id[$i],
-                'age_of_diagnosis' => $mother_age_of_diagnosis[$j],
-                'other_detail' => $mother_other_detail[$j],
-                'no_of_brothers' => $mother_no_of_brothers[$j],
-                'total_half_sisters' => $mother_total_half_sisters[$j],
-                'total_half_brothers' => $mother_total_half_brothers[$j],
-                'no_of_sisters' => $mother_no_of_sisters[$j],
+                'family_no' => $mother_family_no[$i],
+                'full_name' => $mother_full_name[$i],
+                'sur_name' => $mother_sur_name[$i],
+                'maiden_name' => $mother_maiden_name[$i],
+                'ethnicity' => $mother_ethnicity[$i],
+                'town_of_residence' => $mother_town_of_residence[$i],
+                'd_o_b' => date('Y-m-d',strtotime($mother_d_o_b[$i])),
+                'is_alive_flag' => $mother_is_alive_flag[$i],
+                'd_o_d' => date('Y-m-d',strtotime($mother_d_o_d[$i])),
+                'is_cancer_diagnosed' => $mother_is_cancer_diagnosed[$i],
+                'date_of_diagnosis' => date('Y-m-d',strtotime($mother_date_of_diagnosis[$i])),
+                'cancer_type_id' => $mother_cancer_type_id,
+                'age_of_diagnosis' => $mother_age_of_diagnosis[$i],
+                'other_detail' => $mother_other_detail[$i],
+                'no_of_brothers' => $mother_no_of_brothers[$i],
+                'total_half_sisters' => $mother_total_half_sisters[$i],
+                'total_half_brothers' => $mother_total_half_brothers[$i],
+                'no_of_sisters' => $mother_no_of_sisters[$i],
                 'modified_on' => $date,
-                'is_adopted' => $mother_is_adopted[$j],
-                'comments' => $mother_comments[$j],
-                'is_in_other_country' => $mother_is_in_other_country[$j],
-                'vital_status' => $mother_vital_status[$j]
+                'is_adopted' => $mother_is_adopted[$i],
+                'comments' => $mother_comments[$i],
+                'is_in_other_country' => $mother_is_in_other_country[$i],
+                'vital_status' => $mother_vital_status[$i]
                 //'match_score_at_consent' => $this->input->post('mother_mach_score_at_consent'),
                 //'match_score_past_consent' => $this->input->post('mother_mach_score_past_consent'),
                 //'fh_category' => $this->input->post('mother_FH_category')
             );
             
+            
             $this->db->where('relatives_id', 2);
-            $this->db->where('mother_relatives_id', $mother_relatives_id[$j]);
+            $this->db->where('patient_relatives_id', $mother_relatives_id[$i]);
             $this->db->update('patient_relatives', $data2_patient_relatives);
             }
                 }
@@ -1386,7 +1386,7 @@ class Record extends CI_Controller {
         );
         //print_r($data_patient_mri_abnormality);
         echo '<br/>';
-        $data_patient_risk_reducing_surgery_lesion_id = $this->record_model->insert_patient_risk_reducing_surgery_complete_removal($data_patient_risk_reducing_surgery_lesion);
+        $data_patient_risk_reducing_surgery_lesion_id = $this->record_model->insert_patient_risk_reducing_surgery_lesion($data_patient_risk_reducing_surgery_lesion);
         if ($data_patient_risk_reducing_surgery_lesion_id > 0) {
             echo "Data Added successfully at patient_risk_reducing_surgery_lesion";
         } else {
@@ -1763,7 +1763,7 @@ class Record extends CI_Controller {
             'comments' => $mri_comments[$i],
         );
         
-        $this->db->where('patient_mri_abnormality_id', $patient_mri_abnormality_id[$i]);
+        $this->db->where('patient_mri_abnormlity_id', $patient_mri_abnormality_id[$i]);
         $this->db->update('patient_mri_abnormality', $data_patient_mri_abnormality);
     }
             }
@@ -1820,25 +1820,27 @@ class Record extends CI_Controller {
         }
         
         $patient_risk_reducing_surgery_complete_removal_id = $this->input->post('patient_risk_reducing_surgery_complete_removal_id');
-        $removal_non_cancerous_site_id = $this->input->post('non_cancerous_complete_removal_site');
         $surgery_date = str_replace("/","-",$this->input->post('non_cancerous_complete_removal_date'));
         $surgery_reason = $this->input->post('non_cancerous_complete_removal_reason');
-
+        $removal_non_cancerous_site_id = $this->input->post('non_cancerous_complete_removal_site');            
+        
         if (!empty($patient_risk_reducing_surgery_complete_removal_id)) {
         for ($i = 0; $i < count($patient_risk_reducing_surgery_complete_removal_id); $i++) {
             
-        $removal_non_cancerous_site = $this->record_model->get_non_cancerous_benign_site_id($removal_non_cancerous_site_id[$i]);
+        $removal_non_cancerous_site = $this->record_model->get_non_cancerous_benign_site_id($removal_non_cancerous_site_id[$i]);        
             
         $data_patient_risk_reducing_surgery_complete_removal = array(
-            'non_cancerous_site_id' => $removal_non_cancerous_site[$i],
+            'non_cancerous_site_id' => $removal_non_cancerous_site,
             'surgery_date' => date('Y-m-d',strtotime($surgery_date[$i])),
             'modified_on' => $date,
             'surgery_reason' => $surgery_reason[$i]
         );
+        //print_r($data_patient_risk_reducing_surgery_complete_removal);exit;
         
         $this->db->where('patient_risk_reducing_surgery_complete_removal_id', $patient_risk_reducing_surgery_complete_removal_id[$i]);
         $this->db->update('patient_risk_reducing_surgery_complete_removal', $data_patient_risk_reducing_surgery_complete_removal);
-    }
+    
+        }
         }
         
         $patient_risk_reducing_surgery_lesion_id = $this->input->post('patient_risk_reducing_surgery_lesion_id');
@@ -1851,10 +1853,11 @@ class Record extends CI_Controller {
             $non_cancerous_site = $this->record_model->get_non_cancerous_benign_site_id($non_cancerous_site_id[$i]);
             
         $data_patient_risk_reducing_surgery_lesion = array(
-            'non_cancerous_site_id' => $non_cancerous_site[$i],
+            'non_cancerous_site_id' => $non_cancerous_site,
             'modified_on' => $date,
             'surgery_date' => date('Y-m-d',strtotime($non_cancerous_surgery_date[$i]))
         );
+        //print_r($data_patient_risk_reducing_surgery_lesion);exit;
         
         $this->db->where('patient_risk_reducing_surgery_lesion_id', $patient_risk_reducing_surgery_lesion_id[$i]);
         $this->db->update('patient_risk_reducing_surgery_lesion', $data_patient_risk_reducing_surgery_lesion);
@@ -2935,7 +2938,7 @@ class Record extends CI_Controller {
             $breast_cancer_site_id = $this->record_model->get_cancer_site_id($patient_breast_cancer_site[$i]);
 
             $data_patient_breast_diagnosis = array(
-                'cancer_site_id' => $breast_cancer_site_id[$i],
+                'cancer_site_id' => $breast_cancer_site_id,
                 'cancer_invasive_type' => $cancer_invasive_type[$i],
                 'is_primary' => $is_primary[$i],
                 'date_of_diagnosis' => date('Y-m-d', strtotime($date_of_diagnosis[$i])),
@@ -3063,7 +3066,6 @@ class Record extends CI_Controller {
 
         $ovary_patient_cancer_id = $this->input->post('ovary_patient_cancer_id');
         $patient_ovary_cancer_site = $this->input->post('ovary_cancer_site'); //by this we will get treatment_id
-        $ovary_cancer_site_id = $this->record_model->get_cancer_site_id($patient_ovary_cancer_site);
         $ovary_cancer_invasive_type = $this->input->post('ovary_cancer_invasive_type');
         $ovary_primary_diagnosis = $this->input->post('ovary_primary_diagnosis');
         $ovary_date_of_diagnosis = str_replace("/","-",$this->input->post('ovary_date_of_diagnosis'));
@@ -3080,7 +3082,7 @@ class Record extends CI_Controller {
             $ovary_cancer_site_id = $this->record_model->get_cancer_site_id($patient_ovary_cancer_site[$i]);
             
             $data_patient_ovary_diagnosis = array(
-                'cancer_site_id' => $ovary_cancer_site_id[$i],
+                'cancer_site_id' => $ovary_cancer_site_id,
                 'cancer_invasive_type' => $ovary_cancer_invasive_type[$i],
                 'is_primary' => $ovary_primary_diagnosis[$i],
                 'date_of_diagnosis' => date('Y-m-d', strtotime($ovary_date_of_diagnosis[$i])),
@@ -3145,7 +3147,6 @@ class Record extends CI_Controller {
 
         $ovary_patient_cancer_treatment_id = $this->input->post('ovary_patient_cancer_treatment_id');
         $ovary_patient_cancer_treatment_name = $this->input->post('ovary_patient_cancer_treatment_name'); //by this we will get treatment_id
-        $ovary_treatment_id = $this->record_model->get_treatment_id($ovary_patient_cancer_treatment_name);
         $ovary_treatment_start_date = str_replace("/","-",$this->input->post('ovary_treatment_start_date'));
         $ovary_treatment_end_date = str_replace("/","-",$this->input->post('ovary_treatment_end_date'));
         $ovary_treatment_durations = $this->input->post('ovary_treatment_duration');
@@ -3187,7 +3188,6 @@ class Record extends CI_Controller {
         }
 
         $patient_other_cancer_site = $this->input->post('other_cancer_site'); //by this we will get treatment_id
-        $other_cancer_site_id = $this->record_model->get_cancer_site_id($patient_other_cancer_site);
 
         $patient_other_cancer_id = $this->input->post('patient_other_cancer_id');
         $other_cancer_id = $this->input->post('patient_cancer_name');
@@ -3204,7 +3204,7 @@ class Record extends CI_Controller {
 
             $data_patient_other_cancer_diagnosis = array(
                 'cancer_id' => $other_cancer_id[$i],
-                'cancer_site_id' => $other_cancer_site_id[$i],
+                'cancer_site_id' => $other_cancer_site_id,
                 'date_of_diagnosis' => date('Y-m-d', strtotime($other_date_of_diagnosis[$i])),
                 'age_of_diagnosis' => $other_age_of_diagnosis[$i],
                 'diagnosis_center' => $other_diagnosis_center[$i],
@@ -3261,10 +3261,10 @@ class Record extends CI_Controller {
         if(!empty($patient_other_cancer_treatment_id)){
         for ($i = 0; $i < count($patient_other_cancer_treatment_id); $i++) {
             
-            $other_cancer_treatment_id = $this->record_model->get_treatment_id($patient_other_cancer_treatment_name);
+            $other_cancer_treatment_id = $this->record_model->get_treatment_id($patient_other_cancer_treatment_name[$i]);
 
             $data_patient_other_cancer_treatment = array(
-                'treatment_id' => $other_cancer_treatment_id[$i],
+                'treatment_id' => $other_cancer_treatment_id,
                 'treatment_details' => $other_treatment_details[$i],
                 'treatment_start_date' => date('Y-m-d', strtotime($other_treatment_start_date[$i])),
                 'treatment_end_date' => date('Y-m-d', strtotime($other_treatment_end_date[$i])),
@@ -3299,7 +3299,7 @@ class Record extends CI_Controller {
             $other_diagnosis_id = $this->record_model->get_diagnosis_id($patient_diagnosis[$i]);
 
             $data_patient_other_diseases = array(
-                'diagnosis_id' => $other_diagnosis_id[$i],
+                'diagnosis_id' => $other_diagnosis_id,
                 'date_of_diagnosis' => date('Y-m-d', strtotime($year_of_diagnosis[$i])),
                 'diagnosis_age' => $diagnosis_age[$i],
                 'diagnosis_center' => $center[$i],
@@ -3317,7 +3317,7 @@ class Record extends CI_Controller {
         $patient_other_disease_medication_id = $this->input->post('patient_other_disease_medication_id');
         $medication_type = $this->input->post('medication_type_name');
         $medication_start_date = str_replace("/","-",$this->input->post('medication_start_date'));
-        $medication_end_date = str_replace("/","-",$this->input->post('medication_end_date'));
+        $medication_end_date = str_replace("/","-",$this->input->post('age_of_diagnosis'));
         $medication_duration = $this->input->post('medication_duration');
         $medication_comments = $this->input->post('medication_comments');
 
@@ -3409,7 +3409,7 @@ class Record extends CI_Controller {
         }
             else
         {
-            echo '<h2>No update data for id '.$i.'</h2>';
+            //echo '<h2>No update data for id '.$i.'</h2>';
         }
         echo '<br/>';
         
@@ -3586,8 +3586,8 @@ class Record extends CI_Controller {
             $data['ovarian_screening_type'] = $this->record_model->get_ovarian_screening_type_by_id();
             $data['site_breast'] = $this->record_model->get_site_breast_by_id();
             $data['upperbelow_breast'] = $this->record_model->get_upperbellow_breast_by_id();
-            $data['non_cocerous_site'] = $this->record_model->get_non_cancerous_benign_site_name();
-                                    
+            $data['non_cancerous_site'] =  $this->record_model->get_non_cancerous_benign_site_name();
+                                                
             $this->template->load("templates/add_record_template", 'record/view_record_studies_set_one_details', $data);
         } else if ($var == 'mutation_analysis') {
             
