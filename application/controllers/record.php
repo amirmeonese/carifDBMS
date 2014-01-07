@@ -13,7 +13,7 @@ class Record extends CI_Controller {
         $this->load->model('record_model');
         $this->load->model('excell_sheets_model');
         $this->load->model('excell_parser_model');
-		$this->load->library("pagination");
+        $this->load->library("pagination");
     }
 
     //redirect if needed, otherwise display the user list
@@ -914,6 +914,8 @@ class Record extends CI_Controller {
                             'studies_name' => ""
 			);		
 		}
+                
+                //print_r($data_search_key);exit;
                         
 		$limit = 30;
 		$allResult = $this->Record_model->getPatientList($data_search_key);
@@ -929,6 +931,7 @@ class Record extends CI_Controller {
 		$result = $this->Record_model->getCurrentRangeOfPatientList($data_search_key,$config["per_page"], $page);
 						
 		$data['patient_list'] = $result;
+               // $config['total_rows'] = count($allResult);
 		$data['studies_name_list'] = $this->Record_model->get_studies_name();
 		$data['counter'] = $page;
 		$data['pagination_links'] = $this->pagination->create_links();	

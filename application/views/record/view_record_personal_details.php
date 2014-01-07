@@ -33,7 +33,7 @@
             </tr>
             <tr>
                 <td>
-                    <?php echo $nationality; ?>: 
+                    <?php echo $nationality; ?>:
                     <?php echo  form_dropdown('nationality',$nationalities, $patient_detail['nationality'], 'id="nationality" preload_val="'.$patient_detail['nationality'].'"'); ?>
                 </td>
                 <td>
