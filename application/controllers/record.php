@@ -893,15 +893,13 @@ class Record extends CI_Controller {
         $data['submit'] = $this->input->post('search');
         $studies_name = $this->input->post('studies_name');
         $studies_id = $this->record_model->get_studies_id($studies_name);
-        $patient_name = $this->input->post('patient_name');
+        $name = $this->input->post('patient_name');
         $IC_no = $this->input->post('IC_no');
-        
-    
-        
+
         if($this->input->post('search')){
         
 			$data_search_key = array(
-				'given_name' => $patient_name,
+				'given_name' => $name,
 				'ic_no' => $IC_no,
                                 'studies_name' => $studies_id
 			);
@@ -909,23 +907,53 @@ class Record extends CI_Controller {
 		else
 		{
 			$data_search_key = array(
-                            'given_name' => "",
-                            'ic_no' => "",
-                            'studies_name' => ""
+                            'given_name' => $name,
+                            'ic_no' => $IC_no,
+                            'studies_name' => $studies_id
 			);		
 		}
                 
-                //print_r($data_search_key);exit;
+               // print_r($data_search_key);
+                
+                if(!empty($name)){
+            
+            $patient_name = $name;
+            
+        } else {
+            
+            $patient_name = 0;
+            
+        }
+        
+        if(!empty($IC_no)){
+            
+            $patient_ic_no = $IC_no;
+            
+        } else {
+            
+            $patient_ic_no = 0;
+            
+        }
+        
+        if(!empty($studies_id)){
+            
+            $patient_studies = $studies_id;
+            
+        } else {
+            
+            $patient_studies = 0;
+            
+        }
                         
 		$limit = 30;
 		$allResult = $this->Record_model->getPatientList($data_search_key);
 		$config['total_rows'] = count($allResult);
-		//$config['base_url'] = site_url('record/patient_record_list_searched'.'/'.$patient_name.'/'.$IC_no.'/'.$studies_id);
-		$config['base_url'] = site_url('record/patient_record_list/');
+		$config['base_url'] = site_url('record/patient_record_list_searched'.'/'.$patient_name.'/'.$patient_ic_no.'/'.$patient_studies);
+		//$config['base_url'] = site_url('record/patient_record_list/');
                 $config['per_page'] = $limit;
-		$config["uri_segment"] = 3;
+		$config["uri_segment"] = 6;
 		$this->pagination->initialize($config);
-		$page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+		$page = ($this->uri->segment(6)) ? $this->uri->segment(6) : 0;
 		
 		$result = array();
 		$result = $this->Record_model->getCurrentRangeOfPatientList($data_search_key,$config["per_page"], $page);
@@ -954,10 +982,12 @@ class Record extends CI_Controller {
         
        //echo '$patient_name:'; print_r($patient_name);
         
-        $studies_id = $this->record_model->get_studies_id($studies_name);
+       
         
+//        $studies_id = $this->record_model->get_studies_id($studies_name);
+//        
         if(!empty($name)){
-            
+
             $patient_name = $name;
             
         } else {
@@ -978,7 +1008,7 @@ class Record extends CI_Controller {
         
         if(!empty($studies_name)){
             
-            $patient_studies = $studies_id;
+            $patient_studies = $studies_name;
             
         } else {
             
@@ -986,29 +1016,24 @@ class Record extends CI_Controller {
             
         }
         
-        //$studies_id = $this->record_model->get_studies_id($studies_name);
-        
-       // if($this->input->post('search')){
-        
-			$data_search_key = array(
+         $data_search_key = array(
 				'given_name' => $patient_name,
 				'ic_no' => $patient_ic_no,
                                 'studies_name' => $patient_studies
 			);
-        //}
-                        
-                        print_r($data_search_key);
+
+                       echo 'print'; print_r($data_search_key);
 		
         
 		$limit = 30;
 		$allResult = $this->Record_model->getPatientList($data_search_key);
 		$config['total_rows'] = count($allResult);
-                                
-		$config['base_url'] = site_url('record/patient_record_list_searched'.'/'.$patient_name.'/'.$IC_no);
+                $config['base_url'] = site_url('record/patient_record_list_searched'.'/'.$name.'/'.$IC_no.'/'.$studies_name);                
+		//$config['base_url'] = site_url('record/patient_record_list_searched'.'/'.$patient_name.'/'.$IC_no);
 		$config['per_page'] = $limit;
-		$config["uri_segment"] = 3;
+		$config["uri_segment"] = 6;
 		$this->pagination->initialize($config);
-		$page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+		$page = ($this->uri->segment(6)) ? $this->uri->segment(6) : 0;
 		
 		$result = array();
 		$result = $this->Record_model->getCurrentRangeOfPatientList($data_search_key,$config["per_page"], $page);
