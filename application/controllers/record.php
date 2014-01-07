@@ -1022,7 +1022,6 @@ class Record extends CI_Controller {
                                 'studies_name' => $patient_studies
 			);
 
-                       echo 'print'; print_r($data_search_key);
 		
         
 		$limit = 30;
