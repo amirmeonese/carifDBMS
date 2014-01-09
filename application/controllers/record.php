@@ -200,6 +200,16 @@ class Record extends CI_Controller {
 
         $this->db->where('ic_no', $patient_ic_no);
         $this->db->update('patient', $data_patient);
+        
+        if ($this->db->affected_rows() > 0)
+        {
+            echo '<h2>Data update successfully<h2>';
+        }
+            else
+        {
+            echo '<h2>No update data</h2>';
+        }
+        echo '<br/>';
 
 
         if (!empty($patient_contact_person_id)) {
@@ -213,6 +223,16 @@ class Record extends CI_Controller {
             $this->db->where('patient_contact_person_id', $patient_contact_person_id);
             $this->db->update('patient_contact_person', $data_patient_contact_person);
             // print_r($data_patient_contact_person);
+            
+            if ($this->db->affected_rows() > 0)
+        {
+            echo '<h2>Data update successfully<h2>';
+        }
+            else
+        {
+            echo '<h2>No update data</h2>';
+        }
+        echo '<br/>';
         }
 
         if (!empty($patient_hospital_no_id)) {
@@ -224,6 +244,16 @@ class Record extends CI_Controller {
             $this->db->where('patient_hospital_no_ID', $patient_hospital_no_id);
             $this->db->update('patient_hospital_no', $data_patient_hospital_no);
             // print_r($data_patient_contact_person);
+            
+            if ($this->db->affected_rows() > 0)
+        {
+            echo '<h2>Data update successfully<h2>';
+        }
+            else
+        {
+            echo '<h2>No update data</h2>';
+        }
+        echo '<br/>';
         }
 
         if (!empty($patient_private_no_id)) {
@@ -234,6 +264,16 @@ class Record extends CI_Controller {
 
             $this->db->where('patient_private_no_id', $patient_private_no_id);
             $this->db->update('patient_private_no', $data_patient_private_no);
+            
+            if ($this->db->affected_rows() > 0)
+        {
+            echo '<h2>Data update successfully<h2>';
+        }
+            else
+        {
+            echo '<h2>No update data</h2>';
+        }
+        echo '<br/>';
         }
 
         $alive_status = $this->input->post('alive_status');
@@ -255,6 +295,16 @@ class Record extends CI_Controller {
 
             $this->db->where('patient_survival_status_id', $patient_survival_status_id);
             $this->db->update('patient_survival_status', $data_patient_survival_status);
+            
+            if ($this->db->affected_rows() > 0)
+        {
+            echo '<h2>Data update successfully<h2>';
+        }
+            else
+        {
+            echo '<h2>No update data</h2>';
+        }
+        echo '<br/>';
         }
 
         if (!empty($COGS_studies_id)) {
@@ -266,6 +316,16 @@ class Record extends CI_Controller {
 
             $this->db->where('COGS_studies_id', $COGS_studies_id);
             $this->db->update('patient_COGS_studies', $data_patient_COGS_study);
+            
+            if ($this->db->affected_rows() > 0)
+        {
+            echo '<h2>Data update successfully<h2>';
+        }
+            else
+        {
+            echo '<h2>No update data</h2>';
+        }
+        echo '<br/>';
         }
 
         /* NOTE: Call getDynamicFieldsInputsArray() function to fetch the data array of dynamic fields. Parameter: Name of dynamic field's section */
@@ -290,6 +350,16 @@ class Record extends CI_Controller {
 
             $this->db->where('patient_relatives_summary_id', $patient_relatives_summary_id);
             $this->db->update('patient_relatives_summary', $data_patient_relatives_summary);
+            
+            if ($this->db->affected_rows() > 0)
+        {
+            echo '<h2>Data update successfully<h2>';
+        }
+            else
+        {
+            echo '<h2>No update data</h2>';
+        }
+        echo '<br/>';
         }
         //print_r($data_patient_relatives_summary);
 
@@ -328,6 +398,16 @@ class Record extends CI_Controller {
 
                 $this->db->where('patient_studies_id', $patient_studies_id[$i]);
                 $this->db->update('patient_studies', $data_patient_consent_detail);
+                
+                if ($this->db->affected_rows() > 0)
+        {
+            echo '<h2>Data for id '.$i.' update successfully<h2>';
+        }
+            else
+        {
+            echo '<h2>No update data for id '.$i.'</h2>';
+        }
+        echo '<br/>';
             }
         }
     }
@@ -735,6 +815,16 @@ class Record extends CI_Controller {
         $this->db->where('relatives_id', 1);
         $this->db->where('patient_relatives_id', $father_relatives_id[$i]);
         $this->db->update('patient_relatives', $data1_patient_relatives);
+        
+        if ($this->db->affected_rows() > 0)
+        {
+            echo '<h2>Data for id '.$i.' update successfully<h2>';
+        }
+            else
+        {
+            echo '<h2>No update data for id '.$i.'</h2>';
+        }
+        echo '<br/>';
 
         }
         }
@@ -801,6 +891,16 @@ class Record extends CI_Controller {
             $this->db->where('relatives_id', 2);
             $this->db->where('patient_relatives_id', $mother_relatives_id[$i]);
             $this->db->update('patient_relatives', $data2_patient_relatives);
+            
+            if ($this->db->affected_rows() > 0)
+        {
+            echo '<h2>Data for id '.$i.' update successfully<h2>';
+        }
+            else
+        {
+            echo '<h2>No update data for id '.$i.'</h2>';
+        }
+        echo '<br/>';
             }
                 }
     }
@@ -1575,6 +1675,16 @@ class Record extends CI_Controller {
         $this->db->where('patient_ic_no', $patient_ic_no);
         $this->db->update('patient_breast_screening', $data_patient_breast_screening);
         
+        if ($this->db->affected_rows() > 0)
+        {
+            echo '<h2>Data for id '.$i.' update successfully<h2>';
+        }
+            else
+        {
+            echo '<h2>No update data for id '.$i.'</h2>';
+        }
+        echo '<br/>';
+        
         }
         }
 
@@ -1752,6 +1862,16 @@ class Record extends CI_Controller {
         //$this->db->where('patient_breast_screening_id', $patient_breast_screening_id[$i]);
         $this->db->where('patient_breast_abnormality_side_id', $patient_breast_abnormality_side_id[$i]);
         $this->db->update('patient_breast_abnormality', $data_patient_breast_abnormality);
+        
+        if ($this->db->affected_rows() > 0)
+        {
+            echo '<h2>Data for id '.$i.' update successfully<h2>';
+        }
+            else
+        {
+            echo '<h2>No update data for id '.$i.'</h2>';
+        }
+        echo '<br/>';
         }
         }
         
@@ -1772,6 +1892,16 @@ class Record extends CI_Controller {
         
         $this->db->where('patient_ultra_abn', $patient_ultra_abn[$i]);
         $this->db->update('patient_ultrasound_abnormality', $data_patient_ultrasound_abnormality);
+        
+        if ($this->db->affected_rows() > 0)
+        {
+            echo '<h2>Data for id '.$i.' update successfully<h2>';
+        }
+            else
+        {
+            echo '<h2>No update data for id '.$i.'</h2>';
+        }
+        echo '<br/>';
             }
             }
             
@@ -1790,6 +1920,16 @@ class Record extends CI_Controller {
         
         $this->db->where('patient_mri_abnormlity_id', $patient_mri_abnormality_id[$i]);
         $this->db->update('patient_mri_abnormality', $data_patient_mri_abnormality);
+        
+        if ($this->db->affected_rows() > 0)
+        {
+            echo '<h2>Data for id '.$i.' update successfully<h2>';
+        }
+            else
+        {
+            echo '<h2>No update data for id '.$i.'</h2>';
+        }
+        echo '<br/>';
     }
             }
         
@@ -1824,6 +1964,16 @@ class Record extends CI_Controller {
         $this->db->where('patient_non_cancer_surgery_id', $patient_non_cancer_surgery_id[$i]);
         //$this->db->where('patient_studies_id', $patient_studies_id);
         $this->db->update('patient_non_cancer_surgery', $data_patient_non_cancer_surgery);
+        
+        if ($this->db->affected_rows() > 0)
+        {
+            echo '<h2>Data for id '.$i.' update successfully<h2>';
+        }
+            else
+        {
+            echo '<h2>No update data for id '.$i.'</h2>';
+        }
+        echo '<br/>';
     }
         }
         
@@ -1841,6 +1991,16 @@ class Record extends CI_Controller {
         
         $this->db->where('patient_risk_reducing_surgery_id', $patient_risk_reducing_surgery_id[$i]);
         $this->db->update('patient_risk_reducing_surgery', $data_patient_risk_reducing_surgery);
+        
+        if ($this->db->affected_rows() > 0)
+        {
+            echo '<h2>Data for id '.$i.' update successfully<h2>';
+        }
+            else
+        {
+            echo '<h2>No update data for id '.$i.'</h2>';
+        }
+        echo '<br/>';
     }
         }
         
@@ -1864,6 +2024,16 @@ class Record extends CI_Controller {
         
         $this->db->where('patient_risk_reducing_surgery_complete_removal_id', $patient_risk_reducing_surgery_complete_removal_id[$i]);
         $this->db->update('patient_risk_reducing_surgery_complete_removal', $data_patient_risk_reducing_surgery_complete_removal);
+        
+        if ($this->db->affected_rows() > 0)
+        {
+            echo '<h2>Data for id '.$i.' update successfully<h2>';
+        }
+            else
+        {
+            echo '<h2>No update data for id '.$i.'</h2>';
+        }
+        echo '<br/>';
     
         }
         }
@@ -1886,6 +2056,16 @@ class Record extends CI_Controller {
         
         $this->db->where('patient_risk_reducing_surgery_lesion_id', $patient_risk_reducing_surgery_lesion_id[$i]);
         $this->db->update('patient_risk_reducing_surgery_lesion', $data_patient_risk_reducing_surgery_lesion);
+        
+        if ($this->db->affected_rows() > 0)
+        {
+            echo '<h2>Data for id '.$i.' update successfully<h2>';
+        }
+            else
+        {
+            echo '<h2>No update data for id '.$i.'</h2>';
+        }
+        echo '<br/>';
     }
         }   
         
@@ -1910,6 +2090,16 @@ class Record extends CI_Controller {
         
         $this->db->where('patient_ovarian_screening_id', $patient_ovarian_screening_id[$i]);
         $this->db->update('patient_ovarian_screening', $data_patient_ovarian_screening);
+        
+        if ($this->db->affected_rows() > 0)
+        {
+            echo '<h2>Data for id '.$i.' update successfully<h2>';
+        }
+            else
+        {
+            echo '<h2>No update data for id '.$i.'</h2>';
+        }
+        echo '<br/>';
     }
         }
         
@@ -1932,6 +2122,16 @@ class Record extends CI_Controller {
         
         $this->db->where('patient_other_screening_id', $patient_other_screening_id[$i]);
         $this->db->update('patient_other_screening', $data_patient_other_screening);
+        
+        if ($this->db->affected_rows() > 0)
+        {
+            echo '<h2>Data for id '.$i.' update successfully<h2>';
+        }
+            else
+        {
+            echo '<h2>No update data for id '.$i.'</h2>';
+        }
+        echo '<br/>';
     }
             }
         
@@ -1978,6 +2178,16 @@ class Record extends CI_Controller {
          //$this->db->where('patient_studies_id', $patient_studies_id);
         $this->db->where('patient_surveillance_id', $patient_surveillance_id[$i]);
         $this->db->update('patient_surveillance', $data_patient_surveillance);
+        
+        if ($this->db->affected_rows() > 0)
+        {
+            echo '<h2>Data for id '.$i.' update successfully<h2>';
+        }
+            else
+        {
+            echo '<h2>No update data for id '.$i.'</h2>';
+        }
+        echo '<br/>';
     }
         }
     }
@@ -2249,6 +2459,16 @@ class Record extends CI_Controller {
         $this->db->where('patient_studies_id', $patient_studies_id);
         $this->db->update('patient_lifestyle_factors', $data_patient_lifestyle_factors);
         
+        if ($this->db->affected_rows() > 0)
+        {
+            echo '<h2>Data update successfully<h2>';
+        }
+            else
+        {
+            echo '<h2>No update data</h2>';
+        }
+        echo '<br/>';
+        
     }  
         $patient_menstruation_id = $this->input->post('patient_menstruation_id'); 
         
@@ -2272,6 +2492,16 @@ class Record extends CI_Controller {
         $this->db->where('patient_studies_id', $patient_studies_id);
         $this->db->update('patient_menstruation', $data_patient_menstruation);
         
+        if ($this->db->affected_rows() > 0)
+        {
+            echo '<h2>Data update successfully<h2>';
+        }
+            else
+        {
+            echo '<h2>No update data</h2>';
+        }
+        echo '<br/>';
+        
         }
         
         $patient_parity_table_id = $this->input->post('patient_parity_table_id');
@@ -2290,6 +2520,16 @@ class Record extends CI_Controller {
         $this->db->where('patient_parity_table_id', $patient_parity_table_id);
         $this->db->where('patient_studies_id', $patient_studies_id);
         $this->db->update('patient_parity_table', $data_patient_parity_table);
+        
+        if ($this->db->affected_rows() > 0)
+        {
+            echo '<h2>Data update successfully<h2>';
+        }
+            else
+        {
+            echo '<h2>No update data</h2>';
+        }
+        echo '<br/>';
 
         }
         
@@ -2307,6 +2547,16 @@ class Record extends CI_Controller {
 
         $this->db->where('patient_parity_table_id', $patient_parity_table_id);
         $this->db->update('patient_parity_record', $data_patient_parity_record);
+        
+        if ($this->db->affected_rows() > 0)
+        {
+            echo '<h2>Data update successfully<h2>';
+        }
+            else
+        {
+            echo '<h2>No update data</h2>';
+        }
+        echo '<br/>';
 
         }
         
@@ -2342,6 +2592,16 @@ class Record extends CI_Controller {
         $this->db->where('patient_infertility_id', $patient_infertility_id);
         $this->db->where('patient_studies_id', $patient_studies_id);
         $this->db->update('patient_infertility', $data_patient_infertility);
+        
+        if ($this->db->affected_rows() > 0)
+        {
+            echo '<h2>Data update successfully<h2>';
+        }
+            else
+        {
+            echo '<h2>No update data</h2>';
+        }
+        echo '<br/>';
 
         }
         
@@ -2363,6 +2623,16 @@ class Record extends CI_Controller {
         $this->db->where('patient_gynaecological_surgery_history_id', $patient_gynaecological_surgery_history_id);
         //$this->db->where('patient_studies_id', $patient_studies_id);
         $this->db->update('patient_gynaecological_surgery_history', $data_patient_gynaecological_surgery_history);
+        
+        if ($this->db->affected_rows() > 0)
+        {
+            echo '<h2>Data update successfully<h2>';
+        }
+            else
+        {
+            echo '<h2>No update data</h2>';
+        }
+        echo '<br/>';
     }
     }
 
@@ -2982,6 +3252,16 @@ class Record extends CI_Controller {
             $this->db->where('patient_studies_id', $patient_studies_id);
             $this->db->where('patient_cancer_id', $patient_cancer_id[$i]);
             $this->db->update('patient_cancer', $data_patient_breast_diagnosis);
+            
+            if ($this->db->affected_rows() > 0)
+        {
+            echo '<h2>Data for id '.$i.' update successfully<h2>';
+        }
+            else
+        {
+            echo '<h2>No update data for id '.$i.'</h2>';
+        }
+        echo '<br/>';
         }
         }
         
@@ -3024,6 +3304,16 @@ class Record extends CI_Controller {
             //$this->db->where('patient_cancer_id', $patient_cancer_id[$i]);
             $this->db->where('patient_pathology_id', $patient_pathology_id[$i]);
             $this->db->update('patient_pathology', $data_patient_breast_pathology);
+            
+            if ($this->db->affected_rows() > 0)
+        {
+            echo '<h2>Data for id '.$i.' update successfully<h2>';
+        }
+            else
+        {
+            echo '<h2>No update data for id '.$i.'</h2>';
+        }
+        echo '<br/>';
         }
         }
 
@@ -3046,6 +3336,16 @@ class Record extends CI_Controller {
             $this->db->where('patient_pathology_staining_status_id', $patient_breast_pathology_staining_status_id[$i]);
             //$this->db->where('patient_pathology_id', $patient_pathology_id);
             $this->db->update('patient_pathology_staining_status', $data_patient_breast_pathology_staining);
+            
+            if ($this->db->affected_rows() > 0)
+        {
+            echo '<h2>Data for id '.$i.' update successfully<h2>';
+        }
+            else
+        {
+            echo '<h2>No update data for id '.$i.'</h2>';
+        }
+        echo '<br/>';
         }
         }
 
@@ -3086,6 +3386,16 @@ class Record extends CI_Controller {
             //$this->db->where('patient_investigations_id', $patient_investigation_id[$i]);
             $this->db->where('patient_cancer_treatment_id', $patient_cancer_treatment_id[$i]);
             $this->db->update('patient_cancer_treatment', $data_patient_breast_treatment);
+            
+            if ($this->db->affected_rows() > 0)
+        {
+            echo '<h2>Data for id '.$i.' update successfully<h2>';
+        }
+            else
+        {
+            echo '<h2>No update data for id '.$i.'</h2>';
+        }
+        echo '<br/>';
         }
         }
 
@@ -3124,6 +3434,16 @@ class Record extends CI_Controller {
             $this->db->where('patient_studies_id', $patient_studies_id);
             $this->db->where('patient_cancer_id', $ovary_patient_cancer_id[$i]);
             $this->db->update('patient_cancer', $data_patient_ovary_diagnosis);
+            
+            if ($this->db->affected_rows() > 0)
+        {
+            echo '<h2>Data for id '.$i.' update successfully<h2>';
+        }
+            else
+        {
+            echo '<h2>No update data for id '.$i.'</h2>';
+        }
+        echo '<br/>';
         }
         }
 
@@ -3167,6 +3487,16 @@ class Record extends CI_Controller {
 
             $this->db->where('patient_pathology_id', $ovary_patient_pathology_id[$i]);
             $this->db->update('patient_pathology', $data_patient_ovary_pathology);
+            
+            if ($this->db->affected_rows() > 0)
+        {
+            echo '<h2>Data for id '.$i.' update successfully<h2>';
+        }
+            else
+        {
+            echo '<h2>No update data for id '.$i.'</h2>';
+        }
+        echo '<br/>';
         }
         }
 
@@ -3209,6 +3539,16 @@ class Record extends CI_Controller {
 
             $this->db->where('patient_cancer_treatment_id', $ovary_patient_cancer_treatment_id[$i]);
             $this->db->update('patient_cancer_treatment', $data_patient_ovary_treatment);
+            
+            if ($this->db->affected_rows() > 0)
+        {
+            echo '<h2>Data for id '.$i.' update successfully<h2>';
+        }
+            else
+        {
+            echo '<h2>No update data for id '.$i.'</h2>';
+        }
+        echo '<br/>';
         }
         }
 
@@ -3240,6 +3580,16 @@ class Record extends CI_Controller {
             $this->db->where('patient_studies_id', $patient_studies_id);
             $this->db->where('patient_cancer_id', $patient_other_cancer_id[$i]);
             $this->db->update('patient_cancer', $data_patient_other_cancer_diagnosis);
+            
+            if ($this->db->affected_rows() > 0)
+        {
+            echo '<h2>Data for id '.$i.' update successfully<h2>';
+        }
+            else
+        {
+            echo '<h2>No update data for id '.$i.'</h2>';
+        }
+        echo '<br/>';
         }
         }
 
@@ -3267,6 +3617,16 @@ class Record extends CI_Controller {
 
             $this->db->where('patient_pathology_id', $patient_other_pathology_id[$i]);
             $this->db->update('patient_pathology', $data_patient_other_cancer_pathology);
+            
+            if ($this->db->affected_rows() > 0)
+        {
+            echo '<h2>Data for id '.$i.' update successfully<h2>';
+        }
+            else
+        {
+            echo '<h2>No update data for id '.$i.'</h2>';
+        }
+        echo '<br/>';
         }
         }
 
@@ -3305,6 +3665,16 @@ class Record extends CI_Controller {
 
             $this->db->where('patient_cancer_treatment_id', $patient_other_cancer_treatment_id[$i]);
             $this->db->update('patient_cancer_treatment', $data_patient_other_cancer_treatment);
+            
+            if ($this->db->affected_rows() > 0)
+        {
+            echo '<h2>Data for id '.$i.' update successfully<h2>';
+        }
+            else
+        {
+            echo '<h2>No update data for id '.$i.'</h2>';
+        }
+        echo '<br/>';
         }
         }
 
@@ -3336,6 +3706,16 @@ class Record extends CI_Controller {
             $this->db->where('patient_other_disease_id', $patient_other_disease_id[$i]);
             $this->db->where('patient_studies_id', $patient_studies_id);
             $this->db->update('patient_other_disease', $data_patient_other_diseases);
+            
+            if ($this->db->affected_rows() > 0)
+        {
+            echo '<h2>Data for id '.$i.' update successfully<h2>';
+        }
+            else
+        {
+            echo '<h2>No update data for id '.$i.'</h2>';
+        }
+        echo '<br/>';
         }
         }
 
@@ -3364,6 +3744,16 @@ class Record extends CI_Controller {
             $this->db->where('patient_other_disease_id', $patient_other_disease_id[$i]);
             $this->db->where('patient_other_disease_medication_id', $patient_other_disease_medication_id[$i]);
             $this->db->update('patient_other_disease_medication', $data_patient_other_diseases_medication);
+            
+            if ($this->db->affected_rows() > 0)
+        {
+            echo '<h2>Data for id '.$i.' update successfully<h2>';
+        }
+            else
+        {
+            echo '<h2>No update data for id '.$i.'</h2>';
+        }
+        echo '<br/>';
         }
         }
     }
@@ -3430,11 +3820,11 @@ class Record extends CI_Controller {
         
         if ($this->db->affected_rows() > 0)
         {
-            echo '<h2>Data for counselling '.$i.' update successfully<h2>';
+            echo '<h2>Data for id '.$i.' update successfully<h2>';
         }
             else
         {
-            //echo '<h2>No update data for id '.$i.'</h2>';
+            echo '<h2>No update data for id '.$i.'</h2>';
         }
         echo '<br/>';
         
@@ -3509,6 +3899,15 @@ class Record extends CI_Controller {
             $this->db->update('patient_risk_assessment', $data_patient_risk_assessment);
 
             //$this->db->last_query();
+            if ($this->db->affected_rows() > 0)
+        {
+            echo '<h2>Data for id '.$i.' update successfully<h2>';
+        }
+            else
+        {
+            echo '<h2>No update data for id '.$i.'</h2>';
+        }
+        echo '<br/>';
         }
         }
     }
