@@ -912,9 +912,7 @@ class Record extends CI_Controller {
                             'studies_name' => $studies_id
 			);		
 		}
-                
-               // print_r($data_search_key);
-                
+                                
                 if(!empty($name)){
             
             $patient_name = $name;

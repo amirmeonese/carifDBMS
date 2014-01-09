@@ -76,7 +76,9 @@
 					<a href="<?php echo base_url(); ?>"><img src="<?php echo base_url(); ?>img/Carif_logo.jpg" alt="logo" width="100%"/></a>
 				</div>
 				<div id="header" class="row">
-					<table border="0" width="60%"><tr><td><a class="btn btn-large btn-info home_btn" href="<?php echo base_url(); ?>">Home</a></td><td><span class="welcome_msg">Welcome to CARIF database system</span></td><td><a class="btn btn-large btn-info logout_btn" href="templates/home.html">Logout</a></td><tr></table>
+					<table border="0" width="60%"><tr><td><a class="btn btn-large btn-info home_btn" href="<?php echo base_url(); ?>">Home</a></td><td><span class="welcome_msg">Welcome to CARIF database system</span></td><td><a class="btn btn-large btn-info logout_btn" href="<?php echo site_url('auth/logout');?>">
+                                                        Logout
+                                                    </a></td><tr></table>
 				</div>
 				<div class="row" style="padding-top:20px;">
 					<?php $this->load->view($main_content);?>
