@@ -2021,7 +2021,7 @@ class Excell_parser_model extends CI_Model {
                         if ($id_data_patient > 0)
                             echo 'Data updated succesfully at patient table';
                         else
-                            echo 'Failed to update at patient table';
+                            echo 'Updated Data at patient table';
                         echo '<br/>';
 
                         $id_data_patient_hospital_no = $this->db->update_batch('patient_hospital_no', $data_patient_hospital_no_update, 'patient_ic_no');
@@ -2029,14 +2029,14 @@ class Excell_parser_model extends CI_Model {
                         if ($id_data_patient_hospital_no > 0)
                             echo 'Data updated succesfully at patient_hospital_no table';
                         else
-                            echo 'Failed to update at patient_hospital_no table';
+                            echo 'Updated Data at patient_hospital_no table';
                         echo '<br/>';
 
                         $id_data_patient_private_no = $this->db->update_batch('patient_private_no', $data_patient_private_no_update, 'patient_ic_no');
                         if ($id_data_patient_private_no > 0)
                             echo 'Data updated succesfully at patient_private_no table';
                         else
-                            echo 'Failed to update at patient_private_no table';
+                            echo 'Updated Data at patient_private_no table';
                         echo '<br/>';
 
                         $id_data_patient_cogs_studies = $this->db->update_batch('patient_cogs_studies', $data_patient_cogs_studies_update, 'patient_ic_no');
@@ -2044,14 +2044,14 @@ class Excell_parser_model extends CI_Model {
                         if ($id_data_patient_cogs_studies > 0)
                             echo 'Data updated succesfully at patient_cogs_studies table';
                         else
-                            echo 'Failed to update at patient_cogs_studies table';
+                            echo 'Updated Data at patient_cogs_studies table';
                         echo '<br/>';
 
                         $id_data_patient_contact_person = $this->db->update_batch('patient_contact_person', $data_patient_contact_person_update, 'patient_ic_no');
                         if ($id_data_patient_contact_person > 0)
                             echo 'Data updated succesfully at patient_contact_person table';
                         else
-                            echo 'Failed to update at patient_contact_person table';
+                            echo 'Updated Data at patient_contact_person table';
                         echo '<br/>';
 
                         $id_data_patient_relatives_summary = $this->db->update_batch('patient_relatives_summary', $data_patient_relatives_summary_update, 'patient_ic_no');
@@ -2059,7 +2059,7 @@ class Excell_parser_model extends CI_Model {
                         if ($id_data_patient_relatives_summary > 0)
                             echo 'Data updated succesfully at patient_relatives_summary table';
                         else
-                            echo 'Failed to update at patient_relatives_summary table';
+                            echo 'Updated Data at patient_relatives_summary table';
                         echo '<br/>';
 
                         $id_data_patient_survival_status = $this->db->update_batch('patient_survival_status', $data_patient_survival_status_update, 'patient_ic_no');
@@ -2067,7 +2067,7 @@ class Excell_parser_model extends CI_Model {
                         if ($id_data_patient_survival_status > 0)
                             echo 'Data updated succesfully at patient_survival_status table';
                         else
-                            echo 'Failed to update at patient_survival_status table';
+                            echo 'Updated Data at patient_survival_status table';
                         echo '<br/>';
                     }
                     $data_patient = null;
@@ -2263,7 +2263,7 @@ class Excell_parser_model extends CI_Model {
                         if ($id_data_patient_relatives > 0)
                             echo 'Data updated succesfully at patient_relatives table';
                         else
-                            echo 'Failed to update at patient_relatives table';
+                            echo 'Updated Data at patient_relatives table';
                         echo '<br/>';
                     }
                     
@@ -2375,7 +2375,7 @@ class Excell_parser_model extends CI_Model {
                         if ($id_data_patient_studies > 0)
                             echo 'Data updated succesfully at patient_studies table';
                         else
-                            echo 'Failed to updated at patient_studies table';
+                            echo 'Updated Datad at patient_studies table';
                         echo '<br/>';
                     }
                     
@@ -2773,7 +2773,7 @@ class Excell_parser_model extends CI_Model {
                         if ($id_patient_cancer_treatment > 0)
                             echo 'Data updated succesfully at patient_cancer_treatment table';
                         else
-                            echo 'Failed to update at patient_cancer_treatment table';
+                            echo 'Updated Data at patient_cancer_treatment table';
                         echo '<br/>'; 
                     }
 
@@ -2793,7 +2793,7 @@ class Excell_parser_model extends CI_Model {
                         if ($id_patient_pathology > 0)
                             echo 'Data updated succesfully at patient_pathology table';
                         else
-                            echo 'Failed to update at patient_pathology table';
+                            echo 'Updated Data at patient_pathology table';
                         echo '<br/>';
                     }
                     
@@ -3023,7 +3023,7 @@ class Excell_parser_model extends CI_Model {
                         if ($id_patient_other_disease_medication > 0)
                             echo 'Data updated succesfully at patient_other_disease_medication table';
                         else
-                            echo 'Failed to update at patient_other_disease_medication table';
+                            echo 'Updated Data at patient_other_disease_medication table';
                         echo '<br/>';
                     }
                    
@@ -3447,7 +3447,7 @@ class Excell_parser_model extends CI_Model {
                         if ($id_patient_breast_abnormality > 0)
                             echo 'Data updated succesfully at patient_breast_abnormality table';
                         else
-                            echo 'Failed to update at patient_breast_abnormality table';
+                            echo 'Updated Data at patient_breast_abnormality table';
                         echo '<br/>';
                     }
                     
@@ -3467,7 +3467,7 @@ class Excell_parser_model extends CI_Model {
                         if ($id_patient_ultrasound_abnormality > 0)
                             echo 'Data updated succesfully at patient_ultrasound_abnormality table';
                         else
-                            echo 'Failed to update at patient_ultrasound_abnormality table';
+                            echo 'Updated Data at patient_ultrasound_abnormality table';
                         echo '<br/>';
                     }
 
@@ -3487,7 +3487,7 @@ class Excell_parser_model extends CI_Model {
                         if ($id_patient_mri_abnormality > 0)
                             echo 'Data updated succesfully at patient_mri_abnormality table';
                         else
-                            echo 'Failed to update at patient_mri_abnormality table';
+                            echo 'Updated Data at patient_mri_abnormality table';
                         echo '<br/>';
                     }
                   
@@ -3617,7 +3617,7 @@ class Excell_parser_model extends CI_Model {
                         if ($id_data_patient_studies > 0)
                             echo 'Data updated succesfully at patient_non_cancer_surgery table';
                         else
-                            echo 'Failed to updated at patient_non_cancer_surgery table';
+                            echo 'Updated Datad at patient_non_cancer_surgery table';
                         echo '<br/>';
                     }
                     $data_patient_non_cancer_surgery = null;
@@ -3781,7 +3781,7 @@ class Excell_parser_model extends CI_Model {
                         if ($id_patient_risk_reducing_surgery > 0)
                             echo 'Data updated succesfully at patient_risk_reducing_surgery table';
                         else
-                            echo 'Failed to update at patient_risk_reducing_surgery table';
+                            echo 'Updated Data at patient_risk_reducing_surgery table';
                         echo '<br/>';
                     }        
                     
@@ -3840,7 +3840,7 @@ class Excell_parser_model extends CI_Model {
                         if ($id_patient_risk_reducing_surgery_lesion > 0)
                             echo 'Data updated succesfully at patient_risk_reducing_surgery_lesion table';
                         else
-                            echo 'Failed to update at patient_risk_reducing_surgery_lesion table';
+                            echo 'Updated Data at patient_risk_reducing_surgery_lesion table';
                         echo '<br/>';
                     }
 
@@ -3860,7 +3860,7 @@ class Excell_parser_model extends CI_Model {
                         if ($id_patient_risk_reducing_surgery_complete_removal > 0)
                             echo 'Data updated succesfully at patient_risk_reducing_surgery_complete_removal table';
                         else
-                            echo 'Failed to update at patient_risk_reducing_surgery_complete_removal table';
+                            echo 'Updated Data at patient_risk_reducing_surgery_complete_removal table';
                         echo '<br/>';
                     }
                     
@@ -4057,7 +4057,7 @@ class Excell_parser_model extends CI_Model {
                         if ($id_patient_other_screening > 0)
                             echo 'Data updated succesfully at patient_other_screening table';
                         else
-                            echo 'Failed to update at patient_other_screening table';
+                            echo 'Updated Data at patient_other_screening table';
                         echo '<br/>';
                     }
                     
@@ -4196,7 +4196,7 @@ class Excell_parser_model extends CI_Model {
                         if ($id_patient_surveillance > 0)
                             echo 'Data updated succesfully at patient_surveillance table';
                         else
-                            echo 'Failed to updated at patient_surveillance table';
+                            echo 'Updated Datad at patient_surveillance table';
                         echo '<br/>';
                     }
                     
@@ -4355,7 +4355,7 @@ class Excell_parser_model extends CI_Model {
                         if ($id_patient_mutation_analysis > 0)
                             echo 'Data updated succesfully at patient_mutation_analysis table';
                         else
-                            echo 'Failed to update at patient_mutation_analysis table';
+                            echo 'Updated Data at patient_mutation_analysis table';
                         echo '<br/>';
                     }
                     
@@ -4481,7 +4481,7 @@ class Excell_parser_model extends CI_Model {
                         if ($id_patient_risk_assessment > 0)
                             echo 'Data updated succesfully at patient_risk_assessment table';
                         else
-                            echo 'Failed to update at patient_risk_assessment table';
+                            echo 'Updated Data at patient_risk_assessment table';
                         echo '<br/>';
                     }
                     
@@ -4719,7 +4719,7 @@ class Excell_parser_model extends CI_Model {
                         if ($id_patient_lifestyle_factors > 0)
                             echo 'Data updated succesfully at patient_lifestyle_factors table';
                         else
-                            echo 'Failed to update at patient_lifestyle_factors table';
+                            echo 'Updated Data at patient_lifestyle_factors table';
                         echo '<br/>';
                     }
                     
@@ -5042,7 +5042,7 @@ class Excell_parser_model extends CI_Model {
                         if ($id_patient_menstruation > 0)
                             echo 'Data updated succesfully at patient_menstruation table';
                         else
-                            echo 'Failed to update at patient_menstruation table';
+                            echo 'Updated Data at patient_menstruation table';
                         echo '<br/>';
                     }
                    
@@ -5063,7 +5063,7 @@ class Excell_parser_model extends CI_Model {
                         if ($id_patient_parity_table > 0)
                             echo 'Data updated succesfully at patient_parity_table table';
                         else
-                            echo 'Failed to update at patient_parity_table table';
+                            echo 'Updated Data at patient_parity_table table';
                         echo '<br/>';
                     }
                     
@@ -5083,7 +5083,7 @@ class Excell_parser_model extends CI_Model {
                         if ($id_patient_infertility > 0)
                             echo 'Data updated succesfully at patient_infertility table';
                         else
-                            echo 'Failed to update at patient_infertility table';
+                            echo 'Updated Data at patient_infertility table';
                         echo '<br/>'; 
                     }
                     
@@ -5103,7 +5103,7 @@ class Excell_parser_model extends CI_Model {
                         if ($id_patient_gynaecological_surgery_history > 0)
                             echo 'Data updated succesfully at patient_gynaecological_surgery_history table';
                         else
-                            echo 'Failed to update at patient_gynaecological_surgery_history table';
+                            echo 'Updated Data at patient_gynaecological_surgery_history table';
                         echo '<br/>';
                     }
                     
@@ -5224,7 +5224,7 @@ class Excell_parser_model extends CI_Model {
                         if ($id_patient_parity_record > 0)
                             echo 'Data updated succesfully at patient_parity_record table';
                         else
-                            echo 'Failed to update at patient_parity_record table';
+                            echo 'Updated Data at patient_parity_record table';
                         echo '<br/>';  
                     }
                     
