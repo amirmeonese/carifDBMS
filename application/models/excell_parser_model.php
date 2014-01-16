@@ -187,7 +187,7 @@ class Excell_parser_model extends CI_Model {
 
 
                         if (!$name_validator) {
-                            echo '<h2>patient_given_name is not in appropriate format at Personal</h2>';
+                            echo '<h2>patient_given_name is not in appropriate format at Personal</h2>'.' row '.$i;
                             $abort = TRUE;
                             break;
                         }
@@ -452,10 +452,25 @@ class Excell_parser_model extends CI_Model {
                     $temp_result_cancer_name = null;
                     $result_cancer_name = null;
                 } else if ($loadedSheetName == 'Diagnosis & Treatment') {
+                    $array_IC_no_Diagnosis = array();
+                    $array_cancer_site_name_Diagnosis =array();
                     $array_studies_name = array();
                     $array_studies_name = null;
                     $array_treatment_name_Diagnosis = array();
                     $array_treatment_name_Diagnosis = null;
+                    $array_cancer_name_Diagnosis = array();
+                    
+                    $temp_result_cancer_site_name = array();
+                    $temp_result_cancer_site_name = null;
+                    $this->db->select('cancer_site_name');
+                    $this->db->from('cancer_site');
+                    $temp_result_cancer_site_name = $this->db->get()->result_array();
+
+                    $result_cancer_site_name = array();
+                    for ($i = 0; $i < sizeof($temp_result_cancer_site_name); $i++) {
+                        $result_cancer_site_name[$i] = $temp_result_cancer_site_name[$i]['cancer_site_name'];
+                    }
+                    $i = 0;
                     foreach ($sheet->getRowIterator() as $row) {
                         $ic_no_validator = TRUE;
                         $date_flag = FALSE;
@@ -496,8 +511,13 @@ class Excell_parser_model extends CI_Model {
                             }
 
                             if ($key == 3 && $cell_value != NULL) {
-                                $array_cancer_site_name_Diagnosis[] = trim($cell_value);
+                                $cell_value = trim($cell_value);
+                                if(in_array($cell_value, $result_cancer_site_name))
+                                {
+                                    $array_cancer_site_name_Diagnosis[] = $cell_value;  
+                                }
                             }
+                            
                             if ($key == 13 && $cell_value == NULL) {
                                 $cell_value = 'None';
                             }
@@ -584,16 +604,7 @@ class Excell_parser_model extends CI_Model {
                         }
                     }
 
-                    $temp_result_cancer_site_name = array();
-                    $temp_result_cancer_site_name = null;
-                    $this->db->select('cancer_site_name');
-                    $this->db->from('cancer_site');
-                    $temp_result_cancer_site_name = $this->db->get()->result_array();
 
-                    $result_cancer_site_name = array();
-                    for ($i = 0; $i < sizeof($temp_result_cancer_site_name); $i++) {
-                        $result_cancer_site_name[$i] = $temp_result_cancer_site_name[$i]['cancer_site_name'];
-                    }
                     //print_r($result_cancer_site_name);
                     for ($i = 0; $i < sizeof($array_cancer_site_name_Diagnosis); $i++) {
                         $val_cancer_site_name = in_array($array_cancer_site_name_Diagnosis[$i], $result_cancer_site_name);
@@ -626,7 +637,8 @@ class Excell_parser_model extends CI_Model {
                             break;
                         }
                     }
-                    
+                    $array_IC_no_Diagnosis = null;
+                    $array_cancer_name_Diagnosis = null;
                     $array_studies_name = null;
                     $array_treatment_name_Diagnosis = null;
                     $array_IC_no_Diagnosis = null;
@@ -639,7 +651,8 @@ class Excell_parser_model extends CI_Model {
                     $temp_result_cancer_site_name = null;
                     $result_cancer_site_name = null;
                     $temp_result_treatment_name = null;
-                    $result_treatment_name = null;		
+                    $result_treatment_name = null;	
+                    $array_cancer_site_name_Diagnosis = null;
                 } else if ($loadedSheetName == 'Diagnosis & Treatment2') {
                     $array_studies_name = array();
                     $array_studies_name = null;
@@ -2417,6 +2430,18 @@ class Excell_parser_model extends CI_Model {
                     $flag_treatment_name = FALSE;
                     $flag_pathology_tissue_site = FALSE;
                     
+                    $temp_result_cancer_site_name = array();
+                    $temp_result_cancer_site_name = null;
+                    $this->db->select('cancer_site_name');
+                    $this->db->from('cancer_site');
+                    $temp_result_cancer_site_name = $this->db->get()->result_array();
+
+                    $result_cancer_site_name = array();
+                    for ($i = 0; $i < sizeof($temp_result_cancer_site_name); $i++) {
+                        $result_cancer_site_name[$i] = $temp_result_cancer_site_name[$i]['cancer_site_name'];
+                    }
+                    
+                    
                     $temp_pt_studies_id_pt_cancer = array();
                     $temp_pt_studies_id_pt_cancer = null;
                     $this->db->select('patient_studies_id');
@@ -2520,8 +2545,17 @@ class Excell_parser_model extends CI_Model {
 
                             if ($key == 3 && $cell_value != NULL) {
                                 $cell_value = trim($cell_value);
-                                $temp_cancer_site_name = $cell_value;
+                                if(in_array($cell_value, $result_cancer_site_name))
+                                {
+                                   $temp_cancer_site_name = $cell_value; 
+                                }
+                                else
+                                {
+                                    $cell_value = 'None';
+                                }
+                                
                             }
+                            
                             if ($key == 3 && $cell_value == NULL) {
                                 $cell_value = 'None';
                             }
@@ -2831,6 +2865,7 @@ class Excell_parser_model extends CI_Model {
                     $data_patient_cancer_treatment_insert = null;
                     $data_patient_pathology_update = null;
                     $data_patient_pathology_insert = null;
+                    $temp_result_cancer_site_name = null;
 
                 }else if (($loadedSheetName == 'Diagnosis & Treatment2')) {
                     $data_patient_other_disease = array();
@@ -5247,7 +5282,7 @@ class Excell_parser_model extends CI_Model {
     }
 
     function check_name($name) {
-        if (ctype_alpha(str_replace(array(' ', "'", '@', '/'), '', $name)))   //if (ctype_alpha(str_replace(' ', '', $name)))
+        if (ctype_alpha(str_replace(array(' ', "'", '@', '/','.'), '', $name)))   //if (ctype_alpha(str_replace(' ', '', $name)))
             return TRUE;
         else
             return FALSE;
