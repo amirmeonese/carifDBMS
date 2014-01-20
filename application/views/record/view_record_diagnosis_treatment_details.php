@@ -757,7 +757,10 @@
         </div>
     </div>
     <?php echo form_fieldset_close(); ?>	
+     <?php if ($userprivillage['edit_privilege']== 1){ ?>
     <?php echo form_submit('mysubmit', 'Update'); ?>
+    <?php } else { ?>
+    <?php }?>
     <?php echo form_close(); ?>
 </div>
 

@@ -14,7 +14,7 @@
         <table> 
             <tr>
                 <td>
-                    <label for="surname"><?php echo $surname; ?>: </label>
+                    <label for="surname"><?php echo $surname; ?>:</label>
                    <?php echo form_input(array('name' => 'surname', 'value' => $patient_detail['surname']))?>
                 </td>
                 <td>
@@ -409,7 +409,10 @@
         <?php echo form_fieldset_close(); ?>	
     </div>
     <?php endforeach; ?>
+    <?php if ($userprivillage['edit_privilege']== 1){ ?>
     <?php echo form_submit('mysubmit', 'Update'); ?>
+    <?php } else { ?>
+    <?php }?>
     <?php echo form_close(); ?>
 </div>
 

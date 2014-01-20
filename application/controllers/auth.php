@@ -76,10 +76,25 @@ class Auth extends CI_Controller {
 			//check to see if the user is logging in
 			//check for "remember me"
 			$remember = (bool) $this->input->post('remember');
+                        
+                        $signed_in = $this->ion_auth->login($this->input->post('identity'), $this->input->post('password'));
+                        
+                        //$signed_in = $this->user->login($this->input->post('identity'), $this->input->post('password'));
 
-			if ($this->ion_auth->login($this->input->post('identity'), $this->input->post('password'), $remember))
+			if ($this->ion_auth->login($this->input->post('identity'), $this->input->post('password'),$remember))
 			{
-				//if the login is successful
+				 $sess_array = array();                                
+                                 //foreach($signed_in as $row)
+                                 //{
+                                $sess_array = array(
+                                    
+                                    'username' => $this->input->post('identity'),
+                                    //'id' => $row->id
+                                );
+                                 $this->session->set_userdata('logged_in', $sess_array);
+                                // }
+                                 
+                                 //if the login is successful
 				//redirect them back to the home page
 				$this->session->set_flashdata('message', $this->ion_auth->messages());
 				redirect('/', 'refresh');

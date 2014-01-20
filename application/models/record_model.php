@@ -2377,5 +2377,21 @@ function get_studies_name_by_id() {
         return true;
     
 }
+
+    function user_privillage($id) {
+        
+        
+        $this->db->where('id', $id);
+        //$this->db->where('patient_ic_no', $icno);
+        $this->db->from('users');
+        $user_privillage_list = $this->db->get('');
+        $list_patient_privillage = $user_privillage_list->row_array();
+        $user_privillage_list->free_result();
+        
+        //echo $this->db->last_query();
+        
+        return $list_patient_privillage;
+    
+}
 }
 ?>

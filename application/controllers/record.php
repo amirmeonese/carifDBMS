@@ -32,7 +32,9 @@ class Record extends CI_Controller {
     function view_list($var = null) {
         $this->load->model('Record_model');
         $data = $this->Record_model->general();
-                
+        
+        $userid = $this->session->userdata('user_id');        
+        $data['userprivillage'] = $this->record_model->user_privillage($userid);
         $data['isUpdate'] = FALSE;
 
         if ($var == 'personal')
@@ -990,6 +992,8 @@ class Record extends CI_Controller {
 
         $this->load->model('Record_model');
         $data = $this->Record_model->general();
+        $userid = $this->session->userdata('user_id');        
+        $data['userprivillage'] = $this->record_model->user_privillage($userid);
         $data['submit'] = $this->input->post('search');
         $studies_name = $this->input->post('studies_name');
         $studies_id = $this->record_model->get_studies_id($studies_name);
@@ -1071,6 +1075,8 @@ class Record extends CI_Controller {
 
         $this->load->model('Record_model');
         $data = $this->Record_model->general();
+        $userid = $this->session->userdata('user_id');        
+        $data['userprivillage'] = $this->record_model->user_privillage($userid);
         //$data['submit'] = $this->input->post('search');
                 
         //$studies_name = $this->input->post('studies_name');
@@ -3970,8 +3976,13 @@ class Record extends CI_Controller {
     function view_record_list($var = null, $ic_no, $patient_studies_id = null) {
         $this->load->model('Record_model');
         $data = $this->Record_model->general();
+        $userid = $this->session->userdata('user_id');
+        
+        $data['userprivillage'] = $this->record_model->user_privillage($userid);
 
-        if ($var == 'personal') {            
+        if ($var == 'personal') { 
+            
+                        
             $data['patient_detail'] = $this->record_model->get_detail_patient_record($ic_no,$patient_studies_id );
             $data['patient_consent_detail'] = $this->record_model->get_consent_detail_patient_record($ic_no, $patient_studies_id);
             $data['studies_id'] = $this->record_model->get_studies_name_by_id();

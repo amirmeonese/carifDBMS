@@ -295,7 +295,10 @@
     <input type="button" value="Add relative" onClick="window.parent.addInput('add_record_form_section_4');
             window.parent.calcHeight();"></br>
            <?php echo form_fieldset_close(); ?>	
-           <?php echo form_submit('mysubmit', 'Save'); ?>
+           <?php if ($userprivillage['add_privilege']== 1){ ?>
+    <?php echo form_submit('mysubmit', 'Save'); ?>
+    <?php } else { ?>
+    <?php }?>
            <?php echo form_close(); ?>
 </div>
 

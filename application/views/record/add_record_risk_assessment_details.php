@@ -190,6 +190,9 @@
         </div>
         <?php echo form_fieldset_close(); ?> 
     </div>
+    <?php if ($userprivillage['add_privilege']== 1){ ?>
     <?php echo form_submit('mysubmit', 'Save'); ?>
+    <?php } else { ?>
+    <?php }?>
     <?php echo form_close(); ?>
 </div>
