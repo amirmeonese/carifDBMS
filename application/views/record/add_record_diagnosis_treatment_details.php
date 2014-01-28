@@ -736,7 +736,7 @@
                         </td>
                         <td>
                             <?php echo $medication_type_name; ?>: 
-                            <?php echo form_input($medication_type_name); ?>
+                            <?php echo form_input('medication_type_name'); ?>
                         </td>
                         <td>
                             <?php echo $medication_start_date; ?>: 
@@ -750,11 +750,11 @@
                     <tr>
                         <td>
                             <?php echo $medication_duration; ?>: 
-                            <?php echo form_input($medication_duration); ?>
+                            <?php echo form_input('medication_duration'); ?>
                         </td>
                         <td>
                             <?php echo $medication_comments; ?>: 
-                            <?php echo form_input($medication_comments); ?>
+                            <?php echo form_input('medication_comments'); ?>
                         </td>
                         <td>
                             <input type="button" value="Add medication" onClick="window.parent.addOtherDiseasesMedication('add_record_form_section_other_disease_diagnosis_medication');

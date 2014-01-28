@@ -2,11 +2,11 @@
     <div id="add_record_header" class="row">
         <p>Counselling</p>
     </div>
-    
-	<?php 
-	$attributes = array('id' => 'interview-details-form');
-	echo form_open("record/interview_home_insersion", $attributes);
-	?>
+
+    <?php
+    $attributes = array('id' => 'interview-details-form');
+    echo form_open("record/interview_home_insersion", $attributes);
+    ?>
 
     <div class="container" id="interview_form_section">
         <div height="30px">&nbsp;</div>
@@ -16,20 +16,20 @@
         <table id="add_interview_form_section_1">
             <tr>
                 <td>
-                   <label for="IC_no"><?php echo $IC_no; ?>: </label>
+                    <label for="IC_no"><?php echo $IC_no; ?>: </label>
                     <?php echo form_input('IC_no'); ?>
                 </td>
             </tr>
             <tr>
                 <td>
                     Counselling date
-					<?php echo form_input(array('name'=>'interview_date','class'=>'datepicker')); ?>
+                    <?php echo form_input(array('name' => 'interview_date', 'class' => 'datepicker')); ?>
                 </td>
             </tr>
             <tr>
                 <td>
                     Setup next counselling date
-					<?php echo form_input(array('name'=>'interview_next_date','class'=>'datepicker')); ?>
+                    <?php echo form_input(array('name' => 'interview_next_date', 'class' => 'datepicker')); ?>
                 </td>
             </tr>
             <tr>
@@ -65,13 +65,13 @@
                 </td>
             </tr>
         </table>
-    <?php echo form_fieldset_close(); ?>	
+        <?php echo form_fieldset_close(); ?>	
     </div>
-<?php if ($userprivillage['add_privilege']== 1){ ?>
-    <?php echo form_submit('mysubmit', 'Save'); ?>
+    <?php if ($userprivillage['add_privilege'] == 1) { ?>
+        <?php echo form_submit('mysubmit', 'Save'); ?>
     <?php } else { ?>
-    <?php }?>
-<?php echo form_close(); ?>
+    <?php } ?>
+    <?php echo form_close(); ?>
 </div>
 
 

@@ -61,7 +61,7 @@ class Record extends CI_Controller {
         //$this->load->view('record/add_record', $data);
     }
 
-	function getDynamicFieldsInputsArray( $sectionName)
+	function getDynamicFieldsInputsArray( $sectionName,$id = NULL)
 	{
 		/*section lists
 		//FAMILY TAB
@@ -86,34 +86,20 @@ class Record extends CI_Controller {
 		other disease: medication
 		//SCREENINGS TAB
 		*/
+            $ic_no = $this->input->post('IC_no');
+            $old_ic_no = $this->input->post('old_IC_no');
+            
+            if(!empty($old_ic_no)){
+                
+                $new_ic_no = substr($old_ic_no, 1);
+                
+            } else {
+                
+                $new_ic_no = $ic_no;
+            }
+            
 		switch ($sectionName) {
-			case "hospital_no":
-			{
-				$fieldCount = 2;
-				$allFieldArray = array();
-				
-				while($this->input->post('hospital_no'.$fieldCount))
-				{
-				}
-			}
-			case "private_patient_no":
-			{
-				$fieldCount = 2;
-				$allFieldArray = array();
-				
-				while($this->input->post('private_patient_no'.$fieldCount))
-				{
-				}
-			}
-			case "cogs_study":
-			{
-				$fieldCount = 2;
-				$allFieldArray = array();
-				
-				while($this->input->post('COGS_study_id'.$fieldCount))
-				{
-				}
-			}
+			
 			case "survival_status":
 			{
 				$fieldCount = 2;
@@ -146,9 +132,931 @@ class Record extends CI_Controller {
 				echo count($allFieldArray);
 				break;
 			}
-		}
+                    case "counselling_note": 
+                        {
+                                              
+                    $fieldCount = 2;
+                    $allFieldArray = array();
+                    $date = date('Y-m-d H:i:s'); //Returns IST
+                    
+                    while ($this->input->post('interview_date'.$fieldCount)) {
+                        
+                        //print_r($comment);exit;
 
-	}
+                        $data_patient_interview_manager = array(
+                            'patient_ic_no' => $this->input->post('IC_no'),
+                            'interview_date' => date('Y-m-d', strtotime($this->input->post('interview_date'.$fieldCount))),
+                            'next_interview_date' => date('Y-m-d', strtotime($this->input->post('interview_next_date'.$fieldCount))),
+                            'is_send_email_reminder_to_officers' => $this->input->post('is_send_email_reminder'.$fieldCount),
+                            'officer_email_addresses' => $this->input->post('officer_email_addresses'.$fieldCount),
+                            'created_on' => $date,
+                            'comments' => $this->input->post('interview_note'.$fieldCount)
+                        );
+
+                        $fieldCount++;
+                       // array_push($allFieldArray, $data_patient_interview_manager);
+                        $this->db->insert('patient_interview_manager', $data_patient_interview_manager);
+                    }
+                    //echo count($allFieldArray);
+                    break;
+                }
+            case "hospital_no": {
+
+                    $fieldCount = 2;
+                    $allFieldArray = array();
+                    $date = date('Y-m-d H:i:s'); //Returns IST
+
+                    while ($this->input->post('hospital_no' . $fieldCount)) {
+
+                        //print_r($comment);exit;
+
+                        $data_patient_hospital_no = array(
+                            'patient_ic_no' => $new_ic_no,
+                            'created_on' => $date,
+                            'hospital_no' => $this->input->post('hospital_no'.$fieldCount)
+                        );
+
+                        $fieldCount++;
+                        // array_push($allFieldArray, $data_patient_interview_manager);
+                        $this->db->insert('patient_hospital_no', $data_patient_hospital_no);
+                    }
+                    //echo count($allFieldArray);
+                    break;
+                }
+            case "patient_private_no": 
+ {
+                                              
+                    $fieldCount = 2;
+                    $allFieldArray = array();
+                    $date = date('Y-m-d H:i:s'); //Returns IST
+
+                    while ($this->input->post('private_patient_no' . $fieldCount)) {
+
+                        //print_r($comment);exit;
+
+                        $data_patient_private_no = array(
+                            'patient_ic_no' => $new_ic_no,
+                            'created_on' => $date,
+                            'private_no' => $this->input->post('private_patient_no'.$fieldCount)
+                        );
+
+                        $fieldCount++;
+                        // array_push($allFieldArray, $data_patient_interview_manager);
+                        $this->db->insert('private_patient_no', $data_patient_private_no);
+                    }
+                    //echo count($allFieldArray);
+                    break;
+                }
+            case "COGS_study": 
+        {
+
+                    $fieldCount = 2;
+                    $allFieldArray = array();
+                    $date = date('Y-m-d H:i:s'); //Returns IST
+
+                    while ($this->input->post('COGS_studies_id' . $fieldCount)) {
+
+                        //print_r($comment);exit;
+
+                        $data_patient_COGS_study = array(
+                            'patient_ic_no' => $new_ic_no,
+                            'COGS_studies_name' => $this->input->post('COGS_studies_id'.$fieldCount),
+                            'created_on' => $date,
+                            'COGS_studies_no' => $this->input->post('COGS_studies_no'.$fieldCount)
+                        );
+
+                        $fieldCount++;
+                        // array_push($allFieldArray, $data_patient_interview_manager);
+                        $this->db->insert('patient_cogs_studies', $data_patient_COGS_study);
+                    }
+                    //echo count($allFieldArray);
+                    break;
+                }
+                case "father_cancer": {
+
+                    $fieldCount = 2;
+                    $allFieldArray = array();
+                    $date = date('Y-m-d H:i:s'); //Returns IST
+
+                    while ($this->input->post('father_cancer_name' . $fieldCount)) {
+
+                        $father_cancer_name = $this->input->post('father_cancer_name'.$fieldCount);
+                        $father_cancer_type_id = $this->record_model->get_cancer_id($father_cancer_name);
+                        $data1_patient_relatives = array(
+                            'patient_ic_no' => $this->input->post('IC_no'),
+                            'date_of_diagnosis' => date('Y-m-d', strtotime($this->input->post('father_date_of_diagnosis'.$fieldCount))),
+                            'cancer_type_id' => $father_cancer_type_id,
+                            'age_of_diagnosis' => $this->input->post('father_age_of_diagnosis'.$fieldCount),
+                            'other_detail' => $this->input->post('father_diagnosis_other_details'.$fieldCount),
+                        );
+
+                        $fieldCount++;
+                        // array_push($allFieldArray, $data_patient_interview_manager);
+                        $this->db->insert('patient_relatives', $data1_patient_relatives);
+                    }
+                    //echo count($allFieldArray);
+                    break;
+                }
+            case "mother_cancer": {
+
+                    $fieldCount = 2;
+                    $allFieldArray = array();
+                    $date = date('Y-m-d H:i:s'); //Returns IST
+
+                    while ($this->input->post('mother_cancer_name' . $fieldCount)) {
+
+                        //print_r($comment);exit;
+
+                        $mother_cancer_name = $this->input->post('mother_cancer_name'.$fieldCount);
+                        $mother_cancer_type_id = $this->record_model->get_cancer_id($mother_cancer_name);
+                        $data2_patient_relatives = array(
+                            'patient_ic_no' => $this->input->post('IC_no'),
+                            'date_of_diagnosis' => date('Y-m-d', strtotime($this->input->post('mother_date_of_diagnosis'.$fieldCount))),
+                            'cancer_type_id' => $mother_cancer_type_id,
+                            'age_of_diagnosis' => $this->input->post('mother_age_of_diagnosis'.$fieldCount),
+                            'other_detail' => $this->input->post('mother_diagnosis_other_details'.$fieldCount),
+                        );
+
+                        $fieldCount++;
+                        // array_push($allFieldArray, $data_patient_interview_manager);
+                        $this->db->insert('patient_relatives', $data2_patient_relatives);
+                    }
+                    //echo count($allFieldArray);
+                    break;
+                }
+            case "parity": {
+
+                    $fieldCount = 1;
+                    $allFieldArray = array();
+                    $date = date('Y-m-d H:i:s'); //Returns IST
+
+                    while ($this->input->post('pregnancy_type' . $fieldCount)) {
+
+                        //print_r($comment);exit;
+
+                        $data_patient_parity_record = array(
+                            'patient_parity_table_id' => $id,
+                            'pregnancy_type' => $this->input->post('pregnancy_type'.$fieldCount),
+                            'gender' => $this->input->post('child_gender'.$fieldCount),
+                            'year_of_birth' => $this->input->post('child_birthyear'.$fieldCount),
+                            'birthweight' => $this->input->post('child_birthweight'.$fieldCount),
+                            'created_on' => $date,
+                            'breastfeeding_duration' => $this->input->post('child_breastfeeding_duration'.$fieldCount)
+                        );
+
+                        $fieldCount++;
+                        // array_push($allFieldArray, $data_patient_interview_manager);
+                        $this->db->insert('patient_parity_record', $data_patient_parity_record);
+                    }
+                    //echo count($allFieldArray);
+                    break;
+                }
+                case "manchester_score": {
+
+                    $fieldCount = 2;
+                    $allFieldArray = array();
+                    $date = date('Y-m-d H:i:s'); //Returns IST
+
+                    while ($this->input->post('ms_at_consent_BRCA1' . $fieldCount)) {
+
+                        $data_patient_risk_assessment = array(
+                'patient_ic_no' => $this->input->post('patient_ic_no'),
+                'at_consent_mach_brca1' => $this->input->post('ms_at_consent_BRCA1'.$fieldCount),
+                'at_consent_mach_brca2' => $this->input->post('ms_at_consent_BRCA2'.$fieldCount),
+                'at_consent_mach_total' => $this->input->post('ms_at_consent_Total'.$fieldCount),
+                'after_gc_brca1' => $this->input->post('ms_after_gc_BRCA1'.$fieldCount),
+                'after_gc_brca2' => $this->input->post('ms_after_gc_BRCA2'.$fieldCount),
+                'after_gc_total' => $this->input->post('ms_after_gc_Total'.$fieldCount),
+                'adjusted_mach_brca1' => $this->input->post('ms_adjusted_gc_BRCA1'.$fieldCount),
+                'adjusted_mach_brca2' => $this->input->post('ms_adjusted_gc_BRCA2'.$fieldCount),
+                'adjusted_mach_total' => $this->input->post('ms_adjusted_gc_Total'.$fieldCount),
+                'created_on' => $date,
+            );
+
+                        $fieldCount++;
+                        // array_push($allFieldArray, $data_patient_interview_manager);
+                        $this->db->insert('patient_risk_assessment', $data_patient_risk_assessment);
+                    }
+                    //echo count($allFieldArray);
+                    break;
+                }
+                case "BOADICEA": {
+
+                    $fieldCount = 2;
+                    $allFieldArray = array();
+                    $date = date('Y-m-d H:i:s'); //Returns IST
+
+                    while ($this->input->post('BOADICEA_at_consent_BRCA1' . $fieldCount)) {
+
+                        //print_r($comment);exit;
+
+                        $data_patient_risk_assessment = array(
+                'patient_ic_no' => $this->input->post('patient_ic_no'),
+                'at_consent_boadicea_brca1' => $this->input->post('BOADICEA_at_consent_BRCA1'.$fieldCount),
+                'at_consent_boadicea_brca2' => $this->input->post('BOADICEA_at_consent_BRCA2'.$fieldCount),
+                'at_consent_boadicea_no_mutation' => $this->input->post('BOADICEA_at_consent_no_mutation'.$fieldCount),
+                'adjusted_boadicea_brca1' => $this->input->post('BOADICEA_adjusted_BRCA1'.$fieldCount),
+                'adjusted_boadicea_brca2' => $this->input->post('BOADICEA_adjusted_BRCA2'.$fieldCount),
+                'adjusted_boadicea_no_mutation' => $this->input->post('BOADICEA_adjusted_no_mutation'.$fieldCount),
+                'after_gc_boadicea_brca1' => $this->input->post('BOADICEA_after_gc_BRCA1'.$fieldCount),
+                'after_gc_boadicea_brca2' => $this->input->post('BOADICEA_after_gc_BRCA2'.$fieldCount),
+                'after_gc_boadicea_no_mutation' => $this->input->post('BOADICEA_after_gc_no_mutation'.$fieldCount),
+                'created_on' => $date,
+            );
+
+                        $fieldCount++;
+                        // array_push($allFieldArray, $data_patient_interview_manager);
+                        $this->db->insert('patient_risk_assessment', $data_patient_risk_assessment);
+                    }
+                    //echo count($allFieldArray);
+                    break;
+                }
+                case "gail_model": {
+
+                    $fieldCount = 2;
+                    $allFieldArray = array();
+                    $date = date('Y-m-d H:i:s'); //Returns IST
+
+                    while ($this->input->post('gail_model_at_consent_5years' . $fieldCount)) {
+
+                        //print_r($comment);exit;
+
+                        $data_patient_risk_assessment = array(
+                'patient_ic_no' => $this->input->post('patient_ic_no'),
+                'at_consent_gail_model_5years' => $this->input->post('gail_model_at_consent_5years'.$fieldCount),
+                'at_consent_gail_model_10years' => $this->input->post('gail_model_at_consent_10years'.$fieldCount),
+                'first_mammo_gail_model_10years' => $this->input->post('gail_model_first_mammo_10years'.$fieldCount),
+                'created_on' => $date,
+                'first_mammo_gail_model_5years' => $this->input->post('gail_model_first_mammo_5years'.$fieldCount)
+            );
+
+                        $fieldCount++;
+                        // array_push($allFieldArray, $data_patient_interview_manager);
+                        $this->db->insert('patient_risk_assessment', $data_patient_risk_assessment);
+                    }
+                    //echo count($allFieldArray);
+                    break;
+                }
+                case "mutation_analysis": {
+
+                    $fieldCount = 2;
+                    $allFieldArray = array();
+                    $date = date('Y-m-d H:i:s'); //Returns IST
+
+                    while ($this->input->post('investigation_project_name' . $fieldCount)) {
+
+                        //print_r($comment);exit;
+
+                        $studies_name = $this->input->post('studies_name');
+                        $studies_id = $this->excell_sheets_model->get_studies_id($studies_name);
+                        $data_keys = array(
+                            'patient_ic_no' => $this->input->post('IC_no'),
+                            'studies_id' => $studies_id
+                        );
+                        //echo '<pre>';
+                        //print_r($data_keys);echo '<br/>';
+                        $patient_studies_id = $this->record_model->get_patient_suudies_id($data_keys);
+                        //echo $patient_studies_id;echo '<br/>';
+                        $data_patient_investigations = array(
+                            'patient_studies_id' => $patient_studies_id,
+                            'date_test_ordered' => date('Y-m-d', strtotime($this->input->post('date_test_ordered'.$fieldCount))),
+                            'ordered_by' => $this->input->post('test_ordered_by'.$fieldCount),
+                            'testing_result_notification_flag' => $this->input->post('testing_results_notification_flag'.$fieldCount),
+                            'service_provider' => $this->input->post('investigation_project_name'.$fieldCount),
+                            'testing_batch' => $this->input->post('investigation_project_batch'.$fieldCount),
+                            'testing_date' => date('Y-m-d', strtotime($this->input->post('investigation_project_date'.$fieldCount))),
+                            'gene_tested' => $this->input->post('investigation_gene_tested'.$fieldCount),
+                            'types_of_testing' => $this->input->post('investigation_test_type'.$fieldCount),
+                            'type_of_sample' => $this->input->post('investigation_sample_type'.$fieldCount),
+                            'reasons' => $this->input->post('investigation_test_reason'.$fieldCount),
+                            'new_mutation_flag' => $this->input->post('investigation_new_mutation_flag'.$fieldCount),
+                            'test_result' => $this->input->post('investigation_test_results'.$fieldCount),
+                            'investigation_test_results_other_details' => $this->input->post('investigation_test_results_other_details'.$fieldCount),
+                            'carrier_status' => $this->input->post('investigation_carrier_status'.$fieldCount),
+                            'mutation_nomenclature' => $this->input->post('investigation_mutation_nomenclature'.$fieldCount),
+                            'exon' => $this->input->post('investigation_exon'.$fieldCount),
+                            'mutation_type' => $this->input->post('investigation_mutation_type'.$fieldCount),
+                            'mutation_pathogenicity' => $this->input->post('investigation_mutation_pathogenicity'.$fieldCount),
+                            'report_date' => date('Y-m-d', strtotime($this->input->post('investigation_report_date'.$fieldCount))),
+                            'date_client_notified' => date('Y-m-d', strtotime($this->input->post('investigation_date_notified'.$fieldCount))),
+                            'is_counselling_flag' => $this->input->post('mutation_is_counselling_flag'.$fieldCount),
+                            'comments' => $this->input->post('investigation_test_comment'.$fieldCount),
+                            'mutation_name' => $this->input->post('investigation_mutation_name'.$fieldCount),
+                            'conformation_attachment' => $this->input->post('investigation_conformation_attachment'.$fieldCount),
+                            'created_on' => $date,
+                        );
+
+                        $fieldCount++;
+                        // array_push($allFieldArray, $data_patient_interview_manager);
+                        $this->db->insert('patient_mutation_analysis', $data_patient_investigations);
+                    }
+                    //echo count($allFieldArray);
+                    break;
+                }
+                case "mammo_site_detail": {
+
+                    $fieldCount = 2;
+                    $allFieldArray = array();
+                    $date = date('Y-m-d H:i:s'); //Returns IST
+
+                    while ($this->input->post('gail_model_at_consent_5years' . $fieldCount)) {
+
+                        //print_r($comment);exit;
+
+                        $mammo_left_right_breast_side = $this->input->post('mammo_left_right_breast_side'.$fieldCount);
+                        $mammo_upper_below_breast_side = $this->input->post('mammo_upper_below_breast_side'.$fieldCount);
+
+                        if ($mammo_left_right_breast_side == 'Left')
+                            $left_breast = TRUE;
+                        else
+                            $left_breast = FALSE;
+
+                        if ($mammo_left_right_breast_side == 'Right')
+                            $right_breast = TRUE;
+                        else
+                            $right_breast = FALSE;
+
+                        if ($mammo_upper_below_breast_side == 'Upper')
+                            $upper = TRUE;
+                        else
+                            $upper = FALSE;
+
+                        if ($mammo_upper_below_breast_side == 'Below')
+                            $below = TRUE;
+                        else
+                            $below = FALSE;
+
+                        $data_patient_breast_abnormality = array(
+                            'patient_breast_screening_id' => $patient_breast_screening_id,
+                            //'description' => $this->input->post('mammo_breast_other_descriptions'),
+                            'left_breast' => $left_breast,
+                            'right_breast' => $right_breast,
+                            'upper' => $upper,
+                            'created_on' => $date,
+                            'below' => $below
+                        );
+
+                        $fieldCount++;
+                        // array_push($allFieldArray, $data_patient_interview_manager);
+                        $this->db->insert('patient_breast_abnormality', $data_patient_breast_abnormality);
+                    }
+                    //echo count($allFieldArray);
+                    break;
+                }
+            case "ultrasound": {
+
+                    $fieldCount = 2;
+                    $allFieldArray = array();
+                    $date = date('Y-m-d H:i:s'); //Returns IST
+
+                    while ($this->input->post('abnormalities_ultrasound_flag' . $fieldCount)) {
+
+                        //print_r($comment);exit;
+
+                        $data_patient_ultrasound_abnormality = array(
+                            'is_abnormality_detected' => $this->input->post('abnormalities_ultrasound_flag'.$fieldCount),
+                            'ultrasound_date' => date('Y-m-d', strtotime($this->input->post('mammo_ultrasound_date'.$fieldCount))),
+                            'comments' => $this->input->post('mammo_ultrasound_details'.$fieldCount),
+                            'created_on' => $date,
+                            'patient_breast_screening_id' => $patient_breast_screening_id
+                        );
+
+                        $fieldCount++;
+                        // array_push($allFieldArray, $data_patient_interview_manager);
+                        $this->db->insert('patient_ultrasound_abnormality', $data_patient_ultrasound_abnormality);
+                    }
+                    //echo count($allFieldArray);
+                    break;
+                }
+            case "MRI": {
+
+                    $fieldCount = 2;
+                    $allFieldArray = array();
+                    $date = date('Y-m-d H:i:s'); //Returns IST
+
+                    while ($this->input->post('abnormalities_mri_flag' . $fieldCount)) {
+
+                        //print_r($comment);exit;
+
+                        $data_patient_mri_abnormality = array(
+                            'is_abnormality_detected' => $this->input->post('abnormalities_mri_flag'.$fieldCount),
+                            'mri_date' => date('Y-m-d', strtotime($this->input->post('mammo_mri_date'.$fieldCount))),
+                            'comments' => $this->input->post('mammo_MRI_details'.$fieldCount),
+                            'patient_breast_screening_id' => $patient_breast_screening_id
+                        );
+
+                        $fieldCount++;
+                        // array_push($allFieldArray, $data_patient_interview_manager);
+                        $this->db->insert('patient_mri_abnormality', $data_patient_mri_abnormality);
+                    }
+                    //echo count($allFieldArray);
+                    break;
+                }
+            case "site_lesion_surgery": {
+
+                    $fieldCount = 2;
+                    $allFieldArray = array();
+                    $date = date('Y-m-d H:i:s'); //Returns IST
+
+                    while ($this->input->post('non_cancerous_complete_removal_site' . $fieldCount)) {
+
+                        //print_r($comment);exit;
+
+                        $non_cancerous_site_id = $this->input->post('non_cancerous_benign_site'.$fieldCount);
+                        $non_cancerous_site = $this->record_model->get_non_cancerous_benign_site_id($non_cancerous_site_id);
+                        $data_patient_risk_reducing_surgery_lesion = array(
+                            'patient_risk_reducing_surgery_id' => $data_patient_risk_reducing_surgery_id,
+                            'non_cancerous_site_id' => $non_cancerous_site,
+                            'created_on' => $date,
+                            'surgery_date' => date('Y-m-d', strtotime($this->input->post('non_cancerous_benign_date'.$fieldCount)))
+                        );
+
+                        $fieldCount++;
+                        // array_push($allFieldArray, $data_patient_interview_manager);
+                        $this->db->insert('patient_risk_reducing_surgery_lesion', $data_patient_risk_reducing_surgery_lesion);
+                    }
+                    //echo count($allFieldArray);
+                    break;
+                }
+            case "site_complete_removal": {
+
+                    $fieldCount = 2;
+                    $allFieldArray = array();
+                    $date = date('Y-m-d H:i:s'); //Returns IST
+
+                    while ($this->input->post('non_cancerous_complete_removal_site' . $fieldCount)) {
+
+                        //print_r($comment);exit;
+
+                        $removal_non_cancerous_site_id = $this->input->post('non_cancerous_complete_removal_site'.$fieldCount);
+                        $removal_non_cancerous_site = $this->record_model->get_non_cancerous_benign_site_id($removal_non_cancerous_site_id);
+                        
+                        $data_patient_risk_reducing_surgery_complete_removal = array(
+                            'patient_risk_reducing_surgery_id' => $data_patient_risk_reducing_surgery_id,
+                            'non_cancerous_site_id' => $removal_non_cancerous_site,
+                            'surgery_date' => date('Y-m-d', strtotime($this->input->post('non_cancerous_complete_removal_date'.$fieldCount))),
+                            'created_on' => $date,
+                            'surgery_reason' => $this->input->post('non_cancerous_complete_removal_reason'.$fieldCount)
+                        );
+
+                        $fieldCount++;
+                        // array_push($allFieldArray, $data_patient_interview_manager);
+                        $this->db->insert('patient_risk_reducing_surgery_complete_removal', $data_patient_risk_reducing_surgery_complete_removal);
+                    }
+                    //echo count($allFieldArray);
+                    break;
+                }
+            case "ovarian_cancer_screening": {
+
+                    $fieldCount = 2;
+                    $allFieldArray = array();
+                    $date = date('Y-m-d H:i:s'); //Returns IST
+
+                    while ($this->input->post('ovarian_screening_type_name' . $fieldCount)) {
+
+                        //print_r($comment);exit;
+
+                        $ovarian_screening_type_id = $this->input->post('ovarian_screening_type_name'.$fieldCount);
+                        $ovarian_screening_type = $this->record_model->get_ovarian_screening_type($ovarian_screening_type_id);
+                        $data_patient_ovarian_screening = array(
+                            'patient_studies_id' => $patient_studies_id,
+                            'ovarian_screening_type_id' => $ovarian_screening_type,
+                            'screening_date' => date('Y-m-d', strtotime($this->input->post('physical_exam_date'.$fieldCount))),
+                            'is_abnormality_detected' => $this->input->post('physical_exam_is_abnormality_detected'.$fieldCount),
+                            'created_on' => $date,
+                            'additional_info' => $this->input->post('physical_exam_additional_info'.$fieldCount)
+                        );
+
+                        $fieldCount++;
+                        // array_push($allFieldArray, $data_patient_interview_manager);
+                        $this->db->insert('patient_ovarian_screening', $data_patient_ovarian_screening);
+                    }
+                    //echo count($allFieldArray);
+                    break;
+                }
+            case "other_screening": {
+
+                    $fieldCount = 2;
+                    $allFieldArray = array();
+                    $date = date('Y-m-d H:i:s'); //Returns IST
+
+                    while ($this->input->post('screening_name' . $fieldCount)) {
+
+                        //print_r($comment);exit;
+
+                        $data_patient_other_screening = array(
+                            'patient_studies_id' => $patient_studies_id,
+                            'screening_type' => $this->input->post('screening_name'.$fieldCount),
+                            //'total_no_of_screening' => $this->input->post('total_no_of_screening'),
+                            'age_at_screening' => $this->input->post('age_at_screening'.$fieldCount),
+                            'screening_center' => $this->input->post('place_of_screening'.$fieldCount),
+                            'created_on' => $date,
+                            'screening_result' => $this->input->post('screening_results'.$fieldCount)
+                        );
+
+                        $fieldCount++;
+                        // array_push($allFieldArray, $data_patient_interview_manager);
+                        $this->db->insert('patient_other_screening', $data_patient_other_screening);
+                    }
+                    //echo count($allFieldArray);
+                    break;
+                }
+            case "breast_diagnosis": {
+
+                    $fieldCount = 2;
+                    $allFieldArray = array();
+                    $date = date('Y-m-d H:i:s'); //Returns IST
+
+                    while ($this->input->post('cancer_site' . $fieldCount)) {
+
+                        $patient_breast_cancer_site = $this->input->post('cancer_site'.$fieldCount); //by this we will get treatment_id
+                        $breast_cancer_site_id = $a = $this->record_model->get_cancer_site_id($patient_breast_cancer_site);
+                        //print_r($comment);exit;
+
+                        $data_patient_breast_diagnosis = array(
+                            'patient_studies_id' => $patient_studies_id,
+                            'cancer_id' => 1,
+                            'cancer_site_id' => $breast_cancer_site_id,
+                            'cancer_invasive_type' => $this->input->post('cancer_invasive_type'.$fieldCount),
+                            'is_primary' => $this->input->post('primary_diagnosis'.$fieldCount),
+                            'date_of_diagnosis' => date('Y-m-d', strtotime($this->input->post('date_of_diagnosis'.$fieldCount))),
+                            'age_of_diagnosis' => $this->input->post('age_of_diagnosis'.$fieldCount),
+                            'diagnosis_center' => $this->input->post('cancer_diagnosis_center'.$fieldCount),
+                            'doctor_name' => $this->input->post('cancer_doctor_name'.$fieldCount),
+                            'detected_by' => $this->input->post('detected_by'.$fieldCount),
+                            'bilateral_flag' => $this->input->post('cancer_is_bilateral'.$fieldCount),
+                            'created_on' => $date,
+                            'recurrence_flag' => $this->input->post('cancer_is_recurrent'.$fieldCount)
+                        );
+
+                        $fieldCount++;
+                        // array_push($allFieldArray, $data_patient_interview_manager);
+                        $this->db->insert('patient_cancer', $data_patient_breast_diagnosis);
+                    }
+                    //echo count($allFieldArray);
+                    break;
+                }
+            case "breast_pathology": {
+
+                    $fieldCount = 2;
+                    $allFieldArray = array();
+                    $date = date('Y-m-d H:i:s'); //Returns IST
+
+                    while ($this->input->post('breast_pathology_tissue_site' . $fieldCount)) {
+
+                        //print_r($comment);exit;
+
+                        $data_patient_breast_pathology = array(
+                            'cancer_id' => 1,
+                            'patient_cancer_id' => $patient_breast_diagnosis_id,
+                            'tissue_site' => $this->input->post('breast_pathology_tissue_site'.$fieldCount),
+                            'type_of_report' => $this->input->post('breast_pathology_path_report_type'.$fieldCount),
+                            'date_of_report' => date('Y-m-d', strtotime($this->input->post('breast_pathology_path_report_date'.$fieldCount))),
+                            'pathology_lab' => $this->input->post('breast_pathology_lab'.$fieldCount),
+                            'name_of_doctor' => $this->input->post('breast_pathology_doctor'.$fieldCount),
+                            'morphology' => $this->input->post('breast_pathology_morphology'.$fieldCount),
+                            't_staging' => $this->input->post('breast_pathology_tissue_tumour_stage'.$fieldCount),
+                            'n_staging' => $this->input->post('breast_pathology_node_stage'.$fieldCount),
+                            'm_staging' => $this->input->post('breast_pathology_metastasis_stage'.$fieldCount),
+                            'tumour_stage' => $this->input->post('breast_pathology_tumour_stage'.$fieldCount),
+                            'tumour_grade' => $this->input->post('breast_pathology_tumour_grade'.$fieldCount),
+                            'total_lymph_nodes' => $this->input->post('breast_pathology_total_lymph_nodes'.$fieldCount),
+                            'tumour_size' => $this->input->post('breast_pathology_tumour_size'.$fieldCount),
+                            'created_on' => $date,
+                            'comments' => $this->input->post('breast_pathology_tissue_path_comments'.$fieldCount)
+                        );
+
+                        $fieldCount++;
+                        // array_push($allFieldArray, $data_patient_interview_manager);
+                        $this->db->insert('patient_pathology', $data_patient_breast_pathology);
+                    }
+                    //echo count($allFieldArray);
+                    break;
+                }
+            case "breast_status": {
+
+                    $fieldCount = 2;
+                    $allFieldArray = array();
+                    $date = date('Y-m-d H:i:s'); //Returns IST
+
+                    while ($this->input->post('breast_pathology_ER_status' . $fieldCount)) {
+
+                        //print_r($comment);exit;
+
+                        $data_patient_breast_pathology_staining = array(
+                            'patient_pathology_id' => $patient_breast_pathology_id,
+                            'ER_status' => $this->input->post('breast_pathology_ER_status'.$fieldCount),
+                            'PR_status' => $this->input->post('breast_pathology_PR_status'.$fieldCount),
+                            'created_on' => $date,
+                            'HER2_status' => $this->input->post('breast_pathology_HER2_status'.$fieldCount),
+                        );
+
+                        $fieldCount++;
+                        // array_push($allFieldArray, $data_patient_interview_manager);
+                        $this->db->insert('patient_pathology_staining_status', $data_patient_breast_pathology_staining);
+                    }
+                    //echo count($allFieldArray);
+                    break;
+                }
+            case "breast_treatment": {
+
+                    $fieldCount = 2;
+                    $allFieldArray = array();
+                    $date = date('Y-m-d H:i:s'); //Returns IST
+
+                    while ($this->input->post('patient_cancer_treatment_name' . $fieldCount)) {
+
+                        //print_r($comment);exit;
+
+                        $patient_cancer_treatment_name = $this->input->post('patient_cancer_treatment_name'.$fieldCount); //by this we will get treatment_id
+                        $treatment_id = $this->record_model->get_treatment_id($patient_cancer_treatment_name);
+                        $data_patient_breast_treatment = array(
+                            'patient_cancer_id' => $patient_breast_diagnosis_id,
+                            'treatment_id' => $treatment_id,
+                            'treatment_start_date' => date('Y-m-d', strtotime($this->input->post('treatment_start_date'.$fieldCount))),
+                            'treatment_end_date' => date('Y-m-d', strtotime($this->input->post('treatment_end_date'.$fieldCount))),
+                            'treatment_durations' => $this->input->post('treatment_duration'.$fieldCount),
+                            'treatment_details' => $this->input->post('treatment_details'.$fieldCount),
+                            'treatment_dose' => $this->input->post('treatment_dose'.$fieldCount),
+                            'treatment_cycle' => $this->input->post('treatment_cycle'.$fieldCount),
+                            'treatment_frequency' => $this->input->post('treatment_frequency'.$fieldCount),
+                            'treatment_visidual_desease' => $this->input->post('treatment_visidual_desease'.$fieldCount),
+                            'treatment_primary_outcome' => $this->input->post('treatment_primary_therapy_outcome'.$fieldCount),
+                            'created_on' => $date,
+                            'comments' => $this->input->post('breast_cancer_treatment_comments'.$fieldCount)
+                        );
+
+                        $fieldCount++;
+                        // array_push($allFieldArray, $data_patient_interview_manager);
+                        $this->db->insert('patient_cancer_treatment', $data_patient_breast_treatment);
+                    }
+                    //echo count($allFieldArray);
+                    break;
+                }
+            case "ovarian_cancer": {
+
+                    $fieldCount = 2;
+                    $allFieldArray = array();
+                    $date = date('Y-m-d H:i:s'); //Returns IST
+
+                    while ($this->input->post('ovary_cancer_site' . $fieldCount)) {
+
+                        //print_r($comment);exit;
+
+                        $patient_ovary_cancer_site = $this->input->post('ovary_cancer_site'.$fieldCount); //by this we will get treatment_id
+                        $ovary_cancer_site_id = $this->record_model->get_cancer_site_id($patient_ovary_cancer_site);
+
+                        $data_patient_ovary_diagnosis = array(
+                            'patient_studies_id' => $patient_studies_id,
+                            'cancer_id' => 2,
+                            'cancer_site_id' => $ovary_cancer_site_id,
+                            'cancer_invasive_type' => $this->input->post('ovary_cancer_invasive_type'.$fieldCount),
+                            'is_primary' => $this->input->post('ovary_primary_diagnosis'.$fieldCount),
+                            'date_of_diagnosis' => date('Y-m-d', strtotime($this->input->post('ovary_date_of_diagnosis'.$fieldCount))),
+                            'age_of_diagnosis' => $this->input->post('ovary_age_of_diagnosis'.$fieldCount),
+                            'diagnosis_center' => $this->input->post('ovary_cancer_diagnosis_center'.$fieldCount),
+                            'doctor_name' => $this->input->post('ovary_cancer_doctor_name'.$fieldCount),
+                            'detected_by' => $this->input->post('ovary_detected_by'.$fieldCount),
+                            'bilateral_flag' => $this->input->post('ovary_cancer_is_bilateral'.$fieldCount),
+                            'created_on' => $date,
+                            'recurrence_flag' => $this->input->post('ovary_cancer_is_recurrent'.$fieldCount)
+                        );
+
+                        $fieldCount++;
+                        // array_push($allFieldArray, $data_patient_interview_manager);
+                        $this->db->insert('patient_cancer', $data_patient_ovary_diagnosis);
+                    }
+                    //echo count($allFieldArray);
+                    break;
+                }
+            case "ovarian_pathology": {
+
+                    $fieldCount = 2;
+                    $allFieldArray = array();
+                    $date = date('Y-m-d H:i:s'); //Returns IST
+
+                    while ($this->input->post('ovary_pathology_tissue_site' . $fieldCount)) {
+
+                        //print_r($comment);exit;
+
+                        $data_patient_ovary_pathology = array(
+                            'cancer_id' => 2,
+                            'patient_cancer_id' => $patient_ovary_diagnosis_id,
+                            'tissue_site' => $this->input->post('ovary_pathology_tissue_site'.$fieldCount),
+                            'type_of_report' => $this->input->post('ovary_pathology_path_report_type'.$fieldCount),
+                            'date_of_report' => date('Y-m-d', strtotime($this->input->post('ovary_pathology_path_report_date'.$fieldCount))),
+                            'pathology_lab' => $this->input->post('ovary_pathology_lab'.$fieldCount),
+                            'name_of_doctor' => $this->input->post('ovary_pathology_doctor'.$fieldCount),
+                            'morphology' => $this->input->post('ovary_pathology_morphology'.$fieldCount),
+                            'stage_classifications' => $this->input->post('ovary_stage_classification'.$fieldCount),
+                            'tumour_stage' => $this->input->post('ovary_pathology_tumour_stage'.$fieldCount),
+                            'tumour_grade' => $this->input->post('ovary_pathology_tumour_grade'.$fieldCount),
+                            'tumour_size' => $this->input->post('ovary_pathology_tumour_size'.$fieldCount),
+                            'no_of_report' => $this->input->post('ovary_pathology_report_no'.$fieldCount),
+                            'tumor_subtype' => $this->input->post('ovary_tumor_subtypes'.$fieldCount),
+                            'tumor_behaviour' => $this->input->post('ovary_tumor_behavior'.$fieldCount),
+                            'tumor_differentiation' => $this->input->post('ovary_tumor_differentiation'.$fieldCount),
+                            'created_on' => $date,
+                            'comments' => $this->input->post('ovary_pathology_tissue_path_comments'.$fieldCount)
+                        );
+
+                        $fieldCount++;
+                        // array_push($allFieldArray, $data_patient_interview_manager);
+                        $this->db->insert('patient_pathology', $data_patient_ovary_pathology);
+                    }
+                    //echo count($allFieldArray);
+                    break;
+                }
+            case "ovarian_treatment": {
+
+                    $fieldCount = 2;
+                    $allFieldArray = array();
+                    $date = date('Y-m-d H:i:s'); //Returns IST
+
+                    while ($this->input->post('gail_model_at_consent_5years' . $fieldCount)) {
+
+                        //print_r($comment);exit;
+
+                        $ovary_patient_cancer_treatment_name = $this->input->post('ovary_patient_cancer_treatment_name'.$fieldCount); //by this we will get treatment_id
+                        $ovary_treatment_id = $this->record_model->get_treatment_id($ovary_patient_cancer_treatment_name);
+                        $data_patient_ovary_treatment = array(
+                            'patient_cancer_id' => $patient_ovary_diagnosis_id,
+                            'treatment_id' => $ovary_treatment_id,
+                            'treatment_start_date' => date('Y-m-d', strtotime($this->input->post('ovary_treatment_start_date'.$fieldCount))),
+                            'treatment_end_date' => date('Y-m-d', strtotime($this->input->post('ovary_treatment_end_date'.$fieldCount))),
+                            'treatment_durations' => $this->input->post('ovary_treatment_duration'.$fieldCount),
+                            'treatment_details' => $this->input->post('ovary_treatment_details'.$fieldCount),
+                            'treatment_dose' => $this->input->post('ovary_treatment_drug_dose'.$fieldCount),
+                            'treatment_cycle' => $this->input->post('ovary_treatment_cycle'.$fieldCount),
+                            'treatment_frequency' => $this->input->post('ovary_treatment_frequency'.$fieldCount),
+                            'treatment_visidual_desease' => $this->input->post('ovary_treatment_visidual_desease'.$fieldCount),
+                            'treatment_primary_outcome' => $this->input->post('oavry_treatment_primary_therapy_outcome'.$fieldCount),
+                            'treatment_cal125_pretreatment' => $this->input->post('ovary_cal125_pretreatment'.$fieldCount),
+                            'treatment_cal125_posttreatment' => $this->input->post('ovary_cal125_posttreatment'.$fieldCount),
+                            'created_on' => $date,
+                            'comments' => $this->input->post('ovary_cancer_treatment_comments'.$fieldCount)
+                        );
+
+                        $fieldCount++;
+                        // array_push($allFieldArray, $data_patient_interview_manager);
+                        $this->db->insert('patient_cancer_treatment', $data_patient_ovary_treatment);
+                    }
+                    //echo count($allFieldArray);
+                    break;
+                }
+            case "other_cancer_diagnosis": {
+
+                    $fieldCount = 2;
+                    $allFieldArray = array();
+                    $date = date('Y-m-d H:i:s'); //Returns IST
+
+                    while ($this->input->post('gail_model_at_consent_5years' . $fieldCount)) {
+
+                        $patient_other_cancer_site = $this->input->post('other_cancer_site'.$fieldCount); //by this we will get treatment_id
+                        $other_cancer_site_id = $this->record_model->get_cancer_site_id($patient_other_cancer_site);
+
+                        $patient_other_cancer_name = $this->input->post('other_cancer_type'.$fieldCount);
+                        $other_cancer_id = $this->record_model->get_cancer_id($patient_other_cancer_name);
+                        $data_patient_other_cancer_diagnosis = array(
+                            'patient_studies_id' => $patient_studies_id,
+                            'cancer_id' => $other_cancer_id,
+                            'cancer_site_id' => $other_cancer_site_id,
+                            'date_of_diagnosis' => date('Y-m-d', strtotime($this->input->post('other_date_of_diagnosis'.$fieldCount))),
+                            'age_of_diagnosis' => $this->input->post('other_age_of_diagnosis'.$fieldCount),
+                            'diagnosis_center' => $this->input->post('other_cancer_diagnosis_center'.$fieldCount),
+                            'doctor_name' => $this->input->post('other_cancer_doctor_name'.$fieldCount),
+                            'created_on' => $date,
+                        );
+
+                        $fieldCount++;
+                        // array_push($allFieldArray, $data_patient_interview_manager);
+                        $this->db->insert('patient_cancer', $data_patient_other_cancer_diagnosis);
+                    }
+                    //echo count($allFieldArray);
+                    break;
+                }
+            case "other_cancer_pathology": {
+
+                    $fieldCount = 2;
+                    $allFieldArray = array();
+                    $date = date('Y-m-d H:i:s'); //Returns IST
+
+                    while ($this->input->post('gail_model_at_consent_5years' . $fieldCount)) {
+
+                        //print_r($comment);exit;
+
+                        $data_patient_other_cancer_pathology = array(
+                            'patient_cancer_id' => $patient_other_diagnosis_id,
+                            'cancer_id' => $other_cancer_id,
+                            'tissue_site' => $this->input->post('other_pathology_tissue_site'.$fieldCount),
+                            'type_of_report' => $this->input->post('other_pathology_path_report_type'.$fieldCount),
+                            'date_of_report' => date('Y-m-d', strtotime($this->input->post('other_pathology_path_report_date'.$fieldCount))),
+                            'pathology_lab' => $this->input->post('other_pathology_lab'.$fieldCount),
+                            'name_of_doctor' => $this->input->post('other_pathology_doctor'.$fieldCount),
+                            'comments' => $this->input->post('other_pathology_tissue_path_comments'.$fieldCount),
+                            'created_on' => $date,
+                        );
+
+                        $fieldCount++;
+                        // array_push($allFieldArray, $data_patient_interview_manager);
+                        $this->db->insert('patient_cancer_pathology', $data_patient_other_cancer_pathology);
+                    }
+                    //echo count($allFieldArray);
+                    break;
+                }
+            case "other_cancer_treatment": {
+
+                    $fieldCount = 2;
+                    $allFieldArray = array();
+                    $date = date('Y-m-d H:i:s'); //Returns IST
+
+                    while ($this->input->post('gail_model_at_consent_5years' . $fieldCount)) {
+
+                        //print_r($comment);exit;
+
+                        $patient_other_cancer_treatment_name = $this->input->post('other_patient_cancer_treatment_name'.$fieldCount); //by this we will get treatment_id
+                        $other_cancer_treatment_id = $this->record_model->get_treatment_id($patient_other_cancer_treatment_name);
+                        $data_patient_other_cancer_treatment = array(
+                            'patient_cancer_id' => $patient_other_diagnosis_id,
+                            'treatment_id' => $other_cancer_treatment_id,
+                            'treatment_start_date' => date('Y-m-d', strtotime($this->input->post('other_treatment_start_date'.$fieldCount))),
+                            'treatment_end_date' => date('Y-m-d', strtotime($this->input->post('other_treatment_end_date'.$fieldCount))),
+                            'treatment_durations' => $this->input->post('other_treatment_duration'.$fieldCount),
+                            'treatment_details' => $this->input->post('other_treatment_details'.$fieldCount),
+                            'treatment_dose' => $this->input->post('other_treatment_drug_dose'.$fieldCount),
+                            'treatment_cycle' => $this->input->post('other_treatment_cycle'.$fieldCount),
+                            'treatment_frequency' => $this->input->post('other_treatment_frequency'.$fieldCount),
+                            'treatment_visidual_desease' => $this->input->post('other_treatment_visidual_desease'.$fieldCount),
+                            'treatment_primary_outcome' => $this->input->post('other_treatment_primary_therapy_outcome'.$fieldCount),
+                            'created_on' => $date,
+                            'comments' => $this->input->post('other_cancer_treatment_comments'.$fieldCount)
+                        );
+
+                        $fieldCount++;
+                        // array_push($allFieldArray, $data_patient_interview_manager);
+                        $this->db->insert('patient_risk_assessment', $data_patient_risk_assessment);
+                    }
+                    //echo count($allFieldArray);
+                    break;
+                }
+            case "other_disease": {
+
+                    $fieldCount = 2;
+                    $allFieldArray = array();
+                    $date = date('Y-m-d H:i:s'); //Returns IST
+
+                    while ($this->input->post('diagnosis_name' . $fieldCount)) {
+
+                        $patient_diagnosis = $this->input->post('diagnosis_name'.$fieldCount); //by this we will get treatment_id
+                        $other_diagnosis_id = $this->record_model->get_diagnosis_id($patient_diagnosis);
+
+                        $data_patient_other_diseases = array(
+                            'patient_studies_id' => $patient_studies_id,
+                            'diagnosis_id' => $other_diagnosis_id,
+                            'date_of_diagnosis' => date('Y-m-d', strtotime($this->input->post('year_of_diagnosis'.$fieldCount))),
+                            'diagnosis_age' => $this->input->post('diagnosis_age'.$fieldCount),
+                            'diagnosis_center' => $this->input->post('diagnosis_center'.$fieldCount),
+                            'doctor_name' => $this->input->post('diagnosis_doctor_name'.$fieldCount),
+                            'created_on' => $date,
+                            'on_medication_flag' => $this->input->post('is_on_medication_flag'.$fieldCount)
+                        );
+
+                        $fieldCount++;
+                        // array_push($allFieldArray, $data_patient_interview_manager);
+                        $this->db->insert('patient_other_disease', $data_patient_other_diseases);
+                    }
+                    //echo count($allFieldArray);
+                    break;
+                }
+            case "medication": {
+
+                    $fieldCount = 2;
+                    $allFieldArray = array();
+                    $date = date('Y-m-d H:i:s'); //Returns IST
+
+                    while ($this->input->post('medication_type_name' . $fieldCount)) {
+
+                        //print_r($comment);exit;
+
+                        $data_patient_other_diseases_medication = array(
+                            'patient_other_disease_id' => $patient_other_diseases_id,
+                            'medication_type' => $this->input->post('medication_type_name'.$fieldCount),
+                            'start_date' => date('Y-m-d', strtotime($this->input->post('medication_start_date'.$fieldCount))),
+                            'end_date' => date('Y-m-d', strtotime($this->input->post('medication_end_date'.$fieldCount))),
+                            'duration' => $this->input->post('medication_duration'.$fieldCount),
+                            'created_on' => $date,
+                            'comments' => $this->input->post('medication_comments'.$fieldCount)
+                        );
+
+                        $fieldCount++;
+                        // array_push($allFieldArray, $data_patient_interview_manager);
+                        $this->db->insert('patient_other_disease_medication', $data_patient_other_diseases_medication);
+                    }
+                    //echo count($allFieldArray);
+                    break;
+                }
+        }
+    }
 	
         function patient_record_update() {
 
@@ -460,7 +1368,7 @@ class Record extends CI_Controller {
                 'reason_of_death' => $this->input->post('reason_of_death'),
                 //'padigree_labelling' => $this->input->post('padigree_labelling'),
                 'blood_group' => $this->input->post('blood_group'),
-                //'private_patient_no' => $this->input->post('private_patient_no'), patient_private_no
+                //'private_patient_no' => $this->input->post('private_patient_no'),
                 'marital_status' => $this->input->post('marital_status'),
                 'blood_card' => $this->input->post('is_blood_card_exist'),
                 'blood_card_location' => $this->input->post('blood_card_location'),
@@ -519,6 +1427,8 @@ class Record extends CI_Controller {
             //array_push($data, $this->input->post('firstname'));
             $id_patient_hospital_no = $this->db->insert('patient_hospital_no', $data_patient_hospital_no);
 
+            $add_hospital_no = $this->getDynamicFieldsInputsArray("hospital_no");
+            
             if ($id_patient_hospital_no > 0) {
                 echo "<h2>Data Added successfully at Patient_hospital_no table</h2>";
             } else {
@@ -532,10 +1442,11 @@ class Record extends CI_Controller {
                 'private_no' => $this->input->post('private_patient_no')
             );
             // print_r($data_patient_contact_person);
-            //echo '<br/>';
-            //array_push($data, $this->input->post('firstname'));
+            
             $id_patient_private_no = $this->db->insert('patient_private_no', $data_patient_private_no);
 
+            $add_patient_private_no = $this->getDynamicFieldsInputsArray("patient_private_no");
+            
             if ($id_patient_private_no > 0) {
                 echo "<h2>Data Added successfully at patient_private_no table</h2>";
             } else {
@@ -563,6 +1474,9 @@ class Record extends CI_Controller {
             );
 
             $patient_survival_status_id = $this->record_model->insert_patient_survival_status($data_patient_survival_status);
+            
+            $add_survival_status = $this->getDynamicFieldsInputsArray("survival_status");
+            
             if ($patient_survival_status_id > 0) {
                 echo "<h2>Data Added successfully at patient_survival_status table</h2>";
             } else {
@@ -579,7 +1493,7 @@ class Record extends CI_Controller {
             
             $patient_COGS_study_id = $this->db->insert('patient_cogs_studies', $data_patient_COGS_study);
 
-//            $patient_COGS_study_id = $this->record_model->insert_patient_cogs_studies($data_patient_COGS_study);
+            $add_COGS_study = $this->getDynamicFieldsInputsArray("COGS_study");
             
             if ($patient_COGS_study_id > 0) {
                 echo "<h2>Data Added successfully at patient_cogs_studies table</h2>";
@@ -690,7 +1604,8 @@ class Record extends CI_Controller {
                 //'fh_category' => $this->input->post('father_FH_category')
             );
 
-
+            $add_father = $this->getDynamicFieldsInputsArray("father_cancer");
+            
             $mother_cancer_name = $this->input->post('mother_cancer_name');
             $mother_cancer_type_id = $this->record_model->get_cancer_id($mother_cancer_name);
             $data2_patient_relatives = array(
@@ -723,6 +1638,8 @@ class Record extends CI_Controller {
                 //'match_score_past_consent' => $this->input->post('mother_mach_score_past_consent'),
                 //'fh_category' => $this->input->post('mother_FH_category')
             );
+            
+            $add_mother = $this->getDynamicFieldsInputsArray("mother_cancer");
             echo '<pre>';
             //print_r($data1_patient_relatives);
             //print_r($data2_patient_relatives);
@@ -949,6 +1866,11 @@ class Record extends CI_Controller {
             //print_r($data_patient_risk_assessment);
             //array_push($data, $this->input->post('firstname'));
             $id_patient_risk_assessment = $this->record_model->insert_patient_risk_assessment_record($data_patient_risk_assessment);
+           
+            $add_manchester_score = $this->getDynamicFieldsInputsArray("manchester_score");
+            $add_BOADICEA = $this->getDynamicFieldsInputsArray("BOADICEA");
+            $add_gail_model = $this->getDynamicFieldsInputsArray("gail_model");
+            
             if ($id_patient_risk_assessment > 0) {
                 echo "<h2>Data Added successfully at patient_risk_assessment</h2>";
             } else {
@@ -1414,6 +2336,9 @@ class Record extends CI_Controller {
         //print_r($data_patient_breast_abnormality);
         echo '<br/>';
         $patient_breast_abnormality_id = $this->record_model->insert_at_patient_breast_abnormality($data_patient_breast_abnormality);
+        
+        $add_mammo_site_detail = $this->getDynamicFieldsInputsArray("mammo_site_detail",$patient_breast_screening_id);
+        
         if ($patient_breast_abnormality_id > 0) {
             echo "Data Added successfully at patient_breast_abnormality";
         } else {
@@ -1430,6 +2355,9 @@ class Record extends CI_Controller {
         //print_r($data_patient_ultrasound_abnormality);
         echo '<br/>';
         $patient_ultrasound_abnormality_id = $this->record_model->insert_patient_ultrasound_abnormality($data_patient_ultrasound_abnormality);
+        
+        $add_ultrasound = $this->getDynamicFieldsInputsArray("ultrasound",$patient_breast_screening_id);
+        
         if ($patient_ultrasound_abnormality_id > 0) {
             echo "Data Added successfully at patient_ultrasound_abnormality";
         } else {
@@ -1445,6 +2373,9 @@ class Record extends CI_Controller {
         //print_r($data_patient_mri_abnormality);
         echo '<br/>';
         $patient_patient_mri_abnormality_id = $this->record_model->insert_patient_mri_abnormality($data_patient_mri_abnormality);
+        
+        $add_mri = $this->getDynamicFieldsInputsArray("MRI",$patient_breast_screening_id);
+        
         if ($patient_patient_mri_abnormality_id > 0) {
             echo "Data Added successfully at patient_mri_abnormality";
         } else {
@@ -1501,6 +2432,9 @@ class Record extends CI_Controller {
         //print_r($data_patient_mri_abnormality);
         echo '<br/>';
         $data_patient_risk_reducing_surgery_complete_removal_id = $this->record_model->insert_patient_risk_reducing_surgery_complete_removal($data_patient_risk_reducing_surgery_complete_removal);
+        
+        $add_site_complete_removal = $this->getDynamicFieldsInputsArray("site_complete_removal",$data_patient_risk_reducing_surgery_id);
+        
         if ($data_patient_risk_reducing_surgery_complete_removal_id > 0) {
             echo "Data Added successfully at patient_risk_reducing_surgery_complete_removal";
         } else {
@@ -1518,6 +2452,9 @@ class Record extends CI_Controller {
         //print_r($data_patient_mri_abnormality);
         echo '<br/>';
         $data_patient_risk_reducing_surgery_lesion_id = $this->record_model->insert_patient_risk_reducing_surgery_lesion($data_patient_risk_reducing_surgery_lesion);
+        
+        $add_site_lesion_surgery = $this->getDynamicFieldsInputsArray("site_lesion_surgery",$data_patient_risk_reducing_surgery_id);
+        
         if ($data_patient_risk_reducing_surgery_lesion_id > 0) {
             echo "Data Added successfully at patient_risk_reducing_surgery_lesion";
         } else {
@@ -1537,6 +2474,9 @@ class Record extends CI_Controller {
         //print_r($data_patient_mri_abnormality);
         echo '<br/>';
         $data_patient_ovarian_screening_id = $this->record_model->insert_patient_ovarian_screening($data_patient_ovarian_screening);
+        
+        $add_ovarian_cancer_screening = $this->getDynamicFieldsInputsArray("ovarian_cancer_screening",$data_patient_risk_reducing_surgery_id);
+        
         if ($data_patient_ovarian_screening_id > 0) {
             echo "Data Added successfully at patient_ovarian_screening";
         } else {
@@ -1557,6 +2497,9 @@ class Record extends CI_Controller {
         //print_r($data_patient_other_screening);
         echo '<br/>';
         $patient_other_screening_id = $this->record_model->insert_patient_other_screening($data_patient_other_screening);
+        
+        $add_other_screening = $this->getDynamicFieldsInputsArray("other_screening");
+        
         if ($patient_other_screening_id > 0) {
             echo "Data Added successfully at patient_other_screening";
         } else {
@@ -2330,6 +3273,9 @@ class Record extends CI_Controller {
         //echo '<br/>';
 
         $patient_parity_record_id = $this->record_model->insert_patient_parity_record($data_patient_parity_record);
+        
+        $add_parity = $this->getDynamicFieldsInputsArray("parity",$patient_parity_table_id);
+        
         if ($patient_parity_record_id > 0) {
             echo "<h2>Data Added successfully at patient_parity_record</h2>";
         } else {
@@ -2708,10 +3654,11 @@ class Record extends CI_Controller {
             'conformation_file_url' => @$attach_file_path
         );
 
-        //echo '<pre>';
-        // print_r($data_patient_investigations);echo '<br/>';
-        //array_push($data, $this->input->post('firstname'));
+
         $patient_investigations_id = $this->record_model->insert_patient_mutation_analysis($data_patient_investigations);
+       
+        $dynamicFieldsArray = $this->getDynamicFieldsInputsArray("mutation_analysis");
+        
         if ($patient_investigations_id > 0) {
             
             //$this->session->set_flashdata('msg', 'success');
@@ -2915,6 +3862,8 @@ class Record extends CI_Controller {
 
             $patient_breast_diagnosis_id = $this->record_model->insert_patient_cancer($data_patient_breast_diagnosis);
             
+            $add_breast_diagnosis = $this->getDynamicFieldsInputsArray("breast_diagnosis");
+            
             if ($patient_breast_diagnosis_id > 0) {
                 echo "<h2>Data Added successfully at patient_cancer(breast) table</h2>";
             } else {
@@ -2945,6 +3894,8 @@ class Record extends CI_Controller {
             //$patient_breast_pathology_id = $this->db->insert('patient_pathology', $data_patient_breast_pathology);
             $patient_breast_pathology_id = $this->record_model->insert_patient_pathology($data_patient_breast_pathology);
             
+            $add_breast_pathology = $this->getDynamicFieldsInputsArray("breast_pathology",$patient_breast_diagnosis_id);
+            
             if ($patient_breast_pathology_id > 0) {
                 echo "<h2>Data Added successfully at patient_pathology(breast) table</h2>";
             } else {
@@ -2961,6 +3912,8 @@ class Record extends CI_Controller {
             );
             
             $patient_breast_pathology_staining_id = $this->db->insert('patient_pathology_staining_status', $data_patient_breast_pathology_staining);
+            
+            $add_breast_status = $this->getDynamicFieldsInputsArray("breast_status",$patient_breast_pathology_id);
             
             if ($patient_breast_pathology_staining_id > 0) {
                 echo "<h2>Data Added successfully at patient_pathology_staining_status(breast) table</h2>";
@@ -2988,6 +3941,8 @@ class Record extends CI_Controller {
         );
 
         $patient_breast_treatment_id = $this->db->insert('patient_cancer_treatment', $data_patient_breast_treatment);
+        
+        $add_breast_treatment = $this->getDynamicFieldsInputsArray("breast_treatment",$patient_breast_diagnosis_id);
 
 //            $patient_COGS_study_id = $this->record_model->insert_patient_cogs_studies($data_patient_COGS_study);
             
@@ -3020,6 +3975,8 @@ class Record extends CI_Controller {
             
             $patient_ovary_diagnosis_id = $this->record_model->insert_patient_cancer($data_patient_ovary_diagnosis);
             
+            $add_ovary_diagnosis = $this->getDynamicFieldsInputsArray("ovary_diagnosis");
+            
             if ($patient_ovary_diagnosis_id > 0) {
                 echo "<h2>Data Added successfully at ovary diagnosis table</h2>";
             } else {
@@ -3049,6 +4006,8 @@ class Record extends CI_Controller {
             );
             
             $patient_ovary_pathology_id = $this->db->insert('patient_pathology', $data_patient_ovary_pathology);
+
+            $add_ovary_pathology = $this->getDynamicFieldsInputsArray("ovary_pathology",$patient_ovary_diagnosis_id);
 
 //            $patient_COGS_study_id = $this->record_model->insert_patient_cogs_studies($data_patient_COGS_study);
             
@@ -3081,6 +4040,8 @@ class Record extends CI_Controller {
             
             $patient_ovary_treatment_id = $this->db->insert('patient_cancer_treatment', $data_patient_ovary_treatment);
             
+            $add_ovary_treatment = $this->getDynamicFieldsInputsArray("ovary_treatment",$patient_ovary_diagnosis_id);
+            
             if ($patient_ovary_treatment_id > 0) {
                 echo "<h2>Data Added successfully at patient_cancer_treatment(ovary) table</h2>";
             } else {
@@ -3091,7 +4052,7 @@ class Record extends CI_Controller {
             $patient_other_cancer_site = $this->input->post('other_cancer_site'); //by this we will get treatment_id
             $other_cancer_site_id = $this->record_model->get_cancer_site_id($patient_other_cancer_site);
             
-            $patient_other_cancer_name = $this->input->post('patient_cancer_name');
+            $patient_other_cancer_name = $this->input->post('other_cancer_type');
             $other_cancer_id = $this->record_model->get_cancer_id($patient_other_cancer_name);
             $data_patient_other_cancer_diagnosis = array(   
             'patient_studies_id' => $patient_studies_id,
@@ -3105,6 +4066,8 @@ class Record extends CI_Controller {
             );
             
             $patient_other_diagnosis_id = $this->record_model->insert_patient_cancer($data_patient_other_cancer_diagnosis);            
+            
+            $add_other_cancer_diagnosis = $this->getDynamicFieldsInputsArray("other_diagnosis");
             
             if ($patient_other_diagnosis_id > 0) {
                 echo "<h2>Data Added successfully at patient_cancer table</h2>";
@@ -3127,6 +4090,8 @@ class Record extends CI_Controller {
             
             
             $patient_other_cancer_pathology_id = $this->db->insert('patient_pathology', $data_patient_other_cancer_pathology);
+
+            $add_other_cancer_pathology = $this->getDynamicFieldsInputsArray("other_pathology",$patient_other_diagnosis_id);
 
 //            $patient_COGS_study_id = $this->record_model->insert_patient_cogs_studies($data_patient_COGS_study);
             
@@ -3157,6 +4122,8 @@ class Record extends CI_Controller {
             
             $patient_other_cancer_treatment_id = $this->db->insert('patient_cancer_treatment', $data_patient_other_cancer_treatment);
 
+            $add_other_cancer_treatment = $this->getDynamicFieldsInputsArray("other_treatment",$patient_other_diagnosis_id);
+
 //            $patient_COGS_study_id = $this->record_model->insert_patient_cogs_studies($data_patient_COGS_study);
             
             if ($patient_other_cancer_treatment_id > 0) {
@@ -3185,6 +4152,8 @@ class Record extends CI_Controller {
         // print_r($data_patient_surveillance);echo '<br/>';
         $patient_other_diseases_id = $this->record_model->insert_patient_other_disease($data_patient_other_diseases);            
         
+        $add_other_disease = $this->getDynamicFieldsInputsArray("other_disease");
+        
         if ($patient_other_diseases_id > 0) {
             echo "<h2>Data Added successfully at patient_other_disease</h2>";
         } else {
@@ -3206,6 +4175,9 @@ class Record extends CI_Controller {
         // print_r($data_patient_surveillance);echo '<br/>';
         //array_push($data, $this->input->post('firstname'));
         $patient_other_diseases_medication_id = $this->db->insert('patient_other_disease_medication', $data_patient_other_diseases_medication);
+        
+        $add_medication = $this->getDynamicFieldsInputsArray("medication",$patient_other_diseases_id);
+        
         if ($patient_other_diseases_medication_id > 0) {
             echo "<h2>Data Added successfully at patient_other_disease_medication</h2>";
         } else {
@@ -3779,12 +4751,18 @@ class Record extends CI_Controller {
             'comments' => $this->input->post('interview_note')
         );
         $patient_interview_manager_id = $this->record_model->insert_patient_interview_manager($data_patient_interview_manager);
+        
+        $dynamicFieldsArray = $this->getDynamicFieldsInputsArray("counselling_note");
+        
+       // print_r($dynamicFieldsArray);
+        
         if ($patient_interview_manager_id > 0) {
             echo "<h2>Data Added successfully.</h2>";
         } else {
             echo "<h2>Failed to added data. Please try again.</h2>";
         }
         echo '<br/>';
+        
         
     }
     
