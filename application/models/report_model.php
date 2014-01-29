@@ -506,6 +506,49 @@ class Report_model extends CI_Model {
         }
         return $result;
     }
+    
+    
+        function getReportData($record_data) {
+            
+            if ($record_data['date_start'] == '1970-01-01'){
+              $start_date = "";  
+            } else {
+            
+            $start_date = $record_data['date_start'];
+            
+            }
+            
+            if ($record_data['date_end'] == '1970-01-01'){
+              $end_date = "";  
+            } else {
+            
+            $end_date = $record_data['date_end'];
+            
+            }
+            
+            $start_age = $record_data['age_start'];
+            $end_age = $record_data['age_end'];
+            
+        
+        $this->db->select('a.given_name, a.surname, a.ic_no, a.ethnicity, b.studies_id, c.date_of_diagnosis,c.age_of_diagnosis');
+        $this->db->from('patient a, patient_studies b,patient_cancer c');
+        $this->db->where('a.is_deleted',0);
+        $this->db->where('a.ic_no = b.patient_ic_no');
+        $this->db->where('b.patient_studies_id = c.patient_studies_id');
+        $this->db->where("c.age_of_diagnosis BETWEEN '$start_age' AND '$end_age'", NULL, FALSE);
+        $this->db->where("c.date_of_diagnosis BETWEEN '$start_date' AND '$end_date'", NULL, FALSE);
+        //$this->db->like('c.cancer', $record_data['cancer']);
+        $this->db->like('b.studies_id', $record_data['studies_name']);
+        $this->db->order_by("a.given_name", "asc");
+        $patient_list = $this->db->get('');
+        $list_patient = $patient_list->result_array();
+        
+        //echo $this->db->last_query();exit;
+                
+        $patient_list->free_result();
+
+        return $list_patient;
+    }
 
 }
 

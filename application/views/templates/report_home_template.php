@@ -26,9 +26,29 @@
         <link rel="apple-touch-icon-precomposed" sizes="72x72" href="<?php echo base_url(); ?>img/apple-touch-icon-72-precomposed.png">
         <link rel="apple-touch-icon-precomposed" href="<?php echo base_url(); ?>img/apple-touch-icon-57-precomposed.png">
         <link rel="shortcut icon" href="<?php echo base_url(); ?>img/favicon.ico">
-
+		
         <script type="text/javascript" src="<?php echo base_url(); ?>js/jquery.min.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>js/bootstrap.js"></script>
+	  
+        <link rel="stylesheet" href="<?php echo base_url(); ?>css/ui-lightness/jquery-ui.css" />
+        <script src="<?php echo base_url(); ?>js/jquery-1.9.1.js"></script>
+        <script src="<?php echo base_url(); ?>js/jquery-ui.js"></script>
+        <link rel="stylesheet" href="<?php echo base_url(); ?>resources/demos/style.css" />
+	<script type="text/javascript" src="<?php echo base_url(); ?>js/plugins/jquery-validation/dist/jquery.validate.js"></script>
+	<script type="text/javascript" src="<?php echo base_url(); ?>js/plugins/jquery-validation/dist/additional-methods.js"></script>
+	<script type="text/javascript" src="<?php echo base_url(); ?>js/plugins/jquery-validation/carif_form_rules.js"></script>
+	<script type="text/javascript" src="<?php echo base_url(); ?>js/plugins/dynamic-dropdown/dropdown_lists.js"></script>
+	<script>
+	$(function() {
+          $( ".datepicker" ).datepicker();
+		  
+		  
+		$('body').on('focus',".datepicker", function(){
+			$(this).datepicker();
+		});
+	});
+		
+	</script>
 		<script type="text/javascript" src="<?php echo base_url(); ?>js/plugins/category/textext.js"></script>
 		<script type="text/javascript" src="<?php echo base_url(); ?>js/plugins/dynamic-dropdown/dropdown_lists.js"></script>
 		<script type="text/javascript">

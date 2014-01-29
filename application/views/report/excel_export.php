@@ -11,18 +11,24 @@ header("Expires: 0");
 
 <table border="1">
     <thead>
-        <tr>
-            <th style="background-color:Crimson;">Full Name</th>
-            <th style="background-color:Crimson;">Sur Name</th>
-            <th style="background-color:Crimson;">IC</th>
-        </tr>
-    </thead>
+                <tr>
+                    <th style="background-color:Crimson;">Given Name</th>
+                    <th style="background-color:Crimson;">Sur Name</th>
+                    <th style="background-color:Crimson;">IC No</th>
+                    <th style="background-color:Crimson;">Ethnicity</th>
+                    <th style="background-color:Crimson;">Date of Diagnosis</th>
+                    <th style="background-color:Crimson;">Age of Diagnosis</th>
+                </tr>
+            </thead>
 <?php foreach ($patient as $list): ?>
         <tr>
-            <td><?php echo $list['fullname']; ?></td>
-            <td><?php echo $list['surname']; ?></td>
-            <td><?php echo $list['ic_no']; ?></td>
-        </tr>
+                    <td><?php echo $list['given_name']; ?></td>
+                    <td><?php echo $list['surname']; ?></td>
+                    <td><?php echo $list['ic_no']; ?></td>
+                    <td><?php echo $list['ethnicity']; ?></td>
+                    <td><?php echo $list['date_of_diagnosis']; ?></td>
+                    <td><?php echo $list['age_of_diagnosis']; ?></td>
+                </tr>  
 <?php endforeach; ?>
 
 </table>

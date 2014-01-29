@@ -6,7 +6,7 @@
     <div class="container" id="report_form_section">
         <div height="30px">&nbsp;</div>
         <table>
-            <tr>
+<!--            <tr>
                 <td id="label1">
                     Search by: 
                 </td>
@@ -42,13 +42,13 @@
                     Age
                     <?php echo form_input('report_age'); ?>
                 </td>
-            </tr>
+            </tr>-->
 			<tr>
                 <td>
-                    &nbsp;
+                    Studies:
                 </td>
                 <td id="label2">
-                    Studies
+                    
 					<?php 
 					$options = array(
 						'Dynamic Dropdown'  => 'Dynamic Dropdown'
@@ -57,6 +57,20 @@
 				</td>
             </tr>
             <tr>
+                <td>
+                    Cancer Patient:
+                </td>
+                <td id="label2">
+                    
+					<?php 
+					$cancer = array(
+						'0'  => 'No',
+                                                '1'  => 'Yes'
+					);
+					echo form_dropdown('cancer', $cancer, NULL); ?>
+				</td>
+            </tr>
+<!--            <tr>
                 <td id="label1">
 
 
@@ -66,29 +80,38 @@
                 <td id="label2">
                     <?php echo form_dropdown('report_templates', $reportTemplates); ?>
                 </td>
-            </tr>
-            <tr>
+            </tr>-->
+<!--            <tr>
                 <td id="label1">
-                    Filter options
+                    Date
                 </td>
                 <td id="label2">
                     Category
                     <?php echo form_input('report_category'); ?>
                 </td>
+            </tr>-->
+            <tr>
+                <td>
+                    Date of Diagnosis:
+                </td>
+                <td id="label2">
+                    From
+                    <?php echo form_input(array('name' => 'report_start_range_date', 'class' => 'datepicker')); ?> To <?php echo form_input(array('name' => 'report_end_range_date','class' => 'datepicker')); ?>
+                </td>
             </tr>
             <tr>
                 <td>
-                    &nbsp;
+                    Age of Diagnosis:
                 </td>
                 <td id="label2">
-                    Date from
-                    <?php echo form_input('report_start_range_date'); ?> to <?php echo form_input('report_end_range_date'); ?>
+                    From
+                    <?php echo form_input('report_start_range_age'); ?> To <?php echo form_input('report_end_range_age'); ?>
                 </td>
             </tr>
         </table>
-		<table>
+<!--		<table>
 		<tr><td>Data Columns to Display:</td><td><textarea id="data_field_textarea" rows="1" cols="7"></textarea></td></tr>
-	</table>
+	</table>-->
     </div>
     <?php echo form_submit('mysubmit', 'Generate Report'); ?>
     <a class="submitCancel" href="<?php echo base_url(); ?>">Cancel</a>
@@ -106,21 +129,37 @@
         <table border="1" width="50%" style="margin-left:180px;">
             <thead>
                 <tr>
-                    <th style="background-color:Crimson;">Full Name</th>
+                    <th style="background-color:Crimson;">Given Name</th>
                     <th style="background-color:Crimson;">Sur Name</th>
-                    <th style="background-color:Crimson;">IC</th>
+                    <th style="background-color:Crimson;">IC No</th>
+                    <th style="background-color:Crimson;">Ethnicity</th>
+                    <th style="background-color:Crimson;">Date of Diagnosis</th>
+                    <th style="background-color:Crimson;">Age of Diagnosis</th>
                 </tr>
             </thead>
+            <?php if($searched_result != NULL) {?>
             <?php foreach ($searched_result as $list): ?>
                 <tr>
-                    <td><?php echo $list['fullname']; ?></td>
+                    <td><?php echo $list['given_name']; ?></td>
                     <td><?php echo $list['surname']; ?></td>
                     <td><?php echo $list['ic_no']; ?></td>
+                    <td><?php echo $list['ethnicity']; ?></td>
+                    <td><?php echo $list['date_of_diagnosis']; ?></td>
+                    <td><?php echo $list['age_of_diagnosis']; ?></td>
                 </tr>                               
     <?php endforeach; ?>
+            <?php } else { ?>
+                
+                <tr><td colspan="6" style="center"><?php echo "no data";?></td></tr>
+                
+            <?php } ?>
     
-     <input type="hidden" name="patient_name" value="<?php echo $patient_name;?>">
-     <input type="hidden" name="patient_ic" value="<?php echo $patient_ic;?>">
+     <input type="hidden" name="patient_cancer" value="<?php echo $cancer_name;?>">
+     <input type="hidden" name="patient_studies" value="<?php echo $studies;?>">
+     <input type="hidden" name="date_start" value="<?php echo $date_start;?>">
+     <input type="hidden" name="date_end" value="<?php echo $date_end;?>">
+     <input type="hidden" name="age_start" value="<?php echo $age_start;?>">
+     <input type="hidden" name="age_end" value="<?php echo $age_end;?>">
 
                 
     <?php echo form_submit('export_excel', 'Export to XLS'); ?>
