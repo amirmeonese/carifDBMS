@@ -145,8 +145,24 @@ class Ion_auth {
                     return $data;
                 } else {
                     $message = $this->load->view($this->config->item('email_templates', 'ion_auth') . $this->config->item('email_forgot_password', 'ion_auth'), $data, true);
+                    //$message = "Hello";
                     $this->email->clear();
-                    $this->email->from($this->config->item('admin_email', 'ion_auth'), $this->config->item('site_title', 'ion_auth'));
+                    /*$this->email->from($this->config->item('admin_email', 'ion_auth'), $this->config->item('site_title', 'ion_auth'));
+                    $this->email->to($user->email);
+                    $this->email->subject($this->config->item('site_title', 'ion_auth') . ' - ' . $this->lang->line('email_forgotten_password_subject'));
+                    $this->email->message($message);*/
+                    $config['protocol'] = 'smtp';
+                    $config['smtp_host'] = 'ssl://smtp.gmail.com';
+                    $config['smtp_port'] = '465';
+                    $config['smtp_timeout'] = '7';
+                    $config['smtp_user'] = 'cariftest@gmail.com';
+                    $config['smtp_pass'] = 'carif123456';
+                    $config['charset'] = 'utf-8';
+                    $config['newline'] = "\r\n";
+                    $config['mailtype'] = 'html'; // or text
+                    $config['validation'] = TRUE; // bool whether to validate email or not     
+                    $this->email->initialize($config);
+                    $this->email->from('cariftest@gmail.com', 'Forgot Password');
                     $this->email->to($user->email);
                     $this->email->subject($this->config->item('site_title', 'ion_auth') . ' - ' . $this->lang->line('email_forgotten_password_subject'));
                     $this->email->message($message);
