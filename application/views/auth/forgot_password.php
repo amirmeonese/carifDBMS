@@ -1,5 +1,5 @@
 <h1><?php echo lang('forgot_password_heading');?></h1>
-<p><?php echo sprintf(lang('forgot_password_subheading'), $identity_label);?></p>
+<p><?php echo 'Please Enter your email so we can send you an email to reset your password.';?></p>
 
 <div id="infoMessage"><?php echo $message;?></div>
 
