@@ -13,6 +13,7 @@ class Record extends CI_Controller {
         $this->load->model('record_model');
         $this->load->model('excell_sheets_model');
         $this->load->model('excell_parser_model');
+        $this->load->model('excell_auto_verification');
         $this->load->library("pagination");
     }
 
@@ -4896,6 +4897,16 @@ class Record extends CI_Controller {
         }
     }
 
+    
+    function view_bulk_import() {
+        $this->load->model('Record_model');
+        $data = $this->Record_model->general();
+        $this->template->load("templates/add_record_template", 'record/upload_xlsx_file', $data);
+    }
+    function do_upload_xlsx_final($filePath) {
+        //echo $file_path;
+        $this->excell_parser_model->excell_file_parser($filePath);
+    }
     function do_upload_xlsx() {
         $config['upload_path'] = './uploads/';
         $config['allowed_types'] = 'xlsx';
@@ -4917,7 +4928,29 @@ class Record extends CI_Controller {
             //echo $temp;
             //print_r($data);
             //redirect('excell_parser/test/',$temp);
-            $this->excell_parser_model->excell_file_parser($temp);
+            $data_duplicate_ic = array();
+            $data_duplicate_ic = null;
+            //echo $temp.'<br>';
+            //if($temp == 'Personal.xlsx')
+            $pos = strpos($temp, 'Personal');
+            if ($pos !== false) 
+            $data_duplicate_ic = $this->excell_auto_verification->excell_parser($temp);
+            
+            $data_all =array(
+                    'fileName' => $temp,
+                    'ic_no' => $data_duplicate_ic 
+                );
+            
+            if(sizeof($data_duplicate_ic) > 0){
+   
+                $this->template->load("templates/add_record_template", 'record/auto_verification_dialog_view', $data_all);
+            }
+            else
+            {
+                $this->excell_parser_model->excell_file_parser($temp);
+            }
+            
+            //$this->excell_parser_model->excell_file_parser($temp);
         }
     }
 
@@ -4950,7 +4983,9 @@ class Record extends CI_Controller {
 
         $this->template->load("templates/report_home_template", 'record/view_record_home');
     }
-
+    
+    
+    
     function view_record_list($var = null, $ic_no, $patient_studies_id = null) {
         $this->load->model('Record_model');
         $data = $this->Record_model->general();
