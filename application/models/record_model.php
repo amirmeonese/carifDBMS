@@ -1451,6 +1451,46 @@ class Record_model extends CI_Model {
         return $patient_detail;
     }
     
+    public function get_hospital_no_record($ic_no){
+    
+	$p_record = $this->db->get_where('patient_hospital_no', array('patient_ic_no' => $ic_no));
+        $patient_detail = $p_record->result_array();
+        //echo $this->db->last_query();exit;
+        $p_record->free_result();  
+
+        return $patient_detail;
+    }
+    
+    public function get_private_no_record($ic_no){
+    
+	$p_record = $this->db->get_where('patient_private_no', array('patient_ic_no' => $ic_no));
+        $patient_detail = $p_record->result_array();
+        //echo $this->db->last_query();exit;
+        $p_record->free_result();  
+
+        return $patient_detail;
+    }
+    
+    public function get_cogs_study_record($ic_no){
+    
+	$p_record = $this->db->get_where('patient_cogs_studies', array('patient_ic_no' => $ic_no));
+        $patient_detail = $p_record->result_array();
+        //echo $this->db->last_query();exit;
+        $p_record->free_result();  
+
+        return $patient_detail;
+    }
+    
+    public function get_survival_record($ic_no){
+    
+	$p_record = $this->db->get_where('patient_survival_status', array('patient_ic_no' => $ic_no));
+        $patient_detail = $p_record->result_array();
+        //echo $this->db->last_query();exit;
+        $p_record->free_result();  
+
+        return $patient_detail;
+    }
+    
     public function get_detail_patient_record($ic_no){
     
         $this->db->where('ic_no',$ic_no);

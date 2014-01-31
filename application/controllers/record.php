@@ -4964,11 +4964,11 @@ class Record extends CI_Controller {
             $data['patient_detail'] = $this->record_model->get_detail_patient_record($ic_no,$patient_studies_id );
             $data['patient_consent_detail'] = $this->record_model->get_consent_detail_patient_record($ic_no, $patient_studies_id);
             $data['studies_id'] = $this->record_model->get_studies_name_by_id();
-            $data['patient_private_no'] = $this->record_model->get_detail_record($ic_no, 'patient_private_no', 'patient_ic_no');
-            $data['patient_hospital_no'] = $this->record_model->get_detail_record($ic_no, 'patient_hospital_no', 'patient_ic_no');
-            $data['patient_cogs_studies'] = $this->record_model->get_detail_record($ic_no, 'patient_cogs_studies', 'patient_ic_no');
+            $data['patient_private_no'] = $this->record_model->get_private_no_record($ic_no);
+            $data['patient_hospital_no'] = $this->record_model->get_hospital_no_record($ic_no);
+            $data['patient_cogs_studies'] = $this->record_model->get_cogs_study_record($ic_no);
             $data['patient_contact_person'] = $this->record_model->get_detail_record($ic_no, 'patient_contact_person', 'patient_ic_no');
-            $data['patient_survival_status'] = $this->record_model->get_detail_record($ic_no, 'patient_survival_status', 'patient_ic_no');
+            $data['patient_survival_status'] = $this->record_model->get_survival_record($ic_no);
             $data['alive_id'] = $this->record_model->get_alive_status_by_id();
             $data['patient_relatives_summary'] = $this->record_model->get_detail_record($ic_no, 'patient_relatives_summary', 'patient_ic_no');
             $data['isUpdate'] = TRUE;

@@ -97,6 +97,7 @@
             </tr>
         </table>
     </div>
+    <?php foreach ($patient_hospital_no as $hospital): ?>
     <div class="container" id="add_record_form_section_personal2">
         <table id="hospital_no_section_1">
             <tr>
@@ -108,12 +109,14 @@
             <tr>
                 <td>
                 <?php echo $hospital_no; ?>: 
-                <?php echo form_input(array('name' => 'hospital_no', 'value' => @$patient_hospital_no['hospital_no']))?>
+                <?php echo form_input(array('name' => 'hospital_no', 'value' => @$hospital['hospital_no']))?>
                 </td>
                 
             </tr>
         </table>
     </div>
+    <?php endforeach; ?>
+    <?php foreach ($patient_private_no as $private_no): ?>
     <div class="container" id="add_record_form_section_personal3">
         <div height="30px">&nbsp;</div>
         <table id="add_private_patient_no_section_1">
@@ -126,12 +129,14 @@
             <tr>
                 <td>
                     <?php echo $private_patient_no; ?>: 
-                    <?php echo form_input(array('name' => 'private_patient_no', 'value' => @$patient_private_no['private_no']))?>
+                    <?php echo form_input(array('name' => 'private_patient_no', 'value' => @$private_no['private_no']))?>
                 </td>
                 
             </tr>
         </table>
     </div>
+    <?php endforeach; ?>
+    <?php foreach ($patient_cogs_studies as $cogs): ?>
     <div class="container" id="add_record_form_section_personal6">
         <div height="30px">&nbsp;</div>
         <table id="add_study_no_section_1">
@@ -144,16 +149,17 @@
             <tr>
                 <td>
                     <?php echo $COGS_study_id; ?>:
-                    <?php echo form_dropdown('COGS_study_id',$COGS_study_id_lists, $patient_cogs_studies['COGS_studies_name'], 'id="COGS_study_id" preload_val="'.$patient_cogs_studies['COGS_studies_name'].'"')?>                    
+                    <?php echo form_dropdown('COGS_study_id',$COGS_study_id_lists, $cogs['COGS_studies_name'], 'id="COGS_study_id" preload_val="'.$cogs['COGS_studies_name'].'"')?>                    
                 </td>
                 <td>
                     <?php echo 'Study no'; ?>: 
-                    <?php echo form_input(array('name' => 'COGS_studies_no', 'value' => $patient_cogs_studies['COGS_studies_no']))?>                    
+                    <?php echo form_input(array('name' => 'COGS_studies_no', 'value' => $cogs['COGS_studies_no']))?>                    
                 </td>
-                
+                <input type="hidden" name="COGS_studies_id" value="<?php print $cogs['COGS_studies_id']; ?>"/>
             </tr>
         </table>
     </div>
+    <?php endforeach; ?>
     <div class="container" id="add_record_form_section_personal4">
         <div height="30px">&nbsp;</div>
         <table>
@@ -311,9 +317,10 @@
                 <td>&nbsp;</td>
             </tr>
         </table>
-    </div>
+    </div><?php foreach ($patient_survival_status as $survival): ?>
 
-    <?php echo form_fieldset_close(); ?>	
+    <?php echo form_fieldset_close(); ?>
+    
     <div class="container" id="add_record_form_section_personal_5">
         <div height="30px">&nbsp;</div>
         <table id="survival_section_1">
@@ -326,27 +333,27 @@
             <tr>
                 <td>
                     <?php echo $status_source; ?>:
-                    <?php echo  form_dropdown('status_source',$status_source_lists, $patient_survival_status['source'], 'id="status_source" preload_val="'.$patient_survival_status['source'].'"'); ?>                                                            
+                    <?php echo  form_dropdown('status_source',$status_source_lists, $survival['source'], 'id="status_source" preload_val="'.$survival['source'].'"'); ?>                                                            
                 </td>
                 <td>
                     <?php echo $alive_status; ?>:
-                    <?php echo  form_dropdown('alive_status',$alive_status_lists, @$alive_id[$patient_survival_status['alive_status']], 'id="alive_status" preload_val="'.@$alive_id[$patient_survival_status['alive_status']].'"'); ?>                                                            
+                    <?php echo  form_dropdown('alive_status',$alive_status_lists, @$alive_id[$survival['alive_status']], 'id="alive_status" preload_val="'.@$alive_id[$survival['alive_status']].'"'); ?>                                                            
                 </td>
                 <td>
                     <?php echo $status_gathered_date; ?>: 
-                    <?php echo form_input(array('name' => 'status_gathered_date', 'value' => $patient_survival_status['status_gathering_date'],'class' => 'datepicker')); ?>
+                    <?php echo form_input(array('name' => 'status_gathered_date', 'value' => $survival['status_gathering_date'],'class' => 'datepicker')); ?>
                 </td>
+                <input type="hidden" name="patient_survival_status_id" value="<?php print $survival['patient_survival_status_id']; ?>"/>
                 
             </tr>
             
-            <input type="hidden" name="COGS_studies_id" value="<?php print $patient_cogs_studies['COGS_studies_id']; ?>"/>
                 <input type="hidden" name="patient_contact_person_id" value="<?php print $patient_contact_person['patient_contact_person_id']; ?>"/>
                 <input type="hidden" name="patient_hospital_no_id" value="<?php print @$patient_hospital_no['patient_hospital_no_id']; ?>"/>
                 <input type="hidden" name="patient_private_no_id" value="<?php print @$patient_private_no['patient_private_no_id']; ?>"/>
-                <input type="hidden" name="patient_survival_status_id" value="<?php print $patient_survival_status['patient_survival_status_id']; ?>"/>
                 <input type="hidden" name="patient_relatives_summary_id" value="<?php print $patient_relatives_summary['patient_relatives_summary_ID']; ?>"/>
         </table>
     </div>
+    <?php endforeach; ?>
     <?php foreach ($patient_consent_detail as $list): ?>
     <div class="container" id="add_consent_details_section">
         <div height="30px">&nbsp;</div>
