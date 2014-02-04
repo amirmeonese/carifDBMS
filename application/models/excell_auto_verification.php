@@ -123,7 +123,19 @@ class Excell_auto_verification extends CI_Model {
         unset($objPHPExcel);
         $array_IC_no_db = null;
         $array_given_name_db = null;
-        return $array_IC_no_duplicate;
+        if(sizeof($array_IC_no_duplicate) > 2)
+        {
+            $array_ic_no = array();
+            $array_ic_no[0] = $array_IC_no_duplicate[0];
+            $array_ic_no[1] = $array_IC_no_duplicate[1];
+            $array_IC_no_duplicate = null;
+            return $array_ic_no;
+        }
+        else
+        {
+           return $array_IC_no_duplicate; 
+        }
+        
     }
 
 }
