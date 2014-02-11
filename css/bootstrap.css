@@ -306,6 +306,7 @@ div .login_form_title{
 .navbar-fixed-top .container,
 .navbar-fixed-bottom .container {
   width: 940px;
+  //overflow:auto;
 }
 
 .span12 {
@@ -6519,6 +6520,7 @@ div #header{
 	height:25px;
 	background-color: #757575;
 	margin-left: -20px;
+        //overflow:auto;
 }
 
 
@@ -6586,6 +6588,7 @@ div #login_footer{
 	margin-top: auto;
 	margin-bottom: auto;
 	background-color: #EAEAEC;
+        overflow:auto;
 }
 
 .container #report_div_1{

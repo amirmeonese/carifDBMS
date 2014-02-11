@@ -12,23 +12,25 @@ header("Expires: 0");
 <table border="1">
     <thead>
                 <tr>
-                    <th style="background-color:Crimson;">Given Name</th>
-                    <th style="background-color:Crimson;">Sur Name</th>
-                    <th style="background-color:Crimson;">IC No</th>
-                    <th style="background-color:Crimson;">Ethnicity</th>
-                    <th style="background-color:Crimson;">Date of Diagnosis</th>
-                    <th style="background-color:Crimson;">Age of Diagnosis</th>
+                    <th style="background-color:Crimson;">No</th>
+                    <?php if (in_array('given_name',$patient_field)) echo '<th style="background-color:Crimson;">Given Name</th>'; ?>
+                    <?php if (in_array('sur_name',$patient_field)) echo '<th style="background-color:Crimson;">Sur Name</th>'; ?>
+                    <?php if (in_array('f_ic_no',$patient_field)) echo '<th style="background-color:Crimson;">IC No</th>'; ?>
+                    <?php if (in_array('f_ethnic',$patient_field)) echo '<th style="background-color:Crimson;">Ethnicity</th>'; ?>
+                    <?php if (in_array('f_date_diagnosis',$patient_field)) echo '<th style="background-color:Crimson;">Date of Diagnosis</th>'; ?>
+                    <?php if (in_array('f_age_diagnosis',$patient_field)) echo '<th style="background-color:Crimson;">Age of Diagnosis</th>'; ?>
                 </tr>
             </thead>
-<?php foreach ($patient as $list): ?>
+<?php $no = 1; foreach ($patient as $list): ?>
         <tr>
-                    <td><?php echo $list['given_name']; ?></td>
-                    <td><?php echo $list['surname']; ?></td>
-                    <td><?php echo $list['ic_no']; ?></td>
-                    <td><?php echo $list['ethnicity']; ?></td>
-                    <td><?php echo $list['date_of_diagnosis']; ?></td>
-                    <td><?php echo $list['age_of_diagnosis']; ?></td>
+                    <td><?php echo $no; ?></td>
+                    <?php if (in_array('given_name',$patient_field)) echo '<td>'.$list['given_name'].'</td>'; ?>
+                    <?php if (in_array('sur_name',$patient_field)) echo '<td>'.$list['surname'].'</td>'; ?>
+                    <?php if (in_array('f_ic_no',$patient_field)) echo '<td>'.$list['ic_no'].'</td>'; ?>
+                    <?php if (in_array('f_ethnic',$patient_field)) echo '<td>'.$list['ethnicity'].'</td>'; ?>
+                    <?php if (in_array('f_date_diagnosis',$patient_field)) echo '<td>'.$list['date_of_diagnosis'].'</td>'; ?>
+                    <?php if (in_array('f_age_diagnosis',$patient_field)) echo '<td>'.$list['age_of_diagnosis'].'</td>'; ?>
                 </tr>  
-<?php endforeach; ?>
+<?php $no++; endforeach; ?>
 
 </table>

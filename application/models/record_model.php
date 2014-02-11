@@ -2016,17 +2016,21 @@ class Record_model extends CI_Model {
     
     function getPatientList($record_data) {
         $this->db->select('a.given_name, a.surname, a.ic_no, a.created_on, b.studies_id, b.patient_studies_id');
-        $this->db->from('patient a, patient_studies b');
+        $this->db->from('patient a, patient_studies b, patient_hospital_no c, patient_private_no d');
         $this->db->where('a.is_deleted',0);
         $this->db->where('a.ic_no = b.patient_ic_no');
+        $this->db->where('a.ic_no = c.patient_ic_no');
+        $this->db->where('a.ic_no = d.patient_ic_no');
         $this->db->like('a.given_name', $record_data['given_name']);
         $this->db->like('a.ic_no', $record_data['ic_no']);
         $this->db->like('b.studies_id', $record_data['studies_name']);
+        $this->db->like('d.private_no', $record_data['patient_no']);
+        $this->db->like('c.hospital_no', $record_data['hospital_no']);
         $this->db->order_by("a.given_name", "asc");
         $patient_list = $this->db->get('');
         $list_patient = $patient_list->result_array();
         
-        //echo $this->db->last_query();exit;
+        //echo 'getpatientlist: ';echo $this->db->last_query();
                 
         $patient_list->free_result();
 
@@ -2036,18 +2040,22 @@ class Record_model extends CI_Model {
 	function getCurrentRangeOfPatientList($record_data,$limit,$start) {
 		
 	$this->db->select('a.given_name, a.surname, a.ic_no, a.created_on, b.studies_id, b.patient_studies_id');
-        $this->db->from('patient a, patient_studies b');
+        $this->db->from('patient a, patient_studies b, patient_hospital_no c, patient_private_no d');
         $this->db->where('a.is_deleted',0);
         $this->db->where('a.ic_no = b.patient_ic_no');
+        $this->db->where('a.ic_no = c.patient_ic_no');
+        $this->db->where('a.ic_no = d.patient_ic_no');
         $this->db->like('a.given_name', $record_data['given_name']);
         $this->db->like('a.ic_no', $record_data['ic_no']);
         $this->db->like('b.studies_id', $record_data['studies_name']);
+        $this->db->like('d.private_no', $record_data['patient_no']);
+        $this->db->like('c.hospital_no', $record_data['hospital_no']);
         $this->db->limit($limit, $start);
 	$this->db->order_by("a.given_name", "asc");
         $patient_list = $this->db->get('');
         $list_patient = $patient_list->result_array();
         
-        //echo $this->db->last_query();exit;
+        //echo 'getCurrentpatientlist: ';echo $this->db->last_query();
                 
         $patient_list->free_result();
 
@@ -2074,7 +2082,7 @@ function get_family_patient_record($ic_no) {
     
     function get_patient_lifstyle_record($patient_studies_id) {
     $this->db->select('a.*,b.*,c.*,d.*,e.*,f.*');
-    $this->db->from('patient_lifestyle_factors a, patient_menstruation b,  c,  d,  e, f');
+    $this->db->from('patient_lifestyle_factors a');
     $this->db->join('patient_menstruation b','a.patient_studies_id = b.patient_studies_id','left');
     $this->db->join('patient_parity_table c','a.patient_studies_id = c.patient_studies_id','left');
     $this->db->join('patient_parity_record d','c.patient_parity_id = d.patient_parity_table_id','left');

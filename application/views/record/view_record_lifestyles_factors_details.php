@@ -642,6 +642,7 @@
                 </td>
             </tr>
              <input type="hidden" name="patient_ic_no" value="<?php print @$patient_lifestyle_factors['patient_ic_no']; ?>"/>
+             <input type="hidden" name="patient_studies_id" value="<?php print @$patient_lifestyle_factors['patient_studies_id']; ?>"/>
             <input type="hidden" name="patient_lifestyle_factors_id" value="<?php print @$patient_lifestyle_factors['patient_lifestyle_factors_id']; ?>"/>
             <input type="hidden" name="patient_menstruation_id" value="<?php print @$patient_menstruation['patient_menstruation_id']; ?>"/>
             <input type="hidden" name="patient_parity_table_id" value="<?php print @$patient_parity_table['patient_parity_table_id']; ?>"/>

@@ -34,8 +34,8 @@ class Record extends CI_Controller {
         $this->load->model('Record_model');
         $data = $this->Record_model->general();
         
-        $userid = $this->session->userdata('user_id');        
-        $data['userprivillage'] = $this->record_model->user_privillage($userid);
+        $userid = $this->session->userdata('user_id');
+        $data['userprivillage'] = $a = $this->record_model->user_privillage($userid);
         $data['isUpdate'] = FALSE;
 
         if ($var == 'personal')
@@ -1919,6 +1919,8 @@ class Record extends CI_Controller {
         $data['userprivillage'] = $this->record_model->user_privillage($userid);
         $data['submit'] = $this->input->post('search');
         $studies_name = $this->input->post('studies_name');
+        $hospital_no = $this->input->post('hospital_no');
+        $patient_no = $this->input->post('patient_no');
         $studies_id = $this->record_model->get_studies_id($studies_name);
         $name = $this->input->post('patient_name');
         $IC_no = $this->input->post('IC_no');
@@ -1928,6 +1930,8 @@ class Record extends CI_Controller {
 			$data_search_key = array(
 				'given_name' => $name,
 				'ic_no' => $IC_no,
+                                'hospital_no' => $hospital_no,
+				'patient_no' => $patient_no,
                                 'studies_name' => $studies_id
 			);
         }
@@ -1936,6 +1940,8 @@ class Record extends CI_Controller {
 			$data_search_key = array(
                             'given_name' => $name,
                             'ic_no' => $IC_no,
+                            'hospital_no' => $hospital_no,
+                            'patient_no' => $patient_no,
                             'studies_name' => $studies_id
 			);		
 		}
@@ -1969,16 +1975,36 @@ class Record extends CI_Controller {
             $patient_studies = 0;
             
         }
+        
+        if(!empty($hospital_no)){
+            
+            $patient_hospital_no = $hospital_no;
+            
+        } else {
+            
+            $patient_hospital_no = 0;
+            
+        }
+        
+        if(!empty($patient_no)){
+            
+            $private_no = $patient_no;
+            
+        } else {
+            
+            $private_no = 0;
+            
+        }
                         
 		$limit = 30;
 		$allResult = $this->Record_model->getPatientList($data_search_key);
 		$config['total_rows'] = count($allResult);
-		$config['base_url'] = site_url('record/patient_record_list_searched'.'/'.$patient_name.'/'.$patient_ic_no.'/'.$patient_studies);
+		$config['base_url'] = site_url('record/patient_record_list_searched'.'/'.$patient_name.'/'.$patient_ic_no.'/'.$patient_studies.'/'.$patient_hospital_no.'/'.$private_no);
 		//$config['base_url'] = site_url('record/patient_record_list/');
                 $config['per_page'] = $limit;
-		$config["uri_segment"] = 6;
+		$config["uri_segment"] = 8;
 		$this->pagination->initialize($config);
-		$page = ($this->uri->segment(6)) ? $this->uri->segment(6) : 0;
+		$page = ($this->uri->segment(8)) ? $this->uri->segment(8) : 0;
 		
 		$result = array();
 		$result = $this->Record_model->getCurrentRangeOfPatientList($data_search_key,$config["per_page"], $page);
@@ -1994,7 +2020,7 @@ class Record extends CI_Controller {
                 $this->template->load("templates/report_home_template", 'record/list_record_personal_details', $data);
     }
     
-    function patient_record_list_searched($name = null,$IC_no = null,$studies_name = null) {
+    function patient_record_list_searched($name = null,$IC_no = null,$studies_name = null,$hospital_no = null,$patient_no = null) {
 
         $this->load->model('Record_model');
         $data = $this->Record_model->general();
@@ -2043,9 +2069,31 @@ class Record extends CI_Controller {
             
         }
         
+        if(!empty($hospital_no)){
+            
+            $patient_hospital_no = $hospital_no;
+            
+        } else {
+            
+            $patient_hospital_no = "";
+            
+        }
+        
+        if(!empty($patient_no)){
+            
+            $private_no = $patient_no;
+            
+        } else {
+            
+            $private_no = "";
+            
+        }
+        
          $data_search_key = array(
 				'given_name' => $patient_name,
 				'ic_no' => $patient_ic_no,
+                                'hospital_no' => $patient_hospital_no,
+                                'patient_no' => $private_no,
                                 'studies_name' => $patient_studies
 			);
 
@@ -2054,12 +2102,12 @@ class Record extends CI_Controller {
 		$limit = 30;
 		$allResult = $this->Record_model->getPatientList($data_search_key);
 		$config['total_rows'] = count($allResult);
-                $config['base_url'] = site_url('record/patient_record_list_searched'.'/'.$name.'/'.$IC_no.'/'.$studies_name);                
+                $config['base_url'] = site_url('record/patient_record_list_searched'.'/'.$name.'/'.$IC_no.'/'.$studies_name.'/'.$hospital_no.'/'.$private_no);                
 		//$config['base_url'] = site_url('record/patient_record_list_searched'.'/'.$patient_name.'/'.$IC_no);
 		$config['per_page'] = $limit;
-		$config["uri_segment"] = 6;
+		$config["uri_segment"] = 8;
 		$this->pagination->initialize($config);
-		$page = ($this->uri->segment(6)) ? $this->uri->segment(6) : 0;
+		$page = ($this->uri->segment(8)) ? $this->uri->segment(8) : 0;
 		
 		$result = array();
 		$result = $this->Record_model->getCurrentRangeOfPatientList($data_search_key,$config["per_page"], $page);
@@ -3411,6 +3459,8 @@ class Record extends CI_Controller {
         $this->db->where('patient_lifestyle_factors_id', $patient_lifestyle_factors_id);
         $this->db->where('patient_studies_id', $patient_studies_id);
         $this->db->update('patient_lifestyle_factors', $data_patient_lifestyle_factors);
+        
+        //echo $this->db->last_query();exit;
         
         if ($this->db->affected_rows() > 0)
         {

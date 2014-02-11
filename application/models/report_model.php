@@ -508,7 +508,9 @@ class Report_model extends CI_Model {
     }
     
     
-        function getReportData($record_data) {
+        function getReportData($record_data,$ethnic_name = NULL) {
+            
+            $ic_no = $this->input->post('ic_no');
             
             if ($record_data['date_start'] == '1970-01-01'){
               $start_date = "";  
@@ -531,13 +533,24 @@ class Report_model extends CI_Model {
             
         
         $this->db->select('a.given_name, a.surname, a.ic_no, a.ethnicity, b.studies_id, c.date_of_diagnosis,c.age_of_diagnosis');
-        $this->db->from('patient a, patient_studies b,patient_cancer c');
+        $this->db->from('patient a');
         $this->db->where('a.is_deleted',0);
-        $this->db->where('a.ic_no = b.patient_ic_no');
-        $this->db->where('b.patient_studies_id = c.patient_studies_id');
+        $this->db->join('patient_studies b','a.ic_no = b.patient_ic_no','left');
+        $this->db->join('patient_cancer c','b.patient_studies_id = c.patient_studies_id','left');
+        if (!empty ($ethnic_name)) {
+        $this->db->where_in('a.ethnicity', $ethnic_name);
+        }
+        if (!empty ($start_age) || ($end_age)) {
         $this->db->where("c.age_of_diagnosis BETWEEN '$start_age' AND '$end_age'", NULL, FALSE);
+        }
+        if (!empty ($start_date) || ($end_date)) {
         $this->db->where("c.date_of_diagnosis BETWEEN '$start_date' AND '$end_date'", NULL, FALSE);
-        //$this->db->like('c.cancer', $record_data['cancer']);
+        }
+        if (!empty ($ic_no)) {
+                $this->db->where_in('a.ic_no', $ic_no);
+            }
+        $this->db->like('c.cancer_id', $record_data['cancer']);
+        
         $this->db->like('b.studies_id', $record_data['studies_name']);
         $this->db->order_by("a.given_name", "asc");
         $patient_list = $this->db->get('');
@@ -550,6 +563,54 @@ class Report_model extends CI_Model {
         return $list_patient;
     }
 
+    function getExcelData($record_data,$ethnic_name) {
+            
+            if ($record_data['date_start'] == '1970-01-01'){
+              $start_date = "";  
+            } else {
+            
+            $start_date = $record_data['date_start'];
+            
+            }
+            
+            if ($record_data['date_end'] == '1970-01-01'){
+              $end_date = "";  
+            } else {
+            
+            $end_date = $record_data['date_end'];
+            
+            }
+            
+            $start_age = $record_data['age_start'];
+            $end_age = $record_data['age_end'];
+            
+        
+        $this->db->select('a.given_name, a.surname, a.ic_no, a.ethnicity, b.studies_id, c.date_of_diagnosis,c.age_of_diagnosis');
+        $this->db->from('patient a');
+        $this->db->where('a.is_deleted',0);
+        $this->db->join('patient_studies b','a.ic_no = b.patient_ic_no','left');
+        $this->db->join('patient_cancer c','b.patient_studies_id = c.patient_studies_id','left');
+        if (!empty ($ethnic_name)) {
+        $this->db->where_in('a.ethnicity', $ethnic_name);
+        }
+        if (!empty ($start_age) || ($end_age)) {
+        $this->db->where("c.age_of_diagnosis BETWEEN '$start_age' AND '$end_age'", NULL, FALSE);
+        }
+        if (!empty ($start_date) || ($end_date)) {
+        $this->db->where("c.date_of_diagnosis BETWEEN '$start_date' AND '$end_date'", NULL, FALSE);
+        }
+        $this->db->like('c.cancer_id', $record_data['cancer']);
+        $this->db->like('b.studies_id', $record_data['studies_name']);
+        $this->db->order_by("a.given_name", "asc");
+        $patient_list = $this->db->get('');
+        $list_patient = $patient_list->result_array();
+        
+        //echo $this->db->last_query();exit;
+                
+        $patient_list->free_result();
+
+        return $list_patient;
+    }
 }
 
 ?>

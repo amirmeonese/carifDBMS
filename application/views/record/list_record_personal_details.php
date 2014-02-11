@@ -20,6 +20,28 @@
                     &nbsp;
                 </td>
                 <td id="label2">
+                Patient No.</td>
+                <td><?php echo form_input('patient_no'); ?>
+
+                </td>
+
+            </tr>
+            <tr>
+                <td>
+                    &nbsp;
+                </td>
+                <td id="label2">
+                Hospital No.(MRN)</td>
+                <td><?php echo form_input('hospital_no'); ?>
+
+                </td>
+
+            </tr>
+            <tr>
+                <td>
+                    &nbsp;
+                </td>
+                <td id="label2">
                     IC No</td>
                 <td>    <?php echo form_input('IC_no'); ?>
                 </td>
