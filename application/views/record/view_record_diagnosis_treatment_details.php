@@ -536,7 +536,7 @@
                     </td>
                     <td>
                     <?php echo $cancer_site; ?>: 
-                    <?php echo form_dropdown('other_cancer_site[]', $patient_cancer_site_lists, $site_cancer[$breast_cancer['cancer_site_id']], 'id="cancer_site" preload_val="'.$site_cancer[$breast_cancer['cancer_site_id']].'"'); ?>
+                    <?php echo form_dropdown('other_cancer_site[]', $patient_cancer_site_lists, $site_cancer[$other_cancer['cancer_site_id']], 'id="cancer_site" preload_val="'.$site_cancer[$breast_cancer['cancer_site_id']].'"'); ?>
                     </td>
                     <td>
                         <?php echo $other_date_of_diagnosis; ?>: 
