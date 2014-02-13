@@ -56,7 +56,7 @@
                 </td>
                 <td>
                     <?php echo $DOB; ?>:
-                    <?php echo form_input(array('name' => 'd_o_b', 'value' => $patient_detail['d_o_b'],'class' => 'datepicker'))?>
+                    <?php echo form_input(array('name' => 'd_o_b', 'value' => $patient_detail['d_o_b'] == '0000-00-00' ? '00-00-0000' : date('d-m-Y', strtotime($patient_detail['d_o_b'])),'class' => 'datepicker'))?>
 
                 </td>
                 <td>
@@ -88,7 +88,7 @@
                <?php } ?>
                 <td>
                     <?php echo $DOD; ?>: 
-                    <?php echo form_input(array('name' => 'd_o_d', 'value' => $patient_detail['d_o_d'],'class' => 'datepicker'))?>
+                    <?php echo form_input(array('name' => 'd_o_d', 'value' => $patient_detail['d_o_d'] == '0000-00-00' ? '00-00-0000' : date('d-m-Y', strtotime($patient_detail['d_o_d'])),'class' => 'datepicker'))?>
                 </td>
                 <td>
                     <?php echo $reason_of_death; ?>: 
@@ -341,7 +341,7 @@
                 </td>
                 <td>
                     <?php echo $status_gathered_date; ?>: 
-                    <?php echo form_input(array('name' => 'status_gathered_date', 'value' => $survival['status_gathering_date'],'class' => 'datepicker')); ?>
+                    <?php echo form_input(array('name' => 'status_gathered_date', 'value' => $survival['status_gathering_date'] == '0000-00-00' ? '00-00-0000' : date('d-m-Y', strtotime($survival['status_gathering_date'])),'class' => 'datepicker')); ?>
                 </td>
                 <input type="hidden" name="patient_survival_status_id" value="<?php print $survival['patient_survival_status_id']; ?>"/>
                 
@@ -368,7 +368,7 @@
                 </td>
                 <td>
                     <?php echo $date_at_consent; ?>:
-                    <?php echo form_input(array('name' => 'date_at_consent[]', 'value' => $list['date_at_consent'],'class' => 'datepicker'))?>                    
+                    <?php echo form_input(array('name' => 'date_at_consent[]', 'value' => $list['date_at_consent'] == '0000-00-00' ? '00-00-0000' : date('d-m-Y', strtotime($list['date_at_consent'])),'class' => 'datepicker'))?>                    
                 </td>
                 <td>
                     <?php echo $age_at_consent; ?>: 
@@ -404,7 +404,7 @@
                 </td>
                 <td>
                     <?php echo $referral_date; //referral to genetic counselling ?>:
-                    <?php echo form_input(array('name' => 'referral_date[]', 'value' => $list['referral_to_genetic_counselling'],'class' => 'datepicker'))?>                                        
+                    <?php echo form_input(array('name' => 'referral_date[]', 'value' => $list['referral_to_genetic_counselling'] == '0000-00-00' ? '00-00-0000'  : date('d-m-Y', strtotime($list['referral_to_genetic_counselling'])),'class' => 'datepicker'))?>                                        
                 </td>
                 <td>
                     <?php echo $referral_source; ?>: 

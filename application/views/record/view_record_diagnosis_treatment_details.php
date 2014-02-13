@@ -44,7 +44,7 @@
             <tr>
                 <td>
                     <?php echo $date_of_diagnosis; ?>: 
-                    <?php echo form_input(array('name' => 'date_of_diagnosis[]', 'value' => $breast_cancer['date_of_diagnosis'], 'class' => 'datepicker'))?>
+                    <?php echo form_input(array('name' => 'date_of_diagnosis[]', 'value' =>  $breast_cancer['date_of_diagnosis'] == '0000-00-00' ? '00-00-0000'  : date('d-m-Y', strtotime($breast_cancer['date_of_diagnosis'])), 'class' => 'datepicker'))?>
                 </td>
                 <td>
                     <?php echo $age_of_diagnosis; ?>: <br />
@@ -213,11 +213,11 @@
                     </td>
                     <td>
                         <?php echo $treatment_start_date; ?>: 
-                        <?php echo form_input(array('name' => 'treatment_start_date[]', 'value' => $breast_cancer['treatment_start_date'], 'class' => 'datepicker'))?>
+                        <?php echo form_input(array('name' => 'treatment_start_date[]', 'value' =>  $breast_cancer['treatment_start_date'] == '0000-00-00' ? '00-00-0000'  : date('d-m-Y', strtotime($breast_cancer['treatment_start_date'])), 'class' => 'datepicker'))?>
                     </td>
                     <td>
                         <?php echo $treatment_end_date; ?>: 
-                        <?php echo form_input(array('name' => 'treatment_end_date[]', 'value' => $breast_cancer['treatment_end_date'], 'class' => 'datepicker'))?>
+                        <?php echo form_input(array('name' => 'treatment_end_date[]', 'value' =>  $breast_cancer['treatment_end_date'] == '0000-00-00' ? '00-00-0000'  : date('d-m-Y', strtotime($breast_cancer['treatment_end_date'])), 'class' => 'datepicker'))?>
                     </td>
                 </tr>
                 <tr>
@@ -304,7 +304,7 @@
             <tr>
                 <td>
                     <?php echo $ovary_date_of_diagnosis; ?>: 
-                    <?php echo form_input(array('name' => 'ovary_date_of_diagnosis[]', 'value' => $ovary_cancer['date_of_diagnosis'], 'class' => 'datepicker'))?>
+                    <?php echo form_input(array('name' => 'ovary_date_of_diagnosis[]', 'value' =>  $ovary_cancer['date_of_diagnosis'] == '0000-00-00' ? '00-00-0000'  : date('d-m-Y', strtotime($ovary_cancer['date_of_diagnosis'])), 'class' => 'datepicker'))?>
                 </td>
                 <td>
                     <?php echo $ovary_age_of_diagnosis; ?>: <br />
@@ -378,7 +378,7 @@
                     </td>
                     <td>
                         <?php echo $ovary_pathology_path_report_date; ?>: <br />
-                        <?php echo form_input(array('name' => 'ovary_pathology_path_report_date[]', 'value' => $ovary_cancer['date_of_report'], 'class' => 'datepicker'))?>
+                        <?php echo form_input(array('name' => 'ovary_pathology_path_report_date[]', 'value' =>  $ovary_cancer['date_of_report'] == '0000-00-00' ? '00-00-0000'  : date('d-m-Y', strtotime($ovary_cancer['date_of_report'])), 'class' => 'datepicker'))?>
                     </td>
                     <td>
                         <?php echo $ovary_pathology_report_no; ?>: <br />
@@ -462,7 +462,7 @@
                     </td>
                     <td>
                         <?php echo $ovary_treatment_end_date; ?>: 
-                        <?php echo form_input(array('name' => 'ovary_treatment_end_date[]', 'value' => $ovary_cancer['treatment_end_date'], 'class' => 'datepicker'))?>
+                        <?php echo form_input(array('name' => 'ovary_treatment_end_date[]', 'value' =>  $ovary_cancer['treatment_end_date'] == '0000-00-00' ? '00-00-0000'  : date('d-m-Y', strtotime($ovary_cancer['treatment_end_date'])), 'class' => 'datepicker'))?>
                     </td>
                 </tr>
                 <tr>
@@ -540,7 +540,7 @@
                     </td>
                     <td>
                         <?php echo $other_date_of_diagnosis; ?>: 
-                        <?php echo form_input(array('name' => 'other_date_of_diagnosis[]', 'value' => $other_cancer['date_of_diagnosis'], 'class' => 'datepicker'))?>
+                        <?php echo form_input(array('name' => 'other_date_of_diagnosis[]', 'value' =>  $other_cancer['date_of_diagnosis'] == '0000-00-00' ? '00-00-0000'  : date('d-m-Y', strtotime($other_cancer['date_of_diagnosis'])), 'class' => 'datepicker'))?>
                     </td>
                     </tr>
                     <tr>
@@ -583,7 +583,7 @@
                         </td>
                         <td>
                             <?php echo $other_pathology_path_report_date; ?>: <br />
-                            <?php echo form_input(array('name' => 'other_pathology_path_report_date[]', 'value' => $other_cancer['date_of_report'], 'class' => 'datepicker'))?>
+                            <?php echo form_input(array('name' => 'other_pathology_path_report_date[]', 'value' =>  $other_cancer['date_of_report'] == '0000-00-00' ? '00-00-0000'  : date('d-m-Y', strtotime($other_cancer['date_of_report'])), 'class' => 'datepicker'))?>
                         </td>
                     </tr>
                     <tr>
@@ -623,11 +623,11 @@
                         </td>
                         <td>
                             <?php echo $other_treatment_start_date; ?>: 
-                            <?php echo form_input(array('name' => 'other_treatment_start_date[]', 'value' => $other_cancer['treatment_start_date'], 'class' => 'datepicker'))?>
+                            <?php echo form_input(array('name' => 'other_treatment_start_date[]', 'value' =>  $other_cancer['treatment_start_date'] == '0000-00-00' ? '00-00-0000'  : date('d-m-Y', strtotime($other_cancer['treatment_start_date'])), 'class' => 'datepicker'))?>
                         </td>
                         <td>
                             <?php echo $other_treatment_end_date; ?>: 
-                            <?php echo form_input(array('name' => 'other_treatment_end_date[]', 'value' => $other_cancer['treatment_end_date'], 'class' => 'datepicker'))?>
+                            <?php echo form_input(array('name' => 'other_treatment_end_date[]', 'value' =>  $other_cancer['treatment_end_date'] == '0000-00-00' ? '00-00-0000'  : date('d-m-Y', strtotime($other_cancer['treatment_end_date'])), 'class' => 'datepicker'))?>
                         </td>
                     </tr>
                     <tr>
@@ -692,7 +692,7 @@
                         </td>
                         <td>
                             <?php echo $year_of_diagnosis; ?>: 
-                            <?php echo form_input(array('name' => 'year_of_diagnosis[]', 'value' => $other_disease['date_of_diagnosis'], 'class' => 'datepicker'))?>
+                            <?php echo form_input(array('name' => 'year_of_diagnosis[]', 'value' => $other_disease['date_of_diagnosis'] == '0000-00-00' ? '00-00-0000'  : date('d-m-Y', strtotime($other_disease['date_of_diagnosis'])), 'class' => 'datepicker'))?>
                         </td>
                         <td>
                             <?php echo $diagnosis_age; ?>: 
@@ -731,11 +731,11 @@
                             </td>
                             <td>
                                 <?php echo $medication_start_date; ?>: 
-                                <?php echo form_input(array('name' => 'medication_start_date[]', 'value' => $other_disease['start_date'], 'class' => 'datepicker'))?>
+                                <?php echo form_input(array('name' => 'medication_start_date[]', 'value' =>  $other_disease['start_date'] == '0000-00-00' ? '00-00-0000'  : date('d-m-Y', strtotime($other_disease['start_date'])), 'class' => 'datepicker'))?>
                             </td>
                             <td>
                                 <?php echo $medication_end_date; ?>: 
-                                <?php echo form_input(array('name' => 'age_of_diagnosis[]', 'value' => $other_disease['end_date'], 'class' => 'datepicker'))?>
+                                <?php echo form_input(array('name' => 'age_of_diagnosis[]', 'value' => $other_disease['end_date'] == '0000-00-00' ? '00-00-0000'  : date('d-m-Y', strtotime($other_disease['end_date'])), 'class' => 'datepicker'))?>
                             </td>
                         </tr>
                         <tr>

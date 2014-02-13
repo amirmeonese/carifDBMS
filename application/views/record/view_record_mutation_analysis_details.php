@@ -22,7 +22,7 @@
                 <tr>
                     <td>
                         <?php echo $date_test_ordered; ?>: <br />
-                        <?php echo form_input(array('name' => 'date_test_ordered[]', 'value' => $list['date_test_ordered'],'class' => 'datepicker')); ?>
+                        <?php echo form_input(array('name' => 'date_test_ordered[]', 'value' => $list['date_test_ordered'] == '0000-00-00' ? '00-00-0000'  : date('d-m-Y', strtotime($list['date_test_ordered'])),'class' => 'datepicker')); ?>
                     </td>
                     <td>
                         <?php echo $test_ordered_by; ?>:  <br />
@@ -51,7 +51,7 @@
                     </td>
                     <td>
                         <?php echo $investigation_project_date; ?>:  <br />
-                        <?php echo form_input(array('name' => 'investigation_project_date[]', 'value' => $list['testing_date'], 'class' => 'datepicker')); ?>
+                        <?php echo form_input(array('name' => 'investigation_project_date[]', 'value' => $list['testing_date'] == '0000-00-00' ? '00-00-0000'  : date('d-m-Y', strtotime($list['testing_date'])), 'class' => 'datepicker')); ?>
                     </td>
                     <td>
                         <?php echo $investigation_gene_tested; ?>:  <br />
@@ -130,11 +130,11 @@
                     </td>
                     <td>
                         <?php echo $investigation_report_date; ?>: </br>
-                        <?php echo form_input(array('name' => 'investigation_report_date[]', 'value' => $list['report_date'], 'class' => 'datepicker')) ?>
+                        <?php echo form_input(array('name' => 'investigation_report_date[]', 'value' => $list['report_date'] == '0000-00-00' ? '00-00-0000'  : date('d-m-Y', strtotime($list['report_date'])), 'class' => 'datepicker')) ?>
                     </td>
                     <td>
                         <?php echo $investigation_date_notified; ?>:  <br />
-                        <?php echo form_input(array('name' => 'investigation_date_notified[]', 'value' => $list['date_client_notified'], 'class' => 'datepicker')) ?>
+                        <?php echo form_input(array('name' => 'investigation_date_notified[]', 'value' => $list['date_client_notified'] == '0000-00-00' ? '00-00-0000'  : date('d-m-Y', strtotime($list['date_client_notified'])), 'class' => 'datepicker')) ?>
                     </td>
                 </tr>
                 <tr>
