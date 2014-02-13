@@ -4,7 +4,7 @@
 	</div>
 	<div class="container">
 		<div height="30px">&nbsp;</div>
-		<table border="1" align="lefts" width="30%">
+<!--		<table border="1" align="lefts" width="30%">
 			<tr>
                 <td colspan="2" id="design-customized-form-table">Basic Field</td>
             </tr>
@@ -20,7 +20,7 @@
                 <td>Radio Button</td>
                 <td>Checkbox</td>
             </tr>
-		</table>
+		</table>-->
 		<div height="30px">&nbsp;</div>
 		<table>
 			<tr><td id="label1">Dropdowns</td></tr>
