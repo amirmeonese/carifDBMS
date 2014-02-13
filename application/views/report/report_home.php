@@ -20,19 +20,28 @@
 				</td>
             </tr>
             <tr>
-                <td>
-                    Cancer Name:
-                </td>
-                <td id="label2">
-                    
-					<?php $cancer = array(
-						'Dynamic Dropdown'  => 'Dynamic Dropdown'
-					);
-                                        echo form_dropdown('cancer', $cancer, NULL, 'id="patient_cancer_name_lists"'); ?>
-				</td>
-            </tr>
+          <td>Cancer Name*:</td>
+          <td>
+              <select name="cancer[]" multiple size="6">
+                  <option value="1">Breast</option>
+                  <option value="2">Ovary</option>
+                  <option value="3">Prostate</option>
+                  <option value="4">Cervical</option>
+                   <option value="6">Lung</option>
+                  <option value="7">Colorectal</option>
+                  <option value="8">Uterine</option>
+                  <option value="9">Peritanium</option>
+                   <option value="10">Pancreatic</option>
+                  <option value="11">Nasopharyngeal</option>
+                  <option value="12">Liver</option>
+                  <option value="13">Gastric</option>
+                  <option value="14">Others</option>
+              </select>
+              <br/>
+          </td>
+      </tr>
             <tr>
-          <td>Ethnic:</td>
+          <td>Ethnic*:</td>
           <td>
               <select name="ethnic[]" multiple size="6">
                   <option value="malay">Malay</option>
@@ -41,7 +50,6 @@
                   <option value="others">Others</option>
               </select>
               <br/>
-              <span class="smallnote">[hold CTRL + select item to select multiple item]</span>
           </td>
       </tr>
             <tr>
@@ -63,7 +71,7 @@
                 </td>
             </tr>
             <tr>
-          <td>Field to Appear:</td>
+          <td>Field to Appear*:</td>
           <td>
               <select name="field[]" multiple size="6">
                   <option value="given_name" selected>Given Name</option>
@@ -75,7 +83,7 @@
                   
               </select>
               <br/>
-              <span class="smallnote">[hold CTRL + select item to select multiple item]</span>
+              <span small>*[hold CTRL + select item to select multiple item]</span>
           </td>
       </tr>
         </table>
@@ -131,7 +139,6 @@
                 
             <?php } ?>
     
-     <input type="hidden" name="patient_cancer" value="<?php echo $cancer_name;?>">
      <input type="hidden" name="patient_studies" value="<?php echo $studies;?>">
      <input type="hidden" name="date_start" value="<?php echo $date_start;?>">
      <input type="hidden" name="date_end" value="<?php echo $date_end;?>">
@@ -141,6 +148,12 @@
      <?php if (!empty ($patient_ethnic)){?>
      <?php foreach ($patient_ethnic as $ethnic_list): ?>
      <input type="hidden" name="ethnic_name[]" value="<?php echo $ethnic_list ;?>">
+    <?php endforeach; ?>
+     <?php }?>
+     
+     <?php if (!empty ($cancer_name)){?>
+     <?php foreach ($cancer_name as $cancer_list): ?>
+     <input type="hidden" name="cancer_name[]" value="<?php echo $cancer_list ;?>">
     <?php endforeach; ?>
      <?php }?>
      

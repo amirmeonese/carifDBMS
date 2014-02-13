@@ -508,7 +508,7 @@ class Report_model extends CI_Model {
     }
     
     
-        function getReportData($record_data,$ethnic_name = NULL) {
+        function getReportData($record_data,$ethnic_name = NULL, $cancer_name = NULL) {
             
             $ic_no = $this->input->post('ic_no');
             
@@ -540,6 +540,9 @@ class Report_model extends CI_Model {
         if (!empty ($ethnic_name)) {
         $this->db->where_in('a.ethnicity', $ethnic_name);
         }
+        if (!empty ($cancer_name)) {
+        $this->db->where_in('c.cancer_id', $cancer_name);
+        }
         if (!empty ($start_age) || ($end_age)) {
         $this->db->where("c.age_of_diagnosis BETWEEN '$start_age' AND '$end_age'", NULL, FALSE);
         }
@@ -549,7 +552,7 @@ class Report_model extends CI_Model {
         if (!empty ($ic_no)) {
                 $this->db->where_in('a.ic_no', $ic_no);
             }
-        $this->db->like('c.cancer_id', $record_data['cancer']);
+       // $this->db->like('c.cancer_id', $record_data['cancer']);
         
         $this->db->like('b.studies_id', $record_data['studies_name']);
         $this->db->order_by("a.given_name", "asc");

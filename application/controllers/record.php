@@ -1350,7 +1350,6 @@ class Record extends CI_Controller {
                 $new_ic_no = $ic_no;
             }
 
-
             $data_patient = array(
                 'given_name' => $this->input->post('fullname'),
                 'surname' => $this->input->post('surname'),
@@ -1361,11 +1360,11 @@ class Record extends CI_Controller {
                 'nationality' => $this->input->post('nationality'),
                 'gender' => $this->input->post('gender'),
                 'ethnicity' => $this->input->post('ethnicity'),
-                'd_o_b' => date('Y-m-d',strtotime($this->input->post('d_o_b'))),
+                'd_o_b' => date('Y-m-d',strtotime(str_replace('/', '-', $this->input->post('d_o_b')))),
                 'place_of_birth' => $this->input->post('place_of_birth'),
                 'income_level' => $this->input->post('income_level'),
                 'is_dead' => $this->input->post('is_dead'),
-                'd_o_d' => date('Y-m-d',strtotime($this->input->post('d_o_d'))),
+                'd_o_d' => date('Y-m-d',strtotime(str_replace('/', '-', $this->input->post('d_o_d')))),
                 'reason_of_death' => $this->input->post('reason_of_death'),
                 //'padigree_labelling' => $this->input->post('padigree_labelling'),
                 'blood_group' => $this->input->post('blood_group'),
@@ -1389,7 +1388,7 @@ class Record extends CI_Controller {
                 'highest_education_level' => $this->input->post('highest_education_level')
             );
             echo '<pre>';
-//             print_r($data_patient);exit;
+            // print_r($data_patient);exit;
             echo '<br/>';
             $data_patient_contact_person = array(
                 'patient_ic_no' => $new_ic_no,
@@ -3255,7 +3254,7 @@ class Record extends CI_Controller {
             'created_on' => $date,
             'diabetes_medicine_name' => $this->input->post('diabates_medicine_name')
         );
-//        print_r($data_patient_lifestyle_factors);exit;
+        print_r($data_patient_lifestyle_factors);exit;
         //echo '<br/>';
 
         $patient_lifestyle_factors_id = $this->record_model->insert_patient_lifestyle_factors($data_patient_lifestyle_factors);
@@ -3310,9 +3309,10 @@ class Record extends CI_Controller {
         echo '<br/>';
 
         $data_patient_parity_record = array(
-            'patient_parity_table_id' => $patient_parity_table_id,
             'pregnancy_type' => $this->input->post('pregnancy_type'),
             'gender' => $this->input->post('child_gender'),
+            'age_child_at_consent' => $this->input->post('child_age_at_consent'),
+            'date_of_birth' => date('Y-m-d',strtotime($this->input->post('child_birthdate'))),
             'year_of_birth' => $this->input->post('child_birthyear'),
             'birthweight' => $this->input->post('child_birthweight'),
             'created_on' => $date,
@@ -3406,9 +3406,11 @@ class Record extends CI_Controller {
         $patient_studies_id = $this->input->post('patient_studies_id');
 
         if(!empty($patient_lifestyle_factors_id)){
+            
+            $date_questionnaire = str_replace("/","-",$this->input->post('questionnaire_date'));
         
         $data_patient_lifestyle_factors = array(
-            'questionnaire_date' => date('Y-m-d',strtotime($this->input->post('questionnaire_date'))),
+            'questionnaire_date' => date('Y-m-d',strtotime($date_questionnaire)),
             'self_image_at_7years' => $this->input->post('self_image_at_7years'),
             'self_image_at_18years' => $this->input->post('self_image_at_18years'),
             'self_image_now' => $this->input->post('self_image_now'),
@@ -3473,7 +3475,9 @@ class Record extends CI_Controller {
         echo '<br/>';
         
     }  
-        $patient_menstruation_id = $this->input->post('patient_menstruation_id'); 
+        $patient_menstruation_id = $this->input->post('patient_menstruation_id');
+        
+        $date_stop_period = str_replace("/","-",$this->input->post('date_period_stops'));
         
         if(!empty($patient_menstruation_id)){
         $data_patient_menstruation = array(
@@ -3483,7 +3487,7 @@ class Record extends CI_Controller {
             'period_cycle_days' => $this->input->post('period_cycle_days'),
             'period_cycle_days_other_details' => $this->input->post('period_cycle_days_other_details'),
             'age_at_menopause' => $this->input->post('age_period_stops'),
-            'date_period_stops' => date('Y-m-d',strtotime($this->input->post('date_period_stops'))),
+            'date_period_stops' => date('Y-m-d',strtotime($date_stop_period)),
             'reason_period_stops' => $this->input->post('reason_period_stops'),
             'created_on' => $date,
             'reason_period_stops_other_details' => $this->input->post('reason_period_stops_other_details')
@@ -3520,7 +3524,7 @@ class Record extends CI_Controller {
         //echo '<br/>';
         //patient_parity_table_id = //after inserting at patient_parity_table we will use it at next table
 
-        $this->db->where('patient_parity_table_id', $patient_parity_table_id);
+        $this->db->where('patient_parity_id', $patient_parity_table_id);
         $this->db->where('patient_studies_id', $patient_studies_id);
         $this->db->update('patient_parity_table', $data_patient_parity_table);
         
@@ -3537,9 +3541,14 @@ class Record extends CI_Controller {
         }
         
         if(!empty($patient_parity_table_id)) {
+            
+            $d_o_b = str_replace("/","-",$this->input->post('child_birthdate'));
+            
         $data_patient_parity_record = array(
             'pregnancy_type' => $this->input->post('pregnancy_type'),
             'gender' => $this->input->post('child_gender'),
+            'age_child_at_consent' => $this->input->post('child_age_at_consent'),
+            'date_of_birth' => date('Y-m-d',strtotime($d_o_b)),
             'year_of_birth' => $this->input->post('child_birthyear'),
             'birthweight' => $this->input->post('child_birthweight'),
             'created_on' => $date,
@@ -3566,6 +3575,12 @@ class Record extends CI_Controller {
         $patient_infertility_id = $this->input->post('patient_infertility_id');
         
         if(!empty($patient_infertility_id)){
+            
+            $contraceptive_start_date = str_replace("/","-",$this->input->post('contraceptive_start_date'));
+            $contraceptive_end_date = str_replace("/","-",$this->input->post('contraceptive_end_date'));
+            $hrt_start_date = str_replace("/","-",$this->input->post('hrt_start_date'));
+            $hrt_end_date = str_replace("/","-",$this->input->post('hrt_end_date'));
+            
         $data_patient_infertility = array(
             'infertility_testing_flag' => $this->input->post('infertility_testing_flag'),
             'infertility_comments' => $this->input->post('infertility_treatment_details'),
@@ -3574,8 +3589,8 @@ class Record extends CI_Controller {
             'contraceptive_pills_flag' => $this->input->post('contraceptive_pills_flag'),
             //'contraceptive_pills_details' => $this->input->post('contraceptive_pills_details'),
             'currently_taking_contraceptive_pills_flag' => $this->input->post('currently_taking_contraceptive_pills_flag'),
-            'contraceptive_start_date' => date('Y-m-d',strtotime($this->input->post('contraceptive_start_date'))),
-            'contraceptive_end_date' => date('Y-m-d',strtotime($this->input->post('contraceptive_end_date'))),
+            'contraceptive_start_date' => date('Y-m-d',strtotime($contraceptive_start_date)),
+            'contraceptive_end_date' => date('Y-m-d',strtotime($contraceptive_end_date)),
             'contraceptive_end_age' => $this->input->post('contraceptive_end_age'),
             'contraceptive_start_age' => $this->input->post('contraceptive_start_age'),
             'contraceptive_duration' => $this->input->post('contraceptive_duration'),
@@ -3584,10 +3599,10 @@ class Record extends CI_Controller {
             'hrt_flag' => $this->input->post('HRT_flag'),
             //'hrt_details' => $this->input->post('HRT_details'),
             'currently_using_hrt_flag' => $this->input->post('currently_using_hrt_flag'),
-            'hrt_start_date' => date('Y-m-d',strtotime($this->input->post('hrt_start_date'))),
+            'hrt_start_date' => date('Y-m-d',strtotime($hrt_start_date)),
             'created_on' => $date,
             'hrt_duration' => $this->input->post('HRT_duration'),
-            'hrt_end_date' => date('Y-m-d',strtotime($this->input->post('hrt_end_date')))
+            'hrt_end_date' => date('Y-m-d',strtotime($hrt_end_date))
         );
         // print_r($data_patient_infertility);
         //echo '<br/>';
@@ -5099,7 +5114,7 @@ class Record extends CI_Controller {
             $data['patient_lifestyle_factors'] = $this->record_model->get_lifestyle_detail_patient_record($patient_studies_id);
             $data['patient_menstruation'] = $this->record_model->get_patient_menstruation_record($ic_no, $patient_studies_id);
             $data['patient_parity_table'] = $this->record_model->get_patient_parity_table_record($ic_no, $patient_studies_id);
-            //$data['patient_parity_record'] = $this->record_model->get_patient_parity_record($ic_no, $patient_studies_id);
+           // $data['patient_parity_record'] = $this->record_model->get_patient_parity_record($ic_no, $patient_studies_id);
             $data['patient_infertility'] = $this->record_model->get_patient_infertility_record($ic_no, $patient_studies_id);
             $data['patient_gynaecological'] = $this->record_model->get_patient_gynaecological_record($ic_no, $patient_studies_id);
             //$data['patient_lifestyle_factors'] = $this->record_model->get_patient_lifstyle_record($patient_studies_id);
