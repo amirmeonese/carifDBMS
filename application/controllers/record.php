@@ -1706,7 +1706,7 @@ class Record extends CI_Controller {
         $is_alive_flag = $this->input->post('father_still_alive_flag');
         $d_o_d = $this->input->post('father_DOD');
         $is_cancer_diagnosed = $this->input->post('father_is_cancer_diagnosed');
-        $date_of_diagnosis = str_replace("/","-",$this->input->post('father_date_of_diagnosis'));
+        $date_of_diagnosis = $this->input->post('father_date_of_diagnosis');
         //$cancer_type_id = $father_cancer_type_id;
         $age_of_diagnosis = $this->input->post('father_age_of_diagnosis');
         $other_detail = $this->input->post('father_diagnosis_other_details');
@@ -1731,11 +1731,11 @@ class Record extends CI_Controller {
                 'maiden_name' => $maiden_name[$i],
                 'ethnicity' => $ethnicity[$i],
                 'town_of_residence' => $town_of_residence[$i],
-                'd_o_b' => $d_o_b[$i],
+                'd_o_b' => $d_o_b[$i] == '00-00-0000' ? '0000-00-00' : date("Y-m-d", strtotime($d_o_b[$i])),
                 'is_alive_flag' => $is_alive_flag[$i],
-                'd_o_d' => $d_o_d[$i],
+                'd_o_d' => $d_o_d[$i] == '00-00-0000' ? '0000-00-00' : date("Y-m-d", strtotime($d_o_d[$i])),
                 'is_cancer_diagnosed' => $is_cancer_diagnosed[$i],
-                'date_of_diagnosis' => date('Y-m-d',strtotime($date_of_diagnosis[$i])),
+                'date_of_diagnosis' => $date_of_diagnosis == '00-00-0000' ? '0000-00-00' : date("Y-m-d", strtotime($date_of_diagnosis)),
                 'cancer_type_id' => $father_cancer_type_id,
                 'age_of_diagnosis' => $age_of_diagnosis[$i],
                 'other_detail' => $other_detail[$i],
@@ -1778,11 +1778,11 @@ class Record extends CI_Controller {
                 $mother_maiden_name = $this->input->post('mother_maiden_name');
                 $mother_ethnicity = $this->input->post('mother_ethnicity');
                 $mother_town_of_residence = $this->input->post('mother_town_residence');
-                $mother_d_o_b = str_replace("/","-",$this->input->post('mother_DOB'));
+                $mother_d_o_b = $this->input->post('mother_DOB');
                 $mother_is_alive_flag = $this->input->post('mother_still_alive_flag');
-                $mother_d_o_d = str_replace("/","-",$this->input->post('mother_DOD'));
+                $mother_d_o_d = $this->input->post('mother_DOD');
                 $mother_is_cancer_diagnosed = $this->input->post('mother_is_cancer_diagnosed');
-                $mother_date_of_diagnosis = str_replace("/","-",$this->input->post('mother_date_of_diagnosis'));
+                $mother_date_of_diagnosis = $this->input->post('mother_date_of_diagnosis');
                 $mother_age_of_diagnosis = $this->input->post('mother_age_of_diagnosis');
                 $mother_other_detail = $this->input->post('mother_diagnosis_other_details');
                 $mother_no_of_brothers = $this->input->post('mother_no_of_brothers');
@@ -1806,11 +1806,11 @@ class Record extends CI_Controller {
                 'maiden_name' => $mother_maiden_name[$i],
                 'ethnicity' => $mother_ethnicity[$i],
                 'town_of_residence' => $mother_town_of_residence[$i],
-                'd_o_b' => date('Y-m-d',strtotime($mother_d_o_b[$i])),
+                'd_o_b' => $mother_d_o_b[$i] == '00-00-0000' ? '0000-00-00' : date("Y-m-d", strtotime($mother_d_o_b[$i])),
                 'is_alive_flag' => $mother_is_alive_flag[$i],
-                'd_o_d' => date('Y-m-d',strtotime($mother_d_o_d[$i])),
+                'd_o_d' => $mother_d_o_d[$i] == '00-00-0000' ? '0000-00-00' : date("Y-m-d", strtotime($mother_d_o_d[$i])),
                 'is_cancer_diagnosed' => $mother_is_cancer_diagnosed[$i],
-                'date_of_diagnosis' => date('Y-m-d',strtotime($mother_date_of_diagnosis[$i])),
+                'date_of_diagnosis' => $mother_date_of_diagnosis[$i] == '00-00-0000' ? '0000-00-00' : date("Y-m-d", strtotime($mother_date_of_diagnosis[$i])),
                 'cancer_type_id' => $mother_cancer_type_id,
                 'age_of_diagnosis' => $mother_age_of_diagnosis[$i],
                 'other_detail' => $mother_other_detail[$i],
@@ -2639,10 +2639,10 @@ class Record extends CI_Controller {
         $patient_ic_no = $this->input->post('patient_ic_no');
             
         $patient_breast_screening_id = $this->input->post('patient_breast_screening_id');
-        $date_of_first_mammogram = str_replace("/","-",$this->input->post('date_of_first_mammogram'));
+        $date_of_first_mammogram = $this->input->post('date_of_first_mammogram');
         $age_of_first_mammogram = $this->input->post('age_of_first_mammogram');
         $age_of_recent_mammogram = $this->input->post('age_of_recent_mammogram');
-        $date_of_recent_mammogram = str_replace("/","-",$this->input->post('date_of_recent_mammogram'));
+        $date_of_recent_mammogram = $this->input->post('date_of_recent_mammogram');
         $screening_centre = $this->input->post('screening_center');
         $total_no_of_mammogram = $this->input->post('total_no_of_mammogram');
         $screening_interval = $this->input->post('screening_interval');
@@ -2675,10 +2675,10 @@ class Record extends CI_Controller {
         if (!empty($patient_breast_screening_id)) {
         for ($i = 0; $i < count($patient_breast_screening_id); $i++) {
         $data_patient_breast_screening = array(
-            'date_of_first_mammogram' => date('Y-m-d',strtotime($date_of_first_mammogram[$i])),
+            'date_of_first_mammogram' => $date_of_first_mammogram[$i] == '00-00-0000' ? '0000-00-00' : date("Y-m-d", strtotime($date_of_first_mammogram[$i])),
             'age_of_first_mammogram' => $age_of_first_mammogram[$i],
             'age_of_recent_mammogram' => $age_of_recent_mammogram[$i],
-            'date_of_recent_mammogram' => date('Y-m-d',strtotime($date_of_recent_mammogram[$i])),
+            'date_of_recent_mammogram' => $date_of_recent_mammogram[$i] == '00-00-0000' ? '0000-00-00' : date("Y-m-d", strtotime($date_of_recent_mammogram[$i])),
             'screening_centre' => $screening_centre[$i],
             'total_no_of_mammogram' => $total_no_of_mammogram[$i],
             'screening_interval' => $screening_interval[$i],
@@ -2916,14 +2916,14 @@ class Record extends CI_Controller {
         
         $patient_ultra_abn = $this->input->post('patient_ultra_abn');
         $is_abnormality_detected = $this->input->post('abnormalities_ultrasound_flag');
-        $ultrasound_date = str_replace("/","-",$this->input->post('mammo_ultrasound_date'));
-            $ultrasound_comments = $this->input->post('mammo_ultrasound_details');
+        $ultrasound_date = $this->input->post('mammo_ultrasound_date');
+        $ultrasound_comments = $this->input->post('mammo_ultrasound_details');
 
             if (!empty($patient_ultra_abn)) {
             for ($i = 0; $i < count($patient_ultra_abn); $i++) {
         $data_patient_ultrasound_abnormality = array(
             'is_abnormality_detected' => $is_abnormality_detected[$i],
-            'ultrasound_date' => date('Y-m-d',strtotime($ultrasound_date[$i])),
+            'ultrasound_date' => $ultrasound_date[$i] == '00-00-0000' ? '0000-00-00' : date("Y-m-d", strtotime($ultrasound_date[$i])),
             'comments' => $ultrasound_comments[$i],
             'modified_on' => $date,
             'patient_breast_screening_id' => $patient_breast_screening_id[$i]
@@ -2946,14 +2946,14 @@ class Record extends CI_Controller {
             
         $patient_mri_abnormality_id = $this->input->post('patient_mri_abnormality_id');
         $mri_abnormality_detected = $this->input->post('abnormalities_mri_flag');
-            $mri_date = str_replace("/","-",$this->input->post('mammo_mri_date'));
+            $mri_date = $this->input->post('mammo_mri_date');
             $mri_comments = $this->input->post('mammo_MRI_details');
        
             if (!empty($patient_mri_abnormality_id)) {
             for ($i = 0; $i < count($patient_mri_abnormality_id); $i++) {
         $data_patient_mri_abnormality = array(
             'is_abnormality_detected' => $mri_abnormality_detected[$i],
-            'mri_date' => date('Y-m-d',strtotime($mri_date[$i])),
+            'mri_date' => $mri_date[$i] == '00-00-0000' ? '0000-00-00' : date("Y-m-d", strtotime($mri_date[$i])),
             'comments' => $mri_comments[$i],
         );
         
@@ -2975,12 +2975,12 @@ class Record extends CI_Controller {
         $patient_non_cancer_surgery_id = $this->input->post('patient_non_cancer_surgery_id');
         $breast_surgery_type = $this->input->post('non_cancer_surgery_type');
         $breast_reason_of_surgery = $this->input->post('reason_for_non_cancer_surgery');
-        $breast_date_of_surgery = str_replace("/","-",$this->input->post('date_of_non_cancer_surgery'));
+        $breast_date_of_surgery = $this->input->post('date_of_non_cancer_surgery');
         $breast_age_of_surgery = $this->input->post('age_at_non_cancer_surgery');
         $breast_comments = $this->input->post('non_cancer_surgery_comments');
         $surgery_type = $this->input->post('ovary_non_cancer_surgery_type');
         $reason_for_surgery = $this->input->post('ovary_reason_for_non_cancer_surgery');
-        $date_of_surgery = str_replace("/","-",$this->input->post('ovary_date_of_non_cancer_surgery'));
+        $date_of_surgery = $this->input->post('ovary_date_of_non_cancer_surgery');
         $age_at_surgery = $this->input->post('ovary_age_at_non_cancer_surgery');
         $non_surgery_comments = $this->input->post('ovary_non_cancer_surgery_comments');
 
@@ -2989,12 +2989,12 @@ class Record extends CI_Controller {
         $data_patient_non_cancer_surgery = array(
             'breast_surgery_type' => $breast_surgery_type[$i],
             'breast_reason_of_surgery' => $breast_reason_of_surgery[$i],
-            'breast_date_of_surgery' => date('Y-m-d',strtotime($breast_date_of_surgery[$i])),
+            'breast_date_of_surgery' => $breast_date_of_surgery[$i] == '00-00-0000' ? '0000-00-00' : date("Y-m-d", strtotime($breast_date_of_surgery[$i])),
             'breast_age_of_surgery' => $breast_age_of_surgery[$i],
             'breast_comments' => $breast_comments[$i],
             'surgery_type' => $surgery_type[$i],
             'reason_for_surgery' => $reason_for_surgery[$i],
-            'date_of_surgery' => date('Y-m-d',strtotime($date_of_surgery[$i])),
+            'date_of_surgery' => $date_of_surgery[$i] == '00-00-0000' ? '0000-00-00' : date("Y-m-d", strtotime($date_of_surgery[$i])),
             'age_at_surgery' => $age_at_surgery[$i],
             'modified_on' => $date,
             'comments' => $non_surgery_comments[$i]
@@ -3044,7 +3044,7 @@ class Record extends CI_Controller {
         }
         
         $patient_risk_reducing_surgery_complete_removal_id = $this->input->post('patient_risk_reducing_surgery_complete_removal_id');
-        $surgery_date = str_replace("/","-",$this->input->post('non_cancerous_complete_removal_date'));
+        $surgery_date = $this->input->post('non_cancerous_complete_removal_date');
         $surgery_reason = $this->input->post('non_cancerous_complete_removal_reason');
         $removal_non_cancerous_site_id = $this->input->post('non_cancerous_complete_removal_site');            
         
@@ -3055,7 +3055,7 @@ class Record extends CI_Controller {
             
         $data_patient_risk_reducing_surgery_complete_removal = array(
             'non_cancerous_site_id' => $removal_non_cancerous_site,
-            'surgery_date' => date('Y-m-d',strtotime($surgery_date[$i])),
+            'surgery_date' => $surgery_date[$i] == '00-00-0000' ? '0000-00-00' : date("Y-m-d", strtotime($surgery_date[$i])),
             'modified_on' => $date,
             'surgery_reason' => $surgery_reason[$i]
         );
@@ -3079,7 +3079,7 @@ class Record extends CI_Controller {
         
         $patient_risk_reducing_surgery_lesion_id = $this->input->post('patient_risk_reducing_surgery_lesion_id');
         $non_cancerous_site_id = $this->input->post('non_cancerous_benign_site');            
-        $non_cancerous_surgery_date = str_replace("/","-",$this->input->post('non_cancerous_benign_date'));
+        $non_cancerous_surgery_date = $this->input->post('non_cancerous_benign_date');
      
         if (!empty($patient_risk_reducing_surgery_lesion_id)) {
         for ($i = 0; $i < count($patient_risk_reducing_surgery_lesion_id); $i++) {
@@ -3089,7 +3089,7 @@ class Record extends CI_Controller {
         $data_patient_risk_reducing_surgery_lesion = array(
             'non_cancerous_site_id' => $non_cancerous_site,
             'modified_on' => $date,
-            'surgery_date' => date('Y-m-d',strtotime($non_cancerous_surgery_date[$i]))
+            'surgery_date' => $non_cancerous_surgery_date[$i] == '00-00-0000' ? '0000-00-00' : date("Y-m-d", strtotime($non_cancerous_surgery_date[$i]))
         );
         //print_r($data_patient_risk_reducing_surgery_lesion);exit;
         
@@ -3121,7 +3121,7 @@ class Record extends CI_Controller {
             
         $data_patient_ovarian_screening = array(
             'ovarian_screening_type_id' => $ovarian_screening_type[$i],
-            'screening_date' => date('Y-m-d',strtotime($oavrian_screening_date[$i])),
+            'screening_date' => $oavrian_screening_date[$i] == '00-00-0000' ? '0000-00-00' : date("Y-m-d", strtotime($oavrian_screening_date[$i])),
             'is_abnormality_detected' => $ovarian_screening_is_abnormality_detected[$i],
             'modified_on' => $date,
             'additional_info' => $ovarian_screening_additional_info[$i]
@@ -3177,13 +3177,13 @@ class Record extends CI_Controller {
         $patient_surveillance_id = $this->input->post('patient_surveillance_id');
         $surveillance_recruitment_center = $this->input->post('surveillance_recruitment_center');
         $surveillance_type = $this->input->post('surveillance_type');
-        $surveillance_first_consultation_date = str_replace("/","-",$this->input->post('surveillance_first_consultation_date'));
+        $surveillance_first_consultation_date = $this->input->post('surveillance_first_consultation_date');
         $surveillance_first_consultation_place = $this->input->post('surveillance_first_consultation_place');
         $surveillance_surveillance_interval = $this->input->post('surveillance_interval');
         $surveillance_diagnosis = $this->input->post('surveillance_diagnosis');
-        $surveillance_due_date = str_replace("/","-",$this->input->post('surveillance_due_date'));
-        $surveillance_reminder_sent_date = str_replace("/","-",$this->input->post('surveillance_reminder_sent_date'));
-        $surveillance_done_date = str_replace("/","-",$this->input->post('surveillance_done_date'));
+        $surveillance_due_date = $this->input->post('surveillance_due_date');
+        $surveillance_reminder_sent_date = $this->input->post('surveillance_reminder_sent_date');
+        $surveillance_done_date = $this->input->post('surveillance_done_date');
         $surveillance_reminded_by = $this->input->post('surveillance_reminded_by');
         $surveillance_timing = $this->input->post('surveillance_timing');
         $surveillance_symptoms = $this->input->post('surveillance_symptoms');
@@ -3197,13 +3197,13 @@ class Record extends CI_Controller {
         $data_patient_surveillance = array(
             'recruitment_center' => $surveillance_recruitment_center[$i],
             'type' => $surveillance_type[$i],
-            'first_consultation_date' => date('Y-m-d',strtotime($surveillance_first_consultation_date[$i])),
+            'first_consultation_date' => $surveillance_first_consultation_date[$i] == '00-00-0000' ? '0000-00-00' : date("Y-m-d", strtotime($surveillance_first_consultation_date[$i])),
             'first_consultation_place' => $surveillance_first_consultation_place[$i],
             'surveillance_interval' => $surveillance_surveillance_interval[$i],
             'diagnosis' => $surveillance_diagnosis[$i],
-            'due_date' => date('Y-m-d',strtotime($surveillance_due_date[$i])),
-            'reminder_sent_date' => date('Y-m-d',strtotime($surveillance_reminder_sent_date[$i])),
-            'surveillance_done_date' => date('Y-m-d',strtotime($surveillance_done_date[$i])),
+            'due_date' => $surveillance_due_date[$i] == '00-00-0000' ? '0000-00-00' : date("Y-m-d", strtotime($surveillance_due_date[$i])),
+            'reminder_sent_date' => $surveillance_reminder_sent_date[$i] == '00-00-0000' ? '0000-00-00' : date("Y-m-d", strtotime($surveillance_reminder_sent_date[$i])),
+            'surveillance_done_date' => $surveillance_done_date[$i] == '00-00-0000' ? '0000-00-00' : date("Y-m-d", strtotime($surveillance_done_date[$i])),
             'reminded_by' => $surveillance_reminded_by[$i],
             'timing' => $surveillance_timing[$i],
             'symptoms' => $surveillance_symptoms[$i],
@@ -3460,10 +3460,10 @@ class Record extends CI_Controller {
 
         if(!empty($patient_lifestyle_factors_id)){
             
-            $date_questionnaire = str_replace("/","-",$this->input->post('questionnaire_date'));
+            $date_questionnaire = $this->input->post('questionnaire_date');
         
         $data_patient_lifestyle_factors = array(
-            'questionnaire_date' => date('Y-m-d',strtotime($date_questionnaire)),
+            'questionnaire_date' => $date_questionnaire == '00-00-0000' ? '0000-00-00' : date("Y-m-d", strtotime($date_questionnaire)),
             'self_image_at_7years' => $this->input->post('self_image_at_7years'),
             'self_image_at_18years' => $this->input->post('self_image_at_18years'),
             'self_image_now' => $this->input->post('self_image_now'),
@@ -3530,7 +3530,7 @@ class Record extends CI_Controller {
     }  
         $patient_menstruation_id = $this->input->post('patient_menstruation_id');
         
-        $date_stop_period = str_replace("/","-",$this->input->post('date_period_stops'));
+        $date_stop_period = $this->input->post('date_period_stops');
         
         if(!empty($patient_menstruation_id)){
         $data_patient_menstruation = array(
@@ -3540,7 +3540,7 @@ class Record extends CI_Controller {
             'period_cycle_days' => $this->input->post('period_cycle_days'),
             'period_cycle_days_other_details' => $this->input->post('period_cycle_days_other_details'),
             'age_at_menopause' => $this->input->post('age_period_stops'),
-            'date_period_stops' => date('Y-m-d',strtotime($date_stop_period)),
+            'date_period_stops' => $date_stop_period == '00-00-0000' ? '0000-00-00' : date("Y-m-d", strtotime($date_stop_period)),
             'reason_period_stops' => $this->input->post('reason_period_stops'),
             'created_on' => $date,
             'reason_period_stops_other_details' => $this->input->post('reason_period_stops_other_details')
@@ -3595,13 +3595,13 @@ class Record extends CI_Controller {
         
         if(!empty($patient_parity_table_id)) {
             
-            $d_o_b = str_replace("/","-",$this->input->post('child_birthdate'));
+            $d_o_b = $this->input->post('child_birthdate');
             
         $data_patient_parity_record = array(
             'pregnancy_type' => $this->input->post('pregnancy_type'),
             'gender' => $this->input->post('child_gender'),
             'age_child_at_consent' => $this->input->post('child_age_at_consent'),
-            'date_of_birth' => date('Y-m-d',strtotime($d_o_b)),
+            'date_of_birth' => $d_o_b == '00-00-0000' ? '0000-00-00' : date("Y-m-d", strtotime($d_o_b)),
             'year_of_birth' => $this->input->post('child_birthyear'),
             'birthweight' => $this->input->post('child_birthweight'),
             'created_on' => $date,
@@ -3629,10 +3629,10 @@ class Record extends CI_Controller {
         
         if(!empty($patient_infertility_id)){
             
-            $contraceptive_start_date = str_replace("/","-",$this->input->post('contraceptive_start_date'));
-            $contraceptive_end_date = str_replace("/","-",$this->input->post('contraceptive_end_date'));
-            $hrt_start_date = str_replace("/","-",$this->input->post('hrt_start_date'));
-            $hrt_end_date = str_replace("/","-",$this->input->post('hrt_end_date'));
+            $contraceptive_start_date = $this->input->post('contraceptive_start_date');
+            $contraceptive_end_date = $this->input->post('contraceptive_end_date');
+            $hrt_start_date = $this->input->post('hrt_start_date');
+            $hrt_end_date = $this->input->post('hrt_end_date');
             
         $data_patient_infertility = array(
             'infertility_testing_flag' => $this->input->post('infertility_testing_flag'),
@@ -3642,8 +3642,8 @@ class Record extends CI_Controller {
             'contraceptive_pills_flag' => $this->input->post('contraceptive_pills_flag'),
             //'contraceptive_pills_details' => $this->input->post('contraceptive_pills_details'),
             'currently_taking_contraceptive_pills_flag' => $this->input->post('currently_taking_contraceptive_pills_flag'),
-            'contraceptive_start_date' => date('Y-m-d',strtotime($contraceptive_start_date)),
-            'contraceptive_end_date' => date('Y-m-d',strtotime($contraceptive_end_date)),
+            'contraceptive_start_date' => $contraceptive_start_date == '00-00-0000' ? '0000-00-00' : date("Y-m-d", strtotime($contraceptive_start_date)),
+            'contraceptive_end_date' => $contraceptive_end_date == '00-00-0000' ? '0000-00-00' : date("Y-m-d", strtotime($contraceptive_end_date)),
             'contraceptive_end_age' => $this->input->post('contraceptive_end_age'),
             'contraceptive_start_age' => $this->input->post('contraceptive_start_age'),
             'contraceptive_duration' => $this->input->post('contraceptive_duration'),
@@ -3652,10 +3652,10 @@ class Record extends CI_Controller {
             'hrt_flag' => $this->input->post('HRT_flag'),
             //'hrt_details' => $this->input->post('HRT_details'),
             'currently_using_hrt_flag' => $this->input->post('currently_using_hrt_flag'),
-            'hrt_start_date' => date('Y-m-d',strtotime($hrt_start_date)),
+            'hrt_start_date' => $hrt_start_date == '00-00-0000' ? '0000-00-00' : date("Y-m-d", strtotime($hrt_start_date)),
             'created_on' => $date,
             'hrt_duration' => $this->input->post('HRT_duration'),
-            'hrt_end_date' => date('Y-m-d',strtotime($hrt_end_date))
+            'hrt_end_date' => $hrt_end_date == '00-00-0000' ? '0000-00-00' : date("Y-m-d", strtotime($hrt_end_date))
         );
         // print_r($data_patient_infertility);
         //echo '<br/>';
@@ -3821,12 +3821,12 @@ class Record extends CI_Controller {
 
         $patient_investigation_id = $this->input->post('patient_investigations_id');
         $studies_name = $this->input->post('patient_studies_id');
-        $date_test_ordered = str_replace("/","-",$this->input->post('date_test_ordered'));
+        $date_test_ordered = $this->input->post('date_test_ordered');
         $ordered_by = $this->input->post('test_ordered_by');
         $testing_result_notification_flag = $this->input->post('testing_results_notification_flag');
         $service_provider = $this->input->post('investigation_project_name');
         $testing_batch = $this->input->post('investigation_project_batch');
-        $testing_date = str_replace("/","-",$this->input->post('investigation_project_date'));
+        $testing_date = $this->input->post('investigation_project_date');
         $gene_tested = $this->input->post('investigation_gene_tested');
         $types_of_testing = $this->input->post('investigation_test_type');
         $type_of_sample = $this->input->post('investigation_sample_type');
@@ -3839,8 +3839,8 @@ class Record extends CI_Controller {
         $exon = $this->input->post('investigation_exon');
         $mutation_type = $this->input->post('investigation_mutation_type');
         $mutation_pathogenicity = $this->input->post('investigation_mutation_pathogenicity');
-        $report_date = str_replace("/","-",$this->input->post('investigation_report_date'));
-        $date_client_notified = str_replace("/","-",$this->input->post('investigation_date_notified'));
+        $report_date = $this->input->post('investigation_report_date');
+        $date_client_notified = $this->input->post('investigation_date_notified');
         $is_counselling_flag = $this->input->post('mutation_is_counselling_flag');
         $comments = $this->input->post('investigation_test_comment');
         $mutation_name = $this->input->post('investigation_mutation_name');
@@ -3849,12 +3849,12 @@ class Record extends CI_Controller {
         for($i=0;$i<count($patient_investigation_id);$i++){ 
         
         $data_patient_investigations = array(
-            'date_test_ordered' => date('Y-m-d',strtotime($date_test_ordered[$i])),
+            'date_test_ordered' => $date_test_ordered[$i] == '00-00-0000' ? '0000-00-00' : date("Y-m-d", strtotime($date_test_ordered[$i])),
             'ordered_by' => $ordered_by[$i],
             'testing_result_notification_flag' => $testing_result_notification_flag[$i],
             'service_provider' => $service_provider[$i],
             'testing_batch' => $testing_batch[$i],
-            'testing_date' => date('Y-m-d',strtotime($testing_date[$i])),
+            'testing_date' => $testing_date[$i] == '00-00-0000' ? '0000-00-00' : date("Y-m-d", strtotime($testing_date[$i])),
             'gene_tested' => $gene_tested[$i],
             'types_of_testing' => $types_of_testing[$i],
             'type_of_sample' => $type_of_sample[$i],
@@ -3867,8 +3867,8 @@ class Record extends CI_Controller {
             'exon' => $exon[$i],
             'mutation_type' => $mutation_type[$i],
             'mutation_pathogenicity' => $mutation_pathogenicity[$i],
-            'report_date' => date('Y-m-d',strtotime($report_date[$i])),
-            'date_client_notified' => date('Y-m-d',strtotime($date_client_notified[$i])),
+            'report_date' => $report_date[$i] == '00-00-0000' ? '0000-00-00' : date("Y-m-d", strtotime($report_date[$i])),
+            'date_client_notified' => $date_client_notified[$i] == '00-00-0000' ? '0000-00-00' : date("Y-m-d", strtotime($date_client_notified[$i])),
             'is_counselling_flag' => $is_counselling_flag[$i],
             'comments' => $comments[$i],
             'mutation_name' => $mutation_name[$i],
@@ -4361,7 +4361,7 @@ class Record extends CI_Controller {
                 'cancer_site_id' => $breast_cancer_site_id,
                 'cancer_invasive_type' => $cancer_invasive_type[$i],
                 'is_primary' => $is_primary[$i],
-                'date_of_diagnosis' => date('Y-m-d', strtotime($date_of_diagnosis[$i])),
+                'date_of_diagnosis' => $date_of_diagnosis[$i] == '00-00-0000' ? '0000-00-00' : date("Y-m-d", strtotime($date_of_diagnosis[$i])),
                 'age_of_diagnosis' => $age_of_diagnosis[$i],
                 'diagnosis_center' => $diagnosis_center[$i],
                 'doctor_name' => $doctor_name[$i],
@@ -4393,7 +4393,7 @@ class Record extends CI_Controller {
         $patient_pathology_id = $this->input->post('patient_pathology_id');
         $tissue_site = $this->input->post('breast_pathology_tissue_site');
         $type_of_report = $this->input->post('breast_pathology_path_report_type');
-        $date_of_report = str_replace("/","-",$this->input->post('breast_pathology_path_report_date'));
+        $date_of_report = $this->input->post('breast_pathology_path_report_date');
         $pathology_lab = $this->input->post('breast_pathology_lab');
         $name_of_doctor = $this->input->post('breast_pathology_doctor');
         $morphology = $this->input->post('breast_pathology_morphology');
@@ -4411,7 +4411,7 @@ class Record extends CI_Controller {
             $data_patient_breast_pathology = array(
                 'tissue_site' => $tissue_site[$i],
                 'type_of_report' => $type_of_report[$i],
-                'date_of_report' => date('Y-m-d', strtotime($date_of_report[$i])),
+                'date_of_report' => $date_of_report[$i] == '00-00-0000' ? '0000-00-00' : date("Y-m-d", strtotime($date_of_report[$i])),
                 'pathology_lab' => $pathology_lab[$i],
                 'name_of_doctor' => $name_of_doctor[$i],
                 'morphology' => $morphology[$i],
@@ -4474,8 +4474,8 @@ class Record extends CI_Controller {
         }
         }
 
-        $treatment_start_date = str_replace("/","-",$this->input->post('treatment_start_date'));
-        $treatment_end_date = str_replace("/","-",$this->input->post('treatment_end_date'));
+        $treatment_start_date = $this->input->post('treatment_start_date');
+        $treatment_end_date = $this->input->post('treatment_end_date');
         $treatment_durations = $this->input->post('treatment_duration');
         $treatment_details = $this->input->post('treatment_details');
         $treatment_dose = $this->input->post('treatment_dose');
@@ -4495,8 +4495,8 @@ class Record extends CI_Controller {
             
             $data_patient_breast_treatment = array(
                 'treatment_id' => $treatment_id,
-                'treatment_start_date' => date('Y-m-d', strtotime($treatment_start_date[$i])),
-                'treatment_end_date' => date('Y-m-d', strtotime($treatment_end_date[$i])),
+                'treatment_start_date' => $treatment_start_date[$i] == '00-00-0000' ? '0000-00-00' : date("Y-m-d", strtotime($treatment_start_date[$i])),
+                'treatment_end_date' => $treatment_end_date[$i] == '00-00-0000' ? '0000-00-00' : date("Y-m-d", strtotime($treatment_end_date[$i])),
                 'treatment_durations' => $treatment_durations[$i],
                 'treatment_details' => $treatment_details[$i],
                 'treatment_dose' => $treatment_dose[$i],
@@ -4528,7 +4528,7 @@ class Record extends CI_Controller {
         $patient_ovary_cancer_site = $this->input->post('ovary_cancer_site'); //by this we will get treatment_id
         $ovary_cancer_invasive_type = $this->input->post('ovary_cancer_invasive_type');
         $ovary_primary_diagnosis = $this->input->post('ovary_primary_diagnosis');
-        $ovary_date_of_diagnosis = str_replace("/","-",$this->input->post('ovary_date_of_diagnosis'));
+        $ovary_date_of_diagnosis = $this->input->post('ovary_date_of_diagnosis');
         $ovary_age_of_diagnosis = $this->input->post('ovary_age_of_diagnosis');
         $ovary_cancer_diagnosis_center = $this->input->post('ovary_cancer_diagnosis_center');
         $ovary_cancer_doctor_name = $this->input->post('ovary_cancer_doctor_name');
@@ -4545,7 +4545,7 @@ class Record extends CI_Controller {
                 'cancer_site_id' => $ovary_cancer_site_id,
                 'cancer_invasive_type' => $ovary_cancer_invasive_type[$i],
                 'is_primary' => $ovary_primary_diagnosis[$i],
-                'date_of_diagnosis' => date('Y-m-d', strtotime($ovary_date_of_diagnosis[$i])),
+                'date_of_diagnosis' => $ovary_date_of_diagnosis[$i] == '00-00-0000' ? '0000-00-00' : date("Y-m-d", strtotime($ovary_date_of_diagnosis[$i])),
                 'age_of_diagnosis' => $ovary_age_of_diagnosis[$i],
                 'diagnosis_center' => $ovary_cancer_diagnosis_center[$i],
                 'doctor_name' => $ovary_cancer_doctor_name[$i],
@@ -4575,7 +4575,7 @@ class Record extends CI_Controller {
         $ovary_patient_pathology_id = $this->input->post('ovary_patient_pathology_id');
         $ovary_tissue_site = $this->input->post('ovary_pathology_tissue_site');
         $ovary_type_of_report = $this->input->post('ovary_pathology_path_report_type');
-        $ovary_date_of_report = str_replace("/","-",$this->input->post('ovary_pathology_path_report_date'));
+        $ovary_date_of_report = $this->input->post('ovary_pathology_path_report_date');
         $ovary_pathology_lab = $this->input->post('ovary_pathology_lab');
         $ovary_name_of_doctor = $this->input->post('ovary_pathology_doctor');
         $ovary_morphology = $this->input->post('ovary_pathology_morphology');
@@ -4594,7 +4594,7 @@ class Record extends CI_Controller {
             $data_patient_ovary_pathology = array(
                 'tissue_site' => $ovary_tissue_site[$i],
                 'type_of_report' => $ovary_type_of_report[$i],
-                'date_of_report' => date('Y-m-d', strtotime($ovary_date_of_report[$i])),
+                'date_of_report' => $ovary_date_of_report[$i] == '00-00-0000' ? '0000-00-00' : date("Y-m-d", strtotime($ovary_date_of_report[$i])),
                 'pathology_lab' => $ovary_pathology_lab[$i],
                 'name_of_doctor' => $ovary_name_of_doctor[$i],
                 'morphology' => $ovary_morphology[$i],
@@ -4627,8 +4627,8 @@ class Record extends CI_Controller {
 
         $ovary_patient_cancer_treatment_id = $this->input->post('ovary_patient_cancer_treatment_id');
         $ovary_patient_cancer_treatment_name = $this->input->post('ovary_patient_cancer_treatment_name'); //by this we will get treatment_id
-        $ovary_treatment_start_date = str_replace("/","-",$this->input->post('ovary_treatment_start_date'));
-        $ovary_treatment_end_date = str_replace("/","-",$this->input->post('ovary_treatment_end_date'));
+        $ovary_treatment_start_date = $this->input->post('ovary_treatment_start_date');
+        $ovary_treatment_end_date = $this->input->post('ovary_treatment_end_date');
         $ovary_treatment_durations = $this->input->post('ovary_treatment_duration');
         $ovary_treatment_details = $this->input->post('ovary_treatment_details');
         $ovary_treatment_dose = $this->input->post('ovary_treatment_drug_dose');
@@ -4647,8 +4647,8 @@ class Record extends CI_Controller {
             
             $data_patient_ovary_treatment = array(
                 'treatment_id' => $ovary_treatment_id[$i],
-                'treatment_start_date' => date('Y-m-d', strtotime($ovary_treatment_start_date[$i])),
-                'treatment_end_date' => date('Y-m-d', strtotime($ovary_treatment_end_date[$i])),
+                'treatment_start_date' => $ovary_treatment_start_date[$i] == '00-00-0000' ? '0000-00-00' : date("Y-m-d", strtotime($ovary_treatment_start_date[$i])),
+                'treatment_end_date' => $ovary_treatment_end_date[$i] == '00-00-0000' ? '0000-00-00' : date("Y-m-d", strtotime($ovary_treatment_end_date[$i])),
                 'treatment_durations' => $ovary_treatment_durations[$i],
                 'treatment_details' => $ovary_treatment_details[$i],
                 'treatment_dose' => $ovary_treatment_dose[$i],
@@ -4682,7 +4682,7 @@ class Record extends CI_Controller {
         $patient_other_cancer_id = $this->input->post('patient_other_cancer_id');
         $other_cancer_id = $this->input->post('patient_cancer_name');
         //$other_cancer_id = $this->record_model->get_cancer_id($patient_other_cancer_name);
-        $other_date_of_diagnosis = str_replace("/","-",$this->input->post('other_date_of_diagnosis'));
+        $other_date_of_diagnosis = $this->input->post('other_date_of_diagnosis');
         $other_age_of_diagnosis = $this->input->post('other_age_of_diagnosis');
         $other_diagnosis_center = $this->input->post('other_cancer_diagnosis_center');
         $other_doctor_name = $this->input->post('other_cancer_doctor_name');
@@ -4695,7 +4695,7 @@ class Record extends CI_Controller {
             $data_patient_other_cancer_diagnosis = array(
                 'cancer_id' => $other_cancer_id[$i],
                 'cancer_site_id' => $other_cancer_site_id,
-                'date_of_diagnosis' => date('Y-m-d', strtotime($other_date_of_diagnosis[$i])),
+                'date_of_diagnosis' => $other_date_of_diagnosis[$i] == '00-00-0000' ? '0000-00-00' : date("Y-m-d", strtotime($other_date_of_diagnosis[$i])),
                 'age_of_diagnosis' => $other_age_of_diagnosis[$i],
                 'diagnosis_center' => $other_diagnosis_center[$i],
                 'doctor_name' => $other_doctor_name[$i],
@@ -4721,7 +4721,7 @@ class Record extends CI_Controller {
         $patient_other_pathology_id = $this->input->post('patient_other_pathology_id');
         $other_pathology_tissue_site = $this->input->post('other_pathology_tissue_site');
         $other_pathology_type_of_report = $this->input->post('other_pathology_path_report_type');
-        $other_pathology_date_of_report = str_replace("/","-",$this->input->post('other_pathology_path_report_date'));
+        $other_pathology_date_of_report = $this->input->post('other_pathology_path_report_date');
         $other_pathology_pathology_lab = $this->input->post('other_pathology_lab');
         $other_pathology_name_of_doctor = $this->input->post('other_pathology_doctor');
         $other_pathology_comments = $this->input->post('other_pathology_tissue_path_comments');
@@ -4732,7 +4732,7 @@ class Record extends CI_Controller {
             $data_patient_other_cancer_pathology = array(
                 'tissue_site' => $other_pathology_tissue_site[$i],
                 'type_of_report' => $other_pathology_type_of_report[$i],
-                'date_of_report' => date('Y-m-d', strtotime($other_pathology_date_of_report[$i])),
+                'date_of_report' => $other_pathology_date_of_report[$i] == '00-00-0000' ? '0000-00-00' : date("Y-m-d", strtotime($other_pathology_date_of_report[$i])),
                 'pathology_lab' => $other_pathology_pathology_lab[$i],
                 'name_of_doctor' => $other_pathology_name_of_doctor[$i],
                 'comments' => $other_pathology_comments[$i],
@@ -4757,8 +4757,8 @@ class Record extends CI_Controller {
 
         $patient_other_cancer_treatment_id = $this->input->post('patient_other_cancer_treatment_id');
         $patient_other_cancer_treatment_name = $this->input->post('other_patient_cancer_treatment_name'); //by this we will get treatment_id
-        $other_treatment_start_date = str_replace("/","-",$this->input->post('other_treatment_start_date'));
-        $other_treatment_end_date = str_replace("/","-",$this->input->post('other_treatment_end_date'));
+        $other_treatment_start_date = $this->input->post('other_treatment_start_date');
+        $other_treatment_end_date = $this->input->post('other_treatment_end_date');
         $other_treatment_durations = $this->input->post('other_treatment_duration');
         $other_treatment_details = $this->input->post('other_treatment_details');
         $other_treatment_dose = $this->input->post('other_treatment_drug_dose');
@@ -4776,8 +4776,8 @@ class Record extends CI_Controller {
             $data_patient_other_cancer_treatment = array(
                 'treatment_id' => $other_cancer_treatment_id,
                 'treatment_details' => $other_treatment_details[$i],
-                'treatment_start_date' => date('Y-m-d', strtotime($other_treatment_start_date[$i])),
-                'treatment_end_date' => date('Y-m-d', strtotime($other_treatment_end_date[$i])),
+                'treatment_start_date' => $other_treatment_start_date[$i] == '00-00-0000' ? '0000-00-00' : date("Y-m-d", strtotime($other_treatment_start_date[$i])),
+                'treatment_end_date' => $other_treatment_end_date[$i] == '00-00-0000' ? '0000-00-00' : date("Y-m-d", strtotime($other_treatment_end_date[$i])),
                 'treatment_durations' => $other_treatment_durations[$i],
                 'treatment_dose' => $other_treatment_dose[$i],
                 'treatment_cycle' => $other_treatment_cycle[$i],
@@ -4820,7 +4820,7 @@ class Record extends CI_Controller {
 
             $data_patient_other_diseases = array(
                 'diagnosis_id' => $other_diagnosis_id,
-                'date_of_diagnosis' => date('Y-m-d', strtotime($year_of_diagnosis[$i])),
+                'date_of_diagnosis' => $year_of_diagnosis[$i] == '00-00-0000' ? '0000-00-00' : date("Y-m-d", strtotime($year_of_diagnosis[$i])),
                 'diagnosis_age' => $diagnosis_age[$i],
                 'diagnosis_center' => $center[$i],
                 'doctor_name' => $diagnosis_doctor_name[$i],
@@ -4846,8 +4846,8 @@ class Record extends CI_Controller {
 
         $patient_other_disease_medication_id = $this->input->post('patient_other_disease_medication_id');
         $medication_type = $this->input->post('medication_type_name');
-        $medication_start_date = str_replace("/","-",$this->input->post('medication_start_date'));
-        $medication_end_date = str_replace("/","-",$this->input->post('age_of_diagnosis'));
+        $medication_start_date = $this->input->post('medication_start_date');
+        $medication_end_date = $this->input->post('age_of_diagnosis');
         $medication_duration = $this->input->post('medication_duration');
         $medication_comments = $this->input->post('medication_comments');
 
@@ -4856,8 +4856,8 @@ class Record extends CI_Controller {
 
             $data_patient_other_diseases_medication = array(
                 'medication_type' => $medication_type[$i],
-                'start_date' => date('Y-m-d', strtotime($medication_start_date[$i])),
-                'end_date' => date('Y-m-d', strtotime($medication_end_date[$i])),
+                'start_date' => $medication_start_date[$i] == '00-00-0000' ? '0000-00-00' : date("Y-m-d", strtotime($medication_start_date[$i])),
+                'end_date' => $medication_end_date[$i] == '00-00-0000' ? '0000-00-00' : date("Y-m-d", strtotime($medication_end_date[$i])),
                 'duration' => $medication_duration[$i],
                 'modified_on' => $date,
                 'comments' => $medication_comments[$i]
@@ -4922,8 +4922,8 @@ class Record extends CI_Controller {
         
         $icno = $this->input->post('icno');
         $manager_id = $this->input->post('patient_interview_manager_id');
-        $interview_date = str_replace("/","-",$this->input->post('interview_date'));
-        $next_interview_date = str_replace("/","-",$this->input->post('interview_next_date'));
+        $interview_date = $this->input->post('interview_date');
+        $next_interview_date = $this->input->post('interview_next_date');
         $is_send_email_reminder_to_officers = $this->input->post('is_send_email_reminder');
         $officer_email_addresses = $this->input->post('officer_email_addresses');
         $comments = $this->input->post('interview_note');
@@ -4936,8 +4936,8 @@ class Record extends CI_Controller {
                     
         $data_patient_interview_manager = array(
             //'patient_ic_no' => $this->input->post('IC_no'),
-            'interview_date' => date('Y-m-d',strtotime($interview_date[$i])),
-            'next_interview_date' => date('Y-m-d',strtotime($next_interview_date[$i])),
+            'interview_date' => $interview_date[$i] == '00-00-0000' ? '0000-00-00' : date("Y-m-d", strtotime($interview_date[$i])),
+            'next_interview_date' => $next_interview_date[$i] == '00-00-0000' ? '0000-00-00' : date("Y-m-d", strtotime($next_interview_date[$i])),
             'is_send_email_reminder_to_officers' => $is_send_email_reminder_to_officers[$i],
             'officer_email_addresses' => $officer_email_addresses[$i],
             'created_on' => $date,
