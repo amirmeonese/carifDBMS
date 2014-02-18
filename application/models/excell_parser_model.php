@@ -51,7 +51,7 @@ class Excell_parser_model extends CI_Model {
         //echo 'Loading file ', pathinfo($inputFileName, PATHINFO_BASENAME), ' using IOFactory with a defined reader type of ', $inputFileType, '<br />';
         $objReader = PHPExcel_IOFactory::createReader($inputFileType);
         //echo 'Loading all WorkSheets<br />';
-        $objReader->setReadDataOnly(true);
+        //$objReader->setReadDataOnly(true);
         $objReader->setLoadAllSheets();
         $objPHPExcel = $objReader->load($inputFileName);
 
