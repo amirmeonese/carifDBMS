@@ -1111,7 +1111,7 @@ class Record extends CI_Controller {
             'highest_education_level' => $this->input->post('highest_education_level')
         );
 
-        print_r($data_patient);exit;
+        //print_r($data_patient);exit;
         $this->db->where('ic_no', $patient_ic_no);
         $this->db->update('patient', $data_patient);
         
@@ -1312,7 +1312,7 @@ class Record extends CI_Controller {
                     'referral_source' => $referral_source[$i]
                 );
 
-                print_r($data_patient_consent_detail);exit;
+                //print_r($data_patient_consent_detail);exit;
                 $this->db->where('patient_studies_id', $patient_studies_id[$i]);
                 $this->db->update('patient_studies', $data_patient_consent_detail);
                 
