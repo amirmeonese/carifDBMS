@@ -2201,7 +2201,7 @@ function get_patient_counselling_record($icno) {
 
 function get_patient_breast_screening_record($patient_studies_id,$ic_no) {
     
-    $this->db->select('a.*,b.*,c.*,d.*');
+    $this->db->select('a.*,b.*,c.*,d.*,c.comments as ultrasound_comments');
     $this->db->from('patient_breast_screening a');
     $this->db->join('patient_breast_abnormality b','a.patient_breast_screening_id = b.patient_breast_screening_id','left');
     $this->db->join('patient_ultrasound_abnormality c','a.patient_breast_screening_id = c.patient_breast_screening_id','left');

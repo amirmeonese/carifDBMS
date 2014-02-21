@@ -294,7 +294,7 @@
                 </td>
                 <td>
                     <?php echo $mammo_ultrasound_details; ?>: 
-                    <?php echo form_textarea(array('name' => 'mammo_ultrasound_details[]','id' => 'mammo_ultrasound_details','rows' => '3','cols' => '7', 'value' => $breast_screening['comments']))?>
+                    <?php echo form_textarea(array('name' => 'mammo_ultrasound_details[]','id' => 'mammo_ultrasound_details','rows' => '3','cols' => '7', 'value' => $breast_screening['ultrasound_comments']))?>
                 </td>
             </tr>
         </table>
