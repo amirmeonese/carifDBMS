@@ -2447,5 +2447,24 @@ function get_studies_name_by_id() {
         return $list_patient_privillage;
     
 }
+function get_is_user_locked($ic_no)
+{
+        $query = $this->db->select('is_record_locked')
+                ->where('ic_no', $ic_no)
+                ->limit(1)
+                ->get($this->tables['patient']);
+        //echo $query;
+        $result = null;
+        if ($query->num_rows() > 0) {
+            $result = $query->row_array();
+            //echo $result['relatives_id'];
+             
+            //print_r($result);
+        }
+
+        //print_r($result['relatives_id']);
+       return $result['is_record_locked'];
+}
+
 }
 ?>

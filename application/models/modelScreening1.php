@@ -130,18 +130,28 @@ class ModelScreening1 extends CI_Model {
                  if ($key == 1 && $cell_value != NULL)
                     $cell_value = trim($cell_value);
                  
-                 if (($key == 21 || $key == 27) && $cell_value != NULL) {
-                                if (strpos($cell_value, '-') !== FALSE)
+                 if (($key == 2 || $key == 4 || $key == 21 || $key == 27) && $cell_value != NULL) {
+                                /*if (strpos($cell_value, '-') !== FALSE)
                                     $cell_value = date("d/m/Y", strtotime($cell_value));
                                 list($day, $month, $year) = explode("/", $cell_value);
 
                                 if (!checkdate($month, $day, $year)) {
+                                    if($key == 2)
+                                    {
+                                         $this->model_Validator->showMessage("date_of_first_mammogram","Surveilance1",$i);
+                                    }
+                                    
+                                    if($key == 4)
+                                    {
+                                         $this->model_Validator->showMessage("date_of_recent_mammogram","Surveilance1",$i);
+                                    }
+                                    
                                     if($key == 21)
                                     {
                                          $this->model_Validator->showMessage("ultrasound_date","Surveilance1",$i);
                                     }
                                     
-                                    if($key == 21)
+                                    if($key == 27)
                                     {
                                          $this->model_Validator->showMessage("MRI_date","Surveilance1",$i);
                                     }
@@ -149,15 +159,14 @@ class ModelScreening1 extends CI_Model {
                                     $abort = TRUE;
                                     break;
                                 }
+                                $cell_value = date('Y-m-d', strtotime(str_replace('/', '-', $cell_value)));*/
+                                $cell_value = preg_replace("/[^0-9\/]/", "", $cell_value);
+                                if($cell_value == "")
+                                    $cell_value = '0000-00-00';
+                                else
+                                $cell_value = date('Y-m-d', strtotime(str_replace('/', '-', $cell_value)));
                             }
-                //echo $key; // 0, 1, 2..
-                if ($key == 21 || $key == 27) {
-                    if ($cell_value != NULL) {
-                        $cell_value = date('Y-m-d', strtotime(str_replace('/', '-', $cell_value)));
-                    }
-                }
-                
-                
+                //echo $key; // 0, 1, 2..      
                 
                 $temp4[] = $cell_value;
             }
@@ -405,18 +414,7 @@ class ModelScreening1 extends CI_Model {
                 echo '<br/>';
                 $data_patient_breast_screening = null;
             }
-            
-            /*if(sizeof($data_patient_breast_screening_update) > 0)
-            {
-                $id_patient_breast_screening = $this->excell_sheets_model->insert_record($data_patient_breast_screening_update, 'patient_breast_screening');
-                if ($id_patient_breast_screening > 0)
-                    echo 'Data updated succesfully at patient_breast_screening table';
-                else
-                    echo 'Failed to update at patient_breast_screening table';
-                echo '<br/>';
-                $data_patient_breast_screening_update = null;
-            }*/
-            
+
             $data_patient_breast_abnormality_update = array();
             $data_patient_breast_abnormality_update = null;
             $data_patient_breast_abnormality_insert = array();

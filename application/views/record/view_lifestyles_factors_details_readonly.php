@@ -15,7 +15,7 @@
             <tr>
                 <td>
                     <?php echo $questionnaire_date; ?>: 
-                    <?php echo form_input(array('name' => 'questionnaire_date', 'value' => @$patient_lifestyle_factors['questionnaire_date'] == '0000-00-00' ? '00-00-0000'  : date('d-m-Y', strtotime(@$patient_lifestyle_factors['questionnaire_date'])), 'class' => 'datepicker'))?>
+                    <?php echo form_input(array('name' => 'questionnaire_date', 'value' => @$patient_lifestyle_factors['questionnaire_date'], 'class' => 'datepicker','readonly'=>'true'))?>
                 </td>
             </tr>
             <tr>
@@ -117,29 +117,29 @@
                 <?php if($patient_lifestyle_factors['cigarrets_smoked_flag'] == 1){?>
                 <td>
                     <?php echo $cigarettes_smoked_flag; ?>: 
-                    <?php echo form_checkbox(array('name' => 'cigarettes_smoked_flag', 'value' => @$patient_lifestyle_factors['cigarrets_smoked_flag'],'checked'=>"checked"))?>
+                    <?php echo form_checkbox(array('name' => 'cigarettes_smoked_flag', 'value' => @$patient_lifestyle_factors['cigarrets_smoked_flag'],'checked'=>"checked",'readonly'=>'true'))?>
                 </td>
                <?php } else {?>
                 <td>
                     <?php echo $cigarettes_smoked_flag; ?>: 
-                    <?php echo form_checkbox(array('name' => 'cigarettes_smoked_flag', 'value' => @$patient_lifestyle_factors['cigarrets_smoked_flag']))?>
+                    <?php echo form_checkbox(array('name' => 'cigarettes_smoked_flag', 'value' => @$patient_lifestyle_factors['cigarrets_smoked_flag'],'readonly'=>'true'))?>
                 </td>
                <?php } ?>
                 
                 <?php if($patient_lifestyle_factors['cigarrets_still_smoked_flag'] == 1){?>
                 <td>
                     <?php echo $cigarettes_still_smoked_flag; ?>: 
-                    <?php echo form_checkbox(array('name' => 'cigarettes_still_smoked_flag', 'value' => @$patient_lifestyle_factors['cigarrets_still_smoked_flag'],'checked'=>"checked"))?>
+                    <?php echo form_checkbox(array('name' => 'cigarettes_still_smoked_flag', 'value' => @$patient_lifestyle_factors['cigarrets_still_smoked_flag'],'checked'=>"checked",'readonly'=>'true'))?>
                 </td>
                <?php } else {?>
                 <td>
                     <?php echo $cigarettes_still_smoked_flag; ?>: 
-                    <?php echo form_checkbox(array('name' => 'cigarettes_still_smoked_flag', 'value' => @$patient_lifestyle_factors['cigarrets_still_smoked_flag']))?>
+                    <?php echo form_checkbox(array('name' => 'cigarettes_still_smoked_flag', 'value' => @$patient_lifestyle_factors['cigarrets_still_smoked_flag'],'readonly'=>'true'))?>
                 </td>
                <?php } ?>
                 <td>
                     <?php echo $total_smoked_years; ?>: 
-                    <?php echo form_input(array('name' => 'total_smoked_years', 'value' => @$patient_lifestyle_factors['total_smoked_years']))?>
+                    <?php echo form_input(array('name' => 'total_smoked_years', 'value' => @$patient_lifestyle_factors['total_smoked_years'],'readonly'=>'true'))?>
                 </td>
             </tr>
             <tr>
@@ -196,12 +196,12 @@
                 <?php if($patient_lifestyle_factors['alcohol_drunk_flag'] == 1){?>
                 <td>
                     <?php echo $alcohol_drunk_flag; ?>:
-                    <?php echo form_checkbox(array('name' => 'alcohol_drunk_flag', 'value' => @$patient_lifestyle_factors['alcohol_drunk_flag'],'checked'=>"checked"))?>
+                    <?php echo form_checkbox(array('name' => 'alcohol_drunk_flag', 'value' => @$patient_lifestyle_factors['alcohol_drunk_flag'],'checked'=>"checked",'readonly'=>'true'))?>
                 </td>
                <?php } else {?>
                 <td>
                     <?php echo $alcohol_drunk_flag; ?>:
-                    <?php echo form_checkbox(array('name' => 'alcohol_drunk_flag', 'value' => @$patient_lifestyle_factors['alcohol_drunk_flag']))?>
+                    <?php echo form_checkbox(array('name' => 'alcohol_drunk_flag', 'value' => @$patient_lifestyle_factors['alcohol_drunk_flag'],'readonly'=>'true'))?>
                 </td>
                <?php } ?>
                 <td>
@@ -210,7 +210,7 @@
                 </td>
                 <td>
                     <?php echo $alcohol_average_details; ?>:  <br />
-                    <?php echo form_input(array('name' => 'alcohol_average_details', 'value' => @$patient_lifestyle_factors['alcohol_comments']))?>
+                    <?php echo form_input(array('name' => 'alcohol_average_details', 'value' => @$patient_lifestyle_factors['alcohol_comments'],'readonly'=>'true'))?>
                 </td>
             </tr>
             <tr>
@@ -222,17 +222,17 @@
                 <?php if($patient_lifestyle_factors['coffee_drunk_flag'] == 1){?>
                 <td>
                     <?php echo $coffee_drunk_flag; ?>: 
-                    <?php echo form_checkbox(array('name' => 'coffee_drunk_flag', 'value' => @$patient_lifestyle_factors['coffee_drunk_flag'],'checked'=>"checked"))?>
+                    <?php echo form_checkbox(array('name' => 'coffee_drunk_flag', 'value' => @$patient_lifestyle_factors['coffee_drunk_flag'],'checked'=>"checked",'readonly'=>'true'))?>
                 </td>
                <?php } else {?>
                 <td>
                     <?php echo $coffee_drunk_flag; ?>: 
-                    <?php echo form_checkbox(array('name' => 'coffee_drunk_flag', 'value' => @$patient_lifestyle_factors['coffee_drunk_flag']))?>
+                    <?php echo form_checkbox(array('name' => 'coffee_drunk_flag', 'value' => @$patient_lifestyle_factors['coffee_drunk_flag'],'readonly'=>'true'))?>
                 </td>
                <?php } ?>
                 <td>
                     <?php echo $coffee_age; ?>: <br />
-                    <?php echo form_input(array('name' => 'coffee_age', 'value' => @$patient_lifestyle_factors['coffee_age']))?>
+                    <?php echo form_input(array('name' => 'coffee_age', 'value' => @$patient_lifestyle_factors['coffee_age'],'readonly'=>'true'))?>
                 </td>
                 <td>
                     <?php echo $coffee_average; ?>: <br />
@@ -248,17 +248,17 @@
                 <?php if($patient_lifestyle_factors['tea_drunk_flag'] == 1){?>
                 <td>
                     <?php echo $tea_drunk_flag; ?>: 
-                    <?php echo form_checkbox(array('name' => 'tea_drunk_flag', 'value' => @$patient_lifestyle_factors['tea_drunk_flag'],'checked'=>"checked"))?>
+                    <?php echo form_checkbox(array('name' => 'tea_drunk_flag', 'value' => @$patient_lifestyle_factors['tea_drunk_flag'],'checked'=>"checked",'readonly'=>'true'))?>
                 </td>
                <?php } else {?>
                 <td>
                     <?php echo $tea_drunk_flag; ?>: 
-                    <?php echo form_checkbox(array('name' => 'tea_drunk_flag', 'value' => @$patient_lifestyle_factors['tea_drunk_flag']))?>
+                    <?php echo form_checkbox(array('name' => 'tea_drunk_flag', 'value' => @$patient_lifestyle_factors['tea_drunk_flag'],'readonly'=>'true'))?>
                 </td>
                <?php } ?>
                 <td>
                     <?php echo $tea_age; ?>: <br />
-                    <?php echo form_input(array('name' => 'tea_age', 'value' => @$patient_lifestyle_factors['tea_age']))?>
+                    <?php echo form_input(array('name' => 'tea_age', 'value' => @$patient_lifestyle_factors['tea_age'],'readonly'=>'true'))?>
                 </td>
                 <td>
                     <?php echo $tea_average; ?>: <br />
@@ -283,12 +283,12 @@
                 <?php if($patient_lifestyle_factors['soya_bean_drunk_flag'] == 1){?>
                 <td>
                     <?php echo $soya_bean_drunk_flag; ?>: 
-                    <?php echo form_checkbox(array('name' => 'soya_bean_drunk_flag', 'value' => @$patient_lifestyle_factors['soya_bean_drunk_flag'],'checked'=>"checked"))?>
+                    <?php echo form_checkbox(array('name' => 'soya_bean_drunk_flag', 'value' => @$patient_lifestyle_factors['soya_bean_drunk_flag'],'checked'=>"checked",'readonly'=>'true'))?>
                 </td>
                <?php } else {?>
                 <td>
                     <?php echo $soya_bean_drunk_flag; ?>: 
-                    <?php echo form_checkbox(array('name' => 'soya_bean_drunk_flag', 'value' => @$patient_lifestyle_factors['soya_bean_drunk_flag']))?>
+                    <?php echo form_checkbox(array('name' => 'soya_bean_drunk_flag', 'value' => @$patient_lifestyle_factors['soya_bean_drunk_flag'],'readonly'=>'true'))?>
                 </td>
                <?php } ?>
                 <td>
@@ -298,12 +298,12 @@
                 <?php if($patient_lifestyle_factors['soya_products_flag'] == 1){?>
                 <td>
                     <?php echo $soya_products_flag; ?>: 
-                    <?php echo form_checkbox(array('name' => 'soya_products_flag', 'value' => @$patient_lifestyle_factors['soya_products_flag'],'checked'=>"checked"))?>
+                    <?php echo form_checkbox(array('name' => 'soya_products_flag', 'value' => @$patient_lifestyle_factors['soya_products_flag'],'checked'=>"checked",'readonly'=>'true'))?>
                 </td>
                <?php } else {?>
                 <td>
                     <?php echo $soya_products_flag; ?>: 
-                    <?php echo form_checkbox(array('name' => 'soya_products_flag', 'value' => @$patient_lifestyle_factors['soya_products_flag']))?>
+                    <?php echo form_checkbox(array('name' => 'soya_products_flag', 'value' => @$patient_lifestyle_factors['soya_products_flag'],'readonly'=>'true'))?>
                 </td>
                <?php } ?>
             </tr>
@@ -325,28 +325,28 @@
                 <?php if($patient_lifestyle_factors['diabetes_flag'] == 1){?>
                 <td>
                     <?php echo $diabetes_flag; ?>: 
-                    <?php echo form_checkbox(array('name' => 'diabetes_flag', 'value' => @$patient_lifestyle_factors['diabetes_flag'],'checked'=>"checked"))?>
+                    <?php echo form_checkbox(array('name' => 'diabetes_flag', 'value' => @$patient_lifestyle_factors['diabetes_flag'],'checked'=>"checked",'readonly'=>'true'))?>
                 </td>
                <?php } else {?>
                 <td>
                     <?php echo $diabetes_flag; ?>: 
-                    <?php echo form_checkbox(array('name' => 'diabetes_flag', 'value' => @$patient_lifestyle_factors['diabetes_flag']))?>
+                    <?php echo form_checkbox(array('name' => 'diabetes_flag', 'value' => @$patient_lifestyle_factors['diabetes_flag'],'readonly'=>'true'))?>
                 </td>
                <?php } ?>
                 <?php if($patient_lifestyle_factors['medicine_for_diabetes_flag'] == 1){?>
                 <td>
                     <?php echo $medicine_for_diabetes_flag; ?>: 
-                    <?php echo form_checkbox(array('name' => 'medicine_for_diabetes_flag', 'value' => @$patient_lifestyle_factors['medicine_for_diabetes_flag'],'checked'=>"checked"))?>
+                    <?php echo form_checkbox(array('name' => 'medicine_for_diabetes_flag', 'value' => @$patient_lifestyle_factors['medicine_for_diabetes_flag'],'checked'=>"checked",'readonly'=>'true'))?>
                 </td>
                <?php } else {?>
                 <td>
                     <?php echo $medicine_for_diabetes_flag; ?>: 
-                    <?php echo form_checkbox(array('name' => 'medicine_for_diabetes_flag', 'value' => @$patient_lifestyle_factors['medicine_for_diabetes_flag']))?>
+                    <?php echo form_checkbox(array('name' => 'medicine_for_diabetes_flag', 'value' => @$patient_lifestyle_factors['medicine_for_diabetes_flag'],'readonly'=>'true'))?>
                 </td>
                <?php } ?>
                 <td>
                     <?php echo $diabates_medicine_name; ?>: <br />
-                    <?php echo form_input(array('name' => 'diabates_medicine_name', 'value' => @$patient_lifestyle_factors['diabetes_medicine_name']))?>
+                    <?php echo form_input(array('name' => 'diabates_medicine_name', 'value' => @$patient_lifestyle_factors['diabetes_medicine_name'],'readonly'=>'true'))?>
                 </td>
             </tr>
             <tr>
@@ -366,17 +366,17 @@
             <tr>
                 <td>
                     <?php echo $age_period_starts; ?>: <br />
-                    <?php echo form_input(array('name' => 'age_period_starts', 'value' => @$patient_menstruation['age_period_starts']))?>
+                    <?php echo form_input(array('name' => 'age_period_starts', 'value' => @$patient_menstruation['age_period_starts'],'readonly'=>'true'))?>
                 </td>
                 <?php if($patient_menstruation['still_period_flag'] == 1){?>
                     <td>
                     <?php echo $still_period_flag; ?>: 
-                    <?php echo form_checkbox(array('name' => 'still_period_flag', 'value' => @$patient_menstruation['still_period_flag'],'checked'=>"checked"))?>
+                    <?php echo form_checkbox(array('name' => 'still_period_flag', 'value' => @$patient_menstruation['still_period_flag'],'checked'=>"checked",'readonly'=>'true'))?>
                 </td>
                <?php } else {?>
                 <td>
                     <?php echo $still_period_flag; ?>: 
-                    <?php echo form_checkbox(array('name' => 'still_period_flag', 'value' => @$patient_menstruation['still_period_flag']))?>
+                    <?php echo form_checkbox(array('name' => 'still_period_flag', 'value' => @$patient_menstruation['still_period_flag'],'readonly'=>'true'))?>
                 </td>
                <?php } ?>
                 <td>
@@ -391,18 +391,18 @@
                 </td>
                 <td>
                     <?php echo $period_cycle_days_other_details; ?>: <br />
-                    <?php echo form_input(array('name' => 'period_cycle_days_other_details', 'value' => @$patient_menstruation['period_cycle_days_other_details']))?>
+                    <?php echo form_input(array('name' => 'period_cycle_days_other_details', 'value' => @$patient_menstruation['period_cycle_days_other_details'],'readonly'=>'true'))?>
                 </td>
                 <td>&nbsp;</td>
             </tr>
             <tr>
                 <td>
                     <?php echo $age_period_stops; ?>: <br />
-                    <?php echo form_input(array('name' => 'age_period_stops', 'value' => @$patient_menstruation['age_at_menopause']))?>
+                    <?php echo form_input(array('name' => 'age_period_stops', 'value' => @$patient_menstruation['age_at_menopause'],'readonly'=>'true'))?>
                 </td>
                 <td>
                     <?php echo $date_period_stops; ?>: <br />
-                    <?php echo form_input(array('name' => 'date_period_stops', 'value' => @$patient_menstruation['date_period_stops'] == '0000-00-00' ? '00-00-0000'  : date('d-m-Y', strtotime(@$patient_menstruation['date_period_stops'])), 'class' => 'datepicker'))?>
+                    <?php echo form_input(array('name' => 'date_period_stops', 'value' => @$patient_menstruation['date_period_stops'], 'class' => 'datepicker','readonly'=>'true'))?>
                 </td>
                 <td>
                     <?php echo $reason_period_stops; ?>: <br />
@@ -410,14 +410,12 @@
                 </td>
                 <td>
                     <?php echo $reason_period_stops_other_details; ?>: <br />
-                    <?php echo form_input(array('name' => 'reason_period_stops_other_details', 'value' => @$patient_menstruation['reason_period_stops_other_details']))?>
+                    <?php echo form_input(array('name' => 'reason_period_stops_other_details', 'value' => @$patient_menstruation['reason_period_stops_other_details'],'readonly'=>'true'))?>
                 </td>
             </tr>
         </table>
-        <?php echo form_fieldset_close(); ?>
-        
+        <?php echo form_fieldset_close(); ?>	
         <div height="30px">&nbsp;</div>
-        <?php foreach ($patient_parity_table as $patient_parity): ?>
         <?php
         echo form_fieldset('Pregnancy');
         ?>
@@ -426,57 +424,55 @@
                 <tr>
 <!--                    <td>
                         <?php echo $never_been_pregnant_flag; ?>: 
-                        <?php echo form_checkbox(array('name' => 'never_been_pregnant_flag', 'value' => @$patient_parity['never_been_pregnant_flag']))?>
+                        <?php echo form_checkbox(array('name' => 'never_been_pregnant_flag', 'value' => @$patient_parity_table['never_been_pregnant_flag'],'readonly'=>'true'))?>
                     </td>-->
-                        <?php if($patient_parity['pregnant_flag'] == 1){?>
+                        <?php if($patient_parity_table['pregnant_flag'] == 1){?>
                         <td>
                         <?php echo $pregnant_flag; ?>: 
-                        <?php echo form_checkbox(array('name' => 'pregnant_flag', 'value' => @$patient_parity['pregnant_flag'],'checked'=>"checked"))?>
+                        <?php echo form_checkbox(array('name' => 'pregnant_flag', 'value' => @$patient_parity_table['pregnant_flag'],'checked'=>"checked",'readonly'=>'true'))?>
                     </td>
                <?php } else {?>
                 <td>
                         <?php echo $pregnant_flag; ?>: 
-                        <?php echo form_checkbox(array('name' => 'pregnant_flag', 'value' => @$patient_parity['pregnant_flag']))?>
+                        <?php echo form_checkbox(array('name' => 'pregnant_flag', 'value' => @$patient_parity_table['pregnant_flag'],'readonly'=>'true'))?>
                     </td>
                <?php } ?>
                 </tr>
                 <tr>
                 <td>
                     <?php echo $pregnancy_type; ?>: <br />
-                    <?php echo form_dropdown('pregnancy_type', $pregnancy_type_lists, @$patient_parity['pregnancy_type'], 'id="pregnancy_type" preload_val="'.@$patient_parity['pregnancy_type'].'"'); ?>
+                    <?php echo form_dropdown('pregnancy_type', $pregnancy_type_lists, @$patient_parity_record['pregnancy_type'], 'id="pregnancy_type" preload_val="'.@$patient_parity_record['pregnancy_type'].'"'); ?>
                 </td>
                 <td>
                     <?php echo $child_gender; ?>: <br />
-                    <?php echo form_dropdown('child_gender', $genderTypes, @$patient_parity['gender'], 'id="gender" preload_val="'.@$patient_parity['gender'].'"'); ?>
+                    <?php echo form_dropdown('child_gender', $genderTypes, @$patient_parity_record['gender'], 'id="gender" preload_val="'.@$patient_parity_record['gender'].'"'); ?>
                 </td>
                 <td>
                     <?php echo $child_birthdate; ?>: <br />
-                    <?php echo form_input(array('name' => 'child_birthdate', 'value' => @$patient_parity['date_of_birth'] == '0000-00-00' ? '00-00-0000'  : date('d-m-Y', strtotime(@$patient_parity['date_of_birth'])), 'class' => 'datepicker'))?>
+                    <?php echo form_input(array('name' => 'child_birthdate', 'value' => @$patient_parity_record['date_of_birth'], 'class' => 'datepicker','readonly'=>'true'))?>
                 </td>
                 </tr>
                 <tr>
                     <td>
                     <?php echo $child_age_at_consent; ?>: <br />
-                    <?php echo form_input(array('name' => 'child_age_at_consent', 'value' => @$patient_parity['age_child_at_consent']))?>
+                    <?php echo form_input(array('name' => 'child_age_at_consent', 'value' => @$patient_parity_record['age_child_at_consent'],'readonly'=>'true'))?>
                 </td>
                 <td>
                     <?php echo $child_birthweight; ?>: <br />
-                    <?php echo form_input(array('name' => 'child_birthweight', 'value' => @$patient_parity['birthweight']))?>
+                    <?php echo form_input(array('name' => 'child_birthweight', 'value' => @$patient_parity_record['birthweight'],'readonly'=>'true'))?>
                 </td>
                 <td>
                     <?php echo $child_breastfeeding_duration; ?>: <br />
-                    <?php echo form_input(array('name' => 'child_breastfeeding_duration', 'value' => @$patient_parity['breastfeeding_duration']))?>
+                    <?php echo form_input(array('name' => 'breastfeeding_duration', 'value' => @$patient_parity_record['breastfeeding_duration'],'readonly'=>'true'))?>
                 </td>
                 <td>
                     <?php echo $child_birthyear; ?>: <br />
-                    <?php echo form_input(array('name' => 'child_birthyear', 'value' => @$patient_parity['year_of_birth']))?>
+                    <?php echo form_input(array('name' => 'child_birthyear', 'value' => @$patient_parity_record['year_of_birth'],'readonly'=>'true'))?>
                 </td>
                 </tr>
-                <input type="hidden" name="patient_parity_table_id" value="<?php echo @$patient_parity['patient_parity_table_id']; ?>"/>
             </table>
         </div>
-        <?php echo form_fieldset_close(); ?>
-        <?php endforeach; ?>
+        <?php echo form_fieldset_close(); ?>	
         <div height="30px">&nbsp;</div>
         <?php
         echo form_fieldset('Infertility, HRT & GNC Surgery');
@@ -489,25 +485,25 @@
                 <?php if($patient_infertility['infertility_testing_flag'] == 1){?>
                 <td>
                     <?php echo $infertility_testing_flag; ?>:
-                    <?php echo form_checkbox(array('name' => 'infertility_testing_flag', 'value' => @$patient_infertility['infertility_testing_flag'],'checked'=>"checked"))?>
+                    <?php echo form_checkbox(array('name' => 'infertility_testing_flag', 'value' => @$patient_infertility['infertility_testing_flag'],'checked'=>"checked",'readonly'=>'true'))?>
                 </td>
                <?php } else {?>
                 <td>
                     <?php echo $infertility_testing_flag; ?>:
-                    <?php echo form_checkbox(array('name' => 'infertility_testing_flag', 'value' => @$patient_infertility['infertility_testing_flag']))?>
+                    <?php echo form_checkbox(array('name' => 'infertility_testing_flag', 'value' => @$patient_infertility['infertility_testing_flag'],'readonly'=>'true'))?>
                 </td>
                <?php } ?>
                 <td>
                     <?php echo $infertility_treatment_details; ?>: <br />
-                    <?php echo form_input(array('name' => 'infertility_treatment_details', 'value' => @$patient_infertility['infertility_comments']))?>
+                    <?php echo form_input(array('name' => 'infertility_treatment_details', 'value' => @$patient_infertility['infertility_comments'],'readonly'=>'true'))?>
                 </td>
                 <td>
                     <?php echo $infertility_treatment_duration; ?>:  <br />
-                    <?php echo form_input(array('name' => 'infertility_treatment_duration', 'value' => @$patient_infertility['infertility_treatment_duration']))?>
+                    <?php echo form_input(array('name' => 'infertility_treatment_duration', 'value' => @$patient_infertility['infertility_treatment_duration'],'readonly'=>'true'))?>
                 </td>
                 <td>
                     <?php echo $infertility_treatment_comments; ?>: <br />
-                    <?php echo form_textarea(array('name' => 'infertility_treatment_comments','id' => 'infertility_treatment_comments','rows' => '3','cols' => '7', 'value' => @$patient_infertility['infertility_comments']))?>
+                    <?php echo form_textarea(array('name' => 'infertility_treatment_comments','id' => 'infertility_treatment_comments','rows' => '3','cols' => '7', 'value' => @$patient_infertility['infertility_comments'],'readonly'=>'true'))?>
                 </td>
                 <td>&nbsp;</td>
             <tr>
@@ -517,54 +513,54 @@
                 <?php if($patient_infertility['contraceptive_pills_flag'] == 1){?>
                 <td>
                     <?php echo $contraceptive_pills_flag; ?>: 
-                    <?php echo form_checkbox(array('name' => 'contraceptive_pills_flag', 'value' => @$patient_infertility['contraceptive_pills_flag'],'checked'=>"checked"))?>
+                    <?php echo form_checkbox(array('name' => 'contraceptive_pills_flag', 'value' => @$patient_infertility['contraceptive_pills_flag'],'checked'=>"checked",'readonly'=>'true'))?>
                 </td>
                <?php } else {?>
                 <td>
                     <?php echo $contraceptive_pills_flag; ?>: 
-                    <?php echo form_checkbox(array('name' => 'contraceptive_pills_flag', 'value' => @$patient_infertility['contraceptive_pills_flag']))?>
+                    <?php echo form_checkbox(array('name' => 'contraceptive_pills_flag', 'value' => @$patient_infertility['contraceptive_pills_flag'],'readonly'=>'true'))?>
                 </td>
                <?php } ?>
                 <td>
                     <?php echo $contraceptive_pills_flag; ?>: 
-                    <?php echo form_checkbox(array('name' => 'contraceptive_pills_flag', 'value' => @$patient_infertility['contraceptive_pills_flag']))?>
+                    <?php echo form_checkbox(array('name' => 'contraceptive_pills_flag', 'value' => @$patient_infertility['contraceptive_pills_flag'],'readonly'=>'true'))?>
                 </td>
 <!--                <td>
                     <?php echo $contraceptive_pills_details; ?>: <br />
-                    <?php echo form_input(array('name' => 'contraceptive_pills_details', 'value' => @$patient_infertility['contraceptive_pills_details']))?>
+                    <?php echo form_input(array('name' => 'contraceptive_pills_details', 'value' => @$patient_infertility['contraceptive_pills_details'],'readonly'=>'true'))?>
                 </td>-->
                     <?php if($patient_infertility['currently_taking_contraceptive_pills_flag'] == 1){?>
                     <td>
                     <?php echo $currently_taking_contraceptive_pills_flag; ?>: <br />
-                    <?php echo form_checkbox(array('name' => 'currently_taking_contraceptive_pills_flag', 'value' => @$patient_infertility['currently_taking_contraceptive_pills_flag'],'checked'=>"checked"))?>
+                    <?php echo form_checkbox(array('name' => 'currently_taking_contraceptive_pills_flag', 'value' => @$patient_infertility['currently_taking_contraceptive_pills_flag'],'checked'=>"checked",'readonly'=>'true'))?>
                 </td>
                <?php } else {?>
                 <td>
                     <?php echo $currently_taking_contraceptive_pills_flag; ?>: <br />
-                    <?php echo form_checkbox(array('name' => 'currently_taking_contraceptive_pills_flag', 'value' => @$patient_infertility['currently_taking_contraceptive_pills_flag']))?>
+                    <?php echo form_checkbox(array('name' => 'currently_taking_contraceptive_pills_flag', 'value' => @$patient_infertility['currently_taking_contraceptive_pills_flag'],'readonly'=>'true'))?>
                 </td>
                <?php } ?>
                 <td>
                     <?php echo $contraceptive_start_date; ?>: <br />
-                    <?php echo form_input(array('name' => 'contraceptive_start_date', 'value' => @$patient_infertility['contraceptive_start_date'] == '0000-00-00' ? '00-00-0000'  : date('d-m-Y', strtotime(@$patient_infertility['contraceptive_start_date'])), 'class' => 'datepicker'))?>
+                    <?php echo form_input(array('name' => 'contraceptive_start_date', 'value' => @$patient_infertility['contraceptive_start_date'], 'class' => 'datepicker','readonly'=>'true'))?>
                 </td>
             </tr>
             <tr>
                 <td>
                     <?php echo $contraceptive_end_date; ?>: <br />
-                    <?php echo form_input(array('name' => 'contraceptive_end_date', 'value' => @$patient_infertility['contraceptive_end_date'] == '0000-00-00' ? '00-00-0000'  : date('d-m-Y', strtotime(@$patient_infertility['contraceptive_end_date'])), 'class' => 'datepicker'))?>
+                    <?php echo form_input(array('name' => 'contraceptive_end_date', 'value' => @$patient_infertility['contraceptive_end_date'], 'class' => 'datepicker','readonly'=>'true'))?>
                 </td>
                 <td>
                     <?php echo $contraceptive_start_age; ?>: <br />
-                    <?php echo form_input(array('name' => 'contraceptive_start_age', 'value' => @$patient_infertility['contraceptive_start_age']))?>
+                    <?php echo form_input(array('name' => 'contraceptive_start_age', 'value' => @$patient_infertility['contraceptive_start_age'],'readonly'=>'true'))?>
                 </td>
                 <td>
                     <?php echo $contraceptive_end_age; ?>: <br />
-                    <?php echo form_input(array('name' => 'contraceptive_end_age', 'value' => @$patient_infertility['contraceptive_end_age']))?>
+                    <?php echo form_input(array('name' => 'contraceptive_end_age', 'value' => @$patient_infertility['contraceptive_end_age'],'readonly'=>'true'))?>
                 </td>
                 <td>
                     <?php echo $contraceptive_duration; ?>: <br />
-                    <?php echo form_input(array('name' => 'contraceptive_duration', 'value' => @$patient_infertility['contraceptive_duration']))?>
+                    <?php echo form_input(array('name' => 'contraceptive_duration', 'value' => @$patient_infertility['contraceptive_duration'],'readonly'=>'true'))?>
                 </td>
             </tr>
             <tr>
@@ -574,67 +570,67 @@
                 <?php if($patient_infertility['hrt_flag'] == 1){?>
                 <td>
                     <?php echo $HRT_flag; ?>: 
-                    <?php echo form_checkbox(array('name' => 'HRT_flag', 'value' => @$patient_infertility['hrt_flag'],'checked'=>"checked"))?>
+                    <?php echo form_checkbox(array('name' => 'HRT_flag', 'value' => @$patient_infertility['hrt_flag'],'checked'=>"checked",'readonly'=>'true'))?>
                 </td>
                <?php } else {?>
                 <td>
                     <?php echo $HRT_flag; ?>: 
-                    <?php echo form_checkbox(array('name' => 'HRT_flag', 'value' => @$patient_infertility['hrt_flag']))?>
+                    <?php echo form_checkbox(array('name' => 'HRT_flag', 'value' => @$patient_infertility['hrt_flag'],'readonly'=>'true'))?>
                 </td>
                <?php } ?>
 <!--                <td>
                     <?php echo $HRT_details; ?>: <br />
-                    <?php echo form_input(array('name' => 'HRT_details', 'value' => @$patient_infertility['HRT_details']))?>
+                    <?php echo form_input(array('name' => 'HRT_details', 'value' => @$patient_infertility['HRT_details'],'readonly'=>'true'))?>
                 </td>-->
                 <?php if($patient_infertility['currently_using_hrt_flag'] == 1){?>
                     <td>
                     <?php echo $currently_using_HRT_flag; ?>: <br />
-                    <?php echo form_checkbox(array('name' => 'currently_using_hrt_flag', 'value' => @$patient_infertility['currently_using_hrt_flag'],'checked'=>"checked"))?>
+                    <?php echo form_checkbox(array('name' => 'currently_using_hrt_flag', 'value' => @$patient_infertility['currently_using_hrt_flag'],'checked'=>"checked",'readonly'=>'true'))?>
                 </td>
                <?php } else {?>
                 <td>
                     <?php echo $currently_using_HRT_flag; ?>: <br />
-                    <?php echo form_checkbox(array('name' => 'currently_using_hrt_flag', 'value' => @$patient_infertility['currently_using_hrt_flag']))?>
+                    <?php echo form_checkbox(array('name' => 'currently_using_hrt_flag', 'value' => @$patient_infertility['currently_using_hrt_flag'],'readonly'=>'true'))?>
                 </td>
                <?php } ?>
                 <td>
                     <?php echo $HRT_start_date; ?>: <br />
-                    <?php echo form_input(array('name' => 'hrt_start_date', 'value' => @$patient_infertility['hrt_start_date'] == '0000-00-00' ? '00-00-0000'  : date('d-m-Y', strtotime(@$patient_infertility['hrt_start_date'])), 'class' => 'datepicker'))?>
+                    <?php echo form_input(array('name' => 'hrt_start_date', 'value' => @$patient_infertility['hrt_start_date'], 'class' => 'datepicker','readonly'=>'true'))?>
                 </td>
             </tr>
             <tr>
                 <td>
                     <?php echo $HRT_end_date; ?>: <br />
-                    <?php echo form_input(array('name' => 'hrt_end_date', 'value' =>@$patient_infertility['hrt_end_date'] == '0000-00-00' ? '00-00-0000'  : date('d-m-Y', strtotime(@$patient_infertility['hrt_end_date'])), 'class' => 'datepicker'))?>
+                    <?php echo form_input(array('name' => 'hrt_end_date', 'value' => @$patient_infertility['hrt_end_date'], 'class' => 'datepicker','readonly'=>'true'))?>
                 </td>
                 <td>
                     <?php echo $HRT_start_age; ?>: <br />
-                    <?php echo form_input(array('name' => 'hrt_start_age', 'value' => @$patient_infertility['hrt_start_age']))?>
+                    <?php echo form_input(array('name' => 'hrt_start_age', 'value' => @$patient_infertility['hrt_start_age'],'readonly'=>'true'))?>
                 </td>
                 <td>
                     <?php echo $HRT_end_age; ?>: <br />
-                    <?php echo form_input(array('name' => 'hrt_end_age', 'value' => @$patient_infertility['hrt_end_age']))?>
+                    <?php echo form_input(array('name' => 'hrt_end_age', 'value' => @$patient_infertility['hrt_end_age'],'readonly'=>'true'))?>
                 </td>
                 <td>
                     <?php echo $HRT_duration; ?>: <br />
-                    <?php echo form_input(array('name' => 'HRT_duration', 'value' => @$patient_infertility['hrt_duration']))?>
+                    <?php echo form_input(array('name' => 'HRT_duration', 'value' => @$patient_infertility['hrt_duration'],'readonly'=>'true'))?>
                 </td>
             </tr>
             <tr>
                 <?php if($patient_gynaecological['had_gnc_surgery_flag'] == 1){?>
                 <td>
                     <?php echo $had_gnc_surgery_flag; ?>: 
-                    <?php echo form_checkbox(array('name' => 'had_gnc_surgery_flag', 'value' => @$patient_gynaecological['had_gnc_surgery_flag'],'checked'=>"checked"))?>
+                    <?php echo form_checkbox(array('name' => 'had_gnc_surgery_flag', 'value' => @$patient_gynaecological['had_gnc_surgery_flag'],'checked'=>"checked",'readonly'=>'true'))?>
                 </td>
                <?php } else {?>
                 <td>
                     <?php echo $had_gnc_surgery_flag; ?>: 
-                    <?php echo form_checkbox(array('name' => 'had_gnc_surgery_flag', 'value' => @$patient_gynaecological['had_gnc_surgery_flag']))?>
+                    <?php echo form_checkbox(array('name' => 'had_gnc_surgery_flag', 'value' => @$patient_gynaecological['had_gnc_surgery_flag'],'readonly'=>'true'))?>
                 </td>
                <?php } ?>
                 <td>
                     <?php echo $gnc_surgery_year; ?>: <br />
-                    <?php echo form_input(array('name' => 'gnc_surgery_year', 'value' => @$patient_gynaecological['surgery_year']))?>
+                    <?php echo form_input(array('name' => 'gnc_surgery_year', 'value' => @$patient_gynaecological['surgery_year'],'readonly'=>'true'))?>
                 </td>
                 <td>
                     <?php echo $gnc_treatment_name; ?>: <br />
@@ -642,22 +638,18 @@
                 </td>
                 <td>
                     <?php echo $gnc_treatment_name_other_details; ?>: <br />
-                    <?php echo form_input(array('name' => 'gnc_treatment_name_other_details', 'value' => @$patient_gynaecological['gnc_treatment_name_other_details']))?>
+                    <?php echo form_input(array('name' => 'gnc_treatment_name_other_details', 'value' => @$patient_gynaecological['gnc_treatment_name_other_details'],'readonly'=>'true'))?>
                 </td>
             </tr>
              <input type="hidden" name="patient_ic_no" value="<?php print @$patient_lifestyle_factors['patient_ic_no']; ?>"/>
-             <input type="hidden" name="patient_studies_id" value="<?php print @$patient_lifestyle_factors['patient_studies_id']; ?>"/>
             <input type="hidden" name="patient_lifestyle_factors_id" value="<?php print @$patient_lifestyle_factors['patient_lifestyle_factors_id']; ?>"/>
             <input type="hidden" name="patient_menstruation_id" value="<?php print @$patient_menstruation['patient_menstruation_id']; ?>"/>
+            <input type="hidden" name="patient_parity_table_id" value="<?php print @$patient_parity_table['patient_parity_table_id']; ?>"/>
             <input type="hidden" name="patient_infertility_id" value="<?php print @$patient_infertility['patient_infertility_id']; ?>"/>
             <input type="hidden" name="patient_gynaecological_surgery_history_id" value="<?php print @$patient_gynaecological['patient_gynaecological_surgery_history_id']; ?>"/>
         </table>
         <?php echo form_fieldset_close(); ?>
     </div>
-     <?php if ($userprivillage['edit_privilege']== 1 && !$isLocked){ ?>
-    <?php echo form_submit('mysubmit', 'Update'); ?>
-    <?php } else { ?>
-    <?php }?>
     <?php echo form_close(); ?>
 </div>
 

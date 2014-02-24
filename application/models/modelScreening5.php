@@ -72,34 +72,37 @@ class ModelScreening5 extends CI_Model {
                 if ($key == 2 && $cell_value == NULL)
                     $cell_value = 'None';
                 //echo $key; // 0, 1, 2..
-                /*if (($key == 4 || $key == 8 || $key == 9 || $key == 10) && $cell_value != NULL) {
-                                if (strpos($cell_value, '-') !== FALSE)
+                if (($key == 4 || $key == 8 || $key == 9 || $key == 10) && $cell_value != NULL) {
+                                /*if (strpos($cell_value, '-') !== FALSE)
                                     $cell_value = date("d/m/Y", strtotime($cell_value));
                                 list($day, $month, $year) = explode("/", $cell_value);
 
                                 if (!checkdate($month, $day, $year)) {
                                     if($key == 4)
-                                    $this->modelValitor->showMessage("date_of_diagnosis","Sreening and Surveilance5",$i);
+                                    $this->model_Validator->showMessage("date_of_diagnosis","Sreening and Surveilance5",$i);
                                     
                                     if($key == 8)
-                                    $this->modelValitor->showMessage("first_consultation_date","Sreening and Surveilance5",$i);
+                                    $this->model_Validator->showMessage("first_consultation_date","Sreening and Surveilance5",$i);
                                     
                                     if($key == 9)
-                                    $this->modelValitor->showMessage("reminder_sent_date","Sreening and Surveilance5",$i);
+                                    $this->model_Validator->showMessage("reminder_sent_date","Sreening and Surveilance5",$i);
                                     
                                     if($key == 10)
-                                    $this->modelValitor->showMessage("surveillance_done_date","Sreening and Surveilance5",$i);
+                                    $this->model_Validator->showMessage("surveillance_done_date","Sreening and Surveilance5",$i);
 
                                     $abort = TRUE;
                                     break;
-                                }
+                                }*/
+                           
+                                $cell_value = preg_replace("/[^0-9\/]/", "", $cell_value);
+                                if($cell_value == "")
+                                    $cell_value = '0000-00-00';
+                                else
+                                $cell_value = date('Y-m-d', strtotime(str_replace('/', '-', $cell_value)));
+
+                                    //echo $cell_value.'<br/>';
                             }
-                            
-                    if ($key == 4 || $key == 8 || $key == 9 || $key == 10) {
-                    if ($cell_value != NULL) {
-                        $cell_value = date('Y-m-d', strtotime(str_replace('/', '-', $cell_value)));
-                    }
-                }*/
+
                 $temp8[] = $cell_value;
             }
 

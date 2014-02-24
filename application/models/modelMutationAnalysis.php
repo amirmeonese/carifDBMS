@@ -70,30 +70,30 @@ class ModelMutationAnalysis extends CI_Model {
 
                 if (($key == 2 || $key == 7 || $key == 20 || $key == 21) && $cell_value != NULL) {
                     //echo $key.'     From line 1045<br/>';
-                    if (strpos($cell_value, '-') !== FALSE)
-                        $cell_value = date("d/m/Y", strtotime($cell_value));
-                    list($day, $month, $year) = explode("/", $cell_value);
+                    /* if (strpos($cell_value, '-') !== FALSE)
+                      $cell_value = date("d/m/Y", strtotime($cell_value));
+                      list($day, $month, $year) = explode("/", $cell_value);
 
-                    if (!checkdate($month, $day, $year)) {
-                        echo '<h2>date_test_ordered or  or  or  is not in appropriate format at </h2>';
-                        if ($key == 2)
-                            $this->modelValidator->showMessage("date_test_ordered", "Mutation analysis", $i);
-                        if ($key == 7)
-                            $this->modelValidator->showMessage("testing_date", "Mutation analysis", $i);
-                        if ($key == 20)
-                            $this->modelValidator->showMessage("report_date", "Mutation analysis", $i);
-                        if ($key == 21)
-                            $this->modelValidator->showMessage("date_notified", "Mutation analysis", $i);
-                        $abort = TRUE;
-                        break;
-                    }
-                }
-
-                if ($key == 2 || $key == 7 || $key == 20 || $key == 21) {
-                    if ($cell_value != NULL) {
+                      if (!checkdate($month, $day, $year)) {
+                      echo '<h2>date_test_ordered or  or  or  is not in appropriate format at </h2>';
+                      if ($key == 2)
+                      $this->modelValidator->showMessage("date_test_ordered", "Mutation analysis", $i);
+                      if ($key == 7)
+                      $this->modelValidator->showMessage("testing_date", "Mutation analysis", $i);
+                      if ($key == 20)
+                      $this->modelValidator->showMessage("report_date", "Mutation analysis", $i);
+                      if ($key == 21)
+                      $this->modelValidator->showMessage("date_notified", "Mutation analysis", $i);
+                      $abort = TRUE;
+                      break;
+                      } */
+                    $cell_value = preg_replace("/[^0-9\/]/", "", $cell_value);
+                    if ($cell_value == "")
+                        $cell_value = '0000-00-00';
+                    else
                         $cell_value = date('Y-m-d', strtotime(str_replace('/', '-', $cell_value)));
-                    }
                 }
+
                 //echo $key; // 0, 1, 2..
                 $temp9[] = $cell_value;
             }

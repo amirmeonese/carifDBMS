@@ -64,27 +64,27 @@ class ModelLifestyles1 extends CI_Model {
 
                 if ($key == 0 && $cell_value != NULL)
                     $cell_value = preg_replace("/[^0-9]/", "", $cell_value);
-                
+
                 if ($key == 1 && $cell_value != NULL)
                     $cell_value = trim($cell_value);
 
-                /*if ($key == 2 && $cell_value != NULL) {
-                    if (strpos($cell_value, '-') !== FALSE)
-                        $cell_value = date("d/m/Y", strtotime($cell_value));
-                    list($day, $month, $year) = explode("/", $cell_value);
+                if ($key == 2 && $cell_value != NULL) {
+                    /* if (strpos($cell_value, '-') !== FALSE)
+                      $cell_value = date("d/m/Y", strtotime($cell_value));
+                      list($day, $month, $year) = explode("/", $cell_value);
 
-                    if (!checkdate($month, $day, $year)) {
-                        $this->model_Validator->showMessage("questionnaire_date", "Lifestyles1", $i);
-                        $abort = TRUE;
-                        break;
-                    }
+                      if (!checkdate($month, $day, $year)) {
+                      $this->model_Validator->showMessage("questionnaire_date", "Lifestyles1", $i);
+                      $abort = TRUE;
+                      break;
+                      } */
+                    $cell_value = preg_replace("/[^0-9\/]/", "", $cell_value);
+                    if ($cell_value == "")
+                        $cell_value = '0000-00-00';
+                    else
+                        $cell_value = date('Y-m-d', strtotime(str_replace('/', '-', $cell_value)));
                 }
                 //echo $key; // 0, 1, 2..
-                if ($key == 2) {
-                    if ($cell_value != NULL) {
-                        $cell_value = date('Y-m-d', strtotime(str_replace('/', '-', $cell_value)));
-                    }
-                }*/
                 $temp11[] = $cell_value;
                 //echo $cell_value . '    ';
             }
@@ -92,65 +92,65 @@ class ModelLifestyles1 extends CI_Model {
             if ($abort)
                 break;
 
-            if(strpos(strtoupper($temp11[cigarettes_smoked_now]), 'Y') !== false)
+            if (strpos(strtoupper($temp11[cigarettes_smoked_now]), 'Y') !== false)
                 $cigarrets_smoked_flag = TRUE;
-            else if(strpos(strtoupper($temp11[cigarettes_smoked_now]), 'N') !== false)
+            else if (strpos(strtoupper($temp11[cigarettes_smoked_now]), 'N') !== false)
                 $cigarrets_smoked_flag = FALSE;
             else
                 $cigarrets_smoked_flag = FALSE;
 
-            if(strpos(strtoupper($temp11[cigarettes_still_smoked]), 'Y') !== false)
+            if (strpos(strtoupper($temp11[cigarettes_still_smoked]), 'Y') !== false)
                 $cigarrets_still_smoked_flag = TRUE;
-            else if(strpos(strtoupper($temp11[cigarettes_still_smoked]), 'N') !== false)
+            else if (strpos(strtoupper($temp11[cigarettes_still_smoked]), 'N') !== false)
                 $cigarrets_still_smoked_flag = FALSE;
             else
                 $cigarrets_still_smoked_flag = FALSE;
 
-            if(strpos(strtoupper($temp11[alcohol_drunk_flag]), 'Y') !== false)
+            if (strpos(strtoupper($temp11[alcohol_drunk_flag]), 'Y') !== false)
                 $alcohol_drunk_flag = TRUE;
-            else if(strpos(strtoupper($temp11[alcohol_drunk_flag]), 'N') !== false)
+            else if (strpos(strtoupper($temp11[alcohol_drunk_flag]), 'N') !== false)
                 $alcohol_drunk_flag = FALSE;
             else
                 $alcohol_drunk_flag = FALSE;
 
-            if(strpos(strtoupper($temp11[coffee_drunk_flag]), 'Y') !== false)
+            if (strpos(strtoupper($temp11[coffee_drunk_flag]), 'Y') !== false)
                 $coffee_drunk_flag = TRUE;
-            else if(strpos(strtoupper($temp11[coffee_drunk_flag]), 'N') !== false)
+            else if (strpos(strtoupper($temp11[coffee_drunk_flag]), 'N') !== false)
                 $coffee_drunk_flag = FALSE;
             else
                 $coffee_drunk_flag = FALSE;
 
-            if(strpos(strtoupper($temp11[tea_drunk_flag]), 'Y') !== false)
+            if (strpos(strtoupper($temp11[tea_drunk_flag]), 'Y') !== false)
                 $tea_drunk_flag = TRUE;
-            else if(strpos(strtoupper($temp11[tea_drunk_flag]), 'N') !== false)
+            else if (strpos(strtoupper($temp11[tea_drunk_flag]), 'N') !== false)
                 $tea_drunk_flag = FALSE;
             else
                 $tea_drunk_flag = FALSE;
 
-            if(strpos(strtoupper($temp11[soya_bean_drunk_flag]), 'Y') !== false)
+            if (strpos(strtoupper($temp11[soya_bean_drunk_flag]), 'Y') !== false)
                 $soya_bean_drunk_flag = TRUE;
-            else if(strpos(strtoupper($temp11[soya_bean_drunk_flag]), 'N') !== false)
+            else if (strpos(strtoupper($temp11[soya_bean_drunk_flag]), 'N') !== false)
                 $soya_bean_drunk_flag = FALSE;
             else
                 $soya_bean_drunk_flag = FALSE;
 
-            if(strpos(strtoupper($temp11[soya_products_flag]), 'Y') !== false)
+            if (strpos(strtoupper($temp11[soya_products_flag]), 'Y') !== false)
                 $soya_products_flag = TRUE;
-            else if(strpos(strtoupper($temp11[soya_products_flag]), 'N') !== false)
+            else if (strpos(strtoupper($temp11[soya_products_flag]), 'N') !== false)
                 $soya_products_flag = FALSE;
             else
                 $soya_products_flag = FALSE;
 
-            if(strpos(strtoupper($temp11[diabetes_flag]), 'Y') !== false)
+            if (strpos(strtoupper($temp11[diabetes_flag]), 'Y') !== false)
                 $diabetes_flag = TRUE;
-            else if(strpos(strtoupper($temp11[diabetes_flag]), 'N') !== false)
+            else if (strpos(strtoupper($temp11[diabetes_flag]), 'N') !== false)
                 $diabetes_flag = FALSE;
             else
                 $diabetes_flag = FALSE;
 
-            if(strpos(strtoupper($temp11[medicine_for_diabetes_flag]), 'Y') !== false)
+            if (strpos(strtoupper($temp11[medicine_for_diabetes_flag]), 'Y') !== false)
                 $medicine_for_diabetes_flag = TRUE;
-            else if(strpos(strtoupper($temp11[medicine_for_diabetes_flag]), 'N') !== false)
+            else if (strpos(strtoupper($temp11[medicine_for_diabetes_flag]), 'N') !== false)
                 $medicine_for_diabetes_flag = FALSE;
             else
                 $medicine_for_diabetes_flag = FALSE;

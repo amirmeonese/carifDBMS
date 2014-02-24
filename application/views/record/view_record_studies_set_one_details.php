@@ -679,7 +679,7 @@
         <?php echo form_fieldset_close(); ?>
         <?php endforeach; ?>
     </div>
-     <?php if ($userprivillage['edit_privilege']== 1){ ?>
+     <?php if ($userprivillage['edit_privilege']== 1 && !$isLocked){ ?>
     <?php echo form_submit('mysubmit', 'Update'); ?>
     <?php } else { ?>
     <?php }?>

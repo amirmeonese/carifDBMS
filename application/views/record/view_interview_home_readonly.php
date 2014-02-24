@@ -16,38 +16,38 @@
             <tr>
                 <td>
                     Counseling date
-                    <?php echo form_input(array('name' => 'interview_date[]', 'value' => $patient_counselling['interview_date'] == '0000-00-00' ? '00-00-0000'  : date('d-m-Y', strtotime($patient_counselling['interview_date'])), 'class' => 'datepicker'))?>
+                    <?php echo form_input(array('name' => 'interview_date[]', 'value' => $patient_counselling['interview_date'], 'class' => 'datepicker','readonly'=>'true'))?>
                 </td>
             </tr>
             <tr>
                 <td>
                     Setup next counseling date
-                    <?php echo form_input(array('name' => 'interview_next_date[]', 'value' => $patient_counselling['next_interview_date'] == '0000-00-00' ? '00-00-0000'  : date('d-m-Y', strtotime($patient_counselling['next_interview_date'])), 'class' => 'datepicker'))?>
+                    <?php echo form_input(array('name' => 'interview_next_date[]', 'value' => $patient_counselling['next_interview_date'], 'class' => 'datepicker','readonly'=>'true'))?>
                 </td>
             </tr>
             <tr>
                 <?php if($patient_counselling['is_send_email_reminder_to_officers'] == 1){?>
                 <td>
                     Send email reminder to officer?
-                    <?php echo form_checkbox(array('name' => 'is_send_email_reminder_to_officers[]', 'value' => $patient_counselling['is_send_email_reminder_to_officers'],'checked'=>"checked"))?>
+                    <?php echo form_checkbox(array('name' => 'is_send_email_reminder_to_officers[]', 'value' => $patient_counselling['is_send_email_reminder_to_officers'],'checked'=>"checked",'readonly'=>'true'))?>
                 </td>
                <?php } else {?>
                 <td>
                     Send email reminder to officer?
-                    <?php echo form_checkbox(array('name' => 'is_send_email_reminder_to_officers[]', 'value' => $patient_counselling['is_send_email_reminder_to_officers']))?>
+                    <?php echo form_checkbox(array('name' => 'is_send_email_reminder_to_officers[]', 'value' => $patient_counselling['is_send_email_reminder_to_officers'],'readonly'=>'true'))?>
                 </td>
                <?php } ?>
             </tr>
             <tr>
                 <td>
                     Set officer email addresses
-                    <?php echo form_input(array('name' => 'officer_email_addresses[]', 'value' => $patient_counselling['officer_email_addresses']))?>
+                    <?php echo form_input(array('name' => 'officer_email_addresses[]', 'value' => $patient_counselling['officer_email_addresses'],'readonly'=>'true'))?>
                 </td>
             </tr>
             <tr>
                 <td>
                     Counseling note
-                    <?php echo form_textarea(array('name' => 'interview_note[]','id' => 'interview_note','rows' => '10','cols' => '15', 'value' => $patient_counselling['comments']))?>
+                    <?php echo form_textarea(array('name' => 'interview_note[]','id' => 'interview_note','rows' => '10','cols' => '15', 'value' => $patient_counselling['comments'],'readonly'=>'true'))?>
                 </td>
             </tr>
             <tr>
@@ -58,10 +58,5 @@
         <?php echo form_fieldset_close(); ?>
         <?php endforeach; ?>
     </div>
-    <?php if (!$isLocked)echo form_submit('mysubmit', 'Update'); ?>
     <?php echo form_close(); ?>
 </div>
-
-
-
-

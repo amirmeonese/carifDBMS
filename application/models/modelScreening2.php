@@ -73,7 +73,7 @@ class ModelScreening2 extends CI_Model {
                 
                 
                 if (($key == 4 || $key == 10) && $cell_value != NULL) {
-                                if (strpos($cell_value, '-') !== FALSE)
+                                /*if (strpos($cell_value, '-') !== FALSE)
                                     $cell_value = date("d/m/Y", strtotime($cell_value));
                                 list($day, $month, $year) = explode("/", $cell_value);
 
@@ -90,14 +90,14 @@ class ModelScreening2 extends CI_Model {
                                     $abort = TRUE;
                                     break;
                                 }
+                                $cell_value = date('Y-m-d', strtotime(str_replace('/', '-', $cell_value)));*/
+                                $cell_value = preg_replace("/[^0-9\/]/", "", $cell_value);
+                                if($cell_value == "")
+                                    $cell_value = '0000-00-00';
+                                else
+                                $cell_value = date('Y-m-d', strtotime(str_replace('/', '-', $cell_value)));
                             }
                 //echo $key; // 0, 1, 2..
-                if ($key == 4 || $key == 10) {
-                    if ($cell_value != NULL) {
-                        $cell_value = date('Y-m-d', strtotime(str_replace('/', '-', $cell_value)));
-                    }
-                }
-
                 $temp5[] = $cell_value;
             }
             
@@ -123,8 +123,8 @@ class ModelScreening2 extends CI_Model {
                     'breast_surgery_type' => $temp5[7],
                     'breast_reason_of_surgery' => $temp5[8],
                     'breast_comments' => $temp5[9],
-                    'breast_age_of_surgery' => $temp5[10],
-                    'breast_date_of_surgery' => $temp5[11]
+                    'breast_age_of_surgery' => $temp5[11],
+                    'breast_date_of_surgery' => $temp5[10]
                 );
             } else {
                 $data_patient_non_cancer_surgery[] = array(
@@ -138,8 +138,8 @@ class ModelScreening2 extends CI_Model {
                     'breast_surgery_type' => $temp5[7],
                     'breast_reason_of_surgery' => $temp5[8],
                     'breast_comments' => $temp5[9],
-                    'breast_age_of_surgery' => $temp5[10],
-                    'breast_date_of_surgery' => $temp5[11]
+                    'breast_age_of_surgery' => $temp5[11],
+                    'breast_date_of_surgery' => $temp5[10]
                 );
             }
             $temp5 = null;
