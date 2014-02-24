@@ -634,6 +634,11 @@ class Record_model extends CI_Model {
         $data['referral_to_service'] = 'Referral to service';
         $data['referral_date'] = 'Referral to genetic counselling';
         $data['referral_source'] = 'Referral source';
+        
+        $data['referral_to_genetic_counselling'] = array(
+            'Yes' => 'Yes',
+            'No' => 'No',
+        );
 
         //MAMMO
         $data['date_of_first_mammogram'] = 'Date of first mammogram';
@@ -912,7 +917,7 @@ class Record_model extends CI_Model {
         $data['pregnancy_type'] = 'Pregnancy type';
         $data['pregnancy_type_lists'] = array(
 			 '' => '',
-            'Child' => 'Child',
+            'CHILD' => 'Child',
             'Stillborn' => 'Stillborn',
             'Miscarriage' => 'Miscarriage'
         );

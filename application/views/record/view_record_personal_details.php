@@ -404,7 +404,7 @@
                 </td>
                 <td>
                     <?php echo $referral_date; //referral to genetic counselling ?>:
-                    <?php echo form_input(array('name' => 'referral_date[]', 'value' => $list['referral_to_genetic_counselling'] == '0000-00-00' ? '00-00-0000'  : date('d-m-Y', strtotime($list['referral_to_genetic_counselling'])),'class' => 'datepicker'))?>                                        
+                    <?php echo  form_dropdown('referral_date[]',$referral_to_genetic_counselling, $list['referral_to_genetic_counselling'], 'id="referral_to_genetic_counselling" preload_val="'.$list['referral_to_genetic_counselling'].'"'); ?>
                 </td>
                 <td>
                     <?php echo $referral_source; ?>: 

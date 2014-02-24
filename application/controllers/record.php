@@ -1308,7 +1308,7 @@ class Record extends CI_Controller {
                     'relation_to_study' => $relation_to_study[$i],
                     'referral_to' => $referral_to[$i],
                     'modified_on' => $date,
-                    'referral_to_genetic_counselling' => $referral_to_genetic_counselling[$i] == '00-00-0000' ? '0000-00-00' : date("Y-m-d", strtotime($referral_to_genetic_counselling[$i])),
+                    'referral_to_genetic_counselling' => $referral_to_genetic_counselling[$i],
                     'referral_source' => $referral_source[$i]
                 );
 
@@ -1558,7 +1558,7 @@ class Record extends CI_Controller {
                 'relation_to_study' => $this->input->post('relations_to_study'),
                 'referral_to' => $this->input->post('referral_to'),
                 'created_on' => $date,
-                'referral_to_genetic_counselling' => $referral_date == '' ? '0000-00-00' : date("Y-m-d", strtotime($referral_date)),
+                'referral_to_genetic_counselling' => $referral_date,
                 'referral_source' => $this->input->post('referral_source')
             );
             //print_r($data_patient_relatives_summary);

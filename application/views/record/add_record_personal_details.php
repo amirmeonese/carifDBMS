@@ -439,8 +439,8 @@
                     ?>
                 </td>
                 <td>
-                    <?php echo $referral_date; //referral to genetic counselling ?>: 
-                    <?php echo form_input('referral_date'); ?>
+                    <?php echo $referral_date; //referral to genetic counselling ?>:
+                    <?php echo  form_dropdown('referral_date[]',$referral_to_genetic_counselling, NULL, 'id="referral_to_genetic_counselling"'); ?>
                 </td>
                 <td>
                     <?php echo $referral_source; ?>: 
