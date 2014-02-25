@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 24, 2014 at 07:31 AM
+-- Generation Time: Feb 25, 2014 at 04:29 AM
 -- Server version: 5.6.11
 -- PHP Version: 5.5.0
 
@@ -408,7 +408,7 @@ CREATE TABLE IF NOT EXISTS `cancer_site` (
   `cancer_site_id` int(10) NOT NULL AUTO_INCREMENT,
   `cancer_site_name` text NOT NULL,
   PRIMARY KEY (`cancer_site_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
 
 --
 -- Dumping data for table `cancer_site`
@@ -422,7 +422,8 @@ INSERT INTO `cancer_site` (`cancer_site_id`, `cancer_site_name`) VALUES
 (5, 'Bilateral'),
 (6, 'None'),
 (7, 'Left (fallopian tube)'),
-(8, 'Bilateral (fallopian tube)');
+(8, 'Bilateral (fallopian tube)'),
+(9, 'Right (fallopian tube)');
 
 -- --------------------------------------------------------
 
@@ -554,7 +555,7 @@ CREATE TABLE IF NOT EXISTS `ovarian_screening_type` (
   `ovarian_screening_type_id` int(10) NOT NULL AUTO_INCREMENT,
   `ovarian_screening_type_name` text NOT NULL,
   PRIMARY KEY (`ovarian_screening_type_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
 -- Dumping data for table `ovarian_screening_type`
@@ -566,7 +567,8 @@ INSERT INTO `ovarian_screening_type` (`ovarian_screening_type_id`, `ovarian_scre
 (3, 'Trans-vaginal Ultrasound'),
 (4, 'CA125 blood test'),
 (5, 'Biopsy'),
-(6, 'None');
+(6, 'None'),
+(7, 'Peritoneal fluid cytology');
 
 -- --------------------------------------------------------
 
@@ -1031,7 +1033,7 @@ CREATE TABLE IF NOT EXISTS `patient_menstruation` (
   `period_cycle_days_other_details` longtext NOT NULL,
   `age_at_menopause` int(11) NOT NULL,
   `reason_period_stops` longtext NOT NULL,
-  `date_period_stops` date NOT NULL,
+  `date_period_stops` varchar(100) NOT NULL,
   `reason_period_stops_other_details` longtext NOT NULL,
   `created_on` date NOT NULL,
   `modified_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -1644,27 +1646,117 @@ CREATE TABLE IF NOT EXISTS `relatives` (
   `relatives_id` int(10) NOT NULL AUTO_INCREMENT,
   `relatives_type` char(100) NOT NULL,
   PRIMARY KEY (`relatives_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=19 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=109 ;
 
 --
 -- Dumping data for table `relatives`
 --
 
 INSERT INTO `relatives` (`relatives_id`, `relatives_type`) VALUES
-(1, 'Father'),
-(2, 'Mother'),
-(3, 'Brother'),
-(4, 'Sister'),
-(9, 'Stepbrother'),
-(10, 'Stepsister'),
-(11, 'Son'),
-(12, 'Daughter'),
-(13, 'Uncle'),
-(14, 'Aunt'),
-(15, 'Grandmother'),
-(16, 'Grandfather'),
-(17, 'Cousin'),
-(18, 'None');
+(1, 'FATHER'),
+(2, 'MOTHER'),
+(3, 'BROTHER'),
+(4, 'SISTER'),
+(9, 'STEPBROTHER'),
+(10, 'STEPSISTER'),
+(11, 'SON'),
+(12, 'DAUGHTER'),
+(13, 'UNCLE'),
+(14, 'AUNT'),
+(15, 'GRANDMOTHER'),
+(16, 'GRANDFATHER'),
+(17, 'COUSIN'),
+(18, 'None'),
+(19, 'GREAT GRANDMOTHER'),
+(20, 'GRANDAUNT'),
+(21, 'GRAND UNCLE'),
+(22, 'HALF BROTHER'),
+(23, 'GRANDDAUGHTER'),
+(24, 'abc'),
+(25, 'FIRST COUSIN (F)'),
+(26, 'FIRST COUSIN'),
+(27, 'NEPHEW'),
+(28, 'COUSIN BROTHER'),
+(29, 'GRANDFATHER (PROBAND)'),
+(30, 'STEP NIECE'),
+(31, 'HALF-SISTER (PROBAND)'),
+(32, 'SECOND COUSIN'),
+(33, 'HALF SISTER'),
+(34, '3 UNCLES'),
+(35, '2 COUSINS'),
+(36, 'NIECE'),
+(37, 'UNCLE (MOTHER''S COUSIN)'),
+(38, 'HALF-UNCLE'),
+(39, 'HALF SISTER (SAME FATHER)'),
+(40, 'COUSIN (ADOPTED)'),
+(41, 'STEPCOUSIN'),
+(42, 'GRANDUNCLE'),
+(43, 'FIRST STEP SISTER (X2)'),
+(44, 'FIRST STEP SISTER'),
+(45, 'GREAT GRANDMOTHER?'),
+(46, 'STEP AUNT'),
+(47, '2 UNCLES'),
+(48, 'GRANDUNCLE'),
+(49, 'AUNT?'),
+(50, 'NK'),
+(51, '3 UNCLES'),
+(52, 'NIECE'),
+(53, 'COUSIN SISTER'),
+(54, 'ELDEST UNCLE'),
+(55, 'FIRST COUSIN (F)'),
+(56, 'SECOND COUSIN'),
+(57, 'HALF SISTER'),
+(58, 'STEPUNCLE'),
+(59, 'COUSIN SISTER'),
+(60, 'SECOND COUSIN'),
+(61, 'COUSIN (M)'),
+(62, 'FIRST COUSIN SISTER'),
+(63, '2 COUSINS'),
+(64, 'STEP-AUNT'),
+(65, 'EMAK SAUDARA'),
+(66, 'HALF AUNT'),
+(67, 'GREAT GRANDMOTHER?'),
+(68, 'STEP-UNCLE'),
+(69, 'HALF SISTER'),
+(70, 'GRANDUNCLE'),
+(71, 'AUNTY'),
+(72, 'AUNT, AUNT'),
+(73, 'NEPHEW'),
+(74, 'GRAND AUNT'),
+(75, 'NIECE (HER FATHER COLON CA)'),
+(76, '1ST COUSIN'),
+(77, 'FIRST COUSIN''S DAUGHTER'),
+(78, 'UNCLE (MOTHER''S COUSIN)'),
+(79, 'STEPMOTHER (MOTHER''S COUSIN)'),
+(80, 'GRANDUNCLE''S GRANDSON'),
+(81, 'GRANDFATHER (GRANDMOTHER''S COUSIN)'),
+(82, 'MOTHER''S COUSIN'),
+(83, 'MOTHER''S HALF SISTER (DIFF MOTHER, SAME FATHER)'),
+(84, 'GRANDMOTHER''S BROTHER'),
+(85, 'NEPHEW (BROTHER''S SON)'),
+(86, 'MOM''S FIRST COUSIN'),
+(87, 'FATHER''S COUSIN'),
+(88, 'COUSIN''S DAUGHTER'),
+(89, 'None'),
+(90, '*HUSBAND'),
+(91, 'SECOND ELDEST AUNT'),
+(92, '2ND UNCLE'),
+(93, 'ELDEST AUNT'),
+(94, 'COUSIN (UNCLE''S DAUGHTER)'),
+(95, 'SECOND COUSIN SISTER'),
+(96, 'SIBLING2'),
+(97, '5TH UNCLE'),
+(98, 'DAD''S BROTHER IN LAW'),
+(99, 'FIRST AUNT'),
+(100, 'SIBLING 2'),
+(101, 'SIBLING 1'),
+(102, 'HALF-BROTHER'),
+(103, '1ST AUNT'),
+(104, 'SIBLING1'),
+(105, 'AUNTIE'),
+(106, 'FATHER OF CHILD'),
+(107, 'COUSIN''S AUNT'),
+(108, 'GRANDAUNT, GRANDAUNT');
 
 -- --------------------------------------------------------
 
@@ -1697,7 +1789,7 @@ CREATE TABLE IF NOT EXISTS `studies` (
   `studies_id` int(10) NOT NULL AUTO_INCREMENT,
   `studies_name` char(200) NOT NULL,
   PRIMARY KEY (`studies_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
 -- Dumping data for table `studies`
@@ -1707,7 +1799,10 @@ INSERT INTO `studies` (`studies_id`, `studies_name`) VALUES
 (1, 'UM MyBrCa'),
 (2, 'EpBrCa'),
 (3, 'MyOvCa'),
-(4, 'Mammo');
+(4, 'Mammo'),
+(5, 'MyMammo'),
+(6, 'SD MyBrca'),
+(7, 'My1000Mammo');
 
 -- --------------------------------------------------------
 
@@ -1722,7 +1817,7 @@ CREATE TABLE IF NOT EXISTS `treatment` (
   PRIMARY KEY (`treatment_id`),
   KEY `treatment_id` (`treatment_id`),
   KEY `treatment_id_2` (`treatment_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=27 ;
 
 --
 -- Dumping data for table `treatment`
@@ -1745,7 +1840,16 @@ INSERT INTO `treatment` (`treatment_id`, `treatment_name`, `treatment_detail`) V
 (14, 'Unilateral Salpingo Oophorectomy', ''),
 (15, 'Bilateral Salpingo Oophorectomy', ''),
 (16, 'TAHBSO', ''),
-(17, 'None', '');
+(17, 'None', ''),
+(18, 'surgery/chemotherapy/neo-adjuvant', ''),
+(19, 'chemotherapy', ''),
+(20, 'Surgery', ''),
+(21, 'surgery/neo-adjuvant', ''),
+(22, 'Neo-adjuvant', ''),
+(23, 'surgery/chemotherapy', ''),
+(24, 'surgery', ''),
+(25, 'surgery/chemotherapy/radiotherapy', ''),
+(26, 'chemotherapy/neo-adjuvant', '');
 
 -- --------------------------------------------------------
 
