@@ -4854,6 +4854,7 @@ class Record extends CI_Controller {
                     }
                 }
             }
+        }
 
             function interview_home_insersion() {
 
@@ -5193,6 +5194,4 @@ class Record extends CI_Controller {
                     $this->template->load("templates/add_record_template", 'record/upload_xlsx_file', $data);
                 }
             }
-
-        }
 }
