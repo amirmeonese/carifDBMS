@@ -30,12 +30,12 @@
                  <?php if($breast_cancer['is_primary'] == 1){?>
                 <td>
                     <?php echo $primary_diagnosis; ?>: 
-                    <?php echo form_checkbox(array('name' => 'primary_diagnosis[]', 'value' => $breast_cancer['is_primary'],'checked'=>"checked"))?>
+                    <?php echo form_checkbox(array('name' => 'primary_diagnosis[]', 'value' => $breast_cancer['is_primary'],'checked'=>"checked",'readonly'=>'true'))?>
                 </td>
                <?php } else {?>
                 <td>
                     <?php echo $primary_diagnosis; ?>: 
-                    <?php echo form_checkbox(array('name' => 'primary_diagnosis[]', 'value' => $breast_cancer['is_primary']))?>
+                    <?php echo form_checkbox(array('name' => 'primary_diagnosis[]', 'value' => $breast_cancer['is_primary'],'readonly'=>'true'))?>
                 </td>
                <?php } ?>
                 
@@ -44,22 +44,22 @@
             <tr>
                 <td>
                     <?php echo $date_of_diagnosis; ?>: 
-                    <?php echo form_input(array('name' => 'date_of_diagnosis[]', 'value' =>  $breast_cancer['date_of_diagnosis'] == '0000-00-00' ? '00-00-0000'  : date('d-m-Y', strtotime($breast_cancer['date_of_diagnosis'])), 'class' => 'datepicker'))?>
+                    <?php echo form_input(array('name' => 'date_of_diagnosis[]', 'value' => $breast_cancer['date_of_diagnosis'], 'class' => 'datepicker','readonly'=>'true'))?>
                 </td>
                 <td>
                     <?php echo $age_of_diagnosis; ?>: <br />
-                    <?php echo form_input(array('name' => 'age_of_diagnosis[]', 'value' => $breast_cancer['age_of_diagnosis']))?>
+                    <?php echo form_input(array('name' => 'age_of_diagnosis[]', 'value' => $breast_cancer['age_of_diagnosis'],'readonly'=>'true'))?>
                 </td>
                 <td>
                     <?php echo $cancer_diagnosis_center; ?>: 
-                    <?php echo form_input(array('name' => 'cancer_diagnosis_center[]', 'value' => $breast_cancer['diagnosis_center']))?>
+                    <?php echo form_input(array('name' => 'cancer_diagnosis_center[]', 'value' => $breast_cancer['diagnosis_center'],'readonly'=>'true'))?>
                 </td>
             </tr>&nbsp;</td>
             </tr>
             <tr>
                 <td>
                     <?php echo $cancer_doctor_name; ?>: 
-                    <?php echo form_input(array('name' => 'cancer_doctor_name[]', 'value' => $breast_cancer['doctor_name']))?>
+                    <?php echo form_input(array('name' => 'cancer_doctor_name[]', 'value' => $breast_cancer['doctor_name'],'readonly'=>'true'))?>
                 </td>
                 <td>
                     <?php echo $detected_by; ?>: <br />
@@ -67,7 +67,7 @@
                 </td>
 <!--                <td>
                     <?php echo $detected_by_other_details; ?>: 
-                    <?php echo form_input(array('name' => 'detected_by_other_details[]', 'value' => $breast_cancer['detected_by_other_details']))?>
+                    <?php echo form_input(array('name' => 'detected_by_other_details[]', 'value' => $breast_cancer['detected_by_other_details'],'readonly'=>'true'))?>
                 </td>-->
             </tr>&nbsp;</td>
             </tr>
@@ -75,24 +75,24 @@
                  <?php if($breast_cancer['bilateral_flag'] == 1){?>
                 <td>
                     <?php echo $cancer_is_bilateral; ?>: <br /> 
-                    <?php echo form_checkbox(array('name' => 'cancer_is_bilateral[]', 'value' => $breast_cancer['bilateral_flag'],'checked'=>"checked"))?>
+                    <?php echo form_checkbox(array('name' => 'cancer_is_bilateral[]', 'value' => $breast_cancer['bilateral_flag'],'checked'=>"checked",'readonly'=>'true'))?>
                 </td>
                <?php } else {?>
                 <td>
                     <?php echo $cancer_is_bilateral; ?>: <br /> 
-                    <?php echo form_checkbox(array('name' => 'cancer_is_bilateral[]', 'value' => $breast_cancer['bilateral_flag']))?>
+                    <?php echo form_checkbox(array('name' => 'cancer_is_bilateral[]', 'value' => $breast_cancer['bilateral_flag'],'readonly'=>'true'))?>
                 </td>
                <?php } ?>
                 
                  <?php if($breast_cancer['recurrence_flag'] == 1){?>
                 <td>
                     <?php echo $cancer_is_recurrent; ?>: <br /> 
-                    <?php echo form_checkbox(array('name' => 'cancer_is_recurrent[]', 'value' => $breast_cancer['recurrence_flag'],'checked'=>"checked"))?>
+                    <?php echo form_checkbox(array('name' => 'cancer_is_recurrent[]', 'value' => $breast_cancer['recurrence_flag'],'checked'=>"checked",'readonly'=>'true'))?>
                 </td>
                <?php } else {?>
                 <td>
                     <?php echo $cancer_is_recurrent; ?>: <br /> 
-                    <?php echo form_checkbox(array('name' => 'cancer_is_recurrent[]', 'value' => $breast_cancer['recurrence_flag']))?>
+                    <?php echo form_checkbox(array('name' => 'cancer_is_recurrent[]', 'value' => $breast_cancer['recurrence_flag'],'readonly'=>'true'))?>
                 </td>
                <?php } ?>
                 
@@ -116,17 +116,17 @@
                 </td>
                 <td>
                     <?php echo $breast_pathology_path_report_date; ?>: <br />
-                    <?php echo form_input(array('name' => 'breast_pathology_path_report_date[]', 'value' => $breast_cancer['date_of_report']))?>
+                    <?php echo form_input(array('name' => 'breast_pathology_path_report_date[]', 'value' => $breast_cancer['date_of_report'],'readonly'=>'true'))?>
                 </td>
             </tr>
             <tr>
                 <td>
                     <?php echo $breast_pathology_lab; ?>: <br />
-                    <?php echo form_input(array('name' => 'breast_pathology_lab[]', 'value' => $breast_cancer['pathology_lab']))?>
+                    <?php echo form_input(array('name' => 'breast_pathology_lab[]', 'value' => $breast_cancer['pathology_lab'],'readonly'=>'true'))?>
                 </td>
                 <td>
                     <?php echo $breast_pathology_doctor; ?>: <br />
-                    <?php echo form_input(array('name' => 'breast_pathology_doctor[]', 'value' => $breast_cancer['name_of_doctor']))?>
+                    <?php echo form_input(array('name' => 'breast_pathology_doctor[]', 'value' => $breast_cancer['name_of_doctor'],'readonly'=>'true'))?>
                 </td>
             </tr>
             <tr>
@@ -160,11 +160,11 @@
             <tr>
                 <td>
                     <?php echo $breast_pathology_total_lymph_nodes; ?>: <br />
-                    <?php echo form_input(array('name' => 'breast_pathology_total_lymph_nodes[]', 'value' => $breast_cancer['total_lymph_nodes']))?>
+                    <?php echo form_input(array('name' => 'breast_pathology_total_lymph_nodes[]', 'value' => $breast_cancer['total_lymph_nodes'],'readonly'=>'true'))?>
                 </td>
                 <td>
                     <?php echo $breast_pathology_tumour_size; ?>: <br />
-                    <?php echo form_input(array('name' => 'breast_pathology_tumour_size[]', 'value' => $breast_cancer['tumour_size']))?>
+                    <?php echo form_input(array('name' => 'breast_pathology_tumour_size[]', 'value' => $breast_cancer['tumour_size'],'readonly'=>'true'))?>
                 </td>
             </tr>
         </table>
@@ -173,15 +173,15 @@
                 <tr>
                     <td>
                         <?php echo $breast_pathology_ER_status; ?>: <br />
-                        <?php echo form_input(array('name' => 'breast_pathology_ER_status[]', 'value' => $breast_cancer['ER_status']))?>
+                        <?php echo form_input(array('name' => 'breast_pathology_ER_status[]', 'value' => $breast_cancer['ER_status'],'readonly'=>'true'))?>
                     </td>
                     <td>
                         <?php echo $breast_pathology_PR_status; ?>: <br />
-                        <?php echo form_input(array('name' => 'breast_pathology_PR_status[]', 'value' => $breast_cancer['PR_status']))?>
+                        <?php echo form_input(array('name' => 'breast_pathology_PR_status[]', 'value' => $breast_cancer['PR_status'],'readonly'=>'true'))?>
                     </td>
                     <td>
                         <?php echo $breast_pathology_HER2_status; ?>: <br />
-                        <?php echo form_input(array('name' => 'breast_pathology_HER2_status[]', 'value' => $breast_cancer['HER2_status']))?>
+                        <?php echo form_input(array('name' => 'breast_pathology_HER2_status[]', 'value' => $breast_cancer['HER2_status'],'readonly'=>'true'))?>
                     </td>
                     
                 </tr>
@@ -191,7 +191,7 @@
             <tr>
                 <td>
                     <?php echo $breast_pathology_tissue_path_comments; ?>: <br />
-                    <?php echo form_textarea(array('name' => 'breast_pathology_tissue_path_comments[]','id' => 'breast_pathology_tissue_path_comments','rows' => '3','cols' => '7', 'value' => $breast_cancer['comments']))?>
+                    <?php echo form_textarea(array('name' => 'breast_pathology_tissue_path_comments[]','id' => 'breast_pathology_tissue_path_comments','rows' => '3','cols' => '7', 'value' => $breast_cancer['comments'],'readonly'=>'true'))?>
                 </td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
@@ -209,47 +209,47 @@
                     </td>
                     <td>
                         <?php echo $treatment_details; ?>: 
-                        <?php echo form_input(array('name' => 'treatment_details[]', 'value' => $breast_cancer['treatment_details']))?>
+                        <?php echo form_input(array('name' => 'treatment_details[]', 'value' => $breast_cancer['treatment_details'],'readonly'=>'true'))?>
                     </td>
                     <td>
                         <?php echo $treatment_start_date; ?>: 
-                        <?php echo form_input(array('name' => 'treatment_start_date[]', 'value' =>  $breast_cancer['treatment_start_date'] == '0000-00-00' ? '00-00-0000'  : date('d-m-Y', strtotime($breast_cancer['treatment_start_date'])), 'class' => 'datepicker'))?>
+                        <?php echo form_input(array('name' => 'treatment_start_date[]', 'value' => $breast_cancer['treatment_start_date'], 'class' => 'datepicker','readonly'=>'true'))?>
                     </td>
                     <td>
                         <?php echo $treatment_end_date; ?>: 
-                        <?php echo form_input(array('name' => 'treatment_end_date[]', 'value' =>  $breast_cancer['treatment_end_date'] == '0000-00-00' ? '00-00-0000'  : date('d-m-Y', strtotime($breast_cancer['treatment_end_date'])), 'class' => 'datepicker'))?>
+                        <?php echo form_input(array('name' => 'treatment_end_date[]', 'value' => $breast_cancer['treatment_end_date'], 'class' => 'datepicker','readonly'=>'true'))?>
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <?php echo $treatment_duration; ?>: 
-                        <?php echo form_input(array('name' => 'treatment_duration[]', 'value' => $breast_cancer['treatment_durations']))?>
+                        <?php echo form_input(array('name' => 'treatment_duration[]', 'value' => $breast_cancer['treatment_durations'],'readonly'=>'true'))?>
                     </td>               
                     <td>
                         <?php echo $treatment_drug_dose; ?>: 
-                        <?php echo form_input(array('name' => 'treatment_drug_dose[]', 'value' => $breast_cancer['treatment_drug_dose']))?>
+                        <?php echo form_input(array('name' => 'treatment_drug_dose[]', 'value' => $breast_cancer['treatment_drug_dose'],'readonly'=>'true'))?>
                     </td>
                     <td>
                         <?php echo $treatment_cycle; ?>: 
-                        <?php echo form_input(array('name' => 'treatment_cycle[]', 'value' => $breast_cancer['treatment_cycle']))?>
+                        <?php echo form_input(array('name' => 'treatment_cycle[]', 'value' => $breast_cancer['treatment_cycle'],'readonly'=>'true'))?>
                     </td>
                     <td>
                         <?php echo $treatment_frequency; ?>: 
-                        <?php echo form_input(array('name' => 'treatment_frequency[]', 'value' => $breast_cancer['treatment_frequency']))?>
+                        <?php echo form_input(array('name' => 'treatment_frequency[]', 'value' => $breast_cancer['treatment_frequency'],'readonly'=>'true'))?>
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <?php echo $treatment_visidual_desease; ?>: 
-                        <?php echo form_input(array('name' => 'treatment_visidual_desease[]', 'value' => $breast_cancer['treatment_visidual_desease']))?>
+                        <?php echo form_input(array('name' => 'treatment_visidual_desease[]', 'value' => $breast_cancer['treatment_visidual_desease'],'readonly'=>'true'))?>
                     </td>
                     <td>
                         <?php echo $treatment_primary_therapy_outcome; ?>: 
-                        <?php echo form_input(array('name' => 'treatment_privacy_outcome[]', 'value' => $breast_cancer['treatment_primary_outcome']))?>
+                        <?php echo form_input(array('name' => 'treatment_privacy_outcome[]', 'value' => $breast_cancer['treatment_primary_outcome'],'readonly'=>'true'))?>
                     </td>
                     <td>
                         <?php echo $breast_cancer_treatment_comments; ?>: 
-                        <?php echo form_textarea(array('name' => 'breast_cancer_treatment_comments[]','id' => 'breast_cancer_treatment_comments','rows' => '3','cols' => '7', 'value' => $breast_cancer['comments']))?>
+                        <?php echo form_textarea(array('name' => 'breast_cancer_treatment_comments[]','id' => 'breast_cancer_treatment_comments','rows' => '3','cols' => '7', 'value' => $breast_cancer['comments'],'readonly'=>'true'))?>
                     </td>
                     
                 </tr>&nbsp;</td>
@@ -290,12 +290,12 @@
                  <?php if($ovary_cancer['is_primary'] == 1){?>
                 <td>
                     <?php echo $ovary_primary_diagnosis; ?>: 
-                    <?php echo form_checkbox(array('name' => 'ovary_primary_diagnosis[]', 'value' => $ovary_cancer['is_primary'],'checked'=>"checked"))?>
+                    <?php echo form_checkbox(array('name' => 'ovary_primary_diagnosis[]', 'value' => $ovary_cancer['is_primary'],'checked'=>"checked",'readonly'=>'true'))?>
                 </td>
                <?php } else {?>
                 <td>
                     <?php echo $ovary_primary_diagnosis; ?>: 
-                    <?php echo form_checkbox(array('name' => 'ovary_primary_diagnosis[]', 'value' => $ovary_cancer['is_primary']))?>
+                    <?php echo form_checkbox(array('name' => 'ovary_primary_diagnosis[]', 'value' => $ovary_cancer['is_primary'],'readonly'=>'true'))?>
                 </td>
                <?php } ?>
                 
@@ -304,22 +304,22 @@
             <tr>
                 <td>
                     <?php echo $ovary_date_of_diagnosis; ?>: 
-                    <?php echo form_input(array('name' => 'ovary_date_of_diagnosis[]', 'value' =>  $ovary_cancer['date_of_diagnosis'] == '0000-00-00' ? '00-00-0000'  : date('d-m-Y', strtotime($ovary_cancer['date_of_diagnosis'])), 'class' => 'datepicker'))?>
+                    <?php echo form_input(array('name' => 'ovary_date_of_diagnosis[]', 'value' => $ovary_cancer['date_of_diagnosis'], 'class' => 'datepicker','readonly'=>'true'))?>
                 </td>
                 <td>
                     <?php echo $ovary_age_of_diagnosis; ?>: <br />
-                    <?php echo form_input(array('name' => 'ovary_age_of_diagnosis[]', 'value' => $ovary_cancer['age_of_diagnosis']))?>
+                    <?php echo form_input(array('name' => 'ovary_age_of_diagnosis[]', 'value' => $ovary_cancer['age_of_diagnosis'],'readonly'=>'true'))?>
                 </td>
                 <td>
                     <?php echo $ovary_cancer_diagnosis_center; ?>: 
-                    <?php echo form_input(array('name' => 'ovary_cancer_diagnosis_center[]', 'value' => $ovary_cancer['diagnosis_center']))?>
+                    <?php echo form_input(array('name' => 'ovary_cancer_diagnosis_center[]', 'value' => $ovary_cancer['diagnosis_center'],'readonly'=>'true'))?>
                 </td>
             </tr>&nbsp;</td>
             </tr>
             <tr>
                 <td>
                     <?php echo $ovary_cancer_doctor_name; ?>: 
-                    <?php echo form_input(array('name' => 'ovary_cancer_doctor_name[]', 'value' => $ovary_cancer['doctor_name']))?>
+                    <?php echo form_input(array('name' => 'ovary_cancer_doctor_name[]', 'value' => $ovary_cancer['doctor_name'],'readonly'=>'true'))?>
                 </td>
                 <td>
                     <?php echo $ovary_detected_by; ?>: <br />
@@ -327,31 +327,31 @@
                 </td>
 <!--                <td>
                     <?php echo $ovary_detected_by_other_details; ?>: 
-                    <?php echo form_input(array('name' => 'ovary_detected_by_other_details[]', 'value' => $ovary_cancer['ovary_detected_by_other_details']))?>
+                    <?php echo form_input(array('name' => 'ovary_detected_by_other_details[]', 'value' => $ovary_cancer['ovary_detected_by_other_details'],'readonly'=>'true'))?>
                 </td>-->
             </tr>&nbsp;</td>
             </tr>
              <?php if($ovary_cancer['bilateral_flag'] == 1){?>
             <td>
                     <?php echo $ovary_cancer_is_bilateral; ?>: <br /> 
-                    <?php echo form_checkbox(array('name' => 'ovary_cancer_is_bilateral[]', 'value' => $ovary_cancer['bilateral_flag'],'checked'=>"checked"))?>
+                    <?php echo form_checkbox(array('name' => 'ovary_cancer_is_bilateral[]', 'value' => $ovary_cancer['bilateral_flag'],'checked'=>"checked",'readonly'=>'true'))?>
                 </td>
                <?php } else {?>
                 <td>
                     <?php echo $ovary_cancer_is_bilateral; ?>: <br /> 
-                    <?php echo form_checkbox(array('name' => 'ovary_cancer_is_bilateral[]', 'value' => $ovary_cancer['bilateral_flag']))?>
+                    <?php echo form_checkbox(array('name' => 'ovary_cancer_is_bilateral[]', 'value' => $ovary_cancer['bilateral_flag'],'readonly'=>'true'))?>
                 </td>
                <?php } ?>
             <tr>
                  <?php if($ovary_cancer['recurrence_flag'] == 1){?>
                 <td>
                     <?php echo $ovary_cancer_is_recurrent; ?>: <br /> 
-                    <?php echo form_checkbox(array('name' => 'ovary_cancer_is_recurrent[]', 'value' => $ovary_cancer['recurrence_flag'],'checked'=>"checked"))?>
+                    <?php echo form_checkbox(array('name' => 'ovary_cancer_is_recurrent[]', 'value' => $ovary_cancer['recurrence_flag'],'checked'=>"checked",'readonly'=>'true'))?>
                 </td>
                <?php } else {?>
                 <td>
                     <?php echo $ovary_cancer_is_recurrent; ?>: <br /> 
-                    <?php echo form_checkbox(array('name' => 'ovary_cancer_is_recurrent[]', 'value' => $ovary_cancer['recurrence_flag']))?>
+                    <?php echo form_checkbox(array('name' => 'ovary_cancer_is_recurrent[]', 'value' => $ovary_cancer['recurrence_flag'],'readonly'=>'true'))?>
                 </td>
                <?php } ?>
                 
@@ -378,27 +378,27 @@
                     </td>
                     <td>
                         <?php echo $ovary_pathology_path_report_date; ?>: <br />
-                        <?php echo form_input(array('name' => 'ovary_pathology_path_report_date[]', 'value' =>  $ovary_cancer['date_of_report'] == '0000-00-00' ? '00-00-0000'  : date('d-m-Y', strtotime($ovary_cancer['date_of_report'])), 'class' => 'datepicker'))?>
+                        <?php echo form_input(array('name' => 'ovary_pathology_path_report_date[]', 'value' => $ovary_cancer['date_of_report'], 'class' => 'datepicker','readonly'=>'true'))?>
                     </td>
                     <td>
                         <?php echo $ovary_pathology_report_no; ?>: <br />
-                        <?php echo form_input(array('name' => 'ovary_pathology_report_no[]', 'value' => $ovary_cancer['no_of_report']))?>
+                        <?php echo form_input(array('name' => 'ovary_pathology_report_no[]', 'value' => $ovary_cancer['no_of_report'],'readonly'=>'true'))?>
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <?php echo $ovary_pathology_lab; ?>: <br />
-                        <?php echo form_input(array('name' => 'ovary_pathology_lab[]', 'value' => $ovary_cancer['pathology_lab']))?>
+                        <?php echo form_input(array('name' => 'ovary_pathology_lab[]', 'value' => $ovary_cancer['pathology_lab'],'readonly'=>'true'))?>
                     </td>
                     <td>
                         <?php echo $ovary_pathology_doctor; ?>: <br />
-                        <?php echo form_input(array('name' => 'ovary_pathology_doctor[]', 'value' => $ovary_cancer['name_of_doctor']))?>
+                        <?php echo form_input(array('name' => 'ovary_pathology_doctor[]', 'value' => $ovary_cancer['name_of_doctor'],'readonly'=>'true'))?>
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <?php echo $ovary_pathology_morphology; ?>: <br />
-                        <?php echo form_input(array('name' => 'ovary_pathology_morphology[]', 'value' => $ovary_cancer['morphology']))?>
+                        <?php echo form_input(array('name' => 'ovary_pathology_morphology[]', 'value' => $ovary_cancer['morphology'],'readonly'=>'true'))?>
                     </td>
                     <td>
                         <?php echo $ovary_stage_classification; ?>: <br />
@@ -420,7 +420,7 @@
                     </td>
                     <td>
                         <?php echo $ovary_pathology_tumour_size; ?>: <br />
-                        <?php echo form_input(array('name' => 'ovary_pathology_tumour_size[]', 'value' => $ovary_cancer['tumour_size']))?>
+                        <?php echo form_input(array('name' => 'ovary_pathology_tumour_size[]', 'value' => $ovary_cancer['tumour_size'],'readonly'=>'true'))?>
                     </td>
                     <td>
                         <?php echo $ovary_tumor_behavior; ?>: <br />
@@ -434,7 +434,7 @@
                 <tr>
                     <td>
                         <?php echo $ovary_pathology_tissue_path_comments; ?>: <br />
-                        <?php echo form_textarea(array('name' => 'ovary_pathology_tissue_path_comments[]','id' => 'ovary_pathology_tissue_path_comments','rows' => '3','cols' => '7', 'value' => $ovary_cancer['comments']))?>
+                        <?php echo form_textarea(array('name' => 'ovary_pathology_tissue_path_comments[]','id' => 'ovary_pathology_tissue_path_comments','rows' => '3','cols' => '7', 'value' => $ovary_cancer['comments'],'readonly'=>'true'))?>
                     </td>
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
@@ -454,57 +454,57 @@
                     </td>
                     <td>
                         <?php echo $treatment_details; ?>: 
-                        <?php echo form_input(array('name' => 'ovary_treatment_details[]', 'value' => $ovary_cancer['treatment_details']))?>
+                        <?php echo form_input(array('name' => 'ovary_treatment_details[]', 'value' => $ovary_cancer['treatment_details'],'readonly'=>'true'))?>
                     </td>
                     <td>
                         <?php echo $ovary_treatment_start_date; ?>: 
-                        <?php echo form_input(array('name' => 'ovary_treatment_start_date[]', 'value' => $ovary_cancer['treatment_start_date'], 'class' => 'datepicker'))?>
+                        <?php echo form_input(array('name' => 'ovary_treatment_start_date[]', 'value' => $ovary_cancer['treatment_start_date'], 'class' => 'datepicker','readonly'=>'true'))?>
                     </td>
                     <td>
                         <?php echo $ovary_treatment_end_date; ?>: 
-                        <?php echo form_input(array('name' => 'ovary_treatment_end_date[]', 'value' =>  $ovary_cancer['treatment_end_date'] == '0000-00-00' ? '00-00-0000'  : date('d-m-Y', strtotime($ovary_cancer['treatment_end_date'])), 'class' => 'datepicker'))?>
+                        <?php echo form_input(array('name' => 'ovary_treatment_end_date[]', 'value' => $ovary_cancer['treatment_end_date'], 'class' => 'datepicker','readonly'=>'true'))?>
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <?php echo $ovary_treatment_duration; ?>: 
-                        <?php echo form_input(array('name' => 'ovary_treatment_duration[]', 'value' => $ovary_cancer['treatment_durations']))?>
+                        <?php echo form_input(array('name' => 'ovary_treatment_duration[]', 'value' => $ovary_cancer['treatment_durations'],'readonly'=>'true'))?>
                     </td>
 
                     <td>
                         <?php echo $treatment_drug_dose; ?>: 
-                        <?php echo form_input(array('name' => 'ovary_treatment_drug_dose[]', 'value' => $ovary_cancer['treatment_dose']))?>
+                        <?php echo form_input(array('name' => 'ovary_treatment_drug_dose[]', 'value' => $ovary_cancer['treatment_dose'],'readonly'=>'true'))?>
                     </td>
                     <td>
                         <?php echo $treatment_cycle; ?>: 
-                        <?php echo form_input(array('name' => 'ovary_treatment_cycle[]', 'value' => $ovary_cancer['treatment_cycle']))?>
+                        <?php echo form_input(array('name' => 'ovary_treatment_cycle[]', 'value' => $ovary_cancer['treatment_cycle'],'readonly'=>'true'))?>
                     </td>
                     <td>
                         <?php echo $treatment_frequency; ?>: 
-                        <?php echo form_input(array('name' => 'ovary_treatment_route[]', 'value' => $ovary_cancer['treatment_frequency']))?>
+                        <?php echo form_input(array('name' => 'ovary_treatment_route[]', 'value' => $ovary_cancer['treatment_frequency'],'readonly'=>'true'))?>
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <?php echo $treatment_visidual_desease; ?>: 
-                        <?php echo form_input(array('name' => 'ovary_treatment_visidual_desease[]', 'value' => $ovary_cancer['treatment_visidual_desease']))?>
+                        <?php echo form_input(array('name' => 'ovary_treatment_visidual_desease[]', 'value' => $ovary_cancer['treatment_visidual_desease'],'readonly'=>'true'))?>
                     </td>
                     <td>
                         <?php echo $treatment_primary_therapy_outcome; ?>: 
-                        <?php echo form_input(array('name' => 'ovary_treatment_privacy_outcome[]', 'value' => $ovary_cancer['treatment_primary_outcome']))?>
+                        <?php echo form_input(array('name' => 'ovary_treatment_privacy_outcome[]', 'value' => $ovary_cancer['treatment_primary_outcome'],'readonly'=>'true'))?>
                     </td>
                     <td>
                         <?php echo $treatment_cal125_pretreatment; ?>: 
-                        <?php echo form_input(array('name' => 'ovary_cal125_pretreatment[]', 'value' => $ovary_cancer['treatment_cal125_pretreatment']))?>
+                        <?php echo form_input(array('name' => 'ovary_cal125_pretreatment[]', 'value' => $ovary_cancer['treatment_cal125_pretreatment'],'readonly'=>'true'))?>
                     </td>
                     <td>
                         <?php echo $treatment_cal125_posttreatment; ?>: 
-                        <?php echo form_input(array('name' => 'ovary_cal125_posttreatment[]', 'value' => $ovary_cancer['treatment_cal125_posttreatment']))?>
+                        <?php echo form_input(array('name' => 'ovary_cal125_posttreatment[]', 'value' => $ovary_cancer['treatment_cal125_posttreatment'],'readonly'=>'true'))?>
                     </td>
                 <tr>
                     <td>
                         <?php echo $ovary_cancer_treatment_comments; ?>: 
-                        <?php echo form_textarea(array('name' => 'ovary_cancer_treatment_comments[]','id' => 'ovary_cancer_treatment_comments','rows' => '3','cols' => '7', 'value' => $ovary_cancer['comments']))?>
+                        <?php echo form_textarea(array('name' => 'ovary_cancer_treatment_comments[]','id' => 'ovary_cancer_treatment_comments','rows' => '3','cols' => '7', 'value' => $ovary_cancer['comments'],'readonly'=>'true'))?>
                     </td>
                     
                 </tr>&nbsp;</td>
@@ -536,31 +536,31 @@
                     </td>
                     <td>
                     <?php echo $cancer_site; ?>: 
-                    <?php echo form_dropdown('other_cancer_site[]', $patient_cancer_site_lists, $site_cancer[$other_cancer['cancer_site_id']], 'id="cancer_site" preload_val="'.$site_cancer[$other_cancer['cancer_site_id']].'"'); ?>
+                    <?php echo form_dropdown('other_cancer_site[]', $patient_cancer_site_lists, $site_cancer[$breast_cancer['cancer_site_id']], 'id="cancer_site" preload_val="'.$site_cancer[$breast_cancer['cancer_site_id']].'"'); ?>
                     </td>
                     <td>
                         <?php echo $other_date_of_diagnosis; ?>: 
-                        <?php echo form_input(array('name' => 'other_date_of_diagnosis[]', 'value' =>  $other_cancer['date_of_diagnosis'] == '0000-00-00' ? '00-00-0000'  : date('d-m-Y', strtotime($other_cancer['date_of_diagnosis'])), 'class' => 'datepicker'))?>
+                        <?php echo form_input(array('name' => 'other_date_of_diagnosis[]', 'value' => $other_cancer['date_of_diagnosis'], 'class' => 'datepicker','readonly'=>'true'))?>
                     </td>
                     </tr>
                     <tr>
                     <td>
                         <?php echo $other_age_of_diagnosis; ?>: <br />
-                        <?php echo form_input(array('name' => 'other_age_of_diagnosis[]', 'value' => $other_cancer['age_of_diagnosis']))?>
+                        <?php echo form_input(array('name' => 'other_age_of_diagnosis[]', 'value' => $other_cancer['age_of_diagnosis'],'readonly'=>'true'))?>
                     </td>
                     <td>
                         <?php echo $other_cancer_diagnosis_center; ?>: 
-                        <?php echo form_input(array('name' => 'other_cancer_diagnosis_center[]', 'value' => $other_cancer['diagnosis_center']))?>
+                        <?php echo form_input(array('name' => 'other_cancer_diagnosis_center[]', 'value' => $other_cancer['diagnosis_center'],'readonly'=>'true'))?>
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <?php echo $other_cancer_doctor_name; ?>: 
-                        <?php echo form_input(array('name' => 'other_cancer_doctor_name[]', 'value' => $other_cancer['doctor_name']))?>
+                        <?php echo form_input(array('name' => 'other_cancer_doctor_name[]', 'value' => $other_cancer['doctor_name'],'readonly'=>'true'))?>
                     </td>
 <!--                    <td>
                         <?php echo $other_cancer_comments; ?>: <br />
-                        <?php echo form_textarea(array('name' => 'other_cancer_comments[]','id' => 'other_cancer_comments','rows' => '3','cols' => '7', 'value' => $other_cancer['comments']))?>
+                        <?php echo form_textarea(array('name' => 'other_cancer_comments[]','id' => 'other_cancer_comments','rows' => '3','cols' => '7', 'value' => $other_cancer['comments'],'readonly'=>'true'))?>
                     </td>-->
                 </tr>&nbsp;</td>
                 </tr>
@@ -583,23 +583,23 @@
                         </td>
                         <td>
                             <?php echo $other_pathology_path_report_date; ?>: <br />
-                            <?php echo form_input(array('name' => 'other_pathology_path_report_date[]', 'value' =>  $other_cancer['date_of_report'] == '0000-00-00' ? '00-00-0000'  : date('d-m-Y', strtotime($other_cancer['date_of_report'])), 'class' => 'datepicker'))?>
+                            <?php echo form_input(array('name' => 'other_pathology_path_report_date[]', 'value' => $other_cancer['date_of_report'], 'class' => 'datepicker','readonly'=>'true'))?>
                         </td>
                     </tr>
                     <tr>
                         <td>
                             <?php echo $other_pathology_lab; ?>: <br />
-                            <?php echo form_input(array('name' => 'other_pathology_lab[]', 'value' => $other_cancer['pathology_lab']))?>
+                            <?php echo form_input(array('name' => 'other_pathology_lab[]', 'value' => $other_cancer['pathology_lab'],'readonly'=>'true'))?>
                         </td>
                         <td>
                             <?php echo $other_pathology_doctor; ?>: <br />
-                            <?php echo form_input(array('name' => 'other_pathology_doctor[]', 'value' => $other_cancer['name_of_doctor']))?>
+                            <?php echo form_input(array('name' => 'other_pathology_doctor[]', 'value' => $other_cancer['name_of_doctor'],'readonly'=>'true'))?>
                         </td>
                     </tr>
                     <tr>
                         <td>
                             <?php echo $other_pathology_tissue_path_comments; ?>: <br />
-                            <?php echo form_textarea(array('name' => 'other_pathology_tissue_path_comments[]','id' => 'other_pathology_tissue_path_comments','rows' => '3','cols' => '7', 'value' => $other_cancer['comments']))?>
+                            <?php echo form_textarea(array('name' => 'other_pathology_tissue_path_comments[]','id' => 'other_pathology_tissue_path_comments','rows' => '3','cols' => '7', 'value' => $other_cancer['comments'],'readonly'=>'true'))?>
                         </td>
                         <td>&nbsp;</td>
                         <td>&nbsp;</td>
@@ -619,47 +619,47 @@
                         </td>
                         <td>
                             <?php echo $treatment_details; ?>: 
-                            <?php echo form_input(array('name' => 'other_treatment_details[]', 'value' => $other_cancer['treatment_details']))?>
+                            <?php echo form_input(array('name' => 'other_treatment_details[]', 'value' => $other_cancer['treatment_details'],'readonly'=>'true'))?>
                         </td>
                         <td>
                             <?php echo $other_treatment_start_date; ?>: 
-                            <?php echo form_input(array('name' => 'other_treatment_start_date[]', 'value' =>  $other_cancer['treatment_start_date'] == '0000-00-00' ? '00-00-0000'  : date('d-m-Y', strtotime($other_cancer['treatment_start_date'])), 'class' => 'datepicker'))?>
+                            <?php echo form_input(array('name' => 'other_treatment_start_date[]', 'value' => $other_cancer['treatment_start_date'], 'class' => 'datepicker','readonly'=>'true'))?>
                         </td>
                         <td>
                             <?php echo $other_treatment_end_date; ?>: 
-                            <?php echo form_input(array('name' => 'other_treatment_end_date[]', 'value' =>  $other_cancer['treatment_end_date'] == '0000-00-00' ? '00-00-0000'  : date('d-m-Y', strtotime($other_cancer['treatment_end_date'])), 'class' => 'datepicker'))?>
+                            <?php echo form_input(array('name' => 'other_treatment_end_date[]', 'value' => $other_cancer['treatment_end_date'], 'class' => 'datepicker','readonly'=>'true'))?>
                         </td>
                     </tr>
                     <tr>
                         <td>
                             <?php echo $other_treatment_duration; ?>: 
-                            <?php echo form_input(array('name' => 'other_treatment_duration[]', 'value' => $other_cancer['treatment_durations']))?>
+                            <?php echo form_input(array('name' => 'other_treatment_duration[]', 'value' => $other_cancer['treatment_durations'],'readonly'=>'true'))?>
                         </td>
                         <td>
                             <?php echo $treatment_drug_dose; ?>: 
-                            <?php echo form_input(array('name' => 'other_treatment_drug_dose[]', 'value' => $other_cancer['treatment_dose']))?>
+                            <?php echo form_input(array('name' => 'other_treatment_drug_dose[]', 'value' => $other_cancer['treatment_dose'],'readonly'=>'true'))?>
                         </td>
                         <td>
                             <?php echo $treatment_cycle; ?>: 
-                            <?php echo form_input(array('name' => 'other_treatment_cycle[]', 'value' => $other_cancer['treatment_cycle']))?>
+                            <?php echo form_input(array('name' => 'other_treatment_cycle[]', 'value' => $other_cancer['treatment_cycle'],'readonly'=>'true'))?>
                         </td>
                         <td>
                             <?php echo $treatment_frequency; ?>: 
-                            <?php echo form_input(array('name' => 'treatment_frequency[]', 'value' => $other_cancer['treatment_frequency']))?>
+                            <?php echo form_input(array('name' => 'treatment_frequency[]', 'value' => $other_cancer['treatment_frequency'],'readonly'=>'true'))?>
                         </td>
                     </tr>
                     <tr>
                         <td>
                             <?php echo $treatment_visidual_desease; ?>: 
-                            <?php echo form_input(array('name' => 'other_treatment_visidual_desease[]', 'value' => $other_cancer['treatment_visidual_desease']))?>
+                            <?php echo form_input(array('name' => 'other_treatment_visidual_desease[]', 'value' => $other_cancer['treatment_visidual_desease'],'readonly'=>'true'))?>
                         </td>
 <!--                        <td>
                             <?php echo $treatment_primary_therapy_outcome; ?>: 
-                            <?php echo form_input(array('name' => 'other_treatment_primary_therapy_outcome[]', 'value' => $other_cancer['treatment_primary_outcome']))?>
+                            <?php echo form_input(array('name' => 'other_treatment_primary_therapy_outcome[]', 'value' => $other_cancer['treatment_primary_outcome'],'readonly'=>'true'))?>
                         </td>-->
                         <td>
                             <?php echo $other_cancer_treatment_comments; ?>: 
-                            <?php echo form_textarea(array('name' => 'other_cancer_treatment_comments[]','id' => 'other_cancer_treatment_comments','rows' => '3','cols' => '7', 'value' => $other_cancer['comments']))?>
+                            <?php echo form_textarea(array('name' => 'other_cancer_treatment_comments[]','id' => 'other_cancer_treatment_comments','rows' => '3','cols' => '7', 'value' => $other_cancer['comments'],'readonly'=>'true'))?>
                         </td>
                         
                     </tr>&nbsp;</td>
@@ -692,21 +692,21 @@
                         </td>
                         <td>
                             <?php echo $year_of_diagnosis; ?>: 
-                            <?php echo form_input(array('name' => 'year_of_diagnosis[]', 'value' => $other_disease['date_of_diagnosis'] == '0000-00-00' ? '00-00-0000'  : date('d-m-Y', strtotime($other_disease['date_of_diagnosis'])), 'class' => 'datepicker'))?>
+                            <?php echo form_input(array('name' => 'year_of_diagnosis[]', 'value' => $other_disease['date_of_diagnosis'], 'class' => 'datepicker','readonly'=>'true'))?>
                         </td>
                         <td>
                             <?php echo $diagnosis_age; ?>: 
-                            <?php echo form_input(array('name' => 'diagnosis_age[]', 'value' => $other_disease['diagnosis_age']))?>
+                            <?php echo form_input(array('name' => 'diagnosis_age[]', 'value' => $other_disease['diagnosis_age'],'readonly'=>'true'))?>
                         </td>
                     </tr>
                     <tr>
                         <td>
                             <?php echo $diagnosis_center; ?>: 
-                            <?php echo form_input(array('name' => 'diagnosis_center[]', 'value' => $other_disease['diagnosis_center']))?>
+                            <?php echo form_input(array('name' => 'diagnosis_center[]', 'value' => $other_disease['diagnosis_center'],'readonly'=>'true'))?>
                         </td>
                         <td>
                             <?php echo $diagnosis_doctor_name; ?>: 
-                            <?php echo form_input(array('name' => 'diagnosis_doctor_name[]', 'value' => $other_disease['doctor_name']))?>
+                            <?php echo form_input(array('name' => 'diagnosis_doctor_name[]', 'value' => $other_disease['doctor_name'],'readonly'=>'true'))?>
                         </td>
                     </tr>
                 </table>
@@ -716,36 +716,36 @@
                              <?php if($other_disease['on_medication_flag'] == 1){?>
                             <td>
                                 <?php echo $is_on_medication_flag; ?>: 
-                                <?php echo form_checkbox(array('name' => 'is_on_medication_flag[]', 'value' => $other_disease['on_medication_flag'],'checked'=>"checked"))?>
+                                <?php echo form_checkbox(array('name' => 'is_on_medication_flag[]', 'value' => $other_disease['on_medication_flag'],'checked'=>"checked",'readonly'=>'true'))?>
                             </td>
                <?php } else {?>
                 <td>
                                 <?php echo $is_on_medication_flag; ?>: 
-                                <?php echo form_checkbox(array('name' => 'is_on_medication_flag[]', 'value' => $other_disease['on_medication_flag']))?>
+                                <?php echo form_checkbox(array('name' => 'is_on_medication_flag[]', 'value' => $other_disease['on_medication_flag'],'readonly'=>'true'))?>
                             </td>
                <?php } ?>
                             
                             <td>
                                 <?php echo $medication_type_name; ?>: 
-                                <?php echo form_input(array('name' => 'medication_type_name[]', 'value' => $other_disease['medication_type']))?>
+                                <?php echo form_input(array('name' => 'medication_type_name[]', 'value' => $other_disease['medication_type'],'readonly'=>'true'))?>
                             </td>
                             <td>
                                 <?php echo $medication_start_date; ?>: 
-                                <?php echo form_input(array('name' => 'medication_start_date[]', 'value' =>  $other_disease['start_date'] == '0000-00-00' ? '00-00-0000'  : date('d-m-Y', strtotime($other_disease['start_date'])), 'class' => 'datepicker'))?>
+                                <?php echo form_input(array('name' => 'medication_start_date[]', 'value' => $other_disease['start_date'], 'class' => 'datepicker','readonly'=>'true'))?>
                             </td>
                             <td>
                                 <?php echo $medication_end_date; ?>: 
-                                <?php echo form_input(array('name' => 'age_of_diagnosis[]', 'value' => $other_disease['end_date'] == '0000-00-00' ? '00-00-0000'  : date('d-m-Y', strtotime($other_disease['end_date'])), 'class' => 'datepicker'))?>
+                                <?php echo form_input(array('name' => 'age_of_diagnosis[]', 'value' => $other_disease['end_date'], 'class' => 'datepicker','readonly'=>'true'))?>
                             </td>
                         </tr>
                         <tr>
                             <td>
                                 <?php echo $medication_duration; ?>: 
-                                <?php echo form_input(array('name' => 'medication_duration[]', 'value' => $other_disease['duration']))?>
+                                <?php echo form_input(array('name' => 'medication_duration[]', 'value' => $other_disease['duration'],'readonly'=>'true'))?>
                             </td>
                             <td>
                                 <?php echo $medication_comments; ?>: 
-                                <?php echo form_input(array('name' => 'medication_comments[]', 'value' => $other_disease['comments']))?>
+                                <?php echo form_input(array('name' => 'medication_comments[]', 'value' => $other_disease['comments'],'readonly'=>'true'))?>
                             </td>
                             
                         </tr>
@@ -757,12 +757,9 @@
         </div>
     </div>
     <?php echo form_fieldset_close(); ?>	
-     <?php if ($userprivillage['edit_privilege']== 1 && !$isLocked){ ?>
-    <?php echo form_submit('mysubmit', 'Update'); ?>
-    <?php } else { ?>
-    <?php }?>
     <?php echo form_close(); ?>
 </div>
+
 
 
 

@@ -216,15 +216,12 @@ class ModelDiagnosis1 extends CI_Model {
                     $cell_value = 'None';
                     //$flag_pathology_tissue_site = TRUE;
                 }
-                /*if (($key == 6 || $key == 14 || $key == 15 || $key == 28) && $cell_value != NULL) {
-                    //echo $cell_value.'         ';
-                    if (strlen($cell_value) > 8) {
-                        if (strpos($cell_value, '-') !== FALSE)
+                if (($key == 6 || $key == 14 || $key == 15 || $key == 28) && $cell_value != NULL) {
+                        /*if (strpos($cell_value, '-') !== FALSE)
                             $cell_value = date("d/m/Y", strtotime($cell_value));
                         list($day, $month, $year) = explode("/", $cell_value);
 
                         if (!checkdate($month, $day, $year)) {
-                            //echo '<h2>date_of_diagnosis or treatment_start_date or treatment_end_date is not in appropriate format at Diagnosis & Treatment</h2>';
                             if ($key == 6)
                                 $this->model_Validator->showMessage("date_of_diagnosis", "Diagnosis & Treatment", $i);
                             if ($key == 14)
@@ -237,15 +234,13 @@ class ModelDiagnosis1 extends CI_Model {
                             $abort = TRUE;
                             break;
                         }
-                    }
-                }
-
-                if ($key == 6 || $key == 14 || $key == 15 || $key == 28) {
-                    if ($cell_value != NULL) {
+                        $cell_value = date('Y-m-d', strtotime(str_replace('/', '-', $cell_value)));*/
+                    $cell_value = preg_replace("/[^0-9\/]/", "", $cell_value);
+                    if ($cell_value == "")
+                        $cell_value = '0000-00-00';
+                    else
                         $cell_value = date('Y-m-d', strtotime(str_replace('/', '-', $cell_value)));
-                    }
-                }*/
-
+                }
                 $temp14[] = $cell_value;
             }
 

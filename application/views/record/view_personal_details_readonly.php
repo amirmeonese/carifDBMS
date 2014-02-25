@@ -15,20 +15,20 @@
             <tr>
                 <td>
                     <label for="surname"><?php echo $surname; ?>:</label>
-                    <?php echo form_input(array('name' => 'surname', 'value' => $patient_detail['surname'])) ?>
+                    <?php echo form_input(array('name' => 'surname', 'value' => $patient_detail['surname'], 'readonly'=>'true')) ?>
                 </td>
                 <td>
                     <label for="fullname"><?php echo $fullname; ?>: </label>
-                    <?php echo form_input(array('name' => 'fullname', 'value' => $patient_detail['given_name'])) ?>
+                    <?php echo form_input(array('name' => 'fullname', 'value' => $patient_detail['given_name'], 'readonly'=>'true')) ?>
                 </td>
 
                 <td>
                     <?php echo $maiden_name; ?>: 
-                    <?php echo form_input(array('name' => 'maiden_name', 'value' => $patient_detail['maiden_name'])) ?>
+                    <?php echo form_input(array('name' => 'maiden_name', 'value' => $patient_detail['maiden_name'], 'readonly'=>'true')) ?>
                 </td>
                 <td>
                     <label for="family_no"><?php echo $family_no; ?>: </label>
-                    <?php echo form_input(array('name' => 'family_no', 'value' => $patient_detail['family_no'])) ?>
+                    <?php echo form_input(array('name' => 'family_no', 'value' => $patient_detail['family_no'], 'readonly'=>'true')) ?>
                 </td>
             </tr>
             <tr>
@@ -38,32 +38,30 @@
                 </td>
                 <td>
                     <label for="IC_no"><?php echo $IC_no; ?>: </label>
-                    <?php echo form_input(array('name' => 'IC_no', 'value' => $patient_detail['ic_no'])) ?>
+                    <?php echo form_input(array('name' => 'IC_no', 'value' => $patient_detail['ic_no'], 'readonly'=>'true')) ?>
                 </td>
                 <td>
                     <label for="old_IC_no"><?php echo $old_IC_no; ?>: </label>
-                    <?php echo form_input(array('name' => 'old_IC_no', 'value' => $patient_detail['old_ic_no'])) ?>
+                    <?php echo form_input(array('name' => 'old_IC_no', 'value' => $patient_detail['old_ic_no'], 'readonly'=>'true')) ?>
                 </td>
                 <td>
                     <?php echo $gender; ?>: 
-                    <?php echo form_dropdown('gender', $genderTypes, $patient_detail['gender'], 'id="gender" preload_val="' . $patient_detail['gender'] . '"') ?>
+                    <?php echo form_dropdown('gender', $genderTypes, $patient_detail['gender'], 'id="gender" preload_val="' . $patient_detail['gender'] . '"','readonly="true"') ?>
                 </td>
             </tr>
             <tr>
                 <td>
                     <?php echo $ethinicity; ?>: 
-                    <?php echo form_input(array('name' => 'ethnicity', 'value' => $patient_detail['ethnicity'])) ?>
+                    <?php echo form_input(array('name' => 'ethnicity', 'value' => $patient_detail['ethnicity'], 'readonly'=>'true')) ?>
                 </td>
                 <td>
                     <?php echo $DOB; ?>:
-
-                    <?php echo form_input(array('name' => 'd_o_b', 'value' => $patient_detail['d_o_b'] == '0000-00-00' ? '00-00-0000' : date('d-m-Y', strtotime($patient_detail['d_o_b'])), 'class' => 'datepicker')) ?>
-
+                    <?php echo form_input(array('name' => 'd_o_b', 'value' => $patient_detail['d_o_b'], 'class' => 'datepicker', 'readonly'=>'true')) ?>
 
                 </td>
                 <td>
                     <?php echo $place_of_birth; ?>: 
-                    <?php echo form_input(array('name' => 'place_of_birth', 'value' => $patient_detail['place_of_birth'])) ?>
+                    <?php echo form_input(array('name' => 'place_of_birth', 'value' => $patient_detail['place_of_birth'], 'readonly'=>'true')) ?>
 
                 </td>
                 <td>
@@ -74,29 +72,27 @@
             <tr>
                 <td>
                     <?php echo $blood_group; ?>: 
-                    <?php echo form_input(array('name' => 'blood_group', 'value' => $patient_detail['blood_group'])) ?>                  
+                    <?php echo form_input(array('name' => 'blood_group', 'value' => $patient_detail['blood_group'], 'readonly'=>'true')) ?>                  
                 </td>
 
                 <?php if ($patient_detail['is_dead'] == 1) { ?>
                     <td>
                         <?php echo $is_dead; ?>:
-                        <?php echo form_checkbox(array('name' => 'is_dead', 'value' => $patient_detail['is_dead'], 'checked' => "checked")) ?>                    
+                        <?php echo form_checkbox(array('name' => 'is_dead', 'value' => $patient_detail['is_dead'], 'checked' => "checked", 'readonly'=>'true')) ?>                    
                     </td>
                 <?php } else { ?>
                     <td>
                         <?php echo $is_dead; ?>:
-                        <?php echo form_checkbox(array('name' => 'is_dead', 'value' => $patient_detail['is_dead'])) ?>                    
+                        <?php echo form_checkbox(array('name' => 'is_dead', 'value' => $patient_detail['is_dead'], 'readonly'=>'true')) ?>                    
                     </td>
                 <?php } ?>
                 <td>
                     <?php echo $DOD; ?>: 
-
-                    <?php echo form_input(array('name' => 'd_o_d', 'value' => $patient_detail['d_o_d'] == '0000-00-00' ? '00-00-0000' : date('d-m-Y', strtotime($patient_detail['d_o_d'])), 'class' => 'datepicker')) ?>
-
+                    <?php echo form_input(array('name' => 'd_o_d', 'value' => $patient_detail['d_o_d'], 'class' => 'datepicker', 'readonly'=>'true')) ?>
                 </td>
                 <td>
                     <?php echo $reason_of_death; ?>: 
-                    <?php echo form_textarea(array('name' => 'reason_of_death', 'id' => 'reason_of_death', 'rows' => '3', 'cols' => '7', 'value' => $patient_detail['reason_of_death'])) ?>                                      
+                    <?php echo form_textarea(array('name' => 'reason_of_death', 'id' => 'reason_of_death', 'rows' => '3', 'cols' => '7', 'value' => $patient_detail['reason_of_death'], 'readonly'=>'true')) ?>                                      
                 </td>
             </tr>
         </table>
@@ -113,7 +109,7 @@
                 <tr>
                     <td>
                         <?php echo $hospital_no; ?>: 
-                        <?php echo form_input(array('name' => 'hospital_no', 'value' => @$hospital['hospital_no'])) ?>
+                        <?php echo form_input(array('name' => 'hospital_no', 'value' => @$hospital['hospital_no'], 'readonly'=>'true')) ?>
                     </td>
 
                 </tr>
@@ -133,7 +129,7 @@
                 <tr>
                     <td>
                         <?php echo $private_patient_no; ?>: 
-                        <?php echo form_input(array('name' => 'private_patient_no', 'value' => @$private_no['private_no'])) ?>
+                        <?php echo form_input(array('name' => 'private_patient_no', 'value' => @$private_no['private_no'], 'readonly'=>'true')) ?>
                     </td>
 
                 </tr>
@@ -157,7 +153,7 @@
                     </td>
                     <td>
                         <?php echo 'Study no'; ?>: 
-                        <?php echo form_input(array('name' => 'COGS_studies_no', 'value' => $cogs['COGS_studies_no'])) ?>                    
+                        <?php echo form_input(array('name' => 'COGS_studies_no', 'value' => $cogs['COGS_studies_no'], 'readonly'=>'true')) ?>                    
                     </td>
                 <input type="hidden" name="COGS_studies_id" value="<?php print $cogs['COGS_studies_id']; ?>"/>
                 </tr>
@@ -171,76 +167,75 @@
                 <?php if ($patient_detail['is_dead'] == 1) { ?>
                     <td>
                         <?php echo $is_blood_card_exist; ?>: 
-                        <?php echo form_checkbox(array('name' => 'is_blood_card_exist', 'value' => $patient_detail['blood_card'], 'checked' => "checked")) ?>                    
+                        <?php echo form_checkbox(array('name' => 'is_blood_card_exist', 'value' => $patient_detail['blood_card'], 'checked' => "checked", 'readonly'=>'true')) ?>                    
                     </td>
                 <?php } else { ?>
                     <td>
                         <?php echo $is_blood_card_exist; ?>: 
-                        <?php echo form_checkbox(array('name' => 'is_blood_card_exist', 'value' => $patient_detail['blood_card'])) ?>                    
+                        <?php echo form_checkbox(array('name' => 'is_blood_card_exist', 'value' => $patient_detail['blood_card'], 'readonly'=>'true')) ?>                    
                     </td>
                 <?php } ?>
                 <td>
                     <?php echo $blood_card_location; ?>: 
-                    <?php echo form_input(array('name' => 'blood_card_location', 'value' => $patient_detail['blood_card_location'])) ?>
+                    <?php echo form_input(array('name' => 'blood_card_location', 'value' => $patient_detail['blood_card_location'], 'readonly'=>'true')) ?>
                 </td>
             </tr>
             <tr>
                 <td>
                     <?php echo $address; ?>: 
-                    <?php echo form_textarea(array('name' => 'address', 'id' => 'address', 'rows' => '5', 'cols' => '10', 'value' => $patient_detail['address'])) ?>                                      
+                    <?php echo form_textarea(array('name' => 'address', 'id' => 'address', 'rows' => '5', 'cols' => '10', 'value' => $patient_detail['address'], 'readonly'=>'true')) ?>                                      
                 </td>
                 <td>
                     <?php echo $home_phone; ?>: 
-                    <?php echo form_input(array('name' => 'home_phone', 'value' => $patient_detail['home_phone'])) ?>
+                    <?php echo form_input(array('name' => 'home_phone', 'value' => $patient_detail['home_phone'], 'readonly'=>'true')) ?>
                 </td>
                 <td>
                     <?php echo $cell_phone; ?>: 
-                    <?php echo form_input(array('name' => 'cell_phone', 'value' => $patient_detail['cell_phone'])) ?>
+                    <?php echo form_input(array('name' => 'cell_phone', 'value' => $patient_detail['cell_phone'], 'readonly'=>'true')) ?>
                 </td>
                 <td>
                     <?php echo $work_phone; ?>: 
-                    <?php echo form_input(array('name' => 'work_phone', 'value' => $patient_detail['work_phone'])) ?>
+                    <?php echo form_input(array('name' => 'work_phone', 'value' => $patient_detail['work_phone'], 'readonly'=>'true')) ?>
                 </td>
             </tr>
             <tr>
                 <td>
                     <?php echo $other_phone; ?>: 
-                    <?php echo form_input(array('name' => 'other_phone', 'value' => $patient_detail['other_phone'])) ?>                    
+                    <?php echo form_input(array('name' => 'other_phone', 'value' => $patient_detail['other_phone'], 'readonly'=>'true')) ?>                    
                 </td>
                 <td>
                     <?php echo $fax; ?>: 
-                    <?php echo form_input(array('name' => 'fax', 'value' => $patient_detail['fax'])) ?>                                        
+                    <?php echo form_input(array('name' => 'fax', 'value' => $patient_detail['fax'], 'readonly'=>'true')) ?>                                        
                 </td>
                 <td>
                     <?php echo $email; ?>: 
-                    <?php echo form_input(array('name' => 'email', 'value' => $patient_detail['email'])) ?>                                        
+                    <?php echo form_input(array('name' => 'email', 'value' => $patient_detail['email'], 'readonly'=>'true')) ?>                                        
                 </td>
                 <td>
                     <?php echo $highest_level_of_education; ?>: 
-                    <?php echo form_textarea(array('name' => 'highest_level_of_education', 'id' => 'highest_level_of_education', 'rows' => '3', 'cols' => '7', 'value' => $patient_detail['highest_education_level'])) ?>                                      
+                    <?php echo form_textarea(array('name' => 'highest_level_of_education', 'id' => 'highest_level_of_education', 'rows' => '3', 'cols' => '7', 'value' => $patient_detail['highest_education_level'], 'readonly'=>'true')) ?>                                      
                 </td>
             </tr>
             <tr>
                 <td>
                     <?php echo $height; ?>: 
-                    <?php echo form_input(array('name' => 'height', 'value' => $patient_detail['height'])) ?>                                                            
+                    <?php echo form_input(array('name' => 'height', 'value' => $patient_detail['height'], 'readonly'=>'true')) ?>                                                            
                 </td>
                 <td>
                     <?php echo $weight; ?>: 
-                    <?php echo form_input(array('name' => 'weight', 'value' => $patient_detail['weight'])) ?>                                                            
+                    <?php echo form_input(array('name' => 'weight', 'value' => $patient_detail['weight'], 'readonly'=>'true')) ?>                                                            
                 </td>
                 <td>
-                    <?php
-                    if (!empty($patient_detail['weight']) && ($patient_detail['height'] )) {
+                    <?php if (!empty($patient_detail['weight']) && ($patient_detail['height'])) {
                         $bmi = $patient_detail['weight'] / ($patient_detail['height'] * $patient_detail['height']);
                         ?>
 
                         <?php echo $BMI; ?>: 
-                        <?php echo form_input(array('name' => 'BMI', 'value' => round($bmi, 1))) ?>   
+                        <?php echo form_input(array('name' => 'BMI', 'value' => round($bmi, 1), 'readonly'=>'true')) ?>   
                     <?php } else { ?>
 
                         <?php echo $BMI; ?>: 
-                        <?php echo form_input(array('name' => 'BMI', 'value' => '')) ?>    
+                        <?php echo form_input(array('name' => 'BMI', 'value' => '', 'readonly'=>'true')) ?>    
 
 <?php } ?>
                 </td>
@@ -252,19 +247,19 @@
             <tr>
                 <td>
                     <?php echo $contact_person_name; ?>: 
-<?php echo form_input(array('name' => 'contact_person_name', 'value' => $patient_contact_person['contact_name'])) ?>                    
+<?php echo form_input(array('name' => 'contact_person_name', 'value' => $patient_contact_person['contact_name'], 'readonly'=>'true')) ?>                    
                 </td>
                 <td>
                     <?php echo $contact_person_phone_number; ?>: 
-<?php echo form_input(array('name' => 'contact_person_phone_number', 'value' => $patient_contact_person['contact_telephone'])) ?>                    
+<?php echo form_input(array('name' => 'contact_person_phone_number', 'value' => $patient_contact_person['contact_telephone'], 'readonly'=>'true')) ?>                    
                 </td>
                 <td>
                     <?php echo $contact_person_relationship; ?>: 
-<?php echo form_input(array('name' => 'contact_person_relationship', 'value' => $patient_contact_person['contact_relationship'])) ?>                    
+<?php echo form_input(array('name' => 'contact_person_relationship', 'value' => $patient_contact_person['contact_relationship'], 'readonly'=>'true')) ?>                    
                 </td>
                 <td>
                     <?php echo $patient_comments; ?>: 
-<?php echo form_textarea(array('name' => 'patient_comments', 'id' => 'patient_comments', 'rows' => '3', 'cols' => '7', 'value' => $patient_detail['comment'])) ?>                                      
+<?php echo form_textarea(array('name' => 'patient_comments', 'id' => 'patient_comments', 'rows' => '3', 'cols' => '7', 'value' => $patient_detail['comment'], 'readonly'=>'true')) ?>                                      
                 </td>
             </tr>
             <tr>
@@ -276,49 +271,49 @@
             <tr>
                 <td>
                     <?php echo $total_no_of_male_siblings; ?>:
-<?php echo form_input(array('name' => 'total_no_of_male_siblings', 'value' => $patient_relatives_summary['total_no_of_male_siblings'])) ?>                    
+<?php echo form_input(array('name' => 'total_no_of_male_siblings', 'value' => $patient_relatives_summary['total_no_of_male_siblings'], 'readonly'=>'true')) ?>                    
                 </td>
                 <td>
                     <?php echo $total_no_of_female_siblings; ?>:
-<?php echo form_input(array('name' => 'total_no_of_female_siblings', 'value' => $patient_relatives_summary['total_no_of_female_siblings'])) ?>                    
+<?php echo form_input(array('name' => 'total_no_of_female_siblings', 'value' => $patient_relatives_summary['total_no_of_female_siblings'], 'readonly'=>'true')) ?>                    
                 </td>
                 <td>
                     <?php echo $total_no_of_affected_siblings; ?>:
-<?php echo form_input(array('name' => 'total_no_of_affected_siblings', 'value' => $patient_relatives_summary['total_no_of_affected_siblings'])) ?>                                        
+<?php echo form_input(array('name' => 'total_no_of_affected_siblings', 'value' => $patient_relatives_summary['total_no_of_affected_siblings'], 'readonly'=>'true')) ?>                                        
                 </td>
                 <td>
                     <?php $total_sibling = $patient_relatives_summary['total_no_of_male_siblings'] + $patient_relatives_summary['total_no_of_female_siblings']; ?>
                     <?php echo $total_no_of_siblings; ?>:
-<?php echo form_input(array('name' => 'total_no_of_siblings', 'value' => $total_sibling)) ?>                                                            
+<?php echo form_input(array('name' => 'total_no_of_siblings', 'value' => $total_sibling, 'readonly'=>'true')) ?>                                                            
                 </td>
             </tr>
             <tr>
                 <td>
                     <?php echo $total_no_male_children; ?>:
-<?php echo form_input(array('name' => 'total_no_male_children', 'value' => $patient_relatives_summary['total_no_of_male_children'])) ?>                                                                                
+<?php echo form_input(array('name' => 'total_no_male_children', 'value' => $patient_relatives_summary['total_no_of_male_children'], 'readonly'=>'true')) ?>                                                                                
                 </td>
                 <td>
                     <?php echo $total_no_female_children; ?>:
-<?php echo form_input(array('name' => 'total_no_female_children', 'value' => $patient_relatives_summary['total_no_of_female_children'])) ?>                                                                                                    
+<?php echo form_input(array('name' => 'total_no_female_children', 'value' => $patient_relatives_summary['total_no_of_female_children'], 'readonly'=>'true')) ?>                                                                                                    
                 </td>
                 <td>
                     <?php echo $total_no_of_affected_children; ?>:
-<?php echo form_input(array('name' => 'total_no_of_affected_children', 'value' => $patient_relatives_summary['total_no_of_affected_children'])) ?>                                                                                                                        
+<?php echo form_input(array('name' => 'total_no_of_affected_children', 'value' => $patient_relatives_summary['total_no_of_affected_children'], 'readonly'=>'true')) ?>                                                                                                                        
                 </td>
                 <td>&nbsp;</td>
             </tr>
             <tr>
                 <td>
                     <?php echo $total_no_of_first_degree; ?>:
-<?php echo form_input(array('name' => 'total_no_of_first_degree', 'value' => $patient_relatives_summary['total_no_of_1st_degree'])) ?>                                                                                                                        
+<?php echo form_input(array('name' => 'total_no_of_first_degree', 'value' => $patient_relatives_summary['total_no_of_1st_degree'], 'readonly'=>'true')) ?>                                                                                                                        
                 </td>
                 <td>
                     <?php echo $total_no_of_second_degree; ?>:
-<?php echo form_input(array('name' => 'total_no_of_second_degree', 'value' => $patient_relatives_summary['total_no_of_2nd_degree'])) ?>                                                                                                                        
+<?php echo form_input(array('name' => 'total_no_of_second_degree', 'value' => $patient_relatives_summary['total_no_of_2nd_degree'], 'readonly'=>'true')) ?>                                                                                                                        
                 </td>
                 <td>
                     <?php echo $total_no_of_third_degree; ?>:
-<?php echo form_input(array('name' => 'total_no_of_third_degree', 'value' => $patient_relatives_summary['total_no_of_3rd_degree'])) ?>                                                                                                                        
+<?php echo form_input(array('name' => 'total_no_of_third_degree', 'value' => $patient_relatives_summary['total_no_of_3rd_degree'], 'readonly'=>'true')) ?>                                                                                                                        
                 </td>
                 <td>&nbsp;</td>
             </tr>
@@ -347,9 +342,8 @@
                     </td>
                     <td>
                         <?php echo $status_gathered_date; ?>: 
-    <?php echo form_input(array('name' => 'status_gathered_date', 'value' => $survival['status_gathering_date'] == '0000-00-00' ? '00-00-0000' : date('d-m-Y', strtotime($survival['status_gathering_date'])), 'class' => 'datepicker')); ?>
+    <?php echo form_input(array('name' => 'status_gathered_date', 'value' => $survival['status_gathering_date'], 'class' => 'datepicker', 'readonly'=>'true')); ?>
                     </td>
-
                 <input type="hidden" name="patient_survival_status_id" value="<?php print $survival['patient_survival_status_id']; ?>"/>
 
                 </tr>
@@ -361,7 +355,6 @@
             </table>
         </div>
     <?php endforeach; ?>
-
 <?php foreach ($patient_consent_detail as $list): ?>
         <div class="container" id="add_consent_details_section">
             <div height="30px">&nbsp;</div>
@@ -376,59 +369,54 @@
                     </td>
                     <td>
                         <?php echo $date_at_consent; ?>:
-    <?php echo form_input(array('name' => 'date_at_consent[]', 'value' => $list['date_at_consent'] == '0000-00-00' ? '00-00-0000' : date('d-m-Y', strtotime($list['date_at_consent'])), 'class' => 'datepicker')) ?>                    
+    <?php echo form_input(array('name' => 'date_at_consent[]', 'value' => $list['date_at_consent'], 'class' => 'datepicker', 'readonly'=>'true')) ?>                    
                     </td>
                     <td>
                         <?php echo $age_at_consent; ?>: 
-    <?php echo form_input(array('name' => 'age_at_consent[]', 'value' => $list['age_at_consent'])) ?>                    
+    <?php echo form_input(array('name' => 'age_at_consent[]', 'value' => $list['age_at_consent'], 'readonly'=>'true')) ?>                    
                     </td>
                     <td>
                         <?php echo $is_double_consent_flag; ?>: 
-    <?php echo form_checkbox(array('name' => 'is_double_consent_flag[]', 'value' => $list['double_consent_flag'])) ?>                    
+    <?php echo form_checkbox(array('name' => 'is_double_consent_flag[]', 'value' => $list['double_consent_flag'], 'readonly'=>'true')) ?>                    
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <?php echo $consent_given_by; ?>: 
-    <?php echo form_input(array('name' => 'consent_given_by[]', 'value' => $list['consent_given_by'])) ?>                   
+    <?php echo form_input(array('name' => 'consent_given_by[]', 'value' => $list['consent_given_by'], 'readonly'=>'true')) ?>                   
                     </td>
                     <td>
                         <?php echo $consent_response; ?>: 
-    <?php echo form_input(array('name' => 'consent_response[]', 'value' => $list['consent_response'])) ?>
+    <?php echo form_input(array('name' => 'consent_response[]', 'value' => $list['consent_response'], 'readonly'=>'true')) ?>
                     </td>
                     <td>
                         <?php echo $consent_version; ?>: 
-    <?php echo form_input(array('name' => 'consent_version[]', 'value' => $list['consent_version'])) ?>
+    <?php echo form_input(array('name' => 'consent_version[]', 'value' => $list['consent_version'], 'readonly'=>'true')) ?>
                     </td>
                     <td>
                         <?php echo $relations_to_study; ?>: 
-    <?php echo form_input(array('name' => 'relations_to_study[]', 'value' => $list['relation_to_study'])) ?>
+    <?php echo form_input(array('name' => 'relations_to_study[]', 'value' => $list['relation_to_study'], 'readonly'=>'true')) ?>
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <?php echo $referral_to; ?>: 
-    <?php echo form_input(array('name' => 'referral_to[]', 'value' => $list['referral_to'])) ?>                    
+    <?php echo form_input(array('name' => 'referral_to[]', 'value' => $list['referral_to'], 'readonly'=>'true')) ?>                    
                     </td>
                     <td>
                         <?php echo $referral_date; //referral to genetic counselling ?>:
-    <?php echo form_dropdown('referral_date[]', $referral_to_genetic_counselling, $list['referral_to_genetic_counselling'], 'id="referral_to_genetic_counselling" preload_val="' . $list['referral_to_genetic_counselling'] . '"'); ?>
+    <?php echo form_input(array('name' => 'referral_date[]', 'value' => $list['referral_to_genetic_counselling'], 'class' => 'datepicker', 'readonly'=>'true')) ?>                                        
                     </td>
                     <td>
                         <?php echo $referral_source; ?>: 
-    <?php echo form_input(array('name' => 'referral_source[]', 'value' => $list['referral_source'])) ?>                    
+    <?php echo form_input(array('name' => 'referral_source[]', 'value' => $list['referral_source'], 'readonly'=>'true')) ?>                    
                     </td>
                 </tr>
                 <input type="hidden" name="patient_studies_id[]" value="<?php print $list['patient_studies_id']; ?>"/>
             </table>
-
         <?php echo form_fieldset_close(); ?>	
         </div>
     <?php endforeach; ?>
-    <?php if ($userprivillage['edit_privilege'] == 1) { ?>
-        <?php echo form_submit('mysubmit', 'Update'); ?>
-    <?php } else { ?>
-    <?php } ?>
 <?php echo form_close(); ?>
 </div>
 

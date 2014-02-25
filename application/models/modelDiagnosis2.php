@@ -104,7 +104,7 @@ class ModelDiagnosis2 extends CI_Model {
                     $cell_value = trim($cell_value);
                 //echo $key; // 0, 1, 2..
                 if (($key == 3 || $key == 9 || $key == 10) && $cell_value != NULL) {
-                    if (strpos($cell_value, '-') !== FALSE)
+                    /*if (strpos($cell_value, '-') !== FALSE)
                         $cell_value = date("d/m/Y", strtotime($cell_value));
                     list($day, $month, $year) = explode("/", $cell_value);
 
@@ -118,14 +118,15 @@ class ModelDiagnosis2 extends CI_Model {
                             $this->model_Validator->showMessage("medication_end_date", "Diagnosis & Treatment2", $i);
                         $abort = TRUE;
                         break;
-                    }
+                    }*/
+                    $cell_value = preg_replace("/[^0-9\/]/", "", $cell_value);
+                    if ($cell_value == "")
+                        $cell_value = '0000-00-00';
+                    else
+                        $cell_value = date('Y-m-d', strtotime(str_replace('/', '-', $cell_value)));
                 }
 
-                if ($key == 3 || $key == 9 || $key == 10) {
-                    if ($cell_value != NULL) {
-                        $cell_value = date('Y-m-d', strtotime(str_replace('/', '-', $cell_value)));
-                    }
-                }
+
                 $temp14[] = $cell_value;
             }
             

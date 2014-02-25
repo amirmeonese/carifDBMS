@@ -60,7 +60,7 @@ class ModelLifestyles2 extends CI_Model {
             //echo $result_studies_name[$i] . '<br/>';
         }
         $temp_result_pt_studies_id_patient_menstruation = null;
-        
+
         $temp_result_pt_studies_id_pt_parity_table = array();
         $temp_result_pt_studies_id_pt_parity_table = null;
         $this->db->select('patient_studies_id');
@@ -75,7 +75,7 @@ class ModelLifestyles2 extends CI_Model {
             //echo $result_studies_name[$i] . '<br/>';
         }
         $temp_result_pt_studies_id_pt_parity_table = null;
-        
+
         $temp_result_pt_studies_id_pt_infertility = array();
         $temp_result_pt_studies_id_pt_infertility = null;
         $this->db->select('patient_studies_id');
@@ -90,7 +90,7 @@ class ModelLifestyles2 extends CI_Model {
             //echo $result_studies_name[$i] . '<br/>';
         }
         $temp_result_pt_studies_id_pt_infertility = null;
-        
+
         $temp_pt_studies_id_pt_gyn_srg_history = array();
         $temp_pt_studies_id_pt_gyn_srg_history = null;
         $this->db->select('patient_studies_id');
@@ -105,7 +105,7 @@ class ModelLifestyles2 extends CI_Model {
             //echo $result_studies_name[$i] . '<br/>';
         }
         $temp_pt_studies_id_pt_gyn_srg_history = null;
-        
+
         $i = 0;
         foreach ($sheet->getRowIterator() as $row) {
             $i++;
@@ -115,7 +115,7 @@ class ModelLifestyles2 extends CI_Model {
 
             $cellIterator = $row->getCellIterator();
             $cellIterator->setIterateOnlyExistingCells(false);
-            
+
             $temp12 = null;
             foreach ($cellIterator as $key => $cell) {
                 $cell_value = $cell->getFormattedValue();
@@ -126,12 +126,20 @@ class ModelLifestyles2 extends CI_Model {
                 if ($key == 32)
                     $cell_value = 'None';
 
+                if (($key == 19 || $key == 20 || $key == 24 || $key == 25) && $cell_value != NULL) {
+                    $cell_value = preg_replace("/[^0-9\/]/", "", $cell_value);
+                    if ($cell_value == "")
+                        $cell_value = '0000-00-00';
+                    else
+                        $cell_value = date('Y-m-d', strtotime(str_replace('/', '-', $cell_value)));
+                }
+
                 $temp12[] = $cell_value;
             }
 
-            if(strpos(strtoupper($temp12[3]), 'Y') !== false)
+            if (strpos(strtoupper($temp12[3]), 'Y') !== false)
                 $still_period_flag = TRUE;
-            else if(strpos(strtoupper($temp12[3]), 'N') !== false)
+            else if (strpos(strtoupper($temp12[3]), 'N') !== false)
                 $still_period_flag = FALSE;
             else
                 $still_period_flag = FALSE;
@@ -172,9 +180,9 @@ class ModelLifestyles2 extends CI_Model {
             }
 
 
-            if(strpos(strtoupper($temp12[11]), 'Y') !== false)
+            if (strpos(strtoupper($temp12[11]), 'Y') !== false)
                 $pregnant_flag = TRUE;
-            else if(strpos(strtoupper($temp12[11]), 'N') !== false)
+            else if (strpos(strtoupper($temp12[11]), 'N') !== false)
                 $pregnant_flag = FALSE;
             else
                 $pregnant_flag = FALSE;
@@ -194,37 +202,37 @@ class ModelLifestyles2 extends CI_Model {
             }
 
 
-            if(strpos(strtoupper($temp12[12]), 'Y') !== false)
+            if (strpos(strtoupper($temp12[12]), 'Y') !== false)
                 $infertility_testing_flag = TRUE;
-            else if(strpos(strtoupper($temp12[12]), 'N') !== false)
+            else if (strpos(strtoupper($temp12[12]), 'N') !== false)
                 $infertility_testing_flag = FALSE;
             else
                 $infertility_testing_flag = FALSE;
 
-            if(strpos(strtoupper($temp12[16]), 'Y') !== false)
+            if (strpos(strtoupper($temp12[16]), 'Y') !== false)
                 $contraceptive_pills_flag = TRUE;
-            else if(strpos(strtoupper($temp12[16]), 'N') !== false)
+            else if (strpos(strtoupper($temp12[16]), 'N') !== false)
                 $contraceptive_pills_flag = FALSE;
             else
                 $contraceptive_pills_flag = FALSE;
 
-            if(strpos(strtoupper($temp12[17]), 'Y') !== false)
+            if (strpos(strtoupper($temp12[17]), 'Y') !== false)
                 $currently_taking_contraceptive_pills_flag = TRUE;
-            else if(strpos(strtoupper($temp12[17]), 'N') !== false)
+            else if (strpos(strtoupper($temp12[17]), 'N') !== false)
                 $currently_taking_contraceptive_pills_flag = FALSE;
             else
                 $currently_taking_contraceptive_pills_flag = FALSE;
 
-            if(strpos(strtoupper($temp12[21]), 'Y') !== false)
+            if (strpos(strtoupper($temp12[21]), 'Y') !== false)
                 $hrt_flag = TRUE;
-            else if(strpos(strtoupper($temp12[21]), 'N') !== false)
+            else if (strpos(strtoupper($temp12[21]), 'N') !== false)
                 $hrt_flag = FALSE;
             else
                 $hrt_flag = FALSE;
 
-            if(strpos(strtoupper($temp12[22]), 'Y') !== false)
+            if (strpos(strtoupper($temp12[22]), 'Y') !== false)
                 $currently_using_hrt_flag = TRUE;
-            else if(strpos(strtoupper($temp12[22]), 'N') !== false)
+            else if (strpos(strtoupper($temp12[22]), 'N') !== false)
                 $currently_using_hrt_flag = FALSE;
             else
                 $currently_using_hrt_flag = FALSE;
@@ -278,9 +286,9 @@ class ModelLifestyles2 extends CI_Model {
             }
 
 
-           if(strpos(strtoupper($temp12[30]), 'Y') !== false)
+            if (strpos(strtoupper($temp12[30]), 'Y') !== false)
                 $had_gnc_surgery_flag = TRUE;
-            else if(strpos(strtoupper($temp12[30]), 'N') !== false)
+            else if (strpos(strtoupper($temp12[30]), 'N') !== false)
                 $had_gnc_surgery_flag = FALSE;
             else
                 $had_gnc_surgery_flag = FALSE;
