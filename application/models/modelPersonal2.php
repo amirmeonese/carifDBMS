@@ -83,13 +83,15 @@ class ModelPersonal2 extends CI_Model {
                                     break;
                                 }
                                 $cell_value = date('Y-m-d', strtotime(str_replace('/', '-', $cell_value)));*/
-                                $cell_value = preg_replace("/[^0-9\/]/", "", $cell_value);
-                                if($cell_value == "")
+                                //$cell_value = preg_replace("/[^0-9\/]/", "", $cell_value);
+                                if($cell_value == ""){
                                     $cell_value = '0000-00-00';
-                                else
-                                $cell_value = date('Y-m-d', strtotime(str_replace('/', '-', $cell_value)));
-                                
+                                }else{
+                                $cell_value == '0000-00-00' ? "0000-00-00" : date('Y-m-d', strtotime(str_replace('/', '-', $cell_value)));
+                                }
                             }
+                            
+                            //print_r($print);exit;
                             //echo $key; // 0, 1, 2..
                             $temp3[] = $cell_value;
                         }
@@ -153,7 +155,7 @@ class ModelPersonal2 extends CI_Model {
                         }
                         $temp3 = null;
                     }
-                    //print_r($data_patient_studies);
+                    //print_r($data_patient_studies_update);exit;
                     
                     if(!$abort)
                     {

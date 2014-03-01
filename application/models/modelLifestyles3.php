@@ -66,11 +66,11 @@ class ModelLifestyles3 extends CI_Model {
                     $cell_value = trim($cell_value);
                 
                 if ($key == 4 && $cell_value != NULL) {
-                    $cell_value = preg_replace("/[^0-9\/]/", "", $cell_value);
+                    //$cell_value = preg_replace("/[^0-9\/]/", "", $cell_value);
                     if ($cell_value == "")
                         $cell_value = '0000-00-00';
                     else
-                        $cell_value = date('Y-m-d', strtotime(str_replace('/', '-', $cell_value)));
+                        $cell_value == '0000-00-00' ? "0000-00-00" :  date('Y-m-d', strtotime(str_replace('/', '-', $cell_value)));
                 }
 
                 //echo $key; // 0, 1, 2..
