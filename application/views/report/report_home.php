@@ -70,6 +70,16 @@
                     <?php echo form_input('report_start_range_age'); ?> To <?php echo form_input('report_end_range_age'); ?>
                 </td>
             </tr>
+            
+            <tr>
+                <td>
+                    Creation Date:
+                </td>
+                <td id="label2">
+                    From
+                    <?php echo form_input(array('name' => 'report_creation_date_start', 'class' => 'datepicker')); ?> To <?php echo form_input(array('name' => 'report_creation_date_end', 'class' => 'datepicker')); ?>
+                </td>
+            </tr>
             <tr>
           <td>Field to Appear*:</td>
           <td>

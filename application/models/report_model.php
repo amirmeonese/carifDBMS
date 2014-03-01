@@ -528,11 +528,28 @@ class Report_model extends CI_Model {
             
             }
             
+            if ($record_data['creation_date_start'] == '1970-01-01'){
+              $creation_start_date = "";  
+            } else {
+            
+            $creation_start_date = $record_data['creation_date_start'];
+            
+            }
+            
+            if ($record_data['creation_date_end'] == '1970-01-01'){
+              $creation_end_date = "";  
+            } else {
+            
+            $creation_end_date = $record_data['creation_date_end'];
+            
+            }
+            
             $start_age = $record_data['age_start'];
             $end_age = $record_data['age_end'];
             
         
-        $this->db->select('a.given_name, a.surname, a.ic_no, a.ethnicity, b.studies_id, c.date_of_diagnosis,c.age_of_diagnosis');
+        $this->db->select('a.given_name, a.surname, a.ic_no, a.ethnicity, b.studies_id');
+        $this->db->select('c.date_of_diagnosis,c.age_of_diagnosis');
         $this->db->from('patient a');
         $this->db->where('a.is_deleted',0);
         $this->db->join('patient_studies b','a.ic_no = b.patient_ic_no','left');
@@ -549,11 +566,14 @@ class Report_model extends CI_Model {
         if (!empty ($start_date) || ($end_date)) {
         $this->db->where("c.date_of_diagnosis BETWEEN '$start_date' AND '$end_date'", NULL, FALSE);
         }
+        if (!empty ($creation_start_date) || ($creation_end_date)) {
+        $this->db->where("a.created_on BETWEEN '$creation_start_date' AND '$creation_end_date'", NULL, FALSE);
+        }
         if (!empty ($ic_no)) {
                 $this->db->where_in('a.ic_no', $ic_no);
             }
        // $this->db->like('c.cancer_id', $record_data['cancer']);
-        
+        $this->db->group_by('ic_no');
         $this->db->like('b.studies_id', $record_data['studies_name']);
         $this->db->order_by("a.given_name", "asc");
         $patient_list = $this->db->get('');
@@ -583,6 +603,21 @@ class Report_model extends CI_Model {
             $end_date = $record_data['date_end'];
             
             }
+            if ($record_data['creation_date_start'] == '1970-01-01'){
+              $creation_start_date = "";  
+            } else {
+            
+            $creation_start_date = $record_data['creation_start_date'];
+            
+            }
+            
+            if ($record_data['creation_date_end'] == '1970-01-01'){
+              $creation_end_date = "";  
+            } else {
+            
+            $creation_end_date = $record_data['creation_end_date'];
+            
+            }
             
             $start_age = $record_data['age_start'];
             $end_age = $record_data['age_end'];
@@ -601,6 +636,9 @@ class Report_model extends CI_Model {
         }
         if (!empty ($start_date) || ($end_date)) {
         $this->db->where("c.date_of_diagnosis BETWEEN '$start_date' AND '$end_date'", NULL, FALSE);
+        }
+        if (!empty ($creation_start_date) || ($creation_end_date)) {
+        $this->db->where("a.created_on BETWEEN '$creation_start_date' AND '$creation_end_date'", NULL, FALSE);
         }
         $this->db->like('c.cancer_id', $record_data['cancer']);
         $this->db->like('b.studies_id', $record_data['studies_name']);
