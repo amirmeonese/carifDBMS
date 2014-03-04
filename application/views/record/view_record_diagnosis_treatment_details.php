@@ -8,7 +8,8 @@
     ?>
     <div class="container" id="add_record_form_section_breast_cancer">
         <div height="30px">&nbsp;</div>
-        <?php foreach ($patient_breast_cancer as $breast_cancer): ?>
+        <?php if(!empty($patient_breast_cancer)){ ?>
+        <?php foreach ($patient_breast_cancer as $breast_cancer){ ?>
         <?php
         echo form_fieldset('Breast Cancer Diagnosis & Treatment');
         ?>
@@ -99,7 +100,10 @@
             </tr>&nbsp;</td>
             </tr>&nbsp;</td>
             </tr>
+            <input type="hidden" name="patient_studies_id" value="<?php print $breast_cancer['patient_studies_id']; ?>"/>
+            <input type="hidden" name="patient_cancer_id[]" value="<?php print $breast_cancer['patient_cancer_id']; ?>"/>
         </table>
+        <?php foreach ($breast_cancer['pathology'] as $breast_cancer_pathology): ?>
         <table id="breast_cancer_pathology_section">
             <tr>
                 <td id="label1">Pathology</td>
@@ -108,63 +112,63 @@
             <tr>
                 <td>
                     <?php echo $breast_pathology_tissue_site; ?>: <br />
-                    <?php echo form_dropdown('breast_pathology_tissue_site[]', $patient_cancer_site_lists, $breast_cancer['tissue_site'], 'id="cancer_site" preload_val="'.$breast_cancer['tissue_site'].'"'); ?>
+                    <?php echo form_dropdown('breast_pathology_tissue_site[]', $patient_cancer_site_lists, $breast_cancer_pathology['tissue_site'], 'id="cancer_site" preload_val="'.$breast_cancer_pathology['tissue_site'].'"'); ?>
                 </td>
                 <td>
                     <?php echo $breast_pathology_path_report_type; ?>: <br />
-                    <?php echo form_dropdown('breast_pathology_path_report_type[]', $pathology_path_report_type_lists, $breast_cancer['type_of_report'], 'id="pathology_path_report_type_lists" preload_val="'.$breast_cancer['type_of_report'].'"'); ?>
+                    <?php echo form_dropdown('breast_pathology_path_report_type[]', $pathology_path_report_type_lists, $breast_cancer_pathology['type_of_report'], 'id="pathology_path_report_type_lists" preload_val="'.$breast_cancer_pathology['type_of_report'].'"'); ?>
                 </td>
                 <td>
                     <?php echo $breast_pathology_path_report_date; ?>: <br />
-                    <?php echo form_input(array('name' => 'breast_pathology_path_report_date[]', 'value' => $breast_cancer['date_of_report']))?>
+                    <?php echo form_input(array('name' => 'breast_pathology_path_report_date[]', 'value' => $breast_cancer_pathology['date_of_report']))?>
                 </td>
             </tr>
             <tr>
                 <td>
                     <?php echo $breast_pathology_lab; ?>: <br />
-                    <?php echo form_input(array('name' => 'breast_pathology_lab[]', 'value' => $breast_cancer['pathology_lab']))?>
+                    <?php echo form_input(array('name' => 'breast_pathology_lab[]', 'value' => $breast_cancer_pathology['pathology_lab']))?>
                 </td>
                 <td>
                     <?php echo $breast_pathology_doctor; ?>: <br />
-                    <?php echo form_input(array('name' => 'breast_pathology_doctor[]', 'value' => $breast_cancer['name_of_doctor']))?>
+                    <?php echo form_input(array('name' => 'breast_pathology_doctor[]', 'value' => $breast_cancer_pathology['name_of_doctor']))?>
                 </td>
             </tr>
             <tr>
                 <td>
                     <?php echo $breast_pathology_morphology; ?>: <br />
-                    <?php echo form_dropdown('breast_pathology_morphology[]', $pathology_morphology_lists, $breast_cancer['morphology'], 'id="pathology_morphology_lists" preload_val="'.$breast_cancer['morphology'].'"'); ?>
+                    <?php echo form_dropdown('breast_pathology_morphology[]', $pathology_morphology_lists, $breast_cancer_pathology['morphology'], 'id="pathology_morphology_lists" preload_val="'.$breast_cancer_pathology['morphology'].'"'); ?>
                 </td>
                 <td>
                     <?php echo $breast_pathology_tissue_tumour_stage; ?>: <br />
-                    <?php echo form_dropdown('breast_pathology_tissue_tumour_stage[]', $pathology_tissue_tumour_stage_lists, $breast_cancer['t_staging'], 'id="pathology_tissue_tumour_stage_lists" preload_val="'.$breast_cancer['t_staging'].'"'); ?>
+                    <?php echo form_dropdown('breast_pathology_tissue_tumour_stage[]', $pathology_tissue_tumour_stage_lists, $breast_cancer_pathology['t_staging'], 'id="pathology_tissue_tumour_stage_lists" preload_val="'.$breast_cancer_pathology['t_staging'].'"'); ?>
                 </td>
                 <td>
                     <?php echo $breast_pathology_node_stage; ?>: <br />
-                    <?php echo form_dropdown('breast_pathology_node_stage[]', $pathology_node_stage_lists, $breast_cancer['n_staging'], 'id="pathology_node_stage_lists" preload_val="'.$breast_cancer['n_staging'].'"'); ?>
+                    <?php echo form_dropdown('breast_pathology_node_stage[]', $pathology_node_stage_lists, $breast_cancer_pathology['n_staging'], 'id="pathology_node_stage_lists" preload_val="'.$breast_cancer_pathology['n_staging'].'"'); ?>
                 </td>
             </tr>
             <tr>
                 <td>
                     <?php echo $breast_pathology_metastasis_stage; ?>: <br />
-                    <?php echo form_dropdown('breast_pathology_metastasis_stage[]', $pathology_metastasis_stage_lists, $breast_cancer['m_staging'], 'id="pathology_metastasis_stage_lists" preload_val="'.$breast_cancer['m_staging'].'"'); ?>
+                    <?php echo form_dropdown('breast_pathology_metastasis_stage[]', $pathology_metastasis_stage_lists, $breast_cancer_pathology['m_staging'], 'id="pathology_metastasis_stage_lists" preload_val="'.$breast_cancer_pathology['m_staging'].'"'); ?>
                 </td>
                 <td>
                     <?php echo $breast_pathology_tumour_stage; ?>: <br />
-                    <?php echo form_dropdown('breast_pathology_tumour_stage[]', $pathology_tumour_stage_lists, $breast_cancer['tumour_stage'], 'id="pathology_tumour_stage_lists" preload_val="'.$breast_cancer['tumour_stage'].'"'); ?>
+                    <?php echo form_dropdown('breast_pathology_tumour_stage[]', $pathology_tumour_stage_lists, $breast_cancer_pathology['tumour_stage'], 'id="pathology_tumour_stage_lists" preload_val="'.$breast_cancer_pathology['tumour_stage'].'"'); ?>
                 </td>
                 <td>
                     <?php echo $breast_pathology_tumour_grade; ?>: <br />
-                    <?php echo form_dropdown('breast_pathology_tumour_grade[]', $pathology_tumour_grade_lists, $breast_cancer['tumour_grade'], 'id="pathology_tumour_grade_lists" preload_val="'.$breast_cancer['tumour_grade'].'"'); ?>
+                    <?php echo form_dropdown('breast_pathology_tumour_grade[]', $pathology_tumour_grade_lists, $breast_cancer_pathology['tumour_grade'], 'id="pathology_tumour_grade_lists" preload_val="'.$breast_cancer_pathology['tumour_grade'].'"'); ?>
                 </td>
             </tr>
             <tr>
                 <td>
                     <?php echo $breast_pathology_total_lymph_nodes; ?>: <br />
-                    <?php echo form_input(array('name' => 'breast_pathology_total_lymph_nodes[]', 'value' => $breast_cancer['total_lymph_nodes']))?>
+                    <?php echo form_input(array('name' => 'breast_pathology_total_lymph_nodes[]', 'value' => $breast_cancer_pathology['total_lymph_nodes']))?>
                 </td>
                 <td>
                     <?php echo $breast_pathology_tumour_size; ?>: <br />
-                    <?php echo form_input(array('name' => 'breast_pathology_tumour_size[]', 'value' => $breast_cancer['tumour_size']))?>
+                    <?php echo form_input(array('name' => 'breast_pathology_tumour_size[]', 'value' => $breast_cancer_pathology['tumour_size']))?>
                 </td>
             </tr>
         </table>
@@ -173,15 +177,15 @@
                 <tr>
                     <td>
                         <?php echo $breast_pathology_ER_status; ?>: <br />
-                        <?php echo form_input(array('name' => 'breast_pathology_ER_status[]', 'value' => $breast_cancer['ER_status']))?>
+                        <?php echo form_input(array('name' => 'breast_pathology_ER_status[]', 'value' => $breast_cancer_pathology['ER_status']))?>
                     </td>
                     <td>
                         <?php echo $breast_pathology_PR_status; ?>: <br />
-                        <?php echo form_input(array('name' => 'breast_pathology_PR_status[]', 'value' => $breast_cancer['PR_status']))?>
+                        <?php echo form_input(array('name' => 'breast_pathology_PR_status[]', 'value' => $breast_cancer_pathology['PR_status']))?>
                     </td>
                     <td>
                         <?php echo $breast_pathology_HER2_status; ?>: <br />
-                        <?php echo form_input(array('name' => 'breast_pathology_HER2_status[]', 'value' => $breast_cancer['HER2_status']))?>
+                        <?php echo form_input(array('name' => 'breast_pathology_HER2_status[]', 'value' => $breast_cancer_pathology['HER2_status']))?>
                     </td>
                     
                 </tr>
@@ -191,12 +195,16 @@
             <tr>
                 <td>
                     <?php echo $breast_pathology_tissue_path_comments; ?>: <br />
-                    <?php echo form_textarea(array('name' => 'breast_pathology_tissue_path_comments[]','id' => 'breast_pathology_tissue_path_comments','rows' => '3','cols' => '7', 'value' => $breast_cancer['comments']))?>
+                    <?php echo form_textarea(array('name' => 'breast_pathology_tissue_path_comments[]','id' => 'breast_pathology_tissue_path_comments','rows' => '3','cols' => '7', 'value' => $breast_cancer_pathology['comments']))?>
                 </td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
             </tr>
+            <input type="hidden" name="patient_pathology_id[]" value="<?php print $breast_cancer_pathology['patient_pathology_id']; ?>"/>
+            <input type="hidden" name="patient_pathology_staining_status_id[]" value="<?php print $breast_cancer_pathology['patient_pathology_staining_status_id']; ?>"/>
         </table>
+        <?php endforeach; ?>
+        <?php foreach ($breast_cancer['treatment'] as $breast_cancer_treatment): ?>
         <div id="add_breast_cancer_treatment_div_1" >
             <table id="breast_cancer_treatment_1">
                 <tr>
@@ -205,70 +213,69 @@
                 <tr>
                     <td>
                         <?php echo $patient_cancer_treatment_name; ?>: 
-                        <?php echo form_dropdown('patient_cancer_treatment_name[]', $patient_cancer_treatment_name_lists, $treatment_type[$breast_cancer['treatment_id']], 'id="patient_cancer_treatment_name_lists" preload_val="'.$treatment_type[$breast_cancer['treatment_id']].'"'); ?>
+                        <?php echo form_dropdown('patient_cancer_treatment_name[]', $patient_cancer_treatment_name_lists, $treatment_type[$breast_cancer_treatment['treatment_id']], 'id="patient_cancer_treatment_name_lists" preload_val="'.$treatment_type[$breast_cancer_treatment['treatment_id']].'"'); ?>
                     </td>
                     <td>
                         <?php echo $treatment_details; ?>: 
-                        <?php echo form_input(array('name' => 'treatment_details[]', 'value' => $breast_cancer['treatment_details']))?>
+                        <?php echo form_input(array('name' => 'treatment_details[]', 'value' => $breast_cancer_treatment['treatment_details']))?>
                     </td>
                     <td>
                         <?php echo $treatment_start_date; ?>: 
-                        <?php echo form_input(array('name' => 'treatment_start_date[]', 'value' =>  $breast_cancer['treatment_start_date'] == '0000-00-00' ? '00-00-0000'  : date('d-m-Y', strtotime($breast_cancer['treatment_start_date'])), 'class' => 'datepicker'))?>
+                        <?php echo form_input(array('name' => 'treatment_start_date[]', 'value' =>  $breast_cancer_treatment['treatment_start_date'] == '0000-00-00' ? '00-00-0000'  : date('d-m-Y', strtotime($breast_cancer_treatment['treatment_start_date'])), 'class' => 'datepicker'))?>
                     </td>
                     <td>
                         <?php echo $treatment_end_date; ?>: 
-                        <?php echo form_input(array('name' => 'treatment_end_date[]', 'value' =>  $breast_cancer['treatment_end_date'] == '0000-00-00' ? '00-00-0000'  : date('d-m-Y', strtotime($breast_cancer['treatment_end_date'])), 'class' => 'datepicker'))?>
+                        <?php echo form_input(array('name' => 'treatment_end_date[]', 'value' =>  $breast_cancer_treatment['treatment_end_date'] == '0000-00-00' ? '00-00-0000'  : date('d-m-Y', strtotime($breast_cancer_treatment['treatment_end_date'])), 'class' => 'datepicker'))?>
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <?php echo $treatment_duration; ?>: 
-                        <?php echo form_input(array('name' => 'treatment_duration[]', 'value' => $breast_cancer['treatment_durations']))?>
+                        <?php echo form_input(array('name' => 'treatment_duration[]', 'value' => $breast_cancer_treatment['treatment_durations']))?>
                     </td>               
                     <td>
                         <?php echo $treatment_drug_dose; ?>: 
-                        <?php echo form_input(array('name' => 'treatment_drug_dose[]', 'value' => $breast_cancer['treatment_drug_dose']))?>
+                        <?php echo form_input(array('name' => 'treatment_drug_dose[]', 'value' => $breast_cancer_treatment['treatment_drug_dose']))?>
                     </td>
                     <td>
                         <?php echo $treatment_cycle; ?>: 
-                        <?php echo form_input(array('name' => 'treatment_cycle[]', 'value' => $breast_cancer['treatment_cycle']))?>
+                        <?php echo form_input(array('name' => 'treatment_cycle[]', 'value' => $breast_cancer_treatment['treatment_cycle']))?>
                     </td>
                     <td>
                         <?php echo $treatment_frequency; ?>: 
-                        <?php echo form_input(array('name' => 'treatment_frequency[]', 'value' => $breast_cancer['treatment_frequency']))?>
+                        <?php echo form_input(array('name' => 'treatment_frequency[]', 'value' => $breast_cancer_treatment['treatment_frequency']))?>
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <?php echo $treatment_visidual_desease; ?>: 
-                        <?php echo form_input(array('name' => 'treatment_visidual_desease[]', 'value' => $breast_cancer['treatment_visidual_desease']))?>
+                        <?php echo form_input(array('name' => 'treatment_visidual_desease[]', 'value' => $breast_cancer_treatment['treatment_visidual_desease']))?>
                     </td>
                     <td>
                         <?php echo $treatment_primary_therapy_outcome; ?>: 
-                        <?php echo form_input(array('name' => 'treatment_privacy_outcome[]', 'value' => $breast_cancer['treatment_primary_outcome']))?>
+                        <?php echo form_input(array('name' => 'treatment_privacy_outcome[]', 'value' => $breast_cancer_treatment['treatment_primary_outcome']))?>
                     </td>
                     <td>
                         <?php echo $breast_cancer_treatment_comments; ?>: 
-                        <?php echo form_textarea(array('name' => 'breast_cancer_treatment_comments[]','id' => 'breast_cancer_treatment_comments','rows' => '3','cols' => '7', 'value' => $breast_cancer['comments']))?>
+                        <?php echo form_textarea(array('name' => 'breast_cancer_treatment_comments[]','id' => 'breast_cancer_treatment_comments','rows' => '3','cols' => '7', 'value' => $breast_cancer_treatment['comments']))?>
                     </td>
                     
                 </tr>&nbsp;</td>
                 </tr>&nbsp;</td>
                 </tr>
                 
-                <input type="hidden" name="patient_studies_id" value="<?php print $breast_cancer['patient_studies_id']; ?>"/>
-                <input type="hidden" name="patient_cancer_id[]" value="<?php print $breast_cancer['patient_cancer_id']; ?>"/>
-                <input type="hidden" name="patient_pathology_id[]" value="<?php print $breast_cancer['patient_pathology_id']; ?>"/>
-                <input type="hidden" name="patient_pathology_staining_status_id[]" value="<?php print $breast_cancer['patient_pathology_staining_status_id']; ?>"/>
-                <input type="hidden" name="patient_cancer_treatment_id[]" value="<?php print $breast_cancer['patient_cancer_treatment_id']; ?>"/>
+                <input type="hidden" name="patient_cancer_treatment_id[]" value="<?php print $breast_cancer_treatment['patient_cancer_treatment_id']; ?>"/>
             </table>
         </div>
         <?php echo form_fieldset_close(); ?>
         <?php endforeach; ?>
+        <?php } ?>
+        <?php } ?>
     </div>
     <div class="container" id="add_record_form_section_ovary_cancer">
         <div height="30px">&nbsp;</div>
-        <?php foreach ($patient_ovary_cancer as $ovary_cancer): ?>
+         <?php if(!empty($patient_ovary_cancer)){ ?>
+        <?php foreach ($patient_ovary_cancer as $ovary_cancer){ ?>
         <?php
         echo form_fieldset('Ovary Cancer Diagnosis & Treatment');
         ?>
@@ -358,9 +365,11 @@
             </tr>&nbsp;</td>
             </tr>&nbsp;</td>
             </tr>
+            <input type="hidden" name="ovary_patient_cancer_id[]" value="<?php print $ovary_cancer['patient_cancer_id']; ?>"/>
         </table>
     </div>
         <div class="container" id="add_record_form_section_ovary_cancer_pathology_section_1">
+            <?php foreach ($ovary_cancer['pathology'] as $ovary_cancer_pathology): ?>
             <div height="30px">&nbsp;</div>
             <table id="ovary_cancer_pathology_section">
                 <tr>
@@ -370,79 +379,82 @@
                 <tr>
                     <td>
                         <?php echo $ovary_pathology_tissue_site; ?>: <br />
-                        <?php echo form_dropdown('ovary_pathology_tissue_site[]', $patient_cancer_site_lists, $ovary_cancer['tissue_site'], 'id="cancer_site" preload_val="'.$ovary_cancer['tissue_site'].'"'); ?>
+                        <?php echo form_dropdown('ovary_pathology_tissue_site[]', $patient_cancer_site_lists, $ovary_cancer_pathology['tissue_site'], 'id="cancer_site" preload_val="'.$ovary_cancer_pathology['tissue_site'].'"'); ?>
                     </td>
                     <td>
                         <?php echo $ovary_pathology_path_report_type; ?>: <br />
-                        <?php echo form_dropdown('ovary_pathology_path_report_type[]', $pathology_path_report_type_lists, $ovary_cancer['type_of_report'], 'id="pathology_path_report_type_lists" preload_val="'.$ovary_cancer['type_of_report'].'"'); ?>
+                        <?php echo form_dropdown('ovary_pathology_path_report_type[]', $pathology_path_report_type_lists, $ovary_cancer_pathology['type_of_report'], 'id="pathology_path_report_type_lists" preload_val="'.$ovary_cancer_pathology['type_of_report'].'"'); ?>
                     </td>
                     <td>
                         <?php echo $ovary_pathology_path_report_date; ?>: <br />
-                        <?php echo form_input(array('name' => 'ovary_pathology_path_report_date[]', 'value' =>  $ovary_cancer['date_of_report'] == '0000-00-00' ? '00-00-0000'  : date('d-m-Y', strtotime($ovary_cancer['date_of_report'])), 'class' => 'datepicker'))?>
+                        <?php echo form_input(array('name' => 'ovary_pathology_path_report_date[]', 'value' =>  $ovary_cancer_pathology['date_of_report'] == '0000-00-00' ? '00-00-0000'  : date('d-m-Y', strtotime($ovary_cancer_pathology['date_of_report'])), 'class' => 'datepicker'))?>
                     </td>
                     <td>
                         <?php echo $ovary_pathology_report_no; ?>: <br />
-                        <?php echo form_input(array('name' => 'ovary_pathology_report_no[]', 'value' => $ovary_cancer['no_of_report']))?>
+                        <?php echo form_input(array('name' => 'ovary_pathology_report_no[]', 'value' => $ovary_cancer_pathology['no_of_report']))?>
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <?php echo $ovary_pathology_lab; ?>: <br />
-                        <?php echo form_input(array('name' => 'ovary_pathology_lab[]', 'value' => $ovary_cancer['pathology_lab']))?>
+                        <?php echo form_input(array('name' => 'ovary_pathology_lab[]', 'value' => $ovary_cancer_pathology['pathology_lab']))?>
                     </td>
                     <td>
                         <?php echo $ovary_pathology_doctor; ?>: <br />
-                        <?php echo form_input(array('name' => 'ovary_pathology_doctor[]', 'value' => $ovary_cancer['name_of_doctor']))?>
+                        <?php echo form_input(array('name' => 'ovary_pathology_doctor[]', 'value' => $ovary_cancer_pathology['name_of_doctor']))?>
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <?php echo $ovary_pathology_morphology; ?>: <br />
-                        <?php echo form_input(array('name' => 'ovary_pathology_morphology[]', 'value' => $ovary_cancer['morphology']))?>
+                        <?php echo form_input(array('name' => 'ovary_pathology_morphology[]', 'value' => $ovary_cancer_pathology['morphology']))?>
                     </td>
                     <td>
                         <?php echo $ovary_stage_classification; ?>: <br />
-                        <?php echo form_dropdown('ovary_stage_classification[]', $ovary_stage_classification_lists, $ovary_cancer['stage_classifications'], 'id="ovary_stage_classification_lists" preload_val="'.$ovary_cancer['stage_classifications'].'"'); ?>
+                        <?php echo form_dropdown('ovary_stage_classification[]', $ovary_stage_classification_lists, $ovary_cancer_pathology['stage_classifications'], 'id="ovary_stage_classification_lists" preload_val="'.$ovary_cancer_pathology['stage_classifications'].'"'); ?>
                     </td>
                     <td>
                         <?php echo $ovary_pathology_tumour_stage; ?>: <br />
-                        <?php echo form_dropdown('ovary_pathology_tumour_stage[]', $pathology_tumour_stage_lists, $ovary_cancer['tumour_stage'], 'id="pathology_tumour_stage_lists" preload_val="'.$ovary_cancer['tumour_stage'].'"'); ?>
+                        <?php echo form_dropdown('ovary_pathology_tumour_stage[]', $pathology_tumour_stage_lists, $ovary_cancer_pathology['tumour_stage'], 'id="pathology_tumour_stage_lists" preload_val="'.$ovary_cancer_pathology['tumour_stage'].'"'); ?>
                     </td>
                     <td>
                         <?php echo $ovary_tumor_subtypes; ?>: <br />
-                        <?php echo form_dropdown('ovary_tumor_subtypes[]', $ovary_tumor_subtypes_lists, $ovary_cancer['tumor_subtype'], 'id="ovary_tumor_subtypes_lists" preload_val="'.$ovary_cancer['tumor_subtype'].'"'); ?>
+                        <?php echo form_dropdown('ovary_tumor_subtypes[]', $ovary_tumor_subtypes_lists, $ovary_cancer_pathology['tumor_subtype'], 'id="ovary_tumor_subtypes_lists" preload_val="'.$ovary_cancer_pathology['tumor_subtype'].'"'); ?>
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <?php echo $ovary_pathology_tumour_grade; ?>: <br />
-                        <?php echo form_dropdown('ovary_pathology_tumour_grade[]', $pathology_tumour_grade_lists, $ovary_cancer['tumour_grade'], 'id="pathology_tumour_grade_lists" preload_val="'.$ovary_cancer['tumour_grade'].'"'); ?>
+                        <?php echo form_dropdown('ovary_pathology_tumour_grade[]', $pathology_tumour_grade_lists, $ovary_cancer_pathology['tumour_grade'], 'id="pathology_tumour_grade_lists" preload_val="'.$ovary_cancer_pathology['tumour_grade'].'"'); ?>
                     </td>
                     <td>
                         <?php echo $ovary_pathology_tumour_size; ?>: <br />
-                        <?php echo form_input(array('name' => 'ovary_pathology_tumour_size[]', 'value' => $ovary_cancer['tumour_size']))?>
+                        <?php echo form_input(array('name' => 'ovary_pathology_tumour_size[]', 'value' => $ovary_cancer_pathology['tumour_size']))?>
                     </td>
                     <td>
                         <?php echo $ovary_tumor_behavior; ?>: <br />
-                        <?php echo form_dropdown('ovary_tumor_behavior[]', $ovary_tumor_behavior_lists, $ovary_cancer['tumor_behaviour'], 'id="ovary_tumor_behavior_lists" preload_val="'.$ovary_cancer['tumor_behaviour'].'"'); ?>
+                        <?php echo form_dropdown('ovary_tumor_behavior[]', $ovary_tumor_behavior_lists, $ovary_cancer_pathology['tumor_behaviour'], 'id="ovary_tumor_behavior_lists" preload_val="'.$ovary_cancer_pathology['tumor_behaviour'].'"'); ?>
                     </td>
                     <td>
                         <?php echo $ovary_tumor_differentiation; ?>: <br />
-                        <?php echo form_dropdown('ovary_tumor_differentiation[]', $ovary_tumor_differentiation_lists, $ovary_cancer['tumor_differentiation'], 'id="ovary_tumor_differentiation_lists" preload_val="'.$ovary_cancer['tumor_differentiation'].'"'); ?>
+                        <?php echo form_dropdown('ovary_tumor_differentiation[]', $ovary_tumor_differentiation_lists, $ovary_cancer_pathology['tumor_differentiation'], 'id="ovary_tumor_differentiation_lists" preload_val="'.$ovary_cancer_pathology['tumor_differentiation'].'"'); ?>
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <?php echo $ovary_pathology_tissue_path_comments; ?>: <br />
-                        <?php echo form_textarea(array('name' => 'ovary_pathology_tissue_path_comments[]','id' => 'ovary_pathology_tissue_path_comments','rows' => '3','cols' => '7', 'value' => $ovary_cancer['comments']))?>
+                        <?php echo form_textarea(array('name' => 'ovary_pathology_tissue_path_comments[]','id' => 'ovary_pathology_tissue_path_comments','rows' => '3','cols' => '7', 'value' => $ovary_cancer_pathology['comments']))?>
                     </td>
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
                 </tr>
+                <input type="hidden" name="ovary_patient_pathology_id[]" value="<?php print $ovary_cancer_pathology['patient_pathology_id']; ?>"/>
             </table>
+            <?php endforeach; ?>
             <?php echo form_fieldset_close(); ?>	
         </div>
         <div id="add_ovary_cancer_treatment_div_1" >
+            <?php foreach ($ovary_cancer['treatment'] as $ovary_cancer_treatment): ?>
             <table id="ovary_cancer_treatment_1">
                 <tr>
                     <td id="label1">Treatment</td>
@@ -450,73 +462,73 @@
                 <tr>
                     <td>
                         <?php echo $ovary_patient_cancer_treatment_name; ?>: 
-                        <?php echo form_dropdown('ovary_patient_cancer_treatment_name[]', $patient_cancer_treatment_name_lists, $treatment_type[$ovary_cancer['treatment_id']], 'id="patient_cancer_treatment_name_lists" preload_val="'.$treatment_type[$ovary_cancer['treatment_id']].'"'); ?>
+                        <?php echo form_dropdown('ovary_patient_cancer_treatment_name[]', $patient_cancer_treatment_name_lists, $treatment_type[$ovary_cancer_treatment['treatment_id']], 'id="patient_cancer_treatment_name_lists" preload_val="'.$treatment_type[$ovary_cancer_treatment['treatment_id']].'"'); ?>
                     </td>
                     <td>
                         <?php echo $treatment_details; ?>: 
-                        <?php echo form_input(array('name' => 'ovary_treatment_details[]', 'value' => $ovary_cancer['treatment_details']))?>
+                        <?php echo form_input(array('name' => 'ovary_treatment_details[]', 'value' => $ovary_cancer_treatment['treatment_details']))?>
                     </td>
                     <td>
                         <?php echo $ovary_treatment_start_date; ?>: 
-                        <?php echo form_input(array('name' => 'ovary_treatment_start_date[]', 'value' => $ovary_cancer['treatment_start_date'], 'class' => 'datepicker'))?>
+                        <?php echo form_input(array('name' => 'ovary_treatment_start_date[]', 'value' => $ovary_cancer_treatment['treatment_start_date'], 'class' => 'datepicker'))?>
                     </td>
                     <td>
                         <?php echo $ovary_treatment_end_date; ?>: 
-                        <?php echo form_input(array('name' => 'ovary_treatment_end_date[]', 'value' =>  $ovary_cancer['treatment_end_date'] == '0000-00-00' ? '00-00-0000'  : date('d-m-Y', strtotime($ovary_cancer['treatment_end_date'])), 'class' => 'datepicker'))?>
+                        <?php echo form_input(array('name' => 'ovary_treatment_end_date[]', 'value' =>  $ovary_cancer_treatment['treatment_end_date'] == '0000-00-00' ? '00-00-0000'  : date('d-m-Y', strtotime($ovary_cancer_treatment['treatment_end_date'])), 'class' => 'datepicker'))?>
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <?php echo $ovary_treatment_duration; ?>: 
-                        <?php echo form_input(array('name' => 'ovary_treatment_duration[]', 'value' => $ovary_cancer['treatment_durations']))?>
+                        <?php echo form_input(array('name' => 'ovary_treatment_duration[]', 'value' => $ovary_cancer_treatment['treatment_durations']))?>
                     </td>
 
                     <td>
                         <?php echo $treatment_drug_dose; ?>: 
-                        <?php echo form_input(array('name' => 'ovary_treatment_drug_dose[]', 'value' => $ovary_cancer['treatment_dose']))?>
+                        <?php echo form_input(array('name' => 'ovary_treatment_drug_dose[]', 'value' => $ovary_cancer_treatment['treatment_dose']))?>
                     </td>
                     <td>
                         <?php echo $treatment_cycle; ?>: 
-                        <?php echo form_input(array('name' => 'ovary_treatment_cycle[]', 'value' => $ovary_cancer['treatment_cycle']))?>
+                        <?php echo form_input(array('name' => 'ovary_treatment_cycle[]', 'value' => $ovary_cancer_treatment['treatment_cycle']))?>
                     </td>
                     <td>
                         <?php echo $treatment_frequency; ?>: 
-                        <?php echo form_input(array('name' => 'ovary_treatment_route[]', 'value' => $ovary_cancer['treatment_frequency']))?>
+                        <?php echo form_input(array('name' => 'ovary_treatment_route[]', 'value' => $ovary_cancer_treatment['treatment_frequency']))?>
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <?php echo $treatment_visidual_desease; ?>: 
-                        <?php echo form_input(array('name' => 'ovary_treatment_visidual_desease[]', 'value' => $ovary_cancer['treatment_visidual_desease']))?>
+                        <?php echo form_input(array('name' => 'ovary_treatment_visidual_desease[]', 'value' => $ovary_cancer_treatment['treatment_visidual_desease']))?>
                     </td>
                     <td>
                         <?php echo $treatment_primary_therapy_outcome; ?>: 
-                        <?php echo form_input(array('name' => 'ovary_treatment_privacy_outcome[]', 'value' => $ovary_cancer['treatment_primary_outcome']))?>
+                        <?php echo form_input(array('name' => 'ovary_treatment_privacy_outcome[]', 'value' => $ovary_cancer_treatment['treatment_primary_outcome']))?>
                     </td>
                     <td>
                         <?php echo $treatment_cal125_pretreatment; ?>: 
-                        <?php echo form_input(array('name' => 'ovary_cal125_pretreatment[]', 'value' => $ovary_cancer['treatment_cal125_pretreatment']))?>
+                        <?php echo form_input(array('name' => 'ovary_cal125_pretreatment[]', 'value' => $ovary_cancer_treatment['treatment_cal125_pretreatment']))?>
                     </td>
                     <td>
                         <?php echo $treatment_cal125_posttreatment; ?>: 
-                        <?php echo form_input(array('name' => 'ovary_cal125_posttreatment[]', 'value' => $ovary_cancer['treatment_cal125_posttreatment']))?>
+                        <?php echo form_input(array('name' => 'ovary_cal125_posttreatment[]', 'value' => $ovary_cancer_treatment['treatment_cal125_posttreatment']))?>
                     </td>
                 <tr>
                     <td>
                         <?php echo $ovary_cancer_treatment_comments; ?>: 
-                        <?php echo form_textarea(array('name' => 'ovary_cancer_treatment_comments[]','id' => 'ovary_cancer_treatment_comments','rows' => '3','cols' => '7', 'value' => $ovary_cancer['comments']))?>
+                        <?php echo form_textarea(array('name' => 'ovary_cancer_treatment_comments[]','id' => 'ovary_cancer_treatment_comments','rows' => '3','cols' => '7', 'value' => $ovary_cancer_treatment['comments']))?>
                     </td>
                     
                 </tr>&nbsp;</td>
                 </tr>&nbsp;</td>
                 </tr>
                 
-                <input type="hidden" name="ovary_patient_cancer_id[]" value="<?php print $ovary_cancer['patient_cancer_id']; ?>"/>
-                <input type="hidden" name="ovary_patient_pathology_id[]" value="<?php print $ovary_cancer['patient_pathology_id']; ?>"/>
-                <input type="hidden" name="ovary_patient_cancer_treatment_id[]" value="<?php print $ovary_cancer['patient_cancer_treatment_id']; ?>"/>
+                <input type="hidden" name="ovary_patient_cancer_treatment_id[]" value="<?php print $ovary_cancer_treatment['patient_cancer_treatment_id']; ?>"/>
                 
             </table>
              <?php endforeach; ?>
+        <?php } ?>
+            <?php } ?>
         </div>
         <div class="container" id="add_record_form_section_other_cancer">
             <div height="30px">&nbsp;</div>
@@ -567,8 +579,7 @@
                 <input type="hidden" name="patient_other_cancer_id[]" value="<?php print $other_cancer['patient_cancer_id']; ?>"/>
             </table>
             <div class="container" id="add_record_form_section_other_cancer_pathology_section_1">
-                <?php if (!empty($patient_others_cancer_pathology)); {?>
-                <?php foreach ($patient_others_cancer_pathology as $other_cancer_pathology): ?>
+                <?php foreach ($other_cancer['pathology'] as $other_cancer_pathology): ?>
                 <div height="30px">&nbsp;</div>
                 <table id="other_cancer_pathology_section">
                     <tr>
@@ -610,11 +621,9 @@
                      <input type="hidden" name="patient_other_pathology_id[]" value="<?php print $other_cancer_pathology['patient_pathology_id']; ?>"/>
                 </table>
                 <?php endforeach; ?>
-                <?php } ?>
                 <?php echo form_fieldset_close(); ?>	
             </div>
-            <?php if (!empty($patient_others_cancer_treatment)); {?>
-            <?php foreach ($patient_others_cancer_treatment as $other_cancer_treatment): ?>
+            <?php foreach ($other_cancer['treatment'] as $other_cancer_treatment): ?>
             <div id="add_other_cancer_treatment_div_1" >
                 <table id="other_cancer_treatment_1">
                     <tr>
@@ -678,7 +687,6 @@
                 </table>
                 <?php endforeach; ?>
                 <?php } ?>
-            <?php } ?>
             </div>
             <?php echo form_fieldset_close(); ?>	
             <div class="container" id="add_record_form_section_other_disease_diagnosis">

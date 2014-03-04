@@ -5141,60 +5141,54 @@ class Record extends CI_Controller {
                     else
                         $this->template->load("templates/add_record_template", 'record/view_record_family_details', $data);
                 } else if ($var == 'diagnosis') {
-                    $data['patient_breast_cancer'] = $this->record_model->get_patient_breast_diagnosis_record($patient_studies_id);
-                    $data['patient_ovary_cancer'] = $this->record_model->get_patient_ovary_diagnosis_record($patient_studies_id);
+                    //$data['patient_breast_cancer'] = $this->record_model->get_patient_breast_diagnosis_record($patient_studies_id);
+                    //$data['patient_ovary_cancer'] = $this->record_model->get_patient_ovary_diagnosis_record($patient_studies_id);
                     //$data['patient_ovary_cancer_treatment'] = $this->record_model->get_patient_treatment_record($a['patient_cancer_id']);
+                    $breast_diagnosis_list = $this->record_model->get_patient_breast_cancer_record($patient_studies_id);
                     
-                    $data['patient_others_cancer'] = $dianosis_list = $this->record_model->get_patient_other_diagnosis_record($patient_studies_id);
+                    if(!empty($breast_diagnosis_list)){
+                    foreach ($breast_diagnosis_list as $breast_id=>$breast) {
+                    $breast_cancer_id = $breast['patient_cancer_id'];
+                                                                    
+                    $breast_treatment['treatment'] = $this->record_model->get_patient_treatment_record($breast_cancer_id);
+                    $breast_pathology['pathology'] = $this->record_model->get_patient_breast_pathology_record($breast_cancer_id);
+
+                    $breast_cancer[] = array_merge($breast, $breast_treatment, $breast_pathology);
+
+                    }
+                    $data['patient_breast_cancer'] = $breast_cancer;
+                    }
                     
-                    foreach ($dianosis_list as $id=>$test) {
+                    //print_r($breast_diagnosis_list);exit;
+                    
+                    $ovarian_diagnosis_list = $this->record_model->get_patient_ovary_cancer_record($patient_studies_id);
+                    
+                    if(!empty($ovarian_diagnosis_list)){
+                    foreach ($ovarian_diagnosis_list as $ovarian_id=>$ovary) {
+                    $ovarian_cancer_id = $ovary['patient_cancer_id'];
+                                                                    
+                    $ovarian_treatment['treatment'] = $this->record_model->get_patient_treatment_record($ovarian_cancer_id);
+                    $ovarian_pathology['pathology'] = $this->record_model->get_patient_pathology_record($ovarian_cancer_id);
+
+                    $ovarian[] = array_merge($ovary, $ovarian_treatment, $ovarian_pathology);
+
+                    }
+                    $data['patient_ovary_cancer'] = $ovarian;
+                    }
+                    $other_diagnosis_list = $this->record_model->get_patient_other_diagnosis_record($patient_studies_id);
+                    
+                    if(!empty($other_diagnosis_list)){
+                    foreach ($other_diagnosis_list as $id=>$test) {
                     $patient_cancer_id = $test['patient_cancer_id'];
                                                                     
-                    $treatment = $this->record_model->get_patient_treatment_record($patient_cancer_id);
-                    $pathology = $this->record_model->get_patient_pathology_record($patient_cancer_id);
+                    $treatment['treatment'] = $this->record_model->get_patient_treatment_record($patient_cancer_id);
+                    $pathology['pathology'] = $this->record_model->get_patient_pathology_record($patient_cancer_id);
 
-                    //$example[] = array_merge($test, $treatment, $pathology);
+                    $example[] = array_merge($test, $treatment, $pathology);
 
-
-                //print_r($example);exit;
-                //print_r($treatment);
-
-                
-                $patient_treatment = $treatment;
-                $patient_pathology = $pathology;
-
-                //print_r($test);exit;
-                foreach ($patient_treatment as $row) {
-                    
-                        $treat[] = $row;
                     }
-                    
-//                    foreach ($patient_treatment as $treatment_patient=>$value) {
-//                    
-//                        $treatment_patient_cancer_id = $value;
-//                    }
-                    
-                    foreach ($patient_pathology as $val) {
-                    
-                        $patho[] = $val;
+                    $data['patient_others_cancer'] = $example;
                     }
-                    //print_r($treat);exit;
-//                    $data['patient_others_cancer_treatment']= $treat;
-//                    $data['patient_others_cancer_pathology']= $patho;
-                    }
-                    //$test = array($treat);
-                    
-                    //$test1 = array($patho);
-                    //$example[] = array_merge($test,$treat,$patho);
-                    //print_r($test);exit;
-                   // print_r($example);exit;
-                    
-
-                    //$data['patient_others_cancer'] = $example;
-                    $data['patient_others_cancer_treatment']= $treat;
-                    $data['patient_others_cancer_pathology']= $patho;
-                    
-                   // print_r($patient_treatment['patient_cancer_id']);exit;
 
                     $data['patient_other_disease'] = $this->record_model->get_patient_others_desease_record($patient_studies_id);
                     $data['diagnosis_name'] = $this->record_model->get_diagnosis();
