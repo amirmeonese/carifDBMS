@@ -636,8 +636,9 @@ class Record_model extends CI_Model {
         $data['referral_source'] = 'Referral source';
         
         $data['referral_to_genetic_counselling'] = array(
+            '' => '',
             'Yes' => 'Yes',
-            'No' => 'No',
+            'No' => 'No'
         );
 
         //MAMMO
@@ -2137,14 +2138,12 @@ function get_patient_ovary_diagnosis_record($patient_studies_id) {
     return $list_patient_lifestyle;
 }
 
-function get_patient_others_diagnosis_record($patient_studies_id) {
-    $this->db->select('a.*,b.*,c.*');
-    $this->db->from('patient_cancer a');
-    $this->db->join('patient_pathology b','a.patient_cancer_id = b.patient_cancer_id','left');
-    $this->db->join('patient_cancer_treatment c','a.patient_cancer_id = c.patient_cancer_id','left');
-    $this->db->where('a.patient_studies_id',$patient_studies_id);
-    $this->db->where('a.cancer_id !=', '1');
-    $this->db->where('a.cancer_id !=', '2');
+function get_patient_other_diagnosis_record($patient_studies_id) {
+    //$this->db->select('a.*,b.*,c.*');
+    $this->db->from('patient_cancer');
+    $this->db->where('patient_studies_id',$patient_studies_id);
+    $this->db->where('cancer_id !=', '1');
+    $this->db->where('cancer_id !=', '2');
     $patient_lifestyle_list = $this->db->get('');
     $list_patient_lifestyle = $patient_lifestyle_list->result_array();
     $patient_lifestyle_list->free_result();
@@ -2153,6 +2152,128 @@ function get_patient_others_diagnosis_record($patient_studies_id) {
 
     return $list_patient_lifestyle;
 }
+
+function get_patient_treatment_record($patient_cancer_id) {
+    //$this->db->select('a.*,b.*,c.*');
+    $this->db->from('patient_cancer_treatment');
+    $this->db->where('patient_cancer_id',$patient_cancer_id);
+    $patient_lifestyle_list = $this->db->get('');
+    $list_patient_ovary_treatment = $patient_lifestyle_list->result_array();
+    $patient_lifestyle_list->free_result();
+    
+    //print_r($list_patient_ovary_treatment);exit;
+
+    return $list_patient_ovary_treatment;
+}
+
+function get_patient_pathology_record($patient_cancer_id) {
+    //$this->db->select('a.*,b.*,c.*');
+    $this->db->from('patient_pathology');
+    $this->db->where('patient_cancer_id',$patient_cancer_id);
+    $patient_pathology_list = $this->db->get('');
+    $list_patient_pathology = $patient_pathology_list->result_array();
+    $patient_pathology_list->free_result();
+    
+    //print_r($list_patient_pathology);exit;
+
+    return $list_patient_pathology;
+}
+
+//function get_patient_others_diagnosis_record($patient_studies_id) {
+//    
+//    //$this->db->DISTINCT('a.*');
+//    //$this->db->select('DISTINCT(a.patient_cancer_id) as p_cancer_id,a.cancer_id,a.cancer_site_id,a.cancer_invasive_type,a.is_primary,a.date_of_diagnosis,a.age_of_diagnosis,a.diagnosis_center,a.doctor_name,a.detected_by,a.bilateral_flag,a.recurrence_flag');
+//    //$this->db->select("DISTINCT(b.patient_pathology_id)");
+//   // $this->db->select("c.treatment_id");
+//    $this->db->select('*');
+//    $this->db->from('patient_cancer');
+//    //$this->db->join('patient_pathology b','a.patient_cancer_id = b.patient_cancer_id','left');
+//    //$this->db->join('patient_cancer_treatment c','a.patient_cancer_id = c.patient_cancer_id','left');
+//    $this->db->where('patient_studies_id',$patient_studies_id);
+//    $this->db->where('cancer_id !=', '1');
+//    $this->db->where('cancer_id !=', '2');
+//    //$this->db->group_by('a.patient_cancer_id');
+//    $patient_lifestyle_list = $this->db->get('');
+//    $list_patient_lifestyle = $patient_lifestyle_list->result_array();
+//    $patient_lifestyle_list->free_result();
+//    
+//   //print_r($list_patient_lifestyle);exit;
+//    
+//    //echo $this->db->last_query();exit;
+//   $patient_cancer_id=array();
+//   foreach ($list_patient_lifestyle as $other_cancer_val):
+//                                                
+//   $patient_cancer_id = $other_cancer_val['patient_cancer_id'];
+//   
+//    $this->db->select('*');
+//    $this->db->from('patient_pathology');
+//    $this->db->where('patient_cancer_id',$patient_cancer_id);
+//    $patient_pathology_list = $this->db->get('');
+//    $list_patient_pathology = $patient_pathology_list->result_array();
+//    $patient_pathology_list->free_result();
+//    
+//    $this->db->select('*');
+//    $this->db->from('patient_cancer_treatment');
+//    $this->db->where('patient_cancer_id',$patient_cancer_id);
+//    $patient_treatment_list = $this->db->get('');
+//    $list_patient_treatment = $patient_treatment_list->result_array();
+//    $patient_treatment_list->free_result();
+//    
+//    //$test = array();
+//    $test = $other_cancer_val + $list_patient_treatment;
+//                        
+//   //print_r(array($patient_cancer_id));exit;
+//    print_r($test);exit;
+//    
+//    return $test;
+    
+//   endforeach;
+   
+   
+//   //print_r($patient_cancer_id);exit;
+//   
+//    $this->db->select('*');
+//    $this->db->from('patient_pathology');
+//    $this->db->where_in('patient_cancer_id',$patient_cancer_id);
+//    $patient_pathology_list = $this->db->get('');
+//    $list_patient_pathology = $patient_pathology_list->result_array();
+//    $patient_pathology_list->free_result();
+//    
+//    $this->db->select('*');
+//    $this->db->from('patient_cancer_treatment');
+//    $this->db->where_in('patient_cancer_id',$patient_cancer_id);
+//    $patient_treatment_list = $this->db->get('');
+//    $list_patient_treatment = $patient_treatment_list->result_array();
+//    $patient_treatment_list->free_result();
+//    
+//    //$test = array();
+//    $test = array_merge($list_patient_lifestyle,$list_patient_pathology,$list_patient_treatment);
+    
+    //print_r($test);exit;
+
+//}
+
+//function get_patient_others_diagnosis_record($patient_studies_id) {
+//    $this->db->select('a.*');
+//    $this->db->select('b.patient_pathology_id');
+//    $this->db->select('c.treatment_id');
+//    $this->db->from('patient_cancer a');
+//    $this->db->join('patient_pathology b','a.patient_cancer_id = b.patient_cancer_id','left');
+//    $this->db->join('patient_cancer_treatment c','a.patient_cancer_id = c.patient_cancer_id','left');
+//    $this->db->where('a.patient_studies_id',$patient_studies_id);
+//    $this->db->where('a.cancer_id !=', '1');
+//    $this->db->where('a.cancer_id !=', '2');
+//    //$this->db->group_by('a.patient_cancer_id');
+//    $patient_lifestyle_list = $this->db->get('');
+//    $list_patient_lifestyle = $patient_lifestyle_list->result_array();
+//    $patient_lifestyle_list->free_result();
+//    
+//   print_r($list_patient_lifestyle);exit;
+//    
+//    //echo $this->db->last_query();exit;
+//
+//    return $list_patient_lifestyle;
+//}
 
 function get_patient_others_desease_record($patient_studies_id) {
     $this->db->select('a.*,b.*');
@@ -2466,5 +2587,38 @@ function get_is_user_locked($ic_no)
        return $result['is_record_locked'];
 }
 
+function counselling_email_setup(){
+    
+        $sender = $this->input->post('officer_email_addresses');
+        $subject = 'Counselling Date Reminder';
+
+        $MESSAGE_BODY = "Counselling date detail:" . "<br>";
+        $MESSAGE_BODY .= "" . "<br>";
+        $MESSAGE_BODY .= "Next Counselling Date: " . date("Y-m-d", strtotime('interview_next_date')) . "<br>";
+        $MESSAGE_BODY .= "" . "<br>";
+        $MESSAGE_BODY .= "Counselling Note: " . $this->input->post('interview_note') . "<br>";
+        $MESSAGE_BODY .= "<br>";
+        $MESSAGE_BODY .= "This is a system generated email. Please do not reply to it." . "<br>";
+        
+        $config = array(
+                'protocol' => 'smtp',
+                //'mailpath' => '/usr/sbin/sendmail',
+                'smtp_host' => 'ssl://smtp.googlemail.com',
+                'smtp_port' => 465,
+                'smtp_user' => 'apurbamy@gmail.com',
+                'smtp_pass' => 'apurbamy2012',
+                'mailtype' => 'html'
+            );
+
+            $this->load->library('email', $config);
+            $this->email->set_newline("\r\n");
+            $this->email->from('apurbamy@gmail.com', 'Carif Counselling Date Reminder sent via CarifDBMS');
+            $this->email->to($sender);
+            $this->email->subject($subject);
+            $this->email->message($MESSAGE_BODY);
+            $a = $this->email->send();
+            
+            //print_r($a);
+}
 }
 ?>

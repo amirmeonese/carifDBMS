@@ -4872,14 +4872,24 @@ class Record extends CI_Controller {
                     'created_on' => $date,
                     'comments' => $this->input->post('interview_note')
                 );
+                
+                //print_r($data_patient_interview_manager);exit;
                 $patient_interview_manager_id = $this->record_model->insert_patient_interview_manager($data_patient_interview_manager);
 
                 $dynamicFieldsArray = $this->getDynamicFieldsInputsArray("counselling_note");
+                
+                if($this->input->post('is_send_email_reminder')== 1){
+                    
+                    $this->record_model->counselling_email_setup();
+                    
+                }
 
-                // print_r($dynamicFieldsArray);
+        
 
-                if ($patient_interview_manager_id > 0) {
-                    echo "<h2>Data Added successfully.</h2>";
+        // print_r($dynamicFieldsArray);
+
+        if ($patient_interview_manager_id > 0) {
+            echo "<h2>Data Added successfully.</h2>";
                 } else {
                     echo "<h2>Failed to added data. Please try again.</h2>";
                 }
@@ -5133,7 +5143,59 @@ class Record extends CI_Controller {
                 } else if ($var == 'diagnosis') {
                     $data['patient_breast_cancer'] = $this->record_model->get_patient_breast_diagnosis_record($patient_studies_id);
                     $data['patient_ovary_cancer'] = $this->record_model->get_patient_ovary_diagnosis_record($patient_studies_id);
-                    $data['patient_others_cancer'] = $this->record_model->get_patient_others_diagnosis_record($patient_studies_id);
+                    //$data['patient_ovary_cancer_treatment'] = $this->record_model->get_patient_treatment_record($a['patient_cancer_id']);
+                    
+                    $data['patient_others_cancer'] = $dianosis_list = $this->record_model->get_patient_other_diagnosis_record($patient_studies_id);
+                    
+                    foreach ($dianosis_list as $id=>$test) {
+                    $patient_cancer_id = $test['patient_cancer_id'];
+                                                                    
+                    $treatment = $this->record_model->get_patient_treatment_record($patient_cancer_id);
+                    $pathology = $this->record_model->get_patient_pathology_record($patient_cancer_id);
+
+                    //$example[] = array_merge($test, $treatment, $pathology);
+
+
+                //print_r($example);exit;
+                //print_r($treatment);
+
+                
+                $patient_treatment = $treatment;
+                $patient_pathology = $pathology;
+
+                //print_r($test);exit;
+                foreach ($patient_treatment as $row) {
+                    
+                        $treat[] = $row;
+                    }
+                    
+//                    foreach ($patient_treatment as $treatment_patient=>$value) {
+//                    
+//                        $treatment_patient_cancer_id = $value;
+//                    }
+                    
+                    foreach ($patient_pathology as $val) {
+                    
+                        $patho[] = $val;
+                    }
+                    //print_r($treat);exit;
+//                    $data['patient_others_cancer_treatment']= $treat;
+//                    $data['patient_others_cancer_pathology']= $patho;
+                    }
+                    //$test = array($treat);
+                    
+                    //$test1 = array($patho);
+                    //$example[] = array_merge($test,$treat,$patho);
+                    //print_r($test);exit;
+                   // print_r($example);exit;
+                    
+
+                    //$data['patient_others_cancer'] = $example;
+                    $data['patient_others_cancer_treatment']= $treat;
+                    $data['patient_others_cancer_pathology']= $patho;
+                    
+                   // print_r($patient_treatment['patient_cancer_id']);exit;
+
                     $data['patient_other_disease'] = $this->record_model->get_patient_others_desease_record($patient_studies_id);
                     $data['diagnosis_name'] = $this->record_model->get_diagnosis();
                     $data['site_cancer'] = $this->record_model->get_cancer_site();
