@@ -2542,8 +2542,8 @@ function counselling_email_setup()
 
         $MESSAGE_BODY = "Counselling date detail:" . "<br>";
         $MESSAGE_BODY .= "" . "<br>";
-        $MESSAGE_BODY .= "Next Counselling Date: " . date("Y-m-d", strtotime('interview_next_date')) . "<br>";
-        $MESSAGE_BODY .= "" . "<br>";
+        $MESSAGE_BODY .= "Patient Ic No: " . $this->input->post('IC_no') . "<br>";
+        $MESSAGE_BODY .= "Next Counselling Date: " . date("Y-m-d", strtotime($this->input->post('interview_next_date'))) . "<br>";
         $MESSAGE_BODY .= "Counselling Note: " . $this->input->post('interview_note') . "<br>";
         $MESSAGE_BODY .= "<br>";
         $MESSAGE_BODY .= "This is a system generated email. Please do not reply to it." . "<br>";
