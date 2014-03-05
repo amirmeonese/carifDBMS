@@ -116,7 +116,9 @@ class ModelScreening5 extends CI_Model {
             //echo $patient_studies_id.'<br/>';
 
             if (in_array($patient_studies_id, $result_patient_studies_id)) {
+                $patient_surveillance_id = $this->excell_sheets_model->get_id('patient_surveillance', 'patient_surveillance_id', 'patient_studies_id', $patient_studies_id);
                 $data_patient_surveillance_update[] = array(
+                    'patient_surveillance_id' => $patient_surveillance_id,
                     'patient_studies_id' => $patient_studies_id,
                     'recruitment_center' => $temp8[recruitment_center],
                     'type' => $temp8[surveillance_type],
@@ -176,7 +178,7 @@ class ModelScreening5 extends CI_Model {
             }
 
             if (sizeof($data_patient_surveillance_update) > 0) {
-                $id_patient_surveillance = $this->db->update_batch('patient_surveillance', $data_patient_surveillance_update, 'patient_studies_id');
+                $id_patient_surveillance = $this->db->update_batch('patient_surveillance', $data_patient_surveillance_update, 'patient_surveillance_id');
                 if ($id_patient_surveillance > 0)
                     echo 'Data updated succesfully at patient_surveillance table';
                 else

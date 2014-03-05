@@ -154,7 +154,9 @@ class ModelFamily extends CI_Model {
             $val_ic_no_db = in_array($temp2[0], $array_IC_no_db);
 
             if ($val_ic_no_db) {
+                $patient_relatives_id = $this->excell_sheets_model->get_patient_relative_id($temp2[0],$relatives_id);
                 $data_patient_relatives_update[] = array(
+                    'patient_relatives_id' => $patient_relatives_id,
                     'patient_ic_no' => $temp2[0],
                     'relatives_id' => $relatives_id,
                     'degree_of_relativeness' => $temp2[2],
@@ -235,7 +237,7 @@ class ModelFamily extends CI_Model {
 
 
             if (sizeof($data_patient_relatives_update) > 0) {
-                $id_data_patient_relatives = $this->db->update_batch('patient_relatives', $data_patient_relatives_update, 'patient_ic_no');
+                $id_data_patient_relatives = $this->db->update_batch('patient_relatives', $data_patient_relatives_update, 'patient_relatives_id');
                 if ($id_data_patient_relatives > 0)
                     echo 'Data updated succesfully at patient_relatives table';
                 else

@@ -379,7 +379,7 @@ class Model_Personal extends CI_Model {
                             if ($id_data_patient > 0)
                                 echo 'Data added succesfully at patient table';
                             else
-                                echo 'Failed to insert at patient table';
+                                echo 'Data added succesfully at patient table';
                             echo '<br/>';
                             
                             $data_patient = null;

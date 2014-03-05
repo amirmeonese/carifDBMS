@@ -489,8 +489,8 @@ class Excell_sheets_model extends CI_Model {
         $id = $this->db->insert_id();
         return $id;
     }
-    
-     public function insert_record($record_data,$table_name) {
+
+    public function insert_record($record_data, $table_name) {
         $data = array(
         );
         $record_data = array_merge($this->_filter_data($this->tables[$table_name], $data), $record_data);
@@ -499,7 +499,7 @@ class Excell_sheets_model extends CI_Model {
         $id = $this->db->insert_id();
         return $id;
     }
-    
+
     public function insert_patient_relatives_record($record_data) {
         $data = array(
         );
@@ -543,7 +543,7 @@ class Excell_sheets_model extends CI_Model {
     public function get_patient_relatives_id($record_data) {
         $data = array(
         );
-        
+
         $query = $this->db->select('relatives_id')
                 ->where('relatives_type', $record_data)
                 ->limit(1)
@@ -558,16 +558,16 @@ class Excell_sheets_model extends CI_Model {
 
         return $result['relatives_id'];
     }
-    
+
     public function get_patient_parity_table_id($record_data) {
         $data = array(
         );
-        
+
         $query = $this->db->select('patient_parity_id')
                 ->where('patient_studies_id', $record_data)
                 ->limit(1)
                 ->get($this->tables['patient_parity_table']);
-        
+
         $result = null;
         if ($query->num_rows() > 0) {
             $result = $query->row_array();
@@ -579,7 +579,7 @@ class Excell_sheets_model extends CI_Model {
         return $result['patient_parity_id'];
     }
 
-     public function get_id($table_name,$selected_col_name,$comparable_col_name,$record_data) {
+    public function get_id($table_name, $selected_col_name, $comparable_col_name, $record_data) {
         $data = array(
         );
         $query = $this->db->select($selected_col_name)
@@ -594,7 +594,7 @@ class Excell_sheets_model extends CI_Model {
 
         return $result[$selected_col_name];
     }
-    
+
     public function get_patient_family_no($record_data) {
         $data = array(
         );
@@ -648,14 +648,14 @@ class Excell_sheets_model extends CI_Model {
 
         return $result['studies_id'];
     }
-    
-    public function get_patient_studies_id($patient_ic_no,$studies_id) {
+
+    public function get_patient_studies_id($patient_ic_no, $studies_id) {
         $data = array(
         );
         //echo $patient_ic_no.'    '.$studies_id.'<br/>';
         $query = $this->db->select('patient_studies_id')
                 ->where('patient_ic_no', $patient_ic_no)
-                ->where('studies_id',$studies_id)
+                ->where('studies_id', $studies_id)
                 ->limit(1)
                 ->get($this->tables['patient_studies']);
         $result = null;
@@ -668,14 +668,14 @@ class Excell_sheets_model extends CI_Model {
 
         return $result['patient_studies_id'];
     }
-    
-      public function get_patient_breast_screening_id($patient_ic_no,$patient_studies_id) {
+
+    public function get_patient_breast_screening_id($patient_ic_no, $patient_studies_id) {
         $data = array(
         );
         //echo $patient_ic_no.'    '.$studies_id.'<br/>';
         $query = $this->db->select('patient_breast_screening_id')
                 ->where('patient_ic_no', $patient_ic_no)
-                ->where('patient_studies_id',$patient_studies_id)
+                ->where('patient_studies_id', $patient_studies_id)
                 ->limit(1)
                 ->get($this->tables['patient_breast_screening']);
         $result = null;
@@ -688,17 +688,17 @@ class Excell_sheets_model extends CI_Model {
 
         return $result['patient_breast_screening_id'];
     }
-    
-       public function get_patient_cancer_id($patient_studies_id,$cancer_id,$cancer_site_id) {
+
+    public function get_patient_cancer_id($patient_studies_id, $cancer_id, $cancer_site_id) {
         $data = array(
         );
         $query = $this->db->select('patient_cancer_id')
                 ->where('patient_studies_id', $patient_studies_id)
-                ->where('cancer_id',$cancer_id)
-                ->where('cancer_site_id',$cancer_site_id)
+                ->where('cancer_id', $cancer_id)
+                ->where('cancer_site_id', $cancer_site_id)
                 ->limit(1)
                 ->get($this->tables['patient_cancer']);
-        
+
         $result = null;
         if ($query->num_rows() > 0) {
             $result = $query->row_array();
@@ -710,15 +710,15 @@ class Excell_sheets_model extends CI_Model {
         return $result['patient_cancer_id'];
     }
 
-     public function get_patient_other_disease_id($patient_studies_id,$diagnosis_id) {
+    public function get_patient_other_disease_id($patient_studies_id, $diagnosis_id) {
         $data = array(
         );
         $query = $this->db->select('patient_other_disease_id')
                 ->where('patient_studies_id', $patient_studies_id)
-                ->where('diagnosis_id',$diagnosis_id)
+                ->where('diagnosis_id', $diagnosis_id)
                 ->limit(1)
                 ->get($this->tables['patient_other_disease']);
-        
+
         $result = null;
         if ($query->num_rows() > 0) {
             $result = $query->row_array();
@@ -729,6 +729,222 @@ class Excell_sheets_model extends CI_Model {
 
         return $result['patient_other_disease_id'];
     }
+
+    public function get_patient_relative_id($patient_ic_no, $relatives_id) {
+        $data = array(
+        );
+        $query = $this->db->select('patient_relatives_id')
+                ->where('patient_ic_no', $patient_ic_no)
+                ->where('relatives_id', $relatives_id)
+                ->limit(1)
+                ->get($this->tables['patient_relatives']);
+
+        $result = null;
+        if ($query->num_rows() > 0) {
+            $result = $query->row_array();
+            //echo $result['relatives_id'];
+        }
+
+        //print_r($result['relatives_id']);
+
+        return $result['patient_relatives_id'];
+    }
+
+    public function get_patient_cancer_treatment_id($treatment_id, $patient_cancer_id) {
+        $data = array(
+        );
+        $query = $this->db->select('patient_cancer_treatment_id')
+                ->where('treatment_id', $treatment_id)
+                ->where('patient_cancer_id', $patient_cancer_id)
+                ->limit(1)
+                ->get($this->tables['patient_cancer_treatment']);
+
+        $result = null;
+        if ($query->num_rows() > 0) {
+            $result = $query->row_array();
+            //echo $result['relatives_id'];
+        }
+
+        //print_r($result['relatives_id']);
+
+        return $result['patient_cancer_treatment_id'];
+    }
+
+    public function get_patient_breast_abnormality_side_id($patient_breast_screening_id) {
+        $data = array(
+        );
+        $query = $this->db->select('patient_breast_abnormality_side_id')
+                ->where('patient_breast_screening_id', $patient_breast_screening_id)
+                ->limit(1)
+                ->get($this->tables['patient_breast_abnormality']);
+
+        $result = null;
+        if ($query->num_rows() > 0) {
+            $result = $query->row_array();
+            //echo $result['relatives_id'];
+        }
+
+        //print_r($result['relatives_id']);
+
+        return $result['patient_breast_abnormality_side_id'];
+    }
+
+    public function get_patient_ultra_abn($patient_breast_screening_id) {
+        $data = array(
+        );
+        $query = $this->db->select('patient_ultra_abn')
+                ->where('patient_breast_screening_id', $patient_breast_screening_id)
+                ->limit(1)
+                ->get($this->tables['patient_ultrasound_abnormality']);
+
+        $result = null;
+        if ($query->num_rows() > 0) {
+            $result = $query->row_array();
+            //echo $result['relatives_id'];
+        }
+
+        //print_r($result['relatives_id']);
+
+        return $result['patient_ultra_abn'];
+    }
+
+    public function get_patient_mri_abnormlity_id($patient_breast_screening_id) {
+        $data = array(
+        );
+        $query = $this->db->select('patient_mri_abnormlity_id')
+                ->where('patient_breast_screening_id', $patient_breast_screening_id)
+                ->limit(1)
+                ->get($this->tables['patient_mri_abnormality']);
+
+        $result = null;
+        if ($query->num_rows() > 0) {
+            $result = $query->row_array();
+            //echo $result['relatives_id'];
+        }
+
+        //print_r($result['relatives_id']);
+
+        return $result['patient_mri_abnormlity_id'];
+    }
+
+    public function get_patient_non_cancer_surgery_id($patient_studies_id) {
+        $data = array(
+        );
+        $query = $this->db->select('patient_non_cancer_surgery_id')
+                ->where('patient_studies_id', $patient_studies_id)
+                ->limit(1)
+                ->get($this->tables['patient_non_cancer_surgery']);
+
+        $result = null;
+        if ($query->num_rows() > 0) {
+            $result = $query->row_array();
+            //echo $result['relatives_id'];
+        }
+
+        //print_r($result['relatives_id']);
+
+        return $result['patient_non_cancer_surgery_id'];
+    }
+
+    public function get_patient_risk_reducing_surgery_id($patient_studies_id) {
+        $data = array(
+        );
+        $query = $this->db->select('patient_risk_reducing_surgery_id')
+                ->where('patient_studies_id', $patient_studies_id)
+                ->limit(1)
+                ->get($this->tables['patient_risk_reducing_surgery']);
+
+        $result = null;
+        if ($query->num_rows() > 0) {
+            $result = $query->row_array();
+            //echo $result['relatives_id'];
+        }
+
+        //print_r($result['relatives_id']);
+
+        return $result['patient_risk_reducing_surgery_id'];
+    }
+
+    public function get_patient_risk_reducing_surgery_lesion_id($patient_risk_reducing_surgery_id) {
+        $data = array(
+        );
+        $query = $this->db->select('patient_risk_reducing_surgery_lesion_id')
+                ->where('patient_risk_reducing_surgery_id', $patient_risk_reducing_surgery_id)
+                ->limit(1)
+                ->get($this->tables['patient_risk_reducing_surgery_lesion']);
+
+        $result = null;
+        if ($query->num_rows() > 0) {
+            $result = $query->row_array();
+            //echo $result['relatives_id'];
+        }
+
+        //print_r($result['relatives_id']);
+
+        return $result['patient_risk_reducing_surgery_lesion_id'];
+    }
+
+ public function get_patient_risk_reducing_surgery_complete_removal_id($patient_risk_reducing_surgery_id,$non_cancerous_site_id) {
+        $data = array(
+        );
+        $query = $this->db->select('patient_risk_reducing_surgery_complete_removal_id')
+                ->where('patient_risk_reducing_surgery_id', $patient_risk_reducing_surgery_id)
+                ->where('non_cancerous_site_id', $non_cancerous_site_id)
+                ->limit(1)
+                ->get($this->tables['patient_risk_reducing_surgery_complete_removal']);
+
+        $result = null;
+        if ($query->num_rows() > 0) {
+            $result = $query->row_array();
+            //echo $result['relatives_id'];
+        }
+
+        //print_r($result['relatives_id']);
+
+        return $result['patient_risk_reducing_surgery_complete_removal_id'];
+    }
+
+  public function get_patient_ovarian_screening_id($patient_studies_id,$ovarian_screening_type_id) {
+        $data = array(
+        );
+        $query = $this->db->select('patient_ovarian_screening_id')
+                ->where('patient_studies_id', $patient_studies_id)
+                ->where('ovarian_screening_type_id', $ovarian_screening_type_id)
+                ->limit(1)
+                ->get($this->tables['patient_ovarian_screening']);
+
+        $result = null;
+        if ($query->num_rows() > 0) {
+            $result = $query->row_array();
+            //echo $result['relatives_id'];
+        }
+
+        //print_r($result['relatives_id']);
+
+        return $result['patient_ovarian_screening_id'];
+    }
+    
+      public function get_patient_pathology_id($cancer_id,$patient_cancer_id) {
+        $data = array(
+        );
+        $query = $this->db->select('patient_pathology_id')
+                ->where('cancer_id', $cancer_id)
+                ->where('patient_cancer_id', $patient_cancer_id)
+                ->limit(1)
+                ->get($this->tables['patient_pathology']);
+
+        $result = null;
+        if ($query->num_rows() > 0) {
+            $result = $query->row_array();
+            //echo $result['relatives_id'];
+        }
+
+        //print_r($result['relatives_id']);
+
+        return $result['patient_pathology_id'];
+    }
+    
+
 }
 
 ?>

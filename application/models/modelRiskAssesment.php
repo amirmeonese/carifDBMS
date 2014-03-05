@@ -68,7 +68,9 @@ class ModelRiskAssesment extends CI_Model {
             }
 
             if (in_array($temp10[0], $result_patient_ic_no)) {
+                $patient_boadicea_id = $this->excell_sheets_model->get_id('patient_risk_assessment', 'patient_boadicea_id', 'patient_ic_no', $temp10[0]);
                 $data_patient_risk_assessment_update[] = array(
+                    'patient_boadicea_id' => $patient_boadicea_id, 
                     'patient_ic_no' => $temp10[0],
                     'at_consent_mach_brca1' => $temp10[2],
                     'at_consent_mach_brca2' => $temp10[3],
@@ -137,7 +139,7 @@ class ModelRiskAssesment extends CI_Model {
         }
 
         if (sizeof($data_patient_risk_assessment_update) > 0) {
-            $id_patient_risk_assessment = $this->db->update_batch('patient_risk_assessment', $data_patient_risk_assessment_update, 'patient_ic_no');
+            $id_patient_risk_assessment = $this->db->update_batch('patient_risk_assessment', $data_patient_risk_assessment_update, 'patient_boadicea_id');
             if ($id_patient_risk_assessment > 0)
                 echo 'Data updated succesfully at patient_risk_assessment table';
             else

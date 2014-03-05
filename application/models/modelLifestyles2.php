@@ -150,7 +150,9 @@ class ModelLifestyles2 extends CI_Model {
             $patient_studies_id = $this->excell_sheets_model->get_patient_studies_id($patient_ic_no, $studies_id);
 
             if (in_array($patient_studies_id, $result_pt_studies_id_pt_menstruation)) {
+                $patient_menstruation_id = $this->excell_sheets_model->get_id('patient_menstruation', 'patient_menstruation_id', 'patient_studies_id', $patient_studies_id);
                 $data_patient_menstruation_update[] = array(
+                    'patient_menstruation_id' => $patient_menstruation_id,
                     'patient_studies_id' => $patient_studies_id,
                     'age_period_starts' => $temp12[2],
                     'still_period_flag' => $still_period_flag,
@@ -188,7 +190,9 @@ class ModelLifestyles2 extends CI_Model {
                 $pregnant_flag = FALSE;
 
             if (in_array($patient_studies_id, $result_pt_studies_id_pt_parity_table)) {
+                $patient_parity_id = $this->excell_sheets_model->get_id('patient_parity_table', 'patient_parity_id', 'patient_studies_id', $patient_studies_id);
                 $data_patient_parity_table_update[] = array(
+                    'patient_parity_id' => $patient_parity_id,
                     'patient_studies_id' => $patient_studies_id,
                     'pregnant_flag' => $pregnant_flag,
                     'created_on' => $created_date
@@ -238,7 +242,9 @@ class ModelLifestyles2 extends CI_Model {
                 $currently_using_hrt_flag = FALSE;
 
             if (in_array($patient_studies_id, $result_pt_studies_id_pt_infertility)) {
+                $patient_infertility_id = $this->excell_sheets_model->get_id('patient_infertility', 'patient_infertility_id', 'patient_studies_id', $patient_studies_id);
                 $data_patient_infertility_update[] = array(
+                    'patient_infertility_id' => $patient_infertility_id,
                     'patient_studies_id' => $patient_studies_id,
                     'infertility_testing_flag' => $infertility_testing_flag,
                     'infertility_treatment_type' => $temp12[13],
@@ -296,7 +302,9 @@ class ModelLifestyles2 extends CI_Model {
             $treatment_Id = $this->excell_sheets_model->get_id('treatment', 'treatment_id', 'treatment_name', $temp12[32]);
 
             if (in_array($patient_studies_id, $result_pt_studies_id_pt_gyn_srg_history)) {
+                $patient_gne_surgery_history_id = $this->excell_sheets_model->get_id('patient_gynaecological_surgery_history', 'patient_gne_surgery_history_id', 'patient_studies_id', $patient_studies_id);
                 $data_patient_gynaecological_surgery_history_update[] = array(
+                    'patient_gne_surgery_history_id' => $patient_gne_surgery_history_id, 
                     'patient_studies_id' => $patient_studies_id,
                     'had_gnc_surgery_flag' => $had_gnc_surgery_flag,
                     'surgery_year' => $temp12[31],
@@ -336,7 +344,7 @@ class ModelLifestyles2 extends CI_Model {
 
 
         if (sizeof($data_patient_menstruation_update) > 0) {
-            $id_patient_menstruation = $this->db->update_batch('patient_menstruation', $data_patient_menstruation_update, 'patient_studies_id');
+            $id_patient_menstruation = $this->db->update_batch('patient_menstruation', $data_patient_menstruation_update, 'patient_menstruation_id');
             if ($id_patient_menstruation > 0)
                 echo 'Data updated succesfully at patient_menstruation table';
             else
@@ -357,7 +365,7 @@ class ModelLifestyles2 extends CI_Model {
 
 
         if (sizeof($data_patient_parity_table_update) > 0) {
-            $id_patient_parity_table = $this->db->update_batch('patient_parity_table', $data_patient_parity_table_update, 'patient_studies_id');
+            $id_patient_parity_table = $this->db->update_batch('patient_parity_table', $data_patient_parity_table_update, 'patient_parity_id');
             if ($id_patient_parity_table > 0)
                 echo 'Data updated succesfully at patient_parity_table table';
             else
@@ -377,7 +385,7 @@ class ModelLifestyles2 extends CI_Model {
         }
 
         if (sizeof($data_patient_infertility_update) > 0) {
-            $id_patient_infertility = $this->db->update_batch('patient_infertility', $data_patient_infertility_update, 'patient_studies_id');
+            $id_patient_infertility = $this->db->update_batch('patient_infertility', $data_patient_infertility_update, 'patient_infertility_id');
             if ($id_patient_infertility > 0)
                 echo 'Data updated succesfully at patient_infertility table';
             else
@@ -397,7 +405,7 @@ class ModelLifestyles2 extends CI_Model {
         }
 
         if (sizeof($data_patient_gynaecological_surgery_history_update) > 0) {
-            $id_patient_gynaecological_surgery_history = $this->db->update_batch('patient_gynaecological_surgery_history', $data_patient_gynaecological_surgery_history_update, 'patient_studies_id');
+            $id_patient_gynaecological_surgery_history = $this->db->update_batch('patient_gynaecological_surgery_history', $data_patient_gynaecological_surgery_history_update, 'patient_gne_surgery_history_id');
             if ($id_patient_gynaecological_surgery_history > 0)
                 echo 'Data updated succesfully at patient_gynaecological_surgery_history table';
             else
