@@ -34,10 +34,16 @@ class ModelScreening1 extends CI_Model {
         $data_patient_breast_screening_update = null;
         $data_patient_breast_abnormality = array();
         $data_patient_breast_abnormality = null;
+        $data_patient_breast_abnormality_update = array();
+        $data_patient_breast_abnormality_update = null;
         $data_patient_ultrasound_abnormality = array();
         $data_patient_ultrasound_abnormality = null;
+        $data_patient_ultrasound_abnormality_update = array();
+        $data_patient_ultrasound_abnormality_update = null;
         $data_patient_mri_abnormality = array();
         $data_patient_mri_abnormality = null;
+        $data_patient_mri_abnormality_update = array();
+        $data_patient_mri_abnormality_update = null;
         $temp_pt_ic_no_pt_breast_screening = array();
         $temp_pt_ic_no_pt_breast_screening = null;
         $this->db->select('patient_ic_no');
@@ -222,10 +228,13 @@ class ModelScreening1 extends CI_Model {
 
                 $temp_patient_ic_no_survelance[] = $patient_ic_no;
                 $temp_patient_studies_id[] = $patient_studies_id;
-
+                $patient_breast_screening_id = -1;
+                
                 if(in_array($patient_ic_no, $result_pt_ic_no_pt_breast_screening)  
                         && in_array($patient_studies_id, $result_pt_studies_id_pt_breast_screening))
                 {
+                    $patient_breast_screening_id = $this->excell_sheets_model->get_patient_breast_screening_id($patient_ic_no,$patient_studies_id);
+                   
                     $data_patient_breast_screening_update = array(
                     'patient_ic_no' => $temp4[patient_IC_no],
                     'patient_studies_id' => $patient_studies_id,
@@ -263,8 +272,7 @@ class ModelScreening1 extends CI_Model {
                     'site_effected_of_mammogram' => $temp4[site_effected_of_mammogram],
                     'is_cancer_mammogram_flag' => $is_cancer_mammogram_flag
                     );
-                    $this->db->where('patient_ic_no', $patient_ic_no);
-                    $this->db->where('patient_studies_id', $patient_studies_id);
+                    $this->db->where('patient_breast_screening_id', $patient_breast_screening_id);
                     $this->db->update('patient_breast_screening', $data_patient_breast_screening_update); 
                     $data_patient_breast_screening_update = null;
                 }
@@ -309,7 +317,7 @@ class ModelScreening1 extends CI_Model {
                     );
                 }
 
-                $patient_breast_screening_id = 1; //for testing
+                
                 $left_right_breast_side = $temp4[mammo_left_right_breast_site];
                 $upper_below_breast_side = $temp4[mammo_upper_below_breast_site];
 
@@ -355,7 +363,11 @@ class ModelScreening1 extends CI_Model {
                 else
                     $is_abnormality_detected_breast = FALSE;
 
-                $data_patient_breast_abnormality[] = array(
+                if(in_array($patient_breast_screening_id, $result_pt_brst_scrning_id_pt_bst_abn))
+                {
+                   $patient_breast_abnormality_side_id = $this->excell_sheets_model->get_patient_breast_abnormality_side_id($patient_breast_screening_id); 
+                   $data_patient_breast_abnormality_update[] = array(
+                    'patient_breast_abnormality_side_id' => $patient_breast_abnormality_side_id,  
                     'patient_breast_screening_id' => $patient_breast_screening_id,
                     'left_breast' => $left_breast,
                     'right_breast' => $right_breast,
@@ -363,7 +375,21 @@ class ModelScreening1 extends CI_Model {
                     'below' => $below,
                     'is_abnormality_detected' => $is_abnormality_detected_breast,
                     'created_on' => $created_date
-                );
+                    );   
+                }
+                else
+                {
+                    $data_patient_breast_abnormality[] = array(
+                    'patient_breast_screening_id' => 1,
+                    'left_breast' => $left_breast,
+                    'right_breast' => $right_breast,
+                    'upper' => $upper,
+                    'below' => $below,
+                    'is_abnormality_detected' => $is_abnormality_detected_breast,
+                    'created_on' => $created_date
+                ); 
+                }
+
 
                 if ($temp4[ultrasound_abnormality_detected_flag] == 'Yes' || $temp4[ultrasound_abnormality_detected_flag] == 'yes')
                     $is_abnormality_detected_ultrasound = TRUE;
@@ -371,14 +397,30 @@ class ModelScreening1 extends CI_Model {
                     $is_abnormality_detected_ultrasound = FALSE;
                 else
                     $is_abnormality_detected_ultrasound = FALSE;
-
-                $data_patient_ultrasound_abnormality[] = array(
+                
+                if(in_array($patient_breast_screening_id, $result_pt_brst_scrning_id_pt_ultrad_abn))
+                {
+                    $patient_ultra_abn = $this->excell_sheets_model->get_patient_ultra_abn($patient_breast_screening_id);
+                    $data_patient_ultrasound_abnormality_update[] = array(
+                    'patient_ultra_abn' => $patient_ultra_abn,    
                     'ultrasound_date' => $temp4[ultrasound_date],
                     'is_abnormality_detected' => $is_abnormality_detected_ultrasound,
                     'comments' => $temp4[Ultrasound_abnormality_comments],
                     'patient_breast_screening_id' => $patient_breast_screening_id,
                     'created_on' => $created_date
                 );
+                }
+                else
+                {
+                     $data_patient_ultrasound_abnormality[] = array(
+                    'ultrasound_date' => $temp4[ultrasound_date],
+                    'is_abnormality_detected' => $is_abnormality_detected_ultrasound,
+                    'comments' => $temp4[Ultrasound_abnormality_comments],
+                    'patient_breast_screening_id' => 1,
+                    'created_on' => $created_date
+                    );
+                }
+               
 
                 if ($temp4[MRI_abnormality_detected_flag] == 'Yes' || $temp4[MRI_abnormality_detected_flag] == 'yes')
                     $is_abnormality_detected_mri = TRUE;
@@ -387,19 +429,37 @@ class ModelScreening1 extends CI_Model {
                 else
                     $is_abnormality_detected_mri = FALSE;
 
-                $data_patient_mri_abnormality[] = array(
+                if(in_array($patient_breast_screening_id, $result_pt_brst_scrning_id_pt_mri_abn))
+                {
+                    $patient_mri_abnormlity_id = $this->excell_sheets_model->get_patient_mri_abnormlity_id($patient_breast_screening_id);
+                    $data_patient_mri_abnormality_update[] = array(
+                    'patient_mri_abnormlity_id' => $patient_mri_abnormlity_id,   
                     'mri_date' => $temp4[MRI_date],
                     'is_abnormality_detected' => $is_abnormality_detected_mri,
                     'comments' => $temp4[MRI_abnormality_comments],
                     'patient_breast_screening_id' => $patient_breast_screening_id,
                     'created_on' => $created_date
                 );
+                }
+                else
+                {
+                    $data_patient_mri_abnormality[] = array(
+                    'mri_date' => $temp4[MRI_date],
+                    'is_abnormality_detected' => $is_abnormality_detected_mri,
+                    'comments' => $temp4[MRI_abnormality_comments],
+                    'patient_breast_screening_id' => 1,
+                    'created_on' => $created_date
+                );
+                }
+
 
                 $temp4 = null;
             }
 
             $result_pt_studies_id_pt_breast_screening = null;
-
+            $result_pt_brst_scrning_id_pt_bst_abn = null;
+            $result_pt_brst_scrning_id_pt_ultrad_abn = null;
+            $result_pt_brst_scrning_id_pt_mri_abn =null;
             //print_r($data_patient_breast_screening);
             //print_r($data_patient_breast_abnormality);
             //print_r($data_patient_ultrasound_abnormality);
@@ -415,64 +475,62 @@ class ModelScreening1 extends CI_Model {
                 $data_patient_breast_screening = null;
             }
 
-            $data_patient_breast_abnormality_update = array();
-            $data_patient_breast_abnormality_update = null;
+
             $data_patient_breast_abnormality_insert = array();
             $data_patient_breast_abnormality_insert = null;
-            $data_patient_ultrasound_abnormality_update = array();
-            $data_patient_ultrasound_abnormality_update = null;
+
             $data_patient_ultrasound_abnormality_insert = array();
             $data_patient_ultrasound_abnormality_insert = null;
-            $data_patient_mri_abnormality_update = array();
-            $data_patient_mri_abnormality_update = null;
+
             $data_patient_mri_abnormality_insert = array();
             $data_patient_mri_abnormality_insert = null;
 
             $tempLength = sizeof($temp_patient_ic_no_survelance);
-
-            for ($key = 0; $key < $tempLength; $key++) 
+            
+            if(sizeof($data_patient_breast_abnormality) > 0)
             {
-                $patient_breast_screening_id_in = $this->excell_sheets_model->get_patient_breast_screening_id($temp_patient_ic_no_survelance[$key], $temp_patient_studies_id[$key]);
-                $data_patient_breast_abnormality[$key]['patient_breast_screening_id'] = $patient_breast_screening_id_in;
-                if($patient_breast_screening_id_in > 0 && in_array($patient_breast_screening_id_in, $result_pt_brst_scrning_id_pt_bst_abn))
+                for ($key = 0; $key < $tempLength; $key++) 
                 {
-                    $data_patient_breast_abnormality_update[] = $data_patient_breast_abnormality[$key];
-                }
-                else if($patient_breast_screening_id_in > 0)
-                {
-                    $data_patient_breast_abnormality_insert[] = $data_patient_breast_abnormality[$key];
+                    $patient_breast_screening_id_in = $this->excell_sheets_model->get_patient_breast_screening_id($temp_patient_ic_no_survelance[$key], $temp_patient_studies_id[$key]);
+                    $data_patient_breast_abnormality[$key]['patient_breast_screening_id'] = $patient_breast_screening_id_in;
+
+                    if($patient_breast_screening_id_in > 0)
+                    {
+                        $data_patient_breast_abnormality_insert[] = $data_patient_breast_abnormality[$key];
+                    }
                 }
             }
+ 
             $data_patient_breast_abnormality = null;
             
-            for ($key = 0; $key < $tempLength; $key++) 
+            if(sizeof($data_patient_ultrasound_abnormality) > 0)
             {
-                $patient_breast_screening_id_in = $this->excell_sheets_model->get_patient_breast_screening_id($temp_patient_ic_no_survelance[$key], $temp_patient_studies_id[$key]);
-                $data_patient_ultrasound_abnormality[$key]['patient_breast_screening_id'] = $patient_breast_screening_id_in;
-                if($patient_breast_screening_id_in > 0 && in_array($patient_breast_screening_id_in, $result_pt_brst_scrning_id_pt_ultrad_abn))
+                for ($key = 0; $key < $tempLength; $key++) 
                 {
-                    $data_patient_ultrasound_abnormality_update[] = $data_patient_ultrasound_abnormality[$key];
-                }
-                else if($patient_breast_screening_id_in > 0)
-                {
-                    $data_patient_ultrasound_abnormality_insert[] = $data_patient_ultrasound_abnormality[$key];
+                    $patient_breast_screening_id_in = $this->excell_sheets_model->get_patient_breast_screening_id($temp_patient_ic_no_survelance[$key], $temp_patient_studies_id[$key]);
+                    $data_patient_ultrasound_abnormality[$key]['patient_breast_screening_id'] = $patient_breast_screening_id_in;
+                    if($patient_breast_screening_id_in > 0)
+                    {
+                        $data_patient_ultrasound_abnormality_insert[] = $data_patient_ultrasound_abnormality[$key];
+                    }
                 }
             }
+
             $data_patient_ultrasound_abnormality = null;
             
-            for ($key = 0; $key < $tempLength; $key++) 
+            if(sizeof($data_patient_mri_abnormality) > 0)
             {
-                $patient_breast_screening_id_in = $this->excell_sheets_model->get_patient_breast_screening_id($temp_patient_ic_no_survelance[$key], $temp_patient_studies_id[$key]);
-                $data_patient_mri_abnormality[$key]['patient_breast_screening_id'] = $patient_breast_screening_id_in;
-                if($patient_breast_screening_id_in > 0 && in_array($patient_breast_screening_id_in, $result_pt_brst_scrning_id_pt_mri_abn))
+                for ($key = 0; $key < $tempLength; $key++) 
                 {
-                $data_patient_mri_abnormality_update[] = $data_patient_mri_abnormality[$key];
-                }
-                else if($patient_breast_screening_id_in > 0)
-                {
-                $data_patient_mri_abnormality_insert[] = $data_patient_mri_abnormality[$key];
+                    $patient_breast_screening_id_in = $this->excell_sheets_model->get_patient_breast_screening_id($temp_patient_ic_no_survelance[$key], $temp_patient_studies_id[$key]);
+                    $data_patient_mri_abnormality[$key]['patient_breast_screening_id'] = $patient_breast_screening_id_in;
+                    if($patient_breast_screening_id_in > 0)
+                    {
+                    $data_patient_mri_abnormality_insert[] = $data_patient_mri_abnormality[$key];
+                    }
                 }
             }
+
             $data_patient_mri_abnormality = null;
             
             //print_r($data_patient_breast_abnormality);
@@ -493,7 +551,7 @@ class ModelScreening1 extends CI_Model {
 
                 if(sizeof($data_patient_breast_abnormality_update) > 0)
                 {
-                    $id_patient_breast_abnormality = $this->db->update_batch('patient_breast_abnormality',$data_patient_breast_abnormality_update,'patient_breast_screening_id');
+                    $id_patient_breast_abnormality = $this->db->update_batch('patient_breast_abnormality',$data_patient_breast_abnormality_update,'patient_breast_abnormality_side_id');
                     if ($id_patient_breast_abnormality > 0)
                         echo 'Data updated succesfully at patient_breast_abnormality table';
                     else
@@ -515,7 +573,7 @@ class ModelScreening1 extends CI_Model {
 
                 if(sizeof($data_patient_ultrasound_abnormality_update) > 0)
                 {
-                    $id_patient_ultrasound_abnormality = $this->db->update_batch('patient_ultrasound_abnormality',$data_patient_ultrasound_abnormality_update,'patient_breast_screening_id');
+                    $id_patient_ultrasound_abnormality = $this->db->update_batch('patient_ultrasound_abnormality',$data_patient_ultrasound_abnormality_update,'patient_ultra_abn');
                     if ($id_patient_ultrasound_abnormality > 0)
                         echo 'Data updated succesfully at patient_ultrasound_abnormality table';
                     else
@@ -537,7 +595,7 @@ class ModelScreening1 extends CI_Model {
 
                 if(sizeof($data_patient_mri_abnormality_update) > 0)
                 {
-                    $id_patient_mri_abnormality = $this->db->update_batch('patient_mri_abnormality',$data_patient_mri_abnormality_update,'patient_breast_screening_id');
+                    $id_patient_mri_abnormality = $this->db->update_batch('patient_mri_abnormality',$data_patient_mri_abnormality_update,'patient_mri_abnormlity_id');
                     if ($id_patient_mri_abnormality > 0)
                         echo 'Data updated succesfully at patient_mri_abnormality table';
                     else

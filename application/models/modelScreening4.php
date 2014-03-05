@@ -137,7 +137,8 @@ class ModelScreening4 extends CI_Model {
                         if(in_array($patient_studies_id, $result_pt_studies_id_pt_ova_scrning)  
                                 && in_array($ovarian_screening_type_id, $result_ova_scrning_type_id_pt_ova_scrning))
                         {
-                            $data_patient_ovarian_screening_update = array(
+                            $patient_ovarian_screening_id = $this->excell_sheets_model->get_patient_ovarian_screening_id($patient_studies_id,$ovarian_screening_type_id);
+                            $data_patient_ovarian_screening_update = array(   
                             'patient_studies_id' => $patient_studies_id,
                             'ovarian_screening_type_id' => $ovarian_screening_type_id,
                             'screening_date' => $temp7[3],
@@ -146,8 +147,7 @@ class ModelScreening4 extends CI_Model {
                             'created_on' => $created_date
                             ); 
                             
-                            $this->db->where('patient_studies_id', $patient_studies_id);
-                            $this->db->where('ovarian_screening_type_id', $ovarian_screening_type_id);
+                            $this->db->where('patient_ovarian_screening_id', $patient_ovarian_screening_id);
                             $this->db->update('patient_ovarian_screening', $data_patient_ovarian_screening_update); 
                             $data_patient_ovarian_screening_update = null;
                         }        
@@ -167,7 +167,9 @@ class ModelScreening4 extends CI_Model {
 
                         if(in_array($patient_studies_id, $result_pt_studies_id_pt_other_scrning))
                         {
+                            $patient_other_screening_id = $this->excell_sheets_model->get_id('patient_other_screening', 'patient_other_screening_id', 'patient_studies_id', $patient_studies_id);
                             $data_patient_other_screening_update[] = array(
+                            'patient_other_screening_id' => $patient_other_screening_id,   
                             'patient_studies_id' => $patient_studies_id,
                             'screening_type' => $temp7[6],
                             'age_at_screening' => $temp7[7],
@@ -191,6 +193,10 @@ class ModelScreening4 extends CI_Model {
                     }
                     //print_r($data_patient_ovarian_screening);
                     //print_r($patient_other_screening);
+                    $result_pt_studies_id_pt_other_scrning = null;
+                    $result_ova_scrning_type_id_pt_ova_scrning = null;
+                    $result_pt_studies_id_pt_ova_scrning = null;
+                    
                     if(!$abort)
                     {
                             if(sizeof($data_patient_ovarian_screening) > 0)
@@ -217,7 +223,7 @@ class ModelScreening4 extends CI_Model {
 
                         if(sizeof($data_patient_other_screening_update) > 0)
                         {
-                            $id_patient_other_screening = $this->db->update_batch('patient_other_screening',$data_patient_other_screening_update,'patient_studies_id');
+                            $id_patient_other_screening = $this->db->update_batch('patient_other_screening',$data_patient_other_screening_update,'patient_other_screening_id');
                             if ($id_patient_other_screening > 0)
                                 echo 'Data updated succesfully at patient_other_screening table';
                             else
@@ -232,11 +238,8 @@ class ModelScreening4 extends CI_Model {
                     $data_patient_other_screening_update = null;
                     $data_patient_ovarian_screening = null;
                     $temp_pt_studies_id_pt_ova_scrning = null;
-                    $result_pt_studies_id_pt_ova_scrning = null;
-                    $temp_ova_scrning_type_id_pt_ova_scrning = null;
-                    $result_ova_scrning_type_id_pt_ova_scrning = null;
-                    $temp_pt_studies_id_pt_other_scrning = null;
-                    $result_pt_studies_id_pt_other_scrning = null;
+                    $temp_ova_scrning_type_id_pt_ova_scrning = null;                   
+                    $temp_pt_studies_id_pt_other_scrning = null;                  
                     $temp7 = null;
                     $data_patient_ovarian_screening_update = null;
     }

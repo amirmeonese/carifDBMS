@@ -87,7 +87,9 @@ class ModelLifestyles3 extends CI_Model {
             $patient_parity_table_id = $this->excell_sheets_model->get_patient_parity_table_id($patient_studies_id); //echo $patient_parity_table_id.'<br/>';
             //echo $patient_parity_table_id . ' row '.$i.'<br/>';
             if (in_array($patient_parity_table_id, $result_patient_parity_table_id)) {
+                $patient_parity_record_id = $this->excell_sheets_model->get_id('patient_parity_record', 'patient_parity_record_id', 'patient_parity_table_id', $patient_parity_table_id);
                 $data_patient_parity_record_update[] = array(
+                    'patient_parity_record_id' => $patient_parity_record_id,
                     'patient_parity_table_id' => $patient_parity_table_id,
                     'pregnancy_type' => $temp13[2],
                     'gender' => $temp13[3],
@@ -129,7 +131,7 @@ class ModelLifestyles3 extends CI_Model {
             }
 
             if (sizeof($data_patient_parity_record_update) > 0) {
-                $id_patient_parity_record = $this->db->update_batch('patient_parity_record', $data_patient_parity_record_update, 'patient_parity_table_id');
+                $id_patient_parity_record = $this->db->update_batch('patient_parity_record', $data_patient_parity_record_update, 'patient_parity_record_id');
 
                 if ($id_patient_parity_record > 0)
                     echo 'Data updated succesfully at patient_parity_record table';

@@ -26,17 +26,17 @@ class ModelDiagnosis1 extends CI_Model {
     }
 
     public function Diagnosis1($sheet) {
-        /*$temp_result_cancer_name = array();
-        $temp_result_cancer_name = null;
-        $this->db->select('cancer_name');
-        $this->db->from('cancer');
-        $temp_result_cancer_name = $this->db->get()->result_array();
+        /* $temp_result_cancer_name = array();
+          $temp_result_cancer_name = null;
+          $this->db->select('cancer_name');
+          $this->db->from('cancer');
+          $temp_result_cancer_name = $this->db->get()->result_array();
 
-        $result_cancer_name = array();
-        for ($i = 0; $i < sizeof($temp_result_cancer_name); $i++) {
-            $result_cancer_name[$i] = $temp_result_cancer_name[$i]['cancer_name'];
-            echo $result_cancer_name[$i].'<br/>';
-        }*/
+          $result_cancer_name = array();
+          for ($i = 0; $i < sizeof($temp_result_cancer_name); $i++) {
+          $result_cancer_name[$i] = $temp_result_cancer_name[$i]['cancer_name'];
+          echo $result_cancer_name[$i].'<br/>';
+          } */
         $created_date = date('Y-m-d H:i:s');
         $abort = FALSE;
         $temp14 = array();
@@ -46,6 +46,8 @@ class ModelDiagnosis1 extends CI_Model {
         $data_patient_cancer_update = null;
         $data_patient_pathology = array();
         $data_patient_pathology = null;
+        $data_patient_pathology_update = array();
+        $data_patient_pathology_update = null;
         $temp_cancer_name = NULL;
         $temp_cancer_site_name = NULL;
         $temp_studies_name = NULL;
@@ -66,6 +68,8 @@ class ModelDiagnosis1 extends CI_Model {
         $pathology_cancer_site_id = null;
         $data_patient_cancer_treatment = array();
         $data_patient_cancer_treatment = null;
+        $data_patient_cancer_treatment_update = array();
+        $data_patient_cancer_treatment_update = null;
         $flag_ic_no = FALSE;
         $flag_cancer_name = FALSE;
         $flag_cancer_site_name = FALSE;
@@ -137,6 +141,19 @@ class ModelDiagnosis1 extends CI_Model {
         }
         $temp_pt_cancer_id_pt_cancer_treatment = null;
 
+        $temp_treatment_id_pt_cancer_treatment = array();
+        $temp_treatment_id_pt_cancer_treatment = null;
+        $this->db->select('treatment_id');
+        $this->db->from('patient_cancer_treatment');
+        $temp_treatment_id_pt_cancer_treatment = $this->db->get()->result_array();
+
+        //print_r($temp_pt_risk_reduc_surgery_id_pt_risk_red_surgery_lesion);
+        $result_treatment_id_pt_cancer_treatment = array();
+        for ($i = 0; $i < sizeof($temp_treatment_id_pt_cancer_treatment); $i++) {
+            $result_treatment_id_pt_cancer_treatment [$i] = $temp_treatment_id_pt_cancer_treatment[$i]['treatment_id'];
+        }
+        $temp_treatment_id_pt_cancer_treatment = null;
+
         $temp_pt_cancer_id_pt_pathology = array();
         $temp_pt_cancer_id_pt_pathology = null;
         $this->db->select('patient_cancer_id');
@@ -149,6 +166,19 @@ class ModelDiagnosis1 extends CI_Model {
             $result_pt_cancer_id_pt_pathology [$i] = $temp_pt_cancer_id_pt_pathology[$i]['patient_cancer_id'];
         }
         $temp_pt_cancer_id_pt_pathology = null;
+        
+        $temp_cancer_id_pt_pathology = array();
+        $temp_cancer_id_pt_pathology = null;
+        $this->db->select('cancer_id');
+        $this->db->from('patient_pathology');
+        $temp_cancer_id_pt_pathology = $this->db->get()->result_array();
+
+        //print_r($temp_pt_risk_reduc_surgery_id_pt_risk_red_surgery_lesion);
+        $result_cancer_id_pt_pathology = array();
+        for ($i = 0; $i < sizeof($temp_cancer_id_pt_pathology); $i++) {
+            $result_cancer_id_pt_pathology [$i] = $temp_cancer_id_pt_pathology[$i]['cancer_id'];
+        }
+        $temp_cancer_id_pt_pathology = null;
 
         $i = 0;
         foreach ($sheet->getRowIterator() as $row) {
@@ -217,29 +247,29 @@ class ModelDiagnosis1 extends CI_Model {
                     //$flag_pathology_tissue_site = TRUE;
                 }
                 if (($key == 6 || $key == 14 || $key == 15 || $key == 28) && $cell_value != NULL) {
-                        /*if (strpos($cell_value, '-') !== FALSE)
-                            $cell_value = date("d/m/Y", strtotime($cell_value));
-                        list($day, $month, $year) = explode("/", $cell_value);
+                    /* if (strpos($cell_value, '-') !== FALSE)
+                      $cell_value = date("d/m/Y", strtotime($cell_value));
+                      list($day, $month, $year) = explode("/", $cell_value);
 
-                        if (!checkdate($month, $day, $year)) {
-                            if ($key == 6)
-                                $this->model_Validator->showMessage("date_of_diagnosis", "Diagnosis & Treatment", $i);
-                            if ($key == 14)
-                                $this->model_Validator->showMessage("treatment_start_date", "Diagnosis & Treatment", $i);
-                            if ($key == 15)
-                                $this->model_Validator->showMessage("treatment_end_date", "Diagnosis & Treatment", $i);
-                            if ($key == 28)
-                                $this->model_Validator->showMessage("date_of_report", "Diagnosis & Treatment", $i);
+                      if (!checkdate($month, $day, $year)) {
+                      if ($key == 6)
+                      $this->model_Validator->showMessage("date_of_diagnosis", "Diagnosis & Treatment", $i);
+                      if ($key == 14)
+                      $this->model_Validator->showMessage("treatment_start_date", "Diagnosis & Treatment", $i);
+                      if ($key == 15)
+                      $this->model_Validator->showMessage("treatment_end_date", "Diagnosis & Treatment", $i);
+                      if ($key == 28)
+                      $this->model_Validator->showMessage("date_of_report", "Diagnosis & Treatment", $i);
 
-                            $abort = TRUE;
-                            break;
-                        }
-                        $cell_value = date('Y-m-d', strtotime(str_replace('/', '-', $cell_value)));*/
+                      $abort = TRUE;
+                      break;
+                      }
+                      $cell_value = date('Y-m-d', strtotime(str_replace('/', '-', $cell_value))); */
                     //$cell_value = preg_replace("/[^0-9\/]/", "", $cell_value);
                     if ($cell_value == "")
                         $cell_value = '0000-00-00';
                     else
-                        $cell_value == '0000-00-00' ? "0000-00-00" :  date('Y-m-d', strtotime(str_replace('/', '-', $cell_value)));
+                        $cell_value == '0000-00-00' ? "0000-00-00" : date('Y-m-d', strtotime(str_replace('/', '-', $cell_value)));
                 }
                 $temp14[] = $cell_value;
             }
@@ -247,38 +277,40 @@ class ModelDiagnosis1 extends CI_Model {
             if ($abort)
                 break;
 
-            if(strpos(strtoupper($temp14[4]), 'Y') !== false)
+            if (strpos(strtoupper($temp14[4]), 'Y') !== false)
                 $is_primary = TRUE;
-            else if(strpos(strtoupper($temp14[4]), 'N') !== false)
+            else if (strpos(strtoupper($temp14[4]), 'N') !== false)
                 $is_primary = FALSE;
             else
                 $is_primary = FALSE;
 
-            if(strpos(strtoupper($temp14[11]), 'Y') !== false)
+            if (strpos(strtoupper($temp14[11]), 'Y') !== false)
                 $bilateral_flag = TRUE;
-            else if(strpos(strtoupper($temp14[11]), 'N') !== false)
+            else if (strpos(strtoupper($temp14[11]), 'N') !== false)
                 $bilateral_flag = FALSE;
             else
                 $bilateral_flag = FALSE;
 
-            if(strpos(strtoupper($temp14[12]), 'Y') !== false)
+            if (strpos(strtoupper($temp14[12]), 'Y') !== false)
                 $recurrence_flag = TRUE;
-            else if(strpos(strtoupper($temp14[12]), 'N') !== false)
+            else if (strpos(strtoupper($temp14[12]), 'N') !== false)
                 $recurrence_flag = FALSE;
             else
                 $recurrence_flag = FALSE;
 
             $patient_ic_no = $temp14[0];
             $studies_name = $temp14[1]; //echo 'studies_name'.$studies_name.'</br>';
+
             $studies_id = $this->excell_sheets_model->get_id('studies', 'studies_id', 'studies_name', $temp14[1]);
             $patient_studies_id = $this->excell_sheets_model->get_patient_studies_id($patient_ic_no, $studies_id);
-            //echo 'patient_studies_id'.$patient_studies_id.'</br>';
-
+            //echo 'patient_studies_id        '.$patient_studies_id.' row  '.$i.'</br>';
+            $patient_cancer_id = -1;
             if (!$flag_cancer_name) {
                 $cancer_id = $this->excell_sheets_model->get_id('cancer', 'cancer_id', 'cancer_name', $temp14[2]);
                 $cancer_site_id = $this->excell_sheets_model->get_id('cancer_site', 'cancer_site_id', 'cancer_site_name', $temp14[3]);
-
+                
                 if (in_array($patient_studies_id, $result_pt_studies_id_pt_cancer) && in_array($cancer_id, $result_pt_cancer_id_pt_cancer) && in_array($cancer_site_id, $result_pt_cancer_site_id_pt_cancer)) {
+                    $patient_cancer_id = $this->excell_sheets_model->get_patient_cancer_id($patient_studies_id, $cancer_id, $cancer_site_id);
                     $data_patient_cancer_update = array(
                         'patient_studies_id' => $patient_studies_id,
                         'cancer_id' => $cancer_id,
@@ -295,10 +327,9 @@ class ModelDiagnosis1 extends CI_Model {
                         'created_on' => $created_date
                     );
 
-                    $this->db->where('patient_studies_id', $patient_studies_id);
-                    $this->db->where('cancer_id', $cancer_id);
-                    $this->db->where('cancer_site_id', $cancer_site_id);
+                    $this->db->where('patient_cancer_id', $patient_cancer_id);
                     $this->db->update('patient_cancer', $data_patient_cancer_update);
+
 
                     $data_patient_cancer_update = null;
                 } else {
@@ -330,23 +361,47 @@ class ModelDiagnosis1 extends CI_Model {
 
             $treatment_id = $this->excell_sheets_model->get_id('treatment', 'treatment_id', 'treatment_name', $temp14[13]);
 
-            $data_patient_cancer_treatment[] = array(
-                'treatment_id' => $treatment_id,
-                'patient_cancer_id' => 1,
-                'treatment_start_date' => $temp14[14],
-                'treatment_end_date' => $temp14[15],
-                'treatment_durations' => $temp14[16],
-                'comments' => $temp14[17],
-                'created_on' => $created_date,
-                'treatment_details' => $temp14[18],
-                'treatment_dose' => $temp14[19],
-                'treatment_cycle' => $temp14[20],
-                'treatment_frequency' => $temp14[21],
-                'treatment_visidual_desease' => $temp14[22],
-                'treatment_primary_outcome' => $temp14[23],
-                'treatment_cal125_pretreatment' => $temp14[24],
-                'treatment_cal125_posttreatment' => $temp14[25]
-            );
+            if (in_array($treatment_id, $result_treatment_id_pt_cancer_treatment) && in_array($patient_cancer_id, $result_pt_cancer_id_pt_cancer_treatment)) {
+                $patient_cancer_treatment_id = $this->excell_sheets_model->get_patient_cancer_treatment_id($treatment_id, $patient_cancer_id);
+
+                $data_patient_cancer_treatment_update[] = array(
+                    'patient_cancer_treatment_id' => $patient_cancer_treatment_id,
+                    'treatment_id' => $treatment_id,
+                    'patient_cancer_id' => $patient_cancer_id,
+                    'treatment_start_date' => $temp14[14],
+                    'treatment_end_date' => $temp14[15],
+                    'treatment_durations' => $temp14[16],
+                    'comments' => $temp14[17],
+                    'created_on' => $created_date,
+                    'treatment_details' => $temp14[18],
+                    'treatment_dose' => $temp14[19],
+                    'treatment_cycle' => $temp14[20],
+                    'treatment_frequency' => $temp14[21],
+                    'treatment_visidual_desease' => $temp14[22],
+                    'treatment_primary_outcome' => $temp14[23],
+                    'treatment_cal125_pretreatment' => $temp14[24],
+                    'treatment_cal125_posttreatment' => $temp14[25]
+                );
+            } else {
+                $data_patient_cancer_treatment[] = array(
+                    'treatment_id' => $treatment_id,
+                    'patient_cancer_id' => 1,
+                    'treatment_start_date' => $temp14[14],
+                    'treatment_end_date' => $temp14[15],
+                    'treatment_durations' => $temp14[16],
+                    'comments' => $temp14[17],
+                    'created_on' => $created_date,
+                    'treatment_details' => $temp14[18],
+                    'treatment_dose' => $temp14[19],
+                    'treatment_cycle' => $temp14[20],
+                    'treatment_frequency' => $temp14[21],
+                    'treatment_visidual_desease' => $temp14[22],
+                    'treatment_primary_outcome' => $temp14[23],
+                    'treatment_cal125_pretreatment' => $temp14[24],
+                    'treatment_cal125_posttreatment' => $temp14[25]
+                );
+            }
+
 
             $flag_treatment_name = FALSE;
 
@@ -356,8 +411,39 @@ class ModelDiagnosis1 extends CI_Model {
             $pathology_cancer_id[] = $cancer_id;
             $pathology_cancer_site_id[] = $cancer_site_id;
             $cancer_id = $this->excell_sheets_model->get_id('cancer', 'cancer_id', 'cancer_name', $temp14[2]);
-
-            $data_patient_pathology[] = array(
+            
+            if(in_array($cancer_id, $result_cancer_id_pt_pathology) && in_array($patient_cancer_id, $result_pt_cancer_id_pt_pathology))
+            {
+                $patient_pathology_id = $this->excell_sheets_model->get_patient_pathology_id($cancer_id,$patient_cancer_id);
+                $data_patient_pathology_update[] = array(
+                'patient_pathology_id' => $patient_pathology_id,    
+                'cancer_id' => $cancer_id,
+                'tissue_site' => $temp14[26],
+                'type_of_report' => $temp14[27],
+                'date_of_report' => $temp14[28],
+                'pathology_lab' => $temp14[29],
+                'name_of_doctor' => $temp14[30],
+                'morphology' => $temp14[31],
+                't_staging' => $temp14[32],
+                'n_staging' => $temp14[33],
+                'm_staging' => $temp14[34],
+                'stage_classifications' => $temp14[35],
+                'tumour_stage' => $temp14[36],
+                'tumour_grade' => $temp14[37],
+                'total_lymph_nodes' => $temp14[38],
+                'tumour_size' => $temp14[39],
+                'comments' => $temp14[40],
+                'created_on' => $created_date,
+                'patient_cancer_id' => $patient_cancer_id,
+                'no_of_report' => $temp14[41],
+                'tumor_subtype' => $temp14[42],
+                'tumor_behaviour' => $temp14[43],
+                'tumor_differentiation' => $temp14[44]
+            );
+            }
+            else
+            {
+                 $data_patient_pathology[] = array(
                 'cancer_id' => $cancer_id,
                 'tissue_site' => $temp14[26],
                 'type_of_report' => $temp14[27],
@@ -381,6 +467,8 @@ class ModelDiagnosis1 extends CI_Model {
                 'tumor_behaviour' => $temp14[43],
                 'tumor_differentiation' => $temp14[44]
             );
+            }
+
             $flag_pathology_tissue_site = FALSE;
         }
         $result_pt_cancer_id_pt_cancer = null;
@@ -396,9 +484,10 @@ class ModelDiagnosis1 extends CI_Model {
         //print_r($pathology_patient_studies_id);
         //print_r($pathology_cancer_id);
         //print_r($pathology_cancer_site_id);
-
-        if (!$abort)
-        {
+        $result_treatment_id_pt_cancer_treatment = null;
+        $result_cancer_id_pt_pathology = null;
+        
+        if (!$abort) {
             if (sizeof($data_patient_cancer_insert) > 0) {
                 $id_data_patient_cancer = $this->excell_sheets_model->insert_record($data_patient_cancer_insert, 'patient_cancer');
                 if ($id_data_patient_cancer > 0)
@@ -413,46 +502,47 @@ class ModelDiagnosis1 extends CI_Model {
 
         $tempLen = sizeof($data_patient_cancer_treatment);
 
-        $data_patient_cancer_treatment_update = array();
-        $data_patient_cancer_treatment_update = null;
+
         $data_patient_cancer_treatment_insert = array();
         $data_patient_cancer_treatment_insert = null;
-        for ($key = 0; $key < $tempLen; $key++) {
+        if(sizeof($data_patient_cancer_treatment) > 0)
+        {
+            for ($key = 0; $key < $tempLen; $key++) {
             //echo $treatment_patient_studies_id[$key].'      '.$treatment_cancer_id[$key].'      '.$treatment_cancer_site_id[$key].'<br/>';
             $patient_cancer_id = $this->excell_sheets_model->get_patient_cancer_id($treatment_patient_studies_id[$key], $treatment_cancer_id[$key], $treatment_cancer_site_id[$key]);
             $data_patient_cancer_treatment[$key]['patient_cancer_id'] = $patient_cancer_id;
             //echo "before if: "; 
             //print_r($data_patient_cancer_treatment[$key]);
-            if ($patient_cancer_id > 0 && in_array($patient_cancer_id, $result_pt_cancer_id_pt_cancer_treatment)) {
-                //echo "update : ";print_r($data_patient_cancer_treatment[$key]);
-                $data_patient_cancer_treatment_update[] = $data_patient_cancer_treatment[$key];
-            } else if ($patient_cancer_id > 0) {
+            if ($patient_cancer_id > 0) {
                 //echo "insert : "; print_r($data_patient_cancer_treatment[$key]);
                 $data_patient_cancer_treatment_insert[] = $data_patient_cancer_treatment[$key];
             }
+            }
         }
+
         $data_patient_cancer_treatment = null;
 
         //print_r($data_patient_cancer_treatment);
         //print_r($data_patient_cancer_treatment_update);
-        $data_patient_pathology_update = array();
-        $data_patient_pathology_update = null;
+
         $data_patient_pathology_insert = array();
         $data_patient_pathology_insert = null;
 
         $tempLength = sizeof($data_patient_pathology);
 
-        for ($key = 0; $key < $tempLength; $key++) {
+        if(sizeof($data_patient_pathology) > 0)
+        {
+            for ($key = 0; $key < $tempLength; $key++) {
             //echo $treatment_patient_studies_id[$key].'      '.$treatment_cancer_id[$key].'      '.$treatment_cancer_site_id[$key].'<br/>';
             $patient_cancer_id = $this->excell_sheets_model->get_patient_cancer_id($pathology_patient_studies_id[$key], $pathology_cancer_id[$key], $pathology_cancer_site_id[$key]);
             $data_patient_pathology[$key]['patient_cancer_id'] = $patient_cancer_id;
 
-            if ($patient_cancer_id > 0 && in_array($patient_cancer_id, $result_pt_cancer_id_pt_pathology)) {
-                $data_patient_pathology_update[] = $data_patient_pathology[$key];
-            } else if ($patient_cancer_id > 0) {
+                if ($patient_cancer_id > 0) {
                 $data_patient_pathology_insert[] = $data_patient_pathology[$key];
-            }
+                }
+            } 
         }
+
         $data_patient_pathology = null;
         //print_r($data_patient_pathology);
 
@@ -469,7 +559,7 @@ class ModelDiagnosis1 extends CI_Model {
             }
 
             if (sizeof($data_patient_cancer_treatment_update) > 0) {
-                $id_patient_cancer_treatment = $this->db->update_batch('patient_cancer_treatment', $data_patient_cancer_treatment_update, 'patient_cancer_id');
+                $id_patient_cancer_treatment = $this->db->update_batch('patient_cancer_treatment', $data_patient_cancer_treatment_update, 'patient_cancer_treatment_id');
                 if ($id_patient_cancer_treatment > 0)
                     echo 'Data updated succesfully at patient_cancer_treatment table';
                 else
@@ -489,7 +579,7 @@ class ModelDiagnosis1 extends CI_Model {
             }
 
             if (sizeof($data_patient_pathology_update) > 0) {
-                $id_patient_pathology = $this->db->update_batch('patient_pathology', $data_patient_pathology_update, 'patient_cancer_id');
+                $id_patient_pathology = $this->db->update_batch('patient_pathology', $data_patient_pathology_update, 'patient_pathology_id');
                 if ($id_patient_pathology > 0)
                     echo 'Data updated succesfully at patient_pathology table';
                 else

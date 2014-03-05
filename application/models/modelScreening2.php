@@ -112,7 +112,9 @@ class ModelScreening2 extends CI_Model {
             $val_patient_studies_id = in_array($patient_studies_id, $result_patient_studies_id);
 
             if ($val_patient_studies_id) {
+                $patient_non_cancer_surgery_id = $this->excell_sheets_model->get_patient_non_cancer_surgery_id($patient_studies_id);
                 $data_patient_non_cancer_surgery_update[] = array(
+                    'patient_non_cancer_surgery_id' => $patient_non_cancer_surgery_id, 
                     'patient_studies_id' => $patient_studies_id,
                     'surgery_type' => $temp5[2],
                     'reason_for_surgery' => $temp5[3],
@@ -158,7 +160,7 @@ class ModelScreening2 extends CI_Model {
             }
 
             if (sizeof($data_patient_non_cancer_surgery_update) > 0) {
-                $id_data_patient_studies = $this->db->update_batch('patient_non_cancer_surgery', $data_patient_non_cancer_surgery_update, 'patient_studies_id');
+                $id_data_patient_studies = $this->db->update_batch('patient_non_cancer_surgery', $data_patient_non_cancer_surgery_update, 'patient_non_cancer_surgery_id');
                 if ($id_data_patient_studies > 0)
                     echo 'Data updated succesfully at patient_non_cancer_surgery table';
                 else

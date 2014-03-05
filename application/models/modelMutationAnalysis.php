@@ -128,7 +128,9 @@ class ModelMutationAnalysis extends CI_Model {
             $patient_studies_id = $this->excell_sheets_model->get_patient_studies_id($patient_ic_no, $studies_id);
 
             if (in_array($patient_studies_id, $result_patient_studies_id)) {
+                $patient_investigations_id = $this->excell_sheets_model->get_id('patient_mutation_analysis', 'patient_investigations_id', 'patient_studies_id', $patient_studies_id);
                 $data_patient_mutation_analysis_updated[] = array(
+                    'patient_investigations_id' => $patient_investigations_id,
                     'date_test_ordered' => $temp9[2],
                     'ordered_by' => $temp9[3],
                     'testing_result_notification_flag' => $testing_result_notification_flag,
@@ -200,7 +202,7 @@ class ModelMutationAnalysis extends CI_Model {
 
 
             if (sizeof($data_patient_mutation_analysis_updated) > 0) {
-                $id_patient_mutation_analysis = $this->db->update_batch('patient_mutation_analysis', $data_patient_mutation_analysis_updated, 'patient_studies_id');
+                $id_patient_mutation_analysis = $this->db->update_batch('patient_mutation_analysis', $data_patient_mutation_analysis_updated, 'patient_investigations_id');
                 if ($id_patient_mutation_analysis > 0)
                     echo 'Data updated succesfully at patient_mutation_analysis table';
                 else

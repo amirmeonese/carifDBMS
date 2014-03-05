@@ -50,6 +50,22 @@ class ModelPersonal2 extends CI_Model {
                     
                     $temp_array_IC_no_db = null;
                     
+                    $temp_studies_id = array();
+                    $temp_studies_id = null;
+                    $this->db->select('studies_id');
+                    $this->db->from('patient_studies');
+                    $temp_studies_id = $this->db->get()->result_array();
+
+                    $result_studies_id = array();
+                    
+                    for ($i = 0; $i < sizeof($temp_studies_id); $i++) {
+                        //echo $result_relationship[$j]['relatives_type']. '<br/>';
+                        $result_studies_id[$i] = $temp_studies_id[$i]['studies_id'];
+                        //echo $result_studies_name[$i] . '<br/>';
+                    }
+                    
+                    $temp_studies_id = null;
+                    
                     $i = 0;
                     foreach ($sheet->getRowIterator() as $row) {
                         $i++;
@@ -66,6 +82,7 @@ class ModelPersonal2 extends CI_Model {
                             $cell_value = $cell->getFormattedValue();
                             if ($key == 0 && $cell_value != NULL) {
                                 $cell_value = preg_replace("/[^0-9]/", "", $cell_value);
+                                //echo 'ic_no     '.$cell_value.'row  '.$i.'<br/>';
                             }
                             
                             if($key == 1 && $cell_value != NULL)
@@ -119,9 +136,19 @@ class ModelPersonal2 extends CI_Model {
                         //echo $temp3[0].'<br/>';
 
                         $val_ic_no_db = in_array($temp3[0], $array_IC_no_db);
-
-                        if ($val_ic_no_db) {
+                        
+                        if($val_ic_no_db && in_array($studies_id, $result_studies_id))
+                        {
+                          $patient_studies_id = $this->excell_sheets_model->get_patient_studies_id($temp3[0],$studies_id);
+                          //if($patient_studies_id == null)
+                          //echo 'hello '.$patient_studies_id;
+                        }
+                        //if ($val_ic_no_db && in_array($studies_id, $result_studies_id)) 
+                        if ($patient_studies_id != null)
+                        {
+                            //$patient_studies_id = $this->excell_sheets_model->get_patient_studies_id($temp3[0],$studies_id);
                             $data_patient_studies_update[] = array(
+                                'patient_studies_id' => $patient_studies_id,
                                 'patient_ic_no' => $temp3[0],
                                 'studies_id' => $studies_id,
                                 'date_at_consent' => $temp3[2],
@@ -156,7 +183,7 @@ class ModelPersonal2 extends CI_Model {
                         $temp3 = null;
                     }
                     //print_r($data_patient_studies_update);exit;
-                    
+                    $result_studies_id = null;
                     if(!$abort)
                     {
                         if (sizeof($data_patient_studies) > 0) {
@@ -170,7 +197,7 @@ class ModelPersonal2 extends CI_Model {
 
 
                         if (sizeof($data_patient_studies_update) > 0) {
-                            $id_data_patient_studies = $this->db->update_batch('patient_studies', $data_patient_studies_update, 'patient_ic_no');
+                            $id_data_patient_studies = $this->db->update_batch('patient_studies', $data_patient_studies_update, 'patient_studies_id');
                             if ($id_data_patient_studies > 0)
                                 echo 'Data updated succesfully at patient_studies table';
                             else

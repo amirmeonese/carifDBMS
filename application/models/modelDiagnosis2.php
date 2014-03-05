@@ -34,6 +34,8 @@ class ModelDiagnosis2 extends CI_Model {
         $data_patient_other_disease_update = null;
         $data_patient_other_disease_medication = array();
         $data_patient_other_disease_medication = null;
+        $data_pt_other_dis_medication_update = array();
+        $data_pt_other_dis_medication_update = null;
 
         $temp_pt_studies_id_pt_other_disease = array();
         $temp_pt_studies_id_pt_other_disease = null;
@@ -148,9 +150,12 @@ class ModelDiagnosis2 extends CI_Model {
             //echo $patient_studies_id.'<br/>';
             $diagnosis_id = $this->excell_sheets_model->get_id('diagnosis', 'diagnosis_id', 'diagnosis_name', $temp14[2]);
             $Diagnosis2_diagnosis_id[] = $diagnosis_id;
-
+            $patient_other_disease_id = -1;
+            
             if (in_array($patient_studies_id, $result_pt_studies_id_pt_other_disease) && in_array($diagnosis_id, $result_pt_diagnosis_id_pt_other_disease)) {
+                $patient_other_disease_id = $this->excell_sheets_model->get_patient_other_disease_id($patient_studies_id,$diagnosis_id);
                 $data_patient_other_disease_update = array(
+                    'patient_other_disease_id' => $patient_other_disease_id,
                     'patient_studies_id' => $patient_studies_id,
                     'diagnosis_id' => $diagnosis_id,
                     'date_of_diagnosis' => $temp14[3],
@@ -161,8 +166,7 @@ class ModelDiagnosis2 extends CI_Model {
                     'created_on' => $created_date
                 );
 
-                $this->db->where('patient_studies_id', $patient_studies_id);
-                $this->db->where('diagnosis_id', $diagnosis_id);
+                $this->db->where('patient_other_disease_id', $patient_other_disease_id);
                 $this->db->update('patient_other_disease', $data_patient_other_disease_update);
                 $data_patient_other_disease_update = null;
             } else {
@@ -178,8 +182,23 @@ class ModelDiagnosis2 extends CI_Model {
                 );
             }
 
-
-            $data_patient_other_disease_medication[] = array(
+            if (in_array($patient_other_disease_id, $result_pt_other_dis_id_pt_other_dis_medic))
+            {
+                $patient_other_disease_medication_id = $this->excell_sheets_model->get_id('patient_other_disease_medication', 'patient_other_disease_medication_id', 'patient_other_disease_id', $patient_other_disease_id);
+                $data_pt_other_dis_medication_update[] = array(
+                'patient_other_disease_medication_id' => $patient_other_disease_medication_id,    
+                'patient_other_disease_id' => $patient_other_disease_id,
+                'medication_type' => $temp14[8],
+                'start_date' => $temp14[9],
+                'end_date' => $temp14[10],
+                'duration' => $temp14[11],
+                'comments' => $temp14[12],
+                'created_on' => $created_date
+                );
+            }
+            else
+            {
+                $data_patient_other_disease_medication[] = array(
                 'patient_other_disease_id' => 1,
                 'medication_type' => $temp14[8],
                 'start_date' => $temp14[9],
@@ -187,7 +206,11 @@ class ModelDiagnosis2 extends CI_Model {
                 'duration' => $temp14[11],
                 'comments' => $temp14[12],
                 'created_on' => $created_date
-            );
+                ); 
+            }
+
+            
+            $temp14 = null;
         }
         //print_r($data_patient_other_disease);
         //print_r($data_patient_other_disease_medication);
@@ -203,23 +226,24 @@ class ModelDiagnosis2 extends CI_Model {
 
 
         //have to work here
-        $data_pt_other_dis_medication_update = array();
-        $data_pt_other_dis_medication_update = null;
+
         $data_pt_other_dis_medication_insert = array();
         $data_pt_other_dis_medication_insert = null;
 
         $tempLength = sizeof($data_patient_other_disease_medication);
 
-        for ($key = 0; $key < $tempLength; $key++) {
+        if(sizeof($data_patient_other_disease_medication) > 0)
+        {
+            for ($key = 0; $key < $tempLength; $key++) {
             //echo $treatment_patient_studies_id[$key].'      '.$treatment_cancer_id[$key].'      '.$treatment_cancer_site_id[$key].'<br/>';
             $patient_other_disease_id = $this->excell_sheets_model->get_patient_other_disease_id($Diagnosis2_patient_studies_id[$key], $Diagnosis2_diagnosis_id[$key]);
             $data_patient_other_disease_medication[$key]['patient_other_disease_id'] = $patient_other_disease_id;
-            if (in_array($patient_other_disease_id, $result_pt_other_dis_id_pt_other_dis_medic)) {
-                $data_pt_other_dis_medication_update[] = $data_patient_other_disease_medication[$key];
-            } else {
-                $data_pt_other_dis_medication_insert[] = $data_patient_other_disease_medication[$key];
+
+            $data_pt_other_dis_medication_insert[] = $data_patient_other_disease_medication[$key];
+            
             }
         }
+
         
         $data_patient_other_disease_medication = null;
 
@@ -234,7 +258,7 @@ class ModelDiagnosis2 extends CI_Model {
         }
 
         if (sizeof($data_pt_other_dis_medication_update) > 0) {
-            $id_patient_other_disease_medication = $this->db->update_batch('patient_other_disease_medication', $data_pt_other_dis_medication_update, 'patient_other_disease_id');
+            $id_patient_other_disease_medication = $this->db->update_batch('patient_other_disease_medication', $data_pt_other_dis_medication_update, 'patient_other_disease_medication_id');
             if ($id_patient_other_disease_medication > 0)
                 echo 'Data updated succesfully at patient_other_disease_medication table';
             else

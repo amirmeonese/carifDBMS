@@ -161,7 +161,9 @@ class ModelLifestyles1 extends CI_Model {
             $patient_studies_id = $this->excell_sheets_model->get_patient_studies_id($patient_ic_no, $studies_id);
 
             if (in_array($patient_studies_id, $result_patient_studies_id_Lifestyles1)) {
+                $patient_lifestyle_factors_id = $this->excell_sheets_model->get_id('patient_lifestyle_factors', 'patient_lifestyle_factors_id', 'patient_studies_id', $patient_studies_id);
                 $data_patient_lifestyle_factors_update[] = array(
+                    'patient_lifestyle_factors_id' => $patient_lifestyle_factors_id,
                     'patient_studies_id' => $patient_studies_id,
                     'questionnaire_date' => $temp11[questionnaire_date],
                     'self_image_at_7years' => $temp11[self_image_at_7],
@@ -268,7 +270,7 @@ class ModelLifestyles1 extends CI_Model {
 
 
             if (sizeof($data_patient_lifestyle_factors_update) > 0) {
-                $id_patient_lifestyle_factors = $this->db->update_batch('patient_lifestyle_factors', $data_patient_lifestyle_factors_update, 'patient_studies_id');
+                $id_patient_lifestyle_factors = $this->db->update_batch('patient_lifestyle_factors', $data_patient_lifestyle_factors_update, 'patient_lifestyle_factors_id');
                 if ($id_patient_lifestyle_factors > 0)
                     echo 'Data updated succesfully at patient_lifestyle_factors table';
                 else
