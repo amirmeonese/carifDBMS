@@ -71,7 +71,7 @@ class Admin extends CI_Controller {
             $this->email->subject($subject);
             $this->email->message($MESSAGE_BODY);
             $a = $this->email->send();
-
+            
             $this->session->set_flashdata('msg', 'success: Data Added successfully');
             redirect('admin/create_new_user');
             //echo "Data Added successfully";

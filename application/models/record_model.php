@@ -2543,30 +2543,32 @@ function counselling_email_setup()
         $MESSAGE_BODY = "Counselling date detail:" . "<br>";
         $MESSAGE_BODY .= "" . "<br>";
         $MESSAGE_BODY .= "Patient Ic No: " . $this->input->post('IC_no') . "<br>";
-        $MESSAGE_BODY .= "Next Counselling Date: " . date("Y-m-d", strtotime($this->input->post('interview_next_date'))) . "<br>";
+        $MESSAGE_BODY .= "Next Counselling Date: " . date("d-m-Y", strtotime($this->input->post('interview_next_date'))) . "<br>";
         $MESSAGE_BODY .= "Counselling Note: " . $this->input->post('interview_note') . "<br>";
         $MESSAGE_BODY .= "<br>";
         $MESSAGE_BODY .= "This is a system generated email. Please do not reply to it." . "<br>";
         
-        $config = array(
-                'protocol' => 'smtp',
-                //'mailpath' => '/usr/sbin/sendmail',
-                'smtp_host' => 'ssl://smtp.googlemail.com',
-                'smtp_port' => 465,
-                'smtp_user' => 'apurbamy@gmail.com',
-                'smtp_pass' => 'apurbamy2012',
-                'mailtype' => 'html'
-            );
+        $this->email->clear();
 
-            $this->load->library('email', $config);
-            $this->email->set_newline("\r\n");
-            $this->email->from('apurbamy@gmail.com', 'Carif Counselling Date Reminder sent via CarifDBMS');
-            $this->email->to($sender);
-            $this->email->subject($subject);
-            $this->email->message($MESSAGE_BODY);
+                $config['protocol'] = 'smtp';
+                $config['smtp_host'] = 'ssl://smtp.gmail.com';
+                $config['smtp_port'] = '465';
+                $config['smtp_timeout'] = '7';
+                $config['smtp_user'] = 'cariftest@gmail.com';
+                $config['smtp_pass'] = 'carif123456';
+                $config['charset'] = 'utf-8';
+                $config['newline'] = "\r\n";
+                $config['mailtype'] = 'html'; // or text
+                $config['validation'] = TRUE; // bool whether to validate email or not     
+                $this->email->initialize($config);
+
+                $this->email->from('cariftest@gmail.com', 'Carif Admin Registration sent via CarifDBMS');
+                $this->email->to($sender);
+                $this->email->subject($subject);
+                $this->email->message($MESSAGE_BODY);
             $a = $this->email->send();
             
-            //print_r($a);
+            //print_r($a);exit;
 }
 }
 ?>
