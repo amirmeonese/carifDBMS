@@ -134,9 +134,15 @@ class ModelPersonal2 extends CI_Model {
                         else
                             $double_consent_flag = FALSE;
                         //echo $temp3[0].'<br/>';
-
+                        
+                        $patient_studies_id = null;
                         $val_ic_no_db = in_array($temp3[0], $array_IC_no_db);
                         
+                        /*if(!in_array($temp3[0], $array_IC_no_db_personal))
+                        {
+                            echo $temp3[0].'row '.$i.'<br/>';
+                        }*/
+  
                         if($val_ic_no_db && in_array($studies_id, $result_studies_id))
                         {
                           $patient_studies_id = $this->excell_sheets_model->get_patient_studies_id($temp3[0],$studies_id);
