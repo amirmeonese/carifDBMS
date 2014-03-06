@@ -276,6 +276,61 @@ class Record extends CI_Controller {
                     //echo count($allFieldArray);
                     break;
                 }
+                
+                case "relative_cancer": {
+
+                    $fieldCount = 2;
+                    $allFieldArray = array();
+                    $date = date('Y-m-d H:i:s'); //Returns IST
+
+                    while ($this->input->post('relative_fullname' . $fieldCount)) {
+
+                        //print_r($comment);exit;
+
+                        $relative_cancer_name = $this->input->post('relative_cancer_name' . $fieldCount);
+                        $relative_cancer_type_id = $this->record_model->get_cancer_id($relative_cancer_name);
+                        if($this->input->post('relative_relationship_status') == 'paternal'){
+                            
+                            $paternal_status = '1';
+                        } else {
+                          $paternal_status = '0';  
+                        }
+                         if($this->input->post('relative_relationship_status') == 'maternal'){
+                            
+                            $maternal_status = '1';
+                        } else {
+                          $maternal_status = '0';  
+                        }
+                        
+                        $data3_patient_relatives = array(
+                            'patient_ic_no' => $this->input->post('IC_no'),
+                            'cancer_type_id' => $relative_cancer_type_id,
+                            'is_paternal' => $paternal_status,
+                            'is_maternal' => $maternal_status,
+                            'relatives_id' => $this->input->post('relativeTypeLists'.$fieldCount),
+                            'degree_of_relativeness' => $this->input->post('degreeOfRelativeness' . $fieldCount),
+                            'full_name' => $this->input->post('relative_fullname'.$fieldCount),
+                            'maiden_name' => $this->input->post('relative_maiden_name' . $fieldCount),
+                            'ethnicity' => $this->input->post('relative_ethnicity' . $fieldCount),
+                            'town_of_residence' => $this->input->post('relative_town_residence' . $fieldCount),
+                            'd_o_b' => $this->input->post('relative_DOB' . $fieldCount),
+                            'is_alive_flag' => $this->input->post('relative_still_alive_flag' . $fieldCount),
+                            'sex' => $this->input->post('relative_gender' . $fieldCount),
+                            'd_o_d' => $this->input->post('relative_DOD' . $fieldCount),
+                            'is_cancer_diagnosed' => $this->input->post('relative_is_cancer_diagnosed' . $fieldCount),
+                            'date_of_diagnosis' => $this->input->post('relative_date_of_diagnosis' . $fieldCount),
+                            'age_of_diagnosis' => $this->input->post('relative_age_of_diagnosis' . $fieldCount),
+                            'vital_status' => $this->input->post('relative_vital_status' . $fieldCount),
+                            'comments' => $this->input->post('relative_comment' . $fieldCount),
+                        );
+
+                        $fieldCount++;
+                        // array_push($allFieldArray, $data_patient_interview_manager);
+                        $this->db->insert('patient_relatives', $data3_patient_relatives);
+                    }
+                    //echo count($allFieldArray);
+                    break;
+                }
             case "parity": {
 
                     $fieldCount = 1;
@@ -1646,6 +1701,54 @@ class Record extends CI_Controller {
                 echo "<h2>Failed to insert patient_relatives2</h2>";
             }
             echo '<br/>';
+            
+            $relative_cancer_name = $this->input->post('relative_cancer_name');
+                        $relative_cancer_type_id = $this->record_model->get_cancer_id($relative_cancer_name);
+                        if($this->input->post('relative_relationship_status') == 'paternal'){
+                            
+                            $paternal_status = '1';
+                        } else {
+                          $paternal_status = '0';  
+                        }
+                         if($this->input->post('relative_relationship_status') == 'maternal'){
+                            
+                            $maternal_status = '1';
+                        } else {
+                          $maternal_status = '0';  
+                        }
+                        
+                        
+                        $data3_patient_relatives = array(
+                            'patient_ic_no' => $this->input->post('IC_no'),
+                            'cancer_type_id' => $relative_cancer_type_id,
+                            'is_paternal' => $paternal_status,
+                            'is_maternal' => $maternal_status,
+                            'relatives_id' => $this->input->post('relativeTypeLists'),
+                            'degree_of_relativeness' => $this->input->post('degreeOfRelativeness'),
+                            'full_name' => $this->input->post('relative_fullname'),
+                            'maiden_name' => $this->input->post('relative_maiden_name'),
+                            'ethnicity' => $this->input->post('relative_ethnicity'),
+                            'town_of_residence' => $this->input->post('relative_town_residence'),
+                            'd_o_b' => $this->input->post('relative_DOB'),
+                            'is_alive_flag' => $this->input->post('relative_still_alive_flag'),
+                            'sex' => $this->input->post('relative_gender'),
+                            'd_o_d' => $this->input->post('relative_DOD'),
+                            'is_cancer_diagnosed' => $this->input->post('relative_is_cancer_diagnosed'),
+                            'date_of_diagnosis' => $this->input->post('relative_date_of_diagnosis'),
+                            'age_of_diagnosis' => $this->input->post('relative_age_of_diagnosis'),
+                            'vital_status' => $this->input->post('relative_vital_status'),
+                            'comments' => $this->input->post('relative_comment'),
+                        );
+                       
+            $id3_patient_relatives = $this->record_model->insert_patient_family_record($data3_patient_relatives);
+            
+             $add_relative = $this->getDynamicFieldsInputsArray("relative_cancer");
+            if ($id3_patient_relatives > 0) {
+                echo "<h2>Data Added successfully at patient_relatives3</h2>";
+            } else {
+                echo "<h2>Failed to insert patient_relatives3</h2>";
+            }
+            echo '<br/>';
         } else {
             print_r(validation_errors());
         }
@@ -1729,6 +1832,7 @@ class Record extends CI_Controller {
                 }
                 echo '<br/>';
             }
+        }
 
             $mother_relatives_id = $this->input->post('mother_relatives_id');
             $mother_cancer_name = $this->input->post('mother_cancer_name');
@@ -1801,8 +1905,81 @@ class Record extends CI_Controller {
                     echo '<br/>';
                 }
             }
-            echo '<br/>';
-        }
+            
+            $other_relatives_id = $this->input->post('other_relatives_id');
+            $relative_cancer_name = $this->input->post('relative_cancer_name');
+            $relative_relationship_status = $this->input->post('relative_relationship_status');
+            $relativeTypeLists = $this->input->post('relativeTypeLists');
+            $degreeOfRelativeness = $this->input->post('degreeOfRelativeness');
+            $relative_fullname = $this->input->post('relative_fullname');
+            $relative_maiden_name = $this->input->post('relative_maiden_name');
+            $relative_ethnicity = $this->input->post('relative_ethnicity');
+            $relative_town_residence = $this->input->post('relative_town_residence');
+            $relative_DOB = $this->input->post('relative_DOB');
+            $relative_DOD = $this->input->post('relative_DOD');
+            $relative_gender = $this->input->post('relative_gender');
+            $relative_still_alive_flag = $this->input->post('relative_still_alive_flag');
+            $relative_is_cancer_diagnosed = $this->input->post('relative_is_cancer_diagnosed');
+            $relative_date_of_diagnosis = $this->input->post('relative_date_of_diagnosis');
+            $relative_age_of_diagnosis = $this->input->post('relative_age_of_diagnosis');
+            $relative_vital_status = $this->input->post('relative_vital_status');
+            $relative_comment = $this->input->post('relative_comment');
+            
+            
+            if (!empty($other_relatives_id)) {
+            for ($i = 0; $i < count($mother_relatives_id); $i++) {
+
+        
+                        
+                        $relative_cancer_type_id = $this->record_model->get_cancer_id($relative_cancer_name[$i]);
+                       
+                        if($relative_relationship_status[$i] == 'paternal'){
+                            
+                            $paternal_status = '1';
+                        } else {
+                          $paternal_status = '0';  
+                        }
+                         if($relative_relationship_status[$i] == 'maternal'){
+                            
+                            $maternal_status = '1';
+                        } else {
+                          $maternal_status = '0';  
+                        }
+                        
+                        
+                        $data3_patient_relatives = array(
+                            'cancer_type_id' => $relative_cancer_type_id[$i],
+                            'is_paternal' => $paternal_status,
+                            'is_maternal' => $maternal_status,
+                            'relatives_id' => $relativeTypeLists[$i],
+                            'degree_of_relativeness' => $degreeOfRelativeness[$i],
+                            'full_name' => $relative_fullname[$i],
+                            'maiden_name' => $relative_maiden_name[$i],
+                            'ethnicity' => $relative_ethnicity[$i],
+                            'town_of_residence' => $relative_town_residence[$i],
+                            'd_o_b' => $relative_DOB[$i] == '00-00-0000' ? '0000-00-00' : date("Y-m-d", strtotime($relative_DOB[$i])),
+                            'is_alive_flag' => $relative_still_alive_flag[$i],
+                            'sex' => $relative_gender[$i],
+                            'd_o_d' => $relative_DOD[$i] == '00-00-0000' ? '0000-00-00' : date("Y-m-d", strtotime($relative_DOD[$i])),
+                            'is_cancer_diagnosed' => $relative_is_cancer_diagnosed[$i],
+                            'date_of_diagnosis' => $relative_date_of_diagnosis[$i] == '00-00-0000' ? '0000-00-00' : date("Y-m-d", strtotime($relative_date_of_diagnosis[$i])),
+                            'age_of_diagnosis' => $relative_age_of_diagnosis[$i],
+                            'vital_status' => $relative_vital_status[$i],
+                            'comments' => $relative_comment[$i],
+                            'modified_on' => $date
+                        );
+                       
+                    $this->db->where('patient_relatives_id', $other_relatives_id[$i]);
+                    $this->db->update('patient_relatives', $data3_patient_relatives);
+
+                    if ($this->db->affected_rows() > 0) {
+                        echo '<h2>Data for id ' . $i . ' update successfully<h2>';
+                    } else {
+                        echo '<h2>No update data for id ' . $i . '</h2>';
+                    }
+                    echo '<br/>';
+    }
+            }
     }
 
     public function risk_assessment_insertion() {
@@ -4878,15 +5055,6 @@ class Record extends CI_Controller {
 
                 $dynamicFieldsArray = $this->getDynamicFieldsInputsArray("counselling_note");
                 
-                if($this->input->post('is_send_email_reminder')== 1){
-                    
-                    $this->record_model->counselling_email_setup();
-                    
-                }
-
-        
-
-        // print_r($dynamicFieldsArray);
 
         if ($patient_interview_manager_id > 0) {
             echo "<h2>Data Added successfully.</h2>";
@@ -5125,6 +5293,7 @@ class Record extends CI_Controller {
                     $data['patient_survival_status'] = $this->record_model->get_survival_record($ic_no);
                     $data['alive_id'] = $this->record_model->get_alive_status_by_id();
                     $data['patient_relatives_summary'] = $this->record_model->get_detail_record($ic_no, 'patient_relatives_summary', 'patient_ic_no');
+                                        
                     $data['isUpdate'] = TRUE;
 
                     if ($user_is_locked == 1) {
@@ -5135,7 +5304,11 @@ class Record extends CI_Controller {
                 } else if ($var == 'family') {
                     $data['patient_family_mother'] = $this->record_model->get_view_family_record($ic_no, 2);
                     $data['patient_family_father'] = $this->record_model->get_view_family_record($ic_no, 1);
+                    $data['patient_family_others'] = $this->record_model->get_view_family_others_record($ic_no);
                     $data['cancer_name'] = $this->record_model->get_cancer_by_id();
+                    $data['relative'] = $this->record_model->get_relative_by_id();
+                    $data['relationship'] = $this->record_model->get_relationship_list();
+                    $data['relative_degrees'] = $this->record_model->get_relative_degrees_list();
                     if ($user_is_locked == 1)
                         $this->template->load("templates/add_record_template", 'record/view_family_details_readonly', $data);
                     else
@@ -5250,4 +5423,5 @@ class Record extends CI_Controller {
                     $this->template->load("templates/add_record_template", 'record/upload_xlsx_file', $data);
                 }
             }
+            
 }

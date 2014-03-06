@@ -310,6 +310,139 @@
         <?php echo form_fieldset_close(); ?>
         <?php endforeach; ?>
     </div>
+    <div class="container" id="add_record_form_section_2">
+        <div height="30px">&nbsp;</div>
+        <?php foreach ($patient_family_others as $others): ?>
+        <?php
+        echo form_fieldset('Others');
+        ?>
+        <table>
+            <tr>
+                <?php if($others['is_paternal'] == 1){?>
+                <td>
+                    <?php echo 'Paternal/Maternal status' ?>: 
+                    <?php echo form_dropdown('paternal_status[]', $paternal_status, 'paternal', 'id="paternal_status" preload_val="'."paternal".'"'); ?>
+                </td>
+                <?php } if($others['is_maternal'] == 1) {?>
+                <td>
+                    <?php echo 'Paternal/Maternal status' ?>: 
+                    <?php echo form_dropdown('paternal_status[]', $paternal_status, 'maternal', 'id="paternal_status" preload_val="'.'maternal'.'"'); ?>
+                </td>
+                <?php } if($others['is_paternal'] == 0 && ($others['is_maternal'] == 0)) {?>
+                <td>
+                    <?php echo 'Paternal/Maternal status' ?>: 
+                    <?php echo form_dropdown('paternal_status[]', $paternal_status, NULL, 'id="paternal_status" preload_val="'.NULL.'"'); ?>
+                </td>
+                <?php } ?>
+                <td>
+                    <?php echo 'Relationship' ?>: 
+                    <?php echo form_dropdown('relativeTypeLists[]', $relationship, $others['relatives_id'], 'id="relativeTypeLists" preload_val="'.$others['relatives_id'].'"'); ?>
+                </td>
+                <td>
+                    <?php echo 'Degree of relativeness' ?>: 
+                    <?php echo form_dropdown('degreeOfRelativeness[]', $relative_degrees, $others['degree_of_relativeness'], 'id="degreeOfRelativeness" preload_val="'.$others['degree_of_relativeness'].'"'); ?>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <?php echo $father_fullname; ?>: 
+                    <?php echo form_input(array('name' => 'relative_fullname[]', 'value' => $others['full_name']))?>
+                </td>
+                <td>
+                    <?php echo $father_maiden_name; ?>: 
+                    <?php echo form_input(array('name' => 'relative_maiden_name[]', 'value' => $others['maiden_name']))?>
+                </td>
+                <td>
+                    <?php echo 'Gender' ?>: 
+                <?php echo form_dropdown('relative_gender[]', $genderTypes, $others['sex'], 'id="gender" preload_val="'.$others['sex'].'"'); ?>
+                
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <?php echo $father_ethnicity; ?>: 
+                    <?php echo form_input(array('name' => 'relative_ethnicity[]', 'value' => $others['ethnicity']))?>
+                </td>
+                <td>
+                    <?php echo $father_town_residence; ?>: 
+                    <?php echo form_input(array('name' => 'relative_town_residence[]', 'value' => $others['town_of_residence']))?>
+                </td>
+                <td>
+                    <?php echo $father_DOB; ?>: 
+                    <?php echo form_input(array('name' => 'relative_DOB[]', 'value' => $others['d_o_b'] == '0000-00-00' ? '00-00-0000'  : date('d-m-Y', strtotime($others['d_o_b'])),'class'=>'datepicker'))?>
+                </td>
+                </tr>
+                <tr>
+                <?php if($list['is_alive_flag'] == 1){?>
+                <td>
+                    <?php echo $father_still_alive_flag; ?>: 
+                    <?php echo form_checkbox(array('name' => 'relative_still_alive_flag[]', 'value' => $others['is_alive_flag'],'checked'=>"checked"))?>
+                </td>
+               <?php } else {?>
+                <td>
+                    <?php echo $father_still_alive_flag; ?>: 
+                    <?php echo form_checkbox(array('name' => 'relative_still_alive_flag[]', 'value' => $others['is_alive_flag']))?>
+                </td>
+               <?php } ?>
+                <td>
+                    <?php echo $father_DOD; ?>: 
+                    <?php echo form_input(array('name' => 'relative_DOD[]', 'value' => $others['d_o_d'] == '0000-00-00' ? '00-00-0000'  : date('d-m-Y', strtotime($others['d_o_d'])),'class'=>'datepicker'))?>
+                </td>
+                <?php if($others['is_cancer_diagnosed'] == 1){?>
+                <td>
+                    <?php echo $father_is_cancer_diagnosed; ?>: 
+                    <?php echo form_checkbox(array('name' => 'relative_is_cancer_diagnosed[]', 'value' => $others['is_cancer_diagnosed'],'checked'=>"checked"))?>
+                </td>
+               <?php } else {?>
+               <td>
+                    <?php echo $father_is_cancer_diagnosed; ?>: 
+                    <?php echo form_checkbox(array('name' => 'relative_is_cancer_diagnosed[]', 'value' => $others['is_cancer_diagnosed']))?>
+                </td>
+               <?php } ?>
+            </tr>
+            </table>
+        </div>
+        <div class="container" id="add_record_father_cancer_record_1">
+        <div height="30px">&nbsp;</div>
+		<table>
+            <tr>
+				 <td>
+                    <?php echo $father_cancer_name; ?>: 
+                    <?php echo form_dropdown('relative_cancer_name[]', $patient_cancer_name_lists, $cancer_name[$others['cancer_type_id']], 'id="patient_cancer_name_lists" preload_val="'.$cancer_name[$others['cancer_type_id']].'"'); ?>
+               <td>
+                    <?php echo $father_date_of_diagnosis; ?>: 
+                    <?php echo form_input(array('name' => 'relative_date_of_diagnosis[]', 'value' => $others['date_of_diagnosis'] == '0000-00-00' ? '00-00-0000'  : date('d-m-Y', strtotime($others['date_of_diagnosis'])),'class'=>'datepicker'))?>
+
+               </td>
+                <td>
+                    <?php echo $father_age_of_diagnosis; ?>: 
+                    <?php echo form_input(array('name' => 'relative_age_of_diagnosis[]', 'value' => $others['age_of_diagnosis']))?>
+                </td>
+            </tr>
+            <tr>
+            
+            </tr>
+        </table>
+        </div>
+        <div class="container" id="add_record_form_section_4">
+        <div height="30px">&nbsp;</div>
+         <table>
+            <tr>
+                <td>
+                    <?php echo $father_vital_status; ?>: 
+                    <?php echo form_input(array('name' => 'relative_vital_status[]', 'value' => $others['vital_status']))?>
+                </td>
+				<td>
+                    <?php echo $father_comments; ?>: 
+                    <?php echo form_textarea(array('name' => 'relative_comment[]','id' => 'relative_comment','rows' => '5','cols' => '10', 'value' => $others['comments']))?> 
+                </td>
+            </tr>
+            <input type="hidden" name="patient_ic_no" value="<?php print $others['patient_ic_no']; ?>"/>
+            <input type="hidden" name="others_relatives_id" value="<?php print $others['patient_relatives_id']; ?>"/>
+        </table>
+        <?php echo form_fieldset_close(); ?>
+        <?php endforeach; ?>
+    </div>
     </br>
            <?php echo form_fieldset_close(); ?>	
             <?php if ($userprivillage['edit_privilege']== 1 && !$isLocked){ ?>

@@ -659,6 +659,12 @@ class Record_model extends CI_Model {
             'right' => 'Right',
             'both' => 'both'
         );
+        $data['paternal_status'] = array(
+            '' => '',
+            'paternal' => 'Paternal',
+            'maternal' => 'Maternal'
+        );
+        
         $data['age_at_first_mammogram'] = 'Age at first mammogram';
         $data['motivaters_at_first_mammogram'] = 'Motivaters at first mammogram';
         $data['motivaters_at_recent_mammogram'] = 'Motivaters at recent mammogram';
@@ -1356,6 +1362,19 @@ class Record_model extends CI_Model {
     
         $this->db->where('patient_ic_no',$ic_no);
         $this->db->where('relatives_id',$relative_id);
+	$f_record = $this->db->get('patient_relatives');
+        $patient_family_detail = $f_record->result_array();
+        //echo $this->db->last_query();exit;
+        $f_record->free_result();  
+
+        return $patient_family_detail;
+    }
+    
+     public function get_view_family_others_record($ic_no){
+    
+        $this->db->where('patient_ic_no',$ic_no);
+        $this->db->where('relatives_id !=','1');
+        $this->db->where('relatives_id !=','2');
 	$f_record = $this->db->get('patient_relatives');
         $patient_family_detail = $f_record->result_array();
         //echo $this->db->last_query();exit;
@@ -2442,6 +2461,19 @@ function get_studies_name_by_id() {
         return $ovarianscreeninglist;
     }
     
+    function get_relative_by_id() {
+
+        $relativelist = array();
+        $this->db->select('relatives_id,relatives_type');
+        $this->db->order_by('relatives_type asc');
+        $query = $this->db->get('relatives');
+        foreach ($query->result() as $row) {
+            $relativelist = $relativelist + array($row->relatives_id => $row->relatives_type);
+        }
+        $query->free_result();
+        return $relativelist;
+    }
+    
     function get_site_breast_by_id() {
         
         $sitebreastlist = array(
@@ -2534,7 +2566,7 @@ function get_is_user_locked($ic_no)
        return $result['is_record_locked'];
 }
 
-function counselling_email_setup()
+function counselling_email_setup($test)
 {
     
         $sender = $this->input->post('officer_email_addresses');
@@ -2547,6 +2579,9 @@ function counselling_email_setup()
         $MESSAGE_BODY .= "Counselling Note: " . $this->input->post('interview_note') . "<br>";
         $MESSAGE_BODY .= "<br>";
         $MESSAGE_BODY .= "This is a system generated email. Please do not reply to it." . "<br>";
+        
+        $data['searched_result'] = $test;
+        $MESSAGE_BODY .= $this->load->view('record/generated_email', $data,true);
         
         $this->email->clear();
 
@@ -2570,5 +2605,109 @@ function counselling_email_setup()
             
             //print_r($a);exit;
 }
+
+function get_relationship_list()
+
+{
+        $query = $this->db->get('relatives');
+        
+        $relationshiplist = array('' => '');
+        
+        foreach($query->result() as $row) {    
+            
+                $relationshiplist = $relationshiplist + array($row->relatives_id => $row->relatives_type);                
+
+        }
+
+        $query->free_result();
+
+        return $relationshiplist;
+    }
+    
+    function get_relative_degrees_list()
+{
+        $query = $this->db->get('relative_degrees');
+        
+        $relativedegreelist = array('' => '');
+        
+        foreach($query->result() as $row) {    
+            
+                $relativedegreelist = $relativedegreelist + array($row->relative_degree_ID => $row->relative_degree_name);                
+
+        }
+
+        $query->free_result();
+
+        return $relativedegreelist;
+    }
+    
+    function get_officer_email_addresses($new_date){
+    
+        $this->db->select('officer_email_addresses,patient_interview_manager_id');
+        $this->db->where('is_send_email_reminder_to_officers',1);
+        $this->db->where('is_reminded !=',1);
+        $this->db->like('interview_date',$new_date);
+        $this->db->group_by('officer_email_addresses');
+	$f_record = $this->db->get('patient_interview_manager');
+        $patient_family_detail = $f_record->result_array();
+        //echo $this->db->last_query();exit;
+        $f_record->free_result();  
+
+        return $patient_family_detail;
+    }
+    
+    function get_email_patient($list,$new_date){
+    
+        $this->db->select('a.*,b.cell_phone,b.home_phone,b.given_name');
+        $this->db->from('patient_interview_manager a');
+        $this->db->join('patient b', 'a.patient_ic_no = b.ic_no', 'left');
+        $this->db->where('a.officer_email_addresses',$list);
+        $this->db->where('a.is_send_email_reminder_to_officers',1);
+        $this->db->where('a.is_reminded !=',1);
+        $this->db->like('a.interview_date',$new_date);
+	$f_record = $this->db->get('');
+        $patient_family_detail = $f_record->result_array();
+        //echo $this->db->last_query();exit;
+        $f_record->free_result();  
+
+        //print_r($patient_family_detail);exit;
+        
+        return $patient_family_detail;
+    }
+    
+    function counselling_email($test,$sender)
+{
+    
+        $subject = 'Counselling Date Reminder';
+
+        $MESSAGE_BODY = "The following patients need to be contact:" . "<br>";
+        $MESSAGE_BODY .= "" . "<br>";        
+        $data['searched_result'] = $test;
+        $MESSAGE_BODY .= $this->load->view('record/generated_email', $data,true);
+        $MESSAGE_BODY .= "This is a system generated email. Please do not reply to it." . "<br>";
+        
+        $this->email->clear();
+
+                $config['protocol'] = 'smtp';
+                $config['smtp_host'] = 'ssl://smtp.gmail.com';
+                $config['smtp_port'] = '465';
+                $config['smtp_timeout'] = '7';
+                $config['smtp_user'] = 'cariftest@gmail.com';
+                $config['smtp_pass'] = 'carif123456';
+                $config['charset'] = 'utf-8';
+                $config['newline'] = "\r\n";
+                $config['mailtype'] = 'html'; // or text
+                $config['validation'] = TRUE; // bool whether to validate email or not     
+                $this->email->initialize($config);
+
+                $this->email->from('cariftest@gmail.com', 'Carif Counselling Date Reminder sent via CarifDBMS');
+                $this->email->to($sender);
+                $this->email->subject($subject);
+                $this->email->message($MESSAGE_BODY);
+            $a = $this->email->send();
+            
+            //print_r($a);exit;
+}
+    
 }
 ?>
