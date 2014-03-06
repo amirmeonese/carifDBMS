@@ -15,7 +15,9 @@ class Email_Sender_Cron_Job extends CI_Controller
 			echo "This script can only be accessed via the command line" . PHP_EOL;
 			return;
 		} */
-		
+	
+                $this->email_follow_up_notification();
+            
 		$timestamp = strtotime("+1 days");
 		$appointments = $this->Email_notification_model->get_days_appointments($timestamp);
 		if(!empty($appointments))
@@ -61,4 +63,31 @@ class Email_Sender_Cron_Job extends CI_Controller
 			}
 		}
 	}
+        
+        function email_follow_up_notification(){
+            
+                        $new_date = date("Y-m", strtotime("-5 months"));
+                                                                    
+                        $officer_email = $this->Email_notification_model->get_officer_email_addresses($new_date);
+
+                        foreach ($officer_email as $list){
+                        $email = $this->Email_notification_model->get_email_patient($list['officer_email_addresses'],$new_date);
+                        $email_send = $this->Email_notification_model->counselling_email($email,$list['officer_email_addresses']);
+                        
+                        if ($email_send)
+					{
+						echo "Email sent successfully! \n";
+						$this->db->where('patient_interview_manager_id', $list['patient_interview_manager_id']);
+                                                $this->db->update('patient_interview_manager', array('is_reminded' => 1));
+					}
+					else
+					{
+						echo "failed to send email to officer at this address: \n";
+						$this->Admin_model->write_error_into_log("Error in submitting email notification to officers.");
+					}
+                        
+                        
+                        }
+            
+        }
 }
