@@ -325,7 +325,7 @@ class ModelScreening1 extends CI_Model {
                 $upper_below_breast_side = $temp4[mammo_upper_below_breast_site];
 
                 if ($left_right_breast_side == "yes/yes" || $left_right_breast_side == "Yes/Yes") {
-                    $left_breast = TRUE;
+                    $temp4[$left_breast] = TRUE;
                     $right_breast = TRUE;
                 } else if ($left_right_breast_side == "yes/no" || $left_right_breast_side == "Yes/No") {
                     $left_breast = TRUE;
@@ -378,12 +378,13 @@ class ModelScreening1 extends CI_Model {
                     'below' => $below,
                     'is_abnormality_detected' => $is_abnormality_detected_breast,
                     'created_on' => $created_date
-                    );   
+                    );
+                   //print_r($data_patient_breast_abnormality_update);
                 }
+                
                 else
                 {
                     $data_patient_breast_abnormality[] = array(
-                    'patient_breast_screening_id' => 1,
                     'left_breast' => $left_breast,
                     'right_breast' => $right_breast,
                     'upper' => $upper,
