@@ -235,7 +235,7 @@ class ModelScreening1 extends CI_Model {
                 {
                     $patient_breast_screening_id = $this->excell_sheets_model->get_patient_breast_screening_id($patient_ic_no,$patient_studies_id);
                    
-                    $data_patient_breast_screening_update = array(
+                    $data_patient_breast_screening_update[] = array(
                     'patient_ic_no' => $temp4[patient_IC_no],
                     'patient_studies_id' => $patient_studies_id,
                     'date_of_first_mammogram' => $temp4[date_of_first_mammogram],
@@ -272,9 +272,7 @@ class ModelScreening1 extends CI_Model {
                     'site_effected_of_mammogram' => $temp4[site_effected_of_mammogram],
                     'is_cancer_mammogram_flag' => $is_cancer_mammogram_flag
                     );
-                    $this->db->where('patient_breast_screening_id', $patient_breast_screening_id);
-                    $this->db->update('patient_breast_screening', $data_patient_breast_screening_update); 
-                    $data_patient_breast_screening_update = null;
+                   
                 }
                 else
                 {
@@ -464,6 +462,17 @@ class ModelScreening1 extends CI_Model {
             //print_r($data_patient_breast_abnormality);
             //print_r($data_patient_ultrasound_abnormality);
             // print_r($data_patient_mri_abnormality);
+            if(sizeof($data_patient_breast_screening_update) > 0)
+            {
+                $id_patient_breast_screening = $this->db->update_batch('patient_breast_screening', $data_patient_breast_screening_update, 'patient_breast_screening_id');
+                if ($id_data_patient_studies > 0)
+                    echo 'Data updated succesfully at patient_breast_screening table';
+                else
+                    echo 'Updated Datad at patient_breast_screening table';
+                echo '<br/>';
+                $data_patient_non_cancer_surgery_update = null;
+                 
+            }
             if(sizeof($data_patient_breast_screening) > 0)
             {
                 $id_patient_breast_screening = $this->excell_sheets_model->insert_record($data_patient_breast_screening, 'patient_breast_screening');
