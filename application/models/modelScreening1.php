@@ -383,7 +383,7 @@ class ModelScreening1 extends CI_Model {
                 else
                 {
                     $data_patient_breast_abnormality[] = array(
-                    'patient_breast_screening_id' => 1,
+                    //'patient_breast_screening_id' => 1,
                     'left_breast' => $left_breast,
                     'right_breast' => $right_breast,
                     'upper' => $upper,
