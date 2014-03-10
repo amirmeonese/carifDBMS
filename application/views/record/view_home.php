@@ -59,6 +59,7 @@
 					<a class="add_record_tab_btn" href="<?php echo site_url('record/view_record_list/risk_assessment'.'/'.$ic_no.'/'.$patient_studies_id);?>" target="iframe_record_home" >Risk Assessment</a>
 					<a class="add_record_tab_btn" href="<?php echo site_url('record/view_record_list/lifestyleFactors'.'/'.$ic_no.'/'.$patient_studies_id);?>" target="iframe_record_home" >Lifestyle Factors</a>
                                         <a class="add_record_tab_btn" href="<?php echo site_url('record/view_record_list/counselling'.'/'.$ic_no);?>" target="iframe_record_home" >Counselling</a>
+                                        <a class="add_record_tab_btn" href="<?php echo site_url('record/export_filter'.'/'.$ic_no.'/'.$patient_studies_id);?>" target="iframe_record_home" >Export</a>
                                         <iframe src="<?php echo site_url('record/view_record_list/personal'.'/'.$ic_no);?>" id="iframe_record_home" name="iframe_record_home" onLoad="calcHeight();" width="100%" height="700px" scrolling="no"></iframe>
 				</div>
 				<div id="footer" class="row">

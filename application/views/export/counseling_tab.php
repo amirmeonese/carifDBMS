@@ -1,32 +1,35 @@
-<div class="container" id="report_div">
-    <div id="report_header" class="row">
-        <p>Search Result</p>
-    </div>
-    <?php echo form_open('report/toExcel'); ?>
-    <div class="container" id="report_form_section" >
-        <div height="30px">&nbsp;</div>
-        <table border="1" width="50%" style="margin-left:180px;">
-            <thead>
+<?php
+// We change the headers of the page so that the browser will know what sort of file is dealing with. Also, we will tell the browser it has to treat the file as an attachment which cannot be cached.
+
+header("Content-type: application/octet-stream");
+header("Content-Disposition: attachment; filename=export_personal_data.xls");
+header("Pragma: no-cache");
+header("Expires: 0");
+?>
+<p>Counseling</p>
+<div height="30px">&nbsp;</div>
+
+<table border="1">
+    <thead>
                 <tr>
-                    <th style="background-color:Crimson;">Full Name</th>
-                    <th style="background-color:Crimson;">Sur Name</th>
-                    <th style="background-color:Crimson;">IC</th>
+                    <th style="background-color:Crimson;">No</th>
+                    <th style="background-color:Crimson;">IC No</th>
+                    <th style="background-color:Crimson;">Counseling Date</th>
+                    <th style="background-color:Crimson;">Setup Next Counseling Date</th>
+                    <th style="background-color:Crimson;">Send Email Reminder To Officer</th>
+                    <th style="background-color:Crimson;">Officer Email Address</th>
+                    <th style="background-color:Crimson;">Counseling Note</th>
                 </tr>
             </thead>
-            <?php foreach ($searched_result as $list): ?>
+            <?php $no = 1; foreach ($patient_interview_manager as $list): ?>
                 <tr>
-                    <td><?php echo $list['fullname']; ?></td>
-                    <td><?php echo $list['surname']; ?></td>
-                    <td><?php echo $list['ic_no']; ?></td>
+                    <td><?php echo $no; ?></td>
+                    <td><?php echo $list['patient_ic_no']; ?></td>
+                    <td><?php echo $list['interview_date']; ?></td>
+                    <td><?php echo $list['next_interview_date']; ?></td>
+                    <td><?php echo $email_reminder[$list['is_send_email_reminder_to_officers']]; ?></td>
+                    <td><?php echo $list['officer_email_addresses']; ?></td>
+                    <td><?php echo $list['comments']; ?></td>
                 </tr>
-                    <input type="hidden" name="patient_name" value="<?php echo $a;?>">
-            <?php endforeach; ?>
+            <?php $no++; endforeach; ?>
         </table>
-        </br>
-        <a style="margin-left:180px;" class="submitCancel" href="<?php echo site_url('report/index');?>">Done</a>
-    </div>
-</div>
-    <a id="export_excel" value="export_excel" href="<?php echo site_url('report/process_report');?>">Export Data</a>
-    
-    <?php echo form_submit('export_excel', 'export'); ?>
-    <?php echo form_close(); ?>

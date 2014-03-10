@@ -168,7 +168,7 @@
         <div height="30px">&nbsp;</div>
         <table>
             <tr>
-                <?php if ($patient_detail['is_dead'] == 1) { ?>
+                <?php if ($patient_detail['blood_card'] == 1) { ?>
                     <td>
                         <?php echo $is_blood_card_exist; ?>: 
                         <?php echo form_checkbox(array('name' => 'is_blood_card_exist', 'value' => $patient_detail['blood_card'], 'checked' => "checked")) ?>                    
@@ -371,7 +371,7 @@
             <table>
                 <tr>
                     <td>
-                        <?php echo $studies_name; ?>:
+                        <label for="studies_name"> <?php echo $studies_name; ?>:</label>
     <?php echo form_dropdown('studies_name[]', $studies_name_lists, @$studies_id[$list['studies_id']], 'id="studies_name" preload_val="' . @$studies_id[$list['studies_id']] . '"'); ?>                                                                                
                     </td>
                     <td>

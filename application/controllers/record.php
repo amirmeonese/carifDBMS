@@ -5424,4 +5424,151 @@ class Record extends CI_Controller {
                 }
             }
             
+            function export_filter($icno, $patient_studies_id = NULL){
+                
+                $data['export_tab']= array(
+                    
+                    'personal' => 'Personal',
+                    'family' => 'Family',
+                    'diagnosis' => 'Diagnosis & Treatment',
+                    'studies_setOne' => 'Screening & Survellience',
+                    'mutation' => 'Mutation Analysis',
+                    'risk_assessment' => 'Risk Assessment',
+                    'lifestyleFactors' => 'Lifestyle Factor',
+                    'counseling' => 'Counseling'
+                );
+                
+                $data['ic_no'] = $icno;
+                $data['patient_studies_id'] = $patient_studies_id;
+                
+                $this->template->load("templates/add_record_template", 'export/view_export_filter', $data);
+            }
+            
+            function export_record_list() {
+                $this->load->model('Record_model');
+                $data = $this->Record_model->general();
+                $userid = $this->session->userdata('user_id');
+                
+                $var = $this->input->post('tab_name');
+                $ic_no = $this->input->post('icno');
+                $patient_studies_id = $this->input->post('patient_studies_id');
+
+                $data['userprivillage'] = $this->record_model->user_privillage($userid);
+                $data['isLocked'] = FALSE;
+                $user_is_locked = $this->record_model->get_is_user_locked($ic_no);
+                //echo 'is locked:'.$user_is_locked;
+
+                if ($var == 'personal') {
+
+                    $data['patient_detail'] = $this->record_model->get_detail_export_patient_record($ic_no, $patient_studies_id);
+                    $data['patient_consent_detail'] = $this->record_model->get_consent_detail_patient_record($ic_no, $patient_studies_id);
+                    $data['studies_id'] = $this->record_model->get_studies_name_by_id();
+                    $data['patient_private_no'] = $this->record_model->get_private_no_record($ic_no);
+                    $data['patient_hospital_no'] = $this->record_model->get_hospital_no_record($ic_no);
+                    $data['patient_cogs_studies'] = $this->record_model->get_cogs_study_record($ic_no);
+                    $data['patient_contact_person'] = $this->record_model->get_detail_record($ic_no, 'patient_contact_person', 'patient_ic_no');
+                    $data['patient_survival_status'] = $this->record_model->get_survival_record($ic_no);
+                    $data['alive_id'] = $this->record_model->get_alive_status_by_id();
+                    $data['patient_relatives_summary'] = $this->record_model->get_detail_record($ic_no, 'patient_relatives_summary', 'patient_ic_no');
+                     
+                    $this->load->view('export/personal_tab',$data);
+                    $this->load->view('export/consent_detail_tab',$data);
+                    
+                } else if ($var == 'family') {
+                    $data['patient_family'] = $this->record_model->get_view_family_export($ic_no);
+                    
+                    //print_r($data['patient_family']);exit;
+                    
+                    $data['cancer_name'] = $this->record_model->get_cancer_by_id();
+                    $data['relative'] = $this->record_model->get_relative_by_id();
+                    $data['relationship'] = $this->record_model->get_relationship_list();
+                    $data['relative_degrees'] = $this->record_model->get_relative_degrees_list();
+                    
+                     $this->load->view('export/family_tab',$data);
+                     
+                } else if ($var == 'diagnosis') {
+                    //$data['patient_breast_cancer'] = $this->record_model->get_patient_breast_diagnosis_record($patient_studies_id);
+                    //$data['patient_ovary_cancer'] = $this->record_model->get_patient_ovary_diagnosis_record($patient_studies_id);
+                    //$data['patient_ovary_cancer_treatment'] = $this->record_model->get_patient_treatment_record($a['patient_cancer_id']);
+                    $breast_diagnosis_list = $this->record_model->get_patient_all_cancer_record($patient_studies_id);
+                    
+                    if(!empty($breast_diagnosis_list)){
+                    foreach ($breast_diagnosis_list as $breast_id=>$breast) {
+                    $breast_cancer_id = $breast['patient_cancer_id'];
+                                                                    
+                    $breast_treatment['treatment'] = $this->record_model->get_patient_treatment_record($breast_cancer_id);
+                    $breast_pathology['pathology'] = $this->record_model->get_patient_breast_pathology_record($breast_cancer_id);
+
+                    $breast_cancer[] = array_merge($breast, $breast_treatment, $breast_pathology);
+
+                    }
+                    $data['patient_breast_cancer'] = $breast_cancer;
+                    }
+
+                    $data['patient_other_disease'] = $this->record_model->get_patient_others_desease_record($patient_studies_id);
+                    $data['diagnosis_name'] = $this->record_model->get_diagnosis();
+                    $data['site_cancer'] = $this->record_model->get_cancer_site();
+                    $data['treatment_type'] = $this->record_model->get_treatment_type();
+                    $data['cancer_name'] = $this->record_model->get_cancer_by_id();
+
+                    $this->load->view('export/diagnosis_tab',$data);
+                    $this->load->view('export/diagnosis_tab1',$data);
+                    
+                } else if ($var == 'studies_setOne') {
+                    $data['patient_breast_screening'] = $this->record_model->get_patient_breast_screening_record($patient_studies_id, $ic_no);
+                    $data['patient_non_cancer'] = $this->record_model->get_patient_non_cancer_record($patient_studies_id);
+                    $data['patient_risk_reducing_surgery'] = $this->record_model->get_patient_risk_reducing_surgery_record($patient_studies_id);
+                    $data['patient_ovarian_screening'] = $this->record_model->get_patient_ovarian_screening_record($patient_studies_id);
+                    $data['patient_surveillance'] = $this->record_model->get_patient_surveillance_record($patient_studies_id);
+                    $data['patient_other_screening'] = $this->record_model->get_patient_other_screening_record($patient_studies_id);
+                    $data['ovarian_screening_type'] = $this->record_model->get_ovarian_screening_type_by_id();
+                    $data['site_breast'] = $this->record_model->get_site_breast_by_id();
+                    $data['upperbelow_breast'] = $this->record_model->get_upperbellow_breast_by_id();
+                    $data['non_cancerous_site'] = $this->record_model->get_non_cancerous_benign_site_name();
+
+                    $this->load->view('export/screening_tab',$data);
+                    $this->load->view('export/screening_tab2',$data);
+                    $this->load->view('export/screening_tab3',$data);
+                    $this->load->view('export/screening_tab4',$data);
+                    $this->load->view('export/screening_tab5',$data);
+                    $this->load->view('export/screening_tab6',$data);
+                } else if ($var == 'mutation') {
+
+                    $data['patient_mutation_analysis'] = $this->record_model->get_view_patient_record($patient_studies_id, 'patient_mutation_analysis', 'patient_studies_id');
+                    $this->load->view('export/mutation_tab',$data);
+                    
+                } else if ($var == 'risk_assessment') {
+                    $data['patient_risk_assessment'] = $this->record_model->get_view_patient_record($ic_no, 'patient_risk_assessment', 'patient_ic_no');
+                    
+                    $this->load->view('export/risk_assessment_tab',$data);
+                } else if ($var == 'lifestyleFactors') {
+                    $data['patient_lifestyle_factors'] = $this->record_model->get_lifestyle_detail_patient_record($patient_studies_id);
+                    $data['patient_menstruation'] = $this->record_model->get_patient_menstruation_record($ic_no, $patient_studies_id);
+                    $data['patient_parity_table'] = $this->record_model->get_patient_parity_table_record($ic_no, $patient_studies_id);
+                    // $data['patient_parity_record'] = $this->record_model->get_patient_parity_record($ic_no, $patient_studies_id);
+                    $data['patient_infertility'] = $this->record_model->get_patient_infertility_record($ic_no, $patient_studies_id);
+                    $data['patient_gynaecological'] = $this->record_model->get_patient_gynaecological_record($ic_no, $patient_studies_id);
+                    //$data['patient_lifestyle_factors'] = $this->record_model->get_patient_lifstyle_record($patient_studies_id);
+                                        
+                    $this->load->view('export/lifestyle_tab',$data);
+                    $this->load->view('export/lifestyle_tab2',$data);
+                    $this->load->view('export/lifestyle_tab3',$data);
+                    $this->load->view('export/lifestyle_tab4',$data);
+                } else if ($var == 'counseling') {
+                    
+                    //echo 'test 1';
+                    $data['patient_interview_manager'] = $this->record_model->get_patient_counselling_record($ic_no);
+                    $data['email_reminder'] = array(
+                        '' => '',
+                        '0' => 'No',
+                        '1' => 'Yes'
+                    );
+
+                        //$this->template->load("templates/add_record_template", 'export/counseling_tab', $data);
+                        $this->load->view('export/counseling_tab',$data);
+                } else if ($var == 'bulkImport') {
+                    $this->template->load("templates/add_record_template", 'record/upload_xlsx_file', $data);
+                }
+            }
+            
 }

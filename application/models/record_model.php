@@ -1370,6 +1370,17 @@ class Record_model extends CI_Model {
         return $patient_family_detail;
     }
     
+    public function get_view_family_export($ic_no){
+    
+        $this->db->where('patient_ic_no',$ic_no);
+	$f_record = $this->db->get('patient_relatives');
+        $patient_family_detail = $f_record->result_array();
+        //echo $this->db->last_query();exit;
+        $f_record->free_result();  
+
+        return $patient_family_detail;
+    }
+    
      public function get_view_family_others_record($ic_no){
     
         $this->db->where('patient_ic_no',$ic_no);
@@ -1529,6 +1540,24 @@ class Record_model extends CI_Model {
         return $patient_detail;
     }
     
+    public function get_detail_export_patient_record($ic_no) {
+
+        $this->db->select('a.*,b.*,c.*,d.*,e.*,f.*,g.*');
+        $this->db->from('patient a');
+        $this->db->join('patient_private_no b', 'a.ic_no = b.patient_ic_no', 'left');
+        $this->db->join('patient_hospital_no c', 'a.ic_no = c.patient_ic_no', 'left');
+        $this->db->join('patient_cogs_studies d', 'a.ic_no = d.patient_ic_no', 'left');
+        $this->db->join('patient_contact_person e', 'a.ic_no = e.patient_ic_no', 'left');
+        $this->db->join('patient_survival_status f', 'a.ic_no = f.patient_ic_no', 'left');
+        $this->db->join('patient_relatives_summary g', 'a.ic_no = g.patient_ic_no', 'left');
+        $this->db->where('a.ic_no',$ic_no);
+        $patient_lifestyle_list = $this->db->get('');
+        $patient_detail = $patient_lifestyle_list->result_array();
+        $patient_lifestyle_list->free_result();
+        
+        return $patient_detail;
+    }
+
     public function insert_patient_parity_table($record_data) {
         $data = array(
         );
@@ -2042,7 +2071,7 @@ class Record_model extends CI_Model {
     }
     
     function getPatientList($record_data) {
-        $this->db->select('a.given_name, a.surname, a.ic_no, a.created_on, b.studies_id, b.patient_studies_id');
+        $this->db->select('a.given_name, a.surname, a.ic_no, a.created_on, b.studies_id, b.patient_studies_id,d.private_no');
         $this->db->from('patient a, patient_studies b, patient_hospital_no c, patient_private_no d');
         $this->db->where('a.is_deleted',0);
         $this->db->where('a.ic_no = b.patient_ic_no');
@@ -2066,7 +2095,7 @@ class Record_model extends CI_Model {
 	
 	function getCurrentRangeOfPatientList($record_data,$limit,$start) {
 		
-	$this->db->select('a.given_name, a.surname, a.ic_no, a.created_on, b.studies_id, b.patient_studies_id');
+	$this->db->select('a.given_name, a.surname, a.ic_no, a.created_on, b.studies_id, b.patient_studies_id,d.private_no');
         $this->db->from('patient a, patient_studies b, patient_hospital_no c, patient_private_no d');
         $this->db->where('a.is_deleted',0);
         $this->db->where('a.ic_no = b.patient_ic_no');
@@ -2185,6 +2214,20 @@ function get_patient_breast_cancer_record($patient_studies_id) {
 
     return $list_patient_lifestyle;
 }
+
+function get_patient_all_cancer_record($patient_studies_id) {
+    //$this->db->select('a.*,b.*,c.*');
+    $this->db->from('patient_cancer');
+    $this->db->where('patient_studies_id',$patient_studies_id);
+    $patient_lifestyle_list = $this->db->get('');
+    $list_patient_lifestyle = $patient_lifestyle_list->result_array();
+    $patient_lifestyle_list->free_result();
+    
+    //print_r($list_patient_lifestyle);exit;
+
+    return $list_patient_lifestyle;
+}
+
 function get_patient_ovary_cancer_record($patient_studies_id) {
     //$this->db->select('a.*,b.*,c.*');
     $this->db->from('patient_cancer');

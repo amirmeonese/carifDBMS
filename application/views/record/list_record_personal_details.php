@@ -73,49 +73,54 @@
                     <th id="view-page-tr">Patient Given Name</th>
 					<th id="view-page-tr">Patient Surname</th>
                     <th id="view-page-tr">Studies</th>
+                    <th id="view-page-tr">Patient No</th>
                     <th id="view-page-tr">Action</th>
                 </tr>
             </thead>
             <?php if(!empty($patient_list)) { $patientCounter = $counter + 1;?>
-            <?php foreach ($patient_list as $list): 
-			if($patientCounter % 2 == 0) 
-				echo "<tr class=\"stripped-row\">";
-			else
-				echo "<tr>";?>
-					<td><?php echo $patientCounter; ?></td>
+            <?php
+                foreach ($patient_list as $list):
+                    if ($patientCounter % 2 == 0)
+                        echo "<tr class=\"stripped-row\">";
+                    else
+                        echo "<tr>";
+                    ?>
+                    <td><?php echo $patientCounter; ?></td>
                     <td><?php echo $list['created_on']; ?></td>
-					<td><?php echo $list['ic_no']; ?></td>
+                    <td><?php echo $list['ic_no']; ?></td>
                     <td><?php echo $list['given_name']; ?></td>
-					<td><?php echo $list['surname']; ?></td>
+                    <td><?php echo $list['surname']; ?></td>
                     <td><?php echo $studies_name_list[$list['studies_id']]; ?></td>
+                    <td><?php echo $list['private_no']; ?></td>
                     <td width="15%" align='center'>
-                        <?php if ($userprivillage['view_privilege']== 1){ ?>
-                        <a href="<?php echo site_url('record/patient_record_view') . '/' . $list['ic_no'] . '/' . $list['patient_studies_id'] ?>">
-                        <img src="<?php echo base_url(); ?>img/view.png" alt="view_patient_detail" width="18" height="18"></a>
-                        <?php } else { ?>
-                        <?php }?>
-                        
+                        <?php if ($userprivillage['view_privilege'] == 1) { ?>
+                            <a href="<?php echo site_url('record/patient_record_view') . '/' . $list['ic_no'] . '/' . $list['patient_studies_id'] ?>">
+                                <img src="<?php echo base_url(); ?>img/view.png" alt="view_patient_detail" width="18" height="18"></a>
+        <?php } else { ?>
+        <?php } ?>
+
                         <a>&nbsp;</a>
                         <!-- <a href="<?php echo site_url('record/test') . '/' . $list['ic_no'] . '/' . $list['patient_studies_id'] ?>"> -->
                         <img src="<?php echo base_url(); ?>img/edit.png" alt="view_patient_detail" width="18" height="18"></a>
                         <a>&nbsp;</a>
-                        <?php if ($userprivillage['delete_privilege']== 1){ ?>
-                        <a href="<?php echo site_url('record/patient_record_delete') . '/' . $list['ic_no'] . '/' . $list['patient_studies_id'] ?>" class="confirmation"> 
-                        <img src="<?php echo base_url(); ?>img/delete.png" alt="view_patient_detail" width="18" height="18"></a>
-                        <?php } else { ?>
-                        <?php }?>
-<!--                            <form name="view_patient_detail" action="<?php echo site_url('record/patient_record_view') . '/' . $list['ic_no'] ?>" method="post">
-                            <input type ="image" src="<?php echo base_url(); ?>img/view.png" alt="view_patient_detail" height="18px"></input>
-                        </form>
-                            <form name="view_patient_detail" action="<?php echo site_url('record/test') . '/' . $list['ic_no'] ?>" method="post">
-                            <input type ="image" src="<?php echo base_url(); ?>img/edit.png" alt="view_patient_detail" height="18px"></input>
-                        </form>
-                            <form name="view_patient_detail" action="<?php echo site_url('record/patient_record_view') . '/' . $list['ic_no'] ?>" method="post">
-                            <input type ="image" src="<?php echo base_url(); ?>img/delete.png" alt="view_patient_detail" height="18px"></input>
-                        </form>-->
+                        <?php if ($userprivillage['delete_privilege'] == 1) { ?>
+                            <a href="<?php echo site_url('record/patient_record_delete') . '/' . $list['ic_no'] . '/' . $list['patient_studies_id'] ?>" class="confirmation"> 
+                                <img src="<?php echo base_url(); ?>img/delete.png" alt="view_patient_detail" width="18" height="18"></a>
+        <?php } else { ?>
+        <?php } ?>
+        <!--                            <form name="view_patient_detail" action="<?php echo site_url('record/patient_record_view') . '/' . $list['ic_no'] ?>" method="post">
+                                <input type ="image" src="<?php echo base_url(); ?>img/view.png" alt="view_patient_detail" height="18px"></input>
+                            </form>
+                                <form name="view_patient_detail" action="<?php echo site_url('record/test') . '/' . $list['ic_no'] ?>" method="post">
+                                <input type ="image" src="<?php echo base_url(); ?>img/edit.png" alt="view_patient_detail" height="18px"></input>
+                            </form>
+                                <form name="view_patient_detail" action="<?php echo site_url('record/patient_record_view') . '/' . $list['ic_no'] ?>" method="post">
+                                <input type ="image" src="<?php echo base_url(); ?>img/delete.png" alt="view_patient_detail" height="18px"></input>
+                            </form>-->
                     </td>
                 </tr>
-            <?php $patientCounter++; endforeach; ?>
+        <?php $patientCounter++;
+    endforeach; ?>
                         <?php } else { ?>
                 <tr><td colspan="7" style="center">
           <?php  echo 'no data';?>

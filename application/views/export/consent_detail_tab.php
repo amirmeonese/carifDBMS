@@ -1,32 +1,47 @@
-<div class="container" id="report_div">
-    <div id="report_header" class="row">
-        <p>Search Result</p>
-    </div>
-    <?php echo form_open('report/toExcel'); ?>
-    <div class="container" id="report_form_section" >
-        <div height="30px">&nbsp;</div>
-        <table border="1" width="50%" style="margin-left:180px;">
-            <thead>
+<?php
+// We change the headers of the page so that the browser will know what sort of file is dealing with. Also, we will tell the browser it has to treat the file as an attachment which cannot be cached.
+
+header("Content-type: application/octet-stream");
+header("Content-Disposition: attachment; filename=export_personal2.xls");
+header("Pragma: no-cache");
+header("Expires: 0");
+?>
+<p>Consent Detail</p>
+<div height="30px">&nbsp;</div>
+
+<table border="1">
+    <thead>
                 <tr>
-                    <th style="background-color:Crimson;">Full Name</th>
-                    <th style="background-color:Crimson;">Sur Name</th>
-                    <th style="background-color:Crimson;">IC</th>
+                    <th style="background-color:Crimson;">No</th>
+                    <th style="background-color:Crimson;">IC No</th>
+                    <th style="background-color:Crimson;">Studies Name</th>
+                    <th style="background-color:Crimson;">Date at consent</th>
+                    <th style="background-color:Crimson;">Age at consent</th>
+                    <th style="background-color:Crimson;">Is double consent</th>
+                    <th style="background-color:Crimson;">Consent given by</th>
+                    <th style="background-color:Crimson;">Consent response</th>
+                    <th style="background-color:Crimson;">Consent version</th>
+                    <th style="background-color:Crimson;">Relations to study</th>
+                    <th style="background-color:Crimson;">Referral to</th>
+                    <th style="background-color:Crimson;">Referral to genetic counselling</th>
+                    <th style="background-color:Crimson;">Referral source</th>
                 </tr>
             </thead>
-            <?php foreach ($searched_result as $list): ?>
+            <?php $no = 1; foreach ($patient_consent_detail as $list): ?>
                 <tr>
-                    <td><?php echo $list['fullname']; ?></td>
-                    <td><?php echo $list['surname']; ?></td>
-                    <td><?php echo $list['ic_no']; ?></td>
+                    <td><?php echo $no; ?></td>
+                    <td><?php echo $list['patient_ic_no']; ?></td>
+                    <td><?php echo $list['studies_id']; ?></td>
+                    <td><?php echo $list['date_at_consent']; ?></td>
+                    <td><?php echo $list['age_at_consent']; ?></td>
+                    <td><?php echo $list['double_consent_flag']; ?></td>
+                    <td><?php echo $list['consent_given_by']; ?></td>
+                    <td><?php echo $list['consent_response']; ?></td>
+                    <td><?php echo $list['consent_version']; ?></td>
+                    <td><?php echo $list['relation_to_study']; ?></td>
+                    <td><?php echo $list['referral_to']; ?></td>
+                    <td><?php echo $list['referral_to_genetic_counselling']; ?></td>
+                    <td><?php echo $list['referral_source']; ?></td>
                 </tr>
-                    <input type="hidden" name="patient_name" value="<?php echo $a;?>">
-            <?php endforeach; ?>
+            <?php $no++; endforeach; ?>
         </table>
-        </br>
-        <a style="margin-left:180px;" class="submitCancel" href="<?php echo site_url('report/index');?>">Done</a>
-    </div>
-</div>
-    <a id="export_excel" value="export_excel" href="<?php echo site_url('report/process_report');?>">Export Data</a>
-    
-    <?php echo form_submit('export_excel', 'export'); ?>
-    <?php echo form_close(); ?>
