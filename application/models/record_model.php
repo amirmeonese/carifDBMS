@@ -1411,7 +1411,7 @@ class Record_model extends CI_Model {
         //$this->db->where('patient_ic_no',$ic_no);
         $this->db->where_in('patient_studies_id',$patient_studies_id);
 	$p_record = $this->db->get('patient_lifestyle_factors');
-        $patient_lifestyle = $p_record->row_array();
+        $patient_lifestyle = $p_record->result_array();
         //echo $this->db->last_query();exit;
         $p_record->free_result();  
 
@@ -1423,7 +1423,7 @@ class Record_model extends CI_Model {
         //$this->db->where('patient_ic_no',$ic_no);
         $this->db->where_in('patient_studies_id',$patient_studies_id);
 	$p_record = $this->db->get('patient_menstruation');
-        $patient_lifestyle = $p_record->row_array();
+        $patient_lifestyle = $p_record->result_array();
        // echo $this->db->last_query();exit;
         $p_record->free_result();  
 
@@ -1460,7 +1460,7 @@ class Record_model extends CI_Model {
         //$this->db->where('patient_ic_no',$ic_no);
         $this->db->where_in('patient_studies_id',$patient_studies_id);
 	$p_record = $this->db->get('patient_infertility');
-        $patient_lifestyle = $p_record->row_array();
+        $patient_lifestyle = $p_record->result_array();
        // echo $this->db->last_query();exit;
         $p_record->free_result();  
 
@@ -1472,7 +1472,7 @@ class Record_model extends CI_Model {
         //$this->db->where('patient_ic_no',$ic_no);
         $this->db->where_in('patient_studies_id',$patient_studies_id);
 	$p_record = $this->db->get('patient_gynaecological_surgery_history');
-        $patient_lifestyle = $p_record->row_array();
+        $patient_lifestyle = $p_record->result_array();
        // echo $this->db->last_query();exit;
         $p_record->free_result();  
 
