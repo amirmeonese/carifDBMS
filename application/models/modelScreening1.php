@@ -359,9 +359,9 @@ class ModelScreening1 extends CI_Model {
                 }
 
 
-                if ($temp4[abnormalities_detected] == 'Yes' || $temp4[abnormalities_detected] == 'yes')
+                if ($temp4[abnormalities_detected] == 'Yes' || $temp4[abnormalities_detected] == 'yes' || $temp4[abnormalities_detected] == 'Y' || $temp4[abnormalities_detected] == 'y' )
                     $is_abnormality_detected_breast = TRUE;
-                else if ($temp4[abnormalities_detected] == 'No' || $temp4[abnormalities_detected] == 'no')
+                else if ($temp4[abnormalities_detected] == 'No' || $temp4[abnormalities_detected] == 'no' || $temp4[abnormalities_detected] == 'N' || $temp4[abnormalities_detected] == 'n')
                     $is_abnormality_detected_breast = FALSE;
                 else
                     $is_abnormality_detected_breast = FALSE;

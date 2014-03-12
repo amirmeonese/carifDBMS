@@ -87,15 +87,15 @@
                     <?php echo $name_of_radiologist; ?>: 
                     <?php echo form_input(array('name' => 'name_of_radiologist[]', 'value' => $breast_screening['name_of_radiologist'])) ?>
                 </td>
-                <?php if($breast_screening['abnormalities_mammo_flag'] == 1){?>
+                <?php if($breast_screening['is_abnormality_detected'] == 1){?>
                 <td>
                     <?php echo $abnormalities_mammo_flag; ?>: 
-                    <?php echo form_checkbox(array('name' => 'abnormality_mammo_flag[]', 'value' => $breast_screening['abnormalities_mammo_flag'],'checked'=>"checked"))?>
+                    <?php echo form_checkbox(array('name' => 'abnormality_mammo_flag[]', 'value' => $breast_screening['is_abnormality_detected'],'checked'=>"checked"))?>
                 </td>
                <?php } else {?>
                 <td>
                     <?php echo $abnormalities_mammo_flag; ?>: 
-                    <?php echo form_checkbox(array('name' => 'abnormality_mammo_flag[]', 'value' => $breast_screening['abnormalities_mammo_flag']))?>
+                    <?php echo form_checkbox(array('name' => 'abnormality_mammo_flag[]', 'value' => $breast_screening['is_abnormality_detected']))?>
                 </td>
                <?php } ?>
                 <td>
