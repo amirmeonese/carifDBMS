@@ -532,6 +532,7 @@
         </div>
         <div class="container" id="add_record_form_section_other_cancer">
             <div height="30px">&nbsp;</div>
+            <?php if(!empty($patient_others_cancer)){ ?>
             <?php foreach ($patient_others_cancer as $other_cancer){ ?>
             <?php
             echo form_fieldset('Other Cancer Diagnosis & Treatment');
@@ -686,6 +687,7 @@
                 <input type="hidden" name="patient_other_cancer_treatment_id[]" value="<?php print $other_cancer_treatment['patient_cancer_treatment_id']; ?>"/>
                 </table>
                 <?php endforeach; ?>
+                <?php } ?>
                 <?php } ?>
             </div>
             <?php echo form_fieldset_close(); ?>	
