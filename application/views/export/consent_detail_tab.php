@@ -5,6 +5,7 @@ header("Content-type: application/octet-stream");
 header("Content-Disposition: attachment; filename=export_personal2.xls");
 header("Pragma: no-cache");
 header("Expires: 0");
+
 ?>
 <p>Consent Detail</p>
 <div height="30px">&nbsp;</div>
@@ -31,7 +32,7 @@ header("Expires: 0");
                 <tr>
                     <td><?php echo $no; ?></td>
                     <td><?php echo $list['patient_ic_no']; ?></td>
-                    <td><?php echo $list['studies_id']; ?></td>
+                    <td><?php echo @$studies_id[$list['studies_id']]; ?></td>
                     <td><?php echo $list['date_at_consent']; ?></td>
                     <td><?php echo $list['age_at_consent']; ?></td>
                     <td><?php echo $list['double_consent_flag']; ?></td>

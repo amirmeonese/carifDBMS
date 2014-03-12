@@ -31,7 +31,7 @@ header("Expires: 0");
                 <tr>
                     <td><?php echo $no; ?></td>
                     <td><?php echo $list['patient_studies_id']; ?></td>
-                    <td><?php echo $list['diagnosis_id']; ?></td>
+                    <td><?php echo $diagnosis_name[$list['diagnosis_id']]; ?></td>
                     <td><?php echo $list['date_of_diagnosis']; ?></td>
                     <td><?php echo $list['diagnosis_age']; ?></td>
                     <td><?php echo $list['diagnosis_center']; ?></td>

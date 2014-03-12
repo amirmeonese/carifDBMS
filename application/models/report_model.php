@@ -507,6 +507,63 @@ class Report_model extends CI_Model {
         return $result;
     }
     
+    public function get_patient_studies_id($ic_no){
+    
+        $this->db->select('patient_studies_id');
+        $this->db->where_in('patient_ic_no',$ic_no);
+	$p_record = $this->db->get('patient_studies');
+        $patient_detail = $p_record->result_array();
+        //echo $this->db->last_query();exit;
+        $p_record->free_result();  
+
+        return $patient_detail;
+    }
+    
+    public function get_detail_record($ic_no,$table){
+    
+        $this->db->where_in('patient_ic_no',$ic_no);
+	$p_record = $this->db->get_where($table);
+        $patient_detail = $p_record->result_array();
+        //echo $this->db->last_query();exit;
+        $p_record->free_result();  
+
+        return $patient_detail;
+    }
+    
+    public function get_consent_detail_patient_record($ic_no){
+         
+        $this->db->where_in('patient_ic_no',$ic_no);
+        //$this->db->where('studies_id',$patient_studies_id);
+	$p_record = $this->db->get('patient_studies');
+        $patient_detail = $p_record->result_array();
+       // echo $this->db->last_query();exit;
+        $p_record->free_result();  
+
+        return $patient_detail;
+    }
+    
+    public function get_export_mutation_record($patient_studies_id,$table){
+    
+        $this->db->where_in('patient_studies_id',$patient_studies_id);
+	$p_record = $this->db->get($table);
+        $patient_detail = $p_record->result_array();
+        //echo $this->db->last_query();exit;
+        $p_record->free_result();  
+
+        return $patient_detail;
+    }
+    
+    public function get_export_riskassesment_record($ic_no,$table){
+    
+        $this->db->where_in('patient_ic_no',$ic_no);
+	$p_record = $this->db->get($table);
+        $patient_detail = $p_record->result_array();
+        //echo $this->db->last_query();exit;
+        $p_record->free_result();  
+
+        return $patient_detail;
+    }
+    
     
         function getReportData($record_data,$ethnic_name = NULL, $cancer_name = NULL) {
             

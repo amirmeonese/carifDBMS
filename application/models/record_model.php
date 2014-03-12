@@ -1372,7 +1372,7 @@ class Record_model extends CI_Model {
     
     public function get_view_family_export($ic_no){
     
-        $this->db->where('patient_ic_no',$ic_no);
+        $this->db->where_in('patient_ic_no',$ic_no);
 	$f_record = $this->db->get('patient_relatives');
         $patient_family_detail = $f_record->result_array();
         //echo $this->db->last_query();exit;
@@ -1396,7 +1396,7 @@ class Record_model extends CI_Model {
     
     public function get_consent_detail_patient_record($ic_no,$patient_studies_id){
          
-        $this->db->where('patient_ic_no',$ic_no);
+        $this->db->where_in('patient_ic_no',$ic_no);
         //$this->db->where('studies_id',$patient_studies_id);
 	$p_record = $this->db->get('patient_studies');
         $patient_detail = $p_record->result_array();
@@ -1409,10 +1409,10 @@ class Record_model extends CI_Model {
     public function get_lifestyle_detail_patient_record($patient_studies_id){
          
         //$this->db->where('patient_ic_no',$ic_no);
-        $this->db->where('patient_studies_id',$patient_studies_id);
+        $this->db->where_in('patient_studies_id',$patient_studies_id);
 	$p_record = $this->db->get('patient_lifestyle_factors');
         $patient_lifestyle = $p_record->row_array();
-       // echo $this->db->last_query();exit;
+        //echo $this->db->last_query();exit;
         $p_record->free_result();  
 
         return $patient_lifestyle;
@@ -1421,7 +1421,7 @@ class Record_model extends CI_Model {
     public function get_patient_menstruation_record($ic_no,$patient_studies_id){
          
         //$this->db->where('patient_ic_no',$ic_no);
-        $this->db->where('patient_studies_id',$patient_studies_id);
+        $this->db->where_in('patient_studies_id',$patient_studies_id);
 	$p_record = $this->db->get('patient_menstruation');
         $patient_lifestyle = $p_record->row_array();
        // echo $this->db->last_query();exit;
@@ -1432,7 +1432,7 @@ class Record_model extends CI_Model {
     
     public function get_patient_parity_table_record($ic_no, $patient_studies_id) {
 
-        $this->db->where('a.patient_studies_id', $patient_studies_id);
+        $this->db->where_in('a.patient_studies_id', $patient_studies_id);
         $this->db->from('patient_parity_table a');
         $this->db->join('patient_parity_record b', 'a.patient_parity_id = b.patient_parity_table_id', 'left');
         $p_record = $this->db->get('');
@@ -1458,7 +1458,7 @@ class Record_model extends CI_Model {
     public function get_patient_infertility_record($ic_no,$patient_studies_id){
          
         //$this->db->where('patient_ic_no',$ic_no);
-        $this->db->where('patient_studies_id',$patient_studies_id);
+        $this->db->where_in('patient_studies_id',$patient_studies_id);
 	$p_record = $this->db->get('patient_infertility');
         $patient_lifestyle = $p_record->row_array();
        // echo $this->db->last_query();exit;
@@ -1470,7 +1470,7 @@ class Record_model extends CI_Model {
     public function get_patient_gynaecological_record($ic_no,$patient_studies_id){
          
         //$this->db->where('patient_ic_no',$ic_no);
-        $this->db->where('patient_studies_id',$patient_studies_id);
+        $this->db->where_in('patient_studies_id',$patient_studies_id);
 	$p_record = $this->db->get('patient_gynaecological_surgery_history');
         $patient_lifestyle = $p_record->row_array();
        // echo $this->db->last_query();exit;
@@ -1491,7 +1491,8 @@ class Record_model extends CI_Model {
     
     public function get_hospital_no_record($ic_no){
     
-	$p_record = $this->db->get_where('patient_hospital_no', array('patient_ic_no' => $ic_no));
+        $this->db->where_in('patient_ic_no',$ic_no);
+	$p_record = $this->db->get('patient_hospital_no');
         $patient_detail = $p_record->result_array();
         //echo $this->db->last_query();exit;
         $p_record->free_result();  
@@ -1501,7 +1502,8 @@ class Record_model extends CI_Model {
     
     public function get_private_no_record($ic_no){
     
-	$p_record = $this->db->get_where('patient_private_no', array('patient_ic_no' => $ic_no));
+        $this->db->where_in('patient_ic_no',$ic_no);
+	$p_record = $this->db->get('patient_private_no');
         $patient_detail = $p_record->result_array();
         //echo $this->db->last_query();exit;
         $p_record->free_result();  
@@ -1511,7 +1513,8 @@ class Record_model extends CI_Model {
     
     public function get_cogs_study_record($ic_no){
     
-	$p_record = $this->db->get_where('patient_cogs_studies', array('patient_ic_no' => $ic_no));
+        $this->db->where_in('patient_ic_no',$ic_no);
+	$p_record = $this->db->get('patient_cogs_studies');
         $patient_detail = $p_record->result_array();
         //echo $this->db->last_query();exit;
         $p_record->free_result();  
@@ -1521,7 +1524,8 @@ class Record_model extends CI_Model {
     
     public function get_survival_record($ic_no){
     
-	$p_record = $this->db->get_where('patient_survival_status', array('patient_ic_no' => $ic_no));
+        $this->db->where_in('patient_ic_no',$ic_no);
+	$p_record = $this->db->get('patient_survival_status');
         $patient_detail = $p_record->result_array();
         //echo $this->db->last_query();exit;
         $p_record->free_result();  
@@ -1550,10 +1554,12 @@ class Record_model extends CI_Model {
         $this->db->join('patient_contact_person e', 'a.ic_no = e.patient_ic_no', 'left');
         $this->db->join('patient_survival_status f', 'a.ic_no = f.patient_ic_no', 'left');
         $this->db->join('patient_relatives_summary g', 'a.ic_no = g.patient_ic_no', 'left');
-        $this->db->where('a.ic_no',$ic_no);
+        $this->db->where_in('a.ic_no',$ic_no);
         $patient_lifestyle_list = $this->db->get('');
         $patient_detail = $patient_lifestyle_list->result_array();
         $patient_lifestyle_list->free_result();
+        
+        //echo $this->db->last_query();exit;
         
         return $patient_detail;
     }
@@ -2218,7 +2224,7 @@ function get_patient_breast_cancer_record($patient_studies_id) {
 function get_patient_all_cancer_record($patient_studies_id) {
     //$this->db->select('a.*,b.*,c.*');
     $this->db->from('patient_cancer');
-    $this->db->where('patient_studies_id',$patient_studies_id);
+    $this->db->where_in('patient_studies_id',$patient_studies_id);
     $patient_lifestyle_list = $this->db->get('');
     $list_patient_lifestyle = $patient_lifestyle_list->result_array();
     $patient_lifestyle_list->free_result();
@@ -2288,7 +2294,7 @@ function get_patient_others_desease_record($patient_studies_id) {
     $this->db->select('a.*,b.*');
     $this->db->from('patient_other_disease a');
     $this->db->join('patient_other_disease_medication b','a.patient_other_disease_id = b.patient_other_disease_id','left');
-    $this->db->where('a.patient_studies_id',$patient_studies_id);
+    $this->db->where_in('a.patient_studies_id',$patient_studies_id);
     $other_desease_list = $this->db->get();
     $list_patient_other_desease = $other_desease_list->result_array();    
     $other_desease_list->free_result();
@@ -2324,7 +2330,7 @@ function get_patient_other_disease_medication($patient_others_desease_id) {
 
 function get_patient_counselling_record($icno) {
     $this->db->from('patient_interview_manager');
-    $this->db->where('patient_ic_no',$icno);
+    $this->db->where_in('patient_ic_no',$icno);
     $patient_counselling_list = $this->db->get('');
     $list_patient_counselling = $patient_counselling_list->result_array();
     $patient_counselling_list->free_result();
@@ -2341,7 +2347,7 @@ function get_patient_breast_screening_record($patient_studies_id,$ic_no) {
     $this->db->join('patient_breast_abnormality b','a.patient_breast_screening_id = b.patient_breast_screening_id','left');
     $this->db->join('patient_ultrasound_abnormality c','a.patient_breast_screening_id = c.patient_breast_screening_id','left');
     $this->db->join('patient_mri_abnormality d','a.patient_breast_screening_id = d.patient_breast_screening_id','left'); 
-    $this->db->where('a.patient_studies_id',$patient_studies_id);
+    $this->db->where_in('a.patient_studies_id',$patient_studies_id);
     $patient_lifestyle_list = $this->db->get('');
     $list_patient_lifestyle = $patient_lifestyle_list->result_array();
     $patient_lifestyle_list->free_result();
@@ -2351,7 +2357,7 @@ function get_patient_breast_screening_record($patient_studies_id,$ic_no) {
 
 function get_patient_non_cancer_record($patient_studies_id) {
     $this->db->from('patient_non_cancer_surgery');
-    $this->db->where('patient_studies_id',$patient_studies_id);
+    $this->db->where_in('patient_studies_id',$patient_studies_id);
     $patient_counselling_list = $this->db->get('');
     $list_patient_counselling = $patient_counselling_list->result_array();
     $patient_counselling_list->free_result();
@@ -2366,7 +2372,7 @@ function get_patient_risk_reducing_surgery_record($patient_studies_id) {
     $this->db->from('patient_risk_reducing_surgery a');
     $this->db->join('patient_risk_reducing_surgery_complete_removal b','a.patient_risk_reducing_surgery_id = b.patient_risk_reducing_surgery_id','left');
     $this->db->join('patient_risk_reducing_surgery_lesion c','a.patient_risk_reducing_surgery_id = c.patient_risk_reducing_surgery_id','left');
-    $this->db->where('a.patient_studies_id',$patient_studies_id);
+    $this->db->where_in('a.patient_studies_id',$patient_studies_id);
     $patient_lifestyle_list = $this->db->get('');
     $list_patient_lifestyle = $patient_lifestyle_list->result_array();
     $patient_lifestyle_list->free_result();
@@ -2380,7 +2386,7 @@ function get_patient_risk_reducing_surgery_record($patient_studies_id) {
 
 function get_patient_ovarian_screening_record($patient_studies_id) {
     $this->db->from('patient_ovarian_screening');
-    $this->db->where('patient_studies_id',$patient_studies_id);
+    $this->db->where_in('patient_studies_id',$patient_studies_id);
     $patient_counselling_list = $this->db->get('');
     $list_patient_counselling = $patient_counselling_list->result_array();
     $patient_counselling_list->free_result();
@@ -2392,7 +2398,7 @@ function get_patient_ovarian_screening_record($patient_studies_id) {
 
 function get_patient_surveillance_record($patient_studies_id) {
     $this->db->from('patient_surveillance');
-    $this->db->where('patient_studies_id',$patient_studies_id);
+    $this->db->where_in('patient_studies_id',$patient_studies_id);
     $patient_counselling_list = $this->db->get('');
     $list_patient_counselling = $patient_counselling_list->result_array();
     $patient_counselling_list->free_result();
@@ -2404,7 +2410,7 @@ function get_patient_surveillance_record($patient_studies_id) {
 
 function get_patient_other_screening_record($patient_studies_id) {
     $this->db->from('patient_other_screening');
-    $this->db->where('patient_studies_id',$patient_studies_id);
+    $this->db->where_in('patient_studies_id',$patient_studies_id);
     $patient_counselling_list = $this->db->get('');
     $list_patient_counselling = $patient_counselling_list->result_array();
     $patient_counselling_list->free_result();

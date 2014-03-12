@@ -26,8 +26,8 @@ header("Expires: 0");
             </thead>
             <?php $no = 1;  ?>
                 <tr>
-                    <td><?php echo $no; ?></td>
                     <?php if (!empty($patient_parity_table)){ ?>
+                    <td><?php echo $no; ?></td>
                     <td><?php echo $patient_parity_table['patient_studies_id']; ?></td>
                     <td><?php echo $patient_parity_table['pregnant_flag']; ?></td>
                     <?php } else { ?>

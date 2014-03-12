@@ -58,9 +58,9 @@ header("Expires: 0");
             <?php $no = 1; foreach ($patient_breast_cancer as $breast_cancer){ ?>
                 <tr>
                     <td><?php echo $no; ?></td>
-                    <td><?php echo $breast_cancer['patient_studies_id']; ?></td>
+                    <td><?php echo $studies_id[$breast_cancer['patient_studies_id']]; ?></td>
                     <td><?php echo $breast_cancer['cancer_id']; ?></td>
-                    <td><?php echo $breast_cancer['cancer_site_id']; ?></td>
+                    <td><?php echo $site_cancer[$breast_cancer['cancer_site_id']]; ?></td>
                     <td><?php echo $breast_cancer['cancer_invasive_type']; ?></td>
                     <td><?php echo $breast_cancer['is_primary']; ?></td>
                     <td><?php echo $breast_cancer['date_of_diagnosis']; ?></td>
@@ -91,7 +91,7 @@ header("Expires: 0");
                     <td><?php echo $pathology['comments']; ?></td>
                     <?php endforeach; ?>
                     <?php foreach ($breast_cancer['treatment'] as $treatment): ?>
-                    <td><?php echo $treatment['treatment_id']; ?></td>
+                    <td><?php echo $treatment_type[$treatment['treatment_id']]; ?></td>
                     <td><?php echo $treatment['treatment_details']; ?></td>
                     <td><?php echo $treatment['treatment_start_date']; ?></td>
                     <td><?php echo $treatment['treatment_end_date']; ?></td>

@@ -61,7 +61,7 @@ header("Expires: 0");
                     <td><?php echo $list['is_alive_flag']; ?></td>
                     <td><?php echo $list['d_o_d']; ?></td>
                     <td><?php echo $list['is_cancer_diagnosed']; ?></td>
-                    <td><?php echo $list['cancer_type_id']; ?></td>
+                    <td><?php echo $cancer_name[$list['cancer_type_id']]; ?></td>
                     <td><?php echo $list['date_of_diagnosis']; ?></td>
                     <td><?php echo $list['age_of_diagnosis']; ?></td>
                     <td><?php echo $list['other_detail']; ?></td>

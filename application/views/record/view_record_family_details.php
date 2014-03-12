@@ -373,7 +373,7 @@
                 </td>
                 </tr>
                 <tr>
-                <?php if($list['is_alive_flag'] == 1){?>
+                <?php if($others['is_alive_flag'] == 1){?>
                 <td>
                     <?php echo $father_still_alive_flag; ?>: 
                     <?php echo form_checkbox(array('name' => 'relative_still_alive_flag[]', 'value' => $others['is_alive_flag'],'checked'=>"checked"))?>

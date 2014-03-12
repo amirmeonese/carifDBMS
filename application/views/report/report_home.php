@@ -111,7 +111,7 @@
     <div id="report_header" class="row">
         <p>Search Result</p>
     </div>
-    <?php echo form_open('report/toExcel'); ?>
+    <?php echo form_open('report/export_record_list'); ?>
     <div class="container" id="report_form_section" >
         <div height="30px">&nbsp;</div>
         <table border="1" width="50%" style="margin-left:180px;">
@@ -139,7 +139,7 @@
                     <?php if (in_array('f_age_diagnosis',$patient_field)) echo '<td>'.$list['age_of_diagnosis'].'</td>'; ?>
                     <td>
             <input type="checkbox" name="ic_no[]" class="patientcheckbox" value="<?php echo $list['ic_no']; ?>" />
-<!--            <input type="hidden" name="ethnic_name[]" value="<?php echo $list['ethnicity'];?>">-->
+            <input type="hidden" name="icno[]" value="<?php echo $list['ic_no'];?>">
         </td>
                 </tr>                               
     <?php $no++; endforeach; ?>
@@ -172,7 +172,8 @@
      <input type="hidden" name="field_name[]" value="<?php echo $field_list ;?>">
     <?php endforeach; ?>
      <?php }?>
-                
+     
+    <?php echo form_dropdown('tab_name', $export_tab, NULL); ?>            
     <?php echo form_submit('export_excel', 'Export to XLS'); ?>
     <?php echo form_close(); ?>
                 

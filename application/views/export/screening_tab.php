@@ -77,7 +77,7 @@ header("Expires: 0");
                     <td><?php echo $list['total_no_of_mammogram']; ?></td>
                     <td><?php echo $list['screening_interval']; ?></td>
                     <td><?php echo $site_breast[$list['left_breast']]; ?></td>
-                    <td><?php echo $list['upper']; ?></td>
+                    <td><?php echo $upperbelow_breast[$list['upper']]; ?></td>
                     <td><?php echo $list['BIRADS_clinical_classification']; ?></td>
                     <td><?php echo $list['BIRADS_density_classification']; ?></td>
                     <td><?php echo $list['percentage_of_mammo_density']; ?></td>

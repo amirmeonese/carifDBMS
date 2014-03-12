@@ -114,7 +114,7 @@ header("Expires: 0");
                     <td><?php echo $list['total_no_of_2nd_degree']; ?></td>
                     <td><?php echo $list['total_no_of_3rd_degree']; ?></td>
                     <td><?php echo $list['source']; ?></td>
-                    <td><?php echo $list['alive_status']; ?></td>
+                    <td><?php echo @$alive_id[$list['alive_status']]; ?></td>
                     <td><?php echo $list['status_gathering_date']; ?></td>
                 </tr>
             <?php $no++; endforeach; ?>

@@ -28,7 +28,7 @@ header("Expires: 0");
                     <td><?php echo $no; ?></td>
                     <td><?php echo $list['patient_studies_id']; ?></td>
                     <td><?php echo $list['had_new_lesion_surgery_flag']; ?></td>
-                    <td><?php echo $list['lesion_non_cancerous_site_id']; ?></td>
+                    <td><?php echo @$non_cancerous_site[$list['lesion_non_cancerous_site_id']]; ?></td>
                     <td><?php echo $list['lesion_surgery_date']; ?></td>
                     <td><?php echo $list['had_complete_removal_surgery_flag']; ?></td>
                     <td><?php echo $non_cancerous_site[$list['non_cancerous_site_id']]; ?></td>
