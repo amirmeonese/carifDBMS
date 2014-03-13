@@ -34,11 +34,12 @@
             <tr>
                 <td>
                     <?php echo $nationality; ?>: 
-					<?php echo form_dropdown('nationality', $nationalities, NULL, 'id="nationality"'); ?>
+		    <?php echo form_dropdown('nationality', $nationalities, NULL, 'id="nationality"'); ?>
                 </td>
                 <td>
                     <?php echo $IC_no; ?>: 
-                    <?php echo form_input('IC_no'); ?>
+                    <?php echo form_input(array('name' => 'IC_no','id'=>'ic_no','onBlur'=>"check_duplicate_ic(this.value);")) ?>
+                    <span id="duplicate-ic"></span>
                 </td>
                 <td>
                     <?php echo $old_IC_no; ?>: 
@@ -458,6 +459,21 @@
     <?php }?>
     <?php echo form_close(); ?>
 </div>
+
+<script type="text/javascript">
+function check_duplicate_ic(ic_no){
+    $.post('<?php echo site_url('record/check_duplicate_ic_entry'); ?>', {'ic_no':ic_no}, function(data){
+        if (data == 1){
+            $("#duplicate-ic").html('IC/Passport Number Already Exist');
+            $("#duplicate-ic").attr('class','error');
+        } else {
+            $("#duplicate-ic").html('');
+            $("#duplicate-ic").attr('class','none');
+        }
+    });
+
+}
+</script>
 
 
 

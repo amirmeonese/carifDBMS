@@ -5571,4 +5571,25 @@ class Record extends CI_Controller {
                 }
             }
             
+        function check_duplicate_ic_entry()
+    {
+        //$pattern = array('0'=>'/-/','1'=>'/_/','2'=>'/\s/','3'=>'/\W/');
+        $icno = $this->input->post('ic_no');
+
+        $this->db->select('ic_no');
+        $this->db->where('ic_no',$icno);
+        $query = $this->db->get('patient');
+        $result = $query->row_array();
+        $query->free_result();
+        
+        //echo $this->db->last_query();
+        
+        if ($result != NULL){
+            echo '1';
+        } else {
+            echo '0';
+        }
+
+    }
+            
 }
