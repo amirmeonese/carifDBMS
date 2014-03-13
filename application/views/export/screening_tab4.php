@@ -24,7 +24,7 @@ header("Expires: 0");
                 <tr>
                     <td><?php echo $no; ?></td>
                     <td><?php echo $studies_id[$patient_studies_id[$list['patient_studies_id']]]; ?></td>
-                    <td><?php echo $ovarian_screening[$list['ovarian_screening_type_id']]; ?></td>
+                    <td><?php echo $ovarian_screening_type[$list['ovarian_screening_type_id']]; ?></td>
                     <td><?php echo $list['screening_date']; ?></td>
                     <td><?php echo $list['is_abnormality_detected']; ?></td>
                     <td><?php echo $list['additional_info']; ?></td>
