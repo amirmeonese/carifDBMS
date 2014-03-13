@@ -207,8 +207,10 @@ class Report extends CI_Controller {
                 $ic_no = $icno;
                     
                 }
-                                
-                $patient_studies = $this->report_model->get_patient_studies_id($ic_no);
+                
+                $studies_id = $this->input->post('patient_studies');
+                
+                $patient_studies = $this->report_model->get_patient_studies_id($ic_no,$studies_id);
                 
                 foreach ($patient_studies as $value){
           
@@ -219,7 +221,7 @@ class Report extends CI_Controller {
                 if (($var == 'personal') || ($var == 'All')) {
 
                     $data['patient_detail'] = $this->record_model->get_detail_export_patient_record($ic_no, $patient_studies_id);
-                    $data['patient_consent_detail'] = $this->report_model->get_consent_detail_patient_record($ic_no);
+                    $data['patient_consent_detail'] = $this->report_model->get_consent_detail_patient_record($ic_no,$studies_id);
                     $data['patient_private_no'] = $this->record_model->get_private_no_record($ic_no);
                     $data['patient_hospital_no'] = $this->record_model->get_hospital_no_record($ic_no);
                     $data['patient_cogs_studies'] = $this->record_model->get_cogs_study_record($ic_no);
