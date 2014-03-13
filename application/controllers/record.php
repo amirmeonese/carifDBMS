@@ -5589,7 +5589,26 @@ class Record extends CI_Controller {
         } else {
             echo '0';
         }
+    }
+    
+    function check_duplicate_oldic_entry()
+    {
+        //$pattern = array('0'=>'/-/','1'=>'/_/','2'=>'/\s/','3'=>'/\W/');
+        $icno = $this->input->post('old_ic_no');
 
+        $this->db->select('old_ic_no');
+        $this->db->where('old_ic_no',$icno);
+        $query = $this->db->get('patient');
+        $result = $query->row_array();
+        $query->free_result();
+        
+        //echo $this->db->last_query();
+        
+        if ($result != NULL){
+            echo '1';
+        } else {
+            echo '0';
+        }
     }
             
 }

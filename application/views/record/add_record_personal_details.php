@@ -43,11 +43,12 @@
                 </td>
                 <td>
                     <?php echo $old_IC_no; ?>: 
-                    <?php echo form_input('old_IC_no'); ?>
+                    <?php echo form_input(array('name' => 'old_IC_no','id'=>'old_ic_no','onBlur'=>"check_duplicate_oldic(this.value);")) ?>
+                    <span id="duplicate-oldic"></span>
                 </td>
                 <td>
                     <?php echo $gender; ?>: 
-					<?php echo form_dropdown('gender', $genderTypes, NULL, 'id="gender"'); ?>
+                    <?php echo form_dropdown('gender', $genderTypes, NULL, 'id="gender"'); ?>
                 </td>
                 </tr>
                 <tr>
@@ -469,6 +470,19 @@ function check_duplicate_ic(ic_no){
         } else {
             $("#duplicate-ic").html('');
             $("#duplicate-ic").attr('class','none');
+        }
+    });
+
+}
+
+function check_duplicate_oldic(old_ic_no){
+    $.post('<?php echo site_url('record/check_duplicate_oldic_entry'); ?>', {'old_ic_no':old_ic_no}, function(data){
+        if (data == 1){
+            $("#duplicate-oldic").html('IC/Passport Number Already Exist');
+            $("#duplicate-oldic").attr('class','error');
+        } else {
+            $("#duplicate-oldic").html('');
+            $("#duplicate-oldic").attr('class','none');
         }
     });
 
