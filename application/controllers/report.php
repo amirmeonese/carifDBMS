@@ -36,7 +36,7 @@ class Report extends CI_Controller {
                     'counseling' => 'Counseling'
                     //'All' => 'All'
                 );
-                
+        
         $studies_name = $this->input->post('studies_name');
         $studies_id = $this->excell_sheets_model->get_studies_id($studies_name);
         //$patient_cancer = $this->input->post('cancer');
@@ -47,6 +47,7 @@ class Report extends CI_Controller {
         $diagnosis_age_end = $this->input->post('report_end_range_age');
         //$cancer_name = $this->input->post('cancer');
         $ethnic_name = $this->input->post('ethnic');
+        $patient_start = $this->input->post('patient_start');
         $field_name = $this->input->post('field');
         $cancer_name = $this->input->post('cancer');
         $creation_date_start = $this->input->post('report_creation_date_start');
@@ -65,6 +66,8 @@ class Report extends CI_Controller {
         $data['patient_field'] = $field_name;
         $data['creation_date_start'] = $creation_date_start;
         $data['creation_date_end'] = $creation_date_end;
+        $data['patient_start'] = $patient_start;
+        
         
 
         $data_search_key = array(
@@ -81,7 +84,7 @@ class Report extends CI_Controller {
         //print_r($data_search_key);exit;
         
         $result = array();
-        $result = $this->report_model->getReportData($data_search_key,$ethnic_name,$cancer_name);
+        $result = $this->report_model->getReportData($data_search_key,$ethnic_name,$cancer_name,$patient_start);
 
         $result_size = count($result);
         if ($result_size > 0) {
@@ -95,15 +98,6 @@ class Report extends CI_Controller {
         
         }
         
-        if($this->input->post('export_excel')){
-                            
-        $patient_name = $this->input->post('patient_name');
-        $patient_ic_no = $this->input->post('ic_no');
-        
-       // print_r($patient_ic_no);exit;
-            
-        $this->toExcel($ic,$patient_name);
-        }
         $this->template->load("templates/report_home_template", 'report/report_home', $data);
     }
 
@@ -202,8 +196,8 @@ class Report extends CI_Controller {
                 $ic_no = $ic_no_check;
                 
                 } else {
-                    
-                 $ic_no = $icno;
+                                    
+                $ic_no = $icno;
                     
                 }
                                 
@@ -243,7 +237,7 @@ class Report extends CI_Controller {
                     
                      $this->load->view('export/family_tab',$data);
                      
-                } else if ($var == 'diagnosis') {
+                } else if (($var == 'diagnosis') || ($var == 'All')) {
                     //$data['patient_breast_cancer'] = $this->record_model->get_patient_breast_diagnosis_record($patient_studies_id);
                     //$data['patient_ovary_cancer'] = $this->record_model->get_patient_ovary_diagnosis_record($patient_studies_id);
                     //$data['patient_ovary_cancer_treatment'] = $this->record_model->get_patient_treatment_record($a['patient_cancer_id']);
@@ -271,7 +265,7 @@ class Report extends CI_Controller {
                     $this->load->view('export/diagnosis_tab',$data);
                     $this->load->view('export/diagnosis_tab1',$data);
                     
-                } else if ($var == 'studies_setOne') {
+                } else if (($var == 'studies_setOne') || ($var == 'All')) {
                     $data['patient_breast_screening'] = $this->record_model->get_patient_breast_screening_record($patient_studies_id, $ic_no);
                     $data['patient_non_cancer'] = $this->record_model->get_patient_non_cancer_record($patient_studies_id);
                     $data['patient_risk_reducing_surgery'] = $this->record_model->get_patient_risk_reducing_surgery_record($patient_studies_id);
@@ -289,16 +283,16 @@ class Report extends CI_Controller {
                     $this->load->view('export/screening_tab4',$data);
                     $this->load->view('export/screening_tab5',$data);
                     $this->load->view('export/screening_tab6',$data);
-                } else if ($var == 'mutation') {
+                } else if (($var == 'mutation') || ($var == 'All')) {
 
                     $data['patient_mutation_analysis'] = $this->report_model->get_export_mutation_record($patient_studies_id, 'patient_mutation_analysis');
                     $this->load->view('export/mutation_tab',$data);
                     
-                } else if ($var == 'risk_assessment') {
+                } else if (($var == 'risk_assessment') || ($var == 'All')) {
                     $data['patient_risk_assessment'] = $this->report_model->get_export_riskassesment_record($ic_no, 'patient_risk_assessment', 'patient_ic_no');
                     
                     $this->load->view('export/risk_assessment_tab',$data);
-                } else if ($var == 'lifestyleFactors') {
+                } else if (($var == 'lifestyleFactors') || ($var == 'All')) {
                     $data['patient_lifestyle_factors'] = $this->record_model->get_lifestyle_detail_patient_record($patient_studies_id);
                     $data['patient_menstruation'] = $this->record_model->get_patient_menstruation_record($ic_no, $patient_studies_id);
                     $data['patient_parity_table'] = $this->record_model->get_patient_parity_table_record($ic_no, $patient_studies_id);
@@ -311,7 +305,7 @@ class Report extends CI_Controller {
                     $this->load->view('export/lifestyle_tab2',$data);
                     $this->load->view('export/lifestyle_tab3',$data);
                     $this->load->view('export/lifestyle_tab4',$data);
-                } else if ($var == 'counseling') {
+                } else if (($var == 'counseling') || ($var == 'All')){
                     
                     //echo 'test 1';
                     $data['patient_interview_manager'] = $this->record_model->get_patient_counselling_record($ic_no);
@@ -323,7 +317,7 @@ class Report extends CI_Controller {
 
                         //$this->template->load("templates/add_record_template", 'export/counseling_tab', $data);
                         $this->load->view('export/counseling_tab',$data);
-                } else if ($var == 'bulkImport') {
+                } else if (($var == 'bulkImport')|| ($var == 'All')) {
                     $this->template->load("templates/add_record_template", 'record/upload_xlsx_file', $data);
                 }
             }

@@ -565,7 +565,7 @@ class Report_model extends CI_Model {
     }
     
     
-        function getReportData($record_data,$ethnic_name = NULL, $cancer_name = NULL) {
+        function getReportData($record_data,$ethnic_name = NULL, $cancer_name = NULL,$start) {
             
             $ic_no = $this->input->post('ic_no');
             
@@ -632,6 +632,7 @@ class Report_model extends CI_Model {
        // $this->db->like('c.cancer_id', $record_data['cancer']);
         $this->db->group_by('ic_no');
         $this->db->like('b.studies_id', $record_data['studies_name']);
+        $this->db->limit(500, $start);
         $this->db->order_by("a.given_name", "asc");
         $patient_list = $this->db->get('');
         $list_patient = $patient_list->result_array();
@@ -642,6 +643,7 @@ class Report_model extends CI_Model {
 
         return $list_patient;
     }
+    
 
     function getExcelData($record_data,$ethnic_name) {
             

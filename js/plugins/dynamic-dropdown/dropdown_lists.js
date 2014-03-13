@@ -208,6 +208,9 @@ $( document ).ready(function() {
 				case 'gnc_treatment_lists':
 					vals = data.gnc_treatment_lists.split(",");
 					break;
+                                case 'pregnancy_type':
+                                        vals = data.pregnancy_type.split(",");
+                                        break;
 				case 'base':
 					vals = ['Please choose from above'];
 			}
@@ -394,6 +397,9 @@ $( document ).ready(function() {
 						break;
 					case 'gnc_treatment_lists':
 						vals = data.gnc_treatment_lists.split(",");
+						break;
+                                        case 'pregnancy_type':
+						vals = data.pregnancy_type.split(",");
 						break;
 				}
 				
@@ -611,6 +617,9 @@ $( document ).ready(function() {
 						break;
 					case 'gnc_treatment_lists':
 						vals = data.gnc_treatment_lists.split(",");
+						break;
+                                        case 'pregnancy_type':
+						vals = data.pregnancy_type.split(",");
 						break;
 				}
 				
@@ -845,6 +854,9 @@ $( document ).ready(function() {
 				case 'gnc_treatment_lists':
 					vals = data.gnc_treatment_lists.split(",");
 					break;
+                                case 'pregnancy_type':
+                                        vals = data.pregnancy_type.split(",");
+                                        break;
 				case 'base':
 					vals = ['Please choose from above'];
 			}

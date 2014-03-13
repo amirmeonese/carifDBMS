@@ -88,7 +88,7 @@
 						<option value="period_cycle_days_lists">Period Cycle Days</option>
 						<option value="reason_period_stops_lists">Reason Period Stops</option>
 						<option value="gnc_treatment_lists">GNC Surgery Type</option>
-						
+						<option value="pregnancy_type">Pregnancy Type</option>
 					</optgroup>
 					</select>
 				</td>

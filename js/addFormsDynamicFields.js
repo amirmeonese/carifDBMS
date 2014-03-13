@@ -52,9 +52,9 @@ function addInput(divName)
 		"<td>Degree of relativeness:" +
 		"<select name='degreeOfRelativeness" + relativeCounter + "'>" +
 			"<option value=''></option>" +
-			"<option value='1stDegree'>1st degree</option>" +
-			"<option value='2ndDegree'>2nd degree</option>" +
-			"<option value='3rdDegree'>3rd degree</option>" +
+			"<option value='1'>1st degree</option>" +
+			"<option value='2'>2nd degree</option>" +
+			"<option value='3'>3rd degree</option>" +
 		"</select> " +
 		"</td>" +
 		"</tr>" +
@@ -99,7 +99,6 @@ function addInput(divName)
 			"<option value='Gastric'>Gastric</option>" +
 			"<option value='Others'>Others</option>" +
 		"</select> </td>" +
-		"<td>Other cancer type:<input type='text' name='relative_other_cancer_name" + relativeCounter + "' value=''/></td>" + 
 		"<td>Age of diagnosis: <input type='text' name='relative_age_of_diagnosis" + relativeCounter + "' value=''/></td>" + 
 		"</tr>" + 
 		"<tr>" +

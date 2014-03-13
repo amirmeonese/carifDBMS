@@ -96,10 +96,25 @@
               <span small>*[hold CTRL + select item to select multiple item]</span>
           </td>
       </tr>
+      <tr>
+                <td>
+                    Patient Start From:
+                </td>
+                <td>
+                   <select name="patient_start">
+                  <option value="1" selected>1 - 500</option>
+                  <option value="501">501 - 1000</option>
+                  <option value="1001" >1001 - 1500</option>
+                  <option value="1501">1501 - 2000</option>
+                  <option value="2001">2001 - 2500</option>
+                  <option value="2501">2501 - 3000</option>
+                  <option value="3001">3001 - 3500</option>
+                  <option value="3501">3501 - 4000</option>
+              </select>
+                </td>
+      </tr>
         </table>
-<!--		<table>
-		<tr><td>Data Columns to Display:</td><td><textarea id="data_field_textarea" rows="1" cols="7"></textarea></td></tr>
-	</table>-->
+
     </div>
     <?php echo form_submit('mysubmit', 'Generate Report'); ?>
     <a class="submitCancel" href="<?php echo base_url(); ?>">Cancel</a>
@@ -128,7 +143,7 @@
                 </tr>
             </thead>
             <?php if($searched_result != NULL) {?>
-            <?php $no = 1; foreach ($searched_result as $list): ?>
+            <?php $no = $patient_start; foreach ($searched_result as $list): ?>
                 <tr>
                     <td><?php echo $no; ?></td>
                     <?php if (in_array('given_name',$patient_field)) echo '<td>'.$list['given_name'].'</td>'; ?>

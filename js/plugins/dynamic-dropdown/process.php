@@ -156,7 +156,9 @@
 			case 'gnc_treatment_lists':
 				$data['gnc_treatment_lists'] = $text;
 				break;
-				
+                         case 'pregnancy_type':
+                                        $data['pregnancy_type'] = $text;
+                                        break;				
 				
 		}
 		

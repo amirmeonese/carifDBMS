@@ -499,6 +499,7 @@ class Record_model extends CI_Model {
         $data['genderTypes'] = array(
 			'Dynamic Dropdown' => 'Dynamic Dropdown'
         );
+        
         $data['DOB'] = 'Date of birth';
         $data['place_of_birth'] = 'Place of birth';
         $data['still_alive_flag'] = 'Still alive?';
@@ -923,11 +924,14 @@ class Record_model extends CI_Model {
 		$data['never_been_pregnant_flag'] = 'Null parity';
         $data['pregnant_flag'] = 'Parity';
         $data['pregnancy_type'] = 'Pregnancy type';
+//        $data['pregnancy_type_lists'] = array(
+//			 '' => '',
+//            'CHILD' => 'Child',
+//            'Stillborn' => 'Stillborn',
+//            'Miscarriage' => 'Miscarriage'
+//        );
         $data['pregnancy_type_lists'] = array(
-			 '' => '',
-            'CHILD' => 'Child',
-            'Stillborn' => 'Stillborn',
-            'Miscarriage' => 'Miscarriage'
+			'Dynamic Dropdown' => 'Dynamic Dropdown'
         );
         $data['child_gender'] = 'Gender';
         $data['child_birthyear'] = 'Birthyear';
