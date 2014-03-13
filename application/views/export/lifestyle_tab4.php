@@ -13,7 +13,7 @@ header("Expires: 0");
     <thead>
                 <tr>
                     <th style="background-color:Crimson;">No</th>
-                    <th style="background-color:Crimson;">IC No</th>
+                    <th style="background-color:Crimson;">Studies Name</th>
                     <th style="background-color:Crimson;">Treatment for infertility?</th>
                     <th style="background-color:Crimson;">Type of treatment</th>
                     <th style="background-color:Crimson;">Duration</th>
@@ -42,7 +42,7 @@ header("Expires: 0");
                 <tr>
                     <?php if (!empty($patient_infertility)){ ?>
                     <td><?php echo $no; ?></td>
-                    <td><?php echo $patient_infertility['patient_studies_id']; ?></td>
+                    <td><?php echo $studies_id[$patient_studies_id[$patient_infertility['patient_studies_id']]]; ?></td>
                     <td><?php echo $patient_infertility['infertility_testing_flag']; ?></td>
                     <td><?php echo $patient_infertility['infertility_treatment_details']; ?></td>
                     <td><?php echo $patient_infertility['infertility_treatment_duration']; ?></td>

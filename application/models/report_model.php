@@ -585,6 +585,22 @@ class Report_model extends CI_Model {
             
             }
             
+            if ($record_data['consent_date_start'] == '1970-01-01'){
+              $consent_date_start = "";  
+            } else {
+            
+              $consent_date_start = $record_data['consent_date_start'];
+            
+            }
+            
+            if ($record_data['consent_date_end'] == '1970-01-01'){
+              $consent_date_end = "";  
+            } else {
+            
+            $consent_date_end = $record_data['consent_date_end'];
+            
+            }
+            
             if ($record_data['creation_date_start'] == '1970-01-01'){
               $creation_start_date = "";  
             } else {
@@ -605,7 +621,7 @@ class Report_model extends CI_Model {
             $end_age = $record_data['age_end'];
             
         
-        $this->db->select('a.given_name, a.surname, a.ic_no, a.ethnicity, b.studies_id');
+        $this->db->select('a.given_name, a.surname, a.ic_no, a.ethnicity, b.studies_id, b.date_at_consent');
         $this->db->select('c.date_of_diagnosis,c.age_of_diagnosis');
         $this->db->from('patient a');
         $this->db->where('a.is_deleted',0);
@@ -625,6 +641,9 @@ class Report_model extends CI_Model {
         }
         if (!empty ($creation_start_date) || ($creation_end_date)) {
         $this->db->where("a.created_on BETWEEN '$creation_start_date' AND '$creation_end_date'", NULL, FALSE);
+        }
+        if (!empty ($consent_date_start) || ($consent_date_end)) {
+        $this->db->where("b.date_at_consent BETWEEN '$consent_date_start' AND '$consent_date_end'", NULL, FALSE);
         }
         if (!empty ($ic_no)) {
                 $this->db->where_in('a.ic_no', $ic_no);

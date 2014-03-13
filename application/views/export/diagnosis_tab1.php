@@ -30,7 +30,7 @@ header("Expires: 0");
             <?php $no = 1; foreach ($patient_other_disease as $list): ?>
                 <tr>
                     <td><?php echo $no; ?></td>
-                    <td><?php echo $list['patient_studies_id']; ?></td>
+                    <td><?php echo $studies_id[$patient_studies_id[$list['patient_studies_id']]]; ?></td>
                     <td><?php echo $diagnosis_name[$list['diagnosis_id']]; ?></td>
                     <td><?php echo $list['date_of_diagnosis']; ?></td>
                     <td><?php echo $list['diagnosis_age']; ?></td>

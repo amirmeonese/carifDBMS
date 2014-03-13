@@ -26,7 +26,7 @@ header("Expires: 0");
             <?php $no = 1; foreach ($patient_risk_reducing_surgery as $list): ?>
                 <tr>
                     <td><?php echo $no; ?></td>
-                    <td><?php echo $list['patient_studies_id']; ?></td>
+                    <td><?php echo $studies_id[$patient_studies_id[$list['patient_studies_id']]]; ?></td>
                     <td><?php echo $list['had_new_lesion_surgery_flag']; ?></td>
                     <td><?php echo @$non_cancerous_site[$list['lesion_non_cancerous_site_id']]; ?></td>
                     <td><?php echo $list['lesion_surgery_date']; ?></td>

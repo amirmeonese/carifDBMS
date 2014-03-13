@@ -28,7 +28,7 @@ header("Expires: 0");
                 <tr>
                     <?php if (!empty($patient_parity_table)){ ?>
                     <td><?php echo $no; ?></td>
-                    <td><?php echo $patient_parity_table['patient_studies_id']; ?></td>
+                    <td><?php echo $studies_id[$patient_studies_id[$patient_parity_table['patient_studies_id']]]; ?></td>
                     <td><?php echo $patient_parity_table['pregnant_flag']; ?></td>
                     <?php } else { ?>
                 <?php } ?>

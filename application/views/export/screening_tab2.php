@@ -29,7 +29,7 @@ header("Expires: 0");
             <?php $no = 1; foreach ($patient_non_cancer as $list): ?>
                 <tr>
                     <td><?php echo $no; ?></td>
-                    <td><?php echo $list['patient_studies_id']; ?></td>
+                    <td><?php echo $studies_id[$patient_studies_id[$list['patient_studies_id']]]; ?></td>
                     <td><?php echo $list['breast_surgery_type']; ?></td>
                     <td><?php echo $list['breast_reason_of_surgery']; ?></td>
                     <td><?php echo $list['breast_date_of_surgery']; ?></td>

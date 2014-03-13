@@ -13,7 +13,7 @@ header("Expires: 0");
     <thead>
                 <tr>
                     <th style="background-color:Crimson;">No</th>
-                    <th style="background-color:Crimson;">Patient Studies Id</th>
+                    <th style="background-color:Crimson;">Studies Name</th>
                     <th style="background-color:Crimson;">Date test ordered</th>
                     <th style="background-color:Crimson;">Ordered by</th>
                     <th style="background-color:Crimson;">Request for result notification</th>
@@ -43,7 +43,7 @@ header("Expires: 0");
             <?php $no = 1; foreach ($patient_mutation_analysis as $list): ?>
                 <tr>
                     <td><?php echo $no; ?></td>
-                    <td><?php echo $list['patient_studies_id']; ?></td>
+                    <td><?php echo $studies_id[$patient_studies_id[$list['patient_studies_id']]]; ?></td>
                     <td><?php echo $list['date_test_ordered']; ?></td>
                     <td><?php echo $list['ordered_by']; ?></td>
                     <td><?php echo $list['testing_result_notification_flag']; ?></td>

@@ -70,7 +70,15 @@
                     <?php echo form_input('report_start_range_age'); ?> To <?php echo form_input('report_end_range_age'); ?>
                 </td>
             </tr>
-            
+            <tr>
+                <td>
+                    Date of Consent:
+                </td>
+                <td id="label2">
+                    From
+                    <?php echo form_input(array('name' => 'report_consent_date_start', 'class' => 'datepicker')); ?> To <?php echo form_input(array('name' => 'report_consent_date_end', 'class' => 'datepicker')); ?>
+                </td>
+            </tr>
             <tr>
                 <td>
                     Creation Date:
@@ -90,6 +98,7 @@
                   <option value="f_ethnic">Ethnicity</option>
                   <option value="f_date_diagnosis">Date of Diagnosis</option>
                   <option value="f_age_diagnosis">Age of Diagnosis</option>
+                  <option value="f_date_consent">Date of Consent</option>
                   
               </select>
               <br/>
@@ -139,6 +148,7 @@
                     <?php if (in_array('f_ethnic',$patient_field)) echo '<th style="background-color:Crimson;">Ethnicity</th>'; ?>
                     <?php if (in_array('f_date_diagnosis',$patient_field)) echo '<th style="background-color:Crimson;">Date of Diagnosis</th>'; ?>
                     <?php if (in_array('f_age_diagnosis',$patient_field)) echo '<th style="background-color:Crimson;">Age of Diagnosis</th>'; ?>
+                    <?php if (in_array('f_date_consent',$patient_field)) echo '<th style="background-color:Crimson;">Date of Consent</th>'; ?>
                     <th style="background-color:Crimson;">All<input type="checkbox" name="selectall" name="selectallnone" id="selectallnone"/></th>
                 </tr>
             </thead>
@@ -152,6 +162,7 @@
                     <?php if (in_array('f_ethnic',$patient_field)) echo '<td>'.$list['ethnicity'].'</td>'; ?>
                     <?php if (in_array('f_date_diagnosis',$patient_field)) echo '<td>'.$list['date_of_diagnosis'].'</td>'; ?>
                     <?php if (in_array('f_age_diagnosis',$patient_field)) echo '<td>'.$list['age_of_diagnosis'].'</td>'; ?>
+                    <?php if (in_array('f_date_consent',$patient_field)) echo '<td>'.$list['date_at_consent'].'</td>'; ?>
                     <td>
             <input type="checkbox" name="ic_no[]" class="patientcheckbox" value="<?php echo $list['ic_no']; ?>" />
             <input type="hidden" name="icno[]" value="<?php echo $list['ic_no'];?>">

@@ -2437,6 +2437,19 @@ function get_studies_name_by_id() {
         return $studiesnamelist;
     }
     
+    function get_studies_id_by_id() {
+
+        $studiesnamelist = array();
+        $this->db->select('patient_studies_id,studies_id');
+        $this->db->order_by('patient_studies_id asc');
+        $query = $this->db->get('patient_studies');
+        foreach ($query->result() as $row) {
+            $studiesnamelist = $studiesnamelist + array($row->patient_studies_id => $row->studies_id);
+        }
+        $query->free_result();
+        return $studiesnamelist;
+    }
+    
     function get_alive_status_by_id() {
         
         $alivestatuslist = array(

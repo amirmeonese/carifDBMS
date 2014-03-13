@@ -13,7 +13,7 @@ header("Expires: 0");
     <thead>
                 <tr>
                     <th style="background-color:Crimson;">No</th>
-                    <th style="background-color:Crimson;">IC No</th>
+                    <th style="background-color:Crimson;">Studies Name</th>
                     <th style="background-color:Crimson;">Age of menarche</th>
                     <th style="background-color:Crimson;">Still having period?</th>
                     <th style="background-color:Crimson;">Period regularity</th>
@@ -29,7 +29,7 @@ header("Expires: 0");
             <?php $no = 1;  ?>
                 <tr>
                     <td><?php echo $no; ?></td>
-                    <td><?php echo $patient_menstruation['patient_studies_id']; ?></td>
+                    <td><?php echo $studies_id[$patient_studies_id[$patient_menstruation['patient_studies_id']]]; ?></td>
                     <td><?php echo $patient_menstruation['age_period_starts']; ?></td>
                     <td><?php echo $patient_menstruation['still_period_flag']; ?></td>
                     <td><?php echo $patient_menstruation['period_type']; ?></td>

@@ -13,7 +13,7 @@ header("Expires: 0");
     <thead>
                 <tr>
                     <th style="background-color:Crimson;">No</th>
-                    <th style="background-color:Crimson;">Studies ID</th>
+                    <th style="background-color:Crimson;">Studies Name</th>
                     <th style="background-color:Crimson;">Cancer Type</th>
                     <th style="background-color:Crimson;">Select site</th>
                     <th style="background-color:Crimson;">Cancer type (invasive/non-invasive)</th>
@@ -58,7 +58,7 @@ header("Expires: 0");
             <?php $no = 1; foreach ($patient_breast_cancer as $breast_cancer){ ?>
                 <tr>
                     <td><?php echo $no; ?></td>
-                    <td><?php echo $studies_id[$breast_cancer['patient_studies_id']]; ?></td>
+                    <td><?php echo $studies_id[$patient_studies_id[$breast_cancer['patient_studies_id']]]; ?></td>
                     <td><?php echo $breast_cancer['cancer_id']; ?></td>
                     <td><?php echo $site_cancer[$breast_cancer['cancer_site_id']]; ?></td>
                     <td><?php echo $breast_cancer['cancer_invasive_type']; ?></td>

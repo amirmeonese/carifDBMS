@@ -33,8 +33,8 @@ class Report extends CI_Controller {
                     'mutation' => 'Mutation Analysis',
                     'risk_assessment' => 'Risk Assessment',
                     'lifestyleFactors' => 'Lifestyle Factor',
-                    'counseling' => 'Counseling'
-                    //'All' => 'All'
+                    'counseling' => 'Counseling',
+                    'All' => 'All'
                 );
         
         $studies_name = $this->input->post('studies_name');
@@ -52,6 +52,8 @@ class Report extends CI_Controller {
         $cancer_name = $this->input->post('cancer');
         $creation_date_start = $this->input->post('report_creation_date_start');
         $creation_date_end = $this->input->post('report_creation_date_end');
+        $consent_date_start = $this->input->post('report_consent_date_start');
+        $consent_date_end = $this->input->post('report_consent_date_end');
                 
         
         if($this->input->post('mysubmit')){
@@ -66,6 +68,8 @@ class Report extends CI_Controller {
         $data['patient_field'] = $field_name;
         $data['creation_date_start'] = $creation_date_start;
         $data['creation_date_end'] = $creation_date_end;
+        $data['consent_date_start'] = $consent_date_start;
+        $data['consent_date_end'] = $consent_date_end;
         $data['patient_start'] = $patient_start;
         
         
@@ -77,6 +81,8 @@ class Report extends CI_Controller {
             'date_end' => date('Y-m-d',strtotime($diagnosis_date_end)),
             'creation_date_start' => date('Y-m-d',strtotime($creation_date_start)),
             'creation_date_end' => date('Y-m-d',strtotime($creation_date_end)),
+            'consent_date_start' => date('Y-m-d',strtotime($consent_date_start)),
+            'consent_date_end' => date('Y-m-d',strtotime($consent_date_end)),
             'age_start' => $diagnosis_age_start,
             'age_end' => $diagnosis_age_end    
         );
@@ -190,6 +196,7 @@ class Report extends CI_Controller {
                 $icno = $this->input->post('icno');
                 
                 $data['studies_id'] = $this->record_model->get_studies_name_by_id();
+                $data['patient_studies_id'] = $this->record_model->get_studies_id_by_id();
                 
                 if (!empty($ic_no_check)){
                 
@@ -237,7 +244,7 @@ class Report extends CI_Controller {
                     
                      $this->load->view('export/family_tab',$data);
                      
-                } else if (($var == 'diagnosis') || ($var == 'All')) {
+                } if (($var == 'diagnosis') || ($var == 'All')) {
                     //$data['patient_breast_cancer'] = $this->record_model->get_patient_breast_diagnosis_record($patient_studies_id);
                     //$data['patient_ovary_cancer'] = $this->record_model->get_patient_ovary_diagnosis_record($patient_studies_id);
                     //$data['patient_ovary_cancer_treatment'] = $this->record_model->get_patient_treatment_record($a['patient_cancer_id']);
@@ -265,7 +272,7 @@ class Report extends CI_Controller {
                     $this->load->view('export/diagnosis_tab',$data);
                     $this->load->view('export/diagnosis_tab1',$data);
                     
-                } else if (($var == 'studies_setOne') || ($var == 'All')) {
+                } if (($var == 'studies_setOne') || ($var == 'All')) {
                     $data['patient_breast_screening'] = $this->record_model->get_patient_breast_screening_record($patient_studies_id, $ic_no);
                     $data['patient_non_cancer'] = $this->record_model->get_patient_non_cancer_record($patient_studies_id);
                     $data['patient_risk_reducing_surgery'] = $this->record_model->get_patient_risk_reducing_surgery_record($patient_studies_id);
@@ -305,7 +312,7 @@ class Report extends CI_Controller {
                     $this->load->view('export/lifestyle_tab2',$data);
                     $this->load->view('export/lifestyle_tab3',$data);
                     $this->load->view('export/lifestyle_tab4',$data);
-                } else if (($var == 'counseling') || ($var == 'All')){
+                } if (($var == 'counseling') || ($var == 'All')){
                     
                     //echo 'test 1';
                     $data['patient_interview_manager'] = $this->record_model->get_patient_counselling_record($ic_no);
@@ -317,9 +324,7 @@ class Report extends CI_Controller {
 
                         //$this->template->load("templates/add_record_template", 'export/counseling_tab', $data);
                         $this->load->view('export/counseling_tab',$data);
-                } else if (($var == 'bulkImport')|| ($var == 'All')) {
-                    $this->template->load("templates/add_record_template", 'record/upload_xlsx_file', $data);
-                }
+                } 
             }
     
 }
