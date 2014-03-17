@@ -93,6 +93,7 @@ class Report extends CI_Controller {
         $result = $this->report_model->getReportData($data_search_key,$ethnic_name,$cancer_name,$patient_start);
 
         $result_size = count($result);
+                
         if ($result_size > 0) {
             $data['searched_result'] = $result;
             
@@ -189,10 +190,10 @@ class Report extends CI_Controller {
   function export_record_list() {
                 $this->load->model('record_model');
                 $data = $this->record_model->general();
-                $userid = $this->session->userdata('user_id');
                 
                 $var = $this->input->post('tab_name');
                 $ic_no_check = $this->input->post('ic_no');
+                
                 $icno = $this->input->post('icno');
                 
                 $data['studies_id'] = $this->record_model->get_studies_name_by_id();
@@ -212,12 +213,17 @@ class Report extends CI_Controller {
                 
                 $patient_studies = $this->report_model->get_patient_studies_id($ic_no,$studies_id);
                 
+                
+                if(!empty($patient_studies)){
                 foreach ($patient_studies as $value){
           
                 $patient_studies_id[] = $value['patient_studies_id'];
           
                 }
-
+                } else {
+                    
+                   $patient_studies_id = NULL; 
+                }
                 if (($var == 'personal') || ($var == 'All')) {
 
                     $data['patient_detail'] = $this->record_model->get_detail_export_patient_record($ic_no, $patient_studies_id);

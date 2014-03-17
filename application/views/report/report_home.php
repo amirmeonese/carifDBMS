@@ -164,8 +164,8 @@
                     <?php if (in_array('f_age_diagnosis',$patient_field)) echo '<td>'.$list['age_of_diagnosis'].'</td>'; ?>
                     <?php if (in_array('f_date_consent',$patient_field)) echo '<td>'.$list['date_at_consent'].'</td>'; ?>
                     <td>
-            <input type="checkbox" name="ic_no[]" class="patientcheckbox" value="<?php echo $list['ic_no']; ?>" />
-            <input type="hidden" name="icno[]" value="<?php echo $list['ic_no'];?>">
+            <input type="checkbox" name="ic_no[]" class="patientcheckbox" checked="checked" value="<?php echo $list['ic_no']; ?>" />
+<!--            <input type="hidden" name="icno[]" value="<?php echo $list['ic_no'];?>">-->
         </td>
                 </tr>                               
     <?php $no++; endforeach; ?>
