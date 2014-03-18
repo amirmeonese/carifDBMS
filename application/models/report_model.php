@@ -507,10 +507,13 @@ class Report_model extends CI_Model {
         return $result;
     }
     
-    public function get_patient_studies_id($ic_no){
+    public function get_patient_studies_id($ic_no,$studies_id=NULL){
     
         $this->db->select('patient_studies_id');
         $this->db->where_in('patient_ic_no',$ic_no);
+        if(!empty($studies_id)){
+        $this->db->where_in('studies_id',$studies_id);
+        }
 	$p_record = $this->db->get('patient_studies');
         $patient_detail = $p_record->result_array();
         //echo $this->db->last_query();exit;
@@ -530,14 +533,16 @@ class Report_model extends CI_Model {
         return $patient_detail;
     }
     
-    public function get_consent_detail_patient_record($ic_no){
+    public function get_consent_detail_patient_record($ic_no,$patient_studies_id){
          
         $this->db->where_in('patient_ic_no',$ic_no);
-        //$this->db->where('studies_id',$patient_studies_id);
-	$p_record = $this->db->get('patient_studies');
+        $this->db->where_in('studies_id',$patient_studies_id);
+        $this->db->from('patient_studies');
+	$p_record = $this->db->get('');
         $patient_detail = $p_record->result_array();
-       // echo $this->db->last_query();exit;
-        $p_record->free_result();  
+        $p_record->free_result(); 
+        
+        //echo $this->db->last_query();exit;
 
         return $patient_detail;
     }

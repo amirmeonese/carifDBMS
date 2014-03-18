@@ -2543,7 +2543,7 @@ function get_studies_name_by_id() {
     function get_site_breast_by_id() {
         
         $sitebreastlist = array(
-            
+            '' => '',
             '1' => 'Left',
             '0' => 'Right',
         );
@@ -2554,7 +2554,7 @@ function get_studies_name_by_id() {
     function get_upperbellow_breast_by_id() {
         
         $sitebreastlist = array(
-            
+            '' => '',
             '1' => 'Upper',
             '0' => 'Below',
         );
