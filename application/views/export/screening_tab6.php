@@ -13,6 +13,7 @@ header("Expires: 0");
     <thead>
                 <tr>
                     <th style="background-color:Crimson;">No</th>
+                    <th style="background-color:Crimson;">Patient IC No</th>
                     <th style="background-color:Crimson;">Studies Name</th>
                     <th style="background-color:Crimson;">Recruitment centre</th>
                     <th style="background-color:Crimson;">Surveillance type</th>
@@ -35,6 +36,7 @@ header("Expires: 0");
             <?php $no = 1; foreach ($patient_surveillance as $list): ?>
                 <tr>
                     <td><?php echo $no; ?></td>
+                    <td><?php echo $list['patient_ic_no']; ?></td>
                     <td><?php echo $studies_id[$patient_studies_id[$list['patient_studies_id']]]; ?></td>
                     <td><?php echo $list['recruitment_center']; ?></td>
                     <td><?php echo $list['type']; ?></td>

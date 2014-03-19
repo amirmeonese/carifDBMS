@@ -80,14 +80,14 @@ header("Expires: 0");
                     <td><?php echo $list['place_of_birth']; ?></td>
                     <td><?php echo $list['marital_status']; ?></td>
                     <td><?php echo $list['blood_group']; ?></td>
-                    <td><?php echo $list['is_dead']; ?></td>
+                    <td><?php echo $alive_id[$list['is_dead']]; ?></td>
                     <td><?php echo $list['d_o_d']; ?></td>
                     <td><?php echo $list['reason_of_death']; ?></td>
                     <td><?php echo $list['hospital_no']; ?></td>
                     <td><?php echo $list['private_no']; ?></td>
                     <td><?php echo $list['COGS_studies_name']; ?></td>
                     <td><?php echo $list['COGS_studies_no']; ?></td>
-                    <td><?php echo $list['blood_card']; ?></td>
+                    <td><?php echo $checkbox_status[$list['blood_card']]; ?></td>
                     <td><?php echo $list['blood_card_location']; ?></td>
                     <td><?php echo $list['address']; ?></td>
                     <td><?php echo $list['home_phone']; ?></td>

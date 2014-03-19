@@ -13,6 +13,7 @@ header("Expires: 0");
     <thead>
                 <tr>
                     <th style="background-color:Crimson;">No</th>
+                    <th style="background-color:Crimson;">Patient IC No</th>
                     <th style="background-color:Crimson;">Studies Name</th>
                     <th style="background-color:Crimson;">Date test ordered</th>
                     <th style="background-color:Crimson;">Ordered by</th>
@@ -43,10 +44,11 @@ header("Expires: 0");
             <?php $no = 1; foreach ($patient_mutation_analysis as $list): ?>
                 <tr>
                     <td><?php echo $no; ?></td>
+                    <td><?php echo $list['patient_ic_no']; ?></td>
                     <td><?php echo $studies_id[$patient_studies_id[$list['patient_studies_id']]]; ?></td>
                     <td><?php echo $list['date_test_ordered']; ?></td>
                     <td><?php echo $list['ordered_by']; ?></td>
-                    <td><?php echo $list['testing_result_notification_flag']; ?></td>
+                    <td><?php echo $checkbox_status[$list['testing_result_notification_flag']]; ?></td>
                     <td><?php echo $list['service_provider']; ?></td>
                     <td><?php echo $list['testing_batch']; ?></td>
                      <td><?php echo $list['testing_date']; ?></td>
@@ -54,7 +56,7 @@ header("Expires: 0");
                     <td><?php echo $list['types_of_testing']; ?></td>
                     <td><?php echo $list['type_of_sample']; ?></td>
                      <td><?php echo $list['reasons']; ?></td>
-                    <td><?php echo $list['new_mutation_flag']; ?></td>
+                    <td><?php echo $checkbox_status[$list['new_mutation_flag']]; ?></td>
                     <td><?php echo $list['test_result']; ?></td>
                     <td><?php echo $list['investigation_test_results_other_details']; ?></td>
                     <td><?php echo $list['mutation_pathogenicity']; ?></td>
@@ -65,8 +67,9 @@ header("Expires: 0");
                     <td><?php echo $list['carrier_status']; ?></td>
                      <td><?php echo $list['report_date']; ?></td>
                     <td><?php echo $list['date_client_notified']; ?></td>
-                    <td><?php echo $list['is_counselling_flag']; ?></td>
-                    <td><?php echo $list['conformation_attachment']; ?></td>
+                    <td><?php echo $checkbox_status[$list['is_counselling_flag']]; ?></td>
+                    <td><?php echo $list['comments']; ?></td>
+                    <td><?php echo $checkbox_status[$list['conformation_attachment']]; ?></td>
                 </tr>
             <?php $no++; endforeach; ?>
         </table>

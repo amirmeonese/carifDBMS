@@ -1874,17 +1874,18 @@ class Record_model extends CI_Model {
         $data = array(
         );
         $query = $this->db->select('cancer_id')
-                ->where('cancer_name', $record_data)
+                ->where_in('cancer_name', $record_data)
                 ->limit(1)
                 ->get($this->tables['cancer']);
 
         $result = null;;
         if ($query->num_rows() > 0) {
             $result = $query->row_array();
+            
             //echo $result['relatives_id'];
         }
 
-        //print_r($result['relatives_id']);
+        //print_r($result['cancer_id']);exit;
 
         return $result['cancer_id'];
     }
@@ -2470,6 +2471,19 @@ function get_studies_name_by_id() {
         $query = $this->db->get('cancer');
         foreach ($query->result() as $row) {
             $cancernamelist = $cancernamelist + array($row->cancer_id => $row->cancer_name);
+        }
+        $query->free_result();
+        return $cancernamelist;
+    }
+    
+    function get_relative_degree_by_id() {
+
+        $cancernamelist = array();
+        $this->db->select('relative_degree_ID,relative_degree_name');
+        $this->db->order_by('relative_degree_name asc');
+        $query = $this->db->get('relative_degrees');
+        foreach ($query->result() as $row) {
+            $cancernamelist = $cancernamelist + array($row->relative_degree_ID => $row->relative_degree_name);
         }
         $query->free_result();
         return $cancernamelist;

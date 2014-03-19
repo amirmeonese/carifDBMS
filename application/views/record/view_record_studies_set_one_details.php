@@ -52,10 +52,10 @@
                     <?php echo $date_of_recent_mammogram; ?>: 
                     <?php echo form_input(array('name' => 'date_of_recent_mammogram[]', 'value' => $breast_screening['date_of_recent_mammogram'] == '0000-00-00' ? '00-00-0000'  : date('d-m-Y', strtotime($breast_screening['date_of_recent_mammogram'])), 'class' => 'datepicker')) ?>
                 </td>
-<!--                <td>
+                <td>
                     <?php echo $age_at_recent__mammogram; ?>: 
-                    <?php echo form_input(array('name' => 'age_at_recent__mammogram[]', 'value' => $breast_screening['age_of_diagnosis'])) ?>
-                </td>-->
+                    <?php echo form_input(array('name' => 'age_of_recent_mammogram[]', 'value' => $breast_screening['age_of_recent_mammogram'])) ?>
+                </td>
                 <td>
                     <?php echo $screening_center_at_recent_mammogram; ?>: 
                     <?php echo form_input(array('name' => 'screening_center_of_recent_mammogram[]', 'value' => $breast_screening['screening_center_of_recent_mammogram'])) ?>

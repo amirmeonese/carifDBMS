@@ -13,6 +13,7 @@ header("Expires: 0");
     <thead>
                 <tr>
                     <th style="background-color:Crimson;">No</th>
+                    <th style="background-color:Crimson;">Patient IC No</th>
                     <th style="background-color:Crimson;">Studies Name</th>
                     <th style="background-color:Crimson;">Age of menarche</th>
                     <th style="background-color:Crimson;">Still having period?</th>
@@ -26,21 +27,22 @@ header("Expires: 0");
                 </tr>
             </thead>
             <?php if (!empty($patient_menstruation)){ ?>
-            <?php $no = 1;  ?>
+            <?php $no = 1; foreach ($patient_menstruation as $lifestyle_factors){ ?>
                 <tr>
                     <td><?php echo $no; ?></td>
-                    <td><?php echo $studies_id[$patient_studies_id[$patient_menstruation['patient_studies_id']]]; ?></td>
-                    <td><?php echo $patient_menstruation['age_period_starts']; ?></td>
-                    <td><?php echo $patient_menstruation['still_period_flag']; ?></td>
-                    <td><?php echo $patient_menstruation['period_type']; ?></td>
-                    <td><?php echo $patient_menstruation['period_cycle_days']; ?></td>
-                    <td><?php echo $patient_menstruation['period_cycle_days_other_details']; ?></td>
-                    <td><?php echo $patient_menstruation['age_at_menopause']; ?></td>
-                    <td><?php echo $patient_menstruation['date_period_stops']; ?></td>
-                    <td><?php echo $patient_menstruation['reason_period_stops']; ?></td>
-                    <td><?php echo $patient_menstruation['reason_period_stops_other_details']; ?></td>
+                    <td><?php echo $lifestyle_factors['patient_ic_no']; ?></td>
+                    <td><?php echo $studies_id[$patient_studies_id[$lifestyle_factors['patient_studies_id']]]; ?></td>
+                    <td><?php echo $lifestyle_factors['age_period_starts']; ?></td>
+                    <td><?php echo $checkbox_status[$lifestyle_factors['still_period_flag']]; ?></td>
+                    <td><?php echo $lifestyle_factors['period_type']; ?></td>
+                    <td><?php echo $lifestyle_factors['period_cycle_days']; ?></td>
+                    <td><?php echo $lifestyle_factors['period_cycle_days_other_details']; ?></td>
+                    <td><?php echo $lifestyle_factors['age_at_menopause']; ?></td>
+                    <td><?php echo $lifestyle_factors['date_period_stops']; ?></td>
+                    <td><?php echo $lifestyle_factors['reason_period_stops']; ?></td>
+                    <td><?php echo $lifestyle_factors['reason_period_stops_other_details']; ?></td>
                 </tr>
-            <?php $no++; ?>
+            <?php $no++; } ?>
                        <?php } else { ?>
                 <tr>
                 </tr>

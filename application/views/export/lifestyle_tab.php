@@ -12,7 +12,7 @@ header("Expires: 0");
 <table border="1">
     <thead>
         <tr>
-                    <th colspan="3" style="background-color:Crimson;"></th>
+                    <th colspan="4" style="background-color:Crimson;"></th>
                     <th colspan="3" style="background-color:Crimson;">Patient Self Image</th>
                     <th colspan="3" style="background-color:Crimson;">Childhood (before 18-years of age</th>
                     <th colspan="3" style="background-color:Crimson;">18-30 years old</th>
@@ -27,7 +27,8 @@ header("Expires: 0");
         </tr>
                 <tr>
                     <th style="background-color:Crimson;">No</th>
-                    <th style="background-color:Crimson;">IC No</th>
+                    <th style="background-color:Crimson;">Patient IC No</th>
+                    <th style="background-color:Crimson;">Studies Name</th>
                     <th style="background-color:Crimson;">Questionnaire Date</th>
                     <th style="background-color:Crimson;">Self image at 7 years old</th>
                     <th style="background-color:Crimson;">Self image at 18 years old</th>
@@ -73,52 +74,53 @@ header("Expires: 0");
                 </tr>
             </thead>
             <?php if (!empty($patient_lifestyle_factors)){ ?>
-            <?php $no = 1;?>
+            <?php $no = 1; foreach ($patient_lifestyle_factors as $lifestyle_factors){ ?>
                 <tr>
                     <td><?php echo $no; ?></td>
-                    <td><?php echo $patient_lifestyle_factors['patient_ic_no']; ?></td>
-                    <td><?php echo $patient_lifestyle_factors['questionnaire_date']; ?></td>
-                    <td><?php echo $patient_lifestyle_factors['self_image_at_7years']; ?></td>
-                    <td><?php echo $patient_lifestyle_factors['self_image_at_18years']; ?></td>
-                    <td><?php echo $patient_lifestyle_factors['self_image_now']; ?></td>
-                    <td><?php echo $patient_lifestyle_factors['pa_strenuous_exercise_childhood']; ?></td>
-                    <td><?php echo $patient_lifestyle_factors['pa_moderate_exercise_childhood']; ?></td>
-                    <td><?php echo $patient_lifestyle_factors['pa_gentle_exercise_childhood']; ?></td>
-                    <td><?php echo $patient_lifestyle_factors['pa_strenuous_exercise_adult']; ?></td>
-                    <td><?php echo $patient_lifestyle_factors['pa_moderate_exercise_adult']; ?></td>
-                    <td><?php echo $patient_lifestyle_factors['pa_gentle_exercise_adult']; ?></td>
-                    <td><?php echo $patient_lifestyle_factors['pa_strenuous_exercise_now']; ?></td>
-                    <td><?php echo $patient_lifestyle_factors['pa_moderate_exercise_now']; ?></td>
-                    <td><?php echo $patient_lifestyle_factors['pa_gentle_exercise_now']; ?></td>
-                    <td><?php echo $patient_lifestyle_factors['cigarrets_smoked_flag']; ?></td>
-                    <td><?php echo $patient_lifestyle_factors['cigarrets_still_smoked_flag']; ?></td>
-                    <td><?php echo $patient_lifestyle_factors['total_smoked_years']; ?></td>
-                    <td><?php echo $patient_lifestyle_factors['cigarrets_count_at_teen']; ?></td>
-                    <td><?php echo $patient_lifestyle_factors['cigarrets_count_at_twenties']; ?></td>
-                    <td><?php echo $patient_lifestyle_factors['cigarrets_count_at_thirties']; ?></td>
-                    <td><?php echo $patient_lifestyle_factors['cigarrets_count_at_fourrties']; ?></td>
-                    <td><?php echo $patient_lifestyle_factors['cigarrets_count_at_fifties']; ?></td>
-                    <td><?php echo $patient_lifestyle_factors['cigarrets_count_at_sixties_and_above']; ?></td>
-                    <td><?php echo $patient_lifestyle_factors['cigarrets_count_one_year_before_diagnosed']; ?></td>
-                    <td><?php echo $patient_lifestyle_factors['alcohol_drunk_flag']; ?></td>
-                    <td><?php echo $patient_lifestyle_factors['alcohol_frequency']; ?></td>
-                    <td><?php echo $patient_lifestyle_factors['alcohol_comments']; ?></td>
-                    <td><?php echo $patient_lifestyle_factors['coffee_drunk_flag']; ?></td>
-                    <td><?php echo $patient_lifestyle_factors['coffee_age']; ?></td>
-                    <td><?php echo $patient_lifestyle_factors['coffee_frequency']; ?></td>
-                    <td><?php echo $patient_lifestyle_factors['tea_drunk_flag']; ?></td>
-                    <td><?php echo $patient_lifestyle_factors['tea_age']; ?></td>
-                    <td><?php echo $patient_lifestyle_factors['tea_frequency']; ?></td>
-                    <td><?php echo $patient_lifestyle_factors['tea_type']; ?></td>
-                    <td><?php echo $patient_lifestyle_factors['soya_bean_drunk_flag']; ?></td>
-                    <td><?php echo $patient_lifestyle_factors['soya_bean_frequency']; ?></td>
-                    <td><?php echo $patient_lifestyle_factors['soya_products_flag']; ?></td>
-                    <td><?php echo $patient_lifestyle_factors['soya_products_average']; ?></td>
-                    <td><?php echo $patient_lifestyle_factors['diabetes_flag']; ?></td>
-                    <td><?php echo $patient_lifestyle_factors['medicine_for_diabetes_flag']; ?></td>
-                    <td><?php echo $patient_lifestyle_factors['diabetes_medicine_name']; ?></td>
+                    <td><?php echo $lifestyle_factors['patient_ic_no']; ?></td>
+                    <td><?php echo $studies_id[$patient_studies_id[$lifestyle_factors['patient_studies_id']]]; ?></td>
+                    <td><?php echo $lifestyle_factors['questionnaire_date']; ?></td>
+                    <td><?php echo $lifestyle_factors['self_image_at_7years']; ?></td>
+                    <td><?php echo $lifestyle_factors['self_image_at_18years']; ?></td>
+                    <td><?php echo $lifestyle_factors['self_image_now']; ?></td>
+                    <td><?php echo $lifestyle_factors['pa_strenuous_activity_childhood']; ?></td>
+                    <td><?php echo $lifestyle_factors['pa_moderate_exercise_childhood']; ?></td>
+                    <td><?php echo $lifestyle_factors['pa_gentle_exercise_childhood']; ?></td>
+                    <td><?php echo $lifestyle_factors['pa_strenuous_activity_adult']; ?></td>
+                    <td><?php echo $lifestyle_factors['pa_moderate_exercise_adult']; ?></td>
+                    <td><?php echo $lifestyle_factors['pa_gentle_exercise_adult']; ?></td>
+                    <td><?php echo $lifestyle_factors['pa_strenuous_activity_now']; ?></td>
+                    <td><?php echo $lifestyle_factors['pa_moderate_exercise_now']; ?></td>
+                    <td><?php echo $lifestyle_factors['pa_gentle_exercise_now']; ?></td>
+                    <td><?php echo $checkbox_status[$lifestyle_factors['cigarrets_smoked_flag']]; ?></td>
+                    <td><?php echo $checkbox_status[$lifestyle_factors['cigarrets_still_smoked_flag']]; ?></td>
+                    <td><?php echo $lifestyle_factors['total_smoked_years']; ?></td>
+                    <td><?php echo $lifestyle_factors['cigarrets_count_at_teen']; ?></td>
+                    <td><?php echo $lifestyle_factors['cigarrets_count_at_twenties']; ?></td>
+                    <td><?php echo $lifestyle_factors['cigarrets_count_at_thirties']; ?></td>
+                    <td><?php echo $lifestyle_factors['cigarrets_count_at_fourrties']; ?></td>
+                    <td><?php echo $lifestyle_factors['cigarrets_count_at_fifties']; ?></td>
+                    <td><?php echo $lifestyle_factors['cigarrets_count_at_sixties_and_above']; ?></td>
+                    <td><?php echo $lifestyle_factors['cigarrets_count_one_year_before_diagnosed']; ?></td>
+                    <td><?php echo $checkbox_status[$lifestyle_factors['alcohol_drunk_flag']]; ?></td>
+                    <td><?php echo $lifestyle_factors['alcohol_frequency']; ?></td>
+                    <td><?php echo $lifestyle_factors['alcohol_comments']; ?></td>
+                    <td><?php echo $checkbox_status[$lifestyle_factors['coffee_drunk_flag']]; ?></td>
+                    <td><?php echo $lifestyle_factors['coffee_age']; ?></td>
+                    <td><?php echo $lifestyle_factors['coffee_frequency']; ?></td>
+                    <td><?php echo $checkbox_status[$lifestyle_factors['tea_drunk_flag']]; ?></td>
+                    <td><?php echo $lifestyle_factors['tea_age']; ?></td>
+                    <td><?php echo $lifestyle_factors['tea_frequency']; ?></td>
+                    <td><?php echo $lifestyle_factors['tea_type']; ?></td>
+                    <td><?php echo $checkbox_status[$lifestyle_factors['soya_bean_drunk_flag']]; ?></td>
+                    <td><?php echo $lifestyle_factors['soya_bean_frequency']; ?></td>
+                    <td><?php echo $checkbox_status[$lifestyle_factors['soya_products_flag']]; ?></td>
+                    <td><?php echo $lifestyle_factors['soya_products_average']; ?></td>
+                    <td><?php echo $checkbox_status[$lifestyle_factors['diabetes_flag']]; ?></td>
+                    <td><?php echo $checkbox_status[$lifestyle_factors['medicine_for_diabetes_flag']]; ?></td>
+                    <td><?php echo $lifestyle_factors['diabetes_medicine_name']; ?></td>
                 </tr>
-            <?php $no++; ?>
+            <?php $no++; } ?>
         <?php } else { ?>
                 <tr>
                 </tr>

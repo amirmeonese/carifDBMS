@@ -13,6 +13,7 @@ header("Expires: 0");
     <thead>
                 <tr>
                     <th style="background-color:Crimson;">No</th>
+                    <th style="background-color:Crimson;">Patient Ic No</th>
                     <th style="background-color:Crimson;">Studies Name</th>
                     <th style="background-color:Crimson;">Type of diseases</th>
                     <th style="background-color:Crimson;">Date of diagnosis</th>
@@ -30,13 +31,14 @@ header("Expires: 0");
             <?php $no = 1; foreach ($patient_other_disease as $list): ?>
                 <tr>
                     <td><?php echo $no; ?></td>
+                    <td><?php echo $list['patient_ic_no']; ?></td>
                     <td><?php echo $studies_id[$patient_studies_id[$list['patient_studies_id']]]; ?></td>
                     <td><?php echo $diagnosis_name[$list['diagnosis_id']]; ?></td>
                     <td><?php echo $list['date_of_diagnosis']; ?></td>
                     <td><?php echo $list['diagnosis_age']; ?></td>
                     <td><?php echo $list['diagnosis_center']; ?></td>
                     <td><?php echo $list['doctor_name']; ?></td>
-                    <td><?php echo $list['on_medication_flag']; ?></td>
+                    <td><?php echo $checkbox_status[$list['on_medication_flag']]; ?></td>
                     <td><?php echo $list['medication_type']; ?></td>
                     <td><?php echo $list['start_date']; ?></td>
                     <td><?php echo $list['end_date']; ?></td>

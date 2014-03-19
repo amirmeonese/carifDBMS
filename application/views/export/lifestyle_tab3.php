@@ -13,6 +13,7 @@ header("Expires: 0");
     <thead>
                 <tr>
                     <th style="background-color:Crimson;">No</th>
+                    <th style="background-color:Crimson;">Patient IC No</th>
                     <th style="background-color:Crimson;">Studies Name</th>
                     <th style="background-color:Crimson;">Parity</th>
                     <th style="background-color:Crimson;">Pregnancy type</th>
@@ -24,24 +25,22 @@ header("Expires: 0");
                     <th style="background-color:Crimson;">Duration of breastfeeding</th>
                 </tr>
             </thead>
-            <?php $no = 1;  ?>
+            <?php if (!empty($patient_parity_table)){ ?>
+            <?php $no = 1; foreach ($patient_parity_table as $parity_table){ ?>
                 <tr>
-                    <?php if (!empty($patient_parity_table)){ ?>
                     <td><?php echo $no; ?></td>
-                    <td><?php echo $studies_id[$patient_studies_id[$patient_parity_table['patient_studies_id']]]; ?></td>
-                    <td><?php echo $patient_parity_table['pregnant_flag']; ?></td>
-                    <?php } else { ?>
-                <?php } ?>
-                    <?php if (!empty($patient_parity_record)){ ?>
-                    <td><?php echo $patient_parity_record['pregnancy_type']; ?></td>
-                    <td><?php echo $patient_parity_record['gender']; ?></td>
-                    <td><?php echo $patient_parity_record['date_of_birth']; ?></td>
-                    <td><?php echo $patient_parity_record['age_child_at_consent']; ?></td>
-                    <td><?php echo $patient_parity_record['birthweight']; ?></td>
-                    <td><?php echo $patient_parity_record['breastfeeding_duration']; ?></td>
-                    <td><?php echo $patient_parity_record['year_of_birth']; ?></td>
-                    <?php } else { ?>
+                    <td><?php echo $parity_table['patient_ic_no']; ?></td>
+                    <td><?php echo $studies_id[$patient_studies_id[$parity_table['patient_studies_id']]]; ?></td>
+                    <td><?php echo $checkbox_status[$parity_table['pregnant_flag']]; ?></td>
+                    <td><?php echo $parity_table['pregnancy_type']; ?></td>
+                    <td><?php echo $parity_table['gender']; ?></td>
+                    <td><?php echo $parity_table['date_of_birth']; ?></td>
+                    <td><?php echo $parity_table['age_child_at_consent']; ?></td>
+                    <td><?php echo $parity_table['birthweight']; ?></td>
+                    <td><?php echo $parity_table['breastfeeding_duration']; ?></td>
+                    <td><?php echo $parity_table['year_of_birth']; ?></td>
+            <?php $no++; } ?>
+                        <?php } else { ?>
                 <?php } ?>
                 </tr>
-            <?php $no++; ?>
         </table>

@@ -12,7 +12,7 @@ header("Expires: 0");
 <table border="1">
     <thead>
         <tr>
-                    <th colspan="2" rowspan="2" style="background-color:Crimson;"></th>
+                    <th colspan="3" rowspan="2" style="background-color:Crimson;"></th>
                     <th colspan="9" style="background-color:Crimson;">Manchester Score</th>
                     <th colspan="9" style="background-color:Crimson;">BOADICEA</th>
                     <th colspan="4" style="background-color:Crimson;">Gail Model</th>
@@ -29,7 +29,7 @@ header("Expires: 0");
                 </tr>
                 <tr>
                     <th style="background-color:Crimson;">No</th>
-                    <th style="background-color:Crimson;">IC No</th>
+                    <th style="background-color:Crimson;">Patient IC No</th>
                     <th style="background-color:Crimson;">BRCA1</th>
                     <th style="background-color:Crimson;">BRCA2</th>
                     <th style="background-color:Crimson;">Total</th>

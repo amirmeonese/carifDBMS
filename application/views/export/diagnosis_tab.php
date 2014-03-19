@@ -13,6 +13,7 @@ header("Expires: 0");
     <thead>
                 <tr>
                     <th style="background-color:Crimson;">No</th>
+                    <th style="background-color:Crimson;">Patient Ic No</th>
                     <th style="background-color:Crimson;">Studies Name</th>
                     <th style="background-color:Crimson;">Cancer Type</th>
                     <th style="background-color:Crimson;">Select site</th>
@@ -58,18 +59,19 @@ header("Expires: 0");
             <?php $no = 1; foreach ($patient_breast_cancer as $breast_cancer){ ?>
                 <tr>
                     <td><?php echo $no; ?></td>
+                    <td><?php echo $breast_cancer['patient_ic_no']; ?></td>
                     <td><?php echo $studies_id[$patient_studies_id[$breast_cancer['patient_studies_id']]]; ?></td>
                     <td><?php echo $breast_cancer['cancer_id']; ?></td>
                     <td><?php echo $site_cancer[$breast_cancer['cancer_site_id']]; ?></td>
                     <td><?php echo $breast_cancer['cancer_invasive_type']; ?></td>
-                    <td><?php echo $breast_cancer['is_primary']; ?></td>
+                    <td><?php echo $checkbox_status[$breast_cancer['is_primary']]; ?></td>
                     <td><?php echo $breast_cancer['date_of_diagnosis']; ?></td>
                     <td><?php echo $breast_cancer['age_of_diagnosis']; ?></td>
                     <td><?php echo $breast_cancer['diagnosis_center']; ?></td>
                     <td><?php echo $breast_cancer['doctor_name']; ?></td>
                     <td><?php echo $breast_cancer['detected_by']; ?></td>
-                    <td><?php echo $breast_cancer['bilateral_flag']; ?></td>
-                    <td><?php echo $breast_cancer['recurrence_flag']; ?></td>
+                    <td><?php echo $checkbox_status[$breast_cancer['bilateral_flag']]; ?></td>
+                    <td><?php echo $checkbox_status[$breast_cancer['recurrence_flag']]; ?></td>
                     
                     <?php foreach ($breast_cancer['pathology'] as $pathology): ?>
                     <td><?php echo $pathology['tissue_site']; ?></td>

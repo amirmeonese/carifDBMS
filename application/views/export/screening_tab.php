@@ -13,7 +13,7 @@ header("Expires: 0");
     <thead>
                 <tr>
                     <th style="background-color:Crimson;">No</th>
-                    <th style="background-color:Crimson;">IC No</th>
+                    <th style="background-color:Crimson;">Patient IC No</th>
                     <th style="background-color:Crimson;">Reason for mammogram</th>
                     <th style="background-color:Crimson;">Details of mammogram</th>
                     <th style="background-color:Crimson;">Date of first mammogram</th>
@@ -67,12 +67,13 @@ header("Expires: 0");
                     <td><?php echo $list['motivaters_of_first_mammogram']; ?></td>
                     <td><?php echo $list['details_of_first_mammogram']; ?></td>
                     <td><?php echo $list['date_of_recent_mammogram']; ?></td>
+                    <td><?php echo $list['age_of_recent_mammogram']; ?></td>
                     <td><?php echo $list['screening_center_of_recent_mammogram']; ?></td>
                     <td><?php echo $list['motivaters_of_recent_mammogram']; ?></td>
                     <td><?php echo $list['details_of_recent_mammogram']; ?></td>
-                    <td><?php echo $list['mammogram_in_sdmc']; ?></td>
+                    <td><?php echo $checkbox_status[$list['mammogram_in_sdmc']]; ?></td>
                     <td><?php echo $list['name_of_radiologist']; ?></td>
-                    <td><?php echo $list['abnormalities_mammo_flag']; ?></td>
+                    <td><?php echo $checkbox_status[$list['abnormalities_mammo_flag']]; ?></td>
                     <td><?php echo $list['mammo_comments']; ?></td>
                     <td><?php echo $list['total_no_of_mammogram']; ?></td>
                     <td><?php echo $list['screening_interval']; ?></td>
@@ -83,16 +84,16 @@ header("Expires: 0");
                     <td><?php echo $list['percentage_of_mammo_density']; ?></td>
                     <td><?php echo $list['action_suggested_on_mammogram_report']; ?></td>
                     <td><?php echo $list['reason_of_action_suggested']; ?></td>
-                    <td><?php echo $list['is_cancer_mammogram_flag']; ?></td>
+                    <td><?php echo $checkbox_status[$list['is_cancer_mammogram_flag']]; ?></td>
                     <td><?php echo $list['site_effected_of_mammogram']; ?></td>
-                    <td><?php echo $list['had_ultrasound_flag']; ?></td>
+                    <td><?php echo $checkbox_status[$list['had_ultrasound_flag']]; ?></td>
                     <td><?php echo $list['total_no_of_ultrasound']; ?></td>
-                    <td><?php echo $list['abnormalities_ultrasound_flag']; ?></td>
+                    <td><?php echo $checkbox_status[$list['abnormalities_ultrasound_flag']]; ?></td>
                     <td><?php echo $list['ultrasound_date']; ?></td>
                     <td><?php echo $list['ultrasound_comments']; ?></td>
-                    <td><?php echo $list['had_mri_flag']; ?></td>
+                    <td><?php echo $checkbox_status[$list['had_mri_flag']]; ?></td>
                     <td><?php echo $list['total_no_of_mri']; ?></td>
-                    <td><?php echo $list['abnormalities_MRI_flag']; ?></td>
+                    <td><?php echo $checkbox_status[$list['abnormalities_MRI_flag']]; ?></td>
                     <td><?php echo $list['mri_date']; ?></td>
                     <td><?php echo $list['comments']; ?></td>
                 </tr>

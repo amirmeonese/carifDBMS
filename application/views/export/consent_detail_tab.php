@@ -35,7 +35,7 @@ header("Expires: 0");
                     <td><?php echo @$studies_id[$list['studies_id']]; ?></td>
                     <td><?php echo $list['date_at_consent']; ?></td>
                     <td><?php echo $list['age_at_consent']; ?></td>
-                    <td><?php echo $list['double_consent_flag']; ?></td>
+                    <td><?php echo $checkbox_status[$list['double_consent_flag']]; ?></td>
                     <td><?php echo $list['consent_given_by']; ?></td>
                     <td><?php echo $list['consent_response']; ?></td>
                     <td><?php echo $list['consent_version']; ?></td>

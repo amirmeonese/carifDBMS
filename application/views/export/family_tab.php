@@ -49,18 +49,18 @@ header("Expires: 0");
                     <td><?php echo $list['family_no']; ?></td>
                     <td><?php echo $list['is_paternal']; ?></td>
                     <td><?php echo $list['is_maternal']; ?></td>
-                    <td><?php echo $list['relatives_id']; ?></td>
-                    <td><?php echo $list['degree_of_relativeness']; ?></td>
+                    <td><?php echo $relative[$list['relatives_id']]; ?></td>
+                    <td><?php echo $relative_degrees[$list['degree_of_relativeness']]; ?></td>
                     <td><?php echo $list['full_name']; ?></td>
                     <td><?php echo $list['maiden_name']; ?></td>
-                    <td><?php echo $list['is_adopted']; ?></td>
-                    <td><?php echo $list['is_in_other_country']; ?></td>
+                    <td><?php echo $checkbox_status[$list['is_adopted']]; ?></td>
+                    <td><?php echo $checkbox_status[$list['is_in_other_country']]; ?></td>
                     <td><?php echo $list['ethnicity']; ?></td>
                     <td><?php echo $list['town_of_residence']; ?></td>
                     <td><?php echo $list['d_o_b']; ?></td>
-                    <td><?php echo $list['is_alive_flag']; ?></td>
+                    <td><?php echo $alive_id[$list['is_alive_flag']]; ?></td>
                     <td><?php echo $list['d_o_d']; ?></td>
-                    <td><?php echo $list['is_cancer_diagnosed']; ?></td>
+                    <td><?php echo $checkbox_status[$list['is_cancer_diagnosed']]; ?></td>
                     <td><?php echo $cancer_name[$list['cancer_type_id']]; ?></td>
                     <td><?php echo $list['date_of_diagnosis']; ?></td>
                     <td><?php echo $list['age_of_diagnosis']; ?></td>

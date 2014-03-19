@@ -196,6 +196,8 @@ class Report extends CI_Controller {
                 
                 $icno = $this->input->post('icno');
                 
+                $data['alive_id'] = $this->record_model->get_alive_status_by_id();
+                $data['checkbox_status'] = $this->report_model->get_checkbox_value();
                 $data['studies_id'] = $this->record_model->get_studies_name_by_id();
                 $data['patient_studies_id'] = $this->record_model->get_studies_id_by_id();
                 
@@ -234,7 +236,6 @@ class Report extends CI_Controller {
                     $data['patient_cogs_studies'] = $this->record_model->get_cogs_study_record($ic_no);
                     $data['patient_contact_person'] = $this->report_model->get_detail_record($ic_no, 'patient_contact_person');
                     $data['patient_survival_status'] = $this->record_model->get_survival_record($ic_no);
-                    $data['alive_id'] = $this->record_model->get_alive_status_by_id();
                     $data['patient_relatives_summary'] = $this->report_model->get_detail_record($ic_no, 'patient_relatives_summary');
                     
                     $this->load->view('export/personal_tab',$data);
@@ -244,12 +245,12 @@ class Report extends CI_Controller {
                 }  if (($var == 'family') || ($var == 'All')) {
                     $data['patient_family'] = $this->record_model->get_view_family_export($ic_no);
                     
-                   // print_r($data['patient_family']);exit;
+                    //print_r($data['patient_family']);exit;
                     
                     $data['cancer_name'] = $this->record_model->get_cancer_by_id();
                     $data['relative'] = $this->record_model->get_relative_by_id();
                     $data['relationship'] = $this->record_model->get_relationship_list();
-                    $data['relative_degrees'] = $this->record_model->get_relative_degrees_list();
+                    $data['relative_degrees'] = $this->record_model->get_relative_degree_by_id();
                     
                      $this->load->view('export/family_tab',$data);
                      
@@ -257,7 +258,7 @@ class Report extends CI_Controller {
                     //$data['patient_breast_cancer'] = $this->record_model->get_patient_breast_diagnosis_record($patient_studies_id);
                     //$data['patient_ovary_cancer'] = $this->record_model->get_patient_ovary_diagnosis_record($patient_studies_id);
                     //$data['patient_ovary_cancer_treatment'] = $this->record_model->get_patient_treatment_record($a['patient_cancer_id']);
-                    $breast_diagnosis_list = $this->record_model->get_patient_all_cancer_record($patient_studies_id);
+                    $breast_diagnosis_list = $this->report_model->get_patient_all_cancer_record($patient_studies_id);
                     
                     if(!empty($breast_diagnosis_list)){
                     foreach ($breast_diagnosis_list as $breast_id=>$breast) {
@@ -272,7 +273,7 @@ class Report extends CI_Controller {
                     $data['patient_breast_cancer'] = $breast_cancer;
                     }
 
-                    $data['patient_other_disease'] = $this->record_model->get_patient_others_desease_record($patient_studies_id);
+                    $data['patient_other_disease'] = $this->report_model->get_patient_others_desease_record($patient_studies_id);
                     $data['diagnosis_name'] = $this->record_model->get_diagnosis();
                     $data['site_cancer'] = $this->record_model->get_cancer_site();
                     $data['treatment_type'] = $this->record_model->get_treatment_type();
@@ -283,11 +284,11 @@ class Report extends CI_Controller {
                     
                 } if (($var == 'studies_setOne') || ($var == 'All')) {
                     $data['patient_breast_screening'] = $this->record_model->get_patient_breast_screening_record($patient_studies_id, $ic_no);
-                    $data['patient_non_cancer'] = $this->record_model->get_patient_non_cancer_record($patient_studies_id);
-                    $data['patient_risk_reducing_surgery'] = $this->record_model->get_patient_risk_reducing_surgery_record($patient_studies_id);
-                    $data['patient_ovarian_screening'] = $this->record_model->get_patient_ovarian_screening_record($patient_studies_id);
-                    $data['patient_surveillance'] = $this->record_model->get_patient_surveillance_record($patient_studies_id);
-                    $data['patient_other_screening'] = $this->record_model->get_patient_other_screening_record($patient_studies_id);
+                    $data['patient_non_cancer'] = $this->report_model->get_patient_non_cancer_record($patient_studies_id);
+                    $data['patient_risk_reducing_surgery'] = $this->report_model->get_patient_risk_reducing_surgery_record($patient_studies_id);
+                    $data['patient_ovarian_screening'] = $this->report_model->get_patient_ovarian_screening_record($patient_studies_id);
+                    $data['patient_surveillance'] = $this->report_model->get_patient_surveillance_record($patient_studies_id);
+                    $data['patient_other_screening'] = $this->report_model->get_patient_other_screening_record($patient_studies_id);
                     $data['ovarian_screening_type'] = $this->record_model->get_ovarian_screening_type_by_id();
                     $data['site_breast'] = $this->record_model->get_site_breast_by_id();
                     $data['upperbelow_breast'] = $this->record_model->get_upperbellow_breast_by_id();
@@ -301,26 +302,29 @@ class Report extends CI_Controller {
                     $this->load->view('export/screening_tab6',$data);
                 } else if (($var == 'mutation') || ($var == 'All')) {
 
-                    $data['patient_mutation_analysis'] = $this->report_model->get_export_mutation_record($patient_studies_id, 'patient_mutation_analysis');
+                    $data['patient_mutation_analysis'] = $this->report_model->get_export_mutation_record($patient_studies_id);
                     $this->load->view('export/mutation_tab',$data);
                     
                 } else if (($var == 'risk_assessment') || ($var == 'All')) {
                     $data['patient_risk_assessment'] = $this->report_model->get_export_riskassesment_record($ic_no, 'patient_risk_assessment', 'patient_ic_no');
                     
                     $this->load->view('export/risk_assessment_tab',$data);
+                
+                    
                 } else if (($var == 'lifestyleFactors') || ($var == 'All')) {
-                    $data['patient_lifestyle_factors'] = $this->record_model->get_lifestyle_detail_patient_record($patient_studies_id);
-                    $data['patient_menstruation'] = $this->record_model->get_patient_menstruation_record($ic_no, $patient_studies_id);
-                    $data['patient_parity_table'] = $this->record_model->get_patient_parity_table_record($ic_no, $patient_studies_id);
+                    
+                    $data['patient_lifestyle_factors'] = $this->report_model->get_lifestyle_detail_patient_record($patient_studies_id);
+                    $data['patient_menstruation'] = $this->report_model->get_patient_menstruation_record($patient_studies_id);
+                    $data['patient_parity_table'] = $this->report_model->get_patient_parity_table_record($patient_studies_id);
                     // $data['patient_parity_record'] = $this->record_model->get_patient_parity_record($ic_no, $patient_studies_id);
-                    $data['patient_infertility'] = $this->record_model->get_patient_infertility_record($ic_no, $patient_studies_id);
-                    $data['patient_gynaecological'] = $this->record_model->get_patient_gynaecological_record($ic_no, $patient_studies_id);
-                    //$data['patient_lifestyle_factors'] = $this->record_model->get_patient_lifstyle_record($patient_studies_id);
-                                        
+                    $data['patient_infertility'] = $this->report_model->get_patient_infertility_record($patient_studies_id);
+                    $data['patient_gynaecological'] = $this->report_model->get_patient_gynaecological_record($ic_no, $patient_studies_id);
+
                     $this->load->view('export/lifestyle_tab',$data);
                     $this->load->view('export/lifestyle_tab2',$data);
                     $this->load->view('export/lifestyle_tab3',$data);
                     $this->load->view('export/lifestyle_tab4',$data);
+                    $this->load->view('export/lifestyle_tab5',$data);
                 } if (($var == 'counseling') || ($var == 'All')){
                     
                     //echo 'test 1';
