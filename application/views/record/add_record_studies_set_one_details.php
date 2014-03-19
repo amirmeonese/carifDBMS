@@ -29,7 +29,7 @@
             <tr>
                 <td>
                     <?php echo $reason_of_mammogram; ?>: 
-                    <?php echo form_dropdown('reason_of_mammogram', $reason_for_mammogram, NULL, 'id="reason_of_mammogram"'); ?>
+                    <?php echo form_dropdown('reason_of_mammogram', $reason_mammo, NULL, 'id="reason_mammo"'); ?>
                 </td>
                 <td>
                     <?php echo $details_for_mammogram; ?>: 
