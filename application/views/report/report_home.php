@@ -111,14 +111,12 @@
                 </td>
                 <td>
                    <select name="patient_start">
-                  <option value="1" selected>1 - 500</option>
-                  <option value="501">501 - 1000</option>
-                  <option value="1001" >1001 - 1500</option>
-                  <option value="1501">1501 - 2000</option>
-                  <option value="2001">2001 - 2500</option>
-                  <option value="2501">2501 - 3000</option>
-                  <option value="3001">3001 - 3500</option>
-                  <option value="3501">3501 - 4000</option>
+                  <option value="1" selected>1 - 1000</option>
+                  <option value="1001">1001 - 2000</option>
+                  <option value="2001" >2001 - 3000</option>
+                  <option value="3001">3001 - 4000</option>
+                  <option value="4001">4001 - 5000</option>
+                  <option value="5001">5001 - 6000</option>
               </select>
                 </td>
       </tr>

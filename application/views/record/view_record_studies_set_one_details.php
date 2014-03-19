@@ -16,7 +16,7 @@
             <tr>
                 <td>
                     <?php echo $reason_of_mammogram; ?>: 
-                    <?php echo form_dropdown('reason_of_mammogram[]', $reason_for_mammogram, $breast_screening['reason_of_mammogram'], 'id="reason_of_mammogram" preload_val="'.$breast_screening['reason_of_mammogram'].'"'); ?>
+                    <?php echo form_dropdown('reason_of_mammogram[]', $reason_mammo, $breast_screening['reason_of_mammogram'], 'id="reason_mammo" preload_val="'.$breast_screening['reason_of_mammogram'].'"'); ?>
                 </td>
                 <td>
                     <?php echo $details_for_mammogram; ?>: 
@@ -87,15 +87,15 @@
                     <?php echo $name_of_radiologist; ?>: 
                     <?php echo form_input(array('name' => 'name_of_radiologist[]', 'value' => $breast_screening['name_of_radiologist'])) ?>
                 </td>
-                <?php if($breast_screening['is_abnormality_detected'] == 1){?>
+                <?php if($breast_screening['breast_is_abnormality_detected'] == 1){?>
                 <td>
                     <?php echo $abnormalities_mammo_flag; ?>: 
-                    <?php echo form_checkbox(array('name' => 'abnormality_mammo_flag[]', 'value' => $breast_screening['is_abnormality_detected'],'checked'=>"checked"))?>
+                    <?php echo form_checkbox(array('name' => 'abnormality_mammo_flag[]', 'value' => $breast_screening['breast_is_abnormality_detected'],'checked'=>"checked"))?>
                 </td>
                <?php } else {?>
                 <td>
                     <?php echo $abnormalities_mammo_flag; ?>: 
-                    <?php echo form_checkbox(array('name' => 'abnormality_mammo_flag[]', 'value' => $breast_screening['is_abnormality_detected']))?>
+                    <?php echo form_checkbox(array('name' => 'abnormality_mammo_flag[]', 'value' => $breast_screening['breast_is_abnormality_detected']))?>
                 </td>
                <?php } ?>
                 <td>

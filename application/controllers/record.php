@@ -3024,6 +3024,7 @@ class Record extends CI_Controller {
         $patient_ultra_abn = $this->input->post('patient_ultra_abn');
         $is_abnormality_detected = $this->input->post('abnormalities_ultrasound_flag');
         $ultrasound_date = $this->input->post('mammo_ultrasound_date');
+        $ultrasound_comments = $this->input->post('mammo_ultrasound_details');
 
 
         if (!empty($patient_ultra_abn)) {

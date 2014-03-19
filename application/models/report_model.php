@@ -536,7 +536,7 @@ class Report_model extends CI_Model {
     public function get_consent_detail_patient_record($ic_no,$patient_studies_id){
          
         $this->db->where_in('patient_ic_no',$ic_no);
-        $this->db->where_in('studies_id',$patient_studies_id);
+        $this->db->where_in('patient_studies_id',$patient_studies_id);
         $this->db->from('patient_studies');
 	$p_record = $this->db->get('');
         $patient_detail = $p_record->result_array();
@@ -656,7 +656,7 @@ class Report_model extends CI_Model {
        // $this->db->like('c.cancer_id', $record_data['cancer']);
         $this->db->group_by('ic_no');
         $this->db->like('b.studies_id', $record_data['studies_name']);
-        $this->db->limit(500, $start);
+        $this->db->limit(1000, $start);
         $this->db->order_by("a.given_name", "asc");
         $patient_list = $this->db->get('');
         $list_patient = $patient_list->result_array();

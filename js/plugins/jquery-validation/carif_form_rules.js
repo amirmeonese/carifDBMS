@@ -18,10 +18,7 @@ $( document ).ready(function() {
 						minlength: 12,
 						maxlength: 12
 					},
-					studies_id : {	
-						required: true
-					},
-					patient_studies_id : {	
+					studies_name : {	
 						required: true
 					},
 					nationality : {
@@ -44,11 +41,13 @@ $( document ).ready(function() {
 					}
 				},
 				messages: {
-				    IC_no: "Please enter a valid IC no.",
-					//added FK - azie 5 mac 2014
-				    family_no: "Please enter a valid family no.",
-					studies_id: "Please enter a valid studies id.",
-					patient_studies_id: "Please enter a valid patient studies id."
+                                    studies_name: {
+                                        required: 'Please select studies name'
+                                        },
+                                        IC_no: {
+                                        required: 'Please select IC No'
+                                        }
+				    
 				}
 			});
 			
@@ -111,7 +110,7 @@ $( document ).ready(function() {
 					patient_cancer_id :{
 						required: true
 					},
-					diagnosis_id{
+					diagnosis_id: {
 						required: true
 					}
 					

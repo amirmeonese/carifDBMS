@@ -65,6 +65,7 @@
 						<option value="screening_name_lists">Other Screening Type</option>
 						<option value="surveillance_recruitment_center_lists">Recruitment Centers</option>
 						<option value="surveillance_type_lists">Surveillance Type</option>
+                                                <option value="reason_mammo">Reason for Mammogram</option>
 					</optgroup>
 					<optgroup label="Mutation">
 						<option value="investigation_project_name_lists">Service Providers</option>

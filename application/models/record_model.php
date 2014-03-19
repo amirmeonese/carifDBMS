@@ -646,8 +646,8 @@ class Record_model extends CI_Model {
         //MAMMO
         $data['date_of_first_mammogram'] = 'Date of first mammogram';
         $data['reason_of_mammogram'] = 'Reason for mammogram';
-        $data['reason_for_mammogram'] = array(
-            '' => ''
+        $data['reason_mammo'] = array(
+			'Dynamic Dropdown' => 'Dynamic Dropdown'
         );
         $data['details_for_mammogram'] = 'Details of mammogram';
         $data['action_suggested_on_mammogram_report'] = 'Action suggested on mammogram report';
@@ -2346,7 +2346,7 @@ function get_patient_counselling_record($icno) {
 
 function get_patient_breast_screening_record($patient_studies_id,$ic_no) {
     
-    $this->db->select('a.*,b.*,c.*,d.*,c.comments as ultrasound_comments');
+    $this->db->select('a.*,b.*,c.*,d.*,c.comments as ultrasound_comments,b.is_abnormality_detected as breast_is_abnormality_detected');
     $this->db->from('patient_breast_screening a');
     $this->db->join('patient_breast_abnormality b','a.patient_breast_screening_id = b.patient_breast_screening_id','left');
     $this->db->join('patient_ultrasound_abnormality c','a.patient_breast_screening_id = c.patient_breast_screening_id','left');

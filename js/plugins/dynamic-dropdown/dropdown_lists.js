@@ -211,6 +211,9 @@ $( document ).ready(function() {
                                 case 'pregnancy_type':
                                         vals = data.pregnancy_type.split(",");
                                         break;
+                                case 'reason_mammo':
+                                        vals = data.reason_mammo.split(",");
+                                        break;
 				case 'base':
 					vals = ['Please choose from above'];
 			}
@@ -401,6 +404,9 @@ $( document ).ready(function() {
                                         case 'pregnancy_type':
 						vals = data.pregnancy_type.split(",");
 						break;
+                                        case 'reason_mammo':
+                                                vals = data.reason_mammo.split(",");
+                                                break;
 				}
 				
 				$.each(vals, function(index, value) {
@@ -621,6 +627,9 @@ $( document ).ready(function() {
                                         case 'pregnancy_type':
 						vals = data.pregnancy_type.split(",");
 						break;
+                                        case 'reason_mammo':
+                                                vals = data.reason_mammo.split(",");
+                                                break;
 				}
 				
 				//Add item into end of array
@@ -856,6 +865,9 @@ $( document ).ready(function() {
 					break;
                                 case 'pregnancy_type':
                                         vals = data.pregnancy_type.split(",");
+                                        break;
+                                case 'reason_mammo':
+                                        vals = data.reason_mammo.split(",");
                                         break;
 				case 'base':
 					vals = ['Please choose from above'];

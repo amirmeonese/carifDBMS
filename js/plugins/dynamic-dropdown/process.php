@@ -157,8 +157,11 @@
 				$data['gnc_treatment_lists'] = $text;
 				break;
                          case 'pregnancy_type':
-                                        $data['pregnancy_type'] = $text;
-                                        break;				
+                                $data['pregnancy_type'] = $text;
+                                break;
+                        case 'reason_mammo':
+                                $data['reason_mammo'] = $text;
+                                break;
 				
 		}
 		
