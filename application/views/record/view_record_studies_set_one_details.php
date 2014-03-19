@@ -15,7 +15,7 @@
         <table id="mammo_first_section">
             <tr>
                 <td>
-                    <?php echo $reason_of_mammogram; ?>: 
+                    <?php echo $reason_of_mammogram; ?>:
                     <?php echo form_dropdown('reason_of_mammogram[]', $reason_mammo, $breast_screening['reason_of_mammogram'], 'id="reason_mammo" preload_val="'.$breast_screening['reason_of_mammogram'].'"'); ?>
                 </td>
                 <td>

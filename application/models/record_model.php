@@ -646,7 +646,7 @@ class Record_model extends CI_Model {
         //MAMMO
         $data['date_of_first_mammogram'] = 'Date of first mammogram';
         $data['reason_of_mammogram'] = 'Reason for mammogram';
-        $data['reason_mammo'] = array(
+        $data['reason_mammo'] = array( 
 			'Dynamic Dropdown' => 'Dynamic Dropdown'
         );
         $data['details_for_mammogram'] = 'Details of mammogram';
