@@ -21,8 +21,8 @@ header("Expires: 0");
                     <th colspan="7" style="background-color:Crimson;">Average cigarettes smoked</th>
                     <th colspan="3" style="background-color:Crimson;">Alcohol</th>
                     <th colspan="3" style="background-color:Crimson;">Coffee</th>
-                    <th colspan="5" style="background-color:Crimson;">Tea</th>
-                    <th colspan="5" style="background-color:Crimson;">Soy Products</th>
+                    <th colspan="4" style="background-color:Crimson;">Tea</th>
+                    <th colspan="4" style="background-color:Crimson;">Soy Products</th>
                     <th colspan="3" style="background-color:Crimson;">Diabetes</th>
         </tr>
                 <tr>
