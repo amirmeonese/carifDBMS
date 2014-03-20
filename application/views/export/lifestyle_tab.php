@@ -26,14 +26,17 @@ header("Expires: 0");
                     <th colspan="3" style="background-color:Crimson;">Diabetes</th>
         </tr>
                 <tr>
+                    
                     <th style="background-color:Crimson;">No</th>
                     <th style="background-color:Crimson;">Patient IC No</th>
                     <th style="background-color:Crimson;">Studies Name</th>
+                    
                     <th style="background-color:Crimson;">Questionnaire Date</th>
                     <th style="background-color:Crimson;">Self image at 7 years old</th>
                     <th style="background-color:Crimson;">Self image at 18 years old</th>
                     <th style="background-color:Crimson;">Self image now</th>
                     <th style="background-color:Crimson;">Strenuous Exercise</th>
+                    
                     <th style="background-color:Crimson;">Moderate Exercise</th>
                     <th style="background-color:Crimson;">Gentle Exercise</th>
                     <th style="background-color:Crimson;">Strenuous Exercise</th>
@@ -62,12 +65,10 @@ header("Expires: 0");
                     <th style="background-color:Crimson;">Start age</th>
                     <th style="background-color:Crimson;">Tea frequency</th>
                     <th style="background-color:Crimson;">Tea type</th>
-                    <th style="background-color:Crimson;">If there's other tea type, please specify</th>
                     <th style="background-color:Crimson;">Regular consumption?</th>
                     <th style="background-color:Crimson;">Soya bean frequency</th>
                     <th style="background-color:Crimson;">Soya product frequency</th>
                     <th style="background-color:Crimson;">Soya products average</th>
-                    <th style="background-color:Crimson;">If there's other soya products average, please specify</th>
                     <th style="background-color:Crimson;">Patient has diabetes?</th>
                     <th style="background-color:Crimson;">Current taking any diabetes medication?</th>
                     <th style="background-color:Crimson;">Medicine name</th>

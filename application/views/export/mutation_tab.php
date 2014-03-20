@@ -6,7 +6,7 @@ header("Content-Disposition: attachment; filename=export_personal_data(mutation)
 header("Pragma: no-cache");
 header("Expires: 0");
 ?>
-<p>Counseling</p>
+<p>Mutation Analysis</p>
 <div height="30px">&nbsp;</div>
 
 <table border="1">

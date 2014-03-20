@@ -12,7 +12,7 @@ header("Expires: 0");
 <table border="1">
     <thead>
         <tr>
-                    <th colspan="3" rowspan="2" style="background-color:Crimson;"></th>
+                    <th colspan="2" rowspan="2" style="background-color:Crimson;"></th>
                     <th colspan="9" style="background-color:Crimson;">Manchester Score</th>
                     <th colspan="9" style="background-color:Crimson;">BOADICEA</th>
                     <th colspan="4" style="background-color:Crimson;">Gail Model</th>
