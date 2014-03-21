@@ -70,6 +70,10 @@ class ModelDiagnosis1 extends CI_Model {
         $data_patient_cancer_treatment = null;
         $data_patient_cancer_treatment_update = array();
         $data_patient_cancer_treatment_update = null;
+        $data_patient_pathology_staining_status = array();
+        $data_patient_pathology_staining_status = null;
+        $data_patient_pathology_staining_status_up = array();
+        $data_patient_pathology_staining_status_up = null;
         $flag_ic_no = FALSE;
         $flag_cancer_name = FALSE;
         $flag_cancer_site_name = FALSE;
@@ -179,6 +183,20 @@ class ModelDiagnosis1 extends CI_Model {
             $result_cancer_id_pt_pathology [$i] = $temp_cancer_id_pt_pathology[$i]['cancer_id'];
         }
         $temp_cancer_id_pt_pathology = null;
+        
+        $temp_patient_pathology_id_pt_pathology = array();
+        $temp_patient_pathology_id_pt_pathology = null;
+        $this->db->select('patient_pathology_id');
+        $this->db->from('patient_pathology_staining_status');
+        $temp_patient_pathology_id_pt_pathology = $this->db->get()->result_array();
+
+        //print_r($temp_pt_risk_reduc_surgery_id_pt_risk_red_surgery_lesion);
+        $result_patient_pathology_id_pt_pathology = array();
+        for ($i = 0; $i < sizeof($temp_patient_pathology_id_pt_pathology); $i++) {
+            $result_patient_pathology_id_pt_pathology [$i] = $temp_patient_pathology_id_pt_pathology[$i]['patient_pathology_id'];
+        }
+        //print_r($result_patient_pathology_id_pt_pathology);
+        $temp_patient_pathology_id_pt_pathology = null;
 
         $i = 0;
         foreach ($sheet->getRowIterator() as $row) {
@@ -411,6 +429,7 @@ class ModelDiagnosis1 extends CI_Model {
             $pathology_cancer_id[] = $cancer_id;
             $pathology_cancer_site_id[] = $cancer_site_id;
             $cancer_id = $this->excell_sheets_model->get_id('cancer', 'cancer_id', 'cancer_name', $temp14[2]);
+            $patient_pathology_id = -1;
             
             if(in_array($cancer_id, $result_cancer_id_pt_pathology) && in_array($patient_cancer_id, $result_pt_cancer_id_pt_pathology))
             {
@@ -468,12 +487,34 @@ class ModelDiagnosis1 extends CI_Model {
                 'tumor_differentiation' => $temp14[44]
             );
             }
+            
+            if(in_array($patient_pathology_id, $result_patient_pathology_id_pt_pathology))
+            {
+                $pt_pathology_staining_status_id = $this->excell_sheets_model->get_id('patient_pathology_staining_status','patient_pathology_staining_status_id','patient_pathology_id',$patient_pathology_id);
+                $data_patient_pathology_staining_status_up[] = array(
+                'patient_pathology_staining_status_id' => $pt_pathology_staining_status_id,   
+                'patient_pathology_id' => $patient_pathology_id,
+                 'ER_status' => $temp14[45],
+                 'PR_status' => $temp14[46],
+                 'HER2_status' => $temp14[47]   
+                );
+            }
+            else
+            {
+                $data_patient_pathology_staining_status[] = array(
+                'patient_pathology_id' => 1,
+                 'ER_status' => $temp14[45],
+                 'PR_status' => $temp14[46],
+                 'HER2_status' => $temp14[47]   
+                );
+            }
 
             $flag_pathology_tissue_site = FALSE;
         }
+        //print_r($data_patient_pathology_staining_status);
         $result_pt_cancer_id_pt_cancer = null;
         $result_pt_studies_id_pt_cancer = null;
-
+        $result_patient_pathology_id_pt_pathology = null;
         //echo '<pre>';
         //print_r($data_patient_cancer_insert);
         //print_r($data_patient_cancer_treatment);
@@ -527,7 +568,7 @@ class ModelDiagnosis1 extends CI_Model {
 
         $data_patient_pathology_insert = array();
         $data_patient_pathology_insert = null;
-
+        
         $tempLength = sizeof($data_patient_pathology);
 
         if(sizeof($data_patient_pathology) > 0)
@@ -536,7 +577,7 @@ class ModelDiagnosis1 extends CI_Model {
             //echo $treatment_patient_studies_id[$key].'      '.$treatment_cancer_id[$key].'      '.$treatment_cancer_site_id[$key].'<br/>';
             $patient_cancer_id = $this->excell_sheets_model->get_patient_cancer_id($pathology_patient_studies_id[$key], $pathology_cancer_id[$key], $pathology_cancer_site_id[$key]);
             $data_patient_pathology[$key]['patient_cancer_id'] = $patient_cancer_id;
-
+             
                 if ($patient_cancer_id > 0) {
                 $data_patient_pathology_insert[] = $data_patient_pathology[$key];
                 }
@@ -587,6 +628,50 @@ class ModelDiagnosis1 extends CI_Model {
                 echo '<br/>';
                 $data_patient_pathology_update = null;
             }
+        }
+        
+        $data_patient_pathology_staining_status_in = array();
+        $data_patient_pathology_staining_status_in = null;
+
+        $tempLength = sizeof($data_patient_pathology_staining_status);
+
+        if(sizeof($data_patient_pathology_staining_status) > 0)
+        {
+            for ($key = 0; $key < $tempLength; $key++) {
+            //echo $treatment_patient_studies_id[$key].'      '.$treatment_cancer_id[$key].'      '.$treatment_cancer_site_id[$key].'<br/>';
+            $patient_cancer_id = $this->excell_sheets_model->get_patient_cancer_id($pathology_patient_studies_id[$key], $pathology_cancer_id[$key], $pathology_cancer_site_id[$key]);
+            $patient_pathology_id = $this->excell_sheets_model->get_patient_pathology_id($pathology_cancer_id[$key],$patient_cancer_id);
+            $data_patient_pathology_staining_status[$key]['patient_pathology_id'] = $patient_pathology_id;
+
+                if ($patient_pathology_id > 0) {
+                $data_patient_pathology_staining_status_in[] = $data_patient_pathology_staining_status[$key];
+                }
+            }
+            $data_patient_pathology_staining_status = null;
+        }
+        
+        if(!$abort)
+        {
+            if (sizeof($data_patient_pathology_staining_status_in) > 0) {
+                $id_patient_pathology_staining_status = $this->excell_sheets_model->insert_record($data_patient_pathology_staining_status_in, 'patient_pathology_staining_status');
+                if ($id_patient_pathology_staining_status > 0)
+                    echo 'Data added succesfully at patient_pathology_staining_status table';
+                else
+                    echo 'Failed to insert at patient_pathology_staining_status table';
+                echo '<br/>';
+                $data_patient_pathology_staining_status_in = null;
+            }
+            
+             if (sizeof($data_patient_pathology_staining_status_up) > 0) {
+                $id_pt_path_staining_status_up = $this->db->update_batch('patient_pathology_staining_status', $data_patient_pathology_staining_status_up, 'patient_pathology_staining_status_id');
+                if ($id_pt_path_staining_status_up > 0)
+                    echo 'Data updated succesfully at patient_pathology_staining_status table';
+                else
+                    echo 'Updated Data at patient_pathology_staining_status table';
+                echo '<br/>';
+                $data_patient_pathology_staining_status_up = null;
+            }
+            
         }
 
 
