@@ -265,7 +265,7 @@ class ModelScreening3 extends CI_Model {
                     $data_patient_risk_reducing_surgery_complete_insert = array();
                     $data_patient_risk_reducing_surgery_complete_insert = null;
                     
-                    $tempLength = sizeof($temp_patient_studies_id);
+                    $tempLength = sizeof($data_patient_risk_reducing_surgery_lesion);
                     
                     if(sizeof($data_patient_risk_reducing_surgery_lesion) > 0 && sizeof($data_patient_risk_reducing_surgery_complete_removal) > 0)
                     {
@@ -284,7 +284,7 @@ class ModelScreening3 extends CI_Model {
                         }
                     }
                     
-                   // print_r($data_patient_risk_reducing_surgery_lesion_insert);
+                    //print_r($data_patient_risk_reducing_surgery_lesion_insert);
                     //print_r($data_patient_risk_reducing_surgery_complete_insert);
                     
                     //print_r($data_patient_risk_reducing_surgery_lesion_insert);
