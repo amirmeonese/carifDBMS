@@ -1316,6 +1316,9 @@ class Record extends CI_Controller {
         $referral_to = $this->input->post('referral_to');
         $referral_to_genetic_counselling = $this->input->post('referral_date');
         $referral_source = $this->input->post('referral_source');
+        
+        $double_consent_flag_check = $this->record_model->update_checkbox($double_consent_flag,'double_consent_flag','patient_studies_id','patient_studies');
+        $double_consent_flag_uncheck = $this->record_model->update_checkbox_uncheck($patient_ic_no,$double_consent_flag,'patient_studies_id','double_consent_flag','patient_ic_no','patient_studies');
 
         if (!empty($patient_studies_id)) {
             for ($i = 0; $i < count($patient_studies_id); $i++) {
@@ -1326,7 +1329,7 @@ class Record extends CI_Controller {
                     'date_at_consent' => $date_at_consent[$i] == '00-00-0000' ? '0000-00-00' : date("Y-m-d", strtotime($date_at_consent[$i])),
                     'age_at_consent' => $age_at_consent[$i],
                     'studies_id' => $studies_id,
-                    'double_consent_flag' => $double_consent_flag[$i],
+//                    'double_consent_flag' => $double_consent_flag[$i],
                     'consent_given_by' => $consent_given_by[$i],
                     'consent_response' => $consent_response[$i],
                     'consent_version' => $consent_version[$i],
@@ -1760,7 +1763,8 @@ class Record extends CI_Controller {
         //validate form input
 
         date_default_timezone_set("Asia/Kuala_lumpur");
-        $date = date('Y-m-d H:i:s'); //Returns IST 
+        $date = date('Y-m-d H:i:s'); //Returns IST
+        $patient_ic_no = $this->input->post('patient_ic_no');
 
         $father_relatives_id = $this->input->post('father_relatives_id');
         $father_cancer_name = $this->input->post('father_cancer_name');
@@ -1787,6 +1791,18 @@ class Record extends CI_Controller {
         $comments = $this->input->post('father_comments');
         $vital_status = $this->input->post('father_vital_status');
 
+            $f_cancer_diagnose_check = $this->record_model->update_checkbox($is_cancer_diagnosed,'is_cancer_diagnosed','patient_relatives_id','patient_relatives');
+            $f_cancer_diagnose_uncheck = $this->record_model->update_checkbox_uncheck($patient_ic_no,$is_cancer_diagnosed,'patient_relatives_id','is_cancer_diagnosed','patient_ic_no','patient_relatives');
+
+            $f_still_alive_check = $this->record_model->update_checkbox($is_alive_flag,'is_alive_flag','patient_relatives_id','patient_relatives');
+            $f_still_alive_uncheck = $this->record_model->update_checkbox_uncheck($patient_ic_no,$is_alive_flag,'patient_relatives_id','is_alive_flag','patient_ic_no','patient_relatives');
+            
+            $f_is_adopted_check = $this->record_model->update_checkbox($is_adopted,'is_adopted','patient_relatives_id','patient_relatives');
+            $f_is_adopted_uncheck = $this->record_model->update_checkbox_uncheck($patient_ic_no,$is_adopted,'patient_relatives_id','is_adopted','patient_ic_no','patient_relatives');
+            
+            $f_other_country_check = $this->record_model->update_checkbox($is_in_other_country,'is_in_other_country','patient_relatives_id','patient_relatives');
+            $f_other_country_uncheck = $this->record_model->update_checkbox_uncheck($patient_ic_no,$is_in_other_country,'patient_relatives_id','is_in_other_country','patient_ic_no','patient_relatives');
+                
         if (!empty($father_relatives_id)) {
             for ($i = 0; $i < count($father_relatives_id); $i++) {
 
@@ -1800,9 +1816,9 @@ class Record extends CI_Controller {
                     'ethnicity' => $ethnicity[$i],
                     'town_of_residence' => $town_of_residence[$i],
                     'd_o_b' => $d_o_b[$i] == '00-00-0000' ? '0000-00-00' : date("Y-m-d", strtotime($d_o_b[$i])),
-                    'is_alive_flag' => $is_alive_flag[$i],
+//                    'is_alive_flag' => $is_alive_flag[$i],
                     'd_o_d' => $d_o_d[$i] == '00-00-0000' ? '0000-00-00' : date("Y-m-d", strtotime($d_o_d[$i])),
-                    'is_cancer_diagnosed' => $is_cancer_diagnosed[$i],
+//                    'is_cancer_diagnosed' => $is_cancer_diagnosed[$i],
                     'date_of_diagnosis' => $date_of_diagnosis == '00-00-0000' ? '0000-00-00' : date("Y-m-d", strtotime($date_of_diagnosis)),
                     'cancer_type_id' => $father_cancer_type_id,
                     'age_of_diagnosis' => $age_of_diagnosis[$i],
@@ -1811,8 +1827,8 @@ class Record extends CI_Controller {
                     'no_of_sisters' => $no_of_sisters[$i],
                     'total_half_sisters' => $total_half_sisters[$i],
                     'total_half_brothers' => $total_half_brothers[$i],
-                    'is_adopted' => $is_adopted[$i],
-                    'is_in_other_country' => $is_in_other_country[$i],
+//                    'is_adopted' => $is_adopted[$i],
+//                    'is_in_other_country' => $is_in_other_country[$i],
                     'modified_on' => $date,
                     'comments' => $comments[$i],
                     'vital_status' => $vital_status[$i]
@@ -1857,7 +1873,19 @@ class Record extends CI_Controller {
             $mother_comments = $this->input->post('mother_comments');
             $mother_is_in_other_country = $this->input->post('mother_unknown_reason_in_other_countries');
             $mother_vital_status = $this->input->post('mother_vital_status');
+            
+            $m_cancer_diagnose_check = $this->record_model->update_checkbox($mother_is_cancer_diagnosed,'is_cancer_diagnosed','patient_relatives_id','patient_relatives');
+            $m_cancer_diagnose_uncheck = $this->record_model->update_checkbox_uncheck($patient_ic_no,$mother_is_cancer_diagnosed,'patient_relatives_id','is_cancer_diagnosed','patient_ic_no','patient_relatives');
 
+            $m_still_alive_check = $this->record_model->update_checkbox($mother_is_alive_flag,'is_alive_flag','patient_relatives_id','patient_relatives');
+            $m_still_alive_uncheck = $this->record_model->update_checkbox_uncheck($patient_ic_no,$mother_is_alive_flag,'patient_relatives_id','is_alive_flag','patient_ic_no','patient_relatives');
+            
+            $m_is_adopted_check = $this->record_model->update_checkbox($mother_is_adopted,'is_adopted','patient_relatives_id','patient_relatives');
+            $m_is_adopted_uncheck = $this->record_model->update_checkbox_uncheck($patient_ic_no,$mother_is_adopted,'patient_relatives_id','is_adopted','patient_ic_no','patient_relatives');
+            
+            $m_other_country_check = $this->record_model->update_checkbox($mother_is_in_other_country,'is_in_other_country','patient_relatives_id','patient_relatives');
+            $m_other_country_uncheck = $this->record_model->update_checkbox_uncheck($patient_ic_no,$mother_is_in_other_country,'patient_relatives_id','is_in_other_country','patient_ic_no','patient_relatives');
+            
             if (!empty($mother_relatives_id)) {
                 for ($i = 0; $i < count($mother_relatives_id); $i++) {
 
@@ -1871,9 +1899,9 @@ class Record extends CI_Controller {
                         'ethnicity' => $mother_ethnicity[$i],
                         'town_of_residence' => $mother_town_of_residence[$i],
                         'd_o_b' => $mother_d_o_b[$i] == '00-00-0000' ? '0000-00-00' : date("Y-m-d", strtotime($mother_d_o_b[$i])),
-                        'is_alive_flag' => $mother_is_alive_flag[$i],
+//                        'is_alive_flag' => $mother_is_alive_flag[$i],
                         'd_o_d' => $mother_d_o_d[$i] == '00-00-0000' ? '0000-00-00' : date("Y-m-d", strtotime($mother_d_o_d[$i])),
-                        'is_cancer_diagnosed' => $mother_is_cancer_diagnosed[$i],
+//                        'is_cancer_diagnosed' => $mother_is_cancer_diagnosed[$i],
                         'date_of_diagnosis' => $mother_date_of_diagnosis[$i] == '00-00-0000' ? '0000-00-00' : date("Y-m-d", strtotime($mother_date_of_diagnosis[$i])),
                         'cancer_type_id' => $mother_cancer_type_id,
                         'age_of_diagnosis' => $mother_age_of_diagnosis[$i],
@@ -1883,9 +1911,9 @@ class Record extends CI_Controller {
                         'total_half_brothers' => $mother_total_half_brothers[$i],
                         'no_of_sisters' => $mother_no_of_sisters[$i],
                         'modified_on' => $date,
-                        'is_adopted' => $mother_is_adopted[$i],
+//                        'is_adopted' => $mother_is_adopted[$i],
                         'comments' => $mother_comments[$i],
-                        'is_in_other_country' => $mother_is_in_other_country[$i],
+//                        'is_in_other_country' => $mother_is_in_other_country[$i],
                         'vital_status' => $mother_vital_status[$i]
                             //'match_score_at_consent' => $this->input->post('mother_mach_score_at_consent'),
                             //'match_score_past_consent' => $this->input->post('mother_mach_score_past_consent'),
@@ -1905,8 +1933,7 @@ class Record extends CI_Controller {
                     echo '<br/>';
                 }
             }
-            
-            $other_relatives_id = $this->input->post('other_relatives_id');
+            $other_relatives_id = $this->input->post('others_relatives_id');
             $relative_cancer_name = $this->input->post('relative_cancer_name');
             $relative_relationship_status = $this->input->post('relative_relationship_status');
             $relativeTypeLists = $this->input->post('relativeTypeLists');
@@ -1925,30 +1952,33 @@ class Record extends CI_Controller {
             $relative_vital_status = $this->input->post('relative_vital_status');
             $relative_comment = $this->input->post('relative_comment');
             
+            $cancer_diagnose_check = $this->record_model->update_checkbox($relative_is_cancer_diagnosed,'is_cancer_diagnosed','patient_relatives_id','patient_relatives');
+            $cancer_diagnose_uncheck = $this->record_model->update_checkbox_uncheck($patient_ic_no,$relative_is_cancer_diagnosed,'patient_relatives_id','is_cancer_diagnosed','patient_ic_no','patient_relatives');
+            
+            $still_alive_check = $this->record_model->update_checkbox($relative_still_alive_flag,'is_alive_flag','patient_relatives_id','patient_relatives');
+            $still_alive_uncheck = $this->record_model->update_checkbox_uncheck($patient_ic_no,$relative_still_alive_flag,'patient_relatives_id','is_alive_flag','patient_ic_no','patient_relatives');
             
             if (!empty($other_relatives_id)) {
-            for ($i = 0; $i < count($mother_relatives_id); $i++) {
+            for ($i = 0; $i < count($other_relatives_id); $i++) {
+                 
+                $relative_cancer_type_id = $this->record_model->get_cancer_id($relative_cancer_name[$i]);
 
-        
-                        
-                        $relative_cancer_type_id = $this->record_model->get_cancer_id($relative_cancer_name[$i]);
-                       
-                        if($relative_relationship_status[$i] == 'paternal'){
-                            
-                            $paternal_status = '1';
-                        } else {
-                          $paternal_status = '0';  
-                        }
-                         if($relative_relationship_status[$i] == 'maternal'){
-                            
-                            $maternal_status = '1';
-                        } else {
-                          $maternal_status = '0';  
-                        }
-                        
-                        
-                        $data3_patient_relatives = array(
-                            'cancer_type_id' => $relative_cancer_type_id[$i],
+                if ($relative_relationship_status[$i] == 'paternal') {
+
+                    $paternal_status = '1';
+                } else {
+                    $paternal_status = '0';
+                }
+                if ($relative_relationship_status[$i] == 'maternal') {
+
+                    $maternal_status = '1';
+                } else {
+                    $maternal_status = '0';
+                }
+
+
+                 $data3_patient_relatives = array(
+                            'cancer_type_id' => $relative_cancer_type_id,
                             'is_paternal' => $paternal_status,
                             'is_maternal' => $maternal_status,
                             'relatives_id' => $relativeTypeLists[$i],
@@ -1958,10 +1988,8 @@ class Record extends CI_Controller {
                             'ethnicity' => $relative_ethnicity[$i],
                             'town_of_residence' => $relative_town_residence[$i],
                             'd_o_b' => $relative_DOB[$i] == '00-00-0000' ? '0000-00-00' : date("Y-m-d", strtotime($relative_DOB[$i])),
-                            'is_alive_flag' => $relative_still_alive_flag[$i],
                             'sex' => $relative_gender[$i],
                             'd_o_d' => $relative_DOD[$i] == '00-00-0000' ? '0000-00-00' : date("Y-m-d", strtotime($relative_DOD[$i])),
-                            'is_cancer_diagnosed' => $relative_is_cancer_diagnosed[$i],
                             'date_of_diagnosis' => $relative_date_of_diagnosis[$i] == '00-00-0000' ? '0000-00-00' : date("Y-m-d", strtotime($relative_date_of_diagnosis[$i])),
                             'age_of_diagnosis' => $relative_age_of_diagnosis[$i],
                             'vital_status' => $relative_vital_status[$i],
@@ -1971,7 +1999,10 @@ class Record extends CI_Controller {
                        
                     $this->db->where('patient_relatives_id', $other_relatives_id[$i]);
                     $this->db->update('patient_relatives', $data3_patient_relatives);
+                    
+                    //echo $this->db->last_query();exit;
 
+                    
                     if ($this->db->affected_rows() > 0) {
                         echo '<h2>Data for id ' . $i . ' update successfully<h2>';
                     } else {
@@ -2750,6 +2781,7 @@ class Record extends CI_Controller {
         $date = date('Y-m-d H:i:s'); //Returns IST 
         //$patient_studies_id = $this->input->post('studies_name');
         $patient_ic_no = $this->input->post('patient_ic_no');
+        $patient_studies_id = $this->input->post('patient_studies_id');
 
         $patient_breast_screening_id = $this->input->post('patient_breast_screening_id');
 
@@ -2785,6 +2817,27 @@ class Record extends CI_Controller {
         $percentage_of_mammo_density = $this->input->post('percentage_of_mammo_density');
         $mammo_comments = $this->input->post('mammo_comments');
         $BIRADS_density_classification = $this->input->post('BIRADS_density_classification');
+        
+        $abnormalities_mammo_flag_check = $this->record_model->update_checkbox($abnormalities_mammo_flag,'abnormalities_mammo_flag','patient_breast_screening_id','patient_breast_screening');
+        $abnormalities_mammo_flag_uncheck = $this->record_model->update_checkbox_uncheck($patient_studies_id,$abnormalities_mammo_flag,'patient_breast_screening_id','abnormalities_mammo_flag','patient_studies_id','patient_breast_screening');
+        
+        $mammogram_in_sdmc_check = $this->record_model->update_checkbox($mammogram_in_sdmc,'mammogram_in_sdmc','patient_breast_screening_id','patient_breast_screening');
+        $mammogram_in_sdmc_uncheck = $this->record_model->update_checkbox_uncheck($patient_studies_id,$mammogram_in_sdmc,'patient_breast_screening_id','mammogram_in_sdmc','patient_studies_id','patient_breast_screening');
+        
+        $is_cancer_mammogram_flag_check = $this->record_model->update_checkbox($is_cancer_mammogram_flag,'is_cancer_mammogram_flag','patient_breast_screening_id','patient_breast_screening');
+        $is_cancer_mammogram_flag_uncheck = $this->record_model->update_checkbox_uncheck($patient_studies_id,$is_cancer_mammogram_flag,'patient_breast_screening_id','is_cancer_mammogram_flag','patient_studies_id','patient_breast_screening');
+        
+        $had_ultrasound_flag_check = $this->record_model->update_checkbox($had_ultrasound_flag,'had_ultrasound_flag','patient_breast_screening_id','patient_breast_screening');
+        $had_ultrasound_flag_uncheck = $this->record_model->update_checkbox_uncheck($patient_studies_id,$had_ultrasound_flag,'patient_breast_screening_id','had_ultrasound_flag','patient_studies_id','patient_breast_screening');
+        
+        $abnormalities_ultrasound_flag_check = $this->record_model->update_checkbox($abnormalities_ultrasound_flag,'abnormalities_ultrasound_flag','patient_breast_screening_id','patient_breast_screening');
+        $abnormalities_ultrasound_flag_uncheck = $this->record_model->update_checkbox_uncheck($patient_studies_id,$abnormalities_ultrasound_flag,'patient_breast_screening_id','abnormalities_ultrasound_flag','patient_studies_id','patient_breast_screening');
+        
+        $had_mri_flag_check = $this->record_model->update_checkbox($had_mri_flag,'had_mri_flag','patient_breast_screening_id','patient_breast_screening');
+        $had_mri_flag_uncheck = $this->record_model->update_checkbox_uncheck($patient_studies_id,$had_mri_flag,'patient_breast_screening_id','had_mri_flag','patient_studies_id','patient_breast_screening');
+        
+        $abnormalities_MRI_flag_check = $this->record_model->update_checkbox($abnormalities_MRI_flag,'abnormalities_MRI_flag','patient_breast_screening_id','patient_breast_screening');
+        $abnormalities_MRI_flag_uncheck = $this->record_model->update_checkbox_uncheck($patient_studies_id,$abnormalities_MRI_flag,'patient_breast_screening_id','abnormalities_MRI_flag','patient_studies_id','patient_breast_screening');
 
         if (!empty($patient_breast_screening_id)) {
             for ($i = 0; $i < count($patient_breast_screening_id); $i++) {
@@ -2796,13 +2849,13 @@ class Record extends CI_Controller {
                     'screening_centre' => $screening_centre[$i],
                     'total_no_of_mammogram' => $total_no_of_mammogram[$i],
                     'screening_interval' => $screening_interval[$i],
-                    'abnormalities_mammo_flag' => $abnormalities_mammo_flag[$i],
+//                    'abnormalities_mammo_flag' => $abnormalities_mammo_flag[$i],
                     'name_of_radiologist' => $name_of_radiologist[$i],
-                    'had_ultrasound_flag' => $had_ultrasound_flag[$i], //from Ultrasound Details part
+//                    'had_ultrasound_flag' => $had_ultrasound_flag[$i], //from Ultrasound Details part
                     'total_no_of_ultrasound' => $total_no_of_ultrasound[$i],
-                    'abnormalities_ultrasound_flag' => $abnormalities_ultrasound_flag[$i],
-                    'had_mri_flag' => $had_mri_flag[$i], // from MRI Details part
-                    'abnormalities_MRI_flag' => $abnormalities_MRI_flag[$i],
+//                    'abnormalities_ultrasound_flag' => $abnormalities_ultrasound_flag[$i],
+//                    'had_mri_flag' => $had_mri_flag[$i], // from MRI Details part
+//                    'abnormalities_MRI_flag' => $abnormalities_MRI_flag[$i],
                     'total_no_of_mri' => $total_no_of_mri[$i],
                     'screening_center_of_first_mammogram' => $screening_center_of_first_mammogram[$i],
                     'screening_center_of_recent_mammogram' => $screening_center_of_recent_mammogram[$i],
@@ -2810,12 +2863,12 @@ class Record extends CI_Controller {
                     'details_of_recent_mammogram' => $details_of_recent_mammogram[$i],
                     'motivaters_of_first_mammogram' => $motivaters_of_first_mammogram[$i],
                     'motivaters_of_recent_mammogram' => $motivaters_of_recent_mammogram[$i],
-                    'mammogram_in_sdmc' => $mammogram_in_sdmc[$i],
+//                    'mammogram_in_sdmc' => $mammogram_in_sdmc[$i],
                     'reason_of_mammogram' => $reason_of_mammogram[$i],
                     'reason_of_mammogram_details' => $reason_of_mammogram_details[$i],
                     'action_suggested_on_mammogram_report' => $action_suggested_on_mammogram_report[$i],
                     'reason_of_action_suggested' => $reason_of_action_suggested[$i],
-                    'is_cancer_mammogram_flag' => $is_cancer_mammogram_flag[$i],
+//                    'is_cancer_mammogram_flag' => $is_cancer_mammogram_flag[$i],
                     'site_effected_of_mammogram' => $site_effected_of_mammogram[$i],
                     'BIRADS_clinical_classification' => $BIRADS_clinical_classification[$i],
                     'percentage_of_mammo_density' => $percentage_of_mammo_density[$i],
@@ -3124,13 +3177,19 @@ class Record extends CI_Controller {
         $patient_risk_reducing_surgery_id = $this->input->post('patient_risk_reducing_surgery_id');
         $had_new_lesion_surgery_flag = $this->input->post('had_new_risk_reducing_surgery');
         $had_complete_removal_surgery_flag = $this->input->post('had_new_complete_removal_surgery');
+        
+        $had_new_lesion_surgery_flag_check = $this->record_model->update_checkbox($had_new_lesion_surgery_flag,'had_new_lesion_surgery_flag','patient_risk_reducing_surgery_id','patient_risk_reducing_surgery');
+        $had_new_lesion_surgery_flag_uncheck = $this->record_model->update_checkbox_uncheck($patient_studies_id,$had_new_lesion_surgery_flag,'patient_risk_reducing_surgery_id','had_new_lesion_surgery_flag','patient_studies_id','patient_risk_reducing_surgery');
+        
+        $had_complete_removal_surgery_flag_check = $this->record_model->update_checkbox($had_complete_removal_surgery_flag,'had_complete_removal_surgery_flag','patient_risk_reducing_surgery_id','patient_risk_reducing_surgery');
+        $had_complete_removal_surgery_flag_uncheck = $this->record_model->update_checkbox_uncheck($patient_studies_id,$had_complete_removal_surgery_flag,'patient_risk_reducing_surgery_id','had_complete_removal_surgery_flag','patient_studies_id','patient_risk_reducing_surgery');
 
         if (!empty($patient_risk_reducing_surgery_id)) {
             for ($i = 0; $i < count($patient_risk_reducing_surgery_id); $i++) {
                 $data_patient_risk_reducing_surgery = array(
-                    'had_new_lesion_surgery_flag' => $had_new_lesion_surgery_flag[$i],
+//                    'had_new_lesion_surgery_flag' => $had_new_lesion_surgery_flag[$i],
                     'modified_on' => $date,
-                    'had_complete_removal_surgery_flag' => $had_complete_removal_surgery_flag[$i]
+//                    'had_complete_removal_surgery_flag' => $had_complete_removal_surgery_flag[$i]
                 );
 
                 $this->db->where('patient_risk_reducing_surgery_id', $patient_risk_reducing_surgery_id[$i]);
@@ -3208,6 +3267,9 @@ class Record extends CI_Controller {
                 $oavrian_screening_date = $this->input->post('physical_exam_date');
                 $ovarian_screening_is_abnormality_detected = $this->input->post('physical_exam_is_abnormality_detected');
                 $ovarian_screening_additional_info = $this->input->post('physical_exam_additional_info');
+                
+                $ovarian_screening_is_abnormality_detected_check = $this->record_model->update_checkbox($ovarian_screening_is_abnormality_detected,'is_abnormality_detected','patient_ovarian_screening_id','patient_ovarian_screening');
+                $ovarian_screening_is_abnormality_detected_uncheck = $this->record_model->update_checkbox_uncheck($patient_studies_id,$ovarian_screening_is_abnormality_detected,'patient_ovarian_screening_id','is_abnormality_detected','patient_studies_id','patient_ovarian_screening');
 
                 if (!empty($patient_ovarian_screening_id)) {
 
@@ -3218,7 +3280,7 @@ class Record extends CI_Controller {
                         $data_patient_ovarian_screening = array(
                             'ovarian_screening_type_id' => $ovarian_screening_type[$i],
                             'screening_date' => $oavrian_screening_date[$i] == '00-00-0000' ? '0000-00-00' : date("Y-m-d", strtotime($oavrian_screening_date[$i])),
-                            'is_abnormality_detected' => $ovarian_screening_is_abnormality_detected[$i],
+//                            'is_abnormality_detected' => $ovarian_screening_is_abnormality_detected[$i],
                             'modified_on' => $date,
                             'additional_info' => $ovarian_screening_additional_info[$i]
                         );
@@ -3484,8 +3546,8 @@ class Record extends CI_Controller {
                 'contraceptive_pills_flag' => $this->input->post('contraceptive_pills_flag'),
                 //'contraceptive_pills_details' => $this->input->post('contraceptive_pills_details'),
                 'currently_taking_contraceptive_pills_flag' => $this->input->post('currently_taking_contraceptive_pills_flag'),
-                'contraceptive_start_date' => $date_test_ordered == '' ? '0000-00-00' : date("Y-m-d", strtotime($date_test_ordered)),
-                'contraceptive_end_date' => $date_test_ordered == '' ? '0000-00-00' : date("Y-m-d", strtotime($date_test_ordered)),
+                'contraceptive_start_date' => $contraceptive_start_date == '' ? '0000-00-00' : date("Y-m-d", strtotime($contraceptive_start_date)),
+                'contraceptive_end_date' => $contraceptive_end_date == '' ? '0000-00-00' : date("Y-m-d", strtotime($contraceptive_end_date)),
                 'contraceptive_end_age' => $this->input->post('contraceptive_end_age'),
                 'contraceptive_start_age' => $this->input->post('contraceptive_start_age'),
                 'contraceptive_duration' => $this->input->post('contraceptive_duration'),
@@ -3494,10 +3556,10 @@ class Record extends CI_Controller {
                 'hrt_flag' => $this->input->post('HRT_flag'),
                 //'hrt_details' => $this->input->post('HRT_details'),
                 'currently_using_hrt_flag' => $this->input->post('currently_using_hrt_flag'),
-                'hrt_start_date' => $date_test_ordered == '' ? '0000-00-00' : date("Y-m-d", strtotime($date_test_ordered)),
+                'hrt_start_date' => $hrt_start_date == '' ? '0000-00-00' : date("Y-m-d", strtotime($hrt_start_date)),
                 'created_on' => $date,
                 'hrt_duration' => $this->input->post('HRT_duration'),
-                'hrt_end_date' => $date_test_ordered == '' ? '0000-00-00' : date("Y-m-d", strtotime($date_test_ordered))
+                'hrt_end_date' => $hrt_end_date == '' ? '0000-00-00' : date("Y-m-d", strtotime($hrt_end_date))
             );
             // print_r($data_patient_infertility);
             //echo '<br/>';
@@ -3930,7 +3992,7 @@ class Record extends CI_Controller {
             }
 
             $patient_investigation_id = $this->input->post('patient_investigations_id');
-            $studies_name = $this->input->post('patient_studies_id');
+            $patient_studies_id = $this->input->post('patient_studies_id');
             $date_test_ordered = $this->input->post('date_test_ordered');
 
             $ordered_by = $this->input->post('test_ordered_by');
@@ -3958,6 +4020,18 @@ class Record extends CI_Controller {
             $comments = $this->input->post('investigation_test_comment');
             $mutation_name = $this->input->post('investigation_mutation_name');
             $conformation_attachment = $this->input->post('investigation_conformation_attachment');
+            
+            $testing_result_notification_flag_check = $this->record_model->update_checkbox($testing_result_notification_flag,'testing_result_notification_flag','patient_investigations_id','patient_mutation_analysis');
+            $testing_result_notification_flag_uncheck = $this->record_model->update_checkbox_uncheck($patient_studies_id,$testing_result_notification_flag,'patient_investigations_id','testing_result_notification_flag','patient_studies_id','patient_mutation_analysis');
+            
+            $new_mutation_flag_check = $this->record_model->update_checkbox($new_mutation_flag,'new_mutation_flag','patient_investigations_id','patient_mutation_analysis');
+            $new_mutation_flag_uncheck = $this->record_model->update_checkbox_uncheck($patient_studies_id,$new_mutation_flag,'patient_investigations_id','new_mutation_flag','patient_studies_id','patient_mutation_analysis');
+            
+            $is_counselling_flag_check = $this->record_model->update_checkbox($is_counselling_flag,'is_counselling_flag','patient_investigations_id','patient_mutation_analysis');
+            $is_counselling_flag_uncheck = $this->record_model->update_checkbox_uncheck($patient_studies_id,$is_counselling_flag,'patient_investigations_id','is_counselling_flag','patient_studies_id','patient_mutation_analysis');
+            
+            $conformation_attachment_check = $this->record_model->update_checkbox($conformation_attachment,'conformation_attachment','patient_investigations_id','patient_mutation_analysis');
+            $conformation_attachment_uncheck = $this->record_model->update_checkbox_uncheck($patient_studies_id,$conformation_attachment,'patient_investigations_id','conformation_attachment','patient_studies_id','patient_mutation_analysis');
 
 
             for ($i = 0; $i < count($patient_investigation_id); $i++) {
@@ -3965,7 +4039,7 @@ class Record extends CI_Controller {
                 $data_patient_investigations = array(
                     'date_test_ordered' => $date_test_ordered[$i] == '00-00-0000' ? '0000-00-00' : date("Y-m-d", strtotime($date_test_ordered[$i])),
                     'ordered_by' => $ordered_by[$i],
-                    'testing_result_notification_flag' => $testing_result_notification_flag[$i],
+//                    'testing_result_notification_flag' => $testing_result_notification_flag[$i],
                     'service_provider' => $service_provider[$i],
                     'testing_batch' => $testing_batch[$i],
                     'testing_date' => $testing_date[$i] == '00-00-0000' ? '0000-00-00' : date("Y-m-d", strtotime($testing_date[$i])),
@@ -3973,7 +4047,7 @@ class Record extends CI_Controller {
                     'types_of_testing' => $types_of_testing[$i],
                     'type_of_sample' => $type_of_sample[$i],
                     'reasons' => $reasons[$i],
-                    'new_mutation_flag' => $new_mutation_flag[$i],
+//                    'new_mutation_flag' => $new_mutation_flag[$i],
                     'test_result' => $test_result[$i],
                     'investigation_test_results_other_details' => $investigation_test_results_other_details[$i],
                     'carrier_status' => $carrier_status[$i],
@@ -3983,10 +4057,10 @@ class Record extends CI_Controller {
                     'mutation_pathogenicity' => $mutation_pathogenicity[$i],
                     'report_date' => $report_date[$i] == '00-00-0000' ? '0000-00-00' : date("Y-m-d", strtotime($report_date[$i])),
                     'date_client_notified' => $date_client_notified[$i] == '00-00-0000' ? '0000-00-00' : date("Y-m-d", strtotime($date_client_notified[$i])),
-                    'is_counselling_flag' => $is_counselling_flag[$i],
+//                    'is_counselling_flag' => $is_counselling_flag[$i],
                     'comments' => $comments[$i],
                     'mutation_name' => $mutation_name[$i],
-                    'conformation_attachment' => $conformation_attachment[$i],
+//                    'conformation_attachment' => $conformation_attachment[$i],
                     'created_on' => $date,
                     'conformation_file_url' => @$attach_file_path[$i]
                 );
@@ -3994,7 +4068,7 @@ class Record extends CI_Controller {
                 //print_r($data_patient_investigations);exit;
 
                 $this->db->where('patient_investigations_id', $patient_investigation_id[$i]);
-                $this->db->where('patient_studies_id', $studies_name);
+                $this->db->where('patient_studies_id', $patient_studies_id);
                 $this->db->update('patient_mutation_analysis', $data_patient_investigations);
 
 
@@ -4462,7 +4536,16 @@ class Record extends CI_Controller {
             $detected_by = $this->input->post('detected_by');
             $bilateral_flag = $this->input->post('cancer_is_bilateral');
             $recurrence_flag = $this->input->post('cancer_is_recurrent');
-
+            
+            $is_primary_check = $this->record_model->update_checkbox($is_primary,'is_primary','patient_cancer_id','patient_cancer');
+            $is_primary_uncheck = $this->record_model->update_checkbox_uncheck($patient_studies_id,$is_primary,'patient_cancer_id','is_primary','patient_studies_id','patient_cancer');
+            
+            $bilateral_flag_check = $this->record_model->update_checkbox($bilateral_flag,'bilateral_flag','patient_cancer_id','patient_cancer');
+            $bilateral_flag_uncheck = $this->record_model->update_checkbox_uncheck($patient_studies_id,$bilateral_flag,'patient_cancer_id','bilateral_flag','patient_studies_id','patient_cancer');
+            
+            $recurrence_flag_check = $this->record_model->update_checkbox($recurrence_flag,'recurrence_flag','patient_cancer_id','patient_cancer');
+            $recurrence_flag_uncheck = $this->record_model->update_checkbox_uncheck($patient_studies_id,$recurrence_flag,'patient_cancer_id','recurrence_flag','patient_studies_id','patient_cancer');
+        
 
             if (!empty($patient_cancer_id)) {
 
@@ -4473,38 +4556,18 @@ class Record extends CI_Controller {
                     $data_patient_breast_diagnosis = array(
                         'cancer_site_id' => $breast_cancer_site_id,
                         'cancer_invasive_type' => $cancer_invasive_type[$i],
-                        'is_primary' => $is_primary[$i],
+//                        'is_primary' => $is_primary[$i],
                         'date_of_diagnosis' => $date_of_diagnosis[$i] == '00-00-0000' ? '0000-00-00' : date("Y-m-d", strtotime($date_of_diagnosis[$i])),
                         'age_of_diagnosis' => $age_of_diagnosis[$i],
                         'diagnosis_center' => $diagnosis_center[$i],
                         'doctor_name' => $doctor_name[$i],
                         'detected_by' => $detected_by[$i],
                         //'detected_by' => $this->input->post('detected_by_other_details'),
-                        'bilateral_flag' => $bilateral_flag[$i],
+//                        'bilateral_flag' => $bilateral_flag[$i],
                         'modified_on' => $date,
-                        'recurrence_flag' => $recurrence_flag[$i]
+//                        'recurrence_flag' => $recurrence_flag[$i]
                     );
                     //$patient_breast_diagnosis_id = $this->db->insert('patient_cancer', $data_patient_breast_diagnosis);
-
-                    for ($i = 0; $i < count($patient_cancer_id); $i++) {
-
-                        $breast_cancer_site_id = $this->record_model->get_cancer_site_id($patient_breast_cancer_site[$i]);
-
-                        $data_patient_breast_diagnosis = array(
-                            'cancer_site_id' => $breast_cancer_site_id,
-                            'cancer_invasive_type' => $cancer_invasive_type[$i],
-                            'is_primary' => $is_primary[$i],
-                            'date_of_diagnosis' => date('Y-m-d', strtotime($date_of_diagnosis[$i])),
-                            'age_of_diagnosis' => $age_of_diagnosis[$i],
-                            'diagnosis_center' => $diagnosis_center[$i],
-                            'doctor_name' => $doctor_name[$i],
-                            'detected_by' => $detected_by[$i],
-                            //'detected_by' => $this->input->post('detected_by_other_details'),
-                            'bilateral_flag' => $bilateral_flag[$i],
-                            'modified_on' => $date,
-                            'recurrence_flag' => $recurrence_flag[$i]
-                        );
-                        //$patient_breast_diagnosis_id = $this->db->insert('patient_cancer', $data_patient_breast_diagnosis);
 
                         $this->db->where('cancer_id', 1);
                         $this->db->where('patient_studies_id', $patient_studies_id);
@@ -4661,6 +4724,15 @@ class Record extends CI_Controller {
                 $ovary_detected_by = $this->input->post('ovary_detected_by');
                 $ovary_cancer_is_bilateral = $this->input->post('ovary_cancer_is_bilateral');
                 $ovary_cancer_is_recurrent = $this->input->post('ovary_cancer_is_recurrent');
+                
+                $ovary_primary_diagnosis_check = $this->record_model->update_checkbox($ovary_primary_diagnosis,'is_primary','patient_cancer_id','patient_cancer');
+                $ovary_primary_diagnosis_uncheck = $this->record_model->update_checkbox_uncheck($patient_studies_id,$ovary_primary_diagnosis,'patient_cancer_id','is_primary','patient_studies_id','patient_cancer');
+            
+                $ovary_bilateral_flag_check = $this->record_model->update_checkbox($ovary_cancer_is_bilateral,'bilateral_flag','patient_cancer_id','patient_cancer');
+                $ovary_bilateral_flag_uncheck = $this->record_model->update_checkbox_uncheck($patient_studies_id,$ovary_cancer_is_bilateral,'patient_cancer_id','bilateral_flag','patient_studies_id','patient_cancer');
+            
+                $ovary_recurrence_flag_check = $this->record_model->update_checkbox($ovary_cancer_is_recurrent,'recurrence_flag','patient_cancer_id','patient_cancer');
+                $ovary_recurrence_flag_uncheck = $this->record_model->update_checkbox_uncheck($patient_studies_id,$ovary_cancer_is_recurrent,'patient_cancer_id','recurrence_flag','patient_studies_id','patient_cancer');
 
 
                 if (!empty($ovary_patient_cancer_id)) {
@@ -4671,15 +4743,15 @@ class Record extends CI_Controller {
                         $data_patient_ovary_diagnosis = array(
                             'cancer_site_id' => $ovary_cancer_site_id,
                             'cancer_invasive_type' => $ovary_cancer_invasive_type[$i],
-                            'is_primary' => $ovary_primary_diagnosis[$i],
+//                            'is_primary' => $ovary_primary_diagnosis[$i],
                             'date_of_diagnosis' => $ovary_date_of_diagnosis[$i] == '00-00-0000' ? '0000-00-00' : date("Y-m-d", strtotime($ovary_date_of_diagnosis[$i])),
                             'age_of_diagnosis' => $ovary_age_of_diagnosis[$i],
                             'diagnosis_center' => $ovary_cancer_diagnosis_center[$i],
                             'doctor_name' => $ovary_cancer_doctor_name[$i],
                             'detected_by' => $ovary_detected_by[$i],
-                            'bilateral_flag' => $ovary_cancer_is_bilateral[$i],
+//                            'bilateral_flag' => $ovary_cancer_is_bilateral[$i],
                             'modified_on' => $date,
-                            'recurrence_flag' => $ovary_cancer_is_recurrent[$i]
+//                            'recurrence_flag' => $ovary_cancer_is_recurrent[$i]
                         );
 
 
@@ -4950,6 +5022,8 @@ class Record extends CI_Controller {
                 $on_medication_flag = $this->input->post('is_on_medication_flag');
 
                 //print_r($patient_other_disease_id);exit;
+                $on_medication_flag_check = $this->record_model->update_checkbox($on_medication_flag,'on_medication_flag','patient_other_disease_id','patient_other_disease');
+                $on_medication_flag_uncheck = $this->record_model->update_checkbox_uncheck($patient_studies_id,$on_medication_flag,'patient_other_disease_id','on_medication_flag','patient_studies_id','patient_other_disease');
 
 
                 if (!empty($patient_other_disease_id)) {
@@ -4969,16 +5043,6 @@ class Record extends CI_Controller {
 
 
                         $other_diagnosis_id = $this->record_model->get_diagnosis_id($patient_diagnosis[$i]);
-
-                        $data_patient_other_diseases = array(
-                            'diagnosis_id' => $other_diagnosis_id,
-                            'date_of_diagnosis' => date('Y-m-d', strtotime($year_of_diagnosis[$i])),
-                            'diagnosis_age' => $diagnosis_age[$i],
-                            'diagnosis_center' => $center[$i],
-                            'doctor_name' => $diagnosis_doctor_name[$i],
-                            'created_on' => $date,
-                            'on_medication_flag' => $on_medication_flag[$i]
-                        );
 
                         $this->db->where('patient_other_disease_id', $patient_other_disease_id[$i]);
                         $this->db->where('patient_studies_id', $patient_studies_id);
@@ -5031,8 +5095,8 @@ class Record extends CI_Controller {
                         echo '<br/>';
                     }
                 }
-            }
         }
+        
 
             function interview_home_insersion() {
 
@@ -5080,6 +5144,9 @@ class Record extends CI_Controller {
                 $comments = $this->input->post('interview_note');
                 //print_r($manager_id);exit;
                 //foreach ($manager_id as $test):
+                
+                $is_send_email_reminder_to_officers_check = $this->record_model->update_checkbox($is_send_email_reminder_to_officers,'is_send_email_reminder_to_officers','patient_interview_manager_id','patient_interview_manager');
+                $is_send_email_reminder_to_officers_uncheck = $this->record_model->update_checkbox_uncheck($icno,$is_send_email_reminder_to_officers,'patient_interview_manager_id','is_send_email_reminder_to_officers','patient_ic_no','patient_interview_manager');
 
                 for ($i = 0; $i < count($manager_id); $i++) {
                     //print_r($test);exit;
@@ -5088,7 +5155,7 @@ class Record extends CI_Controller {
                         //'patient_ic_no' => $this->input->post('IC_no'),
                         'interview_date' => $interview_date[$i] == '00-00-0000' ? '0000-00-00' : date("Y-m-d", strtotime($interview_date[$i])),
                         'next_interview_date' => $next_interview_date[$i] == '00-00-0000' ? '0000-00-00' : date("Y-m-d", strtotime($next_interview_date[$i])),
-                        'is_send_email_reminder_to_officers' => $is_send_email_reminder_to_officers[$i],
+//                        'is_send_email_reminder_to_officers' => $is_send_email_reminder_to_officers[$i],
                         'officer_email_addresses' => $officer_email_addresses[$i],
                         'created_on' => $date,
                         'comments' => $comments[$i]
@@ -5140,6 +5207,16 @@ class Record extends CI_Controller {
                 $at_consent_gail_model_10years = $this->input->post('gail_model_at_consent_10years');
                 $first_mammo_gail_model_10years = $this->input->post('gail_model_first_mammo_10years');
                 $first_mammo_gail_model_5years = $this->input->post('gail_model_first_mammo_5years');
+                
+                $at_consent_boadicea_no_mutation_check = $this->record_model->update_checkbox($at_consent_boadicea_no_mutation,'at_consent_boadicea_no_mutation','patient_boadicea_id','patient_risk_assessment');
+                $at_consent_boadicea_no_mutation_uncheck = $this->record_model->update_checkbox_uncheck($icno,$at_consent_boadicea_no_mutation,'patient_boadicea_id','at_consent_boadicea_no_mutation','patient_ic_no','patient_risk_assessment');
+                
+                $adjusted_boadicea_no_mutation_check = $this->record_model->update_checkbox($adjusted_boadicea_no_mutation,'adjusted_boadicea_no_mutation','patient_boadicea_id','patient_risk_assessment');
+                $adjusted_boadicea_no_mutation_uncheck = $this->record_model->update_checkbox_uncheck($icno,$adjusted_boadicea_no_mutation,'patient_boadicea_id','adjusted_boadicea_no_mutation','patient_ic_no','patient_risk_assessment');
+                
+                $after_gc_boadicea_no_mutation_check = $this->record_model->update_checkbox($after_gc_boadicea_no_mutation,'after_gc_boadicea_no_mutation','patient_boadicea_id','patient_risk_assessment');
+                $after_gc_boadicea_no_mutation_uncheck = $this->record_model->update_checkbox_uncheck($icno,$after_gc_boadicea_no_mutation,'patient_boadicea_id','after_gc_boadicea_no_mutation','patient_ic_no','patient_risk_assessment');
+            
 
                 if (!empty($boadicea_id)) {
                     for ($i = 0; $i < count($boadicea_id); $i++) {
@@ -5156,13 +5233,13 @@ class Record extends CI_Controller {
                             'adjusted_mach_total' => $adjusted_mach_total[$i],
                             'at_consent_boadicea_brca1' => $at_consent_boadicea_brca1[$i],
                             'at_consent_boadicea_brca2' => $at_consent_boadicea_brca2[$i],
-                            'at_consent_boadicea_no_mutation' => $at_consent_boadicea_no_mutation[$i],
+//                            'at_consent_boadicea_no_mutation' => $at_consent_boadicea_no_mutation[$i],
                             'adjusted_boadicea_brca1' => $adjusted_boadicea_brca1[$i],
                             'adjusted_boadicea_brca2' => $adjusted_boadicea_brca2[$i],
-                            'adjusted_boadicea_no_mutation' => $adjusted_boadicea_no_mutation[$i],
+//                            'adjusted_boadicea_no_mutation' => $adjusted_boadicea_no_mutation[$i],
                             'after_gc_boadicea_brca1' => $after_gc_boadicea_brca1[$i],
                             'after_gc_boadicea_brca2' => $after_gc_boadicea_brca2[$i],
-                            'after_gc_boadicea_no_mutation' => $after_gc_boadicea_no_mutation[$i],
+//                            'after_gc_boadicea_no_mutation' => $after_gc_boadicea_no_mutation[$i],
                             'at_consent_gail_model_5years' => $at_consent_gail_model_5years[$i],
                             'at_consent_gail_model_10years' => $at_consent_gail_model_10years[$i],
                             'first_mammo_gail_model_10years' => $first_mammo_gail_model_10years[$i],
