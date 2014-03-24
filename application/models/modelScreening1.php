@@ -498,7 +498,7 @@ class ModelScreening1 extends CI_Model {
             $data_patient_mri_abnormality_insert = array();
             $data_patient_mri_abnormality_insert = null;
 
-            $tempLength = sizeof($temp_patient_ic_no_survelance);
+            $tempLength = sizeof($data_patient_breast_abnormality);
             
             if(sizeof($data_patient_breast_abnormality) > 0)
             {
@@ -516,6 +516,8 @@ class ModelScreening1 extends CI_Model {
  
             $data_patient_breast_abnormality = null;
             
+            $tempLength = sizeof($data_patient_ultrasound_abnormality);
+            
             if(sizeof($data_patient_ultrasound_abnormality) > 0)
             {
                 for ($key = 0; $key < $tempLength; $key++) 
@@ -530,6 +532,7 @@ class ModelScreening1 extends CI_Model {
             }
 
             $data_patient_ultrasound_abnormality = null;
+            $tempLength = sizeof($data_patient_mri_abnormality);
             
             if(sizeof($data_patient_mri_abnormality) > 0)
             {
