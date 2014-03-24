@@ -382,10 +382,17 @@
                         <?php echo $age_at_consent; ?>: 
     <?php echo form_input(array('name' => 'age_at_consent[]', 'value' => $list['age_at_consent'])) ?>                    
                     </td>
-                    <td>
-                        <?php echo $is_double_consent_flag; ?>: 
-    <?php echo form_checkbox(array('name' => 'is_double_consent_flag[]', 'value' => $list['double_consent_flag'])) ?>                    
-                    </td>
+                    <?php if($list['double_consent_flag'] == 1){?>
+                <td>
+                    <?php echo $is_double_consent_flag; ?>: 
+                <input type="checkbox" name="is_double_consent_flag[]" checked="checked" value="<?php print $list['patient_studies_id']; ?>" />
+                </td>
+               <?php } else {?>
+                <td>
+                    <?php echo $is_double_consent_flag; ?>: 
+                <input type="checkbox" name="is_double_consent_flag[]" value="<?php print $list['patient_studies_id']; ?>" />
+                </td>
+               <?php } ?>
                 </tr>
                 <tr>
                     <td>

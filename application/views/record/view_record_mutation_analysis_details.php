@@ -31,13 +31,13 @@
                     <?php if($list['testing_result_notification_flag'] == 1){?>
                     <td>
                         <?php echo $testing_results_notification_flag; ?>:  
-                        <?php echo form_checkbox(array('name' => 'testing_results_notification_flag[]', 'value' => $list['testing_result_notification_flag'],'checked'=>"checked")) ?>
+                    <input type="checkbox" name="testing_results_notification_flag[]" checked="checked" value="<?php print $list['patient_investigations_id']; ?>" />
                     </td>
                <?php } else {?>
                 <td>
                         <?php echo $testing_results_notification_flag; ?>:  
-                        <?php echo form_checkbox(array('name' => 'testing_results_notification_flag[]', 'value' => $list['testing_result_notification_flag'])) ?>
-                    </td>
+                <input type="checkbox" name="testing_results_notification_flag[]" value="<?php print $list['patient_investigations_id']; ?>" />    
+                </td>
                <?php } ?>
                 </tr>
                 <tr>
@@ -80,12 +80,12 @@
                     <?php if($list['new_mutation_flag'] == 1){?>
                         <td>
                         <?php echo $investigation_new_mutation_flag; ?>:  
-                        <?php echo form_checkbox(array('name' => 'investigation_new_mutation_flag[]', 'value' => $list['new_mutation_flag'],'checked'=>"checked")) ?>
-                    </td>
+                    <input type="checkbox" name="investigation_new_mutation_flag[]" checked="checked" value="<?php print $list['patient_investigations_id']; ?>" />
+                        </td>
                <?php } else {?>
                     <td>
                         <?php echo $investigation_new_mutation_flag; ?>:  
-                        <?php echo form_checkbox(array('name' => 'investigation_new_mutation_flag[]', 'value' => $list['new_mutation_flag'])) ?>
+                    <input type="checkbox" name="investigation_new_mutation_flag[]" value="<?php print $list['patient_investigations_id']; ?>" />
                     </td>
                     <?php } ?>
                 </tr>
@@ -141,27 +141,27 @@
                     <?php if($list['is_counselling_flag'] == 1){?>
                     <td>
                         <?php echo $mutation_is_counselling_flag; ?>:  
-                        <?php echo form_checkbox(array('name' => 'mutation_is_counselling_flag[]', 'value' => $list['is_counselling_flag'],'checked'=>"checked")) ?>
+                    <input type="checkbox" name="mutation_is_counselling_flag[]" checked="checked" value="<?php print $list['patient_investigations_id']; ?>" />
                     </td>
                <?php } else {?>
                     <td>
                         <?php echo $mutation_is_counselling_flag; ?>:  
-                        <?php echo form_checkbox(array('name' => 'mutation_is_counselling_flag[]', 'value' => $list['is_counselling_flag'])) ?>
+                    <input type="checkbox" name="mutation_is_counselling_flag[]" value="<?php print $list['patient_investigations_id']; ?>" />
                     </td>
                     <?php } ?>
                     <td>
                         <?php echo $investigation_test_comment; ?>:  <br />
                         <?php echo form_textarea(array('name' => 'investigation_test_comment[]','id' => 'investigation_test_comment','rows' => '3','cols' => '7', 'value' => $list['comments']))?>
                     </td>
-                     <?php if($list['is_counselling_flag'] == 1){?>
+                     <?php if($list['conformation_attachment'] == 1){?>
                     <td>
                         <?php echo $investigation_conformation_attachment; ?>: 	
-                        <?php echo form_checkbox(array('name' => 'investigation_conformation_attachment[]', 'value' => $list['conformation_attachment'],'checked'=>"checked")) ?>
+                   <input type="checkbox" name="investigation_conformation_attachment[]" checked="checked" value="<?php print $list['patient_investigations_id']; ?>" />
                     </td>
                <?php } else {?>
                     <td>
                         <?php echo $investigation_conformation_attachment; ?>: 	
-                        <?php echo form_checkbox(array('name' => 'investigation_conformation_attachment[]', 'value' => $list['conformation_attachment'])) ?>
+                   <input type="checkbox" name="investigation_conformation_attachment[]" value="<?php print $list['patient_investigations_id']; ?>" />
                     </td>
                     <?php } ?>
                     <td>

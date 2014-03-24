@@ -141,10 +141,10 @@
 					<?php echo $mammo_upper_below_breast_side; ?>: 
 					<?php echo form_dropdown('mammo_upper_below_breast_side', $mammo_upper_below_breast_side_lists, NULL, 'id="mammo_upper_below_breast_side_lists"'); ?>
                 </td>
-				 <td>
+<!--				 <td>
                     <?php echo $mammo_is_abnormality_detected; ?>: 
                     <?php echo form_checkbox('mammo_is_abnormality_detected', '1', FALSE); ?>
-                </td>
+                </td>-->
             </tr>           
         </table>
         <?php echo form_fieldset_close(); ?>	

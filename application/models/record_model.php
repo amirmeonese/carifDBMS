@@ -2788,6 +2788,30 @@ function get_relationship_list()
             
             //print_r($a);exit;
 }
+
+function update_checkbox($id,$field,$where,$table) {
+
+        $data = array(
+            $field => 1,
+        );
+
+        $this->db->where_in($where, $id);
+        $this->db->update($table, $data);
+    }
     
+    function update_checkbox_uncheck($id,$id1,$where1,$field,$where,$table) {
+
+        $data = array(
+            $field => 0,
+        );
+
+        $this->db->where($where, $id);
+        if(!empty($id1)){
+        $this->db->where_in("$where1 NOT", $id1);
+        }
+        $this->db->update($table, $data);
+        
+        }
+
 }
 ?>

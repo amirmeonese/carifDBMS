@@ -92,10 +92,17 @@
                         <?php echo $BOADICEA_at_consent_BRCA2; ?>: 
                         <?php echo form_input(array('name' => 'BOADICEA_at_consent_BRCA2[]', 'value' => $list['at_consent_boadicea_brca2']))?>
                     </td>
-                    <td>
-                        <?php echo $BOADICEA_at_consent_no_mutation; ?>: 
-                        <?php echo form_checkbox(array('name' => 'BOADICEA_at_consent_no_mutation[]', 'value' => $list['at_consent_boadicea_no_mutation']))?>
-                    </td>
+                    <?php if($list['at_consent_boadicea_no_mutation'] == 1){?>
+                <td>
+                    <?php echo $BOADICEA_at_consent_no_mutation; ?>: 
+                <input type="checkbox" name="BOADICEA_at_consent_no_mutation[]" checked="checked" value="<?php print $list['patient_boadicea_id']; ?>" />
+                </td>
+               <?php } else {?>
+                <td>
+                    <?php echo $BOADICEA_at_consent_no_mutation; ?>: 
+                <input type="checkbox" name="BOADICEA_at_consent_no_mutation[]" value="<?php print $list['patient_boadicea_id']; ?>" />
+                </td>
+               <?php } ?>
                 </tr>
                 <tr>
                     <td id="label2" colspan="3">Adjusted</td>
@@ -109,10 +116,17 @@
                         <?php echo $BOADICEA_adjusted_BRCA2; ?>: 
                         <?php echo form_input(array('name' => 'BOADICEA_adjusted_BRCA2[]', 'value' => $list['adjusted_boadicea_brca2']))?>
                     </td>
-                    <td>
-                        <?php echo $BOADICEA_adjusted_no_mutation; ?>: 
-                        <?php echo form_checkbox(array('name' => 'BOADICEA_adjusted_no_mutation[]', 'value' => $list['adjusted_boadicea_no_mutation']))?>
-                    </td>
+                    <?php if($list['adjusted_boadicea_no_mutation'] == 1){?>
+                <td>
+                    <?php echo $BOADICEA_adjusted_no_mutation; ?>: 
+                <input type="checkbox" name="BOADICEA_adjusted_no_mutation[]" checked="checked" value="<?php print $list['patient_boadicea_id']; ?>" />
+                </td>
+               <?php } else {?>
+                <td>
+                    <?php echo $BOADICEA_adjusted_no_mutation; ?>: 
+                <input type="checkbox" name="BOADICEA_adjusted_no_mutation[]" value="<?php print $list['patient_boadicea_id']; ?>" />
+                </td>
+               <?php } ?>
                 </tr>
                 <tr>
                     <td id="label2" colspan="3">After GC</td>
@@ -126,10 +140,17 @@
                         <?php echo $BOADICEA_after_gc_BRCA2; ?>: 
                         <?php echo form_input(array('name' => 'BOADICEA_after_gc_BRCA2[]', 'value' => $list['after_gc_boadicea_brca2']))?>
                     </td>
-                    <td>
-                        <?php echo $BOADICEA_after_gc_no_mutation; ?>: 
-                        <?php echo form_checkbox(array('name' => 'BOADICEA_after_gc_no_mutation[]', 'value' => $list['after_gc_boadicea_no_mutation']))?>
-                    </td>
+                    <?php if($list['after_gc_boadicea_no_mutation'] == 1){?>
+                <td>
+                    <?php echo $BOADICEA_after_gc_no_mutation; ?>: 
+                <input type="checkbox" name="BOADICEA_after_gc_no_mutation[]" checked="checked" value="<?php print $list['patient_boadicea_id']; ?>" />
+                </td>
+               <?php } else {?>
+                <td>
+                    <?php echo $BOADICEA_after_gc_no_mutation; ?>: 
+                <input type="checkbox" name="BOADICEA_after_gc_no_mutation[]" value="<?php print $list['patient_boadicea_id']; ?>" />
+                </td>
+               <?php } ?>
                 </tr>
             </table>
         </div>

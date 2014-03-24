@@ -73,12 +73,12 @@
                 <?php if($breast_screening['mammogram_in_sdmc'] == 1){?>
                 <td>
                     <?php echo $mammogram_in_sdmc; ?>: 
-                    <?php echo form_checkbox(array('name' => 'mammogram_in_sdmc[]', 'value' => $breast_screening['mammogram_in_sdmc'],'checked'=>"checked"))?>
+                <input type="checkbox" name="mammogram_in_sdmc[]" checked="checked" value="<?php print $breast_screening['patient_breast_screening_id']; ?>" />
                 </td>
                <?php } else {?>
                 <td>
                     <?php echo $mammogram_in_sdmc; ?>: 
-                    <?php echo form_checkbox(array('name' => 'mammogram_in_sdmc[]', 'value' => $breast_screening['mammogram_in_sdmc']))?>
+                <input type="checkbox" name="mammogram_in_sdmc[]" value="<?php print $breast_screening['patient_breast_screening_id']; ?>" />
                 </td>
                <?php } ?>
             </tr>
@@ -90,12 +90,12 @@
                 <?php if($breast_screening['breast_is_abnormality_detected'] == 1){?>
                 <td>
                     <?php echo $abnormalities_mammo_flag; ?>: 
-                    <?php echo form_checkbox(array('name' => 'abnormality_mammo_flag[]', 'value' => $breast_screening['breast_is_abnormality_detected'],'checked'=>"checked"))?>
+                <input type="checkbox" name="abnormalities_mammo_flag[]" checked="checked" value="<?php print $breast_screening['patient_breast_screening_id']; ?>" />
                 </td>
                <?php } else {?>
                 <td>
                     <?php echo $abnormalities_mammo_flag; ?>: 
-                    <?php echo form_checkbox(array('name' => 'abnormality_mammo_flag[]', 'value' => $breast_screening['breast_is_abnormality_detected']))?>
+                <input type="checkbox" name="abnormalities_mammo_flag[]" value="<?php print $breast_screening['patient_breast_screening_id']; ?>" />
                 </td>
                <?php } ?>
                 <td>
@@ -167,13 +167,13 @@
             <?php if($breast_screening['is_cancer_mammogram_flag'] == 1){?>
             <td>
                 <?php echo $is_cancer; ?>: 
-                <?php echo form_checkbox(array('name' => 'is_cancer_mammogram_flag[]', 'value' => $breast_screening['is_cancer_mammogram_flag'],'checked'=>"checked"))?>
+            <input type="checkbox" name="is_cancer_mammogram_flag[]" checked="checked" value="<?php print $breast_screening['patient_breast_screening_id']; ?>" />
             </td>
                <?php } else {?>
                 <td>
                 <?php echo $is_cancer; ?>: 
-                <?php echo form_checkbox(array('name' => 'is_cancer_mammogram_flag[]', 'value' => $breast_screening['is_cancer_mammogram_flag']))?>
-            </td>
+            <input type="checkbox" name="is_cancer_mammogram_flag[]" value="<?php print $breast_screening['patient_breast_screening_id']; ?>" />
+                </td>
                <?php } ?>
             
             <td>
@@ -261,12 +261,12 @@
             <tr><?php if($breast_screening['had_ultrasound_flag'] == 1){?>
                 <td>
                     <?php echo $had_ultrasound_flag; ?>: 
-                    <?php echo form_checkbox(array('name' => 'had_ultrasound_flag[]', 'value' => $breast_screening['had_ultrasound_flag'],'checked'=>"checked"))?>
+                <input type="checkbox" name="had_ultrasound_flag[]" checked="checked" value="<?php print $breast_screening['patient_breast_screening_id']; ?>" />
                 </td>
                <?php } else {?>
                 <td>
                     <?php echo $had_ultrasound_flag; ?>: 
-                    <?php echo form_checkbox(array('name' => 'had_ultrasound_flag[]', 'value' => $breast_screening['had_ultrasound_flag']))?>
+                <input type="checkbox" name="had_ultrasound_flag[]" value="<?php print $breast_screening['patient_breast_screening_id']; ?>" />
                 </td>
                <?php } ?>
                 <td>
@@ -276,13 +276,13 @@
                 <?php if($breast_screening['abnormalities_ultrasound_flag'] == 1){?>
                 <td>
                     <?php echo $abnormalities_ultrasound_flag; ?>: 
-                    <?php echo form_checkbox(array('name' => 'abnormality_ultrasound_flag[]', 'value' => $breast_screening['abnormalities_ultrasound_flag'],'checked'=>"checked"))?>
+                <input type="checkbox" name="abnormalities_ultrasound_flag[]" checked="checked" value="<?php print $breast_screening['patient_breast_screening_id']; ?>" />
                 </td>
                <?php } else {?>
                <td>
                     <?php echo $abnormalities_ultrasound_flag; ?>: 
-                    <?php echo form_checkbox(array('name' => 'abnormality_ultrasound_flag[]', 'value' => $breast_screening['abnormalities_ultrasound_flag']))?>
-                </td>
+               <input type="checkbox" name="abnormalities_ultrasound_flag[]" value="<?php print $breast_screening['patient_breast_screening_id']; ?>" /> 
+               </td>
                <?php } ?>
             </tr>
         </table>
@@ -312,14 +312,13 @@
                 <td>
 
                     <?php echo $had_MRI_flag; ?>: 
-                    <?php echo form_checkbox(array('name' => 'had_mri_flag[]', 'value' => $breast_screening['had_mri_flag'],'checked'=>"checked"))?>
+                <input type="checkbox" name="had_mri_flag[]" checked="checked" value="<?php print $breast_screening['patient_breast_screening_id']; ?>" />
                 </td>
                <?php } else {?>
                <td>
-
                     <?php echo $had_MRI_flag; ?>: 
-                    <?php echo form_checkbox(array('name' => 'had_mri_flag[]', 'value' => $breast_screening['had_mri_flag']))?>
-                </td>
+               <input type="checkbox" name="had_mri_flag[]" value="<?php print $breast_screening['patient_breast_screening_id']; ?>" /> 
+               </td>
                <?php } ?>
                 
                 <td>
@@ -329,13 +328,13 @@
                 <?php if($breast_screening['abnormalities_MRI_flag'] == 1){?>
                 <td>
                     <?php echo $abnormalities_MRI_flag; ?>: 
-                    <?php echo form_checkbox(array('name' => 'abnormalities_MRI_flag[]', 'value' => $breast_screening['abnormalities_MRI_flag'],'checked'=>"checked"))?>
+                <input type="checkbox" name="abnormalities_MRI_flag[]" checked="checked" value="<?php print $breast_screening['patient_breast_screening_id']; ?>" />
                 </td>
                <?php } else {?>
                <td>
                     <?php echo $abnormalities_MRI_flag; ?>: 
-                    <?php echo form_checkbox(array('name' => 'abnormalities_MRI_flag[]', 'value' => $breast_screening['abnormalities_MRI_flag']))?>
-                </td>
+               <input type="checkbox" name="abnormalities_MRI_flag[]" value="<?php print $breast_screening['patient_breast_screening_id']; ?>" /> 
+               </td>
                <?php } ?>
                 
             </tr>
@@ -352,6 +351,7 @@
                 </td>
             </tr>
             <input type="hidden" name="patient_ic_no" value="<?php print $breast_screening['patient_ic_no']; ?>"/>
+            <input type="hidden" name="patient_studies_id" value="<?php print $breast_screening['patient_studies_id']; ?>"/>
             <input type="hidden" name="patient_breast_screening_id[]" value="<?php print $breast_screening['patient_breast_screening_id']; ?>"/>
             <input type="hidden" name="patient_breast_abnormality_side_id[]" value="<?php print $breast_screening['patient_breast_abnormality_side_id']; ?>"/>
             <input type="hidden" name="patient_ultra_abn[]" value="<?php print $breast_screening['patient_ultra_abn']; ?>"/>
@@ -448,13 +448,13 @@
                     <?php if($risk_reducing_surgery['had_new_lesion_surgery_flag'] == 1){?>
                     <td>
                         <?php echo $had_new_risk_reducing_surgery; ?>: 
-                        <?php echo form_checkbox(array('name' => 'had_new_risk_reducing_surgery[]', 'value' => $risk_reducing_surgery['had_new_lesion_surgery_flag'],'checked'=>"checked"))?>
+                    <input type="checkbox" name="had_new_risk_reducing_surgery[]" checked="checked" value="<?php print $risk_reducing_surgery['patient_risk_reducing_surgery_id']; ?>" />
                     </td>
                <?php } else {?>
                <td>
                         <?php echo $had_new_risk_reducing_surgery; ?>: 
-                        <?php echo form_checkbox(array('name' => 'had_new_risk_reducing_surgery[]', 'value' => $risk_reducing_surgery['had_new_lesion_surgery_flag']))?>
-                    </td>
+               <input type="checkbox" name="had_new_risk_reducing_surgery[]" value="<?php print $risk_reducing_surgery['patient_risk_reducing_surgery_id']; ?>" />     
+               </td>
                <?php } ?>
                 </tr>
             </table>
@@ -477,13 +477,13 @@
                     <?php if($risk_reducing_surgery['had_complete_removal_surgery_flag'] == 1){?>
                     <td>
                         <?php echo $had_new_complete_removal_surgery; ?>: 
-                        <?php echo form_checkbox(array('name' => 'had_new_complete_removal_surgery[]', 'value' => $risk_reducing_surgery['had_complete_removal_surgery_flag'],'checked'=>"checked"))?>
+                    <input type="checkbox" name="had_new_complete_removal_surgery[]" checked="checked" value="<?php print $risk_reducing_surgery['patient_risk_reducing_surgery_id']; ?>" />
                     </td>
                <?php } else {?>
                <td>
                         <?php echo $had_new_complete_removal_surgery; ?>: 
-                        <?php echo form_checkbox(array('name' => 'had_new_complete_removal_surgery[]', 'value' => $risk_reducing_surgery['had_complete_removal_surgery_flag']))?>
-                    </td>
+               <input type="checkbox" name="had_new_complete_removal_surgery[]" value="<?php print $risk_reducing_surgery['patient_risk_reducing_surgery_id']; ?>" />     
+               </td>
                <?php } ?>
                 </tr>
             </table>
@@ -533,13 +533,13 @@
                     <?php if($ovarian_screening['is_abnormality_detected'] == 1){?>
                     <td>
                         <?php echo $physical_exam_is_abnormality_detected; ?>: 
-                        <?php echo form_checkbox(array('name' => 'physical_exam_is_abnormality_detected[]', 'value' => $ovarian_screening['is_abnormality_detected'],'checked'=>"checked"))?>
+                    <input type="checkbox" name="physical_exam_is_abnormality_detected[]" checked="checked" value="<?php print $ovarian_screening['patient_ovarian_screening_id']; ?>" />
                     </td>
                <?php } else {?>
                <td>
                         <?php echo $physical_exam_is_abnormality_detected; ?>: 
-                        <?php echo form_checkbox(array('name' => 'physical_exam_is_abnormality_detected[]', 'value' => $ovarian_screening['is_abnormality_detected']))?>
-                    </td>
+               <input type="checkbox" name="physical_exam_is_abnormality_detected[]" value="<?php print $ovarian_screening['patient_ovarian_screening_id']; ?>" />     
+               </td>
                <?php } ?>
                 </tr>
                 <tr>
