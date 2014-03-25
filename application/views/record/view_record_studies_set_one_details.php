@@ -56,10 +56,18 @@
                     <?php echo $age_at_recent__mammogram; ?>: 
                     <?php echo form_input(array('name' => 'age_of_recent_mammogram[]', 'value' => $breast_screening['age_of_recent_mammogram'])) ?>
                 </td>
+                
+                <?php if(!empty($breast_screening['screening_center_of_recent_mammogram'])) { ?>
                 <td>
                     <?php echo $screening_center_at_recent_mammogram; ?>: 
                     <?php echo form_input(array('name' => 'screening_center_of_recent_mammogram[]', 'value' => $breast_screening['screening_center_of_recent_mammogram'])) ?>
                 </td>
+                <?php } else { ?>
+                <td>
+                    <?php echo $screening_center_at_recent_mammogram; ?>: 
+                    <?php echo form_input(array('name' => 'screening_center_of_recent_mammogram[]', 'value' => $breast_screening['screening_centre'])) ?>
+                </td>
+                <?php } ?>
             </tr>
             <tr>
                 <td>
