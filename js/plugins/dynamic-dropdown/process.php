@@ -162,6 +162,9 @@
                         case 'reason_mammo':
                                 $data['reason_mammo'] = $text;
                                 break;
+                        case 'relative_degrees':
+                                $data['relative_degrees'] = $text;
+                                break;
 				
 		}
 		

@@ -5568,7 +5568,7 @@ class Record extends CI_Controller {
                     $data['cancer_name'] = $this->record_model->get_cancer_by_id();
                     $data['relative'] = $this->record_model->get_relative_by_id();
                     $data['relationship'] = $this->record_model->get_relationship_list();
-                    $data['relative_degrees'] = $this->record_model->get_relative_degrees_list();
+//                    $data['relative_degrees'] = $this->record_model->get_relative_degrees_list();
                     
                      $this->load->view('export/family_tab',$data);
                      

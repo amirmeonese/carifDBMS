@@ -40,6 +40,9 @@
 						<option value="status_source">Status Source</option>
 						<option value="alive_status">Alive Status</option>
 					</optgroup>
+                                        <optgroup label="Family">
+						<option value="relative_degrees">Relative Degrees</option>
+					</optgroup>
 					<optgroup label="Diagnosis">
 						<option value="patient_cancer_name_lists">Cancer Names</option>
 						<option value="cancer_site">Cancer Sites</option>

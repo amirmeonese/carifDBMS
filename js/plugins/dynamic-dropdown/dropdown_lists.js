@@ -214,6 +214,9 @@ $( document ).ready(function() {
                                 case 'reason_mammo':
                                         vals = data.reason_mammo.split(",");
                                         break;
+                                case 'relative_degrees':
+                                        vals = data.relative_degrees.split(",");
+                                break;
 				case 'base':
 					vals = ['Please choose from above'];
 			}
@@ -406,6 +409,9 @@ $( document ).ready(function() {
 						break;
                                         case 'reason_mammo':
                                                 vals = data.reason_mammo.split(",");
+                                                break;
+                                        case 'relative_degrees':
+                                        vals = data.relative_degrees.split(",");
                                                 break;
 				}
 				
@@ -629,6 +635,9 @@ $( document ).ready(function() {
 						break;
                                         case 'reason_mammo':
                                                 vals = data.reason_mammo.split(",");
+                                                break;
+                                        case 'relative_degrees':
+                                                vals = data.relative_degrees.split(",");
                                                 break;
 				}
 				
@@ -868,6 +877,9 @@ $( document ).ready(function() {
                                         break;
                                 case 'reason_mammo':
                                         vals = data.reason_mammo.split(",");
+                                        break;
+                                case 'relative_degrees':
+                                        vals = data.relative_degrees.split(",");
                                         break;
 				case 'base':
 					vals = ['Please choose from above'];

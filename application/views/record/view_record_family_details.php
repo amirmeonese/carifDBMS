@@ -340,7 +340,7 @@
                 </td>
                 <td>
                     <?php echo 'Degree of relativeness' ?>: 
-                    <?php echo form_dropdown('degreeOfRelativeness[]', $relative_degrees, $others['degree_of_relativeness'], 'id="degreeOfRelativeness" preload_val="'.$others['degree_of_relativeness'].'"'); ?>
+                    <?php echo form_dropdown('degreeOfRelativeness[]', $relative_degrees, $others['degree_of_relativeness'], 'id="relative_degrees" preload_val="'.$others['degree_of_relativeness'].'"'); ?>
                 </td>
             </tr>
             <tr>
