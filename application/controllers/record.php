@@ -2108,10 +2108,18 @@ class Record extends CI_Controller {
         $studies_name = $this->input->post('studies_name');
         $hospital_no = $this->input->post('hospital_no');
         $patient_no = $this->input->post('patient_no');
-        $studies_id = $this->record_model->get_studies_id($studies_name);
+        $studies = $this->record_model->get_studies_id($studies_name);
         $name = $this->input->post('patient_name');
         $IC_no = $this->input->post('IC_no');
-
+        
+        if(!empty($studies)){
+            
+           $studies_id = $studies;
+        } else {
+            
+           $studies_id = ''; 
+        }
+        
 
         if ($this->input->post('search')) {
 
@@ -2131,7 +2139,7 @@ class Record extends CI_Controller {
                 'studies_name' => $studies_id
             );
         }
-
+        
         if (!empty($name)) {
 
 
@@ -2173,6 +2181,7 @@ class Record extends CI_Controller {
 
             $private_no = 0;
         }
+        
 
         $limit = 30;
         $allResult = $this->Record_model->getPatientList($data_search_key);
@@ -2263,11 +2272,10 @@ class Record extends CI_Controller {
         );
 
 
-
         $limit = 30;
         $allResult = $this->Record_model->getPatientList($data_search_key);
         $config['total_rows'] = count($allResult);
-        $config['base_url'] = site_url('record/patient_record_list_searched' . '/' . $name . '/' . $IC_no . '/' . $studies_name . '/' . $hospital_no . '/' . $private_no);
+        $config['base_url'] = site_url('record/patient_record_list_searched' . '/' . $name . '/' . $IC_no . '/' . $studies_name . '/' . $hospital_no . '/' . $patient_no);
         //$config['base_url'] = site_url('record/patient_record_list_searched'.'/'.$patient_name.'/'.$IC_no);
         $config['per_page'] = $limit;
         $config["uri_segment"] = 8;
