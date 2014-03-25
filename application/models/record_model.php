@@ -593,6 +593,9 @@ class Record_model extends CI_Model {
         $data['father_comments'] = 'Comments';
         $data['father_mach_score_past_consent'] = 'Mach score past consent';
         $data['father_FH_category'] = 'FH category';
+        $data['relative_degrees'] = array(
+			'Dynamic Dropdown' => 'Dynamic Dropdown'
+        );
 		
         $data['mother_fullname'] = 'Fullname';
         $data['mother_surname'] = 'Surname';
@@ -2797,6 +2800,7 @@ function update_checkbox($id,$field,$where,$table) {
 
         $this->db->where_in($where, $id);
         $this->db->update($table, $data);
+        
     }
     
     function update_checkbox_uncheck($id,$id1,$where1,$field,$where,$table) {
@@ -2810,7 +2814,7 @@ function update_checkbox($id,$field,$where,$table) {
         $this->db->where_in("$where1 NOT", $id1);
         }
         $this->db->update($table, $data);
-        
+                
         }
 
 }
