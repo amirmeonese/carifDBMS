@@ -408,7 +408,7 @@
                 </td>
                 <td>
                     <?php echo $date_period_stops; ?>: <br />
-                    <?php echo form_input(array('name' => 'date_period_stops', 'value' => @$menstruation['date_period_stops'] == '0000-00-00' ? '00-00-0000'  : date('d-m-Y', strtotime(@$menstruation['date_period_stops'])), 'class' => 'datepicker'))?>
+                    <?php echo form_input(array('name' => 'date_period_stops', 'value' => @$menstruation['date_period_stops'], 'class' => 'datepicker'))?>
                 </td>
                 <td>
                     <?php echo $reason_period_stops; ?>: <br />
