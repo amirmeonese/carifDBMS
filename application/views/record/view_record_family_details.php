@@ -27,24 +27,24 @@
                 <?php if($list['is_adopted'] == 1){?>
                <td>
                     <?php echo $mother_unknown_reason_is_adopted; ?>: 
-                    <?php echo form_checkbox(array('name' => 'mother_unknown_reason_is_adopted[]', 'value' => $list['is_adopted'],'checked'=>"checked"))?>
-                </td>
+               <input type="checkbox" name="mother_unknown_reason_is_adopted[]" checked="checked" value="<?php print $list['patient_relatives_id']; ?>" /> 
+               </td>
                <?php } else {?>
                 <td>
                     <?php echo $mother_unknown_reason_is_adopted; ?>: 
-                    <?php echo form_checkbox(array('name' => 'mother_unknown_reason_is_adopted[]', 'value' => $list['is_adopted']))?>
+                <input type="checkbox" name="mother_unknown_reason_is_adopted[]" value="<?php print $list['patient_relatives_id']; ?>" />
                 </td>
                <?php } ?>
                
                    <?php if($list['is_in_other_country'] == 1){?>
                 <td>
                     <?php echo $mother_unknown_reason_in_other_countries; ?>: 
-                    <?php echo form_checkbox(array('name' => 'mother_unknown_reason_in_other_countries[]', 'value' => $list['is_in_other_country'],'checked'=>"checked"))?>
+                <input type="checkbox" name="mother_unknown_reason_in_other_countries[]" checked="checked" value="<?php print $list['patient_relatives_id']; ?>" />
                 </td>
                <?php } else {?>
                 <td>
                     <?php echo $mother_unknown_reason_in_other_countries; ?>: 
-                    <?php echo form_checkbox(array('name' => 'mother_unknown_reason_in_other_countries[]', 'value' => $list['is_in_other_country']))?>
+                <input type="checkbox" name="mother_unknown_reason_in_other_countries[]" value="<?php print $list['patient_relatives_id']; ?>" />
                 </td>
                <?php } ?>
             </tr>
@@ -64,12 +64,12 @@
                 <?php if($list['is_alive_flag'] == 1){?>
                  <td>
                     <?php echo $mother_still_alive_flag; ?>: 
-                    <?php echo form_checkbox(array('name' => 'mother_still_alive_flag[]', 'value' => $list['is_alive_flag'],'checked'=>"checked"))?>
+                    <input type="checkbox" name="mother_still_alive_flag[]" checked="checked" value="<?php print $list['patient_relatives_id']; ?>" />
                 </td>
                <?php } else {?>
                 <td>
                     <?php echo $mother_still_alive_flag; ?>: 
-                    <?php echo form_checkbox(array('name' => 'mother_still_alive_flag[]', 'value' => $list['is_alive_flag']))?>
+                    <input type="checkbox" name="mother_still_alive_flag[]" value="<?php print $list['patient_relatives_id']; ?>" />
                 </td>
                <?php } ?>
             </tr>
@@ -81,12 +81,12 @@
                  <?php if($list['is_cancer_diagnosed'] == 1){?>
                  <td>
                     <?php echo $mother_is_cancer_diagnosed; ?>: 
-                    <?php echo form_checkbox(array('name' => 'mother_is_cancer_diagnosed[]', 'value' => $list['is_cancer_diagnosed'],'checked'=>"checked"))?>
-                </td>
+                <input type="checkbox" name="mother_is_cancer_diagnosed[]" checked="checked" value="<?php print $list['patient_relatives_id']; ?>" />
+                 </td>
                <?php } else {?>
                 <td>
                     <?php echo $mother_is_cancer_diagnosed; ?>: 
-                    <?php echo form_checkbox(array('name' => 'mother_is_cancer_diagnosed[]', 'value' => $list['is_cancer_diagnosed']))?>
+                <input type="checkbox" name="mother_is_cancer_diagnosed[]" value="<?php print $list['patient_relatives_id']; ?>" />
                 </td>
                <?php } ?>
             </tr>
@@ -155,7 +155,7 @@
                 </td>
                 </td>
             </tr>
-            <input type="hidden" name="mother_relatives_id" value="<?php print $list['patient_relatives_id']; ?>"/>
+            <input type="hidden" name="mother_relatives_id[]" value="<?php print $list['patient_relatives_id']; ?>"/>
         </table>
         <?php endforeach; ?>
     </div>
@@ -175,26 +175,26 @@
                     <?php echo $father_maiden_name; ?>: 
                     <?php echo form_input(array('name' => 'father_maiden_name[]', 'value' => $father['maiden_name']))?>
                 </td>
-                <?php if($list['is_adopted'] == 1){?>
+                <?php if($father['is_adopted'] == 1){?>
                 <td>
                     <?php echo $father_unknown_reason_is_adopted; ?>: 
-                    <?php echo form_checkbox(array('name' => 'father_unknown_reason_is_adopted[]', 'value' => $father['is_adopted'],'checked'=>"checked"))?>
+                <input type="checkbox" name="father_unknown_reason_is_adopted[]" checked="checked" value="<?php print $father['patient_relatives_id']; ?>" />
                 </td>
                <?php } else {?>
                 <td>
                     <?php echo $father_unknown_reason_is_adopted; ?>: 
-                    <?php echo form_checkbox(array('name' => 'father_unknown_reason_is_adopted[]', 'value' => $father['is_adopted']))?>
+                <input type="checkbox" name="father_unknown_reason_is_adopted[]" value="<?php print $father['patient_relatives_id']; ?>" />
                 </td>
                <?php } ?>
-                <?php if($list['is_in_other_country'] == 1){?>
+                <?php if($father['is_in_other_country'] == 1){?>
                 <td>
                     <?php echo $father_unknown_reason_in_other_countries; ?>: 
-                    <?php echo form_checkbox(array('name' => 'father_unknown_reason_in_other_countries[]', 'value' => $father['is_in_other_country'],'checked'=>"checked"))?>
+                <input type="checkbox" name="father_unknown_reason_in_other_countries[]" checked="checked" value="<?php print $father['patient_relatives_id']; ?>" />
                 </td>
                <?php } else {?>
                 <td>
                     <?php echo $father_unknown_reason_in_other_countries; ?>: 
-                    <?php echo form_checkbox(array('name' => 'father_unknown_reason_in_other_countries[]', 'value' => $father['is_in_other_country']))?>
+                <input type="checkbox" name="father_unknown_reason_in_other_countries[]" value="<?php print $father['patient_relatives_id']; ?>" />
                 </td>
                <?php } ?>
             </tr>
@@ -214,12 +214,12 @@
                 <?php if($list['is_alive_flag'] == 1){?>
                 <td>
                     <?php echo $father_still_alive_flag; ?>: 
-                    <?php echo form_checkbox(array('name' => 'father_still_alive_flag[]', 'value' => $father['is_alive_flag'],'checked'=>"checked"))?>
+                <input type="checkbox" name="father_still_alive_flag[]" checked="checked" value="<?php print $father['patient_relatives_id']; ?>" />
                 </td>
                <?php } else {?>
                 <td>
                     <?php echo $father_still_alive_flag; ?>: 
-                    <?php echo form_checkbox(array('name' => 'father_still_alive_flag[]', 'value' => $father['is_alive_flag']))?>
+                <input type="checkbox" name="father_still_alive_flag[]" value="<?php print $father['patient_relatives_id']; ?>" />
                 </td>
                <?php } ?>
             </tr>
@@ -228,16 +228,16 @@
                     <?php echo $father_DOD; ?>: 
                     <?php echo form_input(array('name' => 'father_DOD[]', 'value' => $father['d_o_d'] == '0000-00-00' ? '00-00-0000'  : date('d-m-Y', strtotime($father['d_o_d'])),'class'=>'datepicker'))?>
                 </td>
-                <?php if($list['is_cancer_diagnosed'] == 1){?>
+                <?php if($father['is_cancer_diagnosed'] == 1){?>
                 <td>
                     <?php echo $father_is_cancer_diagnosed; ?>: 
-                    <?php echo form_checkbox(array('name' => 'father_is_cancer_diagnosed[]', 'value' => $father['is_cancer_diagnosed'],'checked'=>"checked"))?>
+                <input type="checkbox" name="father_is_cancer_diagnosed[]" checked="checked" value="<?php print $father['patient_relatives_id']; ?>" />
                 </td>
                <?php } else {?>
                <td>
                     <?php echo $father_is_cancer_diagnosed; ?>: 
-                    <?php echo form_checkbox(array('name' => 'father_is_cancer_diagnosed[]', 'value' => $father['is_cancer_diagnosed']))?>
-                </td>
+               <input type="checkbox" name="father_is_cancer_diagnosed[]" value="<?php print $father['patient_relatives_id']; ?>" /> 
+               </td>
                <?php } ?>
             </tr>
             </table>
@@ -305,7 +305,7 @@
                 </td>
             </tr>
             <input type="hidden" name="patient_ic_no" value="<?php print $father['patient_ic_no']; ?>"/>
-            <input type="hidden" name="father_relatives_id" value="<?php print $father['patient_relatives_id']; ?>"/>
+            <input type="hidden" name="father_relatives_id[]" value="<?php print $father['patient_relatives_id']; ?>"/>
         </table>
         <?php echo form_fieldset_close(); ?>
         <?php endforeach; ?>
@@ -375,13 +375,13 @@
                 <tr>
                 <?php if($others['is_alive_flag'] == 1){?>
                 <td>
-                    <?php echo $father_still_alive_flag; ?>: 
-                    <?php echo form_checkbox(array('name' => 'relative_still_alive_flag[]', 'value' => $others['is_alive_flag'],'checked'=>"checked"))?>
+                    <?php echo $father_still_alive_flag; ?>:
+                    <input type="checkbox" name="relative_still_alive_flag[]" checked="checked" value="<?php print $others['patient_relatives_id']; ?>" />
                 </td>
                <?php } else {?>
                 <td>
                     <?php echo $father_still_alive_flag; ?>: 
-                    <?php echo form_checkbox(array('name' => 'relative_still_alive_flag[]', 'value' => $others['is_alive_flag']))?>
+                    <input type="checkbox" name="relative_still_alive_flag[]" value="<?php print $others['patient_relatives_id']; ?>" />
                 </td>
                <?php } ?>
                 <td>
@@ -391,12 +391,12 @@
                 <?php if($others['is_cancer_diagnosed'] == 1){?>
                 <td>
                     <?php echo $father_is_cancer_diagnosed; ?>: 
-                    <?php echo form_checkbox(array('name' => 'relative_is_cancer_diagnosed[]', 'value' => $others['is_cancer_diagnosed'],'checked'=>"checked"))?>
+                    <input type="checkbox" name="relative_is_cancer_diagnosed[]" checked="checked" value="<?php print $others['patient_relatives_id']; ?>" />
                 </td>
                <?php } else {?>
                <td>
-                    <?php echo $father_is_cancer_diagnosed; ?>: 
-                    <?php echo form_checkbox(array('name' => 'relative_is_cancer_diagnosed[]', 'value' => $others['is_cancer_diagnosed']))?>
+                    <?php echo $father_is_cancer_diagnosed; ?>:
+                    <input type="checkbox" name="relative_is_cancer_diagnosed[]"  value="<?php print $others['patient_relatives_id']; ?>" />
                 </td>
                <?php } ?>
             </tr>
@@ -438,7 +438,7 @@
                 </td>
             </tr>
             <input type="hidden" name="patient_ic_no" value="<?php print $others['patient_ic_no']; ?>"/>
-            <input type="hidden" name="others_relatives_id" value="<?php print $others['patient_relatives_id']; ?>"/>
+            <input type="hidden" name="others_relatives_id[]" value="<?php print $others['patient_relatives_id']; ?>"/>
         </table>
         <?php echo form_fieldset_close(); ?>
         <?php endforeach; ?>

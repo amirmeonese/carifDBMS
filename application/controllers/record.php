@@ -1819,7 +1819,7 @@ class Record extends CI_Controller {
 //                    'is_alive_flag' => $is_alive_flag[$i],
                     'd_o_d' => $d_o_d[$i] == '00-00-0000' ? '0000-00-00' : date("Y-m-d", strtotime($d_o_d[$i])),
 //                    'is_cancer_diagnosed' => $is_cancer_diagnosed[$i],
-                    'date_of_diagnosis' => $date_of_diagnosis == '00-00-0000' ? '0000-00-00' : date("Y-m-d", strtotime($date_of_diagnosis)),
+                    'date_of_diagnosis' => $date_of_diagnosis[$i] == '00-00-0000' ? '0000-00-00' : date("Y-m-d", strtotime($date_of_diagnosis[$i])),
                     'cancer_type_id' => $father_cancer_type_id,
                     'age_of_diagnosis' => $age_of_diagnosis[$i],
                     'other_detail' => $other_detail[$i],

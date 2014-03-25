@@ -373,11 +373,7 @@
 		<div id='parity_section_div_1'>
         <table id="pregnancy_section_1">
             <tr>
-                <td>
-                    <?php echo $never_been_pregnant_flag; ?>: 
-                    <?php echo form_checkbox('never_been_pregnant_flag', '1', FALSE); ?>
-                </td>
-				  <td>
+		<td>
                     <?php echo $pregnant_flag; ?>: 
                     <?php echo form_checkbox('pregnant_flag', '1', FALSE); ?>
                 </td>
