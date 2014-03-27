@@ -109,6 +109,33 @@ class Admin_model extends CI_Model {
             return true;
         }
     }
+    
+    function user_details_searched($username,$email=NULL){
+        
+    $this->db->from('users');
+    $this->db->where('username',$username);
+    if(!empty($email)){
+    $this->db->where('email',$email);
+    }
+    $user_list = $this->db->get('');
+    $list_user_detail = $user_list->result_array();
+    $user_list->free_result();
+    
+//    echo $this->db->last_query();exit;
+    return $list_user_detail;        
+    }
+    
+    function user_details(){
+        
+    $this->db->from('users');
+    $user_list = $this->db->get('');
+    $list_user_detail = $user_list->result_array();
+    $user_list->free_result();
+    
+    //print_r($list_patient_lifestyle);exit;
+
+    return $list_user_detail;        
+    }
 
 }
 

@@ -268,6 +268,25 @@ class Admin extends CI_Controller {
         $this->template->load("templates/admin_panel_template", 'admin/submit_report', $data);
     }
 
+    function user_list_record($message=NULL) {
+
+        $this->load->model('Record_model');
+        $data = $this->Record_model->general();
+        $username = $this->input->post('user_name');
+        $user_email = $this->input->post('user_email');
+        
+        
+        if ($this->input->post('search')) {
+            
+          $data['user_details']= $this->admin_model->user_details_searched($username,$user_email);
+            
+        }        
+        $data['user_details']= $this->admin_model->user_details();
+        $data['message']= $message;
+
+        $this->template->load("templates/admin_panel_template", 'admin/list_record_user_details', $data);
+    }
+    
     function create_new_user() {
 
         $this->load->model('Record_model');
@@ -275,6 +294,65 @@ class Admin extends CI_Controller {
 
         $this->template->load("templates/admin_panel_template", 'admin/add_record_admin_detail', $data);
     }
+    
+    function view_user($username,$message=NULL) {
+
+        $this->load->model('Record_model');
+        $data = $this->Record_model->general();
+        
+        $data['user_details']= $this->admin_model->user_details_searched($username);
+        
+        $data['mesagge']= $message;
+
+        $this->template->load("templates/admin_panel_template", 'admin/view_record_admin_detail', $data);
+    }
+    
+    function user_updated() {
+
+        $this->load->model('Record_model');
+        $data = $this->Record_model->general();
+        $username = $this->input->post('username');
+
+        $data_user_admin = array(
+            'email' => $this->input->post('admin_email'),
+            'first_name' => $this->input->post('admin_firstname'),
+            'last_name' => $this->input->post('admin_lastname'),
+            'add_privilege' => $this->input->post('add_privilege'),
+            'view_privilege' => $this->input->post('view_privilege'),
+            'edit_privilege' => $this->input->post('edit_privilege'),
+            'delete_privilege' => $this->input->post('delete_privilege')
+        );
+
+//        print_r($data_user_admin);exit;
+
+        $this->db->where('username', $username);
+        $this->db->update('users', $data_user_admin);
+        
+        if ($this->db->affected_rows() > 0) {
+            $message = 'Update successfully';
+        } else {
+            $message = 'No update data';
+        }
+        echo '<br/>';
+        
+        $this->view_user($username,$message);
+    }
+    
+    function user_deleted($username){
+        
+            $this->db->where('username', $username);
+            $this->db->delete('users');
+            
+            if ($this->db->affected_rows() > 0) {
+            $message = 'Delete successfully';
+        } else {
+            $message = 'No delete data';
+        }
+        echo '<br/>';
+        
+        redirect('admin/user_list_record');
+        
+    } 
 
     function customize_form() {
 

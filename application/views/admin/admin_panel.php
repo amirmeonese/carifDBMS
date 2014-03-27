@@ -6,37 +6,37 @@
         <div height="50px">&nbsp;</div>
             <div class="span3">
 
-                <form name="submit_report" action="admin/submit_report_form" method="post">
+                <form name="submit_report" action="<?php echo site_url('admin/submit_report_form') ?>" method="post">
                     <input type ="image" src="<?php echo base_url(); ?>img/submit_report.png" alt="submit_report_button" height="120px"></input>
                 </form> 
             </div>
             <div class="span3">
 
-                <form name="add_record" action="admin/create_new_user" method="post">
+                <form name="add_record" action="<?php echo site_url('admin/user_list_record') ?>" method="post">
                     <input type ="image" src="<?php echo base_url(); ?>img/create_user.png" alt="add_new_form_button" height="120px"></input>
                 </form>        
             </div>
             <div class="span3">
 
-                <form name="add_record" action="admin/customize_form" method="post">
+                <form name="add_record" action="<?php echo site_url('admin/customize_form') ?>" method="post">
                     <input type ="image" src="<?php echo base_url(); ?>img/customize_form.png" alt="add_new_form_button" height="120px"></input>
                 </form>
             </div>
             <div class="span3">
 
-                <form name="add_record" action="admin/list_record_locked_item" method="post">
+                <form name="add_record" action="<?php echo site_url('admin/list_record_locked_item') ?>" method="post">
                     <input type ="image" src="<?php echo base_url(); ?>img/view_locked_item.png" alt="add_new_form_button" height="120px"></input>
                 </form> 
             </div>
             <div class="span3">
 
-                <form name="add_record" action="admin/list_error_item" method="post">
+                <form name="add_record" action="<?php echo site_url('admin/list_error_item') ?>" method="post">
                     <input type ="image" src="<?php echo base_url(); ?>img/view_error_log.png" alt="add_new_form_button" height="120px"></input>
                 </form> 
             </div>
             <div class="span3">
 
-                <form name="add_record" action="admin/deletion_history" method="post">
+                <form name="add_record" action="<?php echo site_url('admin/deletion_history') ?>" method="post">
                     <input type ="image" src="<?php echo base_url(); ?>img/deletion_history.png" alt="add_new_form_button" height="120px"></input>
                 </form> 
             </div>

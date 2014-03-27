@@ -31,7 +31,8 @@ header("Expires: 0");
                     <th style="background-color:Crimson;">Reason of death</th>
                     <th style="background-color:Crimson;">Hospital No (MRN)</th>
                     <th style="background-color:Crimson;">Private Patient No</th>
-                    <th style="background-color:Crimson;">Study no</th>
+                    <th style="background-color:Crimson;">COGS Study no</th>
+                    <th style="background-color:Crimson;">COGS Study no</th>
                     <th style="background-color:Crimson;">Blood card exist</th>
                     <th style="background-color:Crimson;">Blood card location</th>
                     <th style="background-color:Crimson;">Address</th>
@@ -41,7 +42,6 @@ header("Expires: 0");
                     <th style="background-color:Crimson;">Other phone</th>
                     <th style="background-color:Crimson;">Fax</th>
                     <th style="background-color:Crimson;">Email</th>
-                    <th style="background-color:Crimson;">Officer Email Address</th>
                     <th style="background-color:Crimson;">Highest level of education</th>
                     <th style="background-color:Crimson;">Weight</th>
                     <th style="background-color:Crimson;">Height</th>
