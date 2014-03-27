@@ -37,8 +37,8 @@ class Model_Personal extends CI_Model {
                     $data_patient_update = null;
                     $data_patient_hospital_no_update = array();
                     $data_patient_hospital_no_update = null;
-                    $data_patient_private_no_update = array();
-                    $data_patient_private_no_update = null;
+                    /*$data_patient_private_no_update = array();
+                    $data_patient_private_no_update = null;*/
                     $data_patient_cogs_studies_update = array();
                     $data_patient_cogs_studies_update = null;
                     $data_patient_contact_person_update = array();
@@ -50,8 +50,8 @@ class Model_Personal extends CI_Model {
 
                     $data_patient_hospital_no = array();
                     $data_patient_hospital_no = null;
-                    $data_patient_private_no = array();
-                    $data_patient_private_no = null;
+                    /*$data_patient_private_no = array();
+                    $data_patient_private_no = null;*/
                     $data_patient_cogs_studies = array();
                     $data_patient_cogs_studies = null;
                     $data_patient_contact_person = array();
@@ -174,11 +174,11 @@ class Model_Personal extends CI_Model {
                         else
                             $is_dead = 2;
 
-                        if(strtoupper($temp1[47]) == 'ALIVE' || strpos(strtoupper($temp1[47]), 'H') !== false || 
-                                strpos(strtoupper($temp1[47]), 'Y') !== false)
+                        if(strtoupper($temp1[46]) == 'ALIVE' || strpos(strtoupper($temp1[46]), 'H') !== false || 
+                                strpos(strtoupper($temp1[46]), 'Y') !== false)
                             $alive_status = TRUE;
-                        else if(strpos(strtoupper($temp1[47]), 'D') !== false || strpos(strtoupper($temp1[47]), 'M') !== false
-                                || strpos(strtoupper($temp1[47]), 'N') !== false)
+                        else if(strpos(strtoupper($temp1[46]), 'D') !== false || strpos(strtoupper($temp1[46]), 'M') !== false
+                                || strpos(strtoupper($temp1[46]), 'N') !== false)
                             $alive_status = FALSE;
                         else
                             $alive_status = 2;
@@ -200,24 +200,24 @@ class Model_Personal extends CI_Model {
                                 'place_of_birth' => $temp1[9],
                                 'marital_status' => $temp1[10],
                                 'blood_group' => $temp1[11],
-                                'comment' => $temp1[36],
+                                'comment' => $temp1[35],
                                 'is_dead' => $is_dead,
                                 'd_o_d' => $temp1[13],
                                 'reason_of_death' => $temp1[14],
-                                'blood_card' => $temp1[19],
-                                'blood_card_location' => $temp1[20],
-                                'address' => $temp1[21],
-                                'home_phone' => $temp1[22],
-                                'cell_phone' => $temp1[23],
-                                'work_phone' => $temp1[24],
-                                'other_phone' => $temp1[25],
-                                'fax' => $temp1[26],
-                                'email' => $temp1[27],
-                                'height' => $temp1[29],
-                                'weight' => $temp1[30],
-                                'bmi' => $temp1[31],
-                                'highest_education_level' => $temp1[28],
-                                'income_level' => $temp1[32],
+                                'blood_card' => $temp1[18],
+                                'blood_card_location' => $temp1[19],
+                                'address' => $temp1[20],
+                                'home_phone' => $temp1[21],
+                                'cell_phone' => $temp1[22],
+                                'work_phone' => $temp1[23],
+                                'other_phone' => $temp1[24],
+                                'fax' => $temp1[25],
+                                'email' => $temp1[26],
+                                'height' => $temp1[28],
+                                'weight' => $temp1[29],
+                                'bmi' => $temp1[30],
+                                'highest_education_level' => $temp1[27],
+                                'income_level' => $temp1[31],
                                 'created_on' => $created_date
                             );
                             $data_patient_hospital_no_update[] = array(
@@ -226,46 +226,46 @@ class Model_Personal extends CI_Model {
                                 'created_on' => $created_date
                             );
 
-                            $data_patient_private_no_update[] = array(
+                            /*$data_patient_private_no_update[] = array(
                                 'patient_ic_no' => $temp1[5],
                                 'private_no' => $temp1[16],
                                 'created_on' => $created_date
-                            );
+                            );*/
 
                             $data_patient_cogs_studies_update[] = array(
                                 'patient_ic_no' => $temp1[5],
-                                'COGS_studies_name' => $temp1[17],
-                                'COGS_studies_no' => $temp1[18],
+                                'COGS_studies_name' => $temp1[16],
+                                'COGS_studies_no' => $temp1[17],
                                 'created_on' => $created_date
                             );
 
                             $data_patient_contact_person_update[] = array(
                                 'patient_ic_no' => $temp1[5],
-                                'contact_name' => $temp1[33],
-                                'contact_relationship' => $temp1[35],
-                                'contact_telephone' => $temp1[34],
+                                'contact_name' => $temp1[32],
+                                'contact_relationship' => $temp1[34],
+                                'contact_telephone' => $temp1[33],
                                 'created_on' => $created_date
                             );
 
                             $data_patient_relatives_summary_update[] = array(
                                 'patient_ic_no' => $temp1[5],
-                                'total_no_of_male_siblings' => $temp1[37],
-                                'total_no_of_female_siblings' => $temp1[38],
-                                'total_no_of_affected_siblings' => $temp1[39],
-                                'total_no_of_male_children' => $temp1[40],
-                                'total_no_of_female_children' => $temp1[41],
-                                'total_no_of_affected_children' => $temp1[42],
-                                'total_no_of_1st_degree' => $temp1[43],
-                                'total_no_of_2nd_degree' => $temp1[44],
-                                'total_no_of_3rd_degree' => $temp1[45],
+                                'total_no_of_male_siblings' => $temp1[36],
+                                'total_no_of_female_siblings' => $temp1[37],
+                                'total_no_of_affected_siblings' => $temp1[38],
+                                'total_no_of_male_children' => $temp1[39],
+                                'total_no_of_female_children' => $temp1[40],
+                                'total_no_of_affected_children' => $temp1[41],
+                                'total_no_of_1st_degree' => $temp1[42],
+                                'total_no_of_2nd_degree' => $temp1[43],
+                                'total_no_of_3rd_degree' => $temp1[44],
                                 'created_on' => $created_date
                             );
 
                             $data_patient_survival_status_update[] = array(
                                 'patient_ic_no' => $temp1[5],
-                                'source' => $temp1[46],
+                                'source' => $temp1[45],
                                 'alive_status' => $alive_status,
-                                'status_gathering_date' => $temp1[48],
+                                'status_gathering_date' => $temp1[47],
                                 'created_on' => $created_date
                             );
                         } else {
@@ -283,24 +283,24 @@ class Model_Personal extends CI_Model {
                                 'place_of_birth' => $temp1[9],
                                 'marital_status' => $temp1[10],
                                 'blood_group' => $temp1[11],
-                                'comment' => $temp1[36],
+                                'comment' => $temp1[35],
                                 'is_dead' => $is_dead,
                                 'd_o_d' => $temp1[13],
                                 'reason_of_death' => $temp1[14],
-                                'blood_card' => $temp1[19],
-                                'blood_card_location' => $temp1[20],
-                                'address' => $temp1[21],
-                                'home_phone' => $temp1[22],
-                                'cell_phone' => $temp1[23],
-                                'work_phone' => $temp1[24],
-                                'other_phone' => $temp1[25],
-                                'fax' => $temp1[26],
-                                'email' => $temp1[27],
-                                'height' => $temp1[29],
-                                'weight' => $temp1[30],
-                                'bmi' => $temp1[31],
-                                'highest_education_level' => $temp1[28],
-                                'income_level' => $temp1[32],
+                                'blood_card' => $temp1[18],
+                                'blood_card_location' => $temp1[19],
+                                'address' => $temp1[20],
+                                'home_phone' => $temp1[21],
+                                'cell_phone' => $temp1[22],
+                                'work_phone' => $temp1[23],
+                                'other_phone' => $temp1[24],
+                                'fax' => $temp1[25],
+                                'email' => $temp1[26],
+                                'height' => $temp1[28],
+                                'weight' => $temp1[29],
+                                'bmi' => $temp1[30],
+                                'highest_education_level' => $temp1[27],
+                                'income_level' => $temp1[31],
                                 'created_on' => $created_date
                             );
 
@@ -310,46 +310,46 @@ class Model_Personal extends CI_Model {
                                 'created_on' => $created_date
                             );
 
-                            $data_patient_private_no[] = array(
+                            /*$data_patient_private_no[] = array(
                                 'patient_ic_no' => $temp1[5],
                                 'private_no' => $temp1[16],
                                 'created_on' => $created_date
-                            );
+                            );*/
 
                             $data_patient_cogs_studies[] = array(
                                 'patient_ic_no' => $temp1[5],
-                                'COGS_studies_name' => $temp1[17],
-                                'COGS_studies_no' => $temp1[18],
+                                'COGS_studies_name' => $temp1[16],
+                                'COGS_studies_no' => $temp1[17],
                                 'created_on' => $created_date
                             );
 
                             $data_patient_contact_person[] = array(
                                 'patient_ic_no' => $temp1[5],
-                                'contact_name' => $temp1[33],
-                                'contact_relationship' => $temp1[35],
-                                'contact_telephone' => $temp1[34],
+                                'contact_name' => $temp1[32],
+                                'contact_relationship' => $temp1[34],
+                                'contact_telephone' => $temp1[33],
                                 'created_on' => $created_date
                             );
 
                             $data_patient_relatives_summary[] = array(
                                 'patient_ic_no' => $temp1[5],
-                                'total_no_of_male_siblings' => $temp1[37],
-                                'total_no_of_female_siblings' => $temp1[38],
-                                'total_no_of_affected_siblings' => $temp1[39],
-                                'total_no_of_male_children' => $temp1[40],
-                                'total_no_of_female_children' => $temp1[41],
-                                'total_no_of_affected_children' => $temp1[42],
-                                'total_no_of_1st_degree' => $temp1[43],
-                                'total_no_of_2nd_degree' => $temp1[44],
-                                'total_no_of_3rd_degree' => $temp1[45],
+                                'total_no_of_male_siblings' => $temp1[36],
+                                'total_no_of_female_siblings' => $temp1[37],
+                                'total_no_of_affected_siblings' => $temp1[38],
+                                'total_no_of_male_children' => $temp1[39],
+                                'total_no_of_female_children' => $temp1[40],
+                                'total_no_of_affected_children' => $temp1[41],
+                                'total_no_of_1st_degree' => $temp1[42],
+                                'total_no_of_2nd_degree' => $temp1[43],
+                                'total_no_of_3rd_degree' => $temp1[44],
                                 'created_on' => $created_date
                             );
 
                             $data_patient_survival_status[] = array(
                                 'patient_ic_no' => $temp1[5],
-                                'source' => $temp1[46],
+                                'source' => $temp1[45],
                                 'alive_status' => $alive_status,
-                                'status_gathering_date' => $temp1[48],
+                                'status_gathering_date' => $temp1[47],
                                 'created_on' => $created_date
                             );
                         }
@@ -370,7 +370,7 @@ class Model_Personal extends CI_Model {
                     if(!$abort)//if any data is not valid
                     {
                             if (sizeof($data_patient) > 0 && sizeof($data_patient_hospital_no) > 0 
-                            && sizeof($data_patient_private_no) > 0 && sizeof($data_patient_cogs_studies) > 0 
+                            && sizeof($data_patient_cogs_studies) > 0 
                             && sizeof($data_patient_contact_person) > 0 && sizeof($data_patient_relatives_summary) > 0 
                             && sizeof($data_patient_survival_status) > 0) 
                             {
@@ -394,13 +394,13 @@ class Model_Personal extends CI_Model {
                             
                             $data_patient_hospital_no = null;
                             
-                            $id_data_patient_private_no = $this->excell_sheets_model->insert_record($data_patient_private_no, 'patient_private_no');
+                            /*$id_data_patient_private_no = $this->excell_sheets_model->insert_record($data_patient_private_no, 'patient_private_no');
 
                             if ($id_data_patient_private_no > 0)
                                 echo 'Data added succesfully at patient_private_no table';
                             else
                                 echo 'Failed to insert at patient_private_no table';
-                            echo '<br/>';
+                            echo '<br/>';*/
 
                             $id_data_patient_cogs_studies = $this->excell_sheets_model->insert_record($data_patient_cogs_studies, 'patient_cogs_studies');
 
@@ -440,7 +440,7 @@ class Model_Personal extends CI_Model {
                         }
 
                         if (sizeof($data_patient_update) > 0 && sizeof($data_patient_hospital_no_update) > 0 
-                           && sizeof($data_patient_private_no_update) > 0 && sizeof($data_patient_cogs_studies_update) > 0 
+                           && sizeof($data_patient_cogs_studies_update) > 0 
                            && sizeof($data_patient_contact_person_update) > 0 && sizeof($data_patient_relatives_summary_update) > 0 
                            && sizeof($data_patient_survival_status_update) > 0) 
                         {
@@ -460,13 +460,13 @@ class Model_Personal extends CI_Model {
                                 echo 'Updated Data at patient_hospital_no table';
                             echo '<br/>';
                             $data_patient_hospital_no_update = null;
-                            $id_data_patient_private_no = $this->db->update_batch('patient_private_no', $data_patient_private_no_update, 'patient_ic_no');
+                            /*$id_data_patient_private_no = $this->db->update_batch('patient_private_no', $data_patient_private_no_update, 'patient_ic_no');
                             if ($id_data_patient_private_no > 0)
                                 echo 'Data updated succesfully at patient_private_no table';
                             else
                                 echo 'Updated Data at patient_private_no table';
                             echo '<br/>';
-                            $data_patient_private_no_update = null;
+                            $data_patient_private_no_update = null;*/
                             $id_data_patient_cogs_studies = $this->db->update_batch('patient_cogs_studies', $data_patient_cogs_studies_update, 'patient_ic_no');
 
                             if ($id_data_patient_cogs_studies > 0)
@@ -504,14 +504,14 @@ class Model_Personal extends CI_Model {
                     $data_patient_update = null;
                     $temp1 = null;
                     $data_patient_hospital_no_update = null;
-                    $data_patient_private_no_update = null;
+                    //$data_patient_private_no_update = null;
                     $data_patient_cogs_studies_update = null;
                     $data_patient_contact_person_update = null;
                     $data_patient_relatives_summary_update = null;
                     $data_patient_survival_status_update = null;
 
                     $data_patient_hospital_no = null;
-                    $data_patient_private_no = null;
+                    //$data_patient_private_no = null;
                     $data_patient_cogs_studies = null;
                     $data_patient_contact_person = null;
                     $data_patient_relatives_summary = null;
