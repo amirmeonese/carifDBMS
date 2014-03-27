@@ -167,6 +167,7 @@ class ModelPersonal2 extends CI_Model {
                                 'referral_to' => $temp3[9],
                                 'referral_to_genetic_counselling' => $temp3[10],
                                 'referral_source' => $temp3[11],
+                                'private_no' => $temp3[12],
                                 'created_on' => $created_date
                             );
                         } else {
@@ -183,6 +184,7 @@ class ModelPersonal2 extends CI_Model {
                                 'referral_to' => $temp3[9],
                                 'referral_to_genetic_counselling' => $temp3[10],
                                 'referral_source' => $temp3[11],
+                                'private_no' => $temp3[12],
                                 'created_on' => $created_date
                             );
                         }
