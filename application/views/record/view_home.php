@@ -52,6 +52,7 @@
 				<div>
 					<a class="back_home_tab_btn" href="<?php echo site_url("record/patient_record_list"); ?>">Back to view homepage</a>
 					<a class="add_record_tab_btn" href="<?php echo site_url('record/view_record_list/personal'.'/'.$ic_no.'/'.$patient_studies_id);?>" target="iframe_record_home" >Personal</a>
+                                        <a class="add_record_tab_btn" href="<?php echo site_url('record/view_record_list/consent'.'/'.$ic_no);?>" target="iframe_record_home" >Consent Detail</a>
 					<a class="add_record_tab_btn" href="<?php echo site_url('record/view_record_list/family'.'/'.$ic_no);?>" target="iframe_record_home" >Family</a>
 					<a class="add_record_tab_btn" href="<?php echo site_url('record/view_record_list/diagnosis'.'/'.$ic_no.'/'.$patient_studies_id);?>" target="iframe_record_home" >Diagnosis & Treatment</a>
 					<a class="add_record_tab_btn" href="<?php echo site_url('record/view_record_list/studies_setOne'.'/'.$ic_no.'/'.$patient_studies_id);?>" target="iframe_record_home" >Screenings & Surveillance</a>

@@ -39,6 +39,8 @@ class Record extends CI_Controller {
 
         if ($var == 'personal')
             $this->template->load("templates/add_record_template", 'record/add_record_personal_details', $data);
+        else if ($var == 'consent')
+            $this->template->load("templates/add_record_template", 'record/add_record_consent_details', $data);
         else if ($var == 'family')
             $this->template->load("templates/add_record_template", 'record/add_record_family_details', $data);
         else if ($var == 'diagnosis')
@@ -1376,6 +1378,85 @@ class Record extends CI_Controller {
             }
         }
     }
+    
+    function patient_consent_update(){
+        
+        $patient_ic_no = $this->input->post('patient_ic_no');
+        date_default_timezone_set("Asia/Kuala_lumpur");
+        $date = date('Y-m-d H:i:s'); //Returns IST 
+        
+        $consent_studies_id = $this->input->post('studies_name');
+        $date_at_consent = $this->input->post('date_at_consent');
+        $age_at_consent = $this->input->post('age_at_consent');
+        $double_consent_flag = $this->input->post('is_double_consent_flag');
+        $consent_given_by = $this->input->post('consent_given_by');
+        $consent_response = $this->input->post('consent_response');
+        $consent_version = $this->input->post('consent_version');
+        $relation_to_study = $this->input->post('relations_to_study');
+        $referral_to = $this->input->post('referral_to');
+        $referral_to_genetic_counselling = $this->input->post('referral_date');
+        $referral_source = $this->input->post('referral_source');
+        
+        $double_consent_flag_check = $this->record_model->update_checkbox($double_consent_flag,'double_consent_flag','patient_studies_id','patient_studies');
+        $double_consent_flag_uncheck = $this->record_model->update_checkbox_uncheck($patient_ic_no,$double_consent_flag,'patient_studies_id','double_consent_flag','patient_ic_no','patient_studies');
+
+        if (!empty($patient_studies_id)) {
+            for ($i = 0; $i < count($patient_studies_id); $i++) {
+
+                $studies_id = $this->record_model->get_studies_id($consent_studies_id[$i]);
+
+                $data_patient_consent_detail = array(
+                    'date_at_consent' => $date_at_consent[$i] == '00-00-0000' ? '0000-00-00' : date("Y-m-d", strtotime($date_at_consent[$i])),
+                    'age_at_consent' => $age_at_consent[$i],
+                    'studies_id' => $studies_id,
+//                    'double_consent_flag' => $double_consent_flag[$i],
+                    'consent_given_by' => $consent_given_by[$i],
+                    'consent_response' => $consent_response[$i],
+                    'consent_version' => $consent_version[$i],
+                    'relation_to_study' => $relation_to_study[$i],
+                    'referral_to' => $referral_to[$i],
+                    'modified_on' => $date,
+                    'referral_to_genetic_counselling' => $referral_to_genetic_counselling[$i],
+                    'referral_source' => $referral_source[$i]
+                );
+
+                //print_r($data_patient_consent_detail);exit;
+                $this->db->where('patient_studies_id', $patient_studies_id[$i]);
+                $this->db->update('patient_studies', $data_patient_consent_detail);
+
+                if ($this->db->affected_rows() > 0) {
+                    echo '<h2>Data for id ' . $i . ' update successfully<h2>';
+                } else {
+                    echo '<h2>No update data for id ' . $i . '</h2>';
+                }
+                echo '<br/>';
+                
+            }
+                
+                $patient_private_no_id = $this->input->post('patient_private_no_id');
+                $patient_private_no = $this->input->post('private_patient_no');
+                
+             if (!empty($patient_private_no_id)) {
+            for ($i = 0; $i < count($patient_private_no_id); $i++) {
+            $data_patient_private_no = array(
+                'modified_on' => $date,
+                'private_no' => $patient_private_no[$i]
+            );
+
+            $this->db->where('patient_private_no_id', $patient_private_no_id[$i]);
+            $this->db->update('patient_private_no', $data_patient_private_no);
+
+            if ($this->db->affected_rows() > 0) {
+                echo '<h2>Data update successfully<h2>';
+            } else {
+                echo '<h2>No update data</h2>';
+            }
+            echo '<br/>';
+        }
+            }
+        }
+        
+    }
 
     function patient_record_insertion() {
         //print_r($this->input->post());
@@ -1569,14 +1650,24 @@ class Record extends CI_Controller {
                 echo "<h2>Failed to insert at patient_relatives_summary table</h2>";
             }
             echo '<br/>';
-
+        } else {
+            print_r(validation_errors());
+        }
+    }
+    
+    public function patient_consent_insert(){
+        
+            $ic_no = $this->input->post('IC_no');
+            date_default_timezone_set("Asia/Kuala_lumpur");
+            $date = date('Y-m-d H:i:s'); //Returns IST 
+        
             $consent_studies_id = $this->input->post('studies_name');
             $studies_id = $this->record_model->get_studies_id($consent_studies_id);
             $consent_date = $this->input->post('date_at_consent');
             $referral_date = $this->input->post('referral_date');
 
             $data_patient_consent_detail = array(
-                'patient_ic_no' => $new_ic_no,
+                'patient_ic_no' => $ic_no,
                 'studies_id' => $studies_id,
                 'date_at_consent' => $consent_date == '' ? '0000-00-00' : date("Y-m-d", strtotime($consent_date)),
                 'age_at_consent' => $this->input->post('age_at_consent'),
@@ -1600,7 +1691,7 @@ class Record extends CI_Controller {
             echo '<br/>';
             
             $data_patient_private_no = array(
-                'patient_ic_no' => $new_ic_no,
+                'patient_ic_no' => $ic_no,
                 'patient_studies_id' => $data_patient_consent_detail_id,
                 'created_on' => $date,
                 'private_no' => $this->input->post('private_patient_no')
@@ -1617,9 +1708,7 @@ class Record extends CI_Controller {
                 echo "<h2>Failed to insert at patient_private_no table</h2>";
             }
             echo '<br/>';
-        } else {
-            print_r(validation_errors());
-        }
+        
     }
 
     public function patient_family_record_insertion() {
@@ -5400,7 +5489,6 @@ class Record extends CI_Controller {
 
 
                     $data['patient_detail'] = $this->record_model->get_detail_patient_record($ic_no, $patient_studies_id);
-                    $data['patient_consent_detail'] = $this->record_model->get_consent_detail_patient_record($ic_no, $patient_studies_id);
                     $data['studies_id'] = $this->record_model->get_studies_name_by_id();
 //                    $data['patient_private_no'] = $this->record_model->get_private_no_record($ic_no);
                     $data['patient_hospital_no'] = $this->record_model->get_hospital_no_record($ic_no);
@@ -5417,6 +5505,15 @@ class Record extends CI_Controller {
                     } else {
                         $this->template->load("templates/add_record_template", 'record/view_record_personal_details', $data);
                     }
+                } else if ($var == 'consent') {
+                    
+                    $data['patient_consent_detail'] = $this->record_model->get_consent_detail_patient_record($ic_no, $patient_studies_id);
+                    $data['studies_id'] = $this->record_model->get_studies_name_by_id();
+                    
+                    if ($user_is_locked == 1)
+                        $this->template->load("templates/add_record_template", 'record/view_family_details_readonly', $data);
+                    else
+                        $this->template->load("templates/add_record_template", 'record/view_record_consent_details', $data);
                 } else if ($var == 'family') {
                     $data['patient_family_mother'] = $this->record_model->get_view_family_record($ic_no, 2);
                     $data['patient_family_father'] = $this->record_model->get_view_family_record($ic_no, 1);

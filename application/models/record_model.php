@@ -2100,11 +2100,11 @@ class Record_model extends CI_Model {
     
     function getPatientList($record_data) {
         $this->db->select('a.given_name, a.surname, a.ic_no, a.created_on, b.studies_id, b.patient_studies_id,d.private_no');
-        $this->db->from('patient a, patient_studies b, patient_hospital_no c, patient_private_no d');
+        $this->db->from('patient a');
         $this->db->where('a.is_deleted',0);
-        $this->db->where('a.ic_no = b.patient_ic_no');
-        $this->db->where('a.ic_no = c.patient_ic_no');
-        $this->db->where('a.ic_no = d.patient_ic_no');
+        $this->db->join('patient_studies b','a.ic_no = b.patient_ic_no','left');
+        $this->db->join('patient_hospital_no c','a.ic_no = c.patient_ic_no','left');
+        $this->db->join('patient_private_no d','b.patient_studies_id = d.patient_studies_id','left');
         $this->db->like('a.given_name', $record_data['given_name']);
         $this->db->like('a.ic_no', $record_data['ic_no']);
         $this->db->like('b.studies_id', $record_data['studies_name']);
@@ -2114,7 +2114,7 @@ class Record_model extends CI_Model {
         $patient_list = $this->db->get('');
         $list_patient = $patient_list->result_array();
         
-        //echo 'getpatientlist: ';echo $this->db->last_query();
+//        echo 'getpatientlist: ';echo $this->db->last_query();
                 
         $patient_list->free_result();
 

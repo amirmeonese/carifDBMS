@@ -55,6 +55,7 @@
                 </div>
                 <div>
                     <a class="add_record_tab_btn" href="<?php echo site_url('record/view_list/personal'); ?>" target="iframe_record_home" >Personal</a>
+                    <a class="add_record_tab_btn" href="<?php echo site_url('record/view_list/consent'); ?>" target="iframe_record_home" >Consent Details</a>
                     <a class="add_record_tab_btn" href="<?php echo site_url('record/view_list/family'); ?>" target="iframe_record_home" >Family</a>
                     <a class="add_record_tab_btn" href="<?php echo site_url('record/view_list/diagnosis'); ?>" target="iframe_record_home" >Diagnosis & Treatment</a>
                     <a class="add_record_tab_btn" href="<?php echo site_url('record/view_list/studies_setOne'); ?>" target="iframe_record_home" >Screenings & Surveillance</a>
