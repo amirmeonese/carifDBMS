@@ -1403,9 +1403,11 @@ class Record_model extends CI_Model {
     
     public function get_consent_detail_patient_record($ic_no,$patient_studies_id){
          
-        $this->db->where_in('patient_ic_no',$ic_no);
+        $this->db->from('patient_studies a');
+        $this->db->join('patient_private_no b', 'a.patient_studies_id = b.patient_studies_id', 'left');
+        $this->db->where_in('a.patient_ic_no',$ic_no);
         //$this->db->where('studies_id',$patient_studies_id);
-	$p_record = $this->db->get('patient_studies');
+	$p_record = $this->db->get('');
         $patient_detail = $p_record->result_array();
        // echo $this->db->last_query();exit;
         $p_record->free_result();  
@@ -1936,24 +1938,37 @@ class Record_model extends CI_Model {
     public function get_cancer_site_id($record_data) {
         $data = array(
         );
-        //for ($i = 0; $i < count($record_data); $i++) {
-        $query = $this->db->select('cancer_site_id')
-                ->where_in('cancer_site_name', $record_data)
-                ->limit(1)
-                ->get($this->tables['cancer_site']);
-        $result = null;
-        if ($query->num_rows() > 0) {
-            $result = $query->row_array();
-            //echo $result['relatives_id'];
-         }
-         
-       //  echo $this->db->last_query();exit;
-
-       // print_r($record_data);exit;
-
+        $this->db->select('cancer_site_id');
+        $this->db->where_in('cancer_site_name',$record_data);
+        $l_record = $this->db->get('cancer_site');
+        $result = $l_record->row_array();
+        $l_record->free_result();
+                
         return $result['cancer_site_id'];
+        
     }
-   // }
+    
+//    public function get_cancer_site_id($record_data) {
+//        $data = array(
+//        );
+//        //for ($i = 0; $i < count($record_data); $i++) {
+//        $query = $this->db->select('cancer_site_id')
+//                ->where_in('cancer_site_name', $record_data)
+//                ->limit(1)
+//                ->get($this->tables['cancer_site']);
+//        $result = null;
+//        if ($query->num_rows() > 0) {
+//            $result = $query->row_array();
+//            //echo $result['relatives_id'];
+//         }
+//         
+//       //  echo $this->db->last_query();exit;
+//
+//        //print_r($result);exit;
+//
+//        return $result['cancer_site_id'];
+//    }
+//   // }
 
     public function get_treatment_id($record_data) {
         $data = array(
@@ -1967,7 +1982,6 @@ class Record_model extends CI_Model {
             $result = $query->row_array();
             //echo $result['relatives_id'];
         }
-
         //print_r($result['relatives_id']);
 
         return $result['treatment_id'];
@@ -2110,11 +2124,11 @@ class Record_model extends CI_Model {
 	function getCurrentRangeOfPatientList($record_data,$limit,$start) {
 		
 	$this->db->select('a.given_name, a.surname, a.ic_no, a.created_on, b.studies_id, b.patient_studies_id,d.private_no');
-        $this->db->from('patient a, patient_studies b, patient_hospital_no c, patient_private_no d');
+        $this->db->from('patient a');
         $this->db->where('a.is_deleted',0);
-        $this->db->where('a.ic_no = b.patient_ic_no');
-        $this->db->where('a.ic_no = c.patient_ic_no');
-        $this->db->where('a.ic_no = d.patient_ic_no');
+        $this->db->join('patient_studies b','a.ic_no = b.patient_ic_no','left');
+        $this->db->join('patient_hospital_no c','a.ic_no = c.patient_ic_no','left');
+        $this->db->join('patient_private_no d','b.patient_studies_id = d.patient_studies_id','left');
         $this->db->like('a.given_name', $record_data['given_name']);
         $this->db->like('a.ic_no', $record_data['ic_no']);
         $this->db->like('b.studies_id', $record_data['studies_name']);
@@ -2124,7 +2138,7 @@ class Record_model extends CI_Model {
 	$this->db->order_by("a.given_name", "asc");
         $patient_list = $this->db->get('');
         $list_patient = $patient_list->result_array();
-        
+                
         //echo 'getCurrentpatientlist: ';echo $this->db->last_query();
                 
         $patient_list->free_result();
@@ -2233,7 +2247,7 @@ function get_patient_all_cancer_record($patient_studies_id) {
     //$this->db->select('a.*,b.*,c.*');
     $this->db->from('patient_cancer');
     $this->db->where_in('patient_studies_id',$patient_studies_id);
-    $patient_lifestyle_list = $this->db->get('');
+    $patient_lifestyle_list = $this->db->$get('');
     $list_patient_lifestyle = $patient_lifestyle_list->result_array();
     $patient_lifestyle_list->free_result();
     
@@ -2801,20 +2815,27 @@ function update_checkbox($id,$field,$where,$table) {
         $this->db->where_in($where, $id);
         $this->db->update($table, $data);
         
+         echo $this->db->last_query();
+        
     }
     
-    function update_checkbox_uncheck($id,$id1,$where1,$field,$where,$table) {
+    function update_checkbox_uncheck($id,$id1,$where1,$field,$where,$table,$id2=NULL,$where2=NULL) {
 
         $data = array(
             $field => 0,
         );
 
         $this->db->where($where, $id);
+        if(!empty($where2)){
+        $this->db->where_in($where2, $id2);
+        }
         if(!empty($id1)){
         $this->db->where_in("$where1 NOT", $id1);
         }
         $this->db->update($table, $data);
-                
+        
+        echo $this->db->last_query();
+        
         }
 
 }

@@ -189,6 +189,7 @@ class Record extends CI_Controller {
 
                         $data_patient_private_no = array(
                             'patient_ic_no' => $new_ic_no,
+                            'patient_studies_id' => $id,
                             'created_on' => $date,
                             'private_no' => $this->input->post('private_patient_no' . $fieldCount)
                         );
@@ -1113,7 +1114,6 @@ class Record extends CI_Controller {
         $patient_ic_no = $this->input->post('IC_no');
         $patient_contact_person_id = $this->input->post('patient_contact_person_id');
         $patient_hospital_no_id = $this->input->post('patient_hospital_no_id');
-        $patient_private_no_id = $this->input->post('patient_private_no_id');
         $patient_survival_status_id = $this->input->post('patient_survival_status_id');
         $COGS_studies_id = $this->input->post('COGS_studies_id');
         $patient_relatives_summary_id = $this->input->post('patient_relatives_summary_id');
@@ -1350,6 +1350,29 @@ class Record extends CI_Controller {
                     echo '<h2>No update data for id ' . $i . '</h2>';
                 }
                 echo '<br/>';
+                
+            }
+                
+                $patient_private_no_id = $this->input->post('patient_private_no_id');
+                $patient_private_no = $this->input->post('private_patient_no');
+                
+             if (!empty($patient_private_no_id)) {
+            for ($i = 0; $i < count($patient_private_no_id); $i++) {
+            $data_patient_private_no = array(
+                'modified_on' => $date,
+                'private_no' => $patient_private_no[$i]
+            );
+
+            $this->db->where('patient_private_no_id', $patient_private_no_id[$i]);
+            $this->db->update('patient_private_no', $data_patient_private_no);
+
+            if ($this->db->affected_rows() > 0) {
+                echo '<h2>Data update successfully<h2>';
+            } else {
+                echo '<h2>No update data</h2>';
+            }
+            echo '<br/>';
+        }
             }
         }
     }
@@ -1469,24 +1492,7 @@ class Record extends CI_Controller {
             }
             echo '<br/>';
 
-            $data_patient_private_no = array(
-                'patient_ic_no' => $new_ic_no,
-                'created_on' => $date,
-                'private_no' => $this->input->post('private_patient_no')
-            );
-            // print_r($data_patient_contact_person);
-
-            $id_patient_private_no = $this->db->insert('patient_private_no', $data_patient_private_no);
-
-            $add_patient_private_no = $this->getDynamicFieldsInputsArray("patient_private_no");
-
-            if ($id_patient_private_no > 0) {
-                echo "<h2>Data Added successfully at patient_private_no table</h2>";
-            } else {
-                echo "<h2>Failed to insert at patient_private_no table</h2>";
-            }
-            echo '<br/>';
-
+            
             $alive_status = $this->input->post('alive_status');
 
             if ($alive_status == 'Alive')
@@ -1590,6 +1596,25 @@ class Record extends CI_Controller {
                 echo "<h2>Data Added successfully at patient_consent_detail table</h2>";
             } else {
                 echo "<h2>Failed to insert at patient_consent_detail table</h2>";
+            }
+            echo '<br/>';
+            
+            $data_patient_private_no = array(
+                'patient_ic_no' => $new_ic_no,
+                'patient_studies_id' => $data_patient_consent_detail_id,
+                'created_on' => $date,
+                'private_no' => $this->input->post('private_patient_no')
+            );
+            // print_r($data_patient_private_no);
+
+            $id_patient_private_no = $this->db->insert('patient_private_no', $data_patient_private_no);
+
+            $add_patient_private_no = $this->getDynamicFieldsInputsArray("patient_private_no",$data_patient_consent_detail_id);
+            
+            if ($id_patient_private_no > 0) {
+                echo "<h2>Data Added successfully at patient_private_no table</h2>";
+            } else {
+                echo "<h2>Failed to insert at patient_private_no table</h2>";
             }
             echo '<br/>';
         } else {
@@ -1792,16 +1817,16 @@ class Record extends CI_Controller {
         $vital_status = $this->input->post('father_vital_status');
 
             $f_cancer_diagnose_check = $this->record_model->update_checkbox($is_cancer_diagnosed,'is_cancer_diagnosed','patient_relatives_id','patient_relatives');
-            $f_cancer_diagnose_uncheck = $this->record_model->update_checkbox_uncheck($patient_ic_no,$is_cancer_diagnosed,'patient_relatives_id','is_cancer_diagnosed','patient_ic_no','patient_relatives');
+            $f_cancer_diagnose_uncheck = $this->record_model->update_checkbox_uncheck($patient_ic_no,$is_cancer_diagnosed,'patient_relatives_id','is_cancer_diagnosed','patient_ic_no','patient_relatives',1,'relatives_id');
 
             $f_still_alive_check = $this->record_model->update_checkbox($is_alive_flag,'is_alive_flag','patient_relatives_id','patient_relatives');
-            $f_still_alive_uncheck = $this->record_model->update_checkbox_uncheck($patient_ic_no,$is_alive_flag,'patient_relatives_id','is_alive_flag','patient_ic_no','patient_relatives');
+            $f_still_alive_uncheck = $this->record_model->update_checkbox_uncheck($patient_ic_no,$is_alive_flag,'patient_relatives_id','is_alive_flag','patient_ic_no','patient_relatives',1,'relatives_id');
             
             $f_is_adopted_check = $this->record_model->update_checkbox($is_adopted,'is_adopted','patient_relatives_id','patient_relatives');
-            $f_is_adopted_uncheck = $this->record_model->update_checkbox_uncheck($patient_ic_no,$is_adopted,'patient_relatives_id','is_adopted','patient_ic_no','patient_relatives');
+            $f_is_adopted_uncheck = $this->record_model->update_checkbox_uncheck($patient_ic_no,$is_adopted,'patient_relatives_id','is_adopted','patient_ic_no','patient_relatives',1,'relatives_id');
             
             $f_other_country_check = $this->record_model->update_checkbox($is_in_other_country,'is_in_other_country','patient_relatives_id','patient_relatives');
-            $f_other_country_uncheck = $this->record_model->update_checkbox_uncheck($patient_ic_no,$is_in_other_country,'patient_relatives_id','is_in_other_country','patient_ic_no','patient_relatives');
+            $f_other_country_uncheck = $this->record_model->update_checkbox_uncheck($patient_ic_no,$is_in_other_country,'patient_relatives_id','is_in_other_country','patient_ic_no','patient_relatives',1,'relatives_id');
                 
         if (!empty($father_relatives_id)) {
             for ($i = 0; $i < count($father_relatives_id); $i++) {
@@ -1875,16 +1900,16 @@ class Record extends CI_Controller {
             $mother_vital_status = $this->input->post('mother_vital_status');
             
             $m_cancer_diagnose_check = $this->record_model->update_checkbox($mother_is_cancer_diagnosed,'is_cancer_diagnosed','patient_relatives_id','patient_relatives');
-            $m_cancer_diagnose_uncheck = $this->record_model->update_checkbox_uncheck($patient_ic_no,$mother_is_cancer_diagnosed,'patient_relatives_id','is_cancer_diagnosed','patient_ic_no','patient_relatives');
+            $m_cancer_diagnose_uncheck = $this->record_model->update_checkbox_uncheck($patient_ic_no,$mother_is_cancer_diagnosed,'patient_relatives_id','is_cancer_diagnosed','patient_ic_no','patient_relatives',2,'relatives_id');
 
             $m_still_alive_check = $this->record_model->update_checkbox($mother_is_alive_flag,'is_alive_flag','patient_relatives_id','patient_relatives');
-            $m_still_alive_uncheck = $this->record_model->update_checkbox_uncheck($patient_ic_no,$mother_is_alive_flag,'patient_relatives_id','is_alive_flag','patient_ic_no','patient_relatives');
+            $m_still_alive_uncheck = $this->record_model->update_checkbox_uncheck($patient_ic_no,$mother_is_alive_flag,'patient_relatives_id','is_alive_flag','patient_ic_no','patient_relatives',2,'relatives_id');
             
             $m_is_adopted_check = $this->record_model->update_checkbox($mother_is_adopted,'is_adopted','patient_relatives_id','patient_relatives');
-            $m_is_adopted_uncheck = $this->record_model->update_checkbox_uncheck($patient_ic_no,$mother_is_adopted,'patient_relatives_id','is_adopted','patient_ic_no','patient_relatives');
+            $m_is_adopted_uncheck = $this->record_model->update_checkbox_uncheck($patient_ic_no,$mother_is_adopted,'patient_relatives_id','is_adopted','patient_ic_no','patient_relatives',2,'relatives_id');
             
             $m_other_country_check = $this->record_model->update_checkbox($mother_is_in_other_country,'is_in_other_country','patient_relatives_id','patient_relatives');
-            $m_other_country_uncheck = $this->record_model->update_checkbox_uncheck($patient_ic_no,$mother_is_in_other_country,'patient_relatives_id','is_in_other_country','patient_ic_no','patient_relatives');
+            $m_other_country_uncheck = $this->record_model->update_checkbox_uncheck($patient_ic_no,$mother_is_in_other_country,'patient_relatives_id','is_in_other_country','patient_ic_no','patient_relatives',2,'relatives_id');
             
             if (!empty($mother_relatives_id)) {
                 for ($i = 0; $i < count($mother_relatives_id); $i++) {
@@ -1953,10 +1978,10 @@ class Record extends CI_Controller {
             $relative_comment = $this->input->post('relative_comment');
             
             $cancer_diagnose_check = $this->record_model->update_checkbox($relative_is_cancer_diagnosed,'is_cancer_diagnosed','patient_relatives_id','patient_relatives');
-            $cancer_diagnose_uncheck = $this->record_model->update_checkbox_uncheck($patient_ic_no,$relative_is_cancer_diagnosed,'patient_relatives_id','is_cancer_diagnosed','patient_ic_no','patient_relatives');
+            $cancer_diagnose_uncheck = $this->record_model->update_checkbox_uncheck($patient_ic_no,$relative_is_cancer_diagnosed,'patient_relatives_id','is_cancer_diagnosed','patient_ic_no','patient_relatives',$relativeTypeLists,'relatives_id');
             
             $still_alive_check = $this->record_model->update_checkbox($relative_still_alive_flag,'is_alive_flag','patient_relatives_id','patient_relatives');
-            $still_alive_uncheck = $this->record_model->update_checkbox_uncheck($patient_ic_no,$relative_still_alive_flag,'patient_relatives_id','is_alive_flag','patient_ic_no','patient_relatives');
+            $still_alive_uncheck = $this->record_model->update_checkbox_uncheck($patient_ic_no,$relative_still_alive_flag,'patient_relatives_id','is_alive_flag','patient_ic_no','patient_relatives',$relativeTypeLists,'relatives_id');
             
             if (!empty($other_relatives_id)) {
             for ($i = 0; $i < count($other_relatives_id); $i++) {
@@ -4544,7 +4569,7 @@ class Record extends CI_Controller {
             $detected_by = $this->input->post('detected_by');
             $bilateral_flag = $this->input->post('cancer_is_bilateral');
             $recurrence_flag = $this->input->post('cancer_is_recurrent');
-            
+                        
             $is_primary_check = $this->record_model->update_checkbox($is_primary,'is_primary','patient_cancer_id','patient_cancer');
             $is_primary_uncheck = $this->record_model->update_checkbox_uncheck($patient_studies_id,$is_primary,'patient_cancer_id','is_primary','patient_studies_id','patient_cancer');
             
@@ -4733,6 +4758,8 @@ class Record extends CI_Controller {
                 $ovary_cancer_is_bilateral = $this->input->post('ovary_cancer_is_bilateral');
                 $ovary_cancer_is_recurrent = $this->input->post('ovary_cancer_is_recurrent');
                 
+                print_r($ovary_cancer_is_bilateral);exit;
+                
                 $ovary_primary_diagnosis_check = $this->record_model->update_checkbox($ovary_primary_diagnosis,'is_primary','patient_cancer_id','patient_cancer');
                 $ovary_primary_diagnosis_uncheck = $this->record_model->update_checkbox_uncheck($patient_studies_id,$ovary_primary_diagnosis,'patient_cancer_id','is_primary','patient_studies_id','patient_cancer');
             
@@ -4762,9 +4789,10 @@ class Record extends CI_Controller {
 //                            'recurrence_flag' => $ovary_cancer_is_recurrent[$i]
                         );
 
+                        //print_r($data_patient_ovary_diagnosis);
 
                         $this->db->where('cancer_id', 2);
-                        $this->db->where('patient_studies_id', $patient_studies_id);
+                        //$this->db->where('patient_studies_id', $patient_studies_id);
                         $this->db->where('patient_cancer_id', $ovary_patient_cancer_id[$i]);
                         $this->db->update('patient_cancer', $data_patient_ovary_diagnosis);
 
@@ -4844,15 +4872,17 @@ class Record extends CI_Controller {
                 $ovary_treatment_cal125_pretreatment = $this->input->post('ovary_cal125_pretreatment');
                 $ovary_treatment_cal125_posttreatment = $this->input->post('ovary_cal125_posttreatment');
                 $ovary_treatment_comments = $this->input->post('ovary_cancer_treatment_comments');
+                
+                //print_r($ovary_patient_cancer_treatment_name);exit;
 
 
                 if (!empty($ovary_patient_cancer_treatment_id)) {
                     for ($i = 0; $i < count($ovary_patient_cancer_treatment_id); $i++) {
 
                         $ovary_treatment_id = $this->record_model->get_treatment_id($ovary_patient_cancer_treatment_name[$i]);
-
+                        
                         $data_patient_ovary_treatment = array(
-                            'treatment_id' => $ovary_treatment_id[$i],
+                            'treatment_id' => $ovary_treatment_id,
                             'treatment_start_date' => $ovary_treatment_start_date[$i] == '00-00-0000' ? '0000-00-00' : date("Y-m-d", strtotime($ovary_treatment_start_date[$i])),
                             'treatment_end_date' => $ovary_treatment_end_date[$i] == '00-00-0000' ? '0000-00-00' : date("Y-m-d", strtotime($ovary_treatment_end_date[$i])),
                             'treatment_durations' => $ovary_treatment_durations[$i],
@@ -5372,7 +5402,7 @@ class Record extends CI_Controller {
                     $data['patient_detail'] = $this->record_model->get_detail_patient_record($ic_no, $patient_studies_id);
                     $data['patient_consent_detail'] = $this->record_model->get_consent_detail_patient_record($ic_no, $patient_studies_id);
                     $data['studies_id'] = $this->record_model->get_studies_name_by_id();
-                    $data['patient_private_no'] = $this->record_model->get_private_no_record($ic_no);
+//                    $data['patient_private_no'] = $this->record_model->get_private_no_record($ic_no);
                     $data['patient_hospital_no'] = $this->record_model->get_hospital_no_record($ic_no);
                     $data['patient_cogs_studies'] = $this->record_model->get_cogs_study_record($ic_no);
                     $data['patient_contact_person'] = $this->record_model->get_detail_record($ic_no, 'patient_contact_person', 'patient_ic_no');

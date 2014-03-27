@@ -122,26 +122,6 @@
                         </tr>
                 </table>
          </div>
-         <div class="container" id="add_record_form_section_personal3">
-	<div height="30px">&nbsp;</div>
-	<table id="add_private_patient_no_section_1">
-		<tr>
-                <td id="label1">Private patient numbers</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-		</tr>
-		<tr>
-			<td>
-				<?php echo $private_patient_no; ?>: 
-				<?php echo form_input('private_patient_no'); ?>
-			</td>
-			<td>
-				<input type="button" value="Add patient no." onClick="window.parent.addPatientPrivateNoInput('add_record_form_section_personal3'); window.parent.calcHeight();">
-			</td>
-		</tr>
-		</table>
-	</div>
         <div class="container" id="add_record_form_section_personal6">
 	<div height="30px">&nbsp;</div>
 	<table id="add_study_no_section_1">
@@ -402,6 +382,10 @@
                     <?php echo $studies_name; ?>: 
                     <?php echo form_dropdown('studies_name', $studies_name_lists, NULL, 'id="studies_name"'); ?>
                 </td>
+		<td>
+                    <?php echo $private_patient_no; ?>: 
+                    <?php echo form_input('private_patient_no'); ?>
+		</td>
                 <td>
                     <?php echo $date_at_consent; ?>: 
 					<?php echo form_input(array('name'=>'date_at_consent','class'=>'datepicker')); ?>
@@ -410,12 +394,12 @@
                     <?php echo $age_at_consent; ?>: 
                     <?php echo form_input('age_at_consent'); ?>
                 </td>
+            </tr>
+            <tr>
                 <td>
                     <?php echo $is_double_consent_flag; ?>: 
                     <?php echo form_checkbox('is_double_consent_flag', '1', FALSE); ?>
                 </td>
-            </tr>
-            <tr>
                 <td>
                     <?php echo $consent_given_by; ?>: 
                     <?php echo form_input('consent_given_by'); ?>
@@ -428,12 +412,12 @@
                     <?php echo $consent_version; ?>: 
                     <?php echo form_input('consent_version'); ?>
                 </td>
+            </tr>
+            <tr>
                 <td>
                     <?php echo $relations_to_study; ?>: 
                     <?php echo form_input('relations_to_study');?>
                 </td>
-            </tr>
-            <tr>
                 <td>
                     <?php echo $referral_to; ?>: 
                     <?php
