@@ -28,7 +28,7 @@
             </tr>
         </table>
         <?php echo form_submit('search','Search');  ?>
-        
+        <a class="submit" href="<?php echo base_url() . 'admin/create_new_user'; ?>">Create New User </a>
         <?php //if($submit):?>
         <div style="margin-left:100px;"></div>
 		<div style="margin-left:100px;"></div>
