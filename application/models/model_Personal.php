@@ -103,7 +103,7 @@ class Model_Personal extends CI_Model {
                             }
 
 
-                            if ($key == 27 && $cell_value != NULL) {
+                            if ($key == 26 && $cell_value != NULL) {
                                 $email_validator = $this->model_Validator->check_email($cell_value);
                                 if(!$email_validator)
                                 {
