@@ -174,11 +174,9 @@ class Model_Personal extends CI_Model {
                         else
                             $is_dead = 2;
 
-                        if(strtoupper($temp1[46]) == 'ALIVE' || strpos(strtoupper($temp1[46]), 'HIDUP') !== false || 
-                                strpos(strtoupper($temp1[46]), 'YES') !== false)
+                        if(strtoupper($temp1[46]) == 'ALIVE' || strpos(strtoupper($temp1[46]), 'HIDUP') !== false || strpos(strtoupper($temp1[46]), 'YES') !== false)
                             $alive_status = TRUE;
-                        else if(strpos(strtoupper($temp1[46]), 'DIED') !== false || strpos(strtoupper($temp1[46]), 'MATI') !== false
-                                || strpos(strtoupper($temp1[46]), 'NO') !== false)
+                        else if(strpos(strtoupper($temp1[46]), 'DIED') !== false || strpos(strtoupper($temp1[46]), 'MATI') !== false || strpos(strtoupper($temp1[46]), 'NO') !== false)
                             $alive_status = FALSE;
                         else
                             $alive_status = 2;
