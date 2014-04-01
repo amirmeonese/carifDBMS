@@ -479,12 +479,12 @@
                     <?php echo $HRT_start_date; ?>: <br />
 					<?php echo form_input(array('name'=>'hrt_start_date','class'=>'datepicker')); ?>
                 </td>
-            </tr>
-            <tr>
                 <td>
                     <?php echo $HRT_end_date; ?>: <br />
 					<?php echo form_input(array('name'=>'hrt_end_date','class'=>'datepicker')); ?>
                 </td>
+                 </tr>
+            <tr>
                <td>
                     <?php echo $HRT_start_age; ?>: <br />
                     <?php echo form_input('hrt_start_age'); ?>
@@ -496,6 +496,18 @@
                <td>
                     <?php echo $HRT_duration; ?>: <br />
                     <?php echo form_input('HRT_duration'); ?>
+                </td>
+                <td>
+                    <?php echo $HRT_details; ?>: <br />
+                    <?php
+                    $data = array(
+                        'name' => 'hrt_details',
+                        'id' => 'hrt_details',
+                        'rows' => '3',
+                        'cols' => '7'
+                    );
+                    echo form_textarea($data);
+                    ?>
                 </td>
             </tr>
             <tr>

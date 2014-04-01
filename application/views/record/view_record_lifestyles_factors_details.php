@@ -590,10 +590,6 @@
                     <?php echo form_checkbox(array('name' => 'HRT_flag', 'value' => @$infertility['hrt_flag']))?>
                 </td>
                <?php } ?>
-<!--                <td>
-                    <?php echo $HRT_details; ?>: <br />
-                    <?php echo form_input(array('name' => 'HRT_details', 'value' => @$infertility['HRT_details']))?>
-                </td>-->
                 <?php if($infertility['currently_using_hrt_flag'] == 1){?>
                     <td>
                     <?php echo $currently_using_HRT_flag; ?>: <br />
@@ -626,6 +622,10 @@
                 <td>
                     <?php echo $HRT_duration; ?>: <br />
                     <?php echo form_input(array('name' => 'HRT_duration', 'value' => @$infertility['hrt_duration']))?>
+                </td>
+                                <td>
+                    <?php echo $HRT_details; ?>: <br />
+                    <?php echo form_input(array('name' => 'hrt_details', 'value' => @$infertility['htr_details']))?>
                 </td>
             </tr>
             <input type="hidden" name="patient_infertility_id" value="<?php print @$infertility['patient_infertility_id']; ?>"/>

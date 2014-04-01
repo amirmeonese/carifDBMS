@@ -3681,6 +3681,7 @@ class Record extends CI_Controller {
                 'hrt_start_date' => $hrt_start_date == '' ? '0000-00-00' : date("Y-m-d", strtotime($hrt_start_date)),
                 'created_on' => $date,
                 'hrt_duration' => $this->input->post('HRT_duration'),
+                'hrt_details' => $this->input->post('hrt_details'),
                 'hrt_end_date' => $hrt_end_date == '' ? '0000-00-00' : date("Y-m-d", strtotime($hrt_end_date))
             );
             // print_r($data_patient_infertility);
@@ -3956,6 +3957,7 @@ class Record extends CI_Controller {
                     'hrt_start_date' => $hrt_start_date == '00-00-0000' ? '0000-00-00' : date("Y-m-d", strtotime($hrt_start_date)),
                     'created_on' => $date,
                     'hrt_duration' => $this->input->post('HRT_duration'),
+                    'hrt_details' => $this->input->post('hrt_details'),
                     'hrt_end_date' => $hrt_end_date == '00-00-0000' ? '0000-00-00' : date("Y-m-d", strtotime($hrt_end_date))
                 );
                 // print_r($data_patient_infertility);
