@@ -211,7 +211,7 @@
                     <?php echo $father_DOB; ?>: 
                     <?php echo form_input(array('name' => 'father_DOB[]', 'value' => $father['d_o_b'] == '0000-00-00' ? '00-00-0000'  : date('d-m-Y', strtotime($father['d_o_b'])),'class'=>'datepicker'))?>
                 </td>
-                <?php if($list['is_alive_flag'] == 1){?>
+                <?php if($father['is_alive_flag'] == 1){?>
                 <td>
                     <?php echo $father_still_alive_flag; ?>: 
                 <input type="checkbox" name="father_still_alive_flag[]" checked="checked" value="<?php print $father['patient_relatives_id']; ?>" />
