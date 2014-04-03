@@ -37,6 +37,7 @@ class Excell_parser_model extends CI_Model {
         $this->load->model('modelDiagnosis1');
         $this->load->model('modelDiagnosis2');
         $this->load->model('modelFamily');
+        $this->load->model('modelCounselling');
 
         //Loading PHPExcell Library
         $this->load->library('PHPExcel');
@@ -172,6 +173,10 @@ class Excell_parser_model extends CI_Model {
 
             if ($loadedSheetName == 'Lifestyle3') {
                 $this->modelLifestyles3->Lifestyles3($sheet);
+            }
+            
+            if ($loadedSheetName == 'Counselling') {
+                $this->modelCounselling->Counselling($sheet);
             }
         }
 
