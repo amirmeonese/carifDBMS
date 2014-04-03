@@ -4848,9 +4848,7 @@ class Record extends CI_Controller {
                 $ovary_detected_by = $this->input->post('ovary_detected_by');
                 $ovary_cancer_is_bilateral = $this->input->post('ovary_cancer_is_bilateral');
                 $ovary_cancer_is_recurrent = $this->input->post('ovary_cancer_is_recurrent');
-                
-                print_r($ovary_cancer_is_bilateral);exit;
-                
+                                
                 $ovary_primary_diagnosis_check = $this->record_model->update_checkbox($ovary_primary_diagnosis,'is_primary','patient_cancer_id','patient_cancer');
                 $ovary_primary_diagnosis_uncheck = $this->record_model->update_checkbox_uncheck($patient_studies_id,$ovary_primary_diagnosis,'patient_cancer_id','is_primary','patient_studies_id','patient_cancer');
             

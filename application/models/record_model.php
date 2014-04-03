@@ -2258,15 +2258,14 @@ function get_patient_all_cancer_record($patient_studies_id) {
 
 function get_patient_ovary_cancer_record($patient_studies_id) {
     //$this->db->select('a.*,b.*,c.*');
+    $cancer_id = array('206','2');
     $this->db->from('patient_cancer');
     $this->db->where('patient_studies_id',$patient_studies_id);
-    $this->db->where('cancer_id', '2');
+    $this->db->where_in('cancer_id', $cancer_id);
     $patient_lifestyle_list = $this->db->get('');
     $list_patient_lifestyle = $patient_lifestyle_list->result_array();
     $patient_lifestyle_list->free_result();
     
-    //print_r($list_patient_lifestyle);exit;
-
     return $list_patient_lifestyle;
 }
 
