@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 3.2.4
+-- version 4.0.4.1
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Feb 25, 2014 at 05:54 AM
--- Server version: 5.1.41
--- PHP Version: 5.3.1
+-- Host: 127.0.0.1
+-- Generation Time: Apr 04, 2014 at 04:58 AM
+-- Server version: 5.6.11
+-- PHP Version: 5.5.0
 
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -16,8 +17,10 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `carif_db`
+-- Database: `carif_db_new`
 --
+CREATE DATABASE IF NOT EXISTS `carif_db_new` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `carif_db_new`;
 
 -- --------------------------------------------------------
 
@@ -30,13 +33,15 @@ CREATE TABLE IF NOT EXISTS `cancer` (
   `cancer_name` text NOT NULL,
   `cancer_detail` longtext NOT NULL,
   PRIMARY KEY (`cancer_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=513 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=514 ;
 
 --
 -- Dumping data for table `cancer`
 --
 
 INSERT INTO `cancer` (`cancer_id`, `cancer_name`, `cancer_detail`) VALUES
+(1, 'BREAST', ''),
+(2, 'OVARY', ''),
 (171, 'STOMACH? REPRODUCTIVE?', ''),
 (172, 'DK', ''),
 (173, 'LYMPH NODE (NECK)', ''),
@@ -72,7 +77,7 @@ INSERT INTO `cancer` (`cancer_id`, `cancer_name`, `cancer_detail`) VALUES
 (203, 'EUMONIA?', ''),
 (204, 'RECTUM', ''),
 (205, 'NK', ''),
-(206, 'OVARY', ''),
+(206, 'OVARIAN', ''),
 (207, 'PANCREATIC/LUNG', ''),
 (208, 'N', ''),
 (209, 'SARCOMA OF UTERUS', ''),
@@ -204,7 +209,6 @@ INSERT INTO `cancer` (`cancer_id`, `cancer_name`, `cancer_detail`) VALUES
 (335, 'LYMPHATIC NODES', ''),
 (336, 'UTERINE', ''),
 (337, 'STOMACH', ''),
-(338, 'BREAST', ''),
 (339, 'ASCENDING COLON', ''),
 (340, 'HODGKIN''S DISEASE, SKIN CANCER', ''),
 (341, 'ORAL (TOUGUE)', ''),
@@ -213,7 +217,6 @@ INSERT INTO `cancer` (`cancer_id`, `cancer_name`, `cancer_detail`) VALUES
 (344, 'NK (MOLE ON NOSE BECAME CANCER)', ''),
 (345, 'COLON CANCER', ''),
 (346, 'CERVICAL', ''),
-(347, 'OVARIAN', ''),
 (348, 'PANCREATIC', ''),
 (349, 'TONGUE CANCER', ''),
 (350, 'LYMPH NODES', ''),
@@ -378,7 +381,8 @@ INSERT INTO `cancer` (`cancer_id`, `cancer_name`, `cancer_detail`) VALUES
 (509, 'INTESTINAL', ''),
 (510, 'NASOPHARNYX/LARYNGEAL', ''),
 (511, 'SPINAL?', ''),
-(512, 'NASOPHARYNX', '');
+(512, 'NASOPHARYNX', ''),
+(513, '', '');
 
 -- --------------------------------------------------------
 
@@ -390,13 +394,14 @@ CREATE TABLE IF NOT EXISTS `cancer_site` (
   `cancer_site_id` int(10) NOT NULL AUTO_INCREMENT,
   `cancer_site_name` text NOT NULL,
   PRIMARY KEY (`cancer_site_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
 
 --
 -- Dumping data for table `cancer_site`
 --
 
 INSERT INTO `cancer_site` (`cancer_site_id`, `cancer_site_name`) VALUES
+(0, ''),
 (1, 'Left Breast'),
 (2, 'Right Breast'),
 (3, 'Left Ovary'),
@@ -418,13 +423,14 @@ CREATE TABLE IF NOT EXISTS `diagnosis` (
   `diagnosis_name` text NOT NULL,
   `diagnosis_details` longtext NOT NULL,
   PRIMARY KEY (`diagnosis_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
 
 --
 -- Dumping data for table `diagnosis`
 --
 
 INSERT INTO `diagnosis` (`diagnosis_id`, `diagnosis_name`, `diagnosis_details`) VALUES
+(0, '', ''),
 (1, 'Diabetes', ''),
 (2, 'Hypertension', ''),
 (3, 'Thyroid', ''),
@@ -446,11 +452,6 @@ CREATE TABLE IF NOT EXISTS `exercise` (
   `exercise_details` longtext NOT NULL,
   PRIMARY KEY (`exercise_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `exercise`
---
-
 
 -- --------------------------------------------------------
 
@@ -508,11 +509,6 @@ CREATE TABLE IF NOT EXISTS `login_attempts` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
---
--- Dumping data for table `login_attempts`
---
-
-
 -- --------------------------------------------------------
 
 --
@@ -523,13 +519,14 @@ CREATE TABLE IF NOT EXISTS `non_cancerous_site` (
   `non_cancerous_site_id` int(10) NOT NULL AUTO_INCREMENT,
   `non_cancerous_site_name` text NOT NULL,
   PRIMARY KEY (`non_cancerous_site_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
 -- Dumping data for table `non_cancerous_site`
 --
 
 INSERT INTO `non_cancerous_site` (`non_cancerous_site_id`, `non_cancerous_site_name`) VALUES
+(0, ''),
 (1, 'Left breast'),
 (2, 'Right breast'),
 (3, 'Left Ovary'),
@@ -547,13 +544,14 @@ CREATE TABLE IF NOT EXISTS `ovarian_screening_type` (
   `ovarian_screening_type_id` int(10) NOT NULL AUTO_INCREMENT,
   `ovarian_screening_type_name` text NOT NULL,
   PRIMARY KEY (`ovarian_screening_type_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
 
 --
 -- Dumping data for table `ovarian_screening_type`
 --
 
 INSERT INTO `ovarian_screening_type` (`ovarian_screening_type_id`, `ovarian_screening_type_name`) VALUES
+(0, ''),
 (1, 'Physical Examinations'),
 (2, 'Abdominal ultrasound'),
 (3, 'Trans-vaginal Ultrasound'),
@@ -580,8 +578,8 @@ CREATE TABLE IF NOT EXISTS `patient` (
   `ethnicity` char(50) NOT NULL,
   `blood_group` char(50) NOT NULL,
   `comment` char(200) NOT NULL,
-  `d_o_b` date NOT NULL,
-  `d_o_d` date NOT NULL,
+  `d_o_b` varchar(30) NOT NULL,
+  `d_o_d` varchar(30) NOT NULL,
   `place_of_birth` char(250) NOT NULL,
   `marital_status` char(250) NOT NULL,
   `is_dead` tinyint(1) NOT NULL,
@@ -611,11 +609,6 @@ CREATE TABLE IF NOT EXISTS `patient` (
   PRIMARY KEY (`ic_no`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
---
--- Dumping data for table `patient`
---
-
-
 -- --------------------------------------------------------
 
 --
@@ -637,11 +630,6 @@ CREATE TABLE IF NOT EXISTS `patient_breast_abnormality` (
   `deleted_on` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`patient_breast_abnormality_side_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `patient_breast_abnormality`
---
-
 
 -- --------------------------------------------------------
 
@@ -694,11 +682,6 @@ CREATE TABLE IF NOT EXISTS `patient_breast_screening` (
   KEY `fk_patient_breast_screening_patient_studies_id` (`patient_studies_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
---
--- Dumping data for table `patient_breast_screening`
---
-
-
 -- --------------------------------------------------------
 
 --
@@ -712,7 +695,7 @@ CREATE TABLE IF NOT EXISTS `patient_cancer` (
   `cancer_site_id` int(10) NOT NULL,
   `cancer_invasive_type` text NOT NULL,
   `is_primary` tinyint(1) NOT NULL,
-  `date_of_diagnosis` date NOT NULL,
+  `date_of_diagnosis` varchar(30) NOT NULL,
   `age_of_diagnosis` int(10) NOT NULL,
   `diagnosis_center` varchar(250) NOT NULL,
   `doctor_name` varchar(100) NOT NULL,
@@ -729,11 +712,6 @@ CREATE TABLE IF NOT EXISTS `patient_cancer` (
   KEY `cancer_site_id` (`cancer_site_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
---
--- Dumping data for table `patient_cancer`
---
-
-
 -- --------------------------------------------------------
 
 --
@@ -744,8 +722,8 @@ CREATE TABLE IF NOT EXISTS `patient_cancer_treatment` (
   `patient_cancer_treatment_id` int(10) NOT NULL AUTO_INCREMENT,
   `treatment_id` int(10) NOT NULL,
   `patient_cancer_id` int(10) NOT NULL,
-  `treatment_start_date` date NOT NULL,
-  `treatment_end_date` date NOT NULL,
+  `treatment_start_date` varchar(30) NOT NULL,
+  `treatment_end_date` varchar(30) NOT NULL,
   `treatment_durations` varchar(50) NOT NULL,
   `comments` varchar(200) NOT NULL,
   `treatment_drug_dose` longtext NOT NULL,
@@ -767,11 +745,6 @@ CREATE TABLE IF NOT EXISTS `patient_cancer_treatment` (
   KEY `fk_patient_cancer_treatment_treatment_id` (`treatment_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
---
--- Dumping data for table `patient_cancer_treatment`
---
-
-
 -- --------------------------------------------------------
 
 --
@@ -791,11 +764,6 @@ CREATE TABLE IF NOT EXISTS `patient_cogs_studies` (
   PRIMARY KEY (`COGS_studies_id`),
   KEY `fk_patient_ic_no` (`patient_ic_no`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `patient_cogs_studies`
---
-
 
 -- --------------------------------------------------------
 
@@ -818,11 +786,6 @@ CREATE TABLE IF NOT EXISTS `patient_contact_person` (
   KEY `fk_patient_contact_person_patient_ic_no` (`patient_ic_no`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
---
--- Dumping data for table `patient_contact_person`
---
-
-
 -- --------------------------------------------------------
 
 --
@@ -842,11 +805,6 @@ CREATE TABLE IF NOT EXISTS `patient_family` (
   KEY `fk_users_groups_groups1` (`patient_ic_no`),
   KEY `fk_users_groups_users1` (`family_no`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `patient_family`
---
-
 
 -- --------------------------------------------------------
 
@@ -871,11 +829,6 @@ CREATE TABLE IF NOT EXISTS `patient_gynaecological_surgery_history` (
   KEY `fk_patient_gynaecological_surgery_history_studies_id` (`patient_studies_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
---
--- Dumping data for table `patient_gynaecological_surgery_history`
---
-
-
 -- --------------------------------------------------------
 
 --
@@ -895,11 +848,6 @@ CREATE TABLE IF NOT EXISTS `patient_hospital_no` (
   KEY `patient_ic_no` (`patient_ic_no`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
---
--- Dumping data for table `patient_hospital_no`
---
-
-
 -- --------------------------------------------------------
 
 --
@@ -915,14 +863,15 @@ CREATE TABLE IF NOT EXISTS `patient_infertility` (
   `infertility_comments` varchar(200) NOT NULL,
   `contraceptive_pills_flag` tinyint(1) NOT NULL,
   `currently_taking_contraceptive_pills_flag` tinyint(1) NOT NULL,
-  `contraceptive_start_date` date NOT NULL,
-  `contraceptive_end_date` date NOT NULL,
+  `contraceptive_start_date` varchar(50) NOT NULL,
+  `contraceptive_end_date` varchar(50) NOT NULL,
   `contraceptive_duration` varchar(50) NOT NULL,
   `hrt_flag` tinyint(1) NOT NULL,
   `currently_using_hrt_flag` tinyint(1) NOT NULL,
   `hrt_start_date` date NOT NULL,
   `hrt_end_date` date NOT NULL,
   `hrt_duration` varchar(50) NOT NULL,
+  `hrt_details` text NOT NULL,
   `created_on` date NOT NULL,
   `modified_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modified_by` varchar(50) NOT NULL,
@@ -935,11 +884,6 @@ CREATE TABLE IF NOT EXISTS `patient_infertility` (
   PRIMARY KEY (`patient_infertility_id`),
   KEY `fk_patient_infertility_patient_studies_id` (`patient_studies_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
-
---
--- Dumping data for table `patient_infertility`
---
-
 
 -- --------------------------------------------------------
 
@@ -966,11 +910,6 @@ CREATE TABLE IF NOT EXISTS `patient_interview_manager` (
   KEY `fk_patient_interview_manager_patient_ic_no` (`patient_ic_no`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
---
--- Dumping data for table `patient_interview_manager`
---
-
-
 -- --------------------------------------------------------
 
 --
@@ -980,7 +919,7 @@ CREATE TABLE IF NOT EXISTS `patient_interview_manager` (
 CREATE TABLE IF NOT EXISTS `patient_lifestyle_factors` (
   `patient_lifestyle_factors_id` int(11) NOT NULL AUTO_INCREMENT,
   `patient_studies_id` int(10) NOT NULL,
-  `questionnaire_date` date NOT NULL,
+  `questionnaire_date` varchar(30) NOT NULL,
   `self_image_at_7years` int(5) NOT NULL,
   `self_image_at_18years` int(5) NOT NULL,
   `self_image_now` int(5) NOT NULL,
@@ -1029,11 +968,6 @@ CREATE TABLE IF NOT EXISTS `patient_lifestyle_factors` (
   KEY `fk_patient_lifestyle_factors_patient_studies_id` (`patient_studies_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
---
--- Dumping data for table `patient_lifestyle_factors`
---
-
-
 -- --------------------------------------------------------
 
 --
@@ -1054,11 +988,6 @@ CREATE TABLE IF NOT EXISTS `patient_mammo_processed_images` (
   KEY `fk_patient_mammo_processed_images_patient_ic_no` (`patient_ic_no`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
---
--- Dumping data for table `patient_mammo_processed_images`
---
-
-
 -- --------------------------------------------------------
 
 --
@@ -1078,11 +1007,6 @@ CREATE TABLE IF NOT EXISTS `patient_mammo_raw_images` (
   PRIMARY KEY (`patient_mammo_raw_images_id`),
   KEY `fk_patient_mammo_raw_images_patient_ic_no` (`patient_ic_no`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `patient_mammo_raw_images`
---
-
 
 -- --------------------------------------------------------
 
@@ -1111,11 +1035,6 @@ CREATE TABLE IF NOT EXISTS `patient_menstruation` (
   KEY `fk_patient_menstruation_patient_studies_id` (`patient_studies_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
---
--- Dumping data for table `patient_menstruation`
---
-
-
 -- --------------------------------------------------------
 
 --
@@ -1135,11 +1054,6 @@ CREATE TABLE IF NOT EXISTS `patient_mri_abnormality` (
   `deleted_on` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`patient_mri_abnormlity_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `patient_mri_abnormality`
---
-
 
 -- --------------------------------------------------------
 
@@ -1184,11 +1098,6 @@ CREATE TABLE IF NOT EXISTS `patient_mutation_analysis` (
   KEY `fk_patient_investigations_patient_studies_id` (`patient_studies_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
---
--- Dumping data for table `patient_mutation_analysis`
---
-
-
 -- --------------------------------------------------------
 
 --
@@ -1217,11 +1126,6 @@ CREATE TABLE IF NOT EXISTS `patient_non_cancer_surgery` (
   KEY `patient_studies_id` (`patient_studies_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
---
--- Dumping data for table `patient_non_cancer_surgery`
---
-
-
 -- --------------------------------------------------------
 
 --
@@ -1247,11 +1151,6 @@ CREATE TABLE IF NOT EXISTS `patient_other_disease` (
   KEY `fk_patient_diagnosis_patient_studies_id` (`patient_studies_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
---
--- Dumping data for table `patient_other_disease`
---
-
-
 -- --------------------------------------------------------
 
 --
@@ -1275,11 +1174,6 @@ CREATE TABLE IF NOT EXISTS `patient_other_disease_medication` (
   KEY `patient_other_disease_id` (`patient_other_disease_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
---
--- Dumping data for table `patient_other_disease_medication`
---
-
-
 -- --------------------------------------------------------
 
 --
@@ -1301,11 +1195,6 @@ CREATE TABLE IF NOT EXISTS `patient_other_screening` (
   PRIMARY KEY (`patient_other_screening_id`),
   KEY `patient_studies_id` (`patient_studies_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `patient_other_screening`
---
-
 
 -- --------------------------------------------------------
 
@@ -1329,11 +1218,6 @@ CREATE TABLE IF NOT EXISTS `patient_ovarian_screening` (
   KEY `patient_studies_id` (`patient_studies_id`),
   KEY `ovarian_screening_type_id` (`ovarian_screening_type_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `patient_ovarian_screening`
---
-
 
 -- --------------------------------------------------------
 
@@ -1360,11 +1244,6 @@ CREATE TABLE IF NOT EXISTS `patient_parity_record` (
   KEY `fk_patient_parity_record_patient_parity_table_id` (`patient_parity_table_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
---
--- Dumping data for table `patient_parity_record`
---
-
-
 -- --------------------------------------------------------
 
 --
@@ -1384,11 +1263,6 @@ CREATE TABLE IF NOT EXISTS `patient_parity_table` (
   KEY `fk_patient_parity_table_patient_studies_id` (`patient_studies_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
---
--- Dumping data for table `patient_parity_table`
---
-
-
 -- --------------------------------------------------------
 
 --
@@ -1400,7 +1274,7 @@ CREATE TABLE IF NOT EXISTS `patient_pathology` (
   `cancer_id` int(10) NOT NULL,
   `tissue_site` text NOT NULL,
   `type_of_report` text NOT NULL,
-  `date_of_report` date NOT NULL,
+  `date_of_report` varchar(30) NOT NULL,
   `pathology_lab` text NOT NULL,
   `name_of_doctor` text NOT NULL,
   `morphology` text NOT NULL,
@@ -1428,11 +1302,6 @@ CREATE TABLE IF NOT EXISTS `patient_pathology` (
   KEY `fk_patient_cancer_id` (`patient_cancer_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
---
--- Dumping data for table `patient_pathology`
---
-
-
 -- --------------------------------------------------------
 
 --
@@ -1454,11 +1323,6 @@ CREATE TABLE IF NOT EXISTS `patient_pathology_staining_status` (
   KEY `patient_pathology_id` (`patient_pathology_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
---
--- Dumping data for table `patient_pathology_staining_status`
---
-
-
 -- --------------------------------------------------------
 
 --
@@ -1468,6 +1332,7 @@ CREATE TABLE IF NOT EXISTS `patient_pathology_staining_status` (
 CREATE TABLE IF NOT EXISTS `patient_private_no` (
   `patient_private_no_id` int(11) NOT NULL AUTO_INCREMENT,
   `patient_ic_no` bigint(18) NOT NULL,
+  `patient_studies_id` varchar(30) NOT NULL,
   `private_no` char(50) NOT NULL,
   `created_on` date NOT NULL,
   `modified_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -1477,11 +1342,6 @@ CREATE TABLE IF NOT EXISTS `patient_private_no` (
   PRIMARY KEY (`patient_private_no_id`),
   KEY `fk_patient_private_no_patient_ic_no` (`patient_ic_no`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `patient_private_no`
---
-
 
 -- --------------------------------------------------------
 
@@ -1501,9 +1361,9 @@ CREATE TABLE IF NOT EXISTS `patient_relatives` (
   `ethnicity` varchar(250) NOT NULL,
   `nationality` varchar(250) NOT NULL,
   `town_of_residence` varchar(250) NOT NULL,
-  `d_o_b` date NOT NULL,
+  `d_o_b` varchar(50) NOT NULL,
   `is_alive_flag` tinyint(1) NOT NULL,
-  `d_o_d` date NOT NULL,
+  `d_o_d` varchar(50) NOT NULL,
   `is_cancer_diagnosed` tinyint(1) NOT NULL,
   `date_of_diagnosis` date NOT NULL,
   `cancer_type_id` int(10) NOT NULL,
@@ -1532,11 +1392,6 @@ CREATE TABLE IF NOT EXISTS `patient_relatives` (
   KEY `fk_patient_relatives_relatives_id` (`relatives_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
---
--- Dumping data for table `patient_relatives`
---
-
-
 -- --------------------------------------------------------
 
 --
@@ -1564,11 +1419,6 @@ CREATE TABLE IF NOT EXISTS `patient_relatives_summary` (
   PRIMARY KEY (`patient_relatives_summary_ID`),
   KEY `fk_patient_relatives_summary_patient_ic_no` (`patient_ic_no`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
-
---
--- Dumping data for table `patient_relatives_summary`
---
-
 
 -- --------------------------------------------------------
 
@@ -1610,11 +1460,6 @@ CREATE TABLE IF NOT EXISTS `patient_risk_assessment` (
   KEY `fk_patient_boadicea_patient_ic_no` (`patient_ic_no`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
---
--- Dumping data for table `patient_risk_assessment`
---
-
-
 -- --------------------------------------------------------
 
 --
@@ -1634,11 +1479,6 @@ CREATE TABLE IF NOT EXISTS `patient_risk_reducing_surgery` (
   PRIMARY KEY (`patient_risk_reducing_surgery_id`),
   KEY `patient_studies_id` (`patient_studies_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `patient_risk_reducing_surgery`
---
-
 
 -- --------------------------------------------------------
 
@@ -1662,11 +1502,6 @@ CREATE TABLE IF NOT EXISTS `patient_risk_reducing_surgery_complete_removal` (
   KEY `non_cancerous_site_id` (`non_cancerous_site_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
---
--- Dumping data for table `patient_risk_reducing_surgery_complete_removal`
---
-
-
 -- --------------------------------------------------------
 
 --
@@ -1687,11 +1522,6 @@ CREATE TABLE IF NOT EXISTS `patient_risk_reducing_surgery_lesion` (
   KEY `patient_risk_reducing_surgery_id` (`patient_risk_reducing_surgery_id`),
   KEY `non_cancerous_site_id` (`non_cancerous_site_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `patient_risk_reducing_surgery_lesion`
---
-
 
 -- --------------------------------------------------------
 
@@ -1723,11 +1553,6 @@ CREATE TABLE IF NOT EXISTS `patient_studies` (
   KEY `fk_patient_studies_studies_id` (`studies_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
---
--- Dumping data for table `patient_studies`
---
-
-
 -- --------------------------------------------------------
 
 --
@@ -1739,13 +1564,13 @@ CREATE TABLE IF NOT EXISTS `patient_surveillance` (
   `patient_studies_id` int(10) NOT NULL,
   `recruitment_center` text NOT NULL,
   `type` text NOT NULL,
-  `first_consultation_date` date NOT NULL,
+  `first_consultation_date` varchar(30) NOT NULL,
   `first_consultation_place` text NOT NULL,
   `surveillance_interval` text NOT NULL,
   `diagnosis` text NOT NULL,
-  `due_date` date NOT NULL,
-  `reminder_sent_date` date NOT NULL,
-  `surveillance_done_date` date NOT NULL,
+  `due_date` varchar(30) NOT NULL,
+  `reminder_sent_date` varchar(30) NOT NULL,
+  `surveillance_done_date` varchar(50) NOT NULL,
   `reminded_by` text NOT NULL,
   `timing` text NOT NULL,
   `symptoms` text NOT NULL,
@@ -1761,11 +1586,6 @@ CREATE TABLE IF NOT EXISTS `patient_surveillance` (
   PRIMARY KEY (`patient_surveillance_id`),
   KEY `fk_patient_surveillance_patient_studies_id` (`patient_studies_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `patient_surveillance`
---
-
 
 -- --------------------------------------------------------
 
@@ -1788,11 +1608,6 @@ CREATE TABLE IF NOT EXISTS `patient_survival_status` (
   KEY `fk_patient_survival_status_patient_ic_no` (`patient_ic_no`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
---
--- Dumping data for table `patient_survival_status`
---
-
-
 -- --------------------------------------------------------
 
 --
@@ -1813,11 +1628,6 @@ CREATE TABLE IF NOT EXISTS `patient_ultrasound_abnormality` (
   PRIMARY KEY (`patient_ultra_abn`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
---
--- Dumping data for table `patient_ultrasound_abnormality`
---
-
-
 -- --------------------------------------------------------
 
 --
@@ -1828,13 +1638,14 @@ CREATE TABLE IF NOT EXISTS `relatives` (
   `relatives_id` int(10) NOT NULL AUTO_INCREMENT,
   `relatives_type` char(100) NOT NULL,
   PRIMARY KEY (`relatives_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=109 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=110 ;
 
 --
 -- Dumping data for table `relatives`
 --
 
 INSERT INTO `relatives` (`relatives_id`, `relatives_type`) VALUES
+(0, ''),
 (1, 'FATHER'),
 (2, 'MOTHER'),
 (3, 'BROTHER'),
@@ -1950,13 +1761,14 @@ CREATE TABLE IF NOT EXISTS `relative_degrees` (
   `relative_degree_ID` int(10) NOT NULL AUTO_INCREMENT,
   `relative_degree_name` char(100) NOT NULL,
   PRIMARY KEY (`relative_degree_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `relative_degrees`
 --
 
 INSERT INTO `relative_degrees` (`relative_degree_ID`, `relative_degree_name`) VALUES
+(0, ''),
 (1, '1st degree'),
 (2, '2nd degree'),
 (3, '3rd degree');
@@ -1971,7 +1783,7 @@ CREATE TABLE IF NOT EXISTS `studies` (
   `studies_id` int(10) NOT NULL AUTO_INCREMENT,
   `studies_name` char(200) NOT NULL,
   PRIMARY KEY (`studies_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
 
 --
 -- Dumping data for table `studies`
@@ -1984,7 +1796,9 @@ INSERT INTO `studies` (`studies_id`, `studies_name`) VALUES
 (4, 'Mammo'),
 (5, 'MyMammo'),
 (6, 'SD MyBrca'),
-(7, 'My1000Mammo');
+(7, 'My1000Mammo'),
+(8, 'MyEpiBrCa Baseline'),
+(9, 'MyEpiBrCa Follow up');
 
 -- --------------------------------------------------------
 
@@ -1999,13 +1813,14 @@ CREATE TABLE IF NOT EXISTS `treatment` (
   PRIMARY KEY (`treatment_id`),
   KEY `treatment_id` (`treatment_id`),
   KEY `treatment_id_2` (`treatment_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=27 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=28 ;
 
 --
 -- Dumping data for table `treatment`
 --
 
 INSERT INTO `treatment` (`treatment_id`, `treatment_name`, `treatment_detail`) VALUES
+(0, '', ''),
 (1, 'Lumpectomy', ''),
 (2, 'Mastectomy', ''),
 (3, 'Healthy Braest Removed', ''),
@@ -2075,7 +1890,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `suspend`, `reset_password_invalid_attempts`, `reset_password_counter`, `first_name`, `last_name`, `phone`, `current_city`, `country`, `profile_picture_path`, `user_language`, `add_privilege`, `view_privilege`, `edit_privilege`, `delete_privilege`) VALUES
-(1, '\0\0', 'administrator', '59beecdf7fc966e2f17fd8f65a4a9aeb09d4a3d4', '9462e8eee0', 'asyraf.abdrani@gmail.com', '', NULL, NULL, '9d029802e28cd9c768e8e62277c0df49ec65c48c', 1268889823, 1393307598, 1, 0, 0, 0, 'Admin', 'istrator', '0', NULL, NULL, NULL, NULL, 1, 1, 1, 0),
+(1, '\0\0', 'administrator', '59beecdf7fc966e2f17fd8f65a4a9aeb09d4a3d4', '9462e8eee0', 'asyraf.abdrani@gmail.com', '', NULL, NULL, '9d029802e28cd9c768e8e62277c0df49ec65c48c', 1268889823, 1390371055, 1, 0, 0, 0, 'Admin', 'istrator', '0', NULL, NULL, NULL, NULL, 1, 1, 1, 0),
 (2, '\0\0', 'nazmul', '59beecdf7fc966e2f17fd8f65a4a9aeb09d4a3d4', '9462e8eee0', 'nazmul@apurbatech.com', '', NULL, NULL, NULL, 1268889823, 1373438882, 1, 0, 0, 0, 'Nazmul', 'Hasan', '0', NULL, NULL, NULL, NULL, 1, 1, 1, 0),
 (3, '\0\0', 'alamgir', '59beecdf7fc966e2f17fd8f65a4a9aeb09d4a3d4', '9462e8eee0', 'alamgir@apurbatech.com', '', NULL, NULL, NULL, 1268889823, 1380003462, 1, 0, 0, 0, 'Alamgir', 'Kabir', '0', NULL, NULL, NULL, NULL, 1, 1, 1, 0),
 (4, '\0\0', 'fariza', '59beecdf7fc966e2f17fd8f65a4a9aeb09d4a3d4', '9462e8eee0', 'fariza@apurbatech.com', '', NULL, NULL, NULL, 1268889823, 1375689996, 1, 0, 0, 0, 'Fariza', 'Amir', '0', NULL, NULL, NULL, NULL, 1, 1, 1, 0),
