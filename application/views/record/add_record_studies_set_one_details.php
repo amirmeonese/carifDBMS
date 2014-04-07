@@ -134,12 +134,20 @@
             </tr>
             <tr>
                 <td>
-                    <?php echo $mammo_left_right_breast_side; ?>: 
-					<?php echo form_dropdown('mammo_left_right_breast_side', $mammo_left_right_breast_side_lists, NULL, 'id="mammo_left_right_breast_side_lists"'); ?>
+                    <?php echo 'Left breast side'; ?>: 
+					<?php echo form_dropdown('mammo_left_breast_side', $mammo_left_right_breast_side_lists, NULL, 'id="mammo_left_breast_side"'); ?>
                 </td>
                 <td>
-					<?php echo $mammo_upper_below_breast_side; ?>: 
-					<?php echo form_dropdown('mammo_upper_below_breast_side', $mammo_upper_below_breast_side_lists, NULL, 'id="mammo_upper_below_breast_side_lists"'); ?>
+                    <?php echo 'Right breast side'; ?>: 
+					<?php echo form_dropdown('mammo_right_breast_side', $mammo_left_right_breast_side_lists, NULL, 'id="mammo_right_breast_side"'); ?>
+                </td>
+                <td>
+                    <?php echo 'Upper breast side'; ?>: 
+					<?php echo form_dropdown('mammo_upper_breast_side', $mammo_upper_below_breast_side_lists, NULL, 'id="mammo_upper_breast_side"'); ?>
+                </td>
+                <td>
+                    <?php echo 'Lower breast side'; ?>: 
+					<?php echo form_dropdown('mammo_below_breast_side', $mammo_upper_below_breast_side_lists, NULL, 'id="mammo_below_breast_side"'); ?>
                 </td>
 <!--				 <td>
                     <?php echo $mammo_is_abnormality_detected; ?>: 

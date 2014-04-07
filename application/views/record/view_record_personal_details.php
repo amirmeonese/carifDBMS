@@ -117,6 +117,7 @@
                     </td>
 
                 </tr>
+                <input type="hidden" name="patient_hospital_no_id" value="<?php print @$hospital['patient_hospital_no_ID']; ?>"/>
             </table>
         </div>
     <?php endforeach; ?>
@@ -197,7 +198,7 @@
                 </td>
                 <td>
                     <?php echo $highest_level_of_education; ?>: 
-                    <?php echo form_textarea(array('name' => 'highest_level_of_education', 'id' => 'highest_level_of_education', 'rows' => '3', 'cols' => '7', 'value' => $patient_detail['highest_education_level'])) ?>                                      
+                    <?php echo form_textarea(array('name' => 'highest_education_level', 'id' => 'highest_education_level', 'rows' => '3', 'cols' => '7', 'value' => $patient_detail['highest_education_level'])) ?>                                      
                 </td>
             </tr>
             <tr>
@@ -210,19 +211,8 @@
                     <?php echo form_input(array('name' => 'weight', 'value' => $patient_detail['weight'])) ?>                                                            
                 </td>
                 <td>
-                    <?php
-                    if (!empty($patient_detail['weight']) && ($patient_detail['height'] )) {
-                        $bmi = $patient_detail['weight'] / ($patient_detail['height'] * $patient_detail['height']);
-                        ?>
-
                         <?php echo $BMI; ?>: 
-                        <?php echo form_input(array('name' => 'BMI', 'value' => round($bmi, 1))) ?>   
-                    <?php } else { ?>
-
-                        <?php echo $BMI; ?>: 
-                        <?php echo form_input(array('name' => 'BMI', 'value' => '')) ?>    
-
-<?php } ?>
+                        <?php echo form_input(array('name' => 'BMI', 'value' => $patient_detail['bmi'])) ?>    
                 </td>
                 <td>
                     <?php echo $income_level; ?>:
@@ -335,7 +325,6 @@
                 </tr>
 
                 <input type="hidden" name="patient_contact_person_id" value="<?php print $patient_contact_person['patient_contact_person_id']; ?>"/>
-                <input type="hidden" name="patient_hospital_no_id" value="<?php print @$patient_hospital_no['patient_hospital_no_id']; ?>"/>
                 <input type="hidden" name="patient_relatives_summary_id" value="<?php print $patient_relatives_summary['patient_relatives_summary_ID']; ?>"/>
             </table>
         </div>

@@ -2574,8 +2574,8 @@ function get_studies_name_by_id() {
         
         $sitebreastlist = array(
             '' => '',
-            '1' => 'Left',
-            '0' => 'Right',
+            '1' => 'YES',
+            '0' => 'NO',
         );
         
         return $sitebreastlist;
@@ -2814,7 +2814,7 @@ function update_checkbox($id,$field,$where,$table) {
         $this->db->where_in($where, $id);
         $this->db->update($table, $data);
         
-         echo $this->db->last_query();
+         //echo $this->db->last_query();
         
     }
     
@@ -2833,7 +2833,7 @@ function update_checkbox($id,$field,$where,$table) {
         }
         $this->db->update($table, $data);
         
-        echo $this->db->last_query();
+        //echo $this->db->last_query();
         
         }
 

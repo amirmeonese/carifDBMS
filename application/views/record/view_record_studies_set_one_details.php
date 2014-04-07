@@ -131,14 +131,22 @@
             </tr>
             <tr>
                 <td>
-                    <?php echo $mammo_left_right_breast_side; ?>: 
-                    <?php echo form_dropdown('mammo_left_right_breast_side[]', $mammo_left_right_breast_side_lists, $site_breast[$breast_screening['left_breast']], 'id="mammo_left_right_breast_side_lists" preload_val="'.$site_breast[$breast_screening['left_breast']].'"'); ?>
+                    <?php echo 'Left breast side '; ?>: 
+                    <?php echo form_dropdown('mammo_left_breast_side[]', $mammo_left_right_breast_side_lists, $site_breast[$breast_screening['left_breast']], 'id="mammo_left_right_breast_side_lists" preload_val="'.$site_breast[$breast_screening['left_breast']].'"'); ?>
+                </td>
+                 <td>
+                    <?php echo 'Right breast side'; ?>: 
+                    <?php echo form_dropdown('mammo_right_breast_side[]', $mammo_left_right_breast_side_lists, $site_breast[$breast_screening['right_breast']], 'id="mammo_left_right_breast_side_lists" preload_val="'.$site_breast[$breast_screening['right_breast']].'"'); ?>
+                </td>
+                 <td>
+                    <?php echo 'Upper breast side'; ?>: 
+                    <?php echo form_dropdown('mammo_upper_breast_side[]', $mammo_upper_below_breast_side_lists, $site_breast[$breast_screening['upper']], 'id="mammo_upper_below_breast_side_lists" preload_val="'.$site_breast[$breast_screening['upper']].'"'); ?>
+                </td>
+                 <td>
+                    <?php echo 'Lower breast side'; ?>: 
+                    <?php echo form_dropdown('mammo_below_breast_side[]', $mammo_upper_below_breast_side_lists, $site_breast[$breast_screening['below']], 'id="mammo_upper_below_breast_side_lists" preload_val="'.$site_breast[$breast_screening['below']].'"'); ?>
                 </td>
           
-                <td>
-                    <?php echo $mammo_upper_below_breast_side; ?>: 
-                    <?php echo form_dropdown('mammo_upper_below_breast_side[]', $mammo_upper_below_breast_side_lists, $upperbelow_breast[$breast_screening['upper']], 'id="mammo_upper_below_breast_side_lists" preload_val="'.$upperbelow_breast[$breast_screening['upper']].'"'); ?>
-                </td>
 <!--                <td>
                     <?php echo $mammo_is_abnormality_detected; ?>: 
                     <?php echo form_checkbox(array('name' => 'mammo_is_abnormality_detected[]', 'value' => $breast_screening['mammo_is_abnormality_detected']))?>
