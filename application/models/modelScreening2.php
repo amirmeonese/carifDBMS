@@ -72,7 +72,7 @@ class ModelScreening2 extends CI_Model {
                 }
                 
                 
-                if (($key == 4 || $key == 10) && $cell_value != NULL) {
+                if ($key == 4 || $key == 10) {
                                 /*if (strpos($cell_value, '-') !== FALSE)
                                     $cell_value = date("d/m/Y", strtotime($cell_value));
                                 list($day, $month, $year) = explode("/", $cell_value);
@@ -93,9 +93,9 @@ class ModelScreening2 extends CI_Model {
                                 $cell_value = date('Y-m-d', strtotime(str_replace('/', '-', $cell_value)));*/
                                 //$cell_value = preg_replace("/[^0-9\/]/", "", $cell_value);
                                 if($cell_value == "")
-                                    $cell_value = '0000-00-00';
+                                    $cell_value = NULL;
                                 else
-                                $cell_value == '0000-00-00' ? "0000-00-00" :  date('Y-m-d', strtotime(str_replace('/', '-', $cell_value)));
+                                $cell_value == '0000-00-00' ? NULL :  date('Y-m-d', strtotime(str_replace('/', '-', $cell_value)));
                             }
                 //echo $key; // 0, 1, 2..
                 $temp5[] = $cell_value;
@@ -128,6 +128,7 @@ class ModelScreening2 extends CI_Model {
                     'breast_age_of_surgery' => $temp5[11],
                     'breast_date_of_surgery' => $temp5[10]
                 );
+                //print_r($data_patient_non_cancer_surgery_update);
             } else {
                 $data_patient_non_cancer_surgery[] = array(
                     'patient_studies_id' => $patient_studies_id,

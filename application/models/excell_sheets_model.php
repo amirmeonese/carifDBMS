@@ -495,6 +495,8 @@ class Excell_sheets_model extends CI_Model {
         );
         $record_data = array_merge($this->_filter_data($this->tables[$table_name], $data), $record_data);
         $this->db->insert_batch($this->tables[$table_name], $record_data);
+        
+//        echo $this->db->last_query();exit;
 
         $id = $this->db->insert_id();
         return $id;

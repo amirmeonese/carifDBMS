@@ -114,7 +114,7 @@ class ModelPersonal2 extends CI_Model {
                 if ($key == 1 && $cell_value != NULL) {
                     $cell_value = trim($cell_value);
                 }
-                if ($key == 2 && $cell_value != NULL) {
+                if ($key == 2) {
                     /* if (strpos($cell_value, '-') !== FALSE)
                       $cell_value = date("d/m/Y", strtotime($cell_value));
                       list($day, $month, $year) = explode("/", $cell_value);
@@ -127,9 +127,9 @@ class ModelPersonal2 extends CI_Model {
                       $cell_value = date('Y-m-d', strtotime(str_replace('/', '-', $cell_value))); */
                     //$cell_value = preg_replace("/[^0-9\/]/", "", $cell_value);
                     if ($cell_value == "") {
-                        $cell_value = '0000-00-00';
+                        $cell_value = NULL;
                     } else {
-                        $cell_value == '0000-00-00' ? "0000-00-00" : date('Y-m-d', strtotime(str_replace('/', '-', $cell_value)));
+                        $cell_value == '0000-00-00' ? NULL : date('Y-m-d', strtotime(str_replace('/', '-', $cell_value)));
                     }
                 }
 
@@ -173,6 +173,7 @@ class ModelPersonal2 extends CI_Model {
                 //if($patient_studies_id == null)
                 //echo 'hello '.$patient_studies_id;
             }
+                        
             //if ($val_ic_no_db && in_array($studies_id, $result_studies_id)) 
             if ($patient_studies_id != null) {
                 //$patient_studies_id = $this->excell_sheets_model->get_patient_studies_id($temp3[0],$studies_id);
@@ -192,6 +193,7 @@ class ModelPersonal2 extends CI_Model {
                     'referral_source' => $temp3[11],
                     'created_on' => $created_date
                 );
+                //print_r($data_patient_studies_update);exit;
             } else {
                 $data_patient_studies[] = array(
                     'patient_ic_no' => $temp3[0],

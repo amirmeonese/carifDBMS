@@ -1669,7 +1669,7 @@ class Record extends CI_Controller {
             $data_patient_consent_detail = array(
                 'patient_ic_no' => $ic_no,
                 'studies_id' => $studies_id,
-                'date_at_consent' => $consent_date == '' ? '' : date("Y-m-d", strtotime($consent_date)),
+                'date_at_consent' => $consent_date == '' ? NULL : date("Y-m-d", strtotime($consent_date)),
                 'age_at_consent' => $this->input->post('age_at_consent'),
                 'double_consent_flag' => $this->input->post('is_double_consent_flag'),
                 'consent_given_by' => $this->input->post('consent_given_by'),
