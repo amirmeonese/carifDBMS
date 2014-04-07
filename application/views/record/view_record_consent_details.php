@@ -24,7 +24,7 @@
                     </td>
                     <td>
                         <?php echo $date_at_consent; ?>:
-                        <?php echo form_input(array('name' => 'date_at_consent[]', 'value' => $list['date_at_consent'] == '0000-00-00' ? '00-00-0000' : date('d-m-Y', strtotime($list['date_at_consent'])), 'class' => 'datepicker')) ?>                    
+                        <?php echo form_input(array('name' => 'date_at_consent[]', 'value' => $list['date_at_consent'] == '' ? '' : date('d-m-Y', strtotime($list['date_at_consent'])), 'class' => 'datepicker')) ?>                    
                     </td>
                     <td>
                         <?php echo $age_at_consent; ?>: 

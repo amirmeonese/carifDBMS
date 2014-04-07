@@ -57,7 +57,7 @@
                 <td>
                     <?php echo $DOB; ?>:
 
-                    <?php echo form_input(array('name' => 'd_o_b', 'value' => $patient_detail['d_o_b'] == '0000-00-00' ? '00-00-0000' : date('d-m-Y', strtotime($patient_detail['d_o_b'])), 'class' => 'datepicker')) ?>
+                    <?php echo form_input(array('name' => 'd_o_b', 'value' => $patient_detail['d_o_b'] == '' ? '' : date('d-m-Y', strtotime($patient_detail['d_o_b'])), 'class' => 'datepicker')) ?>
 
 
                 </td>
@@ -91,7 +91,7 @@
                 <td>
                     <?php echo $DOD; ?>: 
 
-                    <?php echo form_input(array('name' => 'd_o_d', 'value' => $patient_detail['d_o_d'] == '0000-00-00' ? '00-00-0000' : date('d-m-Y', strtotime($patient_detail['d_o_d'])), 'class' => 'datepicker')) ?>
+                    <?php echo form_input(array('name' => 'd_o_d', 'value' => $patient_detail['d_o_d'] == '' ? '' : date('d-m-Y', strtotime($patient_detail['d_o_d'])), 'class' => 'datepicker')) ?>
 
                 </td>
                 <td>
@@ -327,7 +327,7 @@
                     </td>
                     <td>
                         <?php echo $status_gathered_date; ?>: 
-    <?php echo form_input(array('name' => 'status_gathered_date', 'value' => $survival['status_gathering_date'] == '0000-00-00' ? '00-00-0000' : date('d-m-Y', strtotime($survival['status_gathering_date'])), 'class' => 'datepicker')); ?>
+    <?php echo form_input(array('name' => 'status_gathered_date', 'value' => $survival['status_gathering_date'] == '' ? '' : date('d-m-Y', strtotime($survival['status_gathering_date'])), 'class' => 'datepicker')); ?>
                     </td>
 
                 <input type="hidden" name="patient_survival_status_id" value="<?php print $survival['patient_survival_status_id']; ?>"/>

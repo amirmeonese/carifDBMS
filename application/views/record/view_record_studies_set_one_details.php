@@ -26,7 +26,7 @@
             <tr>
                 <td>
                     <?php echo $date_of_first_mammogram; ?>: 
-                    <?php echo form_input(array('name' => 'date_of_first_mammogram[]', 'value' => $breast_screening['date_of_first_mammogram'] == '0000-00-00' ? '00-00-0000'  : date('d-m-Y', strtotime($breast_screening['date_of_first_mammogram'])), 'class' => 'datepicker')) ?>
+                    <?php echo form_input(array('name' => 'date_of_first_mammogram[]', 'value' => $breast_screening['date_of_first_mammogram'] == '' ? ''  : date('d-m-Y', strtotime($breast_screening['date_of_first_mammogram'])), 'class' => 'datepicker')) ?>
                 </td>
                 <td>
                     <?php echo $age_at_first_mammogram; ?>: 
@@ -50,7 +50,7 @@
             <tr>
                 <td>
                     <?php echo $date_of_recent_mammogram; ?>: 
-                    <?php echo form_input(array('name' => 'date_of_recent_mammogram[]', 'value' => $breast_screening['date_of_recent_mammogram'] == '0000-00-00' ? '00-00-0000'  : date('d-m-Y', strtotime($breast_screening['date_of_recent_mammogram'])), 'class' => 'datepicker')) ?>
+                    <?php echo form_input(array('name' => 'date_of_recent_mammogram[]', 'value' => $breast_screening['date_of_recent_mammogram'] == '' ? ''  : date('d-m-Y', strtotime($breast_screening['date_of_recent_mammogram'])), 'class' => 'datepicker')) ?>
                 </td>
                 <td>
                     <?php echo $age_at_recent__mammogram; ?>: 
@@ -298,7 +298,7 @@
             <tr>
                 <td>
                     <?php echo $mammo_ultrasound_date; ?>: 
-                    <?php echo form_input(array('name' => 'mammo_ultrasound_date[]', 'value' => $breast_screening['ultrasound_date'] == '0000-00-00' ? '00-00-0000'  : date('d-m-Y', strtotime($breast_screening['ultrasound_date'])), 'class' => 'datepicker')) ?>
+                    <?php echo form_input(array('name' => 'mammo_ultrasound_date[]', 'value' => $breast_screening['ultrasound_date'] == '' ? ''  : date('d-m-Y', strtotime($breast_screening['ultrasound_date'])), 'class' => 'datepicker')) ?>
                 </td>
                 <td>
                     <?php echo $mammo_ultrasound_details; ?>: 
@@ -351,7 +351,7 @@
             <tr>
                 <td>
                     <?php echo $mammo_MRI_date; ?>: 
-                    <?php echo form_input(array('name' => 'mammo_mri_date[]', 'value' => $breast_screening['mri_date'] == '0000-00-00' ? '00-00-0000'  : date('d-m-Y', strtotime($breast_screening['mri_date'])), 'class' => 'datepicker')) ?>
+                    <?php echo form_input(array('name' => 'mammo_mri_date[]', 'value' => $breast_screening['mri_date'] == '' ? ''  : date('d-m-Y', strtotime($breast_screening['mri_date'])), 'class' => 'datepicker')) ?>
                 </td>
                 <td>
                     <?php echo $mammo_MRI_details; ?>: 
@@ -389,7 +389,7 @@
                 </td>
                 <td>
                     <?php echo $date_of_non_cancer_surgery; ?>: 
-                    <?php echo form_input(array('name' => 'date_of_non_cancer_surgery[]', 'value' => $non_cancer['breast_date_of_surgery'] == '0000-00-00' ? '00-00-0000'  : date('d-m-Y', strtotime($non_cancer['breast_date_of_surgery'])), 'class' => 'datepicker')) ?>
+                    <?php echo form_input(array('name' => 'date_of_non_cancer_surgery[]', 'value' => $non_cancer['breast_date_of_surgery'] == '' ? ''  : date('d-m-Y', strtotime($non_cancer['breast_date_of_surgery'])), 'class' => 'datepicker')) ?>
                 </td>
                 <td>
                     <?php echo $age_at_non_cancer_surgery; ?>: 
@@ -423,7 +423,7 @@
                 </td>
                 <td>
                     <?php echo $date_of_non_cancer_surgery; ?>: 
-                    <?php echo form_input(array('name' => 'ovary_date_of_non_cancer_surgery[]', 'value' => $non_cancer['date_of_surgery'] == '0000-00-00' ? '00-00-0000'  : date('d-m-Y', strtotime($non_cancer['date_of_surgery'])), 'class' => 'datepicker')) ?>
+                    <?php echo form_input(array('name' => 'ovary_date_of_non_cancer_surgery[]', 'value' => $non_cancer['date_of_surgery'] == '' ? ''  : date('d-m-Y', strtotime($non_cancer['date_of_surgery'])), 'class' => 'datepicker')) ?>
                 </td>
                 <td>
                     <?php echo $age_at_non_cancer_surgery; ?>: 
@@ -474,7 +474,7 @@
                     </td>
                     <td>
                         <?php echo $non_cancerous_benign_date; ?>: 
-                        <?php echo form_input(array('name' => 'non_cancerous_benign_date[]', 'value' => $risk_reducing_surgery['lesion_surgery_date'] == '0000-00-00' ? '00-00-0000'  : date('d-m-Y', strtotime($risk_reducing_surgery['lesion_surgery_date'])), 'class' => 'datepicker')) ?>
+                        <?php echo form_input(array('name' => 'non_cancerous_benign_date[]', 'value' => $risk_reducing_surgery['lesion_surgery_date'] == '' ? ''  : date('d-m-Y', strtotime($risk_reducing_surgery['lesion_surgery_date'])), 'class' => 'datepicker')) ?>
                     </td>
                 </tr>
             </table>
@@ -503,7 +503,7 @@
                     </td>
                     <td>
                         <?php echo $non_cancerous_complete_removal_date; ?>: 
-                        <?php echo form_input(array('name' => 'non_cancerous_complete_removal_date[]', 'value' => $risk_reducing_surgery['surgery_date'] == '0000-00-00' ? '00-00-0000'  : date('d-m-Y', strtotime($risk_reducing_surgery['surgery_date'])), 'class' => 'datepicker')) ?>
+                        <?php echo form_input(array('name' => 'non_cancerous_complete_removal_date[]', 'value' => $risk_reducing_surgery['surgery_date'] == '' ? ''  : date('d-m-Y', strtotime($risk_reducing_surgery['surgery_date'])), 'class' => 'datepicker')) ?>
                     </td>
                     <td>
                         <?php echo $non_cancerous_complete_removal_reason; ?>: 
@@ -536,7 +536,7 @@
                     </td>
                     <td>
                         <?php echo $physical_exam_date; ?>:
-                        <?php echo form_input(array('name' => 'physical_exam_date[]', 'value' => $ovarian_screening['screening_date'] == '0000-00-00' ? '00-00-0000'  : date('d-m-Y', strtotime($ovarian_screening['screening_date'])), 'class' => 'datepicker')) ?>
+                        <?php echo form_input(array('name' => 'physical_exam_date[]', 'value' => $ovarian_screening['screening_date'] == '' ? ''  : date('d-m-Y', strtotime($ovarian_screening['screening_date'])), 'class' => 'datepicker')) ?>
                     </td>
                     <?php if($ovarian_screening['is_abnormality_detected'] == 1){?>
                     <td>
@@ -618,7 +618,7 @@
             <tr>
                 <td>
                     <?php echo $surveillance_first_consultation_date; ?>: 
-                    <?php echo form_input(array('name' => 'surveillance_first_consultation_date[]', 'value' => $surveillance['first_consultation_date'] == '0000-00-00' ? '00-00-0000'  : date('d-m-Y', strtotime($surveillance['first_consultation_date'])), 'class' => 'datepicker')) ?>
+                    <?php echo form_input(array('name' => 'surveillance_first_consultation_date[]', 'value' => $surveillance['first_consultation_date'] == '' ? ''  : date('d-m-Y', strtotime($surveillance['first_consultation_date'])), 'class' => 'datepicker')) ?>
                 </td>
                 <td>
                     <?php echo $surveillance_first_consultation_place; ?>: 
@@ -636,17 +636,17 @@
                 </td>
                 <td>
                     <?php echo $surveillance_due_date; ?>: 
-                    <?php echo form_input(array('name' => 'surveillance_due_date[]', 'value' => $surveillance['due_date'] == '0000-00-00' ? '00-00-0000'  : date('d-m-Y', strtotime($surveillance['due_date'])), 'class' => 'datepicker')) ?>
+                    <?php echo form_input(array('name' => 'surveillance_due_date[]', 'value' => $surveillance['due_date'] == '' ? ''  : date('d-m-Y', strtotime($surveillance['due_date'])), 'class' => 'datepicker')) ?>
                 </td>
                 <td>
                     <?php echo $surveillance_reminder_sent_date; ?>: 
-                    <?php echo form_input(array('name' => 'surveillance_reminder_sent_date[]', 'value' => $surveillance['reminder_sent_date'] == '0000-00-00' ? '00-00-0000'  : date('d-m-Y', strtotime($surveillance['reminder_sent_date'])), 'class' => 'datepicker')) ?>
+                    <?php echo form_input(array('name' => 'surveillance_reminder_sent_date[]', 'value' => $surveillance['reminder_sent_date'] == '' ? ''  : date('d-m-Y', strtotime($surveillance['reminder_sent_date'])), 'class' => 'datepicker')) ?>
                 </td>
             </tr>
             <tr>
                 <td>
                     <?php echo $surveillance_done_date; ?>: 
-                    <?php echo form_input(array('name' => 'surveillance_done_date[]', 'value' => $surveillance['surveillance_done_date'] == '0000-00-00' ? '00-00-0000'  : date('d-m-Y', strtotime($surveillance['surveillance_done_date'])), 'class' => 'datepicker')) ?>
+                    <?php echo form_input(array('name' => 'surveillance_done_date[]', 'value' => $surveillance['surveillance_done_date'] == '' ? ''  : date('d-m-Y', strtotime($surveillance['surveillance_done_date'])), 'class' => 'datepicker')) ?>
                 </td>
                 <td>
                     <?php echo $surveillance_reminded_by; ?>: 

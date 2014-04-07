@@ -59,7 +59,7 @@
                 </td>
                 <td>
                     <?php echo $mother_DOB; ?>: 
-                    <?php echo form_input(array('name' => 'mother_DOB[]', 'value' => $list['d_o_b'] == '0000-00-00' ? '00-00-0000'  : date('d-m-Y', strtotime($list['d_o_b'])),'class'=>'datepicker'))?>
+                    <?php echo form_input(array('name' => 'mother_DOB[]', 'value' => $list['d_o_b'] == '0000-00-00' ? ''  : date('d-m-Y', strtotime($list['d_o_b'])),'class'=>'datepicker'))?>
                 </td>
                 <?php if($list['is_alive_flag'] == 1){?>
                  <td>
@@ -76,7 +76,7 @@
             <tr>
                 <td>
                     <?php echo $mother_DOD; ?>: 
-		    <?php echo form_input(array('name'=>'mother_DOD[]','value' => $list['d_o_d'] == '0000-00-00' ? '00-00-0000'  : date('d-m-Y', strtotime($list['d_o_d'])),'class'=>'datepicker')); ?>
+		    <?php echo form_input(array('name'=>'mother_DOD[]','value' => $list['d_o_d'] == '0000-00-00' ? ''  : date('d-m-Y', strtotime($list['d_o_d'])),'class'=>'datepicker')); ?>
                 </td>
                  <?php if($list['is_cancer_diagnosed'] == 1){?>
                  <td>
@@ -107,7 +107,7 @@
                 </td>				-->
 				 <td>
                     <?php echo $mother_date_of_diagnosis; ?>: 
-                    <?php echo form_input(array('name' => 'mother_date_of_diagnosis[]', 'value' => $list['date_of_diagnosis'] == '0000-00-00' ? '00-00-0000'  : date('d-m-Y', strtotime($list['date_of_diagnosis'])),'class'=>'datepicker'))?>
+                    <?php echo form_input(array('name' => 'mother_date_of_diagnosis[]', 'value' => $list['date_of_diagnosis'] == '0000-00-00' ? ''  : date('d-m-Y', strtotime($list['date_of_diagnosis'])),'class'=>'datepicker'))?>
                 </td>
                 <td>
                     <?php echo $mother_age_of_diagnosis; ?>: 
@@ -209,7 +209,7 @@
                 </td>
                 <td>
                     <?php echo $father_DOB; ?>: 
-                    <?php echo form_input(array('name' => 'father_DOB[]', 'value' => $father['d_o_b'] == '0000-00-00' ? '00-00-0000'  : date('d-m-Y', strtotime($father['d_o_b'])),'class'=>'datepicker'))?>
+                    <?php echo form_input(array('name' => 'father_DOB[]', 'value' => $father['d_o_b'] == '0000-00-00' ? ''  : date('d-m-Y', strtotime($father['d_o_b'])),'class'=>'datepicker'))?>
                 </td>
                 <?php if($father['is_alive_flag'] == 1){?>
                 <td>
@@ -226,7 +226,7 @@
             <tr>
                 <td>
                     <?php echo $father_DOD; ?>: 
-                    <?php echo form_input(array('name' => 'father_DOD[]', 'value' => $father['d_o_d'] == '0000-00-00' ? '00-00-0000'  : date('d-m-Y', strtotime($father['d_o_d'])),'class'=>'datepicker'))?>
+                    <?php echo form_input(array('name' => 'father_DOD[]', 'value' => $father['d_o_d'] == '0000-00-00' ? ''  : date('d-m-Y', strtotime($father['d_o_d'])),'class'=>'datepicker'))?>
                 </td>
                 <?php if($father['is_cancer_diagnosed'] == 1){?>
                 <td>
@@ -256,7 +256,7 @@
                 </td>-->
                <td>
                     <?php echo $father_date_of_diagnosis; ?>: 
-                    <?php echo form_input(array('name' => 'father_date_of_diagnosis[]', 'value' => $father['date_of_diagnosis'] == '0000-00-00' ? '00-00-0000'  : date('d-m-Y', strtotime($father['date_of_diagnosis'])),'class'=>'datepicker'))?>
+                    <?php echo form_input(array('name' => 'father_date_of_diagnosis[]', 'value' => $father['date_of_diagnosis'] == '0000-00-00' ? ''  : date('d-m-Y', strtotime($father['date_of_diagnosis'])),'class'=>'datepicker'))?>
 
                </td>
                 <td>
@@ -369,7 +369,7 @@
                 </td>
                 <td>
                     <?php echo $father_DOB; ?>: 
-                    <?php echo form_input(array('name' => 'relative_DOB[]', 'value' => $others['d_o_b'] == '0000-00-00' ? '00-00-0000'  : date('d-m-Y', strtotime($others['d_o_b'])),'class'=>'datepicker'))?>
+                    <?php echo form_input(array('name' => 'relative_DOB[]', 'value' => $others['d_o_b'] == '0000-00-00' ? ''  : date('d-m-Y', strtotime($others['d_o_b'])),'class'=>'datepicker'))?>
                 </td>
                 </tr>
                 <tr>
@@ -386,7 +386,7 @@
                <?php } ?>
                 <td>
                     <?php echo $father_DOD; ?>: 
-                    <?php echo form_input(array('name' => 'relative_DOD[]', 'value' => $others['d_o_d'] == '0000-00-00' ? '00-00-0000'  : date('d-m-Y', strtotime($others['d_o_d'])),'class'=>'datepicker'))?>
+                    <?php echo form_input(array('name' => 'relative_DOD[]', 'value' => $others['d_o_d'] == '0000-00-00' ? ''  : date('d-m-Y', strtotime($others['d_o_d'])),'class'=>'datepicker'))?>
                 </td>
                 <?php if($others['is_cancer_diagnosed'] == 1){?>
                 <td>
@@ -411,7 +411,7 @@
                     <?php echo form_dropdown('relative_cancer_name[]', $patient_cancer_name_lists, $cancer_name[$others['cancer_type_id']], 'id="patient_cancer_name_lists" preload_val="'.$cancer_name[$others['cancer_type_id']].'"'); ?>
                <td>
                     <?php echo $father_date_of_diagnosis; ?>: 
-                    <?php echo form_input(array('name' => 'relative_date_of_diagnosis[]', 'value' => $others['date_of_diagnosis'] == '0000-00-00' ? '00-00-0000'  : date('d-m-Y', strtotime($others['date_of_diagnosis'])),'class'=>'datepicker'))?>
+                    <?php echo form_input(array('name' => 'relative_date_of_diagnosis[]', 'value' => $others['date_of_diagnosis'] == '0000-00-00' ? ''  : date('d-m-Y', strtotime($others['date_of_diagnosis'])),'class'=>'datepicker'))?>
 
                </td>
                 <td>

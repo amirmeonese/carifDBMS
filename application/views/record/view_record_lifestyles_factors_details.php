@@ -16,7 +16,7 @@
             <tr>
                 <td>
                     <?php echo $questionnaire_date; ?>: 
-                    <?php echo form_input(array('name' => 'questionnaire_date', 'value' => @$list['questionnaire_date'] == '0000-00-00' ? '00-00-0000'  : date('d-m-Y', strtotime(@$list['questionnaire_date'])), 'class' => 'datepicker'))?>
+                    <?php echo form_input(array('name' => 'questionnaire_date', 'value' => @$list['questionnaire_date'] == '' ? ''  : date('d-m-Y', strtotime(@$list['questionnaire_date'])), 'class' => 'datepicker'))?>
                 </td>
             </tr>
             <tr>
@@ -458,7 +458,7 @@
                 </td>
                 <td>
                     <?php echo $child_birthdate; ?>: <br />
-                    <?php echo form_input(array('name' => 'child_birthdate', 'value' => @$patient_parity['date_of_birth'] == '0000-00-00' ? '00-00-0000'  : date('d-m-Y', strtotime(@$patient_parity['date_of_birth'])), 'class' => 'datepicker'))?>
+                    <?php echo form_input(array('name' => 'child_birthdate', 'value' => @$patient_parity['date_of_birth'] == '' ? ''  : date('d-m-Y', strtotime(@$patient_parity['date_of_birth'])), 'class' => 'datepicker'))?>
                 </td>
                 </tr>
                 <tr>
@@ -554,13 +554,13 @@
                <?php } ?>
                 <td>
                     <?php echo $contraceptive_start_date; ?>: <br />
-                    <?php echo form_input(array('name' => 'contraceptive_start_date', 'value' => @$infertility['contraceptive_start_date'] == '0000-00-00' ? '00-00-0000'  : date('d-m-Y', strtotime(@$infertility['contraceptive_start_date'])), 'class' => 'datepicker'))?>
+                    <?php echo form_input(array('name' => 'contraceptive_start_date', 'value' => @$infertility['contraceptive_start_date'] == '' ? ''  : date('d-m-Y', strtotime(@$infertility['contraceptive_start_date'])), 'class' => 'datepicker'))?>
                 </td>
             </tr>
             <tr>
                 <td>
                     <?php echo $contraceptive_end_date; ?>: <br />
-                    <?php echo form_input(array('name' => 'contraceptive_end_date', 'value' => @$infertility['contraceptive_end_date'] == '0000-00-00' ? '00-00-0000'  : date('d-m-Y', strtotime(@$infertility['contraceptive_end_date'])), 'class' => 'datepicker'))?>
+                    <?php echo form_input(array('name' => 'contraceptive_end_date', 'value' => @$infertility['contraceptive_end_date'] == '' ? ''  : date('d-m-Y', strtotime(@$infertility['contraceptive_end_date'])), 'class' => 'datepicker'))?>
                 </td>
                 <td>
                     <?php echo $contraceptive_start_age; ?>: <br />
@@ -603,13 +603,13 @@
                <?php } ?>
                 <td>
                     <?php echo $HRT_start_date; ?>: <br />
-                    <?php echo form_input(array('name' => 'hrt_start_date', 'value' => @$infertility['hrt_start_date'] == '0000-00-00' ? '00-00-0000'  : date('d-m-Y', strtotime(@$infertility['hrt_start_date'])), 'class' => 'datepicker'))?>
+                    <?php echo form_input(array('name' => 'hrt_start_date', 'value' => @$infertility['hrt_start_date'] == '' ? ''  : date('d-m-Y', strtotime(@$infertility['hrt_start_date'])), 'class' => 'datepicker'))?>
                 </td>
             </tr>
             <tr>
                 <td>
                     <?php echo $HRT_end_date; ?>: <br />
-                    <?php echo form_input(array('name' => 'hrt_end_date', 'value' =>@$infertility['hrt_end_date'] == '0000-00-00' ? '00-00-0000'  : date('d-m-Y', strtotime(@$infertility['hrt_end_date'])), 'class' => 'datepicker'))?>
+                    <?php echo form_input(array('name' => 'hrt_end_date', 'value' =>@$infertility['hrt_end_date'] == '' ? ''  : date('d-m-Y', strtotime(@$infertility['hrt_end_date'])), 'class' => 'datepicker'))?>
                 </td>
                 <td>
                     <?php echo $HRT_start_age; ?>: <br />

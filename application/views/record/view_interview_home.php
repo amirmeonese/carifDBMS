@@ -16,13 +16,13 @@
             <tr>
                 <td>
                     Counseling date
-                    <?php echo form_input(array('name' => 'interview_date[]', 'value' => $patient_counselling['interview_date'] == '0000-00-00' ? '00-00-0000'  : date('d-m-Y', strtotime($patient_counselling['interview_date'])), 'class' => 'datepicker'))?>
+                    <?php echo form_input(array('name' => 'interview_date[]', 'value' => $patient_counselling['interview_date'] == '' ? ''  : date('d-m-Y', strtotime($patient_counselling['interview_date'])), 'class' => 'datepicker'))?>
                 </td>
             </tr>
             <tr>
                 <td>
                     Setup next counseling date
-                    <?php echo form_input(array('name' => 'interview_next_date[]', 'value' => $patient_counselling['next_interview_date'] == '0000-00-00' ? '00-00-0000'  : date('d-m-Y', strtotime($patient_counselling['next_interview_date'])), 'class' => 'datepicker'))?>
+                    <?php echo form_input(array('name' => 'interview_next_date[]', 'value' => $patient_counselling['next_interview_date'] == '' ? ''  : date('d-m-Y', strtotime($patient_counselling['next_interview_date'])), 'class' => 'datepicker'))?>
                 </td>
             </tr>
             <tr>
