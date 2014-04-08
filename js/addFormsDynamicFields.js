@@ -143,17 +143,30 @@ function addBreastSiteInput(divName)
 		
 		var formInputHTML = "<table><tr>" +
 		"<td>Left/right breast side:" +
-		"<select name='mammo_left_right_breast_side" + breastSiteCounter + "'>" +
+		"<select name='mammo_left_breast_side" + breastSiteCounter + "'>" +
 			"<option value=''></option>" +
-			"<option value='left'>Left</option>" +
-			"<option value='right'>Right</option>" +
+			"<option value='YES'>YES</option>" +
+			"<option value='NO'>NO</option>" +
+		"</select> " +
+		"</td>" +
+                "<select name='mammo_right_breast_side" + breastSiteCounter + "'>" +
+			"<option value=''></option>" +
+			"<option value='YES'>YES</option>" +
+			"<option value='NO'>NO</option>" +
 		"</select> " +
 		"</td>" +
 		"<td>Upper/below breast side:" +
-		"<select name='mammo_upper_below_breast_side" + breastSiteCounter + "'>" +
+		"<select name='mammo_upper_breast_side" + breastSiteCounter + "'>" +
 			"<option value=''></option>" +
-			"<option value='upper'>Upper</option>" +
-			"<option value='below'>Below</option>" +
+			"<option value='YES'>YES</option>" +
+			"<option value='NO'>NO</option>" +
+		"</select> " +
+		"</td>" +
+                "<td>Upper/below breast side:" +
+		"<select name='mammo_below_breast_side" + breastSiteCounter + "'>" +
+			"<option value=''></option>" +
+			"<option value='YES'>YES</option>" +
+			"<option value='NO'>NO</option>" +
 		"</select> " +
 		"</td>" +
 		"<td>Is abnormality detected? :<input type='checkbox' name='mammo_is_abnormality_detected" + breastSiteCounter + "' value=''/></td>" +
@@ -1436,7 +1449,7 @@ function addPregnancyInput(divName)
 			"<option value='Male'>Male</option>" +
 			"<option value='Female'>Female</option>" +
 		"</select> " +
-		"<td>Date of birth<input type='text' name='child_birthyear" + pregnancyDetailsCounter + "' class=\"datepicker\" value=''/></td>" +
+		"<td>Date of birth<input type='text' name='child_birthdate" + pregnancyDetailsCounter + "' class=\"datepicker\" value=''/></td>" +
 		"</tr>" +
 		"<tr><td>Year of birth<input type='text' name='child_birthyear" + pregnancyDetailsCounter + "' value=''/></td>" +
 		"<td>Age child at consent<input type='text' name='child_age_at_consent" + pregnancyDetailsCounter + "' value=''/></td>" +

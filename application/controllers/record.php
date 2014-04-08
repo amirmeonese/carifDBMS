@@ -348,6 +348,8 @@ class Record extends CI_Controller {
                             'patient_parity_table_id' => $id,
                             'pregnancy_type' => $this->input->post('pregnancy_type' . $fieldCount),
                             'gender' => $this->input->post('child_gender' . $fieldCount),
+                            'age_child_at_consent' => $this->input->post('child_age_at_consent' . $fieldCount),
+                            'date_of_birth' => date('Y-m-d', strtotime($this->input->post('child_birthdate' . $fieldCount))),
                             'year_of_birth' => $this->input->post('child_birthyear' . $fieldCount),
                             'birthweight' => $this->input->post('child_birthweight' . $fieldCount),
                             'created_on' => $date,
@@ -3606,6 +3608,7 @@ class Record extends CI_Controller {
             $date_of_birth = $this->input->post('child_birthdate');
 
             $data_patient_parity_record = array(
+                'patient_parity_table_id' => $patient_parity_table_id,
                 'pregnancy_type' => $this->input->post('pregnancy_type'),
                 'gender' => $this->input->post('child_gender'),
                 'age_child_at_consent' => $this->input->post('child_age_at_consent'),
@@ -3827,7 +3830,8 @@ class Record extends CI_Controller {
                 echo '<br/>';
             }
 
-            if (!empty($patient_parity_table_id)) {
+            $patient_parity_record_id = $this->input->post('patient_parity_record_id');
+            if (!empty($patient_parity_record_id)) {
 
                 $d_o_b = $this->input->post('child_birthdate');
 
@@ -3843,31 +3847,10 @@ class Record extends CI_Controller {
                 );
                 //print_r($data_patient_parity_record);
                 //echo '<br/>';
-
-
-                if ($this->db->affected_rows() > 0) {
-                    echo '<h2>Data update successfully<h2>';
-                } else {
-                    echo '<h2>No update data</h2>';
-                }
-                echo '<br/>';
-            }
-
-            if (!empty($patient_parity_table_id)) {
-                $data_patient_parity_record = array(
-                    'pregnancy_type' => $this->input->post('pregnancy_type'),
-                    'gender' => $this->input->post('child_gender'),
-                    'year_of_birth' => $this->input->post('child_birthyear'),
-                    'birthweight' => $this->input->post('child_birthweight'),
-                    'created_on' => $date,
-                    'breastfeeding_duration' => $this->input->post('child_breastfeeding_duration')
-                );
-                //print_r($data_patient_parity_record);
-                //echo '<br/>';
-
-                $this->db->where('patient_parity_table_id', $patient_parity_table_id);
+                $this->db->where('patient_parity_record_id', $patient_parity_table_id);
                 $this->db->update('patient_parity_record', $data_patient_parity_record);
 
+
                 if ($this->db->affected_rows() > 0) {
                     echo '<h2>Data update successfully<h2>';
                 } else {
@@ -3875,6 +3858,7 @@ class Record extends CI_Controller {
                 }
                 echo '<br/>';
             }
+
 
             $patient_infertility_id = $this->input->post('patient_infertility_id');
 
@@ -5567,6 +5551,7 @@ class Record extends CI_Controller {
                     $data['patient_lifestyle_factors'] = $this->record_model->get_lifestyle_detail_patient_record($patient_studies_id);
                     $data['patient_menstruation'] = $this->record_model->get_patient_menstruation_record($ic_no, $patient_studies_id);
                     $data['patient_parity_table'] = $this->record_model->get_patient_parity_table_record($ic_no, $patient_studies_id);
+                                        
                     // $data['patient_parity_record'] = $this->record_model->get_patient_parity_record($ic_no, $patient_studies_id);
                     $data['patient_infertility'] = $this->record_model->get_patient_infertility_record($ic_no, $patient_studies_id);
                     $data['patient_gynaecological'] = $this->record_model->get_patient_gynaecological_record($ic_no, $patient_studies_id);

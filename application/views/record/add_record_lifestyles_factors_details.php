@@ -47,11 +47,11 @@
                 </td>
                 <td>
                     <?php echo $self_image_at_18years; ?>: 
-                    <?php echo form_dropdown('self_image_at_7years',$self_image_lists, NULL, 'id="self_image_lists"'); ?>
+                    <?php echo form_dropdown('self_image_at_18years',$self_image_lists, NULL, 'id="self_image_lists"'); ?>
                 </td>
                 <td>
                     <?php echo $self_image_now; ?>: 
-                   <?php echo form_dropdown('self_image_at_7years',$self_image_lists, NULL, 'id="self_image_lists"'); ?>
+                   <?php echo form_dropdown('self_image_now',$self_image_lists, NULL, 'id="self_image_lists"'); ?>
                 </td>
             </tr>
 		</table>

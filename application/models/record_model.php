@@ -1441,12 +1441,13 @@ class Record_model extends CI_Model {
     
     public function get_patient_parity_table_record($ic_no, $patient_studies_id) {
 
-        $this->db->where_in('a.patient_studies_id', $patient_studies_id);
+        $this->db->select('a.*,b.*');
         $this->db->from('patient_parity_table a');
         $this->db->join('patient_parity_record b', 'a.patient_parity_id = b.patient_parity_table_id', 'left');
+        $this->db->where_in('a.patient_studies_id', $patient_studies_id);
         $p_record = $this->db->get('');
         $patient_lifestyle = $p_record->result_array();
-        // echo $this->db->last_query();exit;
+
         $p_record->free_result();
 
         return $patient_lifestyle;

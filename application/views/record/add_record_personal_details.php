@@ -79,7 +79,7 @@
                 </td>
                 <td>
                     <?php echo $is_dead; ?>: 
-                    <?php echo form_checkbox('is_dead', '1', TRUE); ?>
+                    <?php echo form_checkbox('is_dead', '1', false); ?>
                 </td>
                 <td>
                     <?php echo $DOD; ?>: 
@@ -152,7 +152,7 @@
                 <tr>
                 <td>
 					<?php echo $is_blood_card_exist; ?>: 
-                    <?php echo form_checkbox('is_blood_card_exist', '1', TRUE); ?>
+                    <?php echo form_checkbox('is_blood_card_exist', '1', false); ?>
                 </td>
                 <td>
 					<?php echo $blood_card_location; ?>: 

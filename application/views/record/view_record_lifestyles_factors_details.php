@@ -57,7 +57,7 @@
             <tr>
                 <td>
                     Strenuous Exercise: 
-                    <?php echo form_dropdown('pa_strenuous_exercise_childhood', $pa_activities_lists, @$list['pa_strenuous_exercise_childhood'], 'id="pa_activities_lists" preload_val="'.@$list['pa_strenuous_exercise_childhood'].'"'); ?>
+                    <?php echo form_dropdown('pa_strenuous_exercise_childhood', $pa_activities_lists, @$list['pa_strenuous_activity_childhood'], 'id="pa_activities_lists" preload_val="'.@$list['pa_strenuous_exercise_childhood'].'"'); ?>
                 </td>
                 <td>
                     Moderate Exercise: 
@@ -76,7 +76,7 @@
             <tr>
                 <td>
                     Strenuous Exercise: 
-                    <?php echo form_dropdown('pa_strenuous_exercise_adult', $pa_activities_lists, @$list['pa_strenuous_exercise_adult'], 'id="pa_activities_lists" preload_val="'.@$list['pa_strenuous_exercise_adult'].'"'); ?>
+                    <?php echo form_dropdown('pa_strenuous_exercise_adult', $pa_activities_lists, @$list['pa_strenuous_activity_adult'], 'id="pa_activities_lists" preload_val="'.@$list['pa_strenuous_exercise_adult'].'"'); ?>
                 </td>
                 <td>
                     Moderate Exercise: 
@@ -95,7 +95,7 @@
             <tr>
                 <td>
                     Strenuous Exercise: 
-                    <?php echo form_dropdown('pa_strenuous_exercise_now', $pa_activities_lists, @$list['pa_strenuous_exercise_now'], 'id="pa_activities_lists" preload_val="'.@$list['pa_strenuous_exercise_now'].'"'); ?>
+                    <?php echo form_dropdown('pa_strenuous_exercise_now', $pa_activities_lists, @$list['pa_strenuous_activity_now'], 'id="pa_activities_lists" preload_val="'.@$list['pa_strenuous_exercise_now'].'"'); ?>
                 </td>
                 <td>
                     Moderate Exercise: 
@@ -438,48 +438,49 @@
                         <?php if($patient_parity['pregnant_flag'] == 1){?>
                         <td>
                         <?php echo $pregnant_flag; ?>: 
-                        <?php echo form_checkbox(array('name' => 'pregnant_flag', 'value' => @$patient_parity['pregnant_flag'],'checked'=>"checked"))?>
+                        <?php echo form_checkbox(array('name' => 'pregnant_flag[]', 'value' => @$patient_parity['pregnant_flag'],'checked'=>"checked"))?>
                     </td>
                <?php } else {?>
                 <td>
                         <?php echo $pregnant_flag; ?>: 
-                        <?php echo form_checkbox(array('name' => 'pregnant_flag', 'value' => @$patient_parity['pregnant_flag']))?>
+                        <?php echo form_checkbox(array('name' => 'pregnant_flag[]', 'value' => @$patient_parity['pregnant_flag']))?>
                     </td>
                <?php } ?>
                 </tr>
                 <tr>
                 <td>
                     <?php echo $pregnancy_type; ?>: <br />
-                    <?php echo form_dropdown('pregnancy_type', $pregnancy_type_lists, @$patient_parity['pregnancy_type'], 'id="pregnancy_type" preload_val="'.@$patient_parity['pregnancy_type'].'"'); ?>
+                    <?php echo form_dropdown('pregnancy_type[]', $pregnancy_type_lists, @$patient_parity['pregnancy_type'], 'id="pregnancy_type" preload_val="'.@$patient_parity['pregnancy_type'].'"'); ?>
                 </td>
                 <td>
                     <?php echo $child_gender; ?>: <br />
-                    <?php echo form_dropdown('child_gender', $genderTypes, @$patient_parity['gender'], 'id="gender" preload_val="'.@$patient_parity['gender'].'"'); ?>
+                    <?php echo form_dropdown('child_gender[]', $genderTypes, @$patient_parity['gender'], 'id="gender" preload_val="'.@$patient_parity['gender'].'"'); ?>
                 </td>
                 <td>
                     <?php echo $child_birthdate; ?>: <br />
-                    <?php echo form_input(array('name' => 'child_birthdate', 'value' => @$patient_parity['date_of_birth'] == '' ? ''  : date('d-m-Y', strtotime(@$patient_parity['date_of_birth'])), 'class' => 'datepicker'))?>
+                    <?php echo form_input(array('name' => 'child_birthdate[]', 'value' => @$patient_parity['date_of_birth'] == '' ? ''  : date('d-m-Y', strtotime(@$patient_parity['date_of_birth'])), 'class' => 'datepicker'))?>
                 </td>
                 </tr>
                 <tr>
                     <td>
                     <?php echo $child_age_at_consent; ?>: <br />
-                    <?php echo form_input(array('name' => 'child_age_at_consent', 'value' => @$patient_parity['age_child_at_consent']))?>
+                    <?php echo form_input(array('name' => 'child_age_at_consent[]', 'value' => @$patient_parity['age_child_at_consent']))?>
                 </td>
                 <td>
                     <?php echo $child_birthweight; ?>: <br />
-                    <?php echo form_input(array('name' => 'child_birthweight', 'value' => @$patient_parity['birthweight']))?>
+                    <?php echo form_input(array('name' => 'child_birthweight[]', 'value' => @$patient_parity['birthweight']))?>
                 </td>
                 <td>
                     <?php echo $child_breastfeeding_duration; ?>: <br />
-                    <?php echo form_input(array('name' => 'child_breastfeeding_duration', 'value' => @$patient_parity['breastfeeding_duration']))?>
+                    <?php echo form_input(array('name' => 'child_breastfeeding_duration[]', 'value' => @$patient_parity['breastfeeding_duration']))?>
                 </td>
                 <td>
                     <?php echo $child_birthyear; ?>: <br />
-                    <?php echo form_input(array('name' => 'child_birthyear', 'value' => @$patient_parity['year_of_birth']))?>
+                    <?php echo form_input(array('name' => 'child_birthyear[]', 'value' => @$patient_parity['year_of_birth']))?>
                 </td>
                 </tr>
-                <input type="hidden" name="patient_parity_table_id" value="<?php echo @$patient_parity['patient_parity_table_id']; ?>"/>
+                <input type="hidden" name="patient_parity_table_id[]" value="<?php echo @$patient_parity['patient_parity_id']; ?>"/>
+                <input type="hidden" name="patient_parity_record_id[]" value="<?php echo @$patient_parity['patient_parity_record_id']; ?>"/>
             </table>
         </div>
         <?php echo form_fieldset_close(); ?>
