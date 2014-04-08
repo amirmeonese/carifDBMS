@@ -300,18 +300,18 @@ class Report extends CI_Controller {
                     $this->load->view('export/screening_tab4',$data);
                     $this->load->view('export/screening_tab5',$data);
                     $this->load->view('export/screening_tab6',$data);
-                } else if (($var == 'mutation') || ($var == 'All')) {
+                } if (($var == 'mutation') || ($var == 'All')) {
 
                     $data['patient_mutation_analysis'] = $this->report_model->get_export_mutation_record($patient_studies_id);
                     $this->load->view('export/mutation_tab',$data);
                     
-                } else if (($var == 'risk_assessment') || ($var == 'All')) {
+                } if (($var == 'risk_assessment') || ($var == 'All')) {
                     $data['patient_risk_assessment'] = $this->report_model->get_export_riskassesment_record($ic_no, 'patient_risk_assessment', 'patient_ic_no');
                     
                     $this->load->view('export/risk_assessment_tab',$data);
                 
                     
-                } else if (($var == 'lifestyleFactors') || ($var == 'All')) {
+                } if (($var == 'lifestyleFactors') || ($var == 'All')) {
                     
                     $data['patient_lifestyle_factors'] = $this->report_model->get_lifestyle_detail_patient_record($patient_studies_id);
                     $data['patient_menstruation'] = $this->report_model->get_patient_menstruation_record($patient_studies_id);

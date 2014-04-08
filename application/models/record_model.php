@@ -2605,10 +2605,11 @@ function get_studies_name_by_id() {
         
         function get_non_cancerous_benign_site_name() {
 
-        $noncanceroussite = array();
+//        $noncanceroussite = array();
         $this->db->select('non_cancerous_site_id,non_cancerous_site_name');
         $this->db->order_by('non_cancerous_site_name asc');
         $query = $this->db->get('non_cancerous_site');
+        $noncanceroussite = array('' => '');
         foreach ($query->result() as $row) {
             $noncanceroussite = $noncanceroussite + array($row->non_cancerous_site_id => $row->non_cancerous_site_name);
         }
