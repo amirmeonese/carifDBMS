@@ -2034,11 +2034,13 @@ class Record_model extends CI_Model {
         if ($query->num_rows() > 0) {
             $result = $query->row_array();
             //echo $result['relatives_id'];
+            $value = $result['studies_id'];
+        } else {
+            
+            $value = NULL;
         }
 
-        //print_r($result['relatives_id']);
-
-        return $result['studies_id'];
+        return $value;
     }
     
     public function get_non_cancerous_benign_site_id($record_data) {
@@ -2106,16 +2108,26 @@ class Record_model extends CI_Model {
         $this->db->join('patient_studies b','a.ic_no = b.patient_ic_no','left');
         $this->db->join('patient_hospital_no c','a.ic_no = c.patient_ic_no','left');
         $this->db->join('patient_private_no d','b.patient_studies_id = d.patient_studies_id','left');
+        if(!empty($record_data['given_name'])){
         $this->db->like('a.given_name', $record_data['given_name']);
+        }
+        if(!empty($record_data['ic_no'])){
         $this->db->like('a.ic_no', $record_data['ic_no']);
+        }
+        if(!empty($record_data['studies_name'])){
         $this->db->like('b.studies_id', $record_data['studies_name']);
+        }
+        if(!empty($record_data['patient_no'])){
         $this->db->like('d.private_no', $record_data['patient_no']);
+        }
+        if(!empty($record_data['hospital_no'])){
         $this->db->like('c.hospital_no', $record_data['hospital_no']);
+        }
         $this->db->order_by("a.given_name", "asc");
         $patient_list = $this->db->get('');
         $list_patient = $patient_list->result_array();
         
-//        echo 'getpatientlist: ';echo $this->db->last_query();
+//        echo 'getpatientlist: ';echo $this->db->last_query();exit;
                 
         $patient_list->free_result();
 
@@ -2130,11 +2142,21 @@ class Record_model extends CI_Model {
         $this->db->join('patient_studies b','a.ic_no = b.patient_ic_no','left');
         $this->db->join('patient_hospital_no c','a.ic_no = c.patient_ic_no','left');
         $this->db->join('patient_private_no d','b.patient_studies_id = d.patient_studies_id','left');
+        if(!empty($record_data['given_name'])){
         $this->db->like('a.given_name', $record_data['given_name']);
+        }
+        if(!empty($record_data['ic_no'])){
         $this->db->like('a.ic_no', $record_data['ic_no']);
+        }
+        if(!empty($record_data['studies_name'])){
         $this->db->like('b.studies_id', $record_data['studies_name']);
+        }
+        if(!empty($record_data['patient_no'])){
         $this->db->like('d.private_no', $record_data['patient_no']);
+        }
+        if(!empty($record_data['hospital_no'])){
         $this->db->like('c.hospital_no', $record_data['hospital_no']);
+        }
         $this->db->limit($limit, $start);
 	$this->db->order_by("a.given_name", "asc");
         $patient_list = $this->db->get('');

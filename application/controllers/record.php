@@ -2178,7 +2178,7 @@ class Record extends CI_Controller {
         $studies = $this->record_model->get_studies_id($studies_name);
         $name = $this->input->post('patient_name');
         $IC_no = $this->input->post('IC_no');
-        
+                
         if(!empty($studies)){
             
            $studies_id = $studies;
@@ -2199,11 +2199,11 @@ class Record extends CI_Controller {
             );
         } else {
             $data_search_key = array(
-                'given_name' => $name,
-                'ic_no' => $IC_no,
-                'hospital_no' => $hospital_no,
-                'patient_no' => $patient_no,
-                'studies_name' => $studies_id
+                'given_name' => '',
+                'ic_no' => '',
+                'hospital_no' => '',
+                'patient_no' => '',
+                'studies_name' => ''
             );
         }
         
