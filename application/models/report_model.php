@@ -852,9 +852,9 @@ public function get_lifestyle_detail_patient_record($patient_studies_id){
         if (!empty ($ic_no)) {
                 $this->db->where_in('a.ic_no', $ic_no);
             }
-            if (!empty ($studies_name)) {
+        if (!empty ($record_data['studies_name'])) {
                 $this->db->like('b.studies_id', $record_data['studies_name']);
-            }
+        }
        // $this->db->like('c.cancer_id', $record_data['cancer']);
         $this->db->group_by('ic_no');
         $this->db->limit(1000, $start);
