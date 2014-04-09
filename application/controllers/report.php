@@ -259,7 +259,7 @@ class Report extends CI_Controller {
                     //$data['patient_ovary_cancer'] = $this->record_model->get_patient_ovary_diagnosis_record($patient_studies_id);
                     //$data['patient_ovary_cancer_treatment'] = $this->record_model->get_patient_treatment_record($a['patient_cancer_id']);
                     $breast_diagnosis_list = $this->report_model->get_patient_all_cancer_record($patient_studies_id);
-                    
+                                        
                     if(!empty($breast_diagnosis_list)){
                     foreach ($breast_diagnosis_list as $breast_id=>$breast) {
                     $breast_cancer_id = $breast['patient_cancer_id'];
@@ -270,7 +270,8 @@ class Report extends CI_Controller {
                     $breast_cancer[] = array_merge($breast, $breast_treatment, $breast_pathology);
 
                     }
-                    $data['patient_breast_cancer'] = $breast_cancer;
+                    
+                    $data['patient_breast_cancer'] = $breast_diagnosis_list;
                     }
 
                     $data['patient_other_disease'] = $this->report_model->get_patient_others_desease_record($patient_studies_id);

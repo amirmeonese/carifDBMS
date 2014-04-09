@@ -72,40 +72,35 @@ header("Expires: 0");
                     <td><?php echo $breast_cancer['detected_by']; ?></td>
                     <td><?php echo $checkbox_status[$breast_cancer['bilateral_flag']]; ?></td>
                     <td><?php echo $checkbox_status[$breast_cancer['recurrence_flag']]; ?></td>
-                    
-                    <?php foreach ($breast_cancer['pathology'] as $pathology): ?>
-                    <td><?php echo $pathology['tissue_site']; ?></td>
-                    <td><?php echo $pathology['type_of_report']; ?></td>
-                    <td><?php echo $pathology['date_of_report']; ?></td>
-                    <td><?php echo $pathology['pathology_lab']; ?></td>
-                    <td><?php echo $pathology['name_of_doctor']; ?></td>
-                    <td><?php echo $pathology['morphology']; ?></td>
-                    <td><?php echo $pathology['t_staging']; ?></td>
-                    <td><?php echo $pathology['n_staging']; ?></td>
-                    <td><?php echo $pathology['m_staging']; ?></td>
-                    <td><?php echo $pathology['tumour_stage']; ?></td>
-                    <td><?php echo $pathology['tumour_grade']; ?></td>
-                    <td><?php echo $pathology['total_lymph_nodes']; ?></td>
-                    <td><?php echo $pathology['tumour_size']; ?></td>
-                    <td><?php echo $pathology['ER_status']; ?></td>
-                    <td><?php echo $pathology['PR_status']; ?></td>
-                    <td><?php echo $pathology['HER2_status']; ?></td>
-                    <td><?php echo $pathology['comments']; ?></td>
-                    <?php endforeach; ?>
-                    <?php foreach ($breast_cancer['treatment'] as $treatment): ?>
-                    <td><?php echo $treatment_type[$treatment['treatment_id']]; ?></td>
-                    <td><?php echo $treatment['treatment_details']; ?></td>
-                    <td><?php echo $treatment['treatment_start_date']; ?></td>
-                    <td><?php echo $treatment['treatment_end_date']; ?></td>
-                    <td><?php echo $treatment['treatment_durations']; ?></td>
-                    <td><?php echo $treatment['treatment_drug_dose']; ?></td>
-                    <td><?php echo $treatment['treatment_cycle']; ?></td>
-                    <td><?php echo $treatment['treatment_frequency']; ?></td>
-                    <td><?php echo $treatment['treatment_visidual_desease']; ?></td>
-                    <td><?php echo $treatment['treatment_primary_outcome']; ?></td>
-                    <td><?php echo $treatment['comments']; ?></td>
+                    <td><?php echo $breast_cancer['tissue_site']; ?></td>
+                    <td><?php echo $breast_cancer['type_of_report']; ?></td>
+                    <td><?php echo $breast_cancer['date_of_report']; ?></td>
+                    <td><?php echo $breast_cancer['pathology_lab']; ?></td>
+                    <td><?php echo $breast_cancer['name_of_doctor']; ?></td>
+                    <td><?php echo $breast_cancer['morphology']; ?></td>
+                    <td><?php echo $breast_cancer['t_staging']; ?></td>
+                    <td><?php echo $breast_cancer['n_staging']; ?></td>
+                    <td><?php echo $breast_cancer['m_staging']; ?></td>
+                    <td><?php echo $breast_cancer['tumour_stage']; ?></td>
+                    <td><?php echo $breast_cancer['tumour_grade']; ?></td>
+                    <td><?php echo $breast_cancer['total_lymph_nodes']; ?></td>
+                    <td><?php echo $breast_cancer['tumour_size']; ?></td>
+                    <td><?php echo $breast_cancer['ER_status']; ?></td>
+                    <td><?php echo $breast_cancer['PR_status']; ?></td>
+                    <td><?php echo $breast_cancer['HER2_status']; ?></td>
+                    <td><?php echo $breast_cancer['comments']; ?></td>
+                    <td><?php echo $treatment_type[$breast_cancer['treatment_id']]; ?></td>
+                    <td><?php echo $breast_cancer['treatment_details']; ?></td>
+                    <td><?php echo $breast_cancer['treatment_start_date']; ?></td>
+                    <td><?php echo $breast_cancer['treatment_end_date']; ?></td>
+                    <td><?php echo $breast_cancer['treatment_durations']; ?></td>
+                    <td><?php echo $breast_cancer['treatment_drug_dose']; ?></td>
+                    <td><?php echo $breast_cancer['treatment_cycle']; ?></td>
+                    <td><?php echo $breast_cancer['treatment_frequency']; ?></td>
+                    <td><?php echo $breast_cancer['treatment_visidual_desease']; ?></td>
+                    <td><?php echo $breast_cancer['treatment_primary_outcome']; ?></td>
+                    <td><?php echo $breast_cancer['treatment_comments']; ?></td>
                 </tr>
-            <?php endforeach; ?>
             <?php $no++; } ?>
                 
         </table>

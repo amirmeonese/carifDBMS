@@ -584,16 +584,18 @@ class Report_model extends CI_Model {
     }
     
     function get_patient_all_cancer_record($patient_studies_id) {
-    $this->db->select('a.*,b.patient_ic_no');
+    $this->db->select('a.*,b.patient_ic_no,c.*,d.*,e.*,c.comments as treatment_comments');
     $this->db->from('patient_cancer a');
     $this->db->join('patient_studies b','a.patient_studies_id = b.patient_studies_id','left');
+    $this->db->join('patient_cancer_treatment c','a.patient_cancer_id = c.patient_cancer_id','left');
+    $this->db->join('patient_pathology d','a.patient_cancer_id = d.patient_cancer_id','left');
+    $this->db->join('patient_pathology_staining_status e','d.patient_pathology_id = e.patient_pathology_id','left');
     $this->db->where_in('a.patient_studies_id',$patient_studies_id);
     $patient_lifestyle_list = $this->db->get('');
     $list_patient_lifestyle = $patient_lifestyle_list->result_array();
     $patient_lifestyle_list->free_result();
     
-    //print_r($list_patient_lifestyle);exit;
-
+//echo $this->db->last_query();exit;
     return $list_patient_lifestyle;
 }
 
