@@ -61,6 +61,8 @@ class Model_Personal extends CI_Model {
                     $data_patient_survival_status = array();
                     $data_patient_survival_status = null;
                     $old_ic_no = NULL;
+                    $height = NULL;
+                    $weight = NULL;
                     
                     //Checking variable defined here
                     $name_validator = TRUE;
@@ -121,8 +123,7 @@ class Model_Personal extends CI_Model {
                                 $weight_validator = is_float($cell_value);
                             }*/
 
-
-                            if (($key == 8 || $key == 13 || $key == 48) && $cell_value != NULL) {
+                            if ($key == 8 || $key == 13 || $key == 48) {
                                 /*$cell_value = trim($cell_value);
                                 if (strpos($cell_value, '-') !== FALSE)
                                     $cell_value = date("d/m/Y", strtotime($cell_value));
@@ -142,11 +143,13 @@ class Model_Personal extends CI_Model {
                                 $cell_value = date('Y-m-d', strtotime(str_replace('/', '-', $cell_value)));*/
                                 
                                 //$cell_value = preg_replace("/[^0-9\/]/", "", $cell_value);
-                                if($cell_value == "")
-                                    $cell_value = '0000-00-00';
-                                else
-                                $cell_value == '0000-00-00' ? "0000-00-00" : date('Y-m-d', strtotime(str_replace('/', '-', $cell_value)));
-                                //echo $cell_value.'<br/>';
+                                if ($cell_value == "") {
+                        $cell_value = NULL;
+                    } else if ($cell_value == "0000-00-00") {
+                        $cell_value = NULL;
+                    } else {
+                        $cell_value = date('Y-m-d', strtotime(str_replace('/', '-', $cell_value)));
+                    }
                             }
                             
                             
@@ -185,6 +188,19 @@ class Model_Personal extends CI_Model {
                             $alive_status = 2;
                         
                         $val_ic_no_db = in_array($temp1[5], $array_IC_no_db);
+                        $height = $temp1[28];
+                        $weight = $temp1[29];
+                        
+                        $total_no_of_siblings = $temp1[36] + $temp1[37];
+                        
+                        if (!empty($temp1[29]) && !empty($temp1[28])){
+                        
+                            $bmi = round($temp1[29] / ($temp1[28]*$temp1[28]),2);
+                        } else {
+                            
+                            $bmi = NULL;
+                        }
+                        
 
                         if ($val_ic_no_db) {
                             $data_patient_update[] = array(
@@ -214,13 +230,14 @@ class Model_Personal extends CI_Model {
                                 'other_phone' => $temp1[24],
                                 'fax' => $temp1[25],
                                 'email' => $temp1[26],
-                                'height' => $temp1[28],
-                                'weight' => $temp1[29],
-                                'bmi' => $temp1[30],
+                                'height' => $height,
+                                'weight' => $weight,
+                                'bmi' => $bmi,
                                 'highest_education_level' => $temp1[27],
                                 'income_level' => $temp1[31],
                                 'created_on' => $created_date
                             );
+                                                        
                             $data_patient_hospital_no_update[] = array(
                                 'patient_ic_no' => $temp1[5],
                                 'hospital_no' => $temp1[15],
@@ -259,6 +276,7 @@ class Model_Personal extends CI_Model {
                                 'total_no_of_1st_degree' => $temp1[42],
                                 'total_no_of_2nd_degree' => $temp1[43],
                                 'total_no_of_3rd_degree' => $temp1[44],
+                                'total_no_of_siblings' => $total_no_of_siblings,
                                 'created_on' => $created_date
                             );
 
@@ -297,14 +315,14 @@ class Model_Personal extends CI_Model {
                                 'other_phone' => $temp1[24],
                                 'fax' => $temp1[25],
                                 'email' => $temp1[26],
-                                'height' => $temp1[28],
-                                'weight' => $temp1[29],
-                                'bmi' => $temp1[30],
+                                'height' => $height,
+                                'weight' => $weight,
+                                'bmi' => $bmi,
                                 'highest_education_level' => $temp1[27],
                                 'income_level' => $temp1[31],
                                 'created_on' => $created_date
                             );
-
+                                                        
                             $data_patient_hospital_no[] = array(
                                 'patient_ic_no' => $temp1[5],
                                 'hospital_no' => $temp1[15],
@@ -343,6 +361,7 @@ class Model_Personal extends CI_Model {
                                 'total_no_of_1st_degree' => $temp1[42],
                                 'total_no_of_2nd_degree' => $temp1[43],
                                 'total_no_of_3rd_degree' => $temp1[44],
+                                'total_no_of_siblings' => $total_no_of_siblings,
                                 'created_on' => $created_date
                             );
 
