@@ -122,10 +122,13 @@ class ModelScreening3 extends CI_Model {
                                 }
                                 $cell_value = date('Y-m-d', strtotime(str_replace('/', '-', $cell_value)));*/
                                 //$cell_value = preg_replace("/[^0-9\/]/", "", $cell_value);
-                                if($cell_value == "")
-                                    $cell_value = NULL;
-                                else
-                                $cell_value == '0000-00-00' ? NULL :  date('Y-m-d', strtotime(str_replace('/', '-', $cell_value)));
+                                if ($cell_value == "") {
+                        $cell_value = NULL;
+                    } else if ($cell_value == "0000-00-00") {
+                        $cell_value = NULL;
+                    } else {
+                        $cell_value = date('Y-m-d', strtotime(str_replace('/', '-', $cell_value)));
+                    }
                             }
 
                             $temp6[] = $cell_value;
