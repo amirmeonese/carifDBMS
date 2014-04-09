@@ -324,7 +324,7 @@ class Report extends CI_Controller {
                     $data['patient_parity_table'] = $this->report_model->get_patient_parity_table_record($patient_studies_id);
                     // $data['patient_parity_record'] = $this->record_model->get_patient_parity_record($ic_no, $patient_studies_id);
                     $data['patient_infertility'] = $this->report_model->get_patient_infertility_record($patient_studies_id);
-                    $data['patient_gynaecological'] = $this->report_model->get_patient_gynaecological_record($ic_no, $patient_studies_id);
+                    $data['patient_gynaecological'] = $this->report_model->get_patient_gynaecological_record($patient_studies_id);
 
                     $this->load->view('export/lifestyle_tab',$data);
                     $this->load->view('export/lifestyle_tab2',$data);
