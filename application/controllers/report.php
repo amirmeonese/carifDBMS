@@ -212,7 +212,7 @@ class Report extends CI_Controller {
                     $patient_studies_id = $patient_studies_id_checked;
                 } else {
                     
-                    $patient_studies_id = $patient_studies_id_all;
+                    $patient_studies_id = NULL;
                 }
                 $patient_ic_no = $this->report_model->get_icno_from_studies($patient_studies_id);
                 
@@ -231,11 +231,12 @@ class Report extends CI_Controller {
                     
                    $ic_no = NULL; 
                 }
+                                
                 if (($var == 'personal') || ($var == 'All')) {
 
                     $data['patient_detail'] = $this->record_model->get_detail_export_patient_record($ic_no, $patient_studies_id);
                     $data['patient_consent_detail'] = $this->report_model->get_consent_detail_patient_record($ic_no,$patient_studies_id);
-                    //print_r(count($data['patient_consent_detail']));exit;
+                    print_r(count($data['patient_consent_detail']));exit;
                     $data['patient_private_no'] = $this->record_model->get_private_no_record($ic_no);
                     $data['patient_hospital_no'] = $this->record_model->get_hospital_no_record($ic_no);
                     $data['patient_cogs_studies'] = $this->record_model->get_cogs_study_record($ic_no);

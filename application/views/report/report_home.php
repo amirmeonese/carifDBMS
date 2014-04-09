@@ -163,7 +163,7 @@
                     <?php if (in_array('f_date_consent',$patient_field)) echo '<td>'.$list['date_at_consent'].'</td>'; ?>
                     <td>
             <input type="checkbox" name="patient_studies_id[]" class="patientcheckbox" checked="checked" value="<?php echo $list['patient_studies_id']; ?>" />
-            <input type="hidden" name="patient_studies_id_all[]" value="<?php echo $list['patient_studies_id'];?>">
+<!--            <input type="hidden" name="patient_studies_id_all[]" value="<?php echo $list['patient_studies_id'];?>">-->
         </td>
                 </tr>                               
     <?php $no++; endforeach; ?>
