@@ -522,6 +522,18 @@ class Report_model extends CI_Model {
         return $patient_detail;
     }
     
+        public function get_icno_from_studies($patient_studies_id){
+    
+        $this->db->select('patient_ic_no');
+        $this->db->where_in('patient_studies_id',$patient_studies_id);
+	$p_record = $this->db->get('patient_studies');
+        $patient_detail = $p_record->result_array();
+        //echo $this->db->last_query();exit;
+        $p_record->free_result();  
+        
+        return $patient_detail;
+    }
+    
     public function get_detail_record($ic_no,$table){
     
         $this->db->where_in('patient_ic_no',$ic_no);
@@ -813,7 +825,7 @@ public function get_lifestyle_detail_patient_record($patient_studies_id){
             $end_age = $record_data['age_end'];
             
         
-        $this->db->select('a.given_name, a.surname, a.ic_no, a.ethnicity, b.studies_id, b.date_at_consent');
+        $this->db->select('a.given_name, a.surname, a.ic_no, a.ethnicity, b.studies_id,b.patient_studies_id, b.date_at_consent');
         $this->db->select('c.date_of_diagnosis,c.age_of_diagnosis');
         $this->db->from('patient a');
         $this->db->where('a.is_deleted',0);
@@ -840,15 +852,17 @@ public function get_lifestyle_detail_patient_record($patient_studies_id){
         if (!empty ($ic_no)) {
                 $this->db->where_in('a.ic_no', $ic_no);
             }
+            if (!empty ($studies_name)) {
+                $this->db->like('b.studies_id', $record_data['studies_name']);
+            }
        // $this->db->like('c.cancer_id', $record_data['cancer']);
         $this->db->group_by('ic_no');
-        $this->db->like('b.studies_id', $record_data['studies_name']);
         $this->db->limit(1000, $start);
         $this->db->order_by("a.given_name", "asc");
         $patient_list = $this->db->get('');
         $list_patient = $patient_list->result_array();
         
-        //echo $this->db->last_query();exit;
+//        echo $this->db->last_query();exit;
                 
         $patient_list->free_result();
 

@@ -38,7 +38,7 @@ class Report extends CI_Controller {
                 );
         
         $studies_name = $this->input->post('studies_name');
-        $studies_id = $this->excell_sheets_model->get_studies_id($studies_name);
+        $studies_id = $this->record_model->get_studies_id($studies_name);
         //$patient_cancer = $this->input->post('cancer');
         //$cancer_id = $this->record_model->get_cancer_id($patient_cancer);
         $diagnosis_date_start = $this->input->post('report_start_range_date');
@@ -201,30 +201,35 @@ class Report extends CI_Controller {
                 $data['studies_id'] = $this->record_model->get_studies_name_by_id();
                 $data['patient_studies_id'] = $this->record_model->get_studies_id_by_id();
                 
-                if (!empty($ic_no_check)){
-                
-                $ic_no = $ic_no_check;
-                
-                } else {
-                                    
-                $ic_no = $icno;
-                    
-                }
-                                
                 $studies_id = $this->input->post('patient_studies');
                 
-                $patient_studies = $this->report_model->get_patient_studies_id($ic_no,$studies_id);
+                $patient_studies_id_checked = $this->input->post('patient_studies_id');
                 
+                $patient_studies_id_all = $this->input->post('patient_studies_id_all');
                 
-                if(!empty($patient_studies)){
-                foreach ($patient_studies as $value){
+                if(!empty($patient_studies_id_checked)){
+                    
+                    $patient_studies_id = $patient_studies_id_checked;
+                } else {
+                    
+                    $patient_studies_id = $patient_studies_id_all;
+                }
+                $patient_ic_no = $this->report_model->get_icno_from_studies($patient_studies_id);
+                
+//                print_r($patient_ic_no);exit;
+                
+//                $patient_studies = $this->report_model->get_patient_studies_id($ic_no,$studies_id);
+//                
+//                
+                if(!empty($patient_ic_no)){
+                foreach ($patient_ic_no as $value){
           
-                $patient_studies_id[] = $value['patient_studies_id'];
+                $ic_no[] = $value['patient_ic_no'];
           
                 }
                 } else {
                     
-                   $patient_studies_id = NULL; 
+                   $ic_no = NULL; 
                 }
                 if (($var == 'personal') || ($var == 'All')) {
 
