@@ -532,8 +532,8 @@ class Record_model extends CI_Model {
         $data['other_phone'] = 'Other phone';
         $data['fax'] = 'Fax';
         $data['email'] = 'Email';
-        $data['height'] = 'Height';
-        $data['weight'] = 'Weight';
+        $data['height'] = 'Height (m)';
+        $data['weight'] = 'Weight (KG)';
         $data['BMI'] = 'BMI(auto-calculated)';
         $data['highest_level_of_education'] = 'Highest level of education';
 
@@ -2062,11 +2062,13 @@ class Record_model extends CI_Model {
     }
     
     public function get_studies_name() {
-        $patientStudiesList = array();
+//        $patientStudiesList = array();
         $this->db->select('studies_id,studies_name');
         $this->db->order_by('studies_id ASC');
         //$this->db->order_by('studies_name asc');
         $query = $this->db->get('studies');
+        
+        $patientStudiesList = array('' => '');
         foreach ($query->result() as $row) {
             $patientStudiesList = $patientStudiesList + array($row->studies_id => $row->studies_name);
         }

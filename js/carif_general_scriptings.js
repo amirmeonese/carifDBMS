@@ -77,7 +77,7 @@ function auto_calculate_bmi(evt)
 		height = parseFloat(val);
 	}
 	
-	height = height / 100;
+	//height = height / 100;
 	var total = (weight / (height * height));
 	iframeDoc.getElementById("BMI").value = total; 
 }

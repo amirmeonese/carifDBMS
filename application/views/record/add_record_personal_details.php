@@ -226,7 +226,7 @@
                     <?php $data = array(
                         'name' => 'height',
                         'id' => 'height',
-						'onkeypress' => 'window.parent.auto_calculate_bmi(event);'
+						'onblur' => 'window.parent.auto_calculate_bmi(event);'
                     );
 					echo form_input($data); ?>
                 </td>
