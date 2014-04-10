@@ -264,25 +264,27 @@ class Report extends CI_Controller {
                     //$data['patient_ovary_cancer'] = $this->record_model->get_patient_ovary_diagnosis_record($patient_studies_id);
                     //$data['patient_ovary_cancer_treatment'] = $this->record_model->get_patient_treatment_record($a['patient_cancer_id']);
                     $breast_diagnosis_list = $this->report_model->get_patient_all_cancer_record($patient_studies_id);
-                                        
-                    if(!empty($breast_diagnosis_list)){
-                    foreach ($breast_diagnosis_list as $breast_id=>$breast) {
-                    $breast_cancer_id = $breast['patient_cancer_id'];
-                                                                    
-                    $breast_treatment['treatment'] = $this->record_model->get_patient_treatment_record($breast_cancer_id);
-                    $breast_pathology['pathology'] = $this->record_model->get_patient_breast_pathology_record($breast_cancer_id);
-
-                    $breast_cancer[] = array_merge($breast, $breast_treatment, $breast_pathology);
-
-                    }
+//                                        
+//                    if(!empty($breast_diagnosis_list)){
+//                    foreach ($breast_diagnosis_list as $breast_id=>$breast) {
+//                    $breast_cancer_id = $breast['patient_cancer_id'];
+//                                                                    
+//                    $breast_treatment['treatment'] = $this->record_model->get_patient_treatment_record($breast_cancer_id);
+//                    $breast_pathology['pathology'] = $this->record_model->get_patient_breast_pathology_record($breast_cancer_id);
+//
+//                    $breast_cancer[] = array_merge($breast, $breast_treatment, $breast_pathology);
+//
+//                    }
+//                    
+//                    
+//                    }
                     
                     $data['patient_breast_cancer'] = $breast_diagnosis_list;
-                    }
 
                     $data['patient_other_disease'] = $this->report_model->get_patient_others_desease_record($patient_studies_id);
                     $data['diagnosis_name'] = $this->record_model->get_diagnosis();
                     $data['site_cancer'] = $this->record_model->get_cancer_site();
-                    $data['treatment_type'] = $this->record_model->get_treatment_type();
+                    $data['treatment_type'] = $this->report_model->get_treatment_type();
                     $data['cancer_name'] = $this->record_model->get_cancer_by_id();
 
                     $this->load->view('export/diagnosis_tab',$data);
@@ -325,6 +327,7 @@ class Report extends CI_Controller {
                     // $data['patient_parity_record'] = $this->record_model->get_patient_parity_record($ic_no, $patient_studies_id);
                     $data['patient_infertility'] = $this->report_model->get_patient_infertility_record($patient_studies_id);
                     $data['patient_gynaecological'] = $this->report_model->get_patient_gynaecological_record($patient_studies_id);
+                    $data['treatment_type'] = $this->report_model->get_treatment_type();
 
                     $this->load->view('export/lifestyle_tab',$data);
                     $this->load->view('export/lifestyle_tab2',$data);

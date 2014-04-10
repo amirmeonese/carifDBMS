@@ -936,6 +936,21 @@ public function get_lifestyle_detail_patient_record($patient_studies_id){
 
         return $list_patient;
     }
+    
+    function get_treatment_type() {
+
+        
+        $this->db->select('treatment_id,treatment_name');
+        $this->db->order_by('treatment_name asc');
+        $query = $this->db->get('treatment');
+        
+        $treatmenttypelist = array('' => '');
+        foreach ($query->result() as $row) {
+            $treatmenttypelist = $treatmenttypelist + array($row->treatment_id => $row->treatment_name);
+        }
+        $query->free_result();
+        return $treatmenttypelist;
+    }
 }
 
 ?>

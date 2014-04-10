@@ -29,7 +29,7 @@ header("Expires: 0");
                     <td><?php echo $studies_id[$patient_studies_id[$gynaecological['patient_studies_id']]]; ?></td>
                     <td><?php echo $checkbox_status[$gynaecological['had_gnc_surgery_flag']]; ?></td>
                     <td><?php echo $gynaecological['surgery_year']; ?></td>
-                    <td><?php echo $gynaecological['treatment_id']; ?></td>
+                    <td><?php echo $treatment_type[$gynaecological['treatment_id']]; ?></td>
                     <td><?php echo $gynaecological['gnc_treatment_name_other_details']; ?></td>
                        </tr>
             <?php $no++; } ?>
