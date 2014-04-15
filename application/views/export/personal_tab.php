@@ -43,8 +43,8 @@ header("Expires: 0");
                     <th style="background-color:Crimson;">Fax</th>
                     <th style="background-color:Crimson;">Email</th>
                     <th style="background-color:Crimson;">Highest level of education</th>
-                    <th style="background-color:Crimson;">Weight</th>
                     <th style="background-color:Crimson;">Height</th>
+                    <th style="background-color:Crimson;">Weight</th>
                     <th style="background-color:Crimson;">Income level</th>
                     <th style="background-color:Crimson;">Contact person's name</th>
                     <th style="background-color:Crimson;">Contact person's phone</th>

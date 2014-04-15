@@ -57,15 +57,15 @@
             <tr>
                 <td>
                     Strenuous Exercise: 
-                    <?php echo form_dropdown('pa_strenuous_exercise_childhood', $pa_activities_lists, @$list['pa_strenuous_activity_childhood'], 'id="pa_activities_lists" preload_val="'.@$list['pa_strenuous_exercise_childhood'].'"'); ?>
+                    <?php echo form_dropdown('pa_strenuous_exercise_childhood', $pa_activities_lists, $strenuous[$list['pa_strenuous_activity_childhood']], 'id="pa_activities_lists" preload_val="'.$strenuous[$list['pa_strenuous_activity_childhood']].'"'); ?>
                 </td>
                 <td>
                     Moderate Exercise: 
-                    <?php echo form_dropdown('pa_moderate_exercise_childhood', $pa_activities_lists, @$list['pa_moderate_exercise_childhood'], 'id="pa_activities_lists" preload_val="'.@$list['pa_moderate_exercise_childhood'].'"'); ?>
+                    <?php echo form_dropdown('pa_moderate_exercise_childhood', $pa_activities_lists, $moderate[$list['pa_moderate_exercise_childhood']], 'id="pa_activities_lists" preload_val="'.$moderate[$list['pa_moderate_exercise_childhood']].'"'); ?>
                 </td>
                 <td>
                     Gentle Exercise: 
-                    <?php echo form_dropdown('pa_gentle_exercise_childhood', $pa_activities_lists, @$list['pa_gentle_exercise_childhood'], 'id="pa_activities_lists" preload_val="'.@$list['pa_gentle_exercise_childhood'].'"'); ?>
+                    <?php echo form_dropdown('pa_gentle_exercise_childhood', $pa_activities_lists, $gentle[$list['pa_gentle_exercise_childhood']], 'id="pa_activities_lists" preload_val="'.$gentle[$list['pa_gentle_exercise_childhood']].'"'); ?>
                 </td>
             </tr>
             <tr>
@@ -76,15 +76,15 @@
             <tr>
                 <td>
                     Strenuous Exercise: 
-                    <?php echo form_dropdown('pa_strenuous_exercise_adult', $pa_activities_lists, @$list['pa_strenuous_activity_adult'], 'id="pa_activities_lists" preload_val="'.@$list['pa_strenuous_exercise_adult'].'"'); ?>
+                    <?php echo form_dropdown('pa_strenuous_exercise_adult', $pa_activities_lists, $strenuous[$list['pa_strenuous_activity_adult']], 'id="pa_activities_lists" preload_val="'.$strenuous[$list['pa_strenuous_activity_adult']].'"'); ?>
                 </td>
                 <td>
                     Moderate Exercise: 
-                    <?php echo form_dropdown('pa_moderate_exercise_adult', $pa_activities_lists, @$list['pa_moderate_exercise_adult'], 'id="pa_activities_lists" preload_val="'.@$list['pa_moderate_exercise_adult'].'"'); ?>
+                    <?php echo form_dropdown('pa_moderate_exercise_adult', $pa_activities_lists, $moderate[$list['pa_moderate_exercise_adult']], 'id="pa_activities_lists" preload_val="'.$moderate[$list['pa_moderate_exercise_adult']].'"'); ?>
                 </td>
                 <td>
                     Gentle Exercise: 
-                    <?php echo form_dropdown('pa_gentle_exercise_adult', $pa_activities_lists, @$list['pa_gentle_exercise_adult'], 'id="pa_activities_lists" preload_val="'.@$list['pa_gentle_exercise_adult'].'"'); ?>
+                    <?php echo form_dropdown('pa_gentle_exercise_adult', $pa_activities_lists, $gentle[$list['pa_gentle_exercise_adult']], 'id="pa_activities_lists" preload_val="'.$gentle[$list['pa_gentle_exercise_adult']].'"'); ?>
                 </td>
             </tr>
             <tr>
@@ -95,15 +95,15 @@
             <tr>
                 <td>
                     Strenuous Exercise: 
-                    <?php echo form_dropdown('pa_strenuous_exercise_now', $pa_activities_lists, @$list['pa_strenuous_activity_now'], 'id="pa_activities_lists" preload_val="'.@$list['pa_strenuous_exercise_now'].'"'); ?>
+                    <?php echo form_dropdown('pa_strenuous_exercise_now', $pa_activities_lists, $strenuous[$list['pa_strenuous_activity_now']], 'id="pa_activities_lists" preload_val="'.$strenuous[$list['pa_strenuous_activity_now']].'"'); ?>
                 </td>
                 <td>
                     Moderate Exercise: 
-                    <?php echo form_dropdown('pa_moderate_exercise_now', $pa_activities_lists, @$list['pa_moderate_exercise_now'], 'id="pa_activities_lists" preload_val="'.@$list['pa_moderate_exercise_now'].'"'); ?>
+                    <?php echo form_dropdown('pa_moderate_exercise_now', $pa_activities_lists, $moderate[$list['pa_moderate_exercise_now']], 'id="pa_activities_lists" preload_val="'.$moderate[$list['pa_moderate_exercise_now']].'"'); ?>
                 </td>
                 <td>
                     Gentle Exercise: 
-                    <?php echo form_dropdown('pa_gentle_exercise_now', $pa_activities_lists, @$list['pa_gentle_exercise_now'], 'id="pa_activities_lists" preload_val="'.@$list['pa_gentle_exercise_now'].'"'); ?>
+                    <?php echo form_dropdown('pa_gentle_exercise_now', $pa_activities_lists, $gentle[$list['pa_gentle_exercise_now']], 'id="pa_activities_lists" preload_val="'.$gentle[$list['pa_gentle_exercise_now']].'"'); ?>
                 </td>
             </tr>
         </table>

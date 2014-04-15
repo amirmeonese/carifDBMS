@@ -1368,7 +1368,7 @@ class Record_model extends CI_Model {
     public function get_view_family_record($ic_no,$relative_id){
     
         $this->db->where('patient_ic_no',$ic_no);
-        $this->db->where('relatives_id',$relative_id);
+        $this->db->where_in('relatives_id',$relative_id);
 	$f_record = $this->db->get('patient_relatives');
         $patient_family_detail = $f_record->result_array();
         //echo $this->db->last_query();exit;
@@ -2862,6 +2862,45 @@ function update_checkbox($id,$field,$where,$table) {
         //echo $this->db->last_query();
         
         }
+        
+        function get_strenuous_by_id() {
+        
+        $strenuouslist = array(
+            '' => '',
+            '0' => 'Never',
+            '3' => 'Less than 1 hour per week',
+            '6' => '1-2 hour per week',
+            '9' => 'More than 2 hours per week'
+        );
+        
+        return $strenuouslist;
+    }
+    
+    function get_moderate_by_id() {
+        
+        $moderatelist = array(
+            '' => '',
+            '0' => 'Never',
+            '2' => 'Less than 1 hour per week',
+            '4' => '1-2 hour per week',
+            '6' => 'More than 2 hours per week',
+        );
+        
+        return $moderatelist;
+    }
+    
+    function get_gentle_by_id() {
+        
+        $gentlelist = array(
+            '' => '',
+            '0' => 'Never',
+            '1' => 'Less than 1 hour per week',
+            '2' => '1-2 hour per week',
+            '3' => 'More than 2 hours per week'
+        );
+        
+        return $gentlelist;
+    }
 
 }
 ?>
