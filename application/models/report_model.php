@@ -596,12 +596,9 @@ class Report_model extends CI_Model {
     }
     
     function get_patient_all_cancer_record($patient_studies_id) {
-    $this->db->select('a.*,b.patient_ic_no,c.*,d.*,e.*,c.comments as treatment_comments');
+    $this->db->select('a.*,b.patient_ic_no');
     $this->db->from('patient_cancer a');
     $this->db->join('patient_studies b','a.patient_studies_id = b.patient_studies_id','left');
-    $this->db->join('patient_cancer_treatment c','a.patient_cancer_id = c.patient_cancer_id','left');
-    $this->db->join('patient_pathology d','a.patient_cancer_id = d.patient_cancer_id','left');
-    $this->db->join('patient_pathology_staining_status e','d.patient_pathology_id = e.patient_pathology_id','left');
     $this->db->where_in('a.patient_studies_id',$patient_studies_id);
     $patient_lifestyle_list = $this->db->get('');
     $list_patient_lifestyle = $patient_lifestyle_list->result_array();
@@ -609,6 +606,35 @@ class Report_model extends CI_Model {
     
 //echo $this->db->last_query();exit;
     return $list_patient_lifestyle;
+}
+
+function get_patient_treatment_record($patient_studies_id) {
+    $this->db->select('a.*,b.patient_ic_no,c.*');
+    $this->db->from('patient_cancer a');
+    $this->db->join('patient_studies b','a.patient_studies_id = b.patient_studies_id','left');
+    $this->db->join('patient_cancer_treatment c','a.patient_cancer_id = c.patient_cancer_id','left');
+    $this->db->where_in('a.patient_studies_id',$patient_studies_id);
+    $patient_treatment_list = $this->db->get('');
+    $list_patient_treatment = $patient_treatment_list->result_array();
+    $patient_treatment_list->free_result();
+    
+//echo $this->db->last_query();exit;
+    return $list_patient_treatment;
+}
+
+function get_patient_pathology_record($patient_studies_id) {
+    $this->db->select('a.*,b.patient_ic_no,c.*,d.*');
+    $this->db->from('patient_cancer a');
+    $this->db->join('patient_studies b','a.patient_studies_id = b.patient_studies_id','left');
+    $this->db->join('patient_pathology c','a.patient_cancer_id = c.cancer_id','left');
+    $this->db->join('patient_pathology_staining_status d','c.patient_pathology_id = d.patient_pathology_id','left');
+    $this->db->where_in('a.patient_studies_id',$patient_studies_id);
+    $patient_pathology_list = $this->db->get('');
+    $list_patient_pathology = $patient_pathology_list->result_array();
+    $patient_pathology_list->free_result();
+    
+//echo $this->db->last_query();exit;
+    return $list_patient_pathology;
 }
 
 function get_patient_others_desease_record($patient_studies_id) {
@@ -826,10 +852,10 @@ public function get_lifestyle_detail_patient_record($patient_studies_id){
             
         
         $this->db->select('a.given_name, a.surname, a.ic_no, a.ethnicity, b.studies_id,b.patient_studies_id, b.date_at_consent');
-        $this->db->select('c.date_of_diagnosis,c.age_of_diagnosis');
         $this->db->from('patient a');
         $this->db->where('a.is_deleted',0);
         $this->db->join('patient_studies b','a.ic_no = b.patient_ic_no','left');
+        $this->db->select('c.date_of_diagnosis,c.age_of_diagnosis');
         $this->db->join('patient_cancer c','b.patient_studies_id = c.patient_studies_id','left');
         if (!empty ($ethnic_name)) {
         $this->db->where_in('a.ethnicity', $ethnic_name);

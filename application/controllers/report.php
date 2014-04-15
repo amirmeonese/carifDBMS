@@ -280,6 +280,8 @@ class Report extends CI_Controller {
 //                    }
                     
                     $data['patient_breast_cancer'] = $breast_diagnosis_list;
+                    $data['patient_treatment'] = $this->report_model->get_patient_treatment_record($patient_studies_id);
+                    $data['patient_pathology'] = $this->report_model->get_patient_pathology_record($patient_studies_id);
 
                     $data['patient_other_disease'] = $this->report_model->get_patient_others_desease_record($patient_studies_id);
                     $data['diagnosis_name'] = $this->record_model->get_diagnosis();
@@ -288,7 +290,10 @@ class Report extends CI_Controller {
                     $data['cancer_name'] = $this->record_model->get_cancer_by_id();
 
                     $this->load->view('export/diagnosis_tab',$data);
+                    $this->load->view('export/diagnosis_tab2',$data);
+                    $this->load->view('export/diagnosis_tab3',$data);
                     $this->load->view('export/diagnosis_tab1',$data);
+                    
                     
                 } if (($var == 'studies_setOne') || ($var == 'All')) {
                     $data['patient_breast_screening'] = $this->record_model->get_patient_breast_screening_record($patient_studies_id, $ic_no);
