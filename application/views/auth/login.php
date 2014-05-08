@@ -19,10 +19,10 @@
 			<?php echo form_checkbox('remember', '1', FALSE, 'id="remember"');?>
 		</p>
 		<p><?php echo form_submit('submit', lang('login_submit_btn'));?></p>
-		<p class="use_windows_auth_label">
+<!--		<p class="use_windows_auth_label">
 			<?php echo lang('use_windows_auth','is_use_windows_auth'); ?>
-		</p>
-		<p><?php echo form_submit('submit', lang('windows_auth_btn'));?></p>
+		</p>-->
+<!--		<p><?php echo form_submit('submit', lang('windows_auth_btn'));?></p>-->
 		<?php echo form_close();?>
 		<p><a href="forgot_password"><?php echo lang('login_forgot_password');?></a></p>
 	<div>

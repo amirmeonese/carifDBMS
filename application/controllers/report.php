@@ -22,6 +22,8 @@ class Report extends CI_Controller {
         $this->load->model('record_model');
         $data = $this->report_model->general();
         $data['submit'] = $this->input->post('mysubmit');
+        $data['ethnic'] = $this->report_model->get_all_ethnic();
+        $data['cancer'] = $this->report_model->get_all_cancer();
         $this->load->library('export');
         
         $data['export_tab']= array(
@@ -248,7 +250,7 @@ class Report extends CI_Controller {
                     $this->load->view('export/consent_detail_tab',$data);
                     
                 }  if (($var == 'family') || ($var == 'All')) {
-                    $data['patient_family'] = $this->record_model->get_view_family_export($ic_no);
+                    $data['patient_family'] = $this->report_model->get_view_family_export($ic_no);
                     
                     //print_r($data['patient_family']);exit;
                     
@@ -296,7 +298,7 @@ class Report extends CI_Controller {
                     
                     
                 } if (($var == 'studies_setOne') || ($var == 'All')) {
-                    $data['patient_breast_screening'] = $this->record_model->get_patient_breast_screening_record($patient_studies_id, $ic_no);
+                    $data['patient_breast_screening'] = $this->report_model->get_patient_breast_screening_record($patient_studies_id, $ic_no);
                     $data['patient_non_cancer'] = $this->report_model->get_patient_non_cancer_record($patient_studies_id);
                     $data['patient_risk_reducing_surgery'] = $this->report_model->get_patient_risk_reducing_surgery_record($patient_studies_id);
                     $data['patient_ovarian_screening'] = $this->report_model->get_patient_ovarian_screening_record($patient_studies_id);
@@ -319,7 +321,7 @@ class Report extends CI_Controller {
                     $this->load->view('export/mutation_tab',$data);
                     
                 } if (($var == 'risk_assessment') || ($var == 'All')) {
-                    $data['patient_risk_assessment'] = $this->report_model->get_export_riskassesment_record($ic_no, 'patient_risk_assessment', 'patient_ic_no');
+                    $data['patient_risk_assessment'] = $this->report_model->get_export_riskassesment_record($ic_no);
                     
                     $this->load->view('export/risk_assessment_tab',$data);
                 
@@ -342,7 +344,7 @@ class Report extends CI_Controller {
                 } if (($var == 'counseling') || ($var == 'All')){
                     
                     //echo 'test 1';
-                    $data['patient_interview_manager'] = $this->record_model->get_patient_counselling_record($ic_no);
+                    $data['patient_interview_manager'] = $this->report_model->get_patient_counselling_record($ic_no);
                     $data['email_reminder'] = array(
                         '' => '',
                         '0' => 'No',

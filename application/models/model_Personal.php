@@ -123,7 +123,7 @@ class Model_Personal extends CI_Model {
                                 $weight_validator = is_float($cell_value);
                             }*/
 
-                            if ($key == 8 || $key == 13 || $key == 48) {
+                            if ($key == 8 || $key == 13 || $key == 47) {
                                 /*$cell_value = trim($cell_value);
                                 if (strpos($cell_value, '-') !== FALSE)
                                     $cell_value = date("d/m/Y", strtotime($cell_value));

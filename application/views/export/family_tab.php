@@ -14,6 +14,7 @@ header("Expires: 0");
                 <tr>
                     <th style="background-color:Crimson;">No</th>
                     <th style="background-color:Crimson;">IC No</th>
+                    <th style="background-color:Crimson;">Patient No</th>
                     <th style="background-color:Crimson;">Family No</th>
                     <th style="background-color:Crimson;">Paternal status</th>
                     <th style="background-color:Crimson;">Maternal status</th>
@@ -46,6 +47,7 @@ header("Expires: 0");
                 <tr>
                     <td><?php echo $no; ?></td>
                     <td><?php echo $list['patient_ic_no']; ?></td>
+                    <td><?php echo $list['private_no']; ?></td>
                     <td><?php echo $list['family_no']; ?></td>
                     <td><?php echo $list['is_paternal']; ?></td>
                     <td><?php echo $list['is_maternal']; ?></td>

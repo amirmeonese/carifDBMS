@@ -656,7 +656,7 @@ class ModelDiagnosis1 extends CI_Model {
         if(!$abort)
         {
             if (sizeof($data_patient_pathology_staining_status_in) > 0) {
-                $id_patient_pathology_staining_status = $this->excell_sheets_model->insert_record($data_patient_pathology_staining_status_in, 'patient_pathology_staining_status');
+                $id_patient_pathology_staining_status = $this->excell_sheets_model->insert_patient_pathology_staining_status($data_patient_pathology_staining_status_in);
                 if ($id_patient_pathology_staining_status > 0)
                     echo 'Data added succesfully at patient_pathology_staining_status table';
                 else

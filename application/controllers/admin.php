@@ -215,6 +215,8 @@ class Admin extends CI_Controller {
         $cc = $this->input->post('cc');
         $subject = $this->input->post('email_subject');
         $message = $this->input->post('message_contain');
+        
+//        print_r($message);exit;
 
         $this->email->clear();
 
@@ -236,7 +238,8 @@ class Admin extends CI_Controller {
         $this->email->subject($subject);
         $this->email->message($message);
         $this->email->attach($file_path.$temp);$this->load->helper('url');
-        if ($this->email->send() == TRUE) {
+        $email_send = $this->email->send();
+        if ($email_send) {
             //$this->email->print_debugger();
             redirect('admin/submit_report_form','refresh');
         }

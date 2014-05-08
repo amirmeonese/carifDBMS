@@ -12,7 +12,7 @@ header("Expires: 0");
 <table border="1">
     <thead>
         <tr>
-                    <th colspan="4" style="background-color:Crimson;"></th>
+                    <th colspan="5" style="background-color:Crimson;"></th>
                     <th colspan="3" style="background-color:Crimson;">Patient Self Image</th>
                     <th colspan="3" style="background-color:Crimson;">Childhood (before 18-years of age</th>
                     <th colspan="3" style="background-color:Crimson;">18-30 years old</th>
@@ -29,6 +29,7 @@ header("Expires: 0");
                     
                     <th style="background-color:Crimson;">No</th>
                     <th style="background-color:Crimson;">Patient IC No</th>
+                    <th style="background-color:Crimson;">Patient No</th>
                     <th style="background-color:Crimson;">Studies Name</th>
                     
                     <th style="background-color:Crimson;">Questionnaire Date</th>
@@ -79,6 +80,7 @@ header("Expires: 0");
                 <tr>
                     <td><?php echo $no; ?></td>
                     <td><?php echo $lifestyle_factors['patient_ic_no']; ?></td>
+                    <td><?php echo $lifestyle_factors['private_no']; ?></td>
                     <td><?php echo $studies_id[$patient_studies_id[$lifestyle_factors['patient_studies_id']]]; ?></td>
                     <td><?php echo $lifestyle_factors['questionnaire_date']; ?></td>
                     <td><?php echo $lifestyle_factors['self_image_at_7years']; ?></td>

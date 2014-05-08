@@ -14,6 +14,7 @@ header("Expires: 0");
                 <tr>
                     <th style="background-color:Crimson;">No</th>
                     <th style="background-color:Crimson;">Patient IC No</th>
+                    <th style="background-color:Crimson;">Patient No</th>
                     <th style="background-color:Crimson;">Studies Name</th>
                     <th style="background-color:Crimson;">Age of menarche</th>
                     <th style="background-color:Crimson;">Still having period?</th>
@@ -31,6 +32,7 @@ header("Expires: 0");
                 <tr>
                     <td><?php echo $no; ?></td>
                     <td><?php echo $lifestyle_factors['patient_ic_no']; ?></td>
+                    <td><?php echo $lifestyle_factors['private_no']; ?></td>
                     <td><?php echo $studies_id[$patient_studies_id[$lifestyle_factors['patient_studies_id']]]; ?></td>
                     <td><?php echo $lifestyle_factors['age_period_starts']; ?></td>
                     <td><?php echo $checkbox_status[$lifestyle_factors['still_period_flag']]; ?></td>

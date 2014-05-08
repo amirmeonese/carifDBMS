@@ -15,6 +15,7 @@ header("Expires: 0");
                 <tr>
                     <th style="background-color:Crimson;">No</th>
                     <th style="background-color:Crimson;">IC No</th>
+                    <th style="background-color:Crimson;">Patient No</th>
                     <th style="background-color:Crimson;">Studies Name</th>
                     <th style="background-color:Crimson;">Date at consent</th>
                     <th style="background-color:Crimson;">Age at consent</th>
@@ -32,6 +33,7 @@ header("Expires: 0");
                 <tr>
                     <td><?php echo $no; ?></td>
                     <td><?php echo $list['patient_ic_no']; ?></td>
+                    <td><?php echo $list['private_no']; ?></td>
                     <td><?php echo @$studies_id[$list['studies_id']]; ?></td>
                     <td><?php echo $list['date_at_consent']; ?></td>
                     <td><?php echo $list['age_at_consent']; ?></td>

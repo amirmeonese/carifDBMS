@@ -42,6 +42,18 @@ class Email_notification_model extends CI_Model
         return $patient_family_detail;
     }
     
+    public function get_admin_email_addresses(){
+    
+        $this->db->select('email');
+        $this->db->where('admin_flag',1);
+	$f_record = $this->db->get('users');
+        $admin_email_detail = $f_record->result_array();
+        //echo $this->db->last_query();exit;
+        $f_record->free_result();  
+
+        return $admin_email_detail;
+    }
+    
     public function get_email_patient($list,$new_date){
     
         $this->db->select('a.*,b.cell_phone,b.home_phone,b.given_name');
@@ -96,4 +108,22 @@ class Email_notification_model extends CI_Model
             
             
 }
+
+public function get_total_patient($studies_id,$month){
+    
+        $this->db->select('a.patient_studies_id');
+        $this->db->from('patient_studies a');
+        $this->db->join('patient b', 'a.patient_ic_no = b.ic_no', 'left');
+        $this->db->where('a.studies_id',$studies_id);
+         $this->db->where('a.created_on',$month);
+	$f_record = $this->db->get('');
+        $patient_total = $f_record->result_array();
+        //echo $this->db->last_query();exit;
+        $f_record->free_result();  
+
+        //print_r($patient_family_detail);exit;
+        
+        return $patient_total;
+    }
+    
 }

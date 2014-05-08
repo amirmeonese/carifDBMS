@@ -39,6 +39,7 @@ header("Expires: 0");
                 <tr>
                     <td><?php echo $no; ?></td>
                     <td><?php echo $breast_cancer['patient_ic_no']; ?></td>
+                    <td><?php echo $breast_cancer['private_no']; ?></td>
                     <td><?php echo $studies_id[$patient_studies_id[$breast_cancer['patient_studies_id']]]; ?></td>
                     <td><?php echo @$cancer_name[$breast_cancer['cancer_id']]; ?></td>
                     <td><?php echo $breast_cancer['tissue_site']; ?></td>

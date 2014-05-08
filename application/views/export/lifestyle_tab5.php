@@ -14,6 +14,7 @@ header("Expires: 0");
                 <tr>
                     <th style="background-color:Crimson;">No</th>
                     <th style="background-color:Crimson;">Patient IC No</th>
+                    <th style="background-color:Crimson;">Patient No</th>
                     <th style="background-color:Crimson;">Studies Name</th>
                     <th style="background-color:Crimson;">Has ever had gynaecological surgery?</th>
                     <th style="background-color:Crimson;">Surgery year</th>
@@ -26,6 +27,7 @@ header("Expires: 0");
                 <tr>
                     <td><?php echo $no; ?></td>
                     <td><?php echo $gynaecological['patient_ic_no']; ?></td>
+                    <td><?php echo $gynaecological['private_no']; ?></td>
                     <td><?php echo $studies_id[$patient_studies_id[$gynaecological['patient_studies_id']]]; ?></td>
                     <td><?php echo $checkbox_status[$gynaecological['had_gnc_surgery_flag']]; ?></td>
                     <td><?php echo $gynaecological['surgery_year']; ?></td>

@@ -14,6 +14,7 @@ header("Expires: 0");
                 <tr>
                     <th style="background-color:Crimson;">No</th>
                     <th style="background-color:Crimson;">Patient IC No</th>
+                    <th style="background-color:Crimson;">Patient No</th>
                     <th style="background-color:Crimson;">Reason for mammogram</th>
                     <th style="background-color:Crimson;">Details of mammogram</th>
                     <th style="background-color:Crimson;">Date of first mammogram</th>
@@ -59,6 +60,7 @@ header("Expires: 0");
                 <tr>
                     <td><?php echo $no; ?></td>
                     <td><?php echo $list['patient_ic_no']; ?></td>
+                    <td><?php echo $list['private_no']; ?></td>
                     <td><?php echo $list['reason_of_mammogram']; ?></td>
                     <td><?php echo $list['reason_of_mammogram_details']; ?></td>
                     <td><?php echo $list['date_of_first_mammogram']; ?></td>

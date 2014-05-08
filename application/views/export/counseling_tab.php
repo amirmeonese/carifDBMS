@@ -14,6 +14,7 @@ header("Expires: 0");
                 <tr>
                     <th style="background-color:Crimson;">No</th>
                     <th style="background-color:Crimson;">IC No</th>
+                    <th style="background-color:Crimson;">Patient No</th>
                     <th style="background-color:Crimson;">Counseling Date</th>
                     <th style="background-color:Crimson;">Setup Next Counseling Date</th>
                     <th style="background-color:Crimson;">Send Email Reminder To Officer</th>
@@ -25,6 +26,7 @@ header("Expires: 0");
                 <tr>
                     <td><?php echo $no; ?></td>
                     <td><?php echo $list['patient_ic_no']; ?></td>
+                    <td><?php echo $list['private_no']; ?></td>
                     <td><?php echo $list['interview_date']; ?></td>
                     <td><?php echo $list['next_interview_date']; ?></td>
                     <td><?php echo $email_reminder[$list['is_send_email_reminder_to_officers']]; ?></td>

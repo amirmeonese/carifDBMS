@@ -14,6 +14,7 @@ header("Expires: 0");
                 <tr>
                     <th style="background-color:Crimson;">No</th>
                     <th style="background-color:Crimson;">Patient IC No</th>
+                    <th style="background-color:Crimson;">Patient No</th>
                     <th style="background-color:Crimson;">Studies Name</th>
                     <th style="background-color:Crimson;">Screening type</th>
                     <th style="background-color:Crimson;">Age at screening</th>
@@ -25,6 +26,7 @@ header("Expires: 0");
                 <tr>
                     <td><?php echo $no; ?></td>
                     <td><?php echo $list['patient_ic_no']; ?></td>
+                    <td><?php echo $list['private_no']; ?></td>
                     <td><?php echo $studies_id[$patient_studies_id[$list['patient_studies_id']]]; ?></td>
                     <td><?php echo $list['screening_type']; ?></td>
                     <td><?php echo $list['age_at_screening']; ?></td>

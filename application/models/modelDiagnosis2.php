@@ -202,7 +202,7 @@ class ModelDiagnosis2 extends CI_Model {
             else
             {
                 $data_patient_other_disease_medication[] = array(
-                'patient_other_disease_id' => 1,
+                'patient_other_disease_id' => $patient_other_disease_id,
                 'medication_type' => $temp14[8],
                 'start_date' => $temp14[9],
                 'end_date' => $temp14[10],
@@ -211,6 +211,8 @@ class ModelDiagnosis2 extends CI_Model {
                 'created_on' => $created_date
                 ); 
             }
+            
+//            print_r($data_patient_other_disease_medication);
 
             
             $temp14 = null;

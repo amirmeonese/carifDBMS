@@ -585,7 +585,7 @@ class Excell_sheets_model extends CI_Model {
         $data = array(
         );
         $query = $this->db->select($selected_col_name)
-                ->where($comparable_col_name, $record_data)
+                ->like($comparable_col_name, $record_data)
                 ->limit(1)
                 ->get($this->tables[$table_name]);
 
@@ -944,6 +944,16 @@ class Excell_sheets_model extends CI_Model {
         //print_r($result['relatives_id']);
 
         return $result['patient_pathology_id'];
+    }
+    
+    public function insert_patient_pathology_staining_status($record_data) {
+        $data = array(
+        );
+        $record_data = array_merge($this->_filter_data($this->tables['patient_pathology_staining_status'], $data), $record_data);
+        $this->db->insert_batch($this->tables['patient_pathology_staining_status'], $record_data);
+        
+        $id = $this->db->insert_id();
+        return $id;
     }
     
 

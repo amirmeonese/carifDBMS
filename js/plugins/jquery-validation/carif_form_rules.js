@@ -2,43 +2,15 @@ $( document ).ready(function() {
 			// Handler for .ready() called.
 			$("#personal-details-form").validate({
 				rules: {
-					surname : {
-						required: false
-					},
-					fullname : {
-						required: true
-					},
-					family_no : {	
-						required: true
-					},
 					//added FK - azie 5 mac 2014
 					IC_no: {
 						required: true,
 						number: true,
-						minlength: 12,
 						maxlength: 12
 					},
 					studies_name : {	
 						required: true
 					},
-					nationality : {
-						required: false
-					},
-					gender : {
-						required: false
-					},
-					ethinicity : {
-						required: false
-					},
-					DOB : {
-						required: false
-					},
-					place_of_birth :{
-						required: false
-					},
-					email : {
-						email: false
-					}
 				},
 				messages: {
                                     studies_name: {
@@ -62,6 +34,9 @@ $( document ).ready(function() {
 						minlength: 12,
 						maxlength: 12
 					},
+                                        relative_is_cancer_diagnosed : {
+						required: true
+					},
 					mother_fullname : {
 						required: true
 					},
@@ -76,6 +51,7 @@ $( document ).ready(function() {
 				},
 				messages: {
 				   IC_no: "Please enter a valid IC no.",
+                                   relative_is_cancer_diagnosed: "Please select.",
 				   //added FK - azie 5 mac 2014
 				   family_no: "Please enter a valid family no.",
 				   father_relative_id: "Please insert a valid relative id."
@@ -101,9 +77,6 @@ $( document ).ready(function() {
 					patient_studies_id : {	
 						required: true
 					},
-					cancer_site_id : {	
-						required: true
-					},
 					treatment_id : {	
 						required: true
 					},
@@ -120,7 +93,6 @@ $( document ).ready(function() {
 				    //added FK - azie 5 mac 2014
 				   studies_id: "Please enter a valid studies id.",
 				   patient_studies_id: "Please enter a valid patient studies id.",
-				   cancer_site_id: "Please enter a valid cancer site id.",
 				   treatment_id: "Please enter a valid treatment id.",
 				   patient_cancer_id: "Please enter a valid patient cancer id.",
 				   diagnosis_id: "Please enter a valid diagnosis id."

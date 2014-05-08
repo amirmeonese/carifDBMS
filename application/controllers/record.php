@@ -1478,7 +1478,6 @@ class Record extends CI_Controller {
                 'highest_education_level' => $this->input->post('highest_education_level')
             );
             echo '<pre>';
-            print_r($data_patient);exit;
             echo '<br/>';
             $data_patient_contact_person = array(
                 'patient_ic_no' => $new_ic_no,
@@ -1493,9 +1492,9 @@ class Record extends CI_Controller {
             $id_patient_record = $this->record_model->insert_at_patient_record($data_patient);
             if ($id_patient_record > 0) {
 
-                echo "<h2>Data Added successfully at patient_studies table</h2>";
+                echo "<h2>Data Added successfully at patient table</h2>";
             } else {
-                echo "<h2>Failed to insert at patient_studies table</h2>";
+                echo "<h2>Failed to insert at patient table</h2>";
             }
             echo '<br/>';
 
@@ -5449,8 +5448,11 @@ class Record extends CI_Controller {
                     else
                         $this->template->load("templates/add_record_template", 'record/view_record_consent_details', $data);
                 } else if ($var == 'family') {
+                    
+                    $father = array(1,106);
+                    
                     $data['patient_family_mother'] = $this->record_model->get_view_family_record($ic_no, 2);
-                    $data['patient_family_father'] = $this->record_model->get_view_family_record($ic_no, 1);
+                    $data['patient_family_father'] = $this->record_model->get_view_family_record($ic_no, $father);
                     $data['patient_family_others'] = $this->record_model->get_view_family_others_record($ic_no);
                     $data['cancer_name'] = $this->record_model->get_cancer_by_id();
                     $data['relative'] = $this->record_model->get_relative_by_id();
@@ -5551,6 +5553,10 @@ class Record extends CI_Controller {
                     $data['patient_lifestyle_factors'] = $this->record_model->get_lifestyle_detail_patient_record($patient_studies_id);
                     $data['patient_menstruation'] = $this->record_model->get_patient_menstruation_record($ic_no, $patient_studies_id);
                     $data['patient_parity_table'] = $this->record_model->get_patient_parity_table_record($ic_no, $patient_studies_id);
+                    
+                    $data['strenuous'] = $this->record_model->get_strenuous_by_id();
+                    $data['moderate'] = $this->record_model->get_moderate_by_id();
+                    $data['gentle'] = $this->record_model->get_gentle_by_id();
                                         
                     // $data['patient_parity_record'] = $this->record_model->get_patient_parity_record($ic_no, $patient_studies_id);
                     $data['patient_infertility'] = $this->record_model->get_patient_infertility_record($ic_no, $patient_studies_id);

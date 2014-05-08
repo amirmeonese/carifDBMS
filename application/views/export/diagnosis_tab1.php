@@ -14,6 +14,7 @@ header("Expires: 0");
                 <tr>
                     <th style="background-color:Crimson;">No</th>
                     <th style="background-color:Crimson;">Patient Ic No</th>
+                    <th style="background-color:Crimson;">Patient No</th>
                     <th style="background-color:Crimson;">Studies Name</th>
                     <th style="background-color:Crimson;">Type of diseases</th>
                     <th style="background-color:Crimson;">Date of diagnosis</th>
@@ -32,6 +33,7 @@ header("Expires: 0");
                 <tr>
                     <td><?php echo $no; ?></td>
                     <td><?php echo $list['patient_ic_no']; ?></td>
+                    <td><?php echo $list['private_no']; ?></td>
                     <td><?php echo $studies_id[$patient_studies_id[$list['patient_studies_id']]]; ?></td>
                     <td><?php echo $diagnosis_name[$list['diagnosis_id']]; ?></td>
                     <td><?php echo $list['date_of_diagnosis']; ?></td>

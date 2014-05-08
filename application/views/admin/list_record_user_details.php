@@ -1,6 +1,6 @@
 <div class="container" id="report_div">
     <div id="report_header" class="row">
-        <p>View Personal Information</p>
+        <p>View User Information</p>
     </div>
     <div class="container" id="report_form_section" >
         <div height="10px">&nbsp;</div>

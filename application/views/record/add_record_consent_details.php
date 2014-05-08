@@ -1,6 +1,6 @@
 <div class="container" id="add_record_div">
     <div id="add_record_header" class="row">
-        <p>Add Patient</p>
+        <p>Add Consent Detail</p>
     </div>
     <?php
     $attributes = array('id' => 'personal-details-form');

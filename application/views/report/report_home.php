@@ -23,19 +23,11 @@
           <td>Cancer Name*:</td>
           <td>
               <select name="cancer[]" multiple size="6">
-                  <option value="1">Breast</option>
-                  <option value="2">Ovary</option>
-                  <option value="3">Prostate</option>
-                  <option value="4">Cervical</option>
-                   <option value="6">Lung</option>
-                  <option value="7">Colorectal</option>
-                  <option value="8">Uterine</option>
-                  <option value="9">Peritanium</option>
-                   <option value="10">Pancreatic</option>
-                  <option value="11">Nasopharyngeal</option>
-                  <option value="12">Liver</option>
-                  <option value="13">Gastric</option>
-                  <option value="14">Others</option>
+             <?php foreach ($cancer as $list): 
+            $name = $list['cancer_name'];
+            $val = $list['cancer_id']; ?>
+                 <option value=<?php echo $val; ?>><?php echo $name; ?></option>
+                 <?php endforeach;?>
               </select>
               <br/>
           </td>
@@ -44,10 +36,10 @@
           <td>Ethnic*:</td>
           <td>
               <select name="ethnic[]" multiple size="6">
-                  <option value="malay">Malay</option>
-                  <option value="chinese">Chinese</option>
-                  <option value="indian">Indian</option>
-                  <option value="others">Others</option>
+                  <?php foreach ($ethnic as $val): 
+            $ethnic_name = $val['ethnicity'];?>
+                 <option value=<?php echo $ethnic_name; ?>><?php echo $ethnic_name; ?></option>
+                 <?php endforeach;?>
               </select>
               <br/>
           </td>
@@ -111,7 +103,7 @@
                 </td>
                 <td>
                    <select name="patient_start">
-                  <option value="1" selected>1 - 1000</option>
+                  <option value="0" selected>1 - 1000</option>
                   <option value="1001">1001 - 2000</option>
                   <option value="2001" >2001 - 3000</option>
                   <option value="3001">3001 - 4000</option>
@@ -151,7 +143,7 @@
                 </tr>
             </thead>
             <?php if($searched_result != NULL) {?>
-            <?php $no = $patient_start; foreach ($searched_result as $list): ?>
+            <?php $no = $patient_start + 1; foreach ($searched_result as $list): ?>
                 <tr>
                     <td><?php echo $no; ?></td>
                     <?php if (in_array('given_name',$patient_field)) echo '<td>'.$list['given_name'].'</td>'; ?>

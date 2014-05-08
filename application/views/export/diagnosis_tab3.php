@@ -14,6 +14,7 @@ header("Expires: 0");
                 <tr>
                     <th style="background-color:Crimson;">No</th>
                     <th style="background-color:Crimson;">Patient Ic No</th>
+                    <th style="background-color:Crimson;">Patient No</th>
                     <th style="background-color:Crimson;">Studies Name</th>
                     <th style="background-color:Crimson;">Cancer Type</th>
                     <th style="background-color:Crimson;">Treatment type</th>
@@ -33,6 +34,7 @@ header("Expires: 0");
                 <tr>
                     <td><?php echo $no; ?></td>
                     <td><?php echo $breast_cancer['patient_ic_no']; ?></td>
+                    <td><?php echo $breast_cancer['private_no']; ?></td>
                     <td><?php echo $studies_id[$patient_studies_id[$breast_cancer['patient_studies_id']]]; ?></td>
                     <td><?php echo @$cancer_name[$breast_cancer['cancer_id']]; ?></td>
                     <td><?php echo $treatment_type[$breast_cancer['treatment_id']]; ?></td>

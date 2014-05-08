@@ -580,7 +580,6 @@
                 </tr>
                 <input type="hidden" name="patient_other_cancer_id[]" value="<?php print $other_cancer['patient_cancer_id']; ?>"/>
             </table>
-            <div class="container" id="add_record_form_section_other_cancer_pathology_section_1">
                 <?php foreach ($other_cancer['pathology'] as $other_cancer_pathology): ?>
                 <div height="30px">&nbsp;</div>
                 <table id="other_cancer_pathology_section">
@@ -624,7 +623,6 @@
                 </table>
                 <?php endforeach; ?>
                 <?php echo form_fieldset_close(); ?>	
-            </div>
             <?php foreach ($other_cancer['treatment'] as $other_cancer_treatment): ?>
             <div id="add_other_cancer_treatment_div_1" >
                 <table id="other_cancer_treatment_1">
@@ -691,7 +689,8 @@
                 <?php } ?>
                 <?php } ?>
             </div>
-            <?php echo form_fieldset_close(); ?>	
+            <?php echo form_fieldset_close(); ?>
+                </div>
             <div class="container" id="add_record_form_section_other_disease_diagnosis">
                 <div height="30px">&nbsp;</div>
                 <?php foreach ($patient_other_disease as $other_disease): ?>
