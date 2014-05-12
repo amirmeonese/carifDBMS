@@ -2901,6 +2901,32 @@ function update_checkbox($id,$field,$where,$table) {
         
         return $gentlelist;
     }
+    
+    function get_patient_total_parity($patient_studies_id,$pregnancy_type){
+    
+        $this->db->select('b.*');
+        $this->db->from('patient_parity_table a');
+        $this->db->join('patient_parity_record b', 'a.patient_parity_id = b.patient_parity_table_id', 'left');
+        $this->db->like('b.pregnancy_type', $pregnancy_type);
+        $this->db->where_in('a.patient_studies_id', $patient_studies_id);
+        $p_record = $this->db->get('');
+        $patient_lifestyle = $p_record->result_array();
+
+        $p_record->free_result();
+
+        return $patient_lifestyle;
+    }
+    
+    function get_total_for_parity($patient_studies_id){
+    
+        $this->db->where('patient_studies_id',$patient_studies_id);
+	$f_record = $this->db->get('patient_interview_manager');
+        $patient_family_detail = $f_record->result_array();
+        //echo $this->db->last_query();exit;
+        $f_record->free_result();  
+
+        return $patient_family_detail;
+    }
 
 }
 ?>

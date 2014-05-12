@@ -3809,17 +3809,37 @@ class Record extends CI_Controller {
             }
 
             $patient_parity_table_id = $this->input->post('patient_parity_table_id');
-            if (!empty($patient_parity_table_id)) {
+            $pregnant_flag = $this->input->post('pregnant_flag');
+            
+            for ($i = 0; $i < count($patient_parity_table_id); $i++) {
 
                 $data_patient_parity_table = array(
                     'modified_on' => $date,
                     //'pregnant_flag' => $this->input->post('never_been_pregnant_flag'),
-                    'pregnant_flag' => $this->input->post('pregnant_flag')
+                    'pregnant_flag' => $pregnant_flag[$i]
                 );
 
-                $this->db->where('patient_parity_id', $patient_parity_table_id);
+                $this->db->where('patient_parity_id', $patient_parity_table_id[$i]);
                 $this->db->where('patient_studies_id', $patient_studies_id);
                 $this->db->update('patient_parity_table', $data_patient_parity_table);
+                
+                $total_child = $this->record_model->get_patient_total_parity($patient_studies_id,'Child');
+                $total_miscarriage = $this->record_model->get_patient_total_parity($patient_studies_id,'miscariage');
+                $total_stillborn = $this->record_model->get_patient_total_parity($patient_studies_id,'stillborn');
+                $total_parity = count($total_child) + count($total_miscarriage) + count($total_stillborn);
+                
+                $data_patient_total_parity = array(
+                    'total_child' => count($total_child),
+                    'total_miscarriage' => count($total_miscarriage),
+                    'total_stillborn' => count($total_stillborn),
+                    'total_parity' => $total_parity
+                );
+                
+                //print_r($data_patient_total_parity);exit;
+                
+                $this->db->where('patient_studies_id', $patient_studies_id);
+                $this->db->update('patient_parity_table', $data_patient_total_parity);
+
 
                 if ($this->db->affected_rows() > 0) {
                     echo '<h2>Data update successfully<h2>';
@@ -3830,23 +3850,31 @@ class Record extends CI_Controller {
             }
 
             $patient_parity_record_id = $this->input->post('patient_parity_record_id');
-            if (!empty($patient_parity_record_id)) {
+            
+            
+                for ($i = 0; $i < count($patient_parity_record_id); $i++) {
 
                 $d_o_b = $this->input->post('child_birthdate');
+                $pregnancy_type = $this->input->post('pregnancy_type');
+                $child_gender = $this->input->post('child_gender');
+                $child_age_at_consent = $this->input->post('child_age_at_consent');
+                $child_birthyear = $this->input->post('child_birthyear');
+                $child_birthweight = $this->input->post('child_birthweight');
+                $child_breastfeeding_duration = $this->input->post('child_breastfeeding_duration');
 
                 $data_patient_parity_record = array(
-                    'pregnancy_type' => $this->input->post('pregnancy_type'),
-                    'gender' => $this->input->post('child_gender'),
-                    'age_child_at_consent' => $this->input->post('child_age_at_consent'),
-                    'date_of_birth' => $d_o_b == '' ? NULL : date("Y-m-d", strtotime($d_o_b)),
-                    'year_of_birth' => $this->input->post('child_birthyear'),
-                    'birthweight' => $this->input->post('child_birthweight'),
+                    'pregnancy_type' => $pregnancy_type[$i],
+                    'gender' => $child_gender[$i],
+                    'age_child_at_consent' => $child_age_at_consent[$i],
+                    'date_of_birth' => $d_o_b[$i] == '' ? NULL : date("Y-m-d", strtotime($d_o_b[$i])),
+                    'year_of_birth' => $child_birthyear[$i],
+                    'birthweight' => $child_birthweight[$i],
                     'created_on' => $date,
-                    'breastfeeding_duration' => $this->input->post('child_breastfeeding_duration')
+                    'breastfeeding_duration' => $child_breastfeeding_duration[$i]
                 );
                 //print_r($data_patient_parity_record);
                 //echo '<br/>';
-                $this->db->where('patient_parity_record_id', $patient_parity_table_id);
+                $this->db->where('patient_parity_record_id', $patient_parity_table_id[$i]);
                 $this->db->update('patient_parity_record', $data_patient_parity_record);
 
 
