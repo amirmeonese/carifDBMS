@@ -3819,7 +3819,6 @@ class Record extends CI_Controller {
                     'pregnant_flag' => $pregnant_flag[$i]
                 );
 
-                
                 $this->db->where('patient_parity_id', $patient_parity_table_id[$i]);
                 $this->db->where('patient_studies_id', $patient_studies_id);
                 $this->db->update('patient_parity_table', $data_patient_parity_table);

@@ -2916,17 +2916,6 @@ function update_checkbox($id,$field,$where,$table) {
 
         return $patient_lifestyle;
     }
-    
-    function get_total_for_parity($patient_studies_id){
-    
-        $this->db->where('patient_studies_id',$patient_studies_id);
-	$f_record = $this->db->get('patient_interview_manager');
-        $patient_family_detail = $f_record->result_array();
-        //echo $this->db->last_query();exit;
-        $f_record->free_result();  
-
-        return $patient_family_detail;
-    }
 
 }
 ?>
