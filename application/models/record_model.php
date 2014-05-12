@@ -2916,6 +2916,5 @@ function update_checkbox($id,$field,$where,$table) {
 
         return $patient_lifestyle;
     }
-
 }
 ?>
